@@ -1,0 +1,13 @@
+.LandingPage--container {
+  flex-grow: 1;
+  height: 100%;
+  background-color: #f4f4f4;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 60px;
+}
+.LandingPage--container > *:not(:last-child) {
+  margin-bottom: 30px;
+}
