@@ -58,6 +58,7 @@ textarea {
   justify-content: flex-start;
   align-items: center;
   white-space: nowrap;
+  transition: filter 0.17s ease-in-out, transform 0.15s ease-in-out;
 }
 
 .sm {
@@ -134,6 +135,18 @@ textarea {
 }
 .button.xl > *:last-child {
   margin-right: 0;
+}
+
+.button:hover {
+  /* background-color: black; */
+  /* opacity: 0.9; */
+  transform: scale(1.015);
+  filter: brightness(90%);
+}
+.button:active {
+  /* background-color: black; */
+  transform: scale(1);
+  filter: brightness(85%);
 }
 
 /* :root {

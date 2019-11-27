@@ -12,3 +12,35 @@
 .LandingPage--container > *:not(:last-child) {
   margin-bottom: 30px;
 }
+
+.inputs {
+  background: linear-gradient(123deg, #76fcff 0%, #f966f8 52%, #e8bba2 100%);
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 60px;
+}
+.inputs > *:not(:last-child) {
+  margin-bottom: 30px;
+}
+.inputs2 {
+  background-color: #ffffff;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+  padding: 60px;
+}
+.inputs2 > *:not(:last-child) {
+  margin-bottom: 30px;
+}
+
+.inputs2-half {
+  display: flex;
+  flex-direction: row;
+  /* justify-content: space-between; */
+}
+.inputs2-half > *:first-child {
+  margin-right: 8px;
+}
