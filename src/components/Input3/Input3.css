@@ -9,7 +9,7 @@
   padding: 12px 24px;
   outline: none;
   background-color: #fff;
-  color: #797575;
+  color: #202124;
   border: 1px solid transparent;
   font-size: 20px;
   font-weight: 400;
@@ -31,5 +31,5 @@
 .Input3--friends > input {
   background-color: #e4e8e9;
   /* color: #b2b1b1; */
-  color: #797575;
+  color: #202124;
 }
