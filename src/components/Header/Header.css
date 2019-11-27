@@ -1,0 +1,60 @@
+.Header--container {
+  background: linear-gradient(123deg, #76fcff 0%, #f966f8 52%, #e8bba2 100%);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 30px;
+  max-height: 115px;
+}
+
+.Header--login {
+  display: grid;
+  grid-template-areas:
+    "username   password  login"
+    ".          forgot    .    ";
+  grid-gap: 8px;
+}
+
+.Header--login > :nth-child(1) {
+  grid-area: username;
+}
+.Header--login > :nth-child(2) {
+  grid-area: password;
+}
+.Header--login > :nth-child(3) {
+  grid-area: forgot;
+  color: var(--color-text-white);
+  font-weight: bold;
+  opacity: 0.5;
+  margin-left: 12px;
+  cursor: pointer;
+}
+.Header--login > :nth-child(3):hover {
+  opacity: 1;
+  text-decoration: underline;
+}
+.Header--login > :nth-child(4) {
+  grid-area: login;
+  align-self: end;
+  margin-left: 8px;
+}
+
+.Header--logo {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  -webkit-user-drag: none;
+  user-select: none;
+}
+
+.Header--logo > img {
+  margin-right: 15px;
+  height: 70px;
+  width: 70px;
+}
+.Header--logo > h1 {
+  font-size: 35px;
+  color: var(--color-text-white);
+  text-shadow: 0px 3px 6px #00000029;
+}

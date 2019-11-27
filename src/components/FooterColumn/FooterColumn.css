@@ -1,0 +1,27 @@
+.FooterColumn--container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+
+.FooterColumn--container > *:not(:last-child) {
+  margin-bottom: 20px;
+}
+
+.FooterColumn--container > h4 {
+  color: var(--color-text-white);
+  font-weight: bold;
+  font-size: 20px;
+  margin-bottom: 40px !important;
+}
+
+.FooterColumn--container > a {
+  font-size: 16px;
+  color: var(--color-text-white);
+  cursor: pointer;
+  text-decoration: none;
+}
+.FooterColumn--container > a:hover {
+  text-decoration: underline;
+}
