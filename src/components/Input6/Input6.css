@@ -1,13 +1,11 @@
-.Input3--container {
+.Input6--container {
   position: relative;
   width: 100%;
   max-width: 480px;
 }
 
-.Input3--container > input {
-  /* display: inline; */
-  padding: 12px 24px;
-  padding: 12px 60px 12px 24px;
+.Input6--container > input {
+  padding: 12px 60px 12px 55px;
   outline: none;
   background-color: #fff;
   color: #202124;
@@ -19,22 +17,20 @@
   border-radius: 50px;
 }
 
-.Input3--container > input:focus {
+.Input6--container > input:focus {
   border-color: #00b1ff;
 }
 
-.Input3--container > button {
+.Input6--container > button {
   position: absolute;
   right: 3%;
   top: 50%;
   transform: translateY(-50%);
 }
-
-.Input3--friends {
-  max-width: 380px;
-}
-.Input3--friends > input {
-  background-color: #e4e8e9;
-  /* color: #b2b1b1; */
-  color: #202124;
+.Input6--container > i {
+  position: absolute;
+  left: 3%;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #ff0000;
 }

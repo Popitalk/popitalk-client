@@ -13,4 +13,9 @@
   border: 1px solid transparent;
   border-radius: 10px;
   color: #202124;
+  font-size: 16px;
+}
+
+.Input1--container > input:focus {
+  border-color: #00b1ff;
 }

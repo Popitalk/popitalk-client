@@ -4,6 +4,9 @@ import Input1 from "../../components/Input1";
 import Input2 from "../../components/Input2";
 import Input3 from "../../components/Input3";
 import Input4 from "../../components/Input4";
+import Input6 from "../../components/Input6";
+import Textarea1 from "../../components/Textarea1";
+import Textarea2 from "../../components/Textarea2";
 
 export default function LandingPage() {
   return (
@@ -51,7 +54,21 @@ export default function LandingPage() {
           header="Channel Name"
           spellCheck={false}
           placeholder="Name your channel"
-          maxLength="6"
+          maxLength="50"
+        />
+        <Input6
+          type="text"
+          header="Password"
+          autoFocus
+          spellCheck={false}
+          placeholder="Search for a Youtube video"
+        />
+        <Textarea2
+          type="text"
+          header="Description"
+          spellCheck={false}
+          placeholder="Describe your channel"
+          maxLength="220"
         />
       </div>
       <div className="inputs2">

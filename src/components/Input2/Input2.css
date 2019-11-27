@@ -16,3 +16,7 @@
   width: 100%;
   /* max-width: 440px; */
 }
+
+.Input2--container > input:focus {
+  border-color: #00b1ff;
+}

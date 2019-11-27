@@ -1,40 +1,45 @@
-.Input3--container {
+.Textarea1--container {
   position: relative;
   width: 100%;
   max-width: 480px;
 }
 
-.Input3--container > input {
+.Textarea1--container > h4 {
+  color: #000000;
+  font-size: 18px;
+  margin-bottom: 10px;
+  margin-left: 15px;
+}
+
+.Textarea1--inputContainer {
+  position: relative;
+}
+
+.Textarea1--inputContainer > input {
   /* display: inline; */
-  padding: 12px 24px;
   padding: 12px 60px 12px 24px;
   outline: none;
   background-color: #fff;
+  color: #797575;
   color: #202124;
-  border: 1px solid transparent;
+  border: 1px solid #d1d1d1;
   font-size: 20px;
   font-weight: 400;
   width: 100%;
   box-shadow: 0px 3px 6px #00000029;
   border-radius: 50px;
 }
-
-.Input3--container > input:focus {
+.Textarea1--inputContainer > input:focus {
   border-color: #00b1ff;
 }
 
-.Input3--container > button {
+.Textarea1--inputContainer > p {
   position: absolute;
   right: 3%;
   top: 50%;
   transform: translateY(-50%);
-}
-
-.Input3--friends {
-  max-width: 380px;
-}
-.Input3--friends > input {
-  background-color: #e4e8e9;
-  /* color: #b2b1b1; */
+  user-select: none;
+  color: #6f6f6f;
+  font-weight: 400;
   color: #202124;
 }
