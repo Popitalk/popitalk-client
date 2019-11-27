@@ -1,5 +1,7 @@
-import React from "react";
+import React, { useCallback } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import "./LandingPage.css";
+import { openCreateNewAccountModal } from "../../redux/actions";
 import Input1 from "../../components/Input1";
 import Input2 from "../../components/Input2";
 import Input3 from "../../components/Input3";
@@ -11,6 +13,11 @@ import Footer from "../../components/Footer";
 // import Landi from "../../assets/landing_page.png";
 
 export default function LandingPage() {
+  const dispatch = useDispatch();
+  const openCreateNewAccountModalDispatcher = useCallback(
+    () => dispatch(openCreateNewAccountModal()),
+    [dispatch]
+  );
   return (
     <div className="LandingPage--container">
       <div>
@@ -21,7 +28,11 @@ export default function LandingPage() {
             <button type="button" className="button pill lg">
               CREATE ROOM
             </button>
-            <button type="button" className="button pill lg bgc-tertiary">
+            <button
+              type="button"
+              className="button pill lg bgc-tertiary"
+              onClick={openCreateNewAccountModalDispatcher}
+            >
               SIGN UP
             </button>
           </div>

@@ -1,2 +1,6 @@
 // CHATSTATE
 export const SET_SOMETHING = "someState/SET_SOMETHING";
+// MODALSTATE
+export const SET_MODAL = "modalState/SET_MODAL";
+// MODAL_COMPONENTS
+export const MODAL_CREATE_NEW_ACCOUNT = "modal/MODAL_CREATE_NEW_ACCOUNT";

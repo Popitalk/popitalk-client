@@ -1,4 +1,5 @@
 import apiReducer from "./apiReducer";
 import wsReducer from "./wsReducer";
+import modalReducer from "./modalReducer";
 
-export { apiReducer, wsReducer };
+export { modalReducer, apiReducer, wsReducer };

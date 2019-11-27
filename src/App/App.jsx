@@ -4,7 +4,7 @@ import { Switch, Route } from "react-router";
 // import { Redirect } from "react-router-dom";
 import LandingPage from "../routes/LandingPage";
 import Header from "../components/Header";
-// import ModalManager from "../components/ModalManager";
+import ModalManager from "../components/ModalManager";
 // import { validateSession } from "../redux/actions";
 import "@fortawesome/fontawesome-free/css/all.css";
 import "./fw.css";
@@ -26,7 +26,7 @@ export default function App() {
 
   return (
     <section className="App--container">
-      {/* <ModalManager /> */}
+      <ModalManager />
       <Header />
       <Switch>
         {<Route path="/a" component={LandingPage} />}

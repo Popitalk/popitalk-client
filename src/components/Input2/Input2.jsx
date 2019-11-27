@@ -13,7 +13,8 @@ export default function Input2({
   disabled,
   required,
   autoFocus,
-  spellCheck
+  spellCheck,
+  className
 }) {
   return (
     <div className="Input2--container">
@@ -29,6 +30,7 @@ export default function Input2({
         autoFocus={autoFocus}
         spellCheck={spellCheck}
         required={required}
+        className={className}
       />
     </div>
   );

@@ -2,12 +2,13 @@ import { combineReducers, createStore, applyMiddleware, compose } from "redux";
 import { createBrowserHistory } from "history";
 import { connectRouter, routerMiddleware } from "connected-react-router";
 import thunk from "redux-thunk";
-import { apiReducer, wsReducer } from "./reducers";
+import { modalReducer, apiReducer, wsReducer } from "./reducers";
 import { websocketMiddleware, localstorageMiddleware } from "./middleware";
 
 const rootReducer = history =>
   combineReducers({
     router: connectRouter(history),
+    modalState: modalReducer,
     apiState: apiReducer,
     wsState: wsReducer
   });
