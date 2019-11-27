@@ -70,6 +70,13 @@ export default function LandingPage() {
           placeholder="Describe your channel"
           maxLength="220"
         />
+        <Textarea1
+          type="text"
+          header="Description"
+          spellCheck={false}
+          placeholder="Type a message..."
+          maxLength="220"
+        />
       </div>
       <div className="inputs2">
         <div className="inputs2-half">
