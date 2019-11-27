@@ -2,4 +2,4 @@
 
 [Link to demo](https://playsnow.sulaiman-alabbar.com/)
 
-Landing Page: /a
+[Landing Page](https://playsnow.sulaiman-alabbar.com/a)
