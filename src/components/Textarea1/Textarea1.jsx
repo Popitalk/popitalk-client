@@ -13,7 +13,8 @@ export default function Textarea1({
   required,
   autoFocus,
   spellCheck,
-  maxLength
+  maxLength,
+  ref
 }) {
   return (
     <div className="Textarea1--container">
@@ -33,6 +34,7 @@ export default function Textarea1({
         spellCheck={spellCheck}
         required={required}
         maxLength={maxLength}
+        ref={ref}
       />
       <div>
         <button type="button" className="button round">

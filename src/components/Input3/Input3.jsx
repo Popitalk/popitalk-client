@@ -2,7 +2,6 @@ import React from "react";
 import "./Input3.css";
 
 export default function Input3({
-  header,
   type,
   name,
   value,
@@ -14,7 +13,9 @@ export default function Input3({
   required,
   autoFocus,
   spellCheck,
-  friends
+  maxLength,
+  friends,
+  onClick
 }) {
   return (
     <div className={`Input3--container${friends ? " Input3--friends" : ""}`}>
@@ -30,8 +31,9 @@ export default function Input3({
         autoFocus={autoFocus}
         spellCheck={spellCheck}
         required={required}
+        maxLength={maxLength}
       />
-      <button type="button" className="button round">
+      <button type="button" className="button round" onClick={onClick}>
         <i className="fas fa-search" />
       </button>
     </div>

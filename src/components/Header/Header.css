@@ -1,5 +1,4 @@
 .Header--container {
-  background: linear-gradient(123deg, #76fcff 0%, #f966f8 52%, #e8bba2 100%);
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -46,6 +45,7 @@
   align-items: center;
   -webkit-user-drag: none;
   user-select: none;
+  margin-right: 30px;
 }
 
 .Header--logo > img {
@@ -57,4 +57,91 @@
   font-size: 35px;
   color: var(--color-text-white);
   text-shadow: 0px 3px 6px #00000029;
+}
+
+.Header--user {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.Header--user > *:not(:last-child) {
+  margin-right: 50px;
+}
+
+.Header--user > *:first-child {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.Header--user > *:first-child > h4 {
+  font-size: 26px;
+  font-weight: bold;
+  color: #ffffff;
+  text-shadow: 0px 3px 6px #00000029;
+  margin-right: 20px;
+}
+
+.Header--user > *:first-child > *:last-child {
+  background-color: #fff;
+  height: 60px;
+  width: 60px;
+  border-radius: 50%;
+  position: relative;
+  transition: transform 0.17s ease-in-out;
+}
+
+.Header--user > *:first-child > *:last-child:hover {
+  transform: scale(1.1);
+}
+.Header--user > *:first-child > *:last-child:active {
+  transform: scale(1.05);
+}
+
+.Header--user > *:first-child > *:last-child > img {
+  position: absolute;
+  top: 50%;
+  right: auto;
+  bottom: auto;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 85%;
+  width: 85%;
+  border-radius: 50%;
+  user-select: none;
+  -webkit-user-drag: none;
+  cursor: pointer;
+}
+
+.Header--user i {
+  color: white;
+}
+
+.Header--user > *:nth-child(2),
+.Header--user > *:nth-child(3),
+.Header--user > *:nth-child(4),
+.Header--user > *:nth-child(5) {
+  cursor: pointer;
+}
+
+.Header--user > *:nth-child(2):hover,
+.Header--user > *:nth-child(3):hover,
+.Header--user > *:nth-child(4):hover,
+.Header--user > *:nth-child(5):hover {
+  filter: brightness(90%);
+}
+
+.Header--user > *:nth-child(2):active,
+.Header--user > *:nth-child(3):active,
+.Header--user > *:nth-child(4):active,
+.Header--user > *:nth-child(5):active {
+  filter: brightness(80%);
+}
+
+/* :hover {
+  filter: brightness(90%);
+} */
+
+.Header--container > .Input3--container {
+  margin-right: auto;
 }

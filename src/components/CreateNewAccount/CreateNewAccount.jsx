@@ -32,7 +32,7 @@ const registrationSchema = Yup.object().shape({
     .required("Confirm Password is required.")
 });
 
-export default function CreateNewAccount() {
+export default function CreateNewAccount({ modal }) {
   const loading = useSelector(({ apiState }) => apiState.userApiLoading);
   const error = useSelector(({ apiState }) => apiState.userApiError);
   const dispatch = useDispatch();
@@ -64,7 +64,9 @@ export default function CreateNewAccount() {
     >
       {formProps => (
         <form
-          className="CreateNewAccount--container"
+          className={`CreateNewAccount--container${
+            modal ? " CreateNewAccount--modal" : ""
+          }`}
           onSubmit={formProps.handleSubmit}
         >
           <h2>Create a New Account</h2>

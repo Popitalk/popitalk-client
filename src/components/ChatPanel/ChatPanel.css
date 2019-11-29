@@ -1,0 +1,6 @@
+.ChatPanel--container {
+  background-color: #ffffff;
+  /* max-height: 650px !important; */
+  flex-grow: 1;
+  background-color: yellow;
+}

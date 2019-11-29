@@ -1,0 +1,8 @@
+.RoomRightPanel--container {
+  background-color: #f1f1f1;
+  display: flex;
+  flex-direction: column;
+  width: 440px;
+  /* max-height: 940px; */
+  /* max-height: 1020px; */
+}

@@ -1,7 +1,7 @@
 .Footer--container {
-  background: linear-gradient(123deg, #76fcff 0%, #f966f8 52%, #e8bba2 100%);
   padding: 60px 170px 40px 260px;
   width: 100%;
+  background-color: transparent;
 }
 
 .Footer--columns {

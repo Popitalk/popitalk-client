@@ -4,3 +4,4 @@ export const SET_SOMETHING = "someState/SET_SOMETHING";
 export const SET_MODAL = "modalState/SET_MODAL";
 // MODAL_COMPONENTS
 export const MODAL_CREATE_NEW_ACCOUNT = "modal/MODAL_CREATE_NEW_ACCOUNT";
+export const MODAL_INVITE = "modal/MODAL_INVITE";

@@ -3,6 +3,7 @@ import React, { useEffect } from "react";
 import { Switch, Route } from "react-router";
 // import { Redirect } from "react-router-dom";
 import LandingPage from "../routes/LandingPage";
+import RoomPage from "../routes/RoomPage";
 import Header from "../components/Header";
 import ModalManager from "../components/ModalManager";
 // import { validateSession } from "../redux/actions";
@@ -30,6 +31,7 @@ export default function App() {
       <Header />
       <Switch>
         {<Route path="/a" component={LandingPage} />}
+        {<Route path="/b" component={RoomPage} />}
         {<Route path="/" component={Page} />}
         {/* <Route
           path="/"

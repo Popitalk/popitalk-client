@@ -3,13 +3,18 @@ import Modal from "react-modal";
 import { useSelector, useDispatch } from "react-redux";
 import { closeModal } from "../../redux/actions";
 import CreateNewAccount from "../CreateNewAccount";
-import { MODAL_CREATE_NEW_ACCOUNT } from "../../helpers/constants";
+import InvitePanel from "../InvitePanel";
+import {
+  MODAL_CREATE_NEW_ACCOUNT,
+  MODAL_INVITE
+} from "../../helpers/constants";
 import "./ModalManager.css";
 
 Modal.setAppElement("#root");
 
 const ModalComponents = {
-  [MODAL_CREATE_NEW_ACCOUNT]: <CreateNewAccount />
+  [MODAL_CREATE_NEW_ACCOUNT]: <CreateNewAccount modal={true} />,
+  [MODAL_INVITE]: <InvitePanel modal={true} />
 };
 
 export default function ModalManager() {

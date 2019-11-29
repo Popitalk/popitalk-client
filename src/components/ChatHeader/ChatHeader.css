@@ -1,0 +1,22 @@
+.ChatHeader--container {
+  background-color: #ffffff;
+  padding: 15px 30px 15px 30px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  border-bottom: 2px solid #ededed;
+  height: 60px;
+  user-select: none;
+}
+
+.ChatHeader--private {
+  background-color: #ededed;
+  padding: 6px 14px;
+  border-radius: 25px;
+}
+.ChatHeader--private > p {
+  font-size: 20px;
+  font-weight: bold;
+  color: #a5a5a5;
+}
