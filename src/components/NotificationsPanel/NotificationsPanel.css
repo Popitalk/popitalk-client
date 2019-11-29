@@ -1,0 +1,73 @@
+.NotificationsPanel--container > *:not(:last-child) {
+  margin-bottom: 30px;
+}
+
+.NotificationsPanel--header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.NotificationsPanel--header > h6 {
+  font-size: 20px;
+  font-weight: 500;
+  user-select: none;
+}
+
+.NotificationsPanel--header > p {
+  font-size: 20px;
+  font-weight: 500;
+  color: #0593fc;
+  user-select: none;
+  cursor: pointer;
+}
+.NotificationsPanel--header > p:hover {
+  text-decoration: underline;
+}
+
+.NotificationsPanel--notifications {
+  /* height: 160px; */
+  max-height: 530px;
+  overflow-y: scroll;
+}
+.NotificationsPanel--notifications::-webkit-scrollbar {
+  width: 0px;
+  background: transparent;
+}
+.NotificationsPanel--notifications::-webkit-scrollbar-thumb {
+  background: #ff0000;
+}
+
+.NotificationsPanel--notifications > * {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.NotificationsPanel--notifications > * > img {
+  width: 42px;
+  height: 42px;
+  margin-right: 20px;
+  border-radius: 50%;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+.NotificationsPanel--notifications > * > p {
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.NotificationsPanel--notifications > *:not(:last-child) {
+  margin-bottom: 12px;
+}
+
+.NotificationsPanel--noNotifications {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.NotificationsPanel--noNotifications > p {
+  font-size: 18px;
+  font-weight: 500;
+}

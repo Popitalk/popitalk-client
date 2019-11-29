@@ -121,27 +121,77 @@
 .Header--user > *:nth-child(3),
 .Header--user > *:nth-child(4),
 .Header--user > *:nth-child(5) {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 32px;
+  width: 30px;
+}
+
+.Header--user > *:nth-child(2) > i,
+.Header--user > *:nth-child(3) > i,
+.Header--user > *:nth-child(4) > i,
+.Header--user > *:nth-child(5) > i {
   cursor: pointer;
 }
 
-.Header--user > *:nth-child(2):hover,
-.Header--user > *:nth-child(3):hover,
-.Header--user > *:nth-child(4):hover,
-.Header--user > *:nth-child(5):hover {
+.Header--user > *:nth-child(2) > i:hover,
+.Header--user > *:nth-child(3) > i:hover,
+.Header--user > *:nth-child(4) > i:hover,
+.Header--user > *:nth-child(5) > i:hover {
   filter: brightness(90%);
 }
 
-.Header--user > *:nth-child(2):active,
-.Header--user > *:nth-child(3):active,
-.Header--user > *:nth-child(4):active,
-.Header--user > *:nth-child(5):active {
+.Header--user > *:nth-child(2) > i:active,
+.Header--user > *:nth-child(3) > i:active,
+.Header--user > *:nth-child(4) > i:active,
+.Header--user > *:nth-child(5) > i:active {
   filter: brightness(80%);
 }
-
-/* :hover {
-  filter: brightness(90%);
-} */
 
 .Header--container > .Input3--container {
   margin-right: auto;
 }
+
+.Header--popup {
+  background-color: #fff;
+  width: 500px;
+  /* padding: 20px 30px 40px 30px; */
+  padding: 20px 30px;
+  border-radius: 15px;
+  box-shadow: 0px 0px 6px #b2b2b2;
+  box-shadow: 0px 0px 6px #00000080;
+  position: absolute;
+  z-index: 10;
+  right: -30px;
+  /* bottom: -80px; */
+  top: 60px;
+  outline: none;
+}
+
+/* .Header--popup::after {
+  background-color: #fff;
+  box-shadow: -2px 2px 0px 0 #00000010;
+  content: "\00a0";
+  display: block;
+  position: relative;
+  top: -50px; */
+/* top: -37px; */
+/* right: -416px;
+  transform: rotate(135deg);
+  -moz-transform: rotate(135deg);
+  -ms-transform: rotate(135deg);
+  -o-transform: rotate(135deg);
+  -webkit-transform: rotate(135deg);
+  height: 20px;
+  width: 20px;
+} */
+
+.Header--popup--friends {
+  right: -20px;
+}
+/* .Header--popup--friends::after {
+  right: -418px;
+} */

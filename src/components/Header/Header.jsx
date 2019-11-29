@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+/* eslint-disable jsx-a11y/no-noninteractive-tabindex */
+import React, { useState, useEffect, useRef } from "react";
 import "./Header.css";
 import Input1 from "../Input1";
 import Input3 from "../Input3";
+import NotificationsPanel from "../NotificationsPanel";
 import Logo from "../../assets/logo.png";
 
 const loggedIn = true;
@@ -10,6 +12,22 @@ export default function Header() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [search, setSearch] = useState("");
+  const [friendsOpen, setFriendsOpen] = useState(false);
+  const [notificationsOpen, setNotificationsOpen] = useState(false);
+  const friendsRef = useRef(null);
+  const notificationsRef = useRef(null);
+
+  useEffect(() => {
+    if (!friendsOpen) return;
+
+    friendsRef.current.focus();
+  }, [friendsOpen]);
+
+  useEffect(() => {
+    if (!notificationsOpen) return;
+
+    notificationsRef.current.focus();
+  }, [notificationsOpen]);
 
   const handleLogin = () => {
     console.log("LOGGIN IN");
@@ -72,10 +90,48 @@ export default function Header() {
             </div>
           </div>
           <div>
-            <i className="fas fa-user-plus fa-2x" />
+            <i
+              className="fas fa-user-plus fa-2x"
+              role="button"
+              onClick={() => {
+                // setNotificationsOpen(false);
+                setFriendsOpen(!friendsOpen);
+              }}
+            />
+            {friendsOpen && (
+              <div
+                className="Header--popup Header--popup--friends"
+                ref={friendsRef}
+                tabIndex="0"
+                onBlur={() => {
+                  setFriendsOpen(false);
+                }}
+              >
+                <p>Hello</p>
+              </div>
+            )}
           </div>
           <div>
-            <i className="fas fa-bell fa-2x" />
+            <i
+              className="fas fa-bell fa-2x"
+              role="button"
+              onClick={() => {
+                // setFriendsOpen(false);
+                setNotificationsOpen(!notificationsOpen);
+              }}
+            />
+            {notificationsOpen && (
+              <div
+                className="Header--popup"
+                ref={notificationsRef}
+                tabIndex="0"
+                onBlur={() => {
+                  setNotificationsOpen(false);
+                }}
+              >
+                <NotificationsPanel />
+              </div>
+            )}
           </div>
           <div>
             <i className="fas fa-cog fa-2x" />
