@@ -23,6 +23,9 @@
 .NotificationsPanel--header > p:hover {
   text-decoration: underline;
 }
+.NotificationsPanel--header > p:active {
+  transform: translateY(1px);
+}
 
 .NotificationsPanel--notifications {
   /* height: 160px; */

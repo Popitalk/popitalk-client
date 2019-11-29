@@ -93,10 +93,14 @@ export default function Header() {
             <i
               className="fas fa-user-plus fa-2x"
               role="button"
-              onClick={() => {
-                // setNotificationsOpen(false);
-                setFriendsOpen(!friendsOpen);
-              }}
+              onMouseDown={
+                friendsOpen
+                  ? undefined
+                  : () => {
+                      // setNotificationsOpen(false);
+                      setFriendsOpen(true);
+                    }
+              }
             />
             {friendsOpen && (
               <div
@@ -115,10 +119,14 @@ export default function Header() {
             <i
               className="fas fa-bell fa-2x"
               role="button"
-              onClick={() => {
-                // setFriendsOpen(false);
-                setNotificationsOpen(!notificationsOpen);
-              }}
+              onMouseDown={
+                notificationsOpen
+                  ? undefined
+                  : () => {
+                      // setFriendsOpen(false);
+                      setNotificationsOpen(true);
+                    }
+              }
             />
             {notificationsOpen && (
               <div
