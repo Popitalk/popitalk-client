@@ -1,6 +1,6 @@
 import React, { useCallback } from "react";
 import { useDispatch } from "react-redux";
-import { openInviteModal } from "../../redux/actions";
+import { openProfileModal, openInviteModal } from "../../redux/actions";
 import "./RoomOnlineUsersPanel.css";
 
 const onlineUsers = [
@@ -48,14 +48,21 @@ export default function RoomOnlineUsersPanel() {
     () => dispatch(openInviteModal()),
     [dispatch]
   );
+  const openProfileModalDispatcher = useCallback(
+    () => dispatch(openProfileModal()),
+    [dispatch]
+  );
 
   return (
     <div className="RoomOnlineUsersPanel--container">
       {onlineUsers.slice(0, 15).map(user => (
-        <div key={user.id} className="RoomOnlineUsersPanel--list">
-          <div>
-            <img src={user.avatar} alt="avatar" />
-          </div>
+        <div
+          key={user.id}
+          role="button"
+          onClick={openProfileModalDispatcher}
+          className="RoomOnlineUsersPanel--user"
+        >
+          <img src={user.avatar} alt="avatar" />
         </div>
       ))}
       <button

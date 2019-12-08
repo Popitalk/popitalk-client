@@ -9,6 +9,10 @@
   /* height: 100vh; */
 }
 
+body {
+  background: linear-gradient(123deg, #76fcff 0%, #f966f8 52%, #e8bba2 100%);
+}
+
 :root {
   --space-xs: 5px;
   --space-sm: 10px;
@@ -59,7 +63,9 @@ textarea {
   align-items: center;
   text-align: center;
   white-space: nowrap;
-  transition: filter 0.17s ease-in-out;
+  transition: filter 0.17s ease-in-out, background-color 0.17s ease-in-out,
+    color 0.17s ease-in-out;
+  user-select: none;
 }
 
 .sm {
@@ -135,7 +141,7 @@ textarea {
 }
 
 .button.xl > *:first-child {
-  margin-right: 18px;
+  margin-right: 24px;
 }
 .button.xl > *:last-child {
   margin-right: 0;

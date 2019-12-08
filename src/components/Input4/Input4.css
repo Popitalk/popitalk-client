@@ -1,7 +1,7 @@
 .Input4--container {
   position: relative;
   width: 100%;
-  max-width: 510px;
+  /* max-width: 510px; */
 }
 
 .Input4--container > h4 {
@@ -17,7 +17,7 @@
 
 .Input4--inputContainer > input {
   /* display: inline; */
-  padding: 12px 60px 12px 24px;
+  padding: 12px 70px 12px 24px;
   outline: none;
   background-color: #fff;
   color: #797575;

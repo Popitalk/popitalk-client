@@ -1,0 +1,119 @@
+.FriendsPanel2--container {
+  position: fixed;
+  right: 0;
+  background-color: #ffffff;
+  border-top-left-radius: 15px;
+  border-bottom-left-radius: 15px;
+  border-right: 2px solid #ededed;
+  box-shadow: 0px 3px 10px #38383880;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* margin-left: 10px; */
+  width: 110px;
+  transition: width 0.17s ease-in-out;
+  animation-name: slideInRight;
+  animation-duration: 0.17s;
+}
+.FriendsPanel2--expanded {
+  position: fixed;
+  right: 0;
+  width: 420px;
+}
+
+.FriendsPanel2--header {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.FriendsPanel2--header {
+  /* display: flex; */
+  /* flex-direction: row; */
+  /* align-items: center; */
+  /* margin: 16px 12px 20px 12px; */
+  /* animation: slideInRight; */
+}
+.FriendsPanel2--header > i {
+  /* animation-name: slideInRight;
+  animation-duration: 4s; */
+}
+
+.FriendsPanel2--header > h3 {
+  margin-left: 12px;
+  font-size: 28px;
+  font-weight: 600;
+  animation-name: slideInRight;
+  animation-duration: 0.5s;
+}
+
+.FriendsPanel2--input {
+  margin: 0 12px;
+}
+
+.FriendsPanel--input2 > .Input3--container > input {
+  background-color: #ecf0f2;
+}
+
+.FriendsPanel2--rooms > *:not(:last-child) {
+  margin-bottom: 20px;
+}
+
+.FriendsPanel2--room {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  user-select: none;
+  cursor: pointer;
+  background-color: #fff;
+  transition: filter 0.17s ease-in-out;
+}
+
+.FriendsPanel2--room--icon {
+  height: 70px;
+  width: 70px;
+  margin-left: 18px;
+}
+.FriendsPanel2--room--icon > img {
+  height: 100%;
+  width: 100%;
+  border-radius: 50%;
+  -webkit-user-drag: none;
+}
+
+.FriendsPanel2--rooms {
+  flex-grow: 1;
+  overflow-y: scroll;
+  padding: 20px 0;
+}
+.FriendsPanel2--rooms::-webkit-scrollbar {
+  width: 0px;
+  background: transparent;
+}
+.FriendsPanel2--rooms::-webkit-scrollbar-thumb {
+  background: #ff0000;
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translate3d(100%, 0, 0);
+    visibility: visible;
+  }
+
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}

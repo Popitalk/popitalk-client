@@ -46,6 +46,7 @@
   -webkit-user-drag: none;
   user-select: none;
   margin-right: 30px;
+  text-decoration: none;
 }
 
 .Header--logo > img {
@@ -68,7 +69,51 @@
   margin-right: 50px;
 }
 
-.Header--user > *:first-child {
+.Header--nameAvatar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  user-select: none;
+  border-radius: 50px;
+  padding: 4px 20px;
+  transition: box-shadow 0.17s ease-in-out;
+  cursor: pointer;
+}
+
+.Header--nameAvatar:hover {
+  box-shadow: inset 0 0 0 10em rgba(255, 255, 255, 0.3);
+}
+.Header--nameAvatar:active {
+  box-shadow: inset 0 0 0 10em rgba(255, 255, 255, 0.45);
+}
+
+.Header--nameAvatar > h4 {
+  font-size: 26px;
+  font-weight: bold;
+  color: #ffffff;
+  text-shadow: 0px 3px 6px #00000029;
+  margin-right: 20px;
+}
+.Header--nameAvatar > .Header--avatar {
+  height: 60px;
+  width: 60px;
+  border-radius: 50%;
+  position: relative;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0px 3px 6px #00000029;
+}
+.Header--nameAvatar > .Header--avatar > img {
+  height: 90%;
+  width: 90%;
+  border-radius: 50%;
+  -webkit-user-drag: none;
+}
+
+/* .Header--user > *:first-child {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -111,10 +156,11 @@
   user-select: none;
   -webkit-user-drag: none;
   cursor: pointer;
-}
+} */
 
 .Header--user i {
   color: white;
+  text-shadow: 0px 3px 6px #00000029;
 }
 
 .Header--user > *:nth-child(2),
@@ -171,15 +217,15 @@
   outline: none;
 }
 
-/* .Header--popup::after {
+.Header--popup::after {
   background-color: #fff;
   box-shadow: -2px 2px 0px 0 #00000010;
   content: "\00a0";
   display: block;
-  position: relative;
-  top: -50px; */
-/* top: -37px; */
-/* right: -416px;
+  position: absolute;
+  z-index: 400;
+  top: -10px;
+  right: 34px;
   transform: rotate(135deg);
   -moz-transform: rotate(135deg);
   -ms-transform: rotate(135deg);
@@ -187,7 +233,7 @@
   -webkit-transform: rotate(135deg);
   height: 20px;
   width: 20px;
-} */
+}
 
 .Header--popup--friends {
   right: -20px;

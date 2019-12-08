@@ -1,5 +1,16 @@
 /* eslint-disable jsx-a11y/no-noninteractive-tabindex */
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
+import {
+  Redirect,
+  Link,
+  Switch,
+  Route,
+  useRouteMatch,
+  useParams,
+  useLocation
+} from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { openProfileModal } from "../../redux/actions";
 import "./Header.css";
 import Input1 from "../Input1";
 import Input3 from "../Input3";
@@ -16,6 +27,11 @@ export default function Header() {
   const [notificationsOpen, setNotificationsOpen] = useState(false);
   const friendsRef = useRef(null);
   const notificationsRef = useRef(null);
+  const dispatch = useDispatch();
+  const openProfileModalDispatcher = useCallback(
+    () => dispatch(openProfileModal()),
+    [dispatch]
+  );
 
   useEffect(() => {
     if (!friendsOpen) return;
@@ -41,10 +57,10 @@ export default function Header() {
 
   return (
     <div className="Header--container">
-      <div className="Header--logo">
+      <Link to="/channels/following" className="Header--logo">
         <img src={Logo} alt="logo" />
         <h1>Playnows</h1>
-      </div>
+      </Link>
       {loggedIn && (
         <Input3
           placeholder="Search"
@@ -83,37 +99,15 @@ export default function Header() {
       )}
       {loggedIn && (
         <div className="Header--user">
-          <div>
+          <div
+            className="Header--nameAvatar"
+            role="button"
+            onClick={openProfileModalDispatcher}
+          >
             <h4>Andrew</h4>
-            <div>
+            <div className="Header--avatar">
               <img src="https://i.imgur.com/aqjzchq.jpg" alt="avatar" />
             </div>
-          </div>
-          <div>
-            <i
-              className="fas fa-user-plus fa-2x"
-              role="button"
-              onMouseDown={
-                friendsOpen
-                  ? undefined
-                  : () => {
-                      // setNotificationsOpen(false);
-                      setFriendsOpen(true);
-                    }
-              }
-            />
-            {friendsOpen && (
-              <div
-                className="Header--popup Header--popup--friends"
-                ref={friendsRef}
-                tabIndex="0"
-                onBlur={() => {
-                  setFriendsOpen(false);
-                }}
-              >
-                <p>Hello</p>
-              </div>
-            )}
           </div>
           <div>
             <i

@@ -1,0 +1,81 @@
+.ChannelBrowser--container {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.ChannelBrowser--header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background-color: #ffffff;
+  border-top-right-radius: 15px;
+  padding: 0 25px;
+  height: 60px;
+  border-bottom: 1px solid #d0d0d0;
+  user-select: none;
+}
+
+.ChannelBrowser--header > *:first-child {
+  margin-right: 28px;
+}
+.ChannelBrowser--header > * {
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  position: relative;
+  text-decoration: none;
+}
+.ChannelBrowser--header > * > h4 {
+  font-size: 26px;
+  font-weight: bold;
+  color: #a0a0a0;
+}
+
+.ChannelBrowser--header--slab {
+  display: none;
+  transition: width 0.12s ease-in-out;
+}
+
+.ChannelBrowser--active > h4 {
+  color: #009dff;
+}
+.ChannelBrowser--active > .ChannelBrowser--header--slab {
+  display: block;
+  height: 8px;
+  width: 100%;
+  background-color: #009dff;
+  border-top-right-radius: 6px;
+  border-top-left-radius: 6px;
+  position: absolute;
+  bottom: 0;
+}
+
+.ChannelBrowser--inActive:hover > .ChannelBrowser--header--slab {
+  display: block;
+  height: 8px;
+  width: 50%;
+  background-color: #009dff;
+  border-top-right-radius: 6px;
+  border-top-left-radius: 6px;
+  position: absolute;
+  bottom: 0;
+  animation: ChannelBrowser--slabExpand 0.17s ease-in-out;
+}
+
+@keyframes ChannelBrowser--slabExpand {
+  0% {
+    width: 0;
+  }
+
+  1% {
+    width: 10%;
+  }
+
+  100% {
+    width: 50%;
+  }
+}

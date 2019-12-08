@@ -1,0 +1,13 @@
+.Posts--container {
+  /* background-color: green;
+  padding: 104px 82px; */
+  /* display: flex; */
+  /* flex-direction: column; */
+}
+
+.Posts--post > .PostCard--container {
+  margin-bottom: 17px;
+}
+.Posts--container > *:not(:last-child) {
+  margin-bottom: 45px;
+}

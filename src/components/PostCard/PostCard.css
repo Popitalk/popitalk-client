@@ -1,0 +1,128 @@
+.PostCard--container {
+  background-color: #ffffff;
+  /* padding: 15px 30px 15px 30px; */
+  /* display: flex; */
+  /* flex-direction: row; */
+  /* justify-content: flex-start; */
+  /* align-items: center; */
+  box-shadow: 0px 2px 3px #00000033;
+  border-radius: 15px;
+  padding: 10px 15px;
+  max-width: 600px;
+}
+
+.PostCard--user {
+  display: flex;
+  flex-direction: row;
+  padding: 0 15px;
+  margin-bottom: 12px;
+}
+.PostCard--user > img {
+  height: 44px;
+  width: 44px;
+  margin-right: 10px;
+  border-radius: 50%;
+  box-shadow: 0px 1px 3px #00000029;
+  -webkit-user-drag: none;
+  user-select: none;
+}
+.PostCard--user > div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.PostCard--user > div > h6 {
+  font-size: 17px;
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+.PostCard--user > div > p {
+  font-size: 12px;
+  font-weight: 500;
+  color: #838383;
+}
+
+.PostCard--post > p {
+  font-size: 17px;
+  font-weight: 500;
+}
+.PostCard--post {
+  padding: 0 15px;
+  margin-bottom: 12px;
+}
+
+.PostCard--stats {
+  padding: 0 15px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.PostCard--stats p {
+  font-size: 13px;
+  font-weight: 500;
+  color: #868686;
+}
+.PostCard--stats > div {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  user-select: none;
+}
+.PostCard--stats > div > i {
+  color: #ef4040;
+  margin-right: 4px;
+}
+
+.PostCard--buttons {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border-top: 1px solid #d9d9d9;
+  padding: 0 6px;
+  padding-top: 4px;
+}
+.PostCard--buttons > *:not(:last-child) {
+  margin-right: 15px;
+}
+
+.PostCard--buttons > button {
+  background-color: transparent;
+  outline: none;
+  border: none;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 6px 8px;
+  cursor: pointer;
+}
+.PostCard--buttons > button > i {
+  margin-right: 8px;
+  color: #727272;
+}
+
+.PostCard--buttons > button > p {
+  font-size: 15px;
+  font-weight: 600;
+  color: #727272;
+}
+
+.PostCard--buttons > button > .PostCard--buttons--hidden {
+  display: none;
+}
+
+.PostCard--buttons > button:hover > .PostCard--buttons--visible {
+  display: none;
+}
+.PostCard--buttons > button:hover > .PostCard--buttons--hidden {
+  display: block;
+}
+
+.PostCard--buttons > button > .PostCard--like {
+  color: #ef4040;
+}
+.PostCard--buttons > button > .PostCard--comment {
+  color: #009dff;
+}

@@ -1,0 +1,132 @@
+.ChannelCard3--container {
+  position: relative;
+  /* width: 385px; */
+  /* height: 350px; */
+  display: flex;
+  flex-direction: column;
+  max-width: 370px;
+}
+
+.ChannelCard3--top {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.ChannelCard3--top > *:first-child {
+  height: 43px;
+  width: 43px;
+  border-radius: 50%;
+  background-color: red;
+  box-shadow: 0px 1px 3px #00000029;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-right: 8px;
+}
+
+.ChannelCard3--top > *:first-child > img {
+  height: 90%;
+  width: 90%;
+  border-radius: 50%;
+}
+
+.ChannelCard3--top > h3 {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.ChannelCard3--middle {
+  background-color: #fff;
+  border-radius: 5px;
+  position: relative;
+  height: 220px;
+  /* height: 20%; */
+  margin-bottom: 10px;
+}
+
+.ChannelCard3--middle > .ChannelCard3--channelImage {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  position: relative;
+  z-index: 1;
+  border-radius: 5px;
+  -webkit-user-drag: none;
+  user-select: none;
+}
+
+.ChannelCard3--middle > .ChannelCard3--sourceImage {
+  height: 33px;
+  width: auto;
+  max-width: 43px;
+  position: absolute;
+  top: 6px;
+  right: 10px;
+  z-index: 2;
+  -webkit-user-drag: none;
+  user-select: none;
+}
+
+.ChannelCard3--middle > h4 {
+  color: #fff;
+  background-color: #de0000;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 5px;
+  padding: 3px 6px;
+  position: absolute;
+  top: 10px;
+  left: 14px;
+  z-index: 2;
+  -webkit-user-drag: none;
+  user-select: none;
+}
+
+.ChannelCard3--title {
+  position: absolute;
+  bottom: 15px;
+  width: 100%;
+  z-index: 4;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.ChannelCard3--title > h3 {
+  color: #fff;
+  font-size: 18px;
+  font-weight: bold;
+  text-shadow: 0px 3px 6px #00000029;
+}
+
+.ChannelCard3--middle > .ChannelCard3--overlay {
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  bottom: 0;
+  height: 100%;
+  width: 100%;
+  border-top-right-radius: 15px;
+  border-top-left-radius: 15px;
+  box-shadow: inset 0px -29px 26px -2px rgba(255, 255, 255, 1);
+}
+
+.ChannelCard3--bottom {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-end;
+  width: 100%;
+  /* background-color: yellow; */
+  height: 50px;
+}
+.ChannelCard3--bottom > * {
+  position: relative;
+  right: -50px;
+  /* display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start; */
+}

@@ -1,9 +1,10 @@
 import React, { useEffect } from "react";
 // import { useSelector, useDispatch } from "react-redux";
 import { Switch, Route } from "react-router";
-// import { Redirect } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import LandingPage from "../routes/LandingPage";
 import RoomPage from "../routes/RoomPage";
+import ChannelPage from "../routes/ChannelPage";
 import Header from "../components/Header";
 import ModalManager from "../components/ModalManager";
 // import { validateSession } from "../redux/actions";
@@ -30,15 +31,13 @@ export default function App() {
       <ModalManager />
       <Header />
       <Switch>
-        {<Route path="/a" component={LandingPage} />}
-        {<Route path="/b" component={RoomPage} />}
-        {<Route path="/" component={Page} />}
-        {/* <Route
-          path="/"
-          render={() =>
-            loggedIn ? <Redirect to="/" /> : <Redirect to="/login" />
-          }
-        /> */}
+        <Route exact path="/" component={LandingPage} />
+        <Route path="/rooms/:roomId" component={RoomPage} />
+        {/* <Route path="/channels/:channelId" component={ChannelPage} /> */}
+        <Route path="/channels/">
+          <ChannelPage />
+        </Route>
+        <Route path="/" render={() => <Redirect to="/" />} />
       </Switch>
     </section>
   );

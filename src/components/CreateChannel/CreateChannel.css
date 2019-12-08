@@ -1,0 +1,95 @@
+.CreateChannel--container {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #f4f4f4;
+  border-top-right-radius: 20px;
+  margin-right: 20px;
+  padding-bottom: 45px;
+}
+.CreateChannel--container > * {
+  /* margin-right: 408px; */
+  /* margin-left: 154px; */
+  padding-right: 408px;
+  padding-left: 154px;
+}
+
+.CreateChannel--top {
+  background-color: #ffffff;
+  border-bottom: 1px solid #d0d0d0;
+  height: 60px;
+  width: 100%;
+  border-top-right-radius: 20px;
+  margin: 0;
+  margin-bottom: 45px;
+}
+
+.CreateChannel--header > h1 {
+  font-size: 36px;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+.CreateChannel--header > h2 {
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.CreateChannel--main {
+  margin-top: 80px;
+  /* width: 100%; */
+  /* flex-grow: 1; */
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  /* margin-right: 408px; */
+  /* margin-left: 154px; */
+}
+.CreateChannel--icon {
+  margin-right: 66px;
+}
+.CreateChannel--inputs {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.CreateChannel--inputs > button {
+  width: 191px;
+  margin: 0 auto;
+  font-size: 26px;
+}
+.CreateChannel--inputs > *:not(:last-child) {
+  margin-bottom: 15px;
+}
+
+.CreateChannel--main > .CreateChannel--inputs > .CreateChannel--private {
+  display: flex;
+  flex-direction: row;
+  /* justify-content: space-between; */
+  align-items: flex-start;
+  width: 100%;
+  margin-top: 45px;
+  margin-bottom: 60px;
+}
+.CreateChannel--main > .CreateChannel--inputs > .CreateChannel--private > i {
+  color: #a0a0a0;
+  margin-right: 10px;
+  margin-top: 2px;
+}
+.CreateChannel--private > .CreateChannel--private--info {
+  width: 265px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  margin-right: auto;
+}
+.CreateChannel--private > .CreateChannel--private--info > h4 {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 4px;
+}
+.CreateChannel--private > .CreateChannel--private--info > p {
+  font-size: 16px;
+  font-weight: 500;
+  color: #6f6f6f;
+}

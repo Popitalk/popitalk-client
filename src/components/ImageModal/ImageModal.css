@@ -1,0 +1,12 @@
+.ImageModal--container {
+  /* display: block; */
+  /* position: relative; */
+  /* max-width: 100px; */
+}
+.ImageModal--container > img {
+  height: 100%;
+  width: 100%;
+  border-radius: 15px;
+  box-shadow: 0px 0px 6px #00000080;
+  -webkit-user-drag: none;
+}

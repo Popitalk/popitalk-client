@@ -1,0 +1,84 @@
+.ChannelsPanel2--container {
+  background-color: #ffffff;
+  /* padding: 18px; */
+
+  /* display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  user-select: none;
+  border-radius: 20px;
+  margin-right: 8px;
+  box-shadow: 0px 3px 10px #38383880;
+  width: 110px;
+  max-height: 7px;
+  max-height: 820px; */
+  /* overflow-y: scroll; */
+  border-top-left-radius: 20px;
+  max-width: 405px;
+}
+
+.ChannelsPanel2--header {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 14px 25px;
+  border-bottom: 1px solid #d0d0d0;
+  height: 60px;
+}
+.ChannelsPanel2--header > i {
+  color: #393939;
+  margin-right: 10px;
+}
+.ChannelsPanel2--header > h2 {
+  font-size: 30px;
+  font-weight: bold;
+  color: #393939;
+  margin-bottom: 0;
+  padding: 0;
+}
+
+.ChannelsPanel2--yourChannels {
+  padding: 14px 0;
+}
+.ChannelsPanel2--yourChannels > *:not(:last-child) {
+  margin-bottom: 25px;
+}
+.ChannelsPanel2--yourChannels > h3 {
+  font-size: 22px;
+  font-weight: bold;
+  color: #a5a5a5;
+  padding: 0 25px;
+}
+.ChannelsPanel2--yourChannels--button {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.ChannelsPanel2--followingChannels {
+  padding: 14px 0;
+}
+.ChannelsPanel2--followingChannels > *:not(:last-child) {
+  margin-bottom: 25px;
+}
+.ChannelsPanel2--followingChannels > h3 {
+  font-size: 22px;
+  font-weight: bold;
+  color: #a5a5a5;
+  padding: 0 25px;
+}
+
+.ChannelsPanel2--seperator {
+  padding: 14px 58px;
+}
+
+.ChannelsPanel2--discover {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 25px;
+}
+.ChannelsPanel2--discover > *:not(:last-child) {
+  margin-bottom: 25px;
+}

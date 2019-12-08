@@ -1,6 +1,187 @@
 .ChatPanel--container {
   background-color: #ffffff;
-  /* max-height: 650px !important; */
-  flex-grow: 1;
-  background-color: yellow;
+  background-color: #ffffff;
+  height: 700px;
+  padding: 0 12px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  /* scrollbar-color: #cbcbcb #cbcbcb; */
+}
+
+.ChatPanel--container::-webkit-scrollbar {
+  width: 24px;
+}
+.ChatPanel--container::-webkit-scrollbar-thumb {
+  box-shadow: inset 0 0 24px 24px #cbcbcb;
+  border: solid 8px transparent;
+  border-radius: 50px;
+}
+
+.ChatPanel--container::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 24px 24px #f0eaff;
+  border: solid 8px transparent;
+  border-radius: 50px;
+}
+
+.ChatPanel--container::-webkit-scrollbar-button {
+  display: none;
+}
+
+.ChatPanel--date {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin: 25px auto 25px auto;
+}
+.ChatPanel--date > h4 {
+  background-color: #f0eaff;
+  border-radius: 23px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 12px 24px;
+  box-shadow: 0px 3px 6px #00000029;
+  color: #888888;
+  font-size: 17px;
+  font-weight: 500;
+  height: 32px;
+}
+
+.ChatPanel--messageGroup {
+  display: grid;
+  grid-template-areas:
+    "avatar   nameDate"
+    "edge     messages";
+  grid-template-columns: 36px 1fr;
+  grid-template-rows: 36px 1fr;
+  margin-bottom: 25px;
+  width: 100%;
+}
+.ChatPanel--messageGroup > img {
+  grid-area: avatar;
+  height: 36px;
+  width: 36px;
+  border-radius: 50%;
+  box-shadow: 0px 3px 6px #00000029;
+  -webkit-user-drag: none;
+  user-select: none;
+  cursor: pointer;
+  transition: filter 0.17s ease-in-out;
+}
+.ChatPanel--messageGroup > img:hover {
+  filter: brightness(90%);
+}
+.ChatPanel--messageGroup > img:active {
+  filter: brightness(80%);
+}
+.ChatPanel--messageGroup > .ChatPanel--messageGroup--nameDate {
+  grid-area: nameDate;
+  font-size: 22px;
+  font-weight: bold;
+  margin-left: 15px;
+  margin-bottom: 6px;
+  align-self: center;
+}
+.ChatPanel--messageGroup > .ChatPanel--messageGroup--nameDate > span {
+  color: #868686;
+  font-size: 13px;
+  font-weight: 500;
+  margin-left: 4px;
+}
+
+.ChatPanel--messageGroup > .ChatPanel--messageGroup--edge {
+  grid-area: edge;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-top: 6px;
+}
+.ChatPanel--messageGroup > .ChatPanel--messageGroup--edge > div {
+  background-color: #cbcbcb;
+  border-radius: 10px;
+  width: 5px;
+  height: 100%;
+}
+
+.ChatPanel--messageGroup > .ChatPanel--messages {
+  grid-area: messages;
+  font-size: 18px;
+  margin-left: 15px;
+  padding-bottom: 6px;
+}
+.ChatPanel--messageGroup > .ChatPanel--messages > *:not(:last-child) {
+  margin-bottom: 4px;
+}
+
+.ChatPanel--messageGroup > .ChatPanel--messages i {
+  display: none;
+  color: red;
+  cursor: pointer;
+}
+.ChatPanel--messageGroup > .ChatPanel--messages i:hover {
+  color: rgb(189, 0, 0);
+}
+.ChatPanel--messageGroup > .ChatPanel--messages i:active {
+  transform: translateY(1px);
+}
+
+.ChatPanel--messageGroup > .ChatPanel--messages > * {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.ChatPanel--messageGroup > .ChatPanel--messages > * > *:first-child {
+  width: 315px;
+}
+
+.ChatPanel--messageGroup > .ChatPanel--messages > *:hover i {
+  display: block;
+}
+
+.ChatPanel--chat > *:last-child {
+  margin-bottom: 0;
+}
+
+.ChatPanel--messages--last {
+  position: relative;
+}
+.ChatPanel--seenUsers {
+  position: absolute;
+  bottom: -30px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+}
+.ChatPanel--seenUsers > *:not(:last-child) {
+  margin-right: 2px;
+}
+.ChatPanel--seenUsers > img {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  -webkit-user-drag: none;
+  user-select: none;
+}
+
+.ChatPanel--userImage {
+  max-width: 247px;
+  height: auto;
+  border-radius: 13px;
+  -webkit-user-drag: none;
+  box-shadow: 0px 3px 6px #00000029;
+  cursor: pointer;
+  transition: filter 0.17s ease-in-out;
+}
+.ChatPanel--userImage:hover {
+  filter: brightness(90%);
+}
+.ChatPanel--userImage:active {
+  filter: brightness(80%);
 }

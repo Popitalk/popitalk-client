@@ -1,0 +1,133 @@
+.ChannelMain--container {
+  flex-grow: 1;
+  background-color: #f4f4f4;
+}
+
+.ChannelMain--header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  height: 60px;
+  border-bottom: 2px solid #ededed;
+  background-color: #ffffff;
+  position: relative;
+}
+.ChannelMain--header > *:first-child {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 10px 10px;
+}
+.ChannelMain--header > *:first-child > img {
+  height: 37px;
+  width: 37px;
+  border-radius: 50%;
+  margin-right: 16px;
+  -webkit-user-drag: none;
+  user-select: none;
+}
+.ChannelMain--header > *:first-child > h2 {
+  font-size: 26px;
+  font-weight: 500;
+}
+
+.ChannelMain--nav {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0 25px;
+  height: 100%;
+  user-select: none;
+}
+
+.ChannelMain--nav > *:not(:last-child) {
+  margin-right: 28px;
+}
+.ChannelMain--nav > * {
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  position: relative;
+}
+.ChannelMain--nav > * > h4 {
+  font-size: 26px;
+  font-weight: bold;
+  color: #a0a0a0;
+}
+
+.ChannelMain--nav--slab {
+  display: none;
+  transition: width 0.12s ease-in-out;
+}
+
+.ChannelMain--active > h4 {
+  color: #009dff;
+}
+.ChannelMain--active > .ChannelMain--nav--slab {
+  display: block;
+  height: 8px;
+  width: 100%;
+  background-color: #009dff;
+  border-top-right-radius: 6px;
+  border-top-left-radius: 6px;
+  position: absolute;
+  bottom: 0;
+}
+
+.ChannelMain--inActive:hover > .ChannelMain--nav--slab {
+  display: block;
+  height: 8px;
+  width: 50%;
+  background-color: #009dff;
+  border-top-right-radius: 6px;
+  border-top-left-radius: 6px;
+  position: absolute;
+  bottom: 0;
+  animation: ChannelMain--slabExpand 0.17s ease-in-out;
+}
+
+@keyframes ChannelMain--slabExpand {
+  0% {
+    width: 0;
+  }
+
+  1% {
+    width: 10%;
+  }
+
+  100% {
+    width: 50%;
+  }
+}
+
+.ChannelMain--container > .VideoPanel--container {
+  margin-bottom: 85px;
+}
+
+.ChannelMain--back {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.ChannelMain--back > button {
+  background-color: #ffffff;
+  box-shadow: 0px 2px 3px #00000033;
+}
+.ChannelMain--back > button > p {
+  font-size: 20px;
+  font-weight: 500;
+  color: #5f5f5f;
+}
+.ChannelMain--back > button > i {
+  color: #5f5f5f;
+}
+
+.ChannelMain--nav a {
+  text-decoration: none;
+}

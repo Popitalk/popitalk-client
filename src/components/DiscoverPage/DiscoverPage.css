@@ -1,0 +1,116 @@
+.DiscoverPage--container {
+  background-color: #f4f4f4;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 100px 0;
+  /* padding: 100px 130px; */
+}
+.DiscoverPage--container > h1 {
+  font-size: 36px;
+  font-weight: bold;
+  margin-bottom: 30px;
+}
+.DiscoverPage--container > .Input5--container {
+  margin-bottom: 80px;
+}
+
+.DiscoverPage--searchResults {
+  margin-right: auto;
+  width: 100%;
+  padding: 0 130px;
+  border-bottom: 1px solid #d0d0d0;
+}
+.DiscoverPage--searchResults > h3 {
+  font-size: 26px;
+  font-weight: 600;
+  margin-bottom: 30px;
+}
+.DiscoverPage--searchResults--button {
+  width: 100%;
+  margin: 36px auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.DiscoverPage--channels {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  column-gap: 10px;
+  row-gap: 20px;
+}
+.DiscoverPage--channels > * {
+  /* background-color: red; */
+}
+
+.DiscoverPage--recommended {
+  margin-right: auto;
+  width: 100%;
+  padding: 45px 130px;
+}
+
+.DiscoverPage--recommended > h3 {
+  font-size: 26px;
+  font-weight: 600;
+  margin-bottom: 30px;
+}
+
+.DiscoverPage--recommended--nav {
+  margin: 0 auto;
+  margin-bottom: 45px;
+  display: flex;
+  flex-direction: row;
+  width: 313px;
+  box-shadow: 0px 3px 6px #00000029;
+  border-radius: 50px;
+}
+.DiscoverPage--recommended--nav > button {
+  background-color: #fff;
+  color: #a0a0a0;
+  font-size: 18px;
+}
+.DiscoverPage--recommended--nav > :nth-child(1) {
+  border-top-left-radius: 50px;
+  border-bottom-left-radius: 50px;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+.DiscoverPage--recommended--nav > :nth-child(2) {
+  border-radius: 0;
+  /* flex-grow: 1; */
+}
+.DiscoverPage--recommended--nav > :nth-child(3) {
+  border-top-right-radius: 50px;
+  border-bottom-right-radius: 50px;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.DiscoverPage--recommended--nav > .DiscoverPage--activeTab {
+  color: #009dff;
+}
+
+/* .ChannelBrowser--discover--recommended--nav > div {
+  background-color: #fff;
+  height: 100%;
+  cursor: pointer;
+}
+.ChannelBrowser--discover--recommended--nav > div:hover {
+  filter: brightness(90%);
+} */
+/* .ChannelBrowser--discover--recommended--nav {
+  margin: 0 auto;
+  margin-bottom: 45px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 370px;
+} */
+/* .ChannelBrowser--discover--recommended--nav p {
+  font-size: 22px;
+  font-weight: 600;
+  color: #a0a0a0;
+} */

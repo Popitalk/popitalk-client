@@ -1,0 +1,118 @@
+.ChannelList2--container {
+  display: flex;
+  flex-direction: column;
+  user-select: none;
+}
+.ChannelList2--container > *:not(:last-child) {
+  /* margin-bottom: 20px; */
+}
+
+.ChannelList2--channel {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 12px 25px;
+  cursor: pointer;
+  background-color: #fff;
+  transition: filter 0.17s ease-in-out;
+  height: 77px;
+  position: relative;
+}
+
+.ChannelList2--channel:hover {
+  filter: brightness(90%);
+}
+.ChannelList2--channel:active {
+  filter: brightness(80%);
+}
+
+.ChannelList2--channel--iconWatching {
+  width: 53px;
+  height: 53px;
+  border-radius: 50%;
+  box-shadow: 0px 0px 6px #00000080;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-right: 8px;
+  background: linear-gradient(180deg, #03f5ff 0%, #f500ff 100%);
+  -webkit-user-drag: none;
+}
+.ChannelList2--channel--iconNotWatching {
+  width: 41px;
+  height: 41px;
+  border-radius: 50%;
+  box-shadow: 0px 0px 6px #00000080;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-right: 16px;
+  background-color: #fff;
+  -webkit-user-drag: none;
+}
+.ChannelList2--channel--iconWatching > img,
+.ChannelList2--channel--iconNotWatching > img {
+  height: 90%;
+  width: 90%;
+  border-radius: 50%;
+}
+
+.ChannelList2--channel--name {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.ChannelList2--channel--name > p {
+  font-size: 22px;
+  font-weight: 500;
+}
+.ChannelList2--channel--name > .AvatarDeck--container {
+  margin-top: 25px;
+}
+
+.ChannelList2--slab {
+  display: none;
+  transition: height 0.12s ease-in-out;
+}
+
+.ChannelList2--active {
+  filter: brightness(90%);
+}
+.ChannelList2--active > .ChannelList2--slab {
+  display: block;
+  width: 8px;
+  height: 80%;
+  background-color: #009dff;
+  border-top-right-radius: 6px;
+  border-bottom-right-radius: 6px;
+  position: absolute;
+  left: 0;
+}
+
+.ChannelList2--inActive:hover > .ChannelList2--slab {
+  display: block;
+  width: 8px;
+  height: 50%;
+  background-color: #009dff;
+  border-top-right-radius: 6px;
+  border-bottom-right-radius: 6px;
+  position: absolute;
+  left: 0;
+  animation: ChannelList2--slabExpand 0.17s ease-in-out;
+}
+
+@keyframes ChannelList2--slabExpand {
+  0% {
+    height: 0;
+  }
+
+  1% {
+    height: 10%;
+  }
+
+  100% {
+    height: 50%;
+  }
+}

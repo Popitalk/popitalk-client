@@ -1,0 +1,64 @@
+.ReplyCard--container {
+  padding: 10px 35px;
+  max-width: 600px;
+  display: flex;
+  flex-direction: row;
+}
+
+.ReplyCard--container > img {
+  height: 28px;
+  width: 28px;
+  border-radius: 50%;
+  margin-right: 10px;
+  -webkit-user-drag: none;
+  user-select: none;
+}
+
+.ReplyCard--container > div {
+  width: 445px;
+  word-break: break-all;
+}
+
+.ReplyCard--reply {
+  color: #100707;
+  font-size: 14px;
+  font-weight: 400;
+  margin-bottom: 10px;
+}
+.ReplyCard--reply > span {
+  font-weight: 600;
+}
+
+.ReplyCard--date {
+  font-size: 10px;
+  font-weight: 500;
+  color: #838383;
+}
+
+.ReplyCard--container > button {
+  background-color: transparent;
+  outline: none;
+  border: none;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 6px 8px;
+  cursor: pointer;
+  margin-left: auto;
+  margin-bottom: auto;
+}
+.ReplyCard--container > button > i {
+  color: #727272;
+}
+
+.ReplyCard--container > button > .ReplyCard--buttons--hidden {
+  display: none;
+}
+
+.ReplyCard--container > button:hover > .ReplyCard--buttons--visible {
+  display: none;
+}
+.ReplyCard--container > button:hover > .ReplyCard--buttons--hidden {
+  display: block;
+  color: #ef4040;
+}
