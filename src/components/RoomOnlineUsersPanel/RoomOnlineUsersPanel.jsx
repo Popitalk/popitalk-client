@@ -39,6 +39,26 @@ const onlineUsers = [
   {
     id: "a9",
     avatar: "https://i.imgur.com/tLljw1z.jpg"
+  },
+  {
+    id: "a10",
+    avatar: "https://i.imgur.com/aqjzchq.jpg"
+  },
+  {
+    id: "a11",
+    avatar: "https://i.imgur.com/88oSmeX.jpg"
+  },
+  {
+    id: "a12",
+    avatar: "https://i.imgur.com/tLljw1z.jpg"
+  },
+  {
+    id: "a13",
+    avatar: "https://i.imgur.com/aqjzchq.jpg"
+  },
+  {
+    id: "a14",
+    avatar: "https://i.imgur.com/88oSmeX.jpg"
   }
 ];
 
@@ -55,7 +75,7 @@ export default function RoomOnlineUsersPanel() {
 
   return (
     <div className="RoomOnlineUsersPanel--container">
-      {onlineUsers.slice(0, 15).map(user => (
+      {onlineUsers.slice(0, 10).map(user => (
         <div
           key={user.id}
           role="button"
@@ -65,6 +85,11 @@ export default function RoomOnlineUsersPanel() {
           <img src={user.avatar} alt="avatar" />
         </div>
       ))}
+      {onlineUsers.length > 10 && (
+        <div className="RoomOnlineUsersPanel--more">
+          <p>+{onlineUsers.length}</p>
+        </div>
+      )}
       <button
         type="button"
         className="button round"

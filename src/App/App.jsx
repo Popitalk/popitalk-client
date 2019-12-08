@@ -5,6 +5,7 @@ import { Redirect } from "react-router-dom";
 import LandingPage from "../routes/LandingPage";
 import RoomPage from "../routes/RoomPage";
 import ChannelPage from "../routes/ChannelPage";
+import UserPage from "../routes/UserPage";
 import Header from "../components/Header";
 import ModalManager from "../components/ModalManager";
 // import { validateSession } from "../redux/actions";
@@ -31,11 +32,17 @@ export default function App() {
       <ModalManager />
       <Header />
       <Switch>
-        <Route exact path="/" component={LandingPage} />
-        <Route path="/rooms/:roomId" component={RoomPage} />
-        {/* <Route path="/channels/:channelId" component={ChannelPage} /> */}
+        <Route exact path="/welcome">
+          <LandingPage />
+        </Route>
+        <Route path="/rooms/:roomId">
+          <RoomPage />
+        </Route>
         <Route path="/channels/">
           <ChannelPage />
+        </Route>
+        <Route path="/users/">
+          <UserPage />
         </Route>
         <Route path="/" render={() => <Redirect to="/" />} />
       </Switch>

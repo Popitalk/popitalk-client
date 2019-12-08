@@ -29,24 +29,18 @@ export default function ChannelPage() {
     <div className="ChannelPage--container">
       <ChannelsPanel2 />
       <Switch>
-        <Route path={[`${match.path}following`, `${match.path}discover`]}>
+        <Route path={["/channels/following", "channels/discover"]}>
           <ChannelBrowser />
         </Route>
-        <Route path={`${match.path}create`}>
+        <Route path="/channels/create">
           <CreateChannel />
         </Route>
-        <Route path={`${match.path}:channelId`}>
+        <Route path="/channels/:channelId">
           <ChannelMain />
           <RoomRightPanel />
         </Route>
       </Switch>
       <FriendsPanel2 />
-      {/* <CreateChannel /> */}
-      {/* <UpdateChannel /> */}
-      {/* <ChannelMain /> */}
-      {/* <ChannelBrowser /> */}
-      {/* <RoomRightPanel /> */}
-      {/* <FriendsPanel /> */}
     </div>
   );
 }

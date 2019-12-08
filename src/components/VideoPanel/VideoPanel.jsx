@@ -16,7 +16,6 @@ export default function VideoPanel() {
       {/* <VideoQueue2 /> */}
       <SearchSource />
       <SearchResults />
-      {/* <VideoSources /> */}
     </div>
   );
 }

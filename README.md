@@ -11,3 +11,5 @@
 [Create Channel Page](https://playsnow.sulaiman-alabbar.com/channels/create)
 
 [Following Page](https://playsnow.sulaiman-alabbar.com/channels/following)
+
+[Users Page](https://playsnow.sulaiman-alabbar.com/users/abc)

@@ -1,4 +1,4 @@
-.Profile--container {
+.Profile2--container {
   /* background-color: #ffffff;
   padding: 15px 30px 15px 30px;
   display: flex;
@@ -11,11 +11,17 @@
 
   border-radius: 30px;
   background-color: #ffffff;
-  width: 1270px;
-  padding-bottom: 30px;
+  /* width: 1270px; */
+  flex-grow: 1;
+  margin-right: 120px;
+  margin-bottom: 95px;
+  /* padding-bottom: 55px; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.Profile--header {
+.Profile2--header {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -23,19 +29,19 @@
   border-bottom: 1px solid #d0d0d0;
   padding: 20px 16px;
 }
-.Profile--header > h2 {
+.Profile2--header > h2 {
   font-size: 30px;
   font-weight: 600;
   user-select: none;
 }
 
-.Profile--user {
+.Profile2--user {
   display: flex;
   flex-direction: row;
   align-items: center;
   padding: 55px 50px;
 }
-.Profile--user > img {
+.Profile2--user > img {
   height: 185px;
   width: 185px;
   margin-right: 35px;
@@ -43,71 +49,59 @@
   -webkit-user-drag: none;
   user-select: none;
 }
-.Profile--user > .Profile--user--nameStatsLink {
+.Profile2--user > .Profile2--user--nameStats {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
-.Profile--user > .Profile--user--nameStatsLink > *:not(:last-child) {
+.Profile2--user > .Profile2--user--nameStats > *:first-child {
   margin-bottom: 25px;
 }
 
-.Profile--user > .Profile--user--nameStatsLink > *:nth-child(1) > h3 {
+.Profile2--user > .Profile2--user--nameStats > *:first-child > h3 {
   font-size: 40px;
   font-weight: 500;
   margin-bottom: 4px;
 }
-.Profile--user > .Profile--user--nameStatsLink > *:nth-child(1) > p {
+.Profile2--user > .Profile2--user--nameStats > *:first-child > p {
   font-size: 20px;
   font-weight: 500;
 }
 
-.Profile--user > .Profile--user--nameStatsLink > *:nth-child(2) {
+.Profile2--user > .Profile2--user--nameStats > *:last-child {
   display: flex;
   flex-direction: row;
 }
-.Profile--user > .Profile--user--nameStatsLink > *:nth-child(2) > * {
+.Profile2--user > .Profile2--user--nameStats > *:last-child > * {
   font-size: 20px;
   font-weight: 500;
 }
-.Profile--user > .Profile--user--nameStatsLink > *:nth-child(2) > * {
+.Profile2--user > .Profile2--user--nameStats > *:last-child > * {
   font-size: 20px;
   font-weight: 500;
 }
-.Profile--user
-  > .Profile--user--nameStatsLink
-  > *:nth-child(2)
-  > *:first-child {
+.Profile2--user > .Profile2--user--nameStats > *:last-child > *:first-child {
   margin-right: 20px;
 }
-.Profile--user > .Profile--user--nameStatsLink > *:nth-child(2) > * span {
+.Profile2--user > .Profile2--user--nameStats > *:last-child > * span {
   font-weight: bold;
 }
-
-.Profile--user > .Profile--user--nameStatsLink > *:nth-child(3) {
-  font-size: 17px;
-  font-weight: bold;
-  color: #0093ff;
-  cursor: pointer;
-  text-decoration: underline;
-}
-
-.Profile--user > button {
+.Profile2--user > button {
   /* margin-top: auto; */
   margin-left: auto;
   margin-bottom: auto;
 }
 
-.Profile--channels {
+.Profile2--channels {
   padding: 25px 50px;
 }
-.Profile--channels > h3 {
+.Profile2--channels > h3 {
   font-size: 26px;
   font-weight: 600;
   margin-bottom: 20px;
 }
 
-.Profile--channelsGrid {
+.Profile2--channelsGrid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 15px;

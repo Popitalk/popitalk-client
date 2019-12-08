@@ -1,8 +1,23 @@
-import React from "react";
+import React, { useCallback } from "react";
+import { useHistory } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { closeModal } from "../../redux/actions";
 import ChannelCard from "../ChannelCard";
 import "./Profile.css";
 
 export default function Profile() {
+  const history = useHistory();
+  const dispatch = useDispatch();
+  const closeModalDispatcher = useCallback(() => dispatch(closeModal()), [
+    dispatch
+  ]);
+
+  const handleProfilePageLink = () => {
+    console.log("HIS", history);
+    history.push("/users/abc");
+    closeModalDispatcher();
+  };
+
   return (
     <div className="Profile--container">
       <div className="Profile--header">
@@ -10,7 +25,7 @@ export default function Profile() {
       </div>
       <div className="Profile--user">
         <img src="https://i.imgur.com/tLljw1z.jpg" alt="avatar" />
-        <div className="Profile--user--nameStats">
+        <div className="Profile--user--nameStatsLink">
           <div>
             <h3>Djang16</h3>
             <p>Andrew Jang</p>
@@ -23,6 +38,7 @@ export default function Profile() {
               <span>10</span> friends
             </p>
           </div>
+          <p onClick={handleProfilePageLink}>Go to Djang16s Profile &gt;</p>
         </div>
         <button type="button" className="button">
           <i className="fas fa-user-plus" />
