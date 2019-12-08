@@ -26,7 +26,7 @@ export default function DiscoverPage() {
         maxLength={120}
       />
       <div className="DiscoverPage--searchResults">
-        <h3>20 results for "Andrew"</h3>
+        <h3>20 results for &quot;Andrew&quot;</h3>
         <div className="DiscoverPage--channels">
           <ChannelCard />
           <ChannelCard />

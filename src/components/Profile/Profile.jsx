@@ -30,7 +30,7 @@ export default function Profile() {
         </button>
       </div>
       <div className="Profile--channels">
-        <h3>Djang16's Channels</h3>
+        <h3>Djang16&apos;s Channels</h3>
         <div className="Profile--channelsGrid">
           <ChannelCard />
           <ChannelCard />
