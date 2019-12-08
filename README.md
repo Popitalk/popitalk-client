@@ -2,6 +2,12 @@
 
 [Link to demo](https://playsnow.sulaiman-alabbar.com/)
 
-[Landing Page](https://playsnow.sulaiman-alabbar.com/a)
+[Landing Page](https://playsnow.sulaiman-alabbar.com/)
 
-[Room Page](https://playsnow.sulaiman-alabbar.com/b)
+[Room Page](https://playsnow.sulaiman-alabbar.com/rooms/abc)
+
+[Channel Page](https://playsnow.sulaiman-alabbar.com/channels/abc/video)
+
+[Create Channel Page](https://playsnow.sulaiman-alabbar.com/channels/create)
+
+[Following Page](https://playsnow.sulaiman-alabbar.com/channels/following)
