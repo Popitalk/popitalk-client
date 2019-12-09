@@ -1,5 +1,7 @@
 import {
-  SET_MODAL,
+  PUSH_MODAL,
+  POP_MODAL,
+  POP_ALL_MODAL,
   MODAL_CREATE_NEW_ACCOUNT,
   MODAL_INVITE,
   MODAL_PROFILE,
@@ -8,43 +10,44 @@ import {
 } from "../../../helpers/constants";
 
 export const openCreateNewAccountModal = () => ({
-  type: SET_MODAL,
+  type: PUSH_MODAL,
   payload: {
     component: MODAL_CREATE_NEW_ACCOUNT
   }
 });
 
 export const openInviteModal = () => ({
-  type: SET_MODAL,
+  type: PUSH_MODAL,
   payload: {
     component: MODAL_INVITE
   }
 });
 
 export const openProfileModal = () => ({
-  type: SET_MODAL,
+  type: PUSH_MODAL,
   payload: {
     component: MODAL_PROFILE
   }
 });
 
 export const openWatchingModal = () => ({
-  type: SET_MODAL,
+  type: PUSH_MODAL,
   payload: {
     component: MODAL_WATCHING
   }
 });
 
 export const openImageModal = () => ({
-  type: SET_MODAL,
+  type: PUSH_MODAL,
   payload: {
     component: MODAL_IMAGE
   }
 });
 
 export const closeModal = () => ({
-  type: SET_MODAL,
-  payload: {
-    component: null
-  }
+  type: POP_MODAL
+});
+
+export const closeAllModals = () => ({
+  type: POP_ALL_MODAL
 });

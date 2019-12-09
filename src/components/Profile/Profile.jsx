@@ -1,7 +1,7 @@
 import React, { useCallback } from "react";
 import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { closeModal } from "../../redux/actions";
+import { closeModal, closeAllModals } from "../../redux/actions";
 import ChannelCard from "../ChannelCard";
 import "./Profile.css";
 
@@ -11,9 +11,12 @@ export default function Profile() {
   const closeModalDispatcher = useCallback(() => dispatch(closeModal()), [
     dispatch
   ]);
+  const closeAllModalsDispatcher = useCallback(
+    () => dispatch(closeAllModals()),
+    [dispatch]
+  );
 
   const handleProfilePageLink = () => {
-    console.log("HIS", history);
     history.push("/users/abc");
     closeModalDispatcher();
   };

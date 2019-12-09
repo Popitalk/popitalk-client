@@ -1,7 +1,16 @@
 import React, { useState, useRef } from "react";
 import Modal from "react-modal";
+import {
+  Redirect,
+  Link,
+  Switch,
+  Route,
+  useRouteMatch,
+  useParams,
+  useLocation
+} from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { closeModal } from "../../redux/actions";
+import { closeAllModals } from "../../redux/actions";
 import CreateNewAccount from "../CreateNewAccount";
 import Watching from "../Watching";
 import InvitePanel from "../InvitePanel";
@@ -29,7 +38,7 @@ const ModalComponents = {
 const isOdd = num => num % 2 !== 0;
 
 export default function ModalManager() {
-  const component = useSelector(({ modalState }) => modalState.component);
+  const openModals = useSelector(({ modalState }) => modalState.open);
   const apiLoading = useSelector(
     ({ apiState }) => apiState.generalApiLoading || apiState.userApiLoading
   );
@@ -45,13 +54,13 @@ export default function ModalManager() {
   };
 
   const handleClose = () => {
-    dispatch(closeModal());
+    dispatch(closeAllModals());
     setDimensions(null);
   };
 
   return (
     <Modal
-      isOpen={Boolean(component)}
+      isOpen={openModals.length !== 0}
       onAfterOpen={afterOpenModal}
       closeTimeoutMS={250}
       contentLabel="modal"
@@ -71,7 +80,7 @@ export default function ModalManager() {
             }
       }
     >
-      {ModalComponents[component]}
+      {ModalComponents[openModals[openModals.length - 1]]}
     </Modal>
   );
 }

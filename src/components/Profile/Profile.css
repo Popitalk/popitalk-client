@@ -42,6 +42,7 @@
   border-radius: 50%;
   -webkit-user-drag: none;
   user-select: none;
+  box-shadow: 0px 3px 6px #00000029;
 }
 .Profile--user > .Profile--user--nameStatsLink {
   display: flex;

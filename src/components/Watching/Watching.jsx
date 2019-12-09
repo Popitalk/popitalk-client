@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
+import { useDispatch } from "react-redux";
+import { openProfileModal } from "../../redux/actions";
 import "./Watching.css";
 
 const users = [
@@ -76,6 +78,11 @@ const users = [
 
 export default function Watching() {
   const [search, setSearch] = useState("");
+  const dispatch = useDispatch();
+  const openProfileModalDispatcher = useCallback(
+    () => dispatch(openProfileModal()),
+    [dispatch]
+  );
 
   const filteredUsers = users.filter(user => user.username.includes(search));
 
@@ -105,7 +112,12 @@ export default function Watching() {
           </div>
         ) : (
           filteredUsers.map(user => (
-            <div className="Watching--user" key={user.id}>
+            <div
+              role="button"
+              className="Watching--user"
+              key={user.id}
+              onClick={openProfileModalDispatcher}
+            >
               <img src={user.avatar} alt={`${user.username} avatar`} />
               <div>
                 <p>{user.username}</p>
