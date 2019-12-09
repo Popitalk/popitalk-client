@@ -16,6 +16,7 @@ import Watching from "../Watching";
 import Followers from "../Followers";
 import InvitePanel from "../InvitePanel";
 import Profile from "../Profile";
+import InviteModal from "../InviteModal";
 import ImageModal from "../ImageModal";
 import {
   MODAL_CREATE_NEW_ACCOUNT,
@@ -31,7 +32,7 @@ Modal.setAppElement("#root");
 
 const ModalComponents = {
   [MODAL_CREATE_NEW_ACCOUNT]: <CreateNewAccount modal={true} />,
-  [MODAL_INVITE]: <InvitePanel modal={true} />,
+  [MODAL_INVITE]: <InviteModal />,
   [MODAL_PROFILE]: <Profile />,
   [MODAL_WATCHING]: <Watching />,
   [MODAL_FOLLOWERS]: <Followers />,
