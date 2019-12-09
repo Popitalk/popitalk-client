@@ -1,6 +1,10 @@
 import React, { useCallback } from "react";
 import { useDispatch } from "react-redux";
-import { openProfileModal, openInviteModal } from "../../redux/actions";
+import {
+  openProfileModal,
+  openWatchingModal,
+  openInviteModal
+} from "../../redux/actions";
 import "./RoomOnlineUsersPanel.css";
 
 const onlineUsers = [
@@ -64,6 +68,10 @@ const onlineUsers = [
 
 export default function RoomOnlineUsersPanel() {
   const dispatch = useDispatch();
+  const openWatchingModalDispatcher = useCallback(
+    () => dispatch(openWatchingModal()),
+    [dispatch]
+  );
   const openInviteModalDispatcher = useCallback(
     () => dispatch(openInviteModal()),
     [dispatch]
@@ -86,7 +94,11 @@ export default function RoomOnlineUsersPanel() {
         </div>
       ))}
       {onlineUsers.length > 10 && (
-        <div className="RoomOnlineUsersPanel--more">
+        <div
+          role="button"
+          className="RoomOnlineUsersPanel--more"
+          onClick={openWatchingModalDispatcher}
+        >
           <p>+{onlineUsers.length}</p>
         </div>
       )}

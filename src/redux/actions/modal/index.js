@@ -3,6 +3,7 @@ import {
   MODAL_CREATE_NEW_ACCOUNT,
   MODAL_INVITE,
   MODAL_PROFILE,
+  MODAL_WATCHING,
   MODAL_IMAGE
 } from "../../../helpers/constants";
 
@@ -19,10 +20,18 @@ export const openInviteModal = () => ({
     component: MODAL_INVITE
   }
 });
+
 export const openProfileModal = () => ({
   type: SET_MODAL,
   payload: {
     component: MODAL_PROFILE
+  }
+});
+
+export const openWatchingModal = () => ({
+  type: SET_MODAL,
+  payload: {
+    component: MODAL_WATCHING
   }
 });
 
