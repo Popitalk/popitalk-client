@@ -1,14 +1,22 @@
-import React from "react";
+import React, { useCallback } from "react";
+import { useDispatch } from "react-redux";
+import { openFollowersModal } from "../../redux/actions";
 import "./ForumHeader.css";
 
 export default function ForumHeader() {
+  const dispatch = useDispatch();
+  const openFollowersModalDispatcher = useCallback(
+    () => dispatch(openFollowersModal()),
+    [dispatch]
+  );
+
   return (
     <div className="ForumHeader--container">
       <div className="ForumHeader--icon">
         <div>
           <img src="https://i.imgur.com/tLljw1z.jpg" alt="icon" />
         </div>
-        <p>
+        <p onClick={openFollowersModalDispatcher}>
           <span>120</span> followers
         </p>
       </div>
@@ -26,9 +34,6 @@ export default function ForumHeader() {
       <button type="button" className="button">
         Follow
       </button>
-      {/* <div className="ForumHeader--following">
-        <p>Following</p>
-      </div> */}
     </div>
   );
 }

@@ -13,8 +13,6 @@ import "@fortawesome/fontawesome-free/css/all.css";
 import "./fw.css";
 import "./App.css";
 
-const Page = () => <div />;
-
 export default function App() {
   // const loggedIn = useSelector(({ userState }) => userState.id);
   // const dispatch = useDispatch();

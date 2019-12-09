@@ -13,6 +13,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { closeAllModals } from "../../redux/actions";
 import CreateNewAccount from "../CreateNewAccount";
 import Watching from "../Watching";
+import Followers from "../Followers";
 import InvitePanel from "../InvitePanel";
 import Profile from "../Profile";
 import ImageModal from "../ImageModal";
@@ -21,6 +22,7 @@ import {
   MODAL_INVITE,
   MODAL_PROFILE,
   MODAL_WATCHING,
+  MODAL_FOLLOWERS,
   MODAL_IMAGE
 } from "../../helpers/constants";
 import "./ModalManager.css";
@@ -32,6 +34,7 @@ const ModalComponents = {
   [MODAL_INVITE]: <InvitePanel modal={true} />,
   [MODAL_PROFILE]: <Profile />,
   [MODAL_WATCHING]: <Watching />,
+  [MODAL_FOLLOWERS]: <Followers />,
   [MODAL_IMAGE]: <ImageModal />
 };
 

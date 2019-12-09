@@ -6,6 +6,7 @@ import {
   MODAL_INVITE,
   MODAL_PROFILE,
   MODAL_WATCHING,
+  MODAL_FOLLOWERS,
   MODAL_IMAGE
 } from "../../../helpers/constants";
 
@@ -34,6 +35,13 @@ export const openWatchingModal = () => ({
   type: PUSH_MODAL,
   payload: {
     component: MODAL_WATCHING
+  }
+});
+
+export const openFollowersModal = () => ({
+  type: PUSH_MODAL,
+  payload: {
+    component: MODAL_FOLLOWERS
   }
 });
 
