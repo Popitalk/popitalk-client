@@ -29,7 +29,7 @@ export default function ChannelPage() {
     <div className="ChannelPage--container">
       <ChannelsPanel2 />
       <Switch>
-        <Route path={["/channels/following", "channels/discover"]}>
+        <Route path={["/channels/following", "/channels/discover"]}>
           <ChannelBrowser />
         </Route>
         <Route path="/channels/create">

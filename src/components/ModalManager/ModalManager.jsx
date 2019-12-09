@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
 import React, { useState, useRef } from "react";
 import Modal from "react-modal";
 import {
@@ -72,19 +73,27 @@ export default function ModalManager() {
       className="ModalManager--modal"
       overlayClassName="ModalManager--modalOverlay"
       ref={modalRef}
-      style={
-        !dimensions
-          ? undefined
-          : {
-              content: {
-                transform: `translate(-${
-                  isOdd(dimensions.width) ? 50.1 : 50
-                }%, -${isOdd(dimensions.height) ? 50.1 : 50}%)`
-              }
-            }
-      }
+      // style={
+      //   !dimensions
+      //     ? undefined
+      //     : {
+      //         content: {
+      //           transform: `translate(-${
+      //             isOdd(dimensions.width) ? 50.1 : 50
+      //           }%, -${isOdd(dimensions.height) ? 50.1 : 50}%)`
+      //         }
+      //       }
+      // }
     >
-      {ModalComponents[openModals[openModals.length - 1]]}
+      <div
+        className="ModalManager--wrapper"
+        onClick={e => {
+          if (e.target !== e.currentTarget) return;
+          dispatch(closeAllModals());
+        }}
+      >
+        {ModalComponents[openModals[openModals.length - 1]]}
+      </div>
     </Modal>
   );
 }
