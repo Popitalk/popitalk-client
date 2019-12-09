@@ -22,11 +22,18 @@
   align-items: center;
   border-bottom: 1px solid #d0d0d0;
   padding: 20px 16px;
+  position: relative;
 }
 .Profile--header > h2 {
   font-size: 30px;
   font-weight: 600;
   user-select: none;
+}
+.Profile--header > i {
+  position: absolute;
+  left: 40px;
+  margin-right: auto;
+  cursor: pointer;
 }
 
 .Profile--user {

@@ -1,12 +1,15 @@
 import React, { useCallback } from "react";
 import { useHistory } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { closeModal, closeAllModals } from "../../redux/actions";
 import ChannelCard from "../ChannelCard";
 import "./Profile.css";
 
 export default function Profile() {
   const history = useHistory();
+  const firstModal = useSelector(
+    ({ modalState }) => modalState.open.length === 1
+  );
   const dispatch = useDispatch();
   const closeModalDispatcher = useCallback(() => dispatch(closeModal()), [
     dispatch
@@ -18,12 +21,20 @@ export default function Profile() {
 
   const handleProfilePageLink = () => {
     history.push("/users/abc");
-    closeModalDispatcher();
+    closeAllModalsDispatcher();
   };
 
   return (
     <div className="Profile--container">
       <div className="Profile--header">
+        {!firstModal && (
+          <i
+            role="button"
+            className="fas fa-chevron-left fa-2x"
+            onClick={closeModalDispatcher}
+          />
+        )}
+
         <h2>Profile</h2>
       </div>
       <div className="Profile--user">
