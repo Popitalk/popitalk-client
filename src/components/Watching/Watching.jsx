@@ -90,8 +90,22 @@ export default function Watching() {
     <div className="Watching--container">
       <div className="Watching--header">
         <h3>Watching now</h3>
+        <div className="Watching--search">
+          <div>
+            <div>
+              <i className="fas fa-search fa-lg" />
+            </div>
+            <input
+              type="text"
+              placeholder="Search"
+              value={search}
+              onChange={e => setSearch(e.target.value)}
+              spellCheck={false}
+            />
+          </div>
+        </div>
       </div>
-      <div className="Watching--search">
+      {/* <div className="Watching--search">
         <div>
           <div>
             <i className="fas fa-search fa-lg" />
@@ -104,7 +118,7 @@ export default function Watching() {
             spellCheck={false}
           />
         </div>
-      </div>
+      </div> */}
       <div className="Watching--users">
         {filteredUsers.length === 0 ? (
           <div className="Watching--noneFound">

@@ -99,8 +99,22 @@ export default function BlockedUsersModal() {
           />
         )}
         <h3>Blocked Users</h3>
+        <div className="BlockedUsersModal--search">
+          <div>
+            <div>
+              <i className="fas fa-search fa-lg" />
+            </div>
+            <input
+              type="text"
+              placeholder="Search"
+              value={search}
+              onChange={e => setSearch(e.target.value)}
+              spellCheck={false}
+            />
+          </div>
+        </div>
       </div>
-      <div className="BlockedUsersModal--search">
+      {/* <div className="BlockedUsersModal--search">
         <div>
           <div>
             <i className="fas fa-search fa-lg" />
@@ -113,7 +127,7 @@ export default function BlockedUsersModal() {
             spellCheck={false}
           />
         </div>
-      </div>
+      </div> */}
       <div className="BlockedUsersModal--users">
         {filteredUsers.length === 0 ? (
           <div className="BlockedUsersModal--noneFound">

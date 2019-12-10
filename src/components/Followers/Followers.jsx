@@ -90,8 +90,22 @@ export default function Followers() {
     <div className="Followers--container">
       <div className="Followers--header">
         <h3>128 followers</h3>
+        <div className="Followers--search">
+          <div>
+            <div>
+              <i className="fas fa-search fa-lg" />
+            </div>
+            <input
+              type="text"
+              placeholder="Search"
+              value={search}
+              onChange={e => setSearch(e.target.value)}
+              spellCheck={false}
+            />
+          </div>
+        </div>
       </div>
-      <div className="Followers--search">
+      {/* <div className="Followers--search">
         <div>
           <div>
             <i className="fas fa-search fa-lg" />
@@ -104,7 +118,7 @@ export default function Followers() {
             spellCheck={false}
           />
         </div>
-      </div>
+      </div> */}
       <div className="Followers--users">
         {filteredUsers.length === 0 ? (
           <div className="Followers--noneFound">
