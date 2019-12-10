@@ -1,7 +1,13 @@
 import React from "react";
 import "./ImageUpload.css";
 
-export default function ImageUpload({ icon, onUpload, onRemove, disabled }) {
+export default function ImageUpload({
+  icon,
+  onUpload,
+  onRemove,
+  disabled,
+  user
+}) {
   return (
     <div className="ImageUpload--container">
       <div className="ImageUpload--upload">
@@ -15,11 +21,12 @@ export default function ImageUpload({ icon, onUpload, onRemove, disabled }) {
           <img src={icon} alt="icon" className="ImageUpload--image" />
         ) : (
           <div className="ImageUpload--noImage">
-            <p>Select Channel Picture</p>
+            {user ? <p>Select Avatar</p> : <p>Select Channel Picture</p>}
           </div>
         )}
         <div className="ImageUpload--shade">
-          {icon && <p>Change Channel Picture</p>}
+          {icon &&
+            (user ? <p>Change Avatar</p> : <p>Change Channel Picture</p>)}
         </div>
       </div>
       <button

@@ -1,0 +1,72 @@
+.Input7--container {
+  width: 100%;
+  max-width: 480px;
+}
+
+.Input7--container > h4 {
+  color: #000000;
+  font-size: 18px;
+  margin-bottom: 6px;
+  margin-left: 8px;
+}
+.Input7--container > h4 > span {
+  color: red;
+  font-size: 12px;
+  margin-left: 8px;
+}
+
+.Input7--container > input {
+  padding: 12px 24px;
+  outline: none;
+  background-color: #fff;
+  color: #202124;
+  font-size: 18px;
+  font-weight: 500;
+  width: 100%;
+  border-radius: 50px;
+  border: 1px solid #d1d1d1;
+}
+
+.Input7--container > input:focus {
+  border-color: #00b1ff;
+}
+
+.Input7--error > input {
+  border-color: red;
+  animation: shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+.Input7--error > input:focus {
+  border-color: red;
+}
+
+.Input7--container > input:disabled {
+  background-color: #ececec;
+  cursor: not-allowed;
+}
+
+@keyframes shake {
+  10%,
+  90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+
+  20%,
+  80% {
+    transform: translate3d(2px, 0, 0);
+  }
+
+  30%,
+  50%,
+  70% {
+    transform: translate3d(-4px, 0, 0);
+  }
+
+  40%,
+  60% {
+    transform: translate3d(4px, 0, 0);
+  }
+}

@@ -19,12 +19,20 @@ import InvitePanel from "../InvitePanel";
 import Profile from "../Profile";
 import InviteModal from "../InviteModal";
 import ImageModal from "../ImageModal";
+import UserSettingsModal from "../UserSettingsModal";
+import EditUserSettingsModal from "../EditUserSettingsModal";
+import ChangePasswordModal from "../ChangePasswordModal";
+import BlockedUsersModal from "../BlockedUsersModal";
 import {
   MODAL_CREATE_NEW_ACCOUNT,
   MODAL_INVITE,
   MODAL_PROFILE,
   MODAL_WATCHING,
   MODAL_FOLLOWERS,
+  MODAL_USER_SETTINGS,
+  MODAL_EDIT_USER_SETTINGS,
+  MODAL_CHANGE_PASSWORD,
+  MODAL_BLOCKED_USERS,
   MODAL_IMAGE
 } from "../../helpers/constants";
 import "./ModalManager.css";
@@ -37,10 +45,14 @@ const ModalComponents = {
   [MODAL_PROFILE]: <Profile />,
   [MODAL_WATCHING]: <Watching />,
   [MODAL_FOLLOWERS]: <Followers />,
+  [MODAL_USER_SETTINGS]: <UserSettingsModal />,
+  [MODAL_EDIT_USER_SETTINGS]: <EditUserSettingsModal />,
+  [MODAL_CHANGE_PASSWORD]: <ChangePasswordModal />,
+  [MODAL_BLOCKED_USERS]: <BlockedUsersModal />,
   [MODAL_IMAGE]: <ImageModal />
 };
 
-const isOdd = num => num % 2 !== 0;
+// const isOdd = num => num % 2 !== 0;
 
 export default function ModalManager() {
   const openModals = useSelector(({ modalState }) => modalState.open);
@@ -49,24 +61,25 @@ export default function ModalManager() {
   );
   const dispatch = useDispatch();
   const modalRef = useRef(null);
-  const [dimensions, setDimensions] = useState(null);
+  // const [dimensions, setDimensions] = useState(null);
 
-  const afterOpenModal = () => {
-    setDimensions({
-      height: modalRef.current.node.childNodes[0].childNodes[0].clientHeight,
-      width: modalRef.current.node.childNodes[0].childNodes[0].clientWidth
-    });
-  };
+  // const afterOpenModal = () => {
+  //   setDimensions({
+  //     height: modalRef.current.node.childNodes[0].childNodes[0].clientHeight,
+  //     width: modalRef.current.node.childNodes[0].childNodes[0].clientWidth
+  //   });
+  // };
 
   const handleClose = () => {
     dispatch(closeAllModals());
-    setDimensions(null);
+    // setDimensions(null);
   };
 
   return (
     <Modal
+      // isOpen={true}
       isOpen={openModals.length !== 0}
-      onAfterOpen={afterOpenModal}
+      // onAfterOpen={afterOpenModal}
       closeTimeoutMS={250}
       contentLabel="modal"
       onRequestClose={apiLoading ? undefined : () => handleClose()}
@@ -87,7 +100,7 @@ export default function ModalManager() {
     >
       <div
         className="ModalManager--wrapper"
-        onClick={e => {
+        onMouseDown={e => {
           if (e.target !== e.currentTarget) return;
           dispatch(closeAllModals());
         }}

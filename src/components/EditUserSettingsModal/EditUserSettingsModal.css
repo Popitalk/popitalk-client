@@ -1,0 +1,66 @@
+.EditUserSettingsModal--container {
+  background-color: #ffffff;
+  box-shadow: 0px 3px 6px #00000053;
+  border-radius: 20px;
+  min-width: 555px;
+  /* height: 720px; */
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.EditUserSettingsModal--header {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 15px;
+  border-bottom: 1px solid #d0d0d0;
+  position: relative;
+  width: 100%;
+}
+
+.EditUserSettingsModal--header > h3 {
+  font-size: 26px;
+  font-weight: bold;
+}
+
+.EditUserSettingsModal--header > i {
+  position: absolute;
+  left: 40px;
+  margin-right: auto;
+  cursor: pointer;
+}
+
+.EditUserSettingsModal--form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 22px;
+  width: 100%;
+}
+.EditUserSettingsModal--form > *:not(:last-child) {
+  margin-bottom: 15px;
+}
+
+.EditUserSettingsModal--form > h4 {
+  font-size: 40px;
+  font-weight: 500;
+}
+
+.EditUserSettingsModal--form > button {
+  margin-top: 15px;
+  border-radius: 23px;
+  font-size: 22px;
+  width: 165px;
+  height: 60px;
+}
+
+.EditUserSettingsModal--form > .ImageUpload--container > .ImageUpload--upload {
+  width: 138px;
+  height: 138px;
+  background: none;
+}

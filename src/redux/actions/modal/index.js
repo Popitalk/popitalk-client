@@ -7,6 +7,10 @@ import {
   MODAL_PROFILE,
   MODAL_WATCHING,
   MODAL_FOLLOWERS,
+  MODAL_USER_SETTINGS,
+  MODAL_EDIT_USER_SETTINGS,
+  MODAL_CHANGE_PASSWORD,
+  MODAL_BLOCKED_USERS,
   MODAL_IMAGE
 } from "../../../helpers/constants";
 
@@ -49,6 +53,30 @@ export const openImageModal = () => ({
   type: PUSH_MODAL,
   payload: {
     component: MODAL_IMAGE
+  }
+});
+export const openUserSettingsModal = () => ({
+  type: PUSH_MODAL,
+  payload: {
+    component: MODAL_USER_SETTINGS
+  }
+});
+export const openEditUserSettingsModal = () => ({
+  type: PUSH_MODAL,
+  payload: {
+    component: MODAL_EDIT_USER_SETTINGS
+  }
+});
+export const openChangePasswordModal = () => ({
+  type: PUSH_MODAL,
+  payload: {
+    component: MODAL_CHANGE_PASSWORD
+  }
+});
+export const openBlockedUsersModal = () => ({
+  type: PUSH_MODAL,
+  payload: {
+    component: MODAL_BLOCKED_USERS
   }
 });
 

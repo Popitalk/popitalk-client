@@ -42,7 +42,7 @@ export default function App() {
         <Route path="/users/">
           <UserPage />
         </Route>
-        <Route path="/" render={() => <Redirect to="/" />} />
+        <Route path="/" render={() => <Redirect to="/welcome" />} />
       </Switch>
     </section>
   );

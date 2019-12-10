@@ -11,3 +11,7 @@ export const MODAL_PROFILE = "modal/MODAL_PROFILE";
 export const MODAL_IMAGE = "modal/MODAL_IMAGE";
 export const MODAL_WATCHING = "modal/MODAL_WATCHING";
 export const MODAL_FOLLOWERS = "modal/MODAL_FOLLOWERS";
+export const MODAL_USER_SETTINGS = "modal/MODAL_USER_SETTINGS";
+export const MODAL_EDIT_USER_SETTINGS = "modal/MODAL_EDIT_USER_SETTINGS";
+export const MODAL_CHANGE_PASSWORD = "modal/MODAL_CHANGE_PASSWORD";
+export const MODAL_BLOCKED_USERS = "modal/MODAL_BLOCKED_USERS";

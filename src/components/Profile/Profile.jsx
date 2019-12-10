@@ -34,7 +34,6 @@ export default function Profile() {
             onClick={closeModalDispatcher}
           />
         )}
-
         <h2>Profile</h2>
       </div>
       <div className="Profile--user">

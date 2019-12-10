@@ -10,7 +10,7 @@ import {
   useLocation
 } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { openProfileModal } from "../../redux/actions";
+import { openProfileModal, openUserSettingsModal } from "../../redux/actions";
 import "./Header.css";
 import Input1 from "../Input1";
 import Input3 from "../Input3";
@@ -30,6 +30,10 @@ export default function Header() {
   const dispatch = useDispatch();
   const openProfileModalDispatcher = useCallback(
     () => dispatch(openProfileModal()),
+    [dispatch]
+  );
+  const openUserSettingsModalDispatcher = useCallback(
+    () => dispatch(openUserSettingsModal()),
     [dispatch]
   );
 
@@ -111,6 +115,32 @@ export default function Header() {
           </div>
           <div>
             <i
+              className="fas fa-user-plus fa-2x"
+              role="button"
+              onMouseDown={
+                notificationsOpen
+                  ? undefined
+                  : () => {
+                      // setFriendsOpen(false);
+                      setNotificationsOpen(true);
+                    }
+              }
+            />
+            {notificationsOpen && (
+              <div
+                className="Header--popup"
+                ref={notificationsRef}
+                tabIndex="0"
+                onBlur={() => {
+                  setNotificationsOpen(false);
+                }}
+              >
+                <NotificationsPanel />
+              </div>
+            )}
+          </div>
+          <div>
+            <i
               className="fas fa-bell fa-2x"
               role="button"
               onMouseDown={
@@ -136,7 +166,11 @@ export default function Header() {
             )}
           </div>
           <div>
-            <i className="fas fa-cog fa-2x" />
+            <i
+              className="fas fa-cog fa-2x"
+              role="button"
+              onClick={openUserSettingsModalDispatcher}
+            />
           </div>
           <div>
             <i className="fas fa-info-circle fa-2x" />

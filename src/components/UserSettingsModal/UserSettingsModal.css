@@ -1,0 +1,232 @@
+.UserSettingsModal--container {
+  background-color: #ffffff;
+  box-shadow: 0px 3px 6px #00000053;
+  border-radius: 20px;
+  min-width: 555px;
+  /* height: 720px; */
+  display: flex;
+  flex-direction: column;
+  /* padding-bottom: 20px; */
+}
+
+.UserSettingsModal--header {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 15px;
+  border-bottom: 1px solid #d0d0d0;
+}
+
+.UserSettingsModal--header > h3 {
+  font-size: 26px;
+  font-weight: bold;
+}
+
+.UserSettingsModal--info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 22px 22px 60px 22px;
+  position: relative;
+}
+
+.UserSettingsModal--info > img {
+  width: 138px;
+  height: 138px;
+  border-radius: 50%;
+  box-shadow: 0px 3px 6px #00000029;
+  margin-bottom: 20px;
+}
+
+.UserSettingsModal--info > h2 {
+  font-size: 40px;
+  font-weight: 500;
+  margin-bottom: 40px;
+}
+
+.UserSettingsModal--info > p {
+  font-size: 22px;
+  font-weight: 500;
+  position: absolute;
+  top: 22px;
+  right: 60px;
+  color: #00c4ff;
+  cursor: pointer;
+  user-select: none;
+  text-decoration: underline;
+}
+
+.UserSettingsModal--info--details {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.UserSettingsModal--info--details > *:not(:last-child) {
+  margin-bottom: 8px;
+}
+
+.UserSettingsModal--info--details > p {
+  font-size: 24px;
+  font-weight: 500;
+  color: #848484;
+}
+
+.UserSettingsModal--info--email {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.UserSettingsModal--info--email > p {
+  font-size: 24px;
+  font-weight: 500;
+  margin-right: 4px;
+}
+
+.UserSettingsModal--info--email > i {
+  color: #07ff23;
+}
+
+.UserSettingsModal--container > .UserSettingsModal--buttons {
+  display: flex;
+  flex-direction: column;
+  margin-top: auto;
+}
+
+.UserSettingsModal--container > .UserSettingsModal--buttons > * {
+  background-color: #fff;
+  color: #000000;
+  font-size: 24px;
+  font-weight: 500;
+  border-top: 1px solid #d0d0d0;
+  padding: 20px;
+  border-radius: 0;
+}
+.UserSettingsModal--container > .UserSettingsModal--buttons > *:last-child {
+  border-bottom-right-radius: 30px;
+  border-bottom-left-radius: 30px;
+}
+
+.UserSettingsModal--search {
+  width: 100%;
+  padding: 22px;
+}
+.UserSettingsModal--search > * {
+  background-color: #f0f0f0;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border-radius: 25px;
+  height: 46px;
+  border: 1px solid #c6c6c6;
+}
+.UserSettingsModal--search > * > input {
+  border: none;
+  outline: none;
+  background-color: #f0f0f0;
+  height: 100%;
+  flex-grow: 1;
+  border-top-right-radius: 25px;
+  border-bottom-right-radius: 25px;
+  font-size: 24px;
+  font-weight: 500;
+  padding: 6px 25px 6px 12px;
+}
+.UserSettingsModal--search > * > div {
+  background-color: #f0f0f0;
+  height: 100%;
+  width: 46px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  border-top-left-radius: 25px;
+  border-bottom-left-radius: 25px;
+}
+
+.UserSettingsModal--search > *:focus-within {
+  border: 1px solid #00b1ff;
+}
+
+.UserSettingsModal--users {
+  padding: 0 22px 0 22px;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  scrollbar-color: #cbcbcb #cbcbcb;
+}
+
+.UserSettingsModal--users::-webkit-scrollbar {
+  width: 24px;
+}
+.UserSettingsModal--users::-webkit-scrollbar-thumb {
+  box-shadow: inset 0 0 24px 24px #cbcbcb;
+  border: solid 8px transparent;
+  border-radius: 50px;
+}
+
+.UserSettingsModal--users::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 24px 24px #f0eaff;
+  border: solid 8px transparent;
+  border-radius: 50px;
+}
+
+.UserSettingsModal--users::-webkit-scrollbar-button {
+  display: none;
+}
+
+.UserSettingsModal--user {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 15px 15px;
+  cursor: pointer;
+  background-color: #ffffff;
+  transition: filter 0.17s ease-in-out;
+  border-radius: 5px;
+}
+.UserSettingsModal--user:hover {
+  filter: brightness(90%);
+}
+.UserSettingsModal--user:active {
+  filter: brightness(80%);
+}
+
+.UserSettingsModal--user > img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  box-shadow: 0px 3px 6px #00000029;
+  -webkit-user-drag: none;
+  user-select: none;
+  margin-right: 22px;
+}
+
+.UserSettingsModal--user > div > *:first-child {
+  font-size: 24px;
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+
+.UserSettingsModal--user > div > *:last-child {
+  font-size: 16px;
+  font-weight: 500;
+  color: #989797;
+}
+.UserSettingsModal--noneFound {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+}
+
+.UserSettingsModal--noneFound > h4 {
+  font-size: 26px;
+  font-weight: 500;
+  color: #b2b1b1;
+}

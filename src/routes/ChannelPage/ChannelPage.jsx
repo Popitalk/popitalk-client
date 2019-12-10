@@ -19,12 +19,6 @@ import FriendsPanel from "../../components/FriendsPanel";
 import FriendsPanel2 from "../../components/FriendsPanel2";
 
 export default function ChannelPage() {
-  const match = useRouteMatch();
-  const location = useLocation();
-
-  console.log("match", match);
-  console.log("location", location);
-
   return (
     <div className="ChannelPage--container">
       <ChannelsPanel2 />
