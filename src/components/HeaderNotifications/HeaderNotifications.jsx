@@ -4,7 +4,7 @@ import Notifications from "../Notifications";
 import "./HeaderNotifications.css";
 
 function HeaderNotifications() {
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
   const toggle = () => setOpen(!open);
   HeaderNotifications.handleClickOutside = () => setOpen(false);
 
