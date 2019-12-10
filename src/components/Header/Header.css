@@ -18,9 +18,11 @@
 .Header--login > :nth-child(1) {
   grid-area: username;
 }
+
 .Header--login > :nth-child(2) {
   grid-area: password;
 }
+
 .Header--login > :nth-child(3) {
   grid-area: forgot;
   color: var(--color-text-white);
@@ -29,10 +31,12 @@
   margin-left: 12px;
   cursor: pointer;
 }
+
 .Header--login > :nth-child(3):hover {
   opacity: 1;
   text-decoration: underline;
 }
+
 .Header--login > :nth-child(4) {
   grid-area: login;
   align-self: end;
@@ -54,6 +58,7 @@
   height: 70px;
   width: 70px;
 }
+
 .Header--logo > h1 {
   font-size: 35px;
   color: var(--color-text-white);
@@ -69,175 +74,6 @@
   margin-right: 50px;
 }
 
-.Header--nameAvatar {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  user-select: none;
-  border-radius: 50px;
-  padding: 4px 20px;
-  transition: box-shadow 0.17s ease-in-out;
-  cursor: pointer;
-}
-
-.Header--nameAvatar:hover {
-  box-shadow: inset 0 0 0 10em rgba(255, 255, 255, 0.3);
-}
-.Header--nameAvatar:active {
-  box-shadow: inset 0 0 0 10em rgba(255, 255, 255, 0.45);
-}
-
-.Header--nameAvatar > h4 {
-  font-size: 26px;
-  font-weight: bold;
-  color: #ffffff;
-  text-shadow: 0px 3px 6px #00000029;
-  margin-right: 20px;
-}
-.Header--nameAvatar > .Header--avatar {
-  height: 60px;
-  width: 60px;
-  border-radius: 50%;
-  position: relative;
-  background-color: #ffffff;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  box-shadow: 0px 3px 6px #00000029;
-}
-.Header--nameAvatar > .Header--avatar > img {
-  height: 90%;
-  width: 90%;
-  border-radius: 50%;
-  -webkit-user-drag: none;
-}
-
-/* .Header--user > *:first-child {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-}
-
-.Header--user > *:first-child > h4 {
-  font-size: 26px;
-  font-weight: bold;
-  color: #ffffff;
-  text-shadow: 0px 3px 6px #00000029;
-  margin-right: 20px;
-}
-
-.Header--user > *:first-child > *:last-child {
-  background-color: #fff;
-  height: 60px;
-  width: 60px;
-  border-radius: 50%;
-  position: relative;
-  transition: transform 0.17s ease-in-out;
-}
-
-.Header--user > *:first-child > *:last-child:hover {
-  transform: scale(1.1);
-}
-.Header--user > *:first-child > *:last-child:active {
-  transform: scale(1.05);
-}
-
-.Header--user > *:first-child > *:last-child > img {
-  position: absolute;
-  top: 50%;
-  right: auto;
-  bottom: auto;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  height: 85%;
-  width: 85%;
-  border-radius: 50%;
-  user-select: none;
-  -webkit-user-drag: none;
-  cursor: pointer;
-} */
-
-.Header--user i {
-  color: white;
-  text-shadow: 0px 3px 6px #00000029;
-}
-
-.Header--user > *:nth-child(2),
-.Header--user > *:nth-child(3),
-.Header--user > *:nth-child(4),
-.Header--user > *:nth-child(5) {
-  position: relative;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  height: 32px;
-  width: 30px;
-}
-
-.Header--user > *:nth-child(2) > i,
-.Header--user > *:nth-child(3) > i,
-.Header--user > *:nth-child(4) > i,
-.Header--user > *:nth-child(5) > i {
-  cursor: pointer;
-}
-
-.Header--user > *:nth-child(2) > i:hover,
-.Header--user > *:nth-child(3) > i:hover,
-.Header--user > *:nth-child(4) > i:hover,
-.Header--user > *:nth-child(5) > i:hover {
-  filter: brightness(90%);
-}
-
-.Header--user > *:nth-child(2) > i:active,
-.Header--user > *:nth-child(3) > i:active,
-.Header--user > *:nth-child(4) > i:active,
-.Header--user > *:nth-child(5) > i:active {
-  filter: brightness(80%);
-}
-
 .Header--container > .Input3--container {
   margin-right: auto;
 }
-
-.Header--popup {
-  background-color: #fff;
-  width: 500px;
-  /* padding: 20px 30px 40px 30px; */
-  padding: 20px 30px;
-  border-radius: 15px;
-  box-shadow: 0px 0px 6px #b2b2b2;
-  box-shadow: 0px 0px 6px #00000080;
-  position: absolute;
-  z-index: 10;
-  right: -30px;
-  /* bottom: -80px; */
-  top: 60px;
-  outline: none;
-}
-
-.Header--popup::after {
-  background-color: #fff;
-  box-shadow: -2px 2px 0px 0 #00000010;
-  content: "\00a0";
-  display: block;
-  position: absolute;
-  z-index: 400;
-  top: -10px;
-  right: 34px;
-  transform: rotate(135deg);
-  -moz-transform: rotate(135deg);
-  -ms-transform: rotate(135deg);
-  -o-transform: rotate(135deg);
-  -webkit-transform: rotate(135deg);
-  height: 20px;
-  width: 20px;
-}
-
-.Header--popup--friends {
-  right: -20px;
-}
-/* .Header--popup--friends::after {
-  right: -418px;
-} */

@@ -1,20 +1,13 @@
 /* eslint-disable jsx-a11y/no-noninteractive-tabindex */
-import React, { useState, useEffect, useRef, useCallback } from "react";
-import {
-  Redirect,
-  Link,
-  Switch,
-  Route,
-  useRouteMatch,
-  useParams,
-  useLocation
-} from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { openProfileModal, openUserSettingsModal } from "../../redux/actions";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import "./Header.css";
 import Input1 from "../Input1";
 import Input3 from "../Input3";
-import NotificationsPanel from "../NotificationsPanel";
+import HeaderNotifications from "../HeaderNotifications";
+import HeaderFriends from "../HeaderFriends";
+import HeaderProfile from "../HeaderProfile";
+import HeaderSettings from "../HeaderSettings";
 import Logo from "../../assets/logo.png";
 
 const loggedIn = true;
@@ -23,31 +16,20 @@ export default function Header() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [search, setSearch] = useState("");
-  const [friendsOpen, setFriendsOpen] = useState(false);
-  const [notificationsOpen, setNotificationsOpen] = useState(false);
-  const friendsRef = useRef(null);
-  const notificationsRef = useRef(null);
-  const dispatch = useDispatch();
-  const openProfileModalDispatcher = useCallback(
-    () => dispatch(openProfileModal()),
-    [dispatch]
-  );
-  const openUserSettingsModalDispatcher = useCallback(
-    () => dispatch(openUserSettingsModal()),
-    [dispatch]
-  );
+  // const friendsRef = useRef(null);
+  // const notificationsRef = useRef(null);
 
-  useEffect(() => {
-    if (!friendsOpen) return;
+  // useEffect(() => {
+  //   if (!friendsOpen) return;
 
-    friendsRef.current.focus();
-  }, [friendsOpen]);
+  //   friendsRef.current.focus();
+  // }, [friendsOpen]);
 
-  useEffect(() => {
-    if (!notificationsOpen) return;
+  // useEffect(() => {
+  //   if (!notificationsOpen) return;
 
-    notificationsRef.current.focus();
-  }, [notificationsOpen]);
+  //   notificationsRef.current.focus();
+  // }, [notificationsOpen]);
 
   const handleLogin = () => {
     console.log("LOGGIN IN");
@@ -103,78 +85,13 @@ export default function Header() {
       )}
       {loggedIn && (
         <div className="Header--user">
-          <div
-            className="Header--nameAvatar"
-            role="button"
-            onClick={openProfileModalDispatcher}
-          >
-            <h4>Andrew</h4>
-            <div className="Header--avatar">
-              <img src="https://i.imgur.com/aqjzchq.jpg" alt="avatar" />
-            </div>
-          </div>
-          <div>
-            <i
-              className="fas fa-user-plus fa-2x"
-              role="button"
-              onMouseDown={
-                notificationsOpen
-                  ? undefined
-                  : () => {
-                      // setFriendsOpen(false);
-                      setNotificationsOpen(true);
-                    }
-              }
-            />
-            {notificationsOpen && (
-              <div
-                className="Header--popup"
-                ref={notificationsRef}
-                tabIndex="0"
-                onBlur={() => {
-                  setNotificationsOpen(false);
-                }}
-              >
-                <NotificationsPanel />
-              </div>
-            )}
-          </div>
-          <div>
-            <i
-              className="fas fa-bell fa-2x"
-              role="button"
-              onMouseDown={
-                notificationsOpen
-                  ? undefined
-                  : () => {
-                      // setFriendsOpen(false);
-                      setNotificationsOpen(true);
-                    }
-              }
-            />
-            {notificationsOpen && (
-              <div
-                className="Header--popup"
-                ref={notificationsRef}
-                tabIndex="0"
-                onBlur={() => {
-                  setNotificationsOpen(false);
-                }}
-              >
-                <NotificationsPanel />
-              </div>
-            )}
-          </div>
-          <div>
-            <i
-              className="fas fa-cog fa-2x"
-              role="button"
-              onClick={openUserSettingsModalDispatcher}
-            />
-          </div>
-          <div>
+          <HeaderProfile />
+          <HeaderFriends />
+          <HeaderNotifications />
+          <HeaderSettings />
+          {/* <div>
             <i className="fas fa-info-circle fa-2x" />
-          </div>
+          </div> */}
         </div>
       )}
     </div>

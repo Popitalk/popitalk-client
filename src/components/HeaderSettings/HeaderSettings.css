@@ -1,0 +1,23 @@
+.HeaderSettings--container {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 32px;
+  width: 30px;
+}
+
+.HeaderSettings--container > i {
+  color: white;
+  text-shadow: 0px 3px 6px #00000029;
+  cursor: pointer;
+}
+
+.HeaderSettings--container > i:hover {
+  filter: brightness(90%);
+}
+
+.HeaderSettings--container > i:active {
+  filter: brightness(80%);
+}
