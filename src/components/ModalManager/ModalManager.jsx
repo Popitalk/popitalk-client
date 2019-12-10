@@ -12,10 +12,8 @@ import {
 } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { closeAllModals } from "../../redux/actions";
-import CreateNewAccount from "../CreateNewAccount";
 import Watching from "../Watching";
 import Followers from "../Followers";
-import InvitePanel from "../InvitePanel";
 import Profile from "../Profile";
 import InviteModal from "../InviteModal";
 import ImageModal from "../ImageModal";
@@ -23,6 +21,7 @@ import UserSettingsModal from "../UserSettingsModal";
 import EditUserSettingsModal from "../EditUserSettingsModal";
 import ChangePasswordModal from "../ChangePasswordModal";
 import BlockedUsersModal from "../BlockedUsersModal";
+import CreateNewAccountModal from "../CreateNewAccountModal";
 import {
   MODAL_CREATE_NEW_ACCOUNT,
   MODAL_INVITE,
@@ -40,7 +39,7 @@ import "./ModalManager.css";
 Modal.setAppElement("#root");
 
 const ModalComponents = {
-  [MODAL_CREATE_NEW_ACCOUNT]: <CreateNewAccount modal={true} />,
+  [MODAL_CREATE_NEW_ACCOUNT]: <CreateNewAccountModal />,
   [MODAL_INVITE]: <InviteModal />,
   [MODAL_PROFILE]: <Profile />,
   [MODAL_WATCHING]: <Watching />,
