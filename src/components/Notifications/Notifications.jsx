@@ -100,8 +100,8 @@ export default function Notifications() {
                 <p>{request.fullName}</p>
               </div>
               <img src={request.avatar} alt="avatar" />
-              <button type="button" className="button round">
-                <i className="fas fa-user-plus" />
+              <button type="button" className="button">
+                Accept
               </button>
             </div>
           ))}
