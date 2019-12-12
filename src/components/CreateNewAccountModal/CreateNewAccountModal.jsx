@@ -2,14 +2,41 @@ import React from "react";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import Input7 from "../Input7";
+import Select from "../Select";
 import "./CreateNewAccountModal.css";
+
+const currentYear = new Date().getFullYear();
+
+let thirteenYearsAgo = new Date();
+thirteenYearsAgo.setFullYear(thirteenYearsAgo.getFullYear() - 13);
+
+console.log(currentYear);
+const days = new Array(31).fill(0).map((_, index) => index + 1);
+const months = [
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December"
+];
+const years = new Array(100)
+  .fill(0)
+  .map((_, index) => currentYear - index)
+  .reverse();
 
 export default function CreateNewAccountModal() {
   return (
     <div className="CreateNewAccountModal--container">
       <div className="CreateNewAccountModal--header">
         <h3>Create a New Account</h3>
-        <h4>Add friends & upload videos & explore channels</h4>
+        <h4>Add friends &amp; upload videos &amp; explore channels</h4>
       </div>
       <Formik
         initialValues={{
@@ -18,7 +45,8 @@ export default function CreateNewAccountModal() {
           email: "",
           username: "",
           password: "",
-          confirmPassword: ""
+          confirmPassword: "",
+          date: new Date()
         }}
         validationSchema={Yup.object({
           firstName: Yup.string()
@@ -36,6 +64,12 @@ export default function CreateNewAccountModal() {
             .min(2, "Username is too short.")
             .max(32, "Username is too long.")
             .required("Username is required."),
+          date: Yup.date()
+            .max(
+              thirteenYearsAgo,
+              "You can't use Playnow if you are younger than 13"
+            )
+            .required(),
           password: Yup.string()
             .min(6, "Password should be atleast 6 characters long.")
             .matches(
@@ -66,7 +100,8 @@ export default function CreateNewAccountModal() {
           errors,
           isValid,
           isSubmitting,
-          dirty
+          dirty,
+          setFieldValue
         }) => (
           <form className="CreateNewAccountModal--form" onSubmit={handleSubmit}>
             <div className="CreateNewAccountModal--form--row">
@@ -79,6 +114,9 @@ export default function CreateNewAccountModal() {
                 onBlur={handleBlur}
                 value={values.firstName}
                 error={touched.firstName && errors.firstName}
+                onKeyDown={() => {
+                  console.log("VALUES", values);
+                }}
               />
               <Input7
                 header="Last Name"
@@ -132,6 +170,58 @@ export default function CreateNewAccountModal() {
               value={values.confirmPassword}
               error={touched.confirmPassword && errors.confirmPassword}
             />
+            <div className="CreateNewAccountModal--form--row2">
+              <h4>
+                Date of Birth <span>{errors.date}</span>
+              </h4>
+              <div>
+                <Select
+                  name="date"
+                  placeholder="Day"
+                  options={days}
+                  isMulti={false}
+                  isClearable={false}
+                  isSearchable={false}
+                  onBlur={handleBlur}
+                  disabled={isSubmitting}
+                  value={values.date.getDate()}
+                  onChange={v => {
+                    values.date.setDate(v.value);
+                    setFieldValue("date", values.date);
+                  }}
+                />
+                <Select
+                  name="date"
+                  placeholder="Month"
+                  options={months}
+                  isMulti={false}
+                  isClearable={false}
+                  isSearchable={false}
+                  onBlur={handleBlur}
+                  disabled={isSubmitting}
+                  value={months[values.date.getMonth()]}
+                  onChange={v => {
+                    values.date.setMonth(months.indexOf(v.value));
+                    setFieldValue("date", values.date);
+                  }}
+                />
+                <Select
+                  name="date"
+                  placeholder="Year"
+                  options={years}
+                  isMulti={false}
+                  isClearable={false}
+                  isSearchable={false}
+                  onBlur={handleBlur}
+                  disabled={isSubmitting}
+                  value={values.date.getFullYear()}
+                  onChange={v => {
+                    values.date.setFullYear(v.value);
+                    setFieldValue("date", values.date);
+                  }}
+                />
+              </div>
+            </div>
             <button
               type="submit"
               disabled={isSubmitting || !isValid || !dirty}

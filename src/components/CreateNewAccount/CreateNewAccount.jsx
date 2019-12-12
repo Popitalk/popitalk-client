@@ -70,7 +70,7 @@ export default function CreateNewAccount({ modal }) {
           onSubmit={formProps.handleSubmit}
         >
           <h2>Create a New Account</h2>
-          <h4>Add friends & upload videos & explore channels</h4>
+          <h4>Add friends &amp; upload videos &amp; explore channels</h4>
           {error && <p className="CreateNewAccount--apiError">{error}</p>}
           {formProps.touched.firstName && formProps.errors.firstName && (
             <p className="CreateNewAccount--apiError">

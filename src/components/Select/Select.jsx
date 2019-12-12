@@ -15,18 +15,23 @@ export default function Select({
   placeholder,
   onClick,
   options,
-  onChange
+  onChange,
+  isMulti = true,
+  isClearable = true,
+  isSearchable = true,
+  onBlur
 }) {
   return (
     <div className="Select--container">
       {header && <h4>{header}</h4>}
       <CreatableSelect
-        isMulti={true}
-        isClearable={true}
-        isSearchable={true}
+        isMulti={isMulti}
+        isClearable={isClearable}
+        isSearchable={isSearchable}
         name={name}
-        value={value}
+        value={value ? { value: value, label: value } : undefined}
         onChange={onChange}
+        onBlur={onBlur}
         options={options.map(option => ({ value: option, label: option }))}
         isDisabled={disabled || loading}
         placeholder={placeholder}

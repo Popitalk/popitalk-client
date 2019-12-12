@@ -76,8 +76,8 @@ export default function ModalManager() {
 
   return (
     <Modal
-      // isOpen={true}
-      isOpen={openModals.length !== 0}
+      isOpen={true}
+      // isOpen={openModals.length !== 0}
       // onAfterOpen={afterOpenModal}
       closeTimeoutMS={250}
       contentLabel="modal"
@@ -104,7 +104,8 @@ export default function ModalManager() {
           dispatch(closeAllModals());
         }}
       >
-        {ModalComponents[openModals[openModals.length - 1]]}
+        {/* {ModalComponents[openModals[openModals.length - 1]]} */}
+        <CreateNewAccountModal />
       </div>
     </Modal>
   );

@@ -6,8 +6,8 @@
   background-color: white;
   /* background-color: red; */
   box-shadow: 0px 0px 6px #00000080;
-  height: 70px;
-  width: 70px;
+  height: 72px;
+  width: 72px;
   border-radius: 50%;
   position: relative;
   /* z-index: 2; */
@@ -27,15 +27,15 @@
 
 .RoomIcon--one {
   position: relative;
-  width: 64px;
-  height: 64px;
+  width: 72px;
+  height: 72px;
   border-radius: 50%;
   user-select: none;
 }
 .RoomIcon--two {
   position: relative;
-  width: 64px;
-  height: 64px;
+  width: 72px;
+  height: 72px;
   border-radius: 50%;
   user-select: none;
 }
@@ -51,8 +51,8 @@
 
 .RoomIcon--three {
   position: relative;
-  width: 64px;
-  height: 64px;
+  width: 72px;
+  height: 72px;
   border-radius: 50%;
   user-select: none;
 }
@@ -64,8 +64,8 @@
 
 .RoomIcon--four {
   position: relative;
-  width: 64px;
-  height: 64px;
+  width: 72px;
+  height: 72px;
   border-radius: 50%;
   user-select: none;
 }
@@ -130,7 +130,7 @@
   top: 50%;
   right: auto;
   bottom: auto;
-  left: 32px;
+  left: 37px;
   /* transform: translate(-50%, -50%); */
   z-index: 10;
   background-color: white;
@@ -142,95 +142,95 @@
 .RoomIcon--full {
   position: absolute;
   z-index: 2;
-  width: 64px;
-  height: 64px;
+  width: 72px;
+  height: 72px;
   left: 0;
   top: 0;
-  border-radius: 32px;
+  border-radius: 36px;
 }
 .RoomIcon--full > img {
-  border-radius: 32px;
+  border-radius: 36px;
 }
 .RoomIcon--left {
   position: absolute;
   z-index: 2;
-  width: 32px;
-  height: 64px;
+  width: 36px;
+  height: 72px;
   left: 0;
   top: 0;
-  border-top-left-radius: 32px;
-  border-bottom-left-radius: 32px;
+  border-top-left-radius: 36px;
+  border-bottom-left-radius: 36px;
 }
 .RoomIcon--left > img {
-  border-top-left-radius: 32px;
-  border-bottom-left-radius: 32px;
+  border-top-left-radius: 36px;
+  border-bottom-left-radius: 36px;
   object-fit: cover;
 }
 
 .RoomIcon--right {
   position: absolute;
   z-index: 2;
-  width: 32px;
-  height: 64px;
-  left: 32px;
+  width: 36px;
+  height: 72px;
+  left: 36px;
   top: 0;
-  border-top-right-radius: 32px;
-  border-bottom-right-radius: 32px;
+  border-top-right-radius: 36px;
+  border-bottom-right-radius: 36px;
 }
 .RoomIcon--right > img {
-  border-top-right-radius: 32px;
-  border-bottom-right-radius: 32px;
+  border-top-right-radius: 36px;
+  border-bottom-right-radius: 36px;
   object-fit: cover;
 }
 
 .RoomIcon--topLeft {
   position: absolute;
   z-index: 2;
-  width: 32px;
-  height: 32px;
+  width: 36px;
+  height: 36px;
   left: 0;
   top: 0;
-  border-top-left-radius: 32px;
+  border-top-left-radius: 36px;
 }
 .RoomIcon--topLeft > img {
-  border-top-left-radius: 32px;
+  border-top-left-radius: 36px;
 }
 
 .RoomIcon--topRight {
   position: absolute;
   z-index: 2;
-  width: 32px;
-  height: 32px;
-  left: 32px;
+  width: 36px;
+  height: 36px;
+  left: 36px;
   top: 0;
-  border-top-right-radius: 32px;
+  border-top-right-radius: 36px;
 }
 .RoomIcon--topRight > img {
-  border-top-right-radius: 32px;
+  border-top-right-radius: 36px;
 }
 
 .RoomIcon--bottomLeft {
   position: absolute;
   z-index: 2;
-  width: 32px;
-  height: 32px;
+  width: 36px;
+  height: 36px;
   left: 0;
-  top: 32px;
-  border-bottom-left-radius: 32px;
+  top: 36px;
+  border-bottom-left-radius: 36px;
 }
 .RoomIcon--bottomLeft > img {
-  border-bottom-left-radius: 32px;
+  border-bottom-left-radius: 36px;
 }
 
 .RoomIcon--bottomRight {
   position: absolute;
   z-index: 2;
-  width: 32px;
-  height: 32px;
-  left: 32px;
-  top: 32px;
-  border-bottom-right-radius: 32px;
+  width: 36px;
+  height: 36px;
+  left: 36px;
+  top: 36px;
+  border-bottom-right-radius: 36px;
 }
 .RoomIcon--bottomRight > img {
-  border-bottom-right-radius: 32px;
+  border-bottom-right-radius: 36px;
 }

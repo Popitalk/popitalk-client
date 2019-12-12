@@ -17,6 +17,7 @@ import ChannelMain from "../../components/ChannelMain";
 import RoomRightPanel from "../../components/RoomRightPanel";
 import FriendsPanel from "../../components/FriendsPanel";
 import FriendsPanel2 from "../../components/FriendsPanel2";
+import FP from "../../components/FP";
 
 export default function ChannelPage() {
   return (
@@ -34,7 +35,8 @@ export default function ChannelPage() {
           <RoomRightPanel />
         </Route>
       </Switch>
-      <FriendsPanel2 />
+      {/* <FriendsPanel2 /> */}
+      <FP />
     </div>
   );
 }
