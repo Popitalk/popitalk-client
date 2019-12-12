@@ -46,6 +46,11 @@
   margin-bottom: 15px;
 }
 
+.EditUserSettingsModal--form > .Input7--container {
+  width: 100%;
+  max-width: 100%;
+}
+
 .EditUserSettingsModal--form > h4 {
   font-size: 40px;
   font-weight: 500;
@@ -63,4 +68,30 @@
   width: 138px;
   height: 138px;
   background: none;
+}
+
+.EditUserSettingsModal--form--row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 8px;
+}
+
+.EditUserSettingsModal--form--row2 {
+  width: 100%;
+}
+.EditUserSettingsModal--form--row2 > *:first-child {
+  font-size: 18px;
+  margin: 0 0 6px 8px;
+}
+.EditUserSettingsModal--form--row2 > *:first-child > span {
+  color: red;
+  font-size: 12px;
+  margin-left: 8px;
+}
+
+.EditUserSettingsModal--form--row2 > *:last-child {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  width: 100%;
+  column-gap: 12px;
 }

@@ -105,7 +105,8 @@ export default function ModalManager() {
         }}
       >
         {/* {ModalComponents[openModals[openModals.length - 1]]} */}
-        <CreateNewAccountModal />
+        <EditUserSettingsModal />
+        {/* <CreateNewAccountModal /> */}
       </div>
     </Modal>
   );

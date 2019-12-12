@@ -5,7 +5,34 @@ import { useSelector, useDispatch } from "react-redux";
 import { closeModal } from "../../redux/actions";
 import Input7 from "../Input7";
 import ImageUpload from "../ImageUpload";
+import Select from "../Select";
 import "./EditUserSettingsModal.css";
+
+const currentYear = new Date().getFullYear();
+
+let thirteenYearsAgo = new Date();
+thirteenYearsAgo.setFullYear(thirteenYearsAgo.getFullYear() - 13);
+
+console.log(currentYear);
+const days = new Array(31).fill(0).map((_, index) => index + 1);
+const months = [
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December"
+];
+const years = new Array(100)
+  .fill(0)
+  .map((_, index) => currentYear - index)
+  .reverse();
 
 export default function EditUserSettingsModal() {
   const [displayedIcon, setDisplayedIcon] = useState(false);
@@ -46,9 +73,9 @@ export default function EditUserSettingsModal() {
         initialValues={{
           firstName: "",
           lastName: "",
-          birthday: "",
           email: "",
-          password: ""
+          password: "",
+          date: new Date()
         }}
         validationSchema={Yup.object({
           firstName: Yup.string()
@@ -59,10 +86,12 @@ export default function EditUserSettingsModal() {
             .min(2, "Last name is too short.")
             .max(32, "Last name is too long.")
             .required("Last name is required."),
-          birthday: Yup.string()
-            .min(2, "birthday is too short.")
-            .max(32, "birthday is too long.")
-            .required("birthday is required."),
+          date: Yup.date()
+            .max(
+              thirteenYearsAgo,
+              "You can't use Playnow if you are younger than 13"
+            )
+            .required(),
           email: Yup.string()
             .email("Email is invalid.")
             .required("Email is required."),
@@ -82,7 +111,8 @@ export default function EditUserSettingsModal() {
           errors,
           isValid,
           isSubmitting,
-          dirty
+          dirty,
+          setFieldValue
         }) => (
           <form className="EditUserSettingsModal--form" onSubmit={handleSubmit}>
             <ImageUpload
@@ -94,36 +124,80 @@ export default function EditUserSettingsModal() {
             />
             <h4>Djang16</h4>
 
-            <Input7
-              header="First Name"
-              name="firstName"
-              type="text"
-              disabled={isSubmitting}
-              onChange={handleChange}
-              onBlur={handleBlur}
-              value={values.firstName}
-              error={touched.firstName && errors.firstName}
-            />
-            <Input7
-              header="Last Name"
-              name="lastName"
-              type="text"
-              disabled={isSubmitting}
-              onChange={handleChange}
-              onBlur={handleBlur}
-              value={values.lastName}
-              error={touched.lastName && errors.lastName}
-            />
-            <Input7
-              header="Birthday"
-              name="birthday"
-              type="text"
-              disabled={isSubmitting}
-              onChange={handleChange}
-              onBlur={handleBlur}
-              value={values.birthday}
-              error={touched.birthday && errors.birthday}
-            />
+            <div className="EditUserSettingsModal--form--row">
+              <Input7
+                header="First Name"
+                name="firstName"
+                type="text"
+                disabled={isSubmitting}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                value={values.firstName}
+                error={touched.firstName && errors.firstName}
+              />
+              <Input7
+                header="Last Name"
+                name="lastName"
+                type="text"
+                disabled={isSubmitting}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                value={values.lastName}
+                error={touched.lastName && errors.lastName}
+              />
+            </div>
+            <div className="EditUserSettingsModal--form--row2">
+              <h4>
+                Date of Birth <span>{errors.date}</span>
+              </h4>
+              <div>
+                <Select
+                  name="date"
+                  placeholder="Day"
+                  options={days}
+                  isMulti={false}
+                  isClearable={false}
+                  isSearchable={false}
+                  onBlur={handleBlur}
+                  disabled={isSubmitting}
+                  value={values.date.getDate()}
+                  onChange={v => {
+                    values.date.setDate(v.value);
+                    setFieldValue("date", values.date);
+                  }}
+                />
+                <Select
+                  name="date"
+                  placeholder="Month"
+                  options={months}
+                  isMulti={false}
+                  isClearable={false}
+                  isSearchable={false}
+                  onBlur={handleBlur}
+                  disabled={isSubmitting}
+                  value={months[values.date.getMonth()]}
+                  onChange={v => {
+                    values.date.setMonth(months.indexOf(v.value));
+                    setFieldValue("date", values.date);
+                  }}
+                />
+                <Select
+                  name="date"
+                  placeholder="Year"
+                  options={years}
+                  isMulti={false}
+                  isClearable={false}
+                  isSearchable={false}
+                  onBlur={handleBlur}
+                  disabled={isSubmitting}
+                  value={values.date.getFullYear()}
+                  onChange={v => {
+                    values.date.setFullYear(v.value);
+                    setFieldValue("date", values.date);
+                  }}
+                />
+              </div>
+            </div>
             <Input7
               header="Email"
               name="email"
