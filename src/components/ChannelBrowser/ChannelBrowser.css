@@ -4,6 +4,7 @@
   flex-direction: column;
   /* width: 1300px; */
   margin-right: 125px;
+  width: calc(100vw - 550px);
 }
 
 .ChannelBrowser--header {

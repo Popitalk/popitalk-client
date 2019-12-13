@@ -1,8 +1,7 @@
 import React from "react";
 import "./ChannelsPanel2.css";
-import RoomIcon from "../RoomIcon";
 import Seperator from "../Seperator";
-import ChannelList2 from "../ChannelList2";
+import ChannelList from "../ChannelList";
 import ChannelCard2 from "../ChannelCard2";
 
 export default function ChannelsPanel2() {
@@ -14,7 +13,7 @@ export default function ChannelsPanel2() {
       </div>
       <div className="ChannelsPanel2--yourChannels">
         <h3>Your Channels</h3>
-        <ChannelList2 />
+        <ChannelList />
         <div className="ChannelsPanel2--yourChannels--button">
           <button type="button" className="button lg">
             <i className="fas fa-plus" />
@@ -24,7 +23,7 @@ export default function ChannelsPanel2() {
       </div>
       <div className="ChannelsPanel2--followingChannels">
         <h3>Following Channels</h3>
-        <ChannelList2 />
+        <ChannelList />
       </div>
       <div className="ChannelsPanel2--seperator">
         <Seperator text="DISCOVER" />

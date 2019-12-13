@@ -12,9 +12,9 @@ import {
 } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { closeAllModals } from "../../redux/actions";
-import Watching from "../Watching";
-import Followers from "../Followers";
-import Profile from "../Profile";
+import WatchersModal from "../WatchersModal";
+import FollowersModal from "../FollowersModal";
+import ProfileModal from "../ProfileModal";
 import InviteModal from "../InviteModal";
 import ImageModal from "../ImageModal";
 import UserSettingsModal from "../UserSettingsModal";
@@ -41,17 +41,15 @@ Modal.setAppElement("#root");
 const ModalComponents = {
   [MODAL_CREATE_NEW_ACCOUNT]: <CreateNewAccountModal />,
   [MODAL_INVITE]: <InviteModal />,
-  [MODAL_PROFILE]: <Profile />,
-  [MODAL_WATCHING]: <Watching />,
-  [MODAL_FOLLOWERS]: <Followers />,
+  [MODAL_PROFILE]: <ProfileModal />,
+  [MODAL_WATCHING]: <WatchersModal />,
+  [MODAL_FOLLOWERS]: <FollowersModal />,
   [MODAL_USER_SETTINGS]: <UserSettingsModal />,
   [MODAL_EDIT_USER_SETTINGS]: <EditUserSettingsModal />,
   [MODAL_CHANGE_PASSWORD]: <ChangePasswordModal />,
   [MODAL_BLOCKED_USERS]: <BlockedUsersModal />,
   [MODAL_IMAGE]: <ImageModal />
 };
-
-// const isOdd = num => num % 2 !== 0;
 
 export default function ModalManager() {
   const openModals = useSelector(({ modalState }) => modalState.open);
@@ -60,42 +58,16 @@ export default function ModalManager() {
   );
   const dispatch = useDispatch();
   const modalRef = useRef(null);
-  // const [dimensions, setDimensions] = useState(null);
-
-  // const afterOpenModal = () => {
-  //   setDimensions({
-  //     height: modalRef.current.node.childNodes[0].childNodes[0].clientHeight,
-  //     width: modalRef.current.node.childNodes[0].childNodes[0].clientWidth
-  //   });
-  // };
-
-  const handleClose = () => {
-    dispatch(closeAllModals());
-    // setDimensions(null);
-  };
 
   return (
     <Modal
-      // isOpen={true}
       isOpen={openModals.length !== 0}
-      // onAfterOpen={afterOpenModal}
       closeTimeoutMS={250}
       contentLabel="modal"
-      onRequestClose={apiLoading ? undefined : () => handleClose()}
+      onRequestClose={apiLoading ? undefined : () => dispatch(closeAllModals())}
       className="ModalManager--modal"
       overlayClassName="ModalManager--modalOverlay"
       ref={modalRef}
-      // style={
-      //   !dimensions
-      //     ? undefined
-      //     : {
-      //         content: {
-      //           transform: `translate(-${
-      //             isOdd(dimensions.width) ? 50.1 : 50
-      //           }%, -${isOdd(dimensions.height) ? 50.1 : 50}%)`
-      //         }
-      //       }
-      // }
     >
       <div
         className="ModalManager--wrapper"
@@ -105,8 +77,6 @@ export default function ModalManager() {
         }}
       >
         {ModalComponents[openModals[openModals.length - 1]]}
-        {/* <EditUserSettingsModal /> */}
-        {/* <CreateNewAccountModal /> */}
       </div>
     </Modal>
   );

@@ -1,0 +1,89 @@
+.ChannelCard1--container {
+  border-radius: 15px;
+  box-shadow: 0px 0px 6px #00000080;
+  position: relative;
+  width: 275px;
+}
+
+.ChannelCard1--container > .ChannelCard1--top {
+  background-color: #fff;
+  border-top-right-radius: 15px;
+  border-top-left-radius: 15px;
+  position: relative;
+  height: 163px;
+}
+
+.ChannelCard1--container > .ChannelCard1--top > img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  position: relative;
+  z-index: 1;
+  border-top-right-radius: 15px;
+  border-top-left-radius: 15px;
+  -webkit-user-drag: none;
+  user-select: none;
+}
+.ChannelCard1--container > .ChannelCard1--top > .ChannelCard1--overlay {
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  bottom: 0;
+  height: 100%;
+  width: 100%;
+  border-top-right-radius: 15px;
+  border-top-left-radius: 15px;
+  box-shadow: inset 0px -29px 26px -2px rgba(255, 255, 255, 1);
+}
+
+.ChannelCard1--icon {
+  position: absolute;
+  bottom: 10px;
+  left: 20px;
+  z-index: 3;
+  height: 62px;
+  width: 62px;
+  border-radius: 50%;
+  background-color: #fff;
+  box-shadow: 0px 1px 3px #00000029;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.ChannelCard1--icon > img {
+  height: 87%;
+  width: 87%;
+  border-radius: 50%;
+}
+
+.ChannelCard1--container > .ChannelCard1--bottom {
+  background-color: #fff;
+  border-bottom-right-radius: 15px;
+  border-bottom-left-radius: 15px;
+  padding: 5px 10px 15px 10px;
+  min-height: 147px;
+  display: flex;
+  flex-direction: column;
+}
+
+.ChannelCard1--container > .ChannelCard1--bottom > h3 {
+  font-size: 19px;
+  font-weight: bold;
+  margin-left: 10px;
+  margin-bottom: 12px;
+}
+.ChannelCard1--container > .ChannelCard1--bottom > p {
+  font-size: 15px;
+  font-weight: 400;
+  margin-left: 10px;
+  margin-bottom: 12px;
+}
+.ChannelCard1--container > .ChannelCard1--bottom > div {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-end;
+  width: 100%;
+  flex-grow: 1;
+}

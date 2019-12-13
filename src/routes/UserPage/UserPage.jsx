@@ -1,15 +1,15 @@
 import React from "react";
 import "./UserPage.css";
-import ChannelsPanel from "../../components/ChannelsPanel";
-import FriendsPanel2 from "../../components/FriendsPanel2";
-import Profile2 from "../../components/Profile2";
+import ChannelsPanel1 from "../../components/ChannelsPanel1";
+import FriendsPanel1 from "../../components/FriendsPanel1";
+import UserMain from "../../components/UserMain";
 
 export default function UserPage() {
   return (
     <div className="UserPage--container">
-      <ChannelsPanel />
-      <Profile2 />
-      <FriendsPanel2 />
+      <ChannelsPanel1 />
+      <UserMain />
+      <FriendsPanel1 />
     </div>
   );
 }

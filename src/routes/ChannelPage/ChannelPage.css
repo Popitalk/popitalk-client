@@ -9,5 +9,52 @@
   /* padding: 60px; */
   display: flex;
   flex-direction: row;
-  margin-right: 125px;
+  /* margin-right: 125px; */
+  max-width: 1920px;
+}
+
+.ChannelPage--container > .ChannelsPanel2--container {
+  position: absolute;
+  left: 0;
+  top: 95px;
+}
+
+.ChannelPage--container > .ChannelMain--container {
+  position: absolute;
+  /* top: 95px; */
+  top: 155px;
+  left: 405px;
+}
+
+.ChannelPage--container > .ChannelMain--container > .ChannelMain--header {
+  position: fixed;
+  top: 95px;
+  left: 405px;
+  z-index: 500;
+}
+
+.ChannelPage--container > .ChatPanel--container {
+  position: fixed;
+  left: calc(405px + (100vw - 990px));
+  top: 95px;
+}
+
+.ChannelPage--container > .FriendsPanel1--container {
+  position: fixed;
+  top: 95px;
+  z-index: 50;
+  right: 0;
+  /* left: calc(405px + (100vw - 990px)); */
+}
+
+.ChannelPage--container > .CreateChannel--container {
+  position: absolute;
+  top: 95px;
+  left: 405px;
+}
+
+.ChannelPage--container > .ChannelBrowser--container {
+  position: absolute;
+  top: 95px;
+  left: 405px;
 }

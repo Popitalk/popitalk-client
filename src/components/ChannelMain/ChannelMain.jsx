@@ -1,12 +1,9 @@
-import React, { useState, useEffect } from "react";
-// import { Switch, Route } from "react-router";
+import React, { useEffect, useRef } from "react";
 import {
-  Redirect,
   Link,
   Switch,
   Route,
   useRouteMatch,
-  useParams,
   useLocation
 } from "react-router-dom";
 import "./ChannelMain.css";
@@ -16,17 +13,25 @@ import UpdateChannel from "../UpdateChannel";
 
 export default function ChannelMain() {
   const match = useRouteMatch();
-  const params = useParams();
   const location = useLocation();
+  const channelRef = useRef(null);
 
   useEffect(() => {
-    // console.log("MMMM", location);
-    // if(location.pathname === `${match.url}/video`){
-    //   setPage("video");
-    // } else if (location.pathname === `${match.url}/channel`){
-    //   setPage("video");
-    // }
-  }, [location]);
+    const tab = location.pathname.replace(match.url, "").slice(1);
+    console.log("TT", tab);
+    if (tab === "video") {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    } else if (tab === "channel") {
+      // console.log(channelRef);
+      window.scrollTo({
+        top: channelRef.current.offsetTop,
+        behavior: "smooth"
+      });
+    } else if (tab === "settings") {
+      window.scrollTo({ top: 0 });
+    }
+    // window.scrollTo(0, channelRef.current.offsetTop);
+  }, [location, match]);
 
   const handleBack = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -78,7 +83,7 @@ export default function ChannelMain() {
       <Switch>
         <Route exact path={[`${match.path}/video`, `${match.path}/channel`]}>
           <VideoPanel />
-          <div className="ChannelMain--back">
+          <div className="ChannelMain--back" ref={channelRef}>
             <button type="button" className="button pill" onClick={handleBack}>
               <i className="far fa-arrow-alt-circle-up fa-lg" />
               <p>Back to video</p>

@@ -1,8 +1,57 @@
 import React, { useState } from "react";
-import "./FriendsPanel2.css";
-import Input3 from "../Input3";
 import RoomIcon from "../RoomIcon";
-import onClickOutside from "react-onclickoutside";
+import "./FriendsPanel2.css";
+
+const requests = [
+  {
+    id: "a1",
+    username: "Andrew",
+    fullName: "Andrew Jang",
+    avatar: "https://i.imgur.com/aqjzchq.jpg"
+  },
+  {
+    id: "a2",
+    username: "Andrew",
+    fullName: "Andrew Jang",
+    avatar: "https://i.imgur.com/aqjzchq.jpg"
+  },
+  {
+    id: "a3",
+    username: "Andrew",
+    fullName: "Andrew Jang",
+    avatar: "https://i.imgur.com/aqjzchq.jpg"
+  },
+  {
+    id: "a4",
+    username: "Andrew",
+    fullName: "Andrew Jang",
+    avatar: "https://i.imgur.com/aqjzchq.jpg"
+  },
+  {
+    id: "a5",
+    username: "Andrew",
+    fullName: "Andrew Jang",
+    avatar: "https://i.imgur.com/aqjzchq.jpg"
+  },
+  {
+    id: "a6",
+    username: "Andrew",
+    fullName: "Andrew Jang",
+    avatar: "https://i.imgur.com/aqjzchq.jpg"
+  },
+  {
+    id: "a7",
+    username: "Andrew",
+    fullName: "Andrew Jang",
+    avatar: "https://i.imgur.com/aqjzchq.jpg"
+  },
+  {
+    id: "a8",
+    username: "Andrew",
+    fullName: "Andrew Jang",
+    avatar: "https://i.imgur.com/aqjzchq.jpg"
+  }
+];
 
 const rooms = [
   {
@@ -84,143 +133,140 @@ const rooms = [
       message: "Hi lets watch an interesting video together"
     },
     watching: true
+  },
+  {
+    id: "a22xxxx",
+    name: null,
+    users: {
+      id1: {
+        username: "Andrew",
+        avatar: "https://i.imgur.com/aqjzchq.jpg",
+        online: true
+      },
+      id2: {
+        username: "Lawrence",
+        avatar: "https://i.imgur.com/Y9waUNm.jpg",
+        online: false
+      },
+      id3: {
+        username: "Emma",
+        avatar: "https://i.imgur.com/tLljw1z.jpg",
+        online: true
+      },
+      id4: {
+        username: "Jason",
+        avatar: "https://i.imgur.com/tLljw1z.jpg",
+        online: true
+      }
+    },
+    lastMessage: {
+      username: "Andrew",
+      message: "Hi lets watch an interesting video together"
+    },
+    watching: false
+  },
+  {
+    id: "a3",
+    name: null,
+    users: {
+      id3: {
+        username: "Emma",
+        avatar: "https://i.imgur.com/tLljw1z.jpg",
+        online: true
+      }
+    },
+    lastMessage: {
+      username: "Emma",
+      message: "Hi lets watch an interesting video together"
+    },
+    watching: true
+  },
+  {
+    id: "a3es",
+    name: null,
+    users: {
+      id3: {
+        username: "Jason",
+        avatar: "https://i.imgur.com/tLljw1z.jpg",
+        online: true
+      }
+    },
+    lastMessage: {
+      username: "Jason",
+      message: "Hi lets watch an interesting video together"
+    },
+    watching: false
+  },
+  {
+    id: "a3eaaa",
+    name: null,
+    users: {
+      id3: {
+        username: "Jason",
+        avatar: "https://i.imgur.com/tLljw1z.jpg",
+        online: true
+      }
+    },
+    lastMessage: {
+      username: "Jason",
+      message: "Hi lets watch an interesting video together"
+    },
+    watching: false
+  },
+  {
+    id: "a3ezz",
+    name: null,
+    users: {
+      id3: {
+        username: "Jason",
+        avatar: "https://i.imgur.com/tLljw1z.jpg",
+        online: true
+      }
+    },
+    lastMessage: null,
+    watching: false
+  },
+  {
+    id: "a3exx",
+    name: null,
+    users: {
+      id3: {
+        username: "Jason",
+        avatar: "https://i.imgur.com/tLljw1z.jpg",
+        online: true
+      }
+    },
+    lastMessage: {
+      username: "Jason",
+      message: "Hi lets watch an interesting video together"
+    },
+    watching: false
+  },
+  {
+    id: "a3ef",
+    name: "A room",
+    users: {
+      id3: {
+        username: "Emma",
+        avatar: "https://i.imgur.com/tLljw1z.jpg",
+        online: true
+      },
+      id5: {
+        username: "Jason",
+        avatar: "https://i.imgur.com/Y9waUNm.jpg",
+        online: true
+      }
+    },
+    lastMessage: {
+      username: "Jason",
+      message: "Hi lets watch an interesting video together"
+    },
+    watching: false
   }
-  // {
-  //   id: "a22xxxx",
-  //   name: null,
-  //   users: {
-  //     id1: {
-  //       username: "Andrew",
-  //       avatar: "https://i.imgur.com/aqjzchq.jpg",
-  //       online: true
-  //     },
-  //     id2: {
-  //       username: "Lawrence",
-  //       avatar: "https://i.imgur.com/Y9waUNm.jpg",
-  //       online: false
-  //     },
-  //     id3: {
-  //       username: "Emma",
-  //       avatar: "https://i.imgur.com/tLljw1z.jpg",
-  //       online: true
-  //     },
-  //     id4: {
-  //       username: "Jason",
-  //       avatar: "https://i.imgur.com/tLljw1z.jpg",
-  //       online: true
-  //     }
-  //   },
-  //   lastMessage: {
-  //     username: "Andrew",
-  //     message: "Hi lets watch an interesting video together"
-  //   },
-  //   watching: false
-  // },
-  // {
-  //   id: "a3",
-  //   name: null,
-  //   users: {
-  //     id3: {
-  //       username: "Emma",
-  //       avatar: "https://i.imgur.com/tLljw1z.jpg",
-  //       online: true
-  //     }
-  //   },
-  //   lastMessage: {
-  //     username: "Emma",
-  //     message: "Hi lets watch an interesting video together"
-  //   },
-  //   watching: true
-  // },
-  // {
-  //   id: "a3es",
-  //   name: null,
-  //   users: {
-  //     id3: {
-  //       username: "Jason",
-  //       avatar: "https://i.imgur.com/tLljw1z.jpg",
-  //       online: true
-  //     }
-  //   },
-  //   lastMessage: {
-  //     username: "Jason",
-  //     message: "Hi lets watch an interesting video together"
-  //   },
-  //   watching: false
-  // },
-  // {
-  //   id: "a3eaaa",
-  //   name: null,
-  //   users: {
-  //     id3: {
-  //       username: "Jason",
-  //       avatar: "https://i.imgur.com/tLljw1z.jpg",
-  //       online: true
-  //     }
-  //   },
-  //   lastMessage: {
-  //     username: "Jason",
-  //     message: "Hi lets watch an interesting video together"
-  //   },
-  //   watching: false
-  // },
-  // {
-  //   id: "a3ezz",
-  //   name: null,
-  //   users: {
-  //     id3: {
-  //       username: "Jason",
-  //       avatar: "https://i.imgur.com/tLljw1z.jpg",
-  //       online: true
-  //     }
-  //   },
-  //   lastMessage: null,
-  //   watching: false
-  // },
-  // {
-  //   id: "a3exx",
-  //   name: null,
-  //   users: {
-  //     id3: {
-  //       username: "Jason",
-  //       avatar: "https://i.imgur.com/tLljw1z.jpg",
-  //       online: true
-  //     }
-  //   },
-  //   lastMessage: {
-  //     username: "Jason",
-  //     message: "Hi lets watch an interesting video together"
-  //   },
-  //   watching: false
-  // },
-  // {
-  //   id: "a3ef",
-  //   name: "A room",
-  //   users: {
-  //     id3: {
-  //       username: "Emma",
-  //       avatar: "https://i.imgur.com/tLljw1z.jpg",
-  //       online: true
-  //     },
-  //     id5: {
-  //       username: "Jason",
-  //       avatar: "https://i.imgur.com/Y9waUNm.jpg",
-  //       online: true
-  //     }
-  //   },
-  //   lastMessage: {
-  //     username: "Jason",
-  //     message: "Hi lets watch an interesting video together"
-  //   },
-  //   watching: false
-  // }
 ];
 
-function FriendsPanel2() {
+export default function FriendsPanel2() {
   const [search, setSearch] = useState("");
-  const [expanded, setExpanded] = useState(false);
-  const toggle = () => setExpanded(!expanded);
-  FriendsPanel2.handleClickOutside = () => setExpanded(false);
 
   const handleSubmit = () => {
     setSearch("");
@@ -231,44 +277,54 @@ function FriendsPanel2() {
   };
 
   const handleSearchSelect = () => {
-    setExpanded(true);
+    // setExpanded(true);
   };
-
   return (
-    <div
-      className={`FriendsPanel2--container${
-        expanded ? " FriendsPanel2--expanded" : ""
-      }`}
-    >
+    <div className="FriendsPanel2--container">
       <div className="FriendsPanel2--header">
         <i className="fas fa-user-friends fa-2x" />
-        {expanded && <h3>Friends</h3>}
+        <h3>Friends</h3>
       </div>
-      <div>
-        {!expanded && (
-          <button type="button" className="button round" onClick={toggle}>
-            <i className="fas fa-search" />
-          </button>
-        )}
-        {/* {expanded && <input type="text" />} */}
-      </div>
-      {expanded && (
-        <div className="FriendsPanel--input">
-          <Input3
+      <div className="FriendsPanel2--shade" />
+      <div className="FriendsPanel2--rooms">
+        <div className="FriendsPanel2--shade2" />
+
+        <div className="FriendsPanel2--searchbar">
+          <input
+            type="text"
             placeholder="Search friends"
             value={search}
             onChange={e => setSearch(e.target.value)}
-            onKeyDown={e => {
-              if (e.keyCode === 13) {
-                handleSubmit();
-              }
-            }}
-            onClick={handleSubmit}
-            maxLength={120}
           />
+          <div>
+            <button
+              type="button"
+              className="button round"
+              onClick={handleSearchSelect}
+            >
+              <i className="fas fa-search" />
+            </button>
+          </div>
         </div>
-      )}
-      <div className="FriendsPanel2--rooms">
+
+        <div className="FriendsPanel2--friendRequests">
+          {requests.map(request => (
+            <div key={request.id}>
+              <div>
+                <p>{request.username}</p>
+                <p>{request.fullName}</p>
+              </div>
+              <img src={request.avatar} alt="avatar" />
+              <button type="button" className="button round">
+                <i className="fas fa-user-plus" />
+              </button>
+            </div>
+          ))}
+        </div>
+        <button type="button" className="button lg FriendsPanel2--newRoom">
+          <p>Your private room</p>
+          <i className="fas fa-plus-square fa-lg" />
+        </button>
         {rooms.map(room => {
           const users = Object.values(room.users);
           const images = users.map(user => user.avatar);
@@ -294,13 +350,16 @@ function FriendsPanel2() {
 
           return (
             <div className="FriendsPanel2--room" key={room.id}>
-              <div className="FriendsPanel2--room--icon">
-                <RoomIcon
-                  images={images}
-                  online={online}
-                  watching={room.watching}
-                />
+              <div className="FriendsPanel2--nameAndMessage">
+                <p>{roomName}</p>
+                <p>{roomMessage}</p>
               </div>
+
+              <RoomIcon
+                images={images}
+                online={online}
+                watching={room.watching}
+              />
             </div>
           );
         })}
@@ -308,9 +367,3 @@ function FriendsPanel2() {
     </div>
   );
 }
-
-const clickOutsideConfig = {
-  handleClickOutside: () => FriendsPanel2.handleClickOutside
-};
-
-export default onClickOutside(FriendsPanel2, clickOutsideConfig);

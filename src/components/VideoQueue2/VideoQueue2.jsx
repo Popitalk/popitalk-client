@@ -102,12 +102,12 @@ export default function VideoQueue2({ changeQueue }) {
                           ref={provided.innerRef}
                           {...provided.draggableProps}
                           {...provided.dragHandleProps}
-                          className="VideoCard2--editQueue"
+                          className="VideoQueue2--editQueue"
                         >
-                          <div className="VideoCard2--editQueue--top">
+                          <div className="VideoQueue2--editQueue--top">
                             <p>Edit queue</p>
                           </div>
-                          <div className="VideoCard2--editQueue--bottom">
+                          <div className="VideoQueue2--editQueue--bottom">
                             <h6>Some Video</h6>
                             <p>Playnows | 50k users. Something New</p>
                           </div>

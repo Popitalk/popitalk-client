@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import ChannelCard from "../ChannelCard";
+import ChannelCard1 from "../ChannelCard1";
 import Input5 from "../Input5";
 import "./DiscoverPage.css";
 
@@ -28,18 +28,18 @@ export default function DiscoverPage() {
       <div className="DiscoverPage--searchResults">
         <h3>20 results for &quot;Andrew&quot;</h3>
         <div className="DiscoverPage--channels">
-          <ChannelCard />
-          <ChannelCard />
-          <ChannelCard />
-          <ChannelCard />
-          <ChannelCard />
-          <ChannelCard />
-          <ChannelCard />
-          <ChannelCard />
-          <ChannelCard />
-          <ChannelCard />
-          <ChannelCard />
-          <ChannelCard />
+          <ChannelCard1 />
+          <ChannelCard1 />
+          <ChannelCard1 />
+          <ChannelCard1 />
+          <ChannelCard1 />
+          <ChannelCard1 />
+          <ChannelCard1 />
+          <ChannelCard1 />
+          <ChannelCard1 />
+          <ChannelCard1 />
+          <ChannelCard1 />
+          <ChannelCard1 />
         </div>
         <div className="DiscoverPage--searchResults--button">
           <button type="button" className="button pill">
@@ -85,19 +85,18 @@ export default function DiscoverPage() {
           </button>
         </div>
         <div className="DiscoverPage--channels">
-          {/* <div>CHANNEL</div> */}
-          <ChannelCard />
-          <ChannelCard />
-          <ChannelCard />
-          <ChannelCard />
-          <ChannelCard />
-          <ChannelCard />
-          <ChannelCard />
-          <ChannelCard />
-          <ChannelCard />
-          <ChannelCard />
-          <ChannelCard />
-          <ChannelCard />
+          <ChannelCard1 />
+          <ChannelCard1 />
+          <ChannelCard1 />
+          <ChannelCard1 />
+          <ChannelCard1 />
+          <ChannelCard1 />
+          <ChannelCard1 />
+          <ChannelCard1 />
+          <ChannelCard1 />
+          <ChannelCard1 />
+          <ChannelCard1 />
+          <ChannelCard1 />
         </div>
       </div>
     </div>

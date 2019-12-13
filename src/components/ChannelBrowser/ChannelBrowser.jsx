@@ -1,22 +1,11 @@
-import React, { useState } from "react";
-import {
-  Redirect,
-  Link,
-  Switch,
-  Route,
-  useRouteMatch,
-  useParams,
-  useLocation
-} from "react-router-dom";
+import React from "react";
+import { Link, Switch, Route, useRouteMatch } from "react-router-dom";
 import "./ChannelBrowser.css";
-import Input5 from "../Input5";
-import ChannelCard from "../ChannelCard";
 import DiscoverPage from "../DiscoverPage";
 import FollowingPage from "../FollowingPage";
 
 export default function ChannelBrowser() {
   const match = useRouteMatch();
-  const location = useLocation();
 
   return (
     <div className="ChannelBrowser--container">

@@ -26,7 +26,8 @@
   padding: 5px;
   /* margin-right: 15px; */
   /* background-color: yellow; */
-  max-width: 740px;
+  /* max-width: 740px; */
+  width: 100%;
   scrollbar-color: #cbcbcb #cbcbcb;
 }
 .VideoQueue2--queue::-webkit-scrollbar {
@@ -101,7 +102,7 @@
   color: #fff;
 }
 
-.VideoCard2--editQueue {
+.VideoQueue2--editQueue {
   background-color: #fff;
   border-radius: 15px;
   box-shadow: 0px 3px 6px #00000033;
@@ -116,7 +117,7 @@
   align-items: center;
 }
 
-.VideoCard2--editQueue--top {
+.VideoQueue2--editQueue--top {
   border-top-left-radius: 15px;
   border-top-right-radius: 15px;
   height: 130px;
@@ -128,34 +129,34 @@
   align-items: center;
 }
 
-.VideoCard2--editQueue--top > p {
+.VideoQueue2--editQueue--top > p {
   font-size: 19px;
   font-weight: 600;
   user-select: none;
 }
 
-.VideoCard2--editQueue--bottom {
+.VideoQueue2--editQueue--bottom {
   padding: 8px 16px 14px 16px;
   flex-grow: 1;
 }
-.VideoCard2--editQueue--bottom > h6 {
+.VideoQueue2--editQueue--bottom > h6 {
   font-size: 15px;
   font-weight: bold;
   margin-bottom: 10px;
 }
-.VideoCard2--editQueue--bottom > p {
+.VideoQueue2--editQueue--bottom > p {
   color: #696969;
   font-size: 9px;
   font-weight: 500;
 }
 
-.VideoCard2--editQueue > button {
+.VideoQueue2--editQueue > button {
   width: 59px;
   height: 59px;
   position: absolute;
   border-radius: 15px;
   display: none;
 }
-.VideoCard2--editQueue:hover > button {
+.VideoQueue2--editQueue:hover > button {
   display: block;
 }

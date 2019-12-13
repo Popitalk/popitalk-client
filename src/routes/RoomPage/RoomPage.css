@@ -10,3 +10,37 @@
   display: flex;
   flex-direction: row;
 }
+
+.RoomPage--container > .ChannelsPanel1--container {
+  height: calc(100vh - 95px);
+  position: fixed;
+  left: 0;
+  top: 95px;
+  z-index: 50;
+}
+
+.RoomPage--container > .FriendsPanel2--container {
+  position: fixed;
+  left: 125px;
+  top: 95px;
+  z-index: 10;
+}
+.RoomPage--container > .RoomMain--container {
+  width: calc(100vw - 1005px);
+  position: absolute;
+  top: 155px;
+  left: 545px;
+}
+.RoomPage--container > .RoomMain--container > .RoomHeader--container {
+  width: calc(100vw - 1005px);
+  position: fixed;
+  top: 95px;
+  left: 545px;
+  z-index: 500;
+}
+
+.RoomPage--container > .ChatPanel--container {
+  left: calc(545px + (100vw - 1005px));
+  position: fixed;
+  top: 95px;
+}

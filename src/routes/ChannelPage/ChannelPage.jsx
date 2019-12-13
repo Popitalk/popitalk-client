@@ -1,23 +1,12 @@
 import React from "react";
-import {
-  Redirect,
-  Link,
-  Switch,
-  Route,
-  useRouteMatch,
-  useParams,
-  useLocation
-} from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 import "./ChannelPage.css";
 import ChannelsPanel2 from "../../components/ChannelsPanel2";
 import ChannelBrowser from "../../components/ChannelBrowser";
 import CreateChannel from "../../components/CreateChannel";
-import UpdateChannel from "../../components/UpdateChannel";
 import ChannelMain from "../../components/ChannelMain";
-import RoomRightPanel from "../../components/RoomRightPanel";
-import FriendsPanel from "../../components/FriendsPanel";
-import FriendsPanel2 from "../../components/FriendsPanel2";
-import FP from "../../components/FP";
+import ChatPanel from "../../components/ChatPanel";
+import FriendsPanel1 from "../../components/FriendsPanel1";
 
 export default function ChannelPage() {
   return (
@@ -32,11 +21,10 @@ export default function ChannelPage() {
         </Route>
         <Route path="/channels/:channelId">
           <ChannelMain />
-          <RoomRightPanel />
+          <ChatPanel />
         </Route>
       </Switch>
-      {/* <FriendsPanel2 /> */}
-      <FP />
+      <FriendsPanel1 />
     </div>
   );
 }

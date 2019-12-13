@@ -15,7 +15,11 @@
   max-height: 820px; */
   /* overflow-y: scroll; */
   border-top-left-radius: 20px;
-  max-width: 405px;
+  /* max-width: 405px; */
+  width: 405px;
+
+  /* height: 100%; */
+  /* height: auto; */
 }
 
 .ChannelsPanel2--header {

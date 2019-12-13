@@ -1,0 +1,109 @@
+.UserMain--container {
+  /* background-color: #ffffff;
+  padding: 15px 30px 15px 30px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  border-bottom: 2px solid #ededed;
+  height: 60px;
+  user-select: none; */
+
+  border-radius: 30px;
+  background-color: #ffffff;
+  /* width: 1270px; */
+  flex-grow: 1;
+  margin-right: 120px;
+  margin-bottom: 95px;
+  /* padding-bottom: 55px; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.UserMain--header {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 1px solid #d0d0d0;
+  padding: 20px 16px;
+}
+.UserMain--header > h2 {
+  font-size: 30px;
+  font-weight: 600;
+  user-select: none;
+}
+
+.UserMain--user {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 55px 50px;
+}
+.UserMain--user > img {
+  height: 185px;
+  width: 185px;
+  margin-right: 35px;
+  border-radius: 50%;
+  -webkit-user-drag: none;
+  user-select: none;
+  box-shadow: 0px 3px 6px #00000029;
+}
+.UserMain--user > .UserMain--user--nameStats {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.UserMain--user > .UserMain--user--nameStats > *:first-child {
+  margin-bottom: 25px;
+}
+
+.UserMain--user > .UserMain--user--nameStats > *:first-child > h3 {
+  font-size: 40px;
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+.UserMain--user > .UserMain--user--nameStats > *:first-child > p {
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.UserMain--user > .UserMain--user--nameStats > *:last-child {
+  display: flex;
+  flex-direction: row;
+}
+.UserMain--user > .UserMain--user--nameStats > *:last-child > * {
+  font-size: 20px;
+  font-weight: 500;
+}
+.UserMain--user > .UserMain--user--nameStats > *:last-child > * {
+  font-size: 20px;
+  font-weight: 500;
+}
+.UserMain--user > .UserMain--user--nameStats > *:last-child > *:first-child {
+  margin-right: 20px;
+}
+.UserMain--user > .UserMain--user--nameStats > *:last-child > * span {
+  font-weight: bold;
+}
+.UserMain--user > button {
+  /* margin-top: auto; */
+  margin-left: auto;
+  margin-bottom: auto;
+}
+
+.UserMain--channels {
+  padding: 25px 50px;
+}
+.UserMain--channels > h3 {
+  font-size: 26px;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.UserMain--channelsGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 15px;
+}

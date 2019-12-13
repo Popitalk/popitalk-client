@@ -1,6 +1,6 @@
 import React from "react";
 import AvatarDeck from "../AvatarDeck";
-import ChatPanel from "../ChatPanel";
+import ChatMessages from "../ChatMessages";
 import ChannelCard3 from "../ChannelCard3";
 import "./FollowingPage.css";
 
@@ -42,7 +42,7 @@ export default function FollowingPage() {
             <h3>Thelmo Society</h3>
             <p>Live chat</p>
           </div>
-          <ChatPanel />
+          <ChatMessages />
           <button type="button" className="button">
             Enter to join chat
           </button>
