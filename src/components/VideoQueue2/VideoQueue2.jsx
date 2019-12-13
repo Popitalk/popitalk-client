@@ -52,6 +52,9 @@ const videos = [
     image: "https://i.imgur.com/tLljw1z.jpg",
     title: "7777777",
     other: "LoL Esports | 60K views. 2 months ago"
+  },
+  {
+    id: "editQueue"
   }
 ];
 
@@ -63,7 +66,7 @@ const reorder = (list, startIndex, endIndex) => {
   return result;
 };
 
-export default function VideoQueue2() {
+export default function VideoQueue2({ changeQueue }) {
   const [items, setItems] = useState(videos);
 
   const onDragEnd = result => {
@@ -92,43 +95,69 @@ export default function VideoQueue2() {
             >
               {items.map((video, index) => (
                 <Draggable key={video.id} draggableId={video.id} index={index}>
-                  {(provided, snapshot) => (
-                    <div
-                      ref={provided.innerRef}
-                      {...provided.draggableProps}
-                      className="VideoCard2--container"
-                    >
-                      <div
-                        className="VideoCard2--top"
-                        {...provided.dragHandleProps}
-                      >
-                        {index === 0 ? (
-                          <h4 className="VideoCard2--live">Live</h4>
-                        ) : (
-                          <h4>In 12min</h4>
-                        )}
-                        <img
-                          src={video.image}
-                          alt="video"
-                          className="VideoCard2--videoImage"
-                        />
-                        <img
-                          src={YoutubeLogo}
-                          alt="youtube"
-                          className="VideoCard2--sourceImage"
-                        />
-                        <div>
-                          <button type="button" className="button pill">
-                            Remove
+                  {(provided, snapshot) => {
+                    if (video.id === "editQueue")
+                      return (
+                        <div
+                          ref={provided.innerRef}
+                          {...provided.draggableProps}
+                          {...provided.dragHandleProps}
+                          className="VideoCard2--editQueue"
+                        >
+                          <div className="VideoCard2--editQueue--top">
+                            <p>Edit queue</p>
+                          </div>
+                          <div className="VideoCard2--editQueue--bottom">
+                            <h6>Some Video</h6>
+                            <p>Playnows | 50k users. Something New</p>
+                          </div>
+                          <button
+                            type="button"
+                            className="button"
+                            onClick={changeQueue}
+                          >
+                            <i className="fas fa-plus fa-2x" />
                           </button>
                         </div>
+                      );
+                    return (
+                      <div
+                        ref={provided.innerRef}
+                        {...provided.draggableProps}
+                        className="VideoCard2--container"
+                      >
+                        <div
+                          className="VideoCard2--top"
+                          {...provided.dragHandleProps}
+                        >
+                          {index === 0 ? (
+                            <h4 className="VideoCard2--live">Live</h4>
+                          ) : (
+                            <h4>In 12min</h4>
+                          )}
+                          <img
+                            src={video.image}
+                            alt="video"
+                            className="VideoCard2--videoImage"
+                          />
+                          <img
+                            src={YoutubeLogo}
+                            alt="youtube"
+                            className="VideoCard2--sourceImage"
+                          />
+                          <div>
+                            <button type="button" className="button pill">
+                              Remove
+                            </button>
+                          </div>
+                        </div>
+                        <div className="VideoCard2--bottom">
+                          <h6>{video.title}</h6>
+                          <p>{video.other}</p>
+                        </div>
                       </div>
-                      <div className="VideoCard2--bottom">
-                        <h6>{video.title}</h6>
-                        <p>{video.other}</p>
-                      </div>
-                    </div>
-                  )}
+                    );
+                  }}
                 </Draggable>
               ))}
               {provided.placeholder}
@@ -136,14 +165,14 @@ export default function VideoQueue2() {
           )}
         </Droppable>
       </DragDropContext>
-      <div className="VideoQueue2--edit">
+      {/* <div className="VideoQueue2--edit">
         <div>
           <p>Click to edit</p>
           <div>
             <i className="fas fa-plus fa-lg" />
           </div>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }

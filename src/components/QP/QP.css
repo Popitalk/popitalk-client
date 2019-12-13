@@ -1,0 +1,31 @@
+.QP--container {
+  /* background-color: #ffffff;
+  padding: 15px 30px 15px 30px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  border-bottom: 2px solid #ededed;
+  height: 60px;
+  user-select: none; */
+  padding: 15px 20px;
+}
+
+.QP--header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 15px;
+}
+.QP--header > h5 {
+  font-size: 24px;
+  font-weight: bold;
+}
+.QP--header > p {
+  font-size: 18px;
+  font-weight: bold;
+  text-decoration: underline;
+  color: #0b9bff;
+  margin-left: 15px;
+  cursor: pointer;
+}

@@ -75,10 +75,13 @@
 .FollowingPage--mainChannel--video > div {
   position: absolute;
   bottom: 10px;
-  right: 134px;
+  right: 274px;
   z-index: 2;
   -webkit-user-drag: none;
   user-select: none;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
 }
 
 .FollowingPage--mainChannel--chat {

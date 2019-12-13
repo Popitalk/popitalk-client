@@ -124,7 +124,7 @@
 }
 .ChannelCard3--bottom > * {
   position: relative;
-  right: -50px;
+  right: -15px;
   /* display: flex;
   flex-direction: row;
   justify-content: flex-start;

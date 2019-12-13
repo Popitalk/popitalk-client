@@ -48,7 +48,7 @@ export default function ChannelCard2() {
                 "https://i.imgur.com/tLljw1z.jpg",
                 "https://i.imgur.com/tLljw1z.jpg"
               ]}
-              big={true}
+              size="big"
             />
             <button type="button" className="button">
               Follow

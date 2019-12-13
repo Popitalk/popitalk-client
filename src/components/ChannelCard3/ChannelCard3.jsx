@@ -46,7 +46,7 @@ export default function ChannelCard3() {
               "https://i.imgur.com/tLljw1z.jpg",
               "https://i.imgur.com/tLljw1z.jpg"
             ]}
-            big={true}
+            size="medium"
           />
         </div>
       </div>

@@ -4,6 +4,7 @@ import VideoPlayer from "../VideoPlayer";
 import RoomOnlineUsersPanel from "../RoomOnlineUsersPanel";
 import VideoQueue from "../VideoQueue";
 import VideoQueue2 from "../VideoQueue2";
+import QP from "../QP";
 import SearchSource from "../SearchSource";
 import SearchResults from "../SearchResults";
 
@@ -12,7 +13,8 @@ export default function VideoPanel() {
     <div className="VideoPanel--container">
       <VideoPlayer />
       <RoomOnlineUsersPanel />
-      <VideoQueue />
+      {/* <VideoQueue /> */}
+      <QP />
       {/* <VideoQueue2 /> */}
       <SearchSource />
       <SearchResults />

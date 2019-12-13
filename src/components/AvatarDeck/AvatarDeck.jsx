@@ -1,28 +1,43 @@
 import React from "react";
-import classNames from "classnames";
 import "./AvatarDeck.css";
 
-export default function AvatarDeck({ avatars, small, big }) {
-  const classes = classNames({
-    "AvatarDeck--container": true,
-    "AvatarDeck--small": small,
-    "AvatarDeck--big": big
-  });
+export default function AvatarDeck({ avatars, size = "big" }) {
+  let newSize = 48;
+
+  if (size === "big") newSize = 44;
+  else if (size === "medium") newSize = 31;
+  else if (size === "small") newSize = 25;
+
   return (
-    <div className={classes}>
-      {avatars.slice(0, 7).map((avatar, index) => (
+    <div className="AvatarDeck--container">
+      {avatars.slice(0, 8).map((avatar, index) => (
         <div
-          className="AvatarDeck--avatar"
           key={index}
+          className="AvatarDeck--avatar"
           style={{
+            height: newSize,
+            width: newSize,
             zIndex: avatars.length - index,
-            left: `${index * ((small ? 16 : 20) - (index + 1) * 1.001)}px`,
-            opacity: 1 - index * (small ? 0.04 : 0.08)
+            left: `${newSize * index - index * (newSize / 4 + index * 1.1)}px`
+            // left: `${index * ((small ? 16 : 20) - (index + 1) * 1.001)}px`
+            // opacity: 1 - (0.1 + index * 0.05)
+            // opacity: 1 - index * (small ? 0.04 : 0.08)
           }}
         >
           <img src={avatar} alt="avatar" />
         </div>
       ))}
+      <p
+        style={{
+          height: newSize,
+          width: newSize,
+          left: `${newSize * 8 - 8 * (newSize / 4 + 8 * 1.1) + 15}px`,
+          fontSize:
+            size === "big" ? "14px" : size === "medium" ? "12px" : "10px"
+        }}
+      >
+        +123
+      </p>
     </div>
   );
 }

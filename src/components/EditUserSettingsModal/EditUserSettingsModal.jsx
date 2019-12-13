@@ -13,7 +13,6 @@ const currentYear = new Date().getFullYear();
 let thirteenYearsAgo = new Date();
 thirteenYearsAgo.setFullYear(thirteenYearsAgo.getFullYear() - 13);
 
-console.log(currentYear);
 const days = new Array(31).fill(0).map((_, index) => index + 1);
 const months = [
   "January",

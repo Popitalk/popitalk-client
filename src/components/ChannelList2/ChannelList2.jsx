@@ -136,7 +136,9 @@ export default function ChannelList2() {
           </div>
           <div className="ChannelList2--channel--name">
             <p>@ {channel.name}</p>
-            {channel.watching && <AvatarDeck avatars={channel.avatars} small />}
+            {channel.watching && (
+              <AvatarDeck avatars={channel.avatars} size="small" />
+            )}
           </div>
           <div className="ChannelList2--slab" />
         </div>

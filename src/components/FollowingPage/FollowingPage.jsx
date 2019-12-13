@@ -15,7 +15,7 @@ export default function FollowingPage() {
           <i className="fas fa-volume-up fa-2x" />
           <div>
             <AvatarDeck
-              big={true}
+              size="big"
               avatars={[
                 "https://i.imgur.com/tLljw1z.jpg",
                 "https://i.imgur.com/tLljw1z.jpg",
