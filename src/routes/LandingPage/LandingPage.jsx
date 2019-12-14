@@ -3,7 +3,6 @@ import { useDispatch } from "react-redux";
 import "./LandingPage.css";
 import { openCreateNewAccountModal } from "../../redux/actions";
 import Footer from "../../components/Footer";
-import Splash from "../../assets/landing_page.png";
 
 export default function LandingPage() {
   const dispatch = useDispatch();
@@ -31,7 +30,6 @@ export default function LandingPage() {
           </div>
           <div className="LandingPage--shade" />
         </div>
-        {/* <img src={Splash} alt="Splash" /> */}
       </div>
       <Footer />
     </div>
