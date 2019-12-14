@@ -38,8 +38,8 @@
   padding: 22px;
 }
 .CreateNewAccountModal--form > .Input7--container {
-  width: 550px !important;
-  max-width: 550px !important;
+  width: 100%;
+  max-width: 100%;
 }
 .CreateNewAccountModal--form > *:not(:last-child) {
   margin-bottom: 15px;
@@ -53,15 +53,19 @@
   background-color: #009dff;
   box-shadow: 0px 3px 6px #00000029;
 }
+.CreateNewAccountModal--form > button:disabled {
+  box-shadow: none;
+}
 
 .CreateNewAccountModal--form--row {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  width: 100%;
+  column-gap: 12px;
 }
+
 .CreateNewAccountModal--form--row > *:first-child {
-  margin-right: 8px;
+  /* margin-right: 8px; */
 }
 
 .CreateNewAccountModal--container > p {

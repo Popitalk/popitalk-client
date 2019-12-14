@@ -25,11 +25,7 @@ const months = [
   "November",
   "December"
 ];
-const years = new Array(100)
-  .fill(0)
-  .map((_, index) => currentYear - index)
-  .reverse();
-
+const years = new Array(100).fill(0).map((_, index) => currentYear - index);
 export default function CreateNewAccountModal() {
   return (
     <div className="CreateNewAccountModal--container">
@@ -44,7 +40,6 @@ export default function CreateNewAccountModal() {
           email: "",
           username: "",
           password: "",
-          confirmPassword: "",
           date: new Date()
         }}
         validationSchema={Yup.object({
@@ -80,10 +75,7 @@ export default function CreateNewAccountModal() {
               "Password should have atleast one uppercase letter."
             )
             .matches(/\d+/, "Password should have atleast one number.")
-            .required("New Password is required."),
-          confirmPassword: Yup.string()
-            .oneOf([Yup.ref("password"), null], "Passwords must match")
-            .required("Confirm Password is required.")
+            .required("New Password is required.")
         })}
         onSubmit={(values, { setSubmitting, resetForm }) => {
           alert(JSON.stringify(values, null, 2));
@@ -158,16 +150,6 @@ export default function CreateNewAccountModal() {
               onBlur={handleBlur}
               value={values.password}
               error={touched.password && errors.password}
-            />
-            <Input7
-              header="Confirm New Password"
-              name="confirmPassword"
-              type="password"
-              disabled={isSubmitting}
-              onChange={handleChange}
-              onBlur={handleBlur}
-              value={values.confirmPassword}
-              error={touched.confirmPassword && errors.confirmPassword}
             />
             <div className="CreateNewAccountModal--form--row2">
               <h4>

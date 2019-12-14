@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import "./LandingPage.css";
 import { openCreateNewAccountModal } from "../../redux/actions";
 import Footer from "../../components/Footer";
+import Splash from "../../assets/landing_page.png";
 
 export default function LandingPage() {
   const dispatch = useDispatch();
@@ -13,7 +14,7 @@ export default function LandingPage() {
   return (
     <div className="LandingPage--container">
       <div>
-        <div>
+        <div className="LandingPage--main">
           <h2>Watch anything together!</h2>
           <h4>Create a room or sign up to text and watch together</h4>
           <div className="LandingPage--buttons">
@@ -28,7 +29,9 @@ export default function LandingPage() {
               SIGN UP
             </button>
           </div>
+          <div className="LandingPage--shade" />
         </div>
+        {/* <img src={Splash} alt="Splash" /> */}
       </div>
       <Footer />
     </div>

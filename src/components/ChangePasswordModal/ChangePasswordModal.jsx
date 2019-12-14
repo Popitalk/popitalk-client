@@ -30,8 +30,7 @@ export default function ChangePasswordModal() {
       <Formik
         initialValues={{
           oldPassword: "",
-          newPassword: "",
-          confirmPassword: ""
+          newPassword: ""
         }}
         validationSchema={Yup.object({
           oldPassword: Yup.string().required("Old Password is required."),
@@ -46,10 +45,7 @@ export default function ChangePasswordModal() {
               "Password should have atleast one uppercase letter."
             )
             .matches(/\d+/, "Password should have atleast one number.")
-            .required("New Password is required."),
-          confirmPassword: Yup.string()
-            .oneOf([Yup.ref("newPassword"), null], "Passwords must match")
-            .required("Confirm Password is required.")
+            .required("New Password is required.")
         })}
         onSubmit={(values, { setSubmitting, resetForm }) => {
           alert(JSON.stringify(values, null, 2));
@@ -87,16 +83,6 @@ export default function ChangePasswordModal() {
               onBlur={handleBlur}
               value={values.newPassword}
               error={touched.newPassword && errors.newPassword}
-            />
-            <Input7
-              header="Confirm New Password"
-              name="confirmPassword"
-              type="password"
-              disabled={isSubmitting}
-              onChange={handleChange}
-              onBlur={handleBlur}
-              value={values.confirmPassword}
-              error={touched.confirmPassword && errors.confirmPassword}
             />
             <button
               type="submit"

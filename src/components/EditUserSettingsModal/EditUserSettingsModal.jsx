@@ -28,10 +28,7 @@ const months = [
   "November",
   "December"
 ];
-const years = new Array(100)
-  .fill(0)
-  .map((_, index) => currentYear - index)
-  .reverse();
+const years = new Array(100).fill(0).map((_, index) => currentYear - index);
 
 export default function EditUserSettingsModal() {
   const [displayedIcon, setDisplayedIcon] = useState(false);
@@ -122,7 +119,6 @@ export default function EditUserSettingsModal() {
               user={true}
             />
             <h4>Djang16</h4>
-
             <div className="EditUserSettingsModal--form--row">
               <Input7
                 header="First Name"
