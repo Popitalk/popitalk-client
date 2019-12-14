@@ -1,17 +1,8 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
-import React, { useState, useRef } from "react";
+import React, { useRef } from "react";
 import Modal from "react-modal";
-import {
-  Redirect,
-  Link,
-  Switch,
-  Route,
-  useRouteMatch,
-  useParams,
-  useLocation
-} from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { closeAllModals } from "../../redux/actions";
+import { closeAllModals, popAllModals } from "../../redux/actions";
 import WatchersModal from "../WatchersModal";
 import FollowersModal from "../FollowersModal";
 import ProfileModal from "../ProfileModal";
@@ -52,7 +43,8 @@ const ModalComponents = {
 };
 
 export default function ModalManager() {
-  const openModals = useSelector(({ modalState }) => modalState.open);
+  const open = useSelector(({ modalState }) => modalState.open);
+  const components = useSelector(({ modalState }) => modalState.components);
   const apiLoading = useSelector(
     ({ apiState }) => apiState.generalApiLoading || apiState.userApiLoading
   );
@@ -61,10 +53,11 @@ export default function ModalManager() {
 
   return (
     <Modal
-      isOpen={openModals.length !== 0}
-      closeTimeoutMS={250}
+      isOpen={open}
+      closeTimeoutMS={170}
       contentLabel="modal"
       onRequestClose={apiLoading ? undefined : () => dispatch(closeAllModals())}
+      onAfterClose={() => dispatch(popAllModals())}
       className="ModalManager--modal"
       overlayClassName="ModalManager--modalOverlay"
       ref={modalRef}
@@ -76,7 +69,7 @@ export default function ModalManager() {
           dispatch(closeAllModals());
         }}
       >
-        {ModalComponents[openModals[openModals.length - 1]]}
+        {ModalComponents[components[components.length - 1]]}
       </div>
     </Modal>
   );

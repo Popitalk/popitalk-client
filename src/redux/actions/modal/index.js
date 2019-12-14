@@ -11,7 +11,9 @@ import {
   MODAL_EDIT_USER_SETTINGS,
   MODAL_CHANGE_PASSWORD,
   MODAL_BLOCKED_USERS,
-  MODAL_IMAGE
+  MODAL_IMAGE,
+  CLOSE_MODAL,
+  CLOSE_ALL_MODAL
 } from "../../../helpers/constants";
 
 export const openCreateNewAccountModal = () => ({
@@ -80,10 +82,18 @@ export const openBlockedUsersModal = () => ({
   }
 });
 
+// export const popModal = () => ({
+//   type: POP_MODAL
+// });
+
 export const closeModal = () => ({
   type: POP_MODAL
 });
 
 export const closeAllModals = () => ({
+  type: CLOSE_ALL_MODAL
+});
+
+export const popAllModals = () => ({
   type: POP_ALL_MODAL
 });

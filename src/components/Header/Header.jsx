@@ -3,7 +3,6 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "./Header.css";
 import Input1 from "../Input1";
-import Input3 from "../Input3";
 import HeaderNotifications from "../HeaderNotifications";
 import HeaderFriends from "../HeaderFriends";
 import HeaderProfile from "../HeaderProfile";
@@ -15,30 +14,11 @@ const loggedIn = true;
 export default function Header() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [search, setSearch] = useState("");
-  // const friendsRef = useRef(null);
-  // const notificationsRef = useRef(null);
-
-  // useEffect(() => {
-  //   if (!friendsOpen) return;
-
-  //   friendsRef.current.focus();
-  // }, [friendsOpen]);
-
-  // useEffect(() => {
-  //   if (!notificationsOpen) return;
-
-  //   notificationsRef.current.focus();
-  // }, [notificationsOpen]);
 
   const handleLogin = () => {
     console.log("LOGGIN IN");
     setUsername("");
     setPassword("");
-  };
-
-  const handleSubmit = () => {
-    setSearch("");
   };
 
   return (
@@ -47,20 +27,6 @@ export default function Header() {
         <img src={Logo} alt="logo" />
         <h1>Playnows</h1>
       </Link>
-      {loggedIn && (
-        <Input3
-          placeholder="Search"
-          value={search}
-          onChange={e => setSearch(e.target.value)}
-          onKeyDown={e => {
-            if (e.keyCode === 13) {
-              handleSubmit();
-            }
-          }}
-          onClick={handleSubmit}
-          maxLength={120}
-        />
-      )}
       {!loggedIn && (
         <div className="Header--login">
           <Input1

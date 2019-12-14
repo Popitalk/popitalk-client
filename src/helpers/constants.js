@@ -4,6 +4,8 @@ export const SET_SOMETHING = "someState/SET_SOMETHING";
 export const PUSH_MODAL = "modalState/PUSH_MODAL";
 export const POP_MODAL = "modalState/POP_MODAL";
 export const POP_ALL_MODAL = "modalState/POP_ALL_MODAL";
+export const CLOSE_MODAL = "modal/CLOSE_MODAL";
+export const CLOSE_ALL_MODAL = "modal/CLOSE_ALL_MODAL";
 // MODAL_COMPONENTS
 export const MODAL_CREATE_NEW_ACCOUNT = "modal/MODAL_CREATE_NEW_ACCOUNT";
 export const MODAL_INVITE = "modal/MODAL_INVITE";
