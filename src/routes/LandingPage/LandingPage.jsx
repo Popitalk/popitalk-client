@@ -14,7 +14,7 @@ export default function LandingPage() {
     <div className="LandingPage--container">
       <div>
         <div className="LandingPage--main">
-          <h2>Watch anything together!</h2>
+          <h2>Testing CI</h2>
           <h4>Create a room or sign up to text and watch together</h4>
           <div className="LandingPage--buttons">
             <button type="button" className="button pill lg">
