@@ -18,11 +18,9 @@ export default function ChannelMain() {
 
   useEffect(() => {
     const tab = location.pathname.replace(match.url, "").slice(1);
-    console.log("TT", tab);
     if (tab === "video") {
       window.scrollTo({ top: 0, behavior: "smooth" });
     } else if (tab === "channel") {
-      // console.log(channelRef);
       window.scrollTo({
         top: channelRef.current.offsetTop,
         behavior: "smooth"
@@ -30,7 +28,6 @@ export default function ChannelMain() {
     } else if (tab === "settings") {
       window.scrollTo({ top: 0 });
     }
-    // window.scrollTo(0, channelRef.current.offsetTop);
   }, [location, match]);
 
   const handleBack = () => {

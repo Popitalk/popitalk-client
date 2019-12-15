@@ -91,7 +91,9 @@ export default function VideoQueue2({ changeQueue }) {
             <div
               ref={provided.innerRef}
               {...provided.droppableProps}
-              className="VideoQueue2--queue"
+              className={`VideoQueue2--queue${
+                snapshot.isDraggingOver ? " VideoQueue2--draggingOver" : ""
+              }`}
             >
               {items.map((video, index) => (
                 <Draggable key={video.id} draggableId={video.id} index={index}>
@@ -124,12 +126,11 @@ export default function VideoQueue2({ changeQueue }) {
                       <div
                         ref={provided.innerRef}
                         {...provided.draggableProps}
-                        className="VideoCard2--container"
+                        className={`VideoCard2--container${
+                          snapshot.isDragging ? " VideoCard2--dragged" : ""
+                        }`}
                       >
-                        <div
-                          className="VideoCard2--top"
-                          {...provided.dragHandleProps}
-                        >
+                        <div className="VideoCard2--top">
                           {index === 0 ? (
                             <h4 className="VideoCard2--live">Live</h4>
                           ) : (
@@ -145,16 +146,19 @@ export default function VideoQueue2({ changeQueue }) {
                             alt="youtube"
                             className="VideoCard2--sourceImage"
                           />
-                          <div>
-                            <button type="button" className="button pill">
-                              Remove
-                            </button>
-                          </div>
                         </div>
                         <div className="VideoCard2--bottom">
                           <h6>{video.title}</h6>
                           <p>{video.other}</p>
                         </div>
+                        <div
+                          className="VideoCard2--shade"
+                          {...provided.dragHandleProps}
+                        />
+                        <p>Drag around</p>
+                        <button type="button" className="button pill">
+                          Remove
+                        </button>
                       </div>
                     );
                   }}
@@ -165,14 +169,6 @@ export default function VideoQueue2({ changeQueue }) {
           )}
         </Droppable>
       </DragDropContext>
-      {/* <div className="VideoQueue2--edit">
-        <div>
-          <p>Click to edit</p>
-          <div>
-            <i className="fas fa-plus fa-lg" />
-          </div>
-        </div>
-      </div> */}
     </div>
   );
 }

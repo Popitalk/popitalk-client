@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
+import { useScroll } from "react-use";
 import onClickOutside from "react-onclickoutside";
 import RoomIcon from "../RoomIcon";
 import "./FriendsPanel1.css";
@@ -21,37 +22,37 @@ const requests = [
     username: "Andrew",
     fullName: "Andrew Jang",
     avatar: "https://i.imgur.com/aqjzchq.jpg"
-  },
-  {
-    id: "a4",
-    username: "Andrew",
-    fullName: "Andrew Jang",
-    avatar: "https://i.imgur.com/aqjzchq.jpg"
-  },
-  {
-    id: "a5",
-    username: "Andrew",
-    fullName: "Andrew Jang",
-    avatar: "https://i.imgur.com/aqjzchq.jpg"
-  },
-  {
-    id: "a6",
-    username: "Andrew",
-    fullName: "Andrew Jang",
-    avatar: "https://i.imgur.com/aqjzchq.jpg"
-  },
-  {
-    id: "a7",
-    username: "Andrew",
-    fullName: "Andrew Jang",
-    avatar: "https://i.imgur.com/aqjzchq.jpg"
-  },
-  {
-    id: "a8",
-    username: "Andrew",
-    fullName: "Andrew Jang",
-    avatar: "https://i.imgur.com/aqjzchq.jpg"
   }
+  // {
+  //   id: "a4",
+  //   username: "Andrew",
+  //   fullName: "Andrew Jang",
+  //   avatar: "https://i.imgur.com/aqjzchq.jpg"
+  // },
+  // {
+  //   id: "a5",
+  //   username: "Andrew",
+  //   fullName: "Andrew Jang",
+  //   avatar: "https://i.imgur.com/aqjzchq.jpg"
+  // },
+  // {
+  //   id: "a6",
+  //   username: "Andrew",
+  //   fullName: "Andrew Jang",
+  //   avatar: "https://i.imgur.com/aqjzchq.jpg"
+  // },
+  // {
+  //   id: "a7",
+  //   username: "Andrew",
+  //   fullName: "Andrew Jang",
+  //   avatar: "https://i.imgur.com/aqjzchq.jpg"
+  // },
+  // {
+  //   id: "a8",
+  //   username: "Andrew",
+  //   fullName: "Andrew Jang",
+  //   avatar: "https://i.imgur.com/aqjzchq.jpg"
+  // }
 ];
 
 const rooms = [
@@ -267,8 +268,20 @@ const rooms = [
 ];
 
 function FriendsPanel1() {
+  const [shadow, setShadow] = useState(false);
+  const scrollRef = useRef(null);
+  const { y } = useScroll(scrollRef);
   const [search, setSearch] = useState("");
   const [expanded, setExpanded] = useState(false);
+
+  useEffect(() => {
+    if (y !== 0) {
+      setShadow(true);
+    } else {
+      setShadow(false);
+    }
+  }, [y]);
+
   const toggle = () => setExpanded(!expanded);
   FriendsPanel1.handleClickOutside = () => setExpanded(false);
 
@@ -289,13 +302,15 @@ function FriendsPanel1() {
         expanded ? " FriendsPanel1--expanded" : ""
       }`}
     >
-      <div className="FriendsPanel1--header">
+      <div
+        className={`FriendsPanel1--header${
+          shadow ? " FriendsPanel1--headerShadow" : ""
+        }`}
+      >
         <i className="fas fa-user-friends fa-2x" />
         {expanded && <h3>Friends</h3>}
       </div>
-      <div className="FriendsPanel1--shade" />
-      <div className="FriendsPanel1--rooms">
-        <div className="FriendsPanel1--shade2" />
+      <div className="FriendsPanel1--rooms" ref={scrollRef}>
         {expanded ? (
           <div className="FriendsPanel1--searchbar">
             <input

@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState, useEffect, useRef } from "react";
+import { useScroll } from "react-use";
 import ReactTooltip from "react-tooltip";
 import "./ChannelsPanel1.css";
 
@@ -90,6 +91,18 @@ const channels = [
 ];
 
 export default function ChannelsPanel1() {
+  const [shadow, setShadow] = useState(false);
+  const scrollRef = useRef(null);
+  const { y } = useScroll(scrollRef);
+
+  useEffect(() => {
+    if (y !== 0) {
+      setShadow(true);
+    } else {
+      setShadow(false);
+    }
+  }, [y]);
+
   return (
     <div className="ChannelsPanel1--container">
       <ReactTooltip
@@ -98,12 +111,14 @@ export default function ChannelsPanel1() {
         className="ChannelsPanel1--tooltip"
         id="ChannelsPanel1--tooltip"
       />
-      <div className="ChannelsPanel1--header">
+      <div
+        className={`ChannelsPanel1--header${
+          shadow ? " ChannelsPanel1--headerShadow" : ""
+        }`}
+      >
         <i className="fas fa-globe-americas fa-2x" />
       </div>
-      <div className="ChannelsPanel1--shade" />
-      <div className="ChannelsPanel1--channels">
-        <div className="ChannelsPanel1--shade2" />
+      <div className="ChannelsPanel1--channels" ref={scrollRef}>
         {channels.map(channel => (
           <div
             className={`ChannelsPanel1--channel${

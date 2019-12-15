@@ -15,10 +15,6 @@
 .ChannelPage--container > .ChannelMain--container {
   height: calc(100vh - 155px);
   width: calc(100vw - 975px);
-  /*  */
-  /*  */
-  /*  */
-  /*  */
   position: absolute;
   top: 155px;
   left: 405px;
@@ -54,7 +50,8 @@
   position: fixed;
   top: 95px;
   z-index: 50;
-  left: calc(405px + (100vw - 975px) + 20px + 440px);
+  /* left: calc(405px + (100vw - 975px) + 20px + 440px); */
+  right: 0;
 }
 
 .ChannelPage--container > .CreateChannel--container {

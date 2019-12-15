@@ -4,6 +4,9 @@
   box-shadow: 0px 3px 6px #00000033;
   width: 230px;
   min-height: 230px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
 }
 
 .VideoCard2--top {
@@ -18,7 +21,6 @@
 .VideoCard2--top > .VideoCard2--videoImage {
   height: 100%;
   width: 230px;
-  /* width: 100%; */
   object-fit: cover;
   border-top-left-radius: 15px;
   border-top-right-radius: 15px;
@@ -36,26 +38,83 @@
   -webkit-user-drag: none;
   user-select: none;
 }
-.VideoCard2--top > div {
+
+.VideoCard2--container > .VideoCard2--shade {
   display: none;
+  background-color: black;
   position: absolute;
   top: 0;
   height: 100%;
   width: 100%;
   z-index: 2;
+  opacity: 0.5;
+  border-radius: 15px;
+}
+.VideoCard2--container > p {
+  display: none;
+  position: absolute;
+  z-index: 3;
+  font-size: 20px;
+  font-weight: bold;
+  color: white;
+  top: 30%;
+  left: 25%;
+  text-shadow: 0px 3px 6px #00000029;
+  user-select: none;
+}
+
+.VideoCard2--container:hover > .VideoCard2--shade,
+.VideoCard2--dragged > .VideoCard2--shade {
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
 }
-.VideoCard2--top > div > button {
-  display: none;
-  /* background-color: #de0000; */
-  background: transparent linear-gradient(249deg, #fa3535 0%, #fc5aa5 100%) 0%
-    0% no-repeat padding-box;
+
+.VideoCard2--container:hover > p,
+.VideoCard2--dragged > p {
+  display: block;
 }
 
-.VideoCard2--top:hover > div > button {
+.VideoCard2--container > button {
+  display: none;
+  background: transparent linear-gradient(249deg, #fa3535 0%, #fc5aa5 100%) 0%
+    0% no-repeat padding-box;
+  position: absolute;
+  top: 6px;
+  right: 12px;
+  z-index: 10;
+  height: 33px;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 6px 12px !important;
+}
+
+.VideoCard2--container:hover > button,
+.VideoCard2--dragged > button {
+  display: block;
+}
+
+.VideoQueue2--draggingOver .VideoCard2--container:hover > .VideoCard2--shade {
+  display: none;
+}
+
+.VideoQueue2--draggingOver .VideoCard2--container:hover > p {
+  display: none;
+}
+
+.VideoQueue2--draggingOver .VideoCard2--container:hover > button {
+  display: none;
+}
+
+.VideoCard2--container:hover .VideoCard2--sourceImage,
+.VideoCard2--dragged .VideoCard2--sourceImage {
+  display: none;
+}
+
+.VideoQueue2--draggingOver
+  .VideoCard2--container:hover
+  .VideoCard2--sourceImage {
   display: block;
 }
 

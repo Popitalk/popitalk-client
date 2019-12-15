@@ -1,13 +1,31 @@
 .UserPage--container {
   flex-grow: 1;
-  /* height: 100%; */
-  /* height: 100vh; */
-  /* display: flex; */
-  /* flex-direction: column; */
-  /* justify-content: flex-start; */
-  /* align-items: center; */
-  /* padding: 60px; */
   display: flex;
   flex-direction: row;
-  /* padding-bottom: 60px; */
+  height: calc(100vh - 95px) !important;
+}
+
+.UserPage--container > .ChannelsPanel1--container {
+  height: calc(100vh - 95px);
+  position: fixed;
+  left: 0;
+  top: 95px;
+  z-index: 2;
+}
+
+.UserPage--container > .UserMain--container {
+  height: calc(100vh - 95px);
+  width: calc(100vw - 260px);
+  position: absolute;
+  top: 95px;
+  left: 130px;
+  z-index: 1;
+}
+
+.UserPage--container > .FriendsPanel1--container {
+  height: calc(100vh - 95px);
+  position: fixed;
+  top: 95px;
+  z-index: 50;
+  right: 0;
 }

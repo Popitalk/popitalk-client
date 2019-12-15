@@ -10,6 +10,7 @@
   position: relative;
   z-index: 2;
   height: calc(100vh - 95px);
+  border-right: 2px solid #ededed;
 }
 
 .FriendsPanel2--container > .FriendsPanel2--header {
@@ -18,8 +19,13 @@
   justify-content: flex-start;
   align-items: center;
   padding: 20px;
-  /* height: 72px; */
   height: 60px;
+  position: relative;
+  z-index: 10;
+}
+
+.FriendsPanel2--headerShadow {
+  box-shadow: 0 4px 6px -6px rgba(0, 0, 0, 0.5);
 }
 
 .FriendsPanel2--container > .FriendsPanel2--header > i {
@@ -33,7 +39,7 @@
 }
 
 .FriendsPanel2--rooms {
-  padding: 2px 0 20px 0;
+  padding: 2px 0px 20px 0px;
   flex-grow: 1;
   overflow-y: auto;
   overflow-x: hidden;
@@ -70,26 +76,6 @@
   margin-right: 22px;
 }
 
-.FriendsPanel2--shade {
-  height: 1px;
-  width: 100%;
-  background-color: #d0d0d0;
-  position: absolute;
-  top: 60px;
-  left: 0;
-  z-index: 1;
-}
-
-.FriendsPanel2--shade2 {
-  height: 1px;
-  width: 100%;
-  background-color: white;
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 20;
-}
-
 .FriendsPanel2--room {
   position: relative;
   display: flex;
@@ -111,9 +97,9 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  border: 1px solid #c6c6c6;
+  border: 1px solid transparent;
   border-radius: 25px;
-  margin: 2px 20px 20px 20px;
+  margin: 0px 20px 0px 20px;
 }
 
 .FriendsPanel2--searchbar:focus-within {
@@ -130,31 +116,64 @@
   padding-left: 25px;
   padding-right: 10px;
   font-size: 18px;
-  font-weight: 500;
+  font-weight: 400;
   flex-grow: 1;
 }
+.FriendsPanel2--searchbar > input::placeholder {
+  color: #b2b1b1;
+}
+
 .FriendsPanel2--searchbar > *:last-child {
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-
   height: 44px;
   background-color: #ecf0f2;
   border-top-right-radius: 25px;
   border-bottom-right-radius: 25px;
-  padding-right: 10px;
+  /* padding-right: 10px; */
 }
+
 .FriendsPanel2--searchbar > *:last-child > button {
   height: 34px;
   width: 34px;
-  padding: 0;
   background-color: #5cd8fd;
+  border-radius: 50% !important;
+  margin-right: 10px;
+  padding: 0 !important;
+  box-shadow: 0px 3px 6px #00000029;
+}
+
+.FriendsPanel2--searching {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 5px 20px 0px 20px;
+  user-select: none;
+}
+
+.FriendsPanel2--searching > *:first-child {
+  font-size: 16px;
+  font-weight: 500;
+  color: #989898;
+  margin-right: 15px;
+  word-wrap: break-word;
+  word-break: break-all;
+}
+
+.FriendsPanel2--searching > *:last-child {
+  font-size: 16px;
+  font-weight: bold;
+  color: #5cd8fd;
+  cursor: pointer;
+  margin-top: 2px;
 }
 
 .FriendsPanel2--friendRequests {
   padding: 0 20px;
-  margin-bottom: 20px;
+  /* margin-bottom: 20px; */
+  margin-top: 20px;
 }
 
 .FriendsPanel2--friendRequests > *:not(:last-child) {
@@ -199,9 +218,33 @@
   height: 62px;
   object-fit: cover;
   border-radius: 50%;
-  box-shadow: 0px 3px 6px #00000029;
   -webkit-user-drag: none;
   user-select: none;
+}
+
+.FriendsPanel2--friendRequests > * > button {
+  box-shadow: 0px 3px 6px #00000029;
+}
+
+.FriendsPanel2--pages {
+  margin: 10px 20px 0 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+}
+.FriendsPanel2--pages > *:not(:last-child) {
+  margin-right: 10px;
+}
+.FriendsPanel2--pages > * {
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  text-shadow: 0px 3px 6px #00000020;
+  color: #7b8080;
+}
+.FriendsPanel2--pages--active {
+  color: #5cd8fd;
 }
 
 .FriendsPanel2--nameAndMessage {

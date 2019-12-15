@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
+import { useScroll } from "react-use";
 import RoomIcon from "../RoomIcon";
 import "./FriendsPanel2.css";
 
@@ -20,37 +21,37 @@ const requests = [
     username: "Andrew",
     fullName: "Andrew Jang",
     avatar: "https://i.imgur.com/aqjzchq.jpg"
-  },
-  {
-    id: "a4",
-    username: "Andrew",
-    fullName: "Andrew Jang",
-    avatar: "https://i.imgur.com/aqjzchq.jpg"
-  },
-  {
-    id: "a5",
-    username: "Andrew",
-    fullName: "Andrew Jang",
-    avatar: "https://i.imgur.com/aqjzchq.jpg"
-  },
-  {
-    id: "a6",
-    username: "Andrew",
-    fullName: "Andrew Jang",
-    avatar: "https://i.imgur.com/aqjzchq.jpg"
-  },
-  {
-    id: "a7",
-    username: "Andrew",
-    fullName: "Andrew Jang",
-    avatar: "https://i.imgur.com/aqjzchq.jpg"
-  },
-  {
-    id: "a8",
-    username: "Andrew",
-    fullName: "Andrew Jang",
-    avatar: "https://i.imgur.com/aqjzchq.jpg"
   }
+  // {
+  //   id: "a4",
+  //   username: "Andrew",
+  //   fullName: "Andrew Jang",
+  //   avatar: "https://i.imgur.com/aqjzchq.jpg"
+  // },
+  // {
+  //   id: "a5",
+  //   username: "Andrew",
+  //   fullName: "Andrew Jang",
+  //   avatar: "https://i.imgur.com/aqjzchq.jpg"
+  // },
+  // {
+  //   id: "a6",
+  //   username: "Andrew",
+  //   fullName: "Andrew Jang",
+  //   avatar: "https://i.imgur.com/aqjzchq.jpg"
+  // },
+  // {
+  //   id: "a7",
+  //   username: "Andrew",
+  //   fullName: "Andrew Jang",
+  //   avatar: "https://i.imgur.com/aqjzchq.jpg"
+  // },
+  // {
+  //   id: "a8",
+  //   username: "Andrew",
+  //   fullName: "Andrew Jang",
+  //   avatar: "https://i.imgur.com/aqjzchq.jpg"
+  // }
 ];
 
 const rooms = [
@@ -267,6 +268,21 @@ const rooms = [
 
 export default function FriendsPanel2() {
   const [search, setSearch] = useState("");
+  const [shadow, setShadow] = useState(false);
+  const scrollRef = useRef(null);
+  const { y } = useScroll(scrollRef);
+
+  useEffect(() => {
+    if (y !== 0) {
+      setShadow(true);
+    } else {
+      setShadow(false);
+    }
+  }, [y]);
+
+  useEffect(() => {
+    console.log("Y IS", y);
+  }, [y]);
 
   const handleSubmit = () => {
     setSearch("");
@@ -278,23 +294,26 @@ export default function FriendsPanel2() {
 
   const handleSearchSelect = () => {
     // setExpanded(true);
+    setSearch("");
   };
   return (
     <div className="FriendsPanel2--container">
-      <div className="FriendsPanel2--header">
+      <div
+        className={`FriendsPanel2--header${
+          shadow ? " FriendsPanel2--headerShadow" : ""
+        }`}
+      >
         <i className="fas fa-user-friends fa-2x" />
         <h3>Friends</h3>
       </div>
-      <div className="FriendsPanel2--shade" />
-      <div className="FriendsPanel2--rooms">
-        <div className="FriendsPanel2--shade2" />
-
+      <div className="FriendsPanel2--rooms" ref={scrollRef}>
         <div className="FriendsPanel2--searchbar">
           <input
             type="text"
             placeholder="Search friends"
             value={search}
             onChange={e => setSearch(e.target.value)}
+            maxLength={30}
           />
           <div>
             <button
@@ -306,7 +325,12 @@ export default function FriendsPanel2() {
             </button>
           </div>
         </div>
-
+        {search && (
+          <div className="FriendsPanel2--searching">
+            <p>Searching: {search}</p>
+            <p onClick={() => setSearch("")}>Clear</p>
+          </div>
+        )}
         <div className="FriendsPanel2--friendRequests">
           {requests.map(request => (
             <div key={request.id}>
@@ -320,6 +344,11 @@ export default function FriendsPanel2() {
               </button>
             </div>
           ))}
+        </div>
+        <div className="FriendsPanel2--pages">
+          <p className="FriendsPanel2--pages--active">1</p>
+          <p>2</p>
+          <p>3</p>
         </div>
         <button type="button" className="button lg FriendsPanel2--newRoom">
           <p>Your private room</p>
