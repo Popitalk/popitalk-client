@@ -1,14 +1,8 @@
 .RoomPage--container {
   flex-grow: 1;
-  /* height: 100%; */
-  /* height: 100vh; */
-  /* display: flex; */
-  /* flex-direction: column; */
-  /* justify-content: flex-start; */
-  /* align-items: center; */
-  /* padding: 60px; */
   display: flex;
   flex-direction: row;
+  height: calc(100vh - 95px) !important;
 }
 
 .RoomPage--container > .ChannelsPanel1--container {
@@ -26,21 +20,23 @@
   z-index: 10;
 }
 .RoomPage--container > .RoomMain--container {
-  width: calc(100vw - 1005px);
+  height: calc(100vh - 155px);
+  width: calc(100vw - 985px);
   position: absolute;
   top: 155px;
   left: 545px;
 }
+
 .RoomPage--container > .RoomMain--container > .RoomHeader--container {
-  width: calc(100vw - 1005px);
+  width: calc(100vw - 985px);
   position: fixed;
   top: 95px;
   left: 545px;
-  z-index: 500;
+  z-index: 400;
 }
 
 .RoomPage--container > .ChatPanel--container {
-  left: calc(545px + (100vw - 1005px));
+  left: calc(565px + (100vw - 1005px));
   position: fixed;
   top: 95px;
 }

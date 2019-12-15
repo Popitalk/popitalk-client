@@ -1,8 +1,16 @@
 .ChannelMain--container {
-  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
   background-color: #f4f4f4;
-  width: calc(100vw - 990px);
-  /* max-width: 930px; */
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+.ChannelMain--container::-webkit-scrollbar {
+  width: 0px;
+  background: transparent;
+}
+.ChannelMain--container::-webkit-scrollbar-thumb {
+  background: #ff0000;
 }
 
 .ChannelMain--header {
@@ -14,7 +22,6 @@
   /* border-top: 2px solid #ededed; */
   border-bottom: 2px solid #ededed;
   background-color: #ffffff;
-  width: calc(100vw - 990px);
   /* max-width: 930px; */
 }
 .ChannelMain--header > *:first-child {

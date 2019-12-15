@@ -6,6 +6,7 @@
   align-items: center;
   height: 32px;
   width: 30px;
+  z-index: 600;
 }
 
 .HeaderNotifications--container > i {
@@ -24,7 +25,7 @@
 
 .HeaderNotifications--popup {
   position: absolute;
-  z-index: 10;
+  z-index: 600;
   right: -30px;
   top: 60px;
 }
@@ -35,7 +36,7 @@
   content: "\00a0";
   display: block;
   position: absolute;
-  z-index: 400;
+  z-index: 600;
   top: -10px;
   right: 34px;
   transform: rotate(135deg);

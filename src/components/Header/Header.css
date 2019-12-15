@@ -16,6 +16,10 @@
   width: 100%;
 }
 
+.Header--absolute {
+  position: absolute;
+}
+
 .Header--login {
   display: grid;
   grid-template-areas:

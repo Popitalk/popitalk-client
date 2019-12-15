@@ -5,7 +5,7 @@
   align-items: center;
   background-color: white;
   /* background-color: red; */
-  box-shadow: 0px 0px 6px #00000080;
+  box-shadow: 0px 0px 6px #00000040;
   height: 72px;
   width: 72px;
   border-radius: 50%;
@@ -87,7 +87,7 @@
   width: 110%;
   z-index: 1;
   border-radius: 50%;
-  box-shadow: 0px 0px 6px #00000080;
+  box-shadow: 0px 0px 6px #00000040;
 }
 .RoomIcon--watching > .RoomIcon--back {
   background: linear-gradient(180deg, #03f5ff 0%, #f500ff 100%);

@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/no-noninteractive-tabindex */
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
 import "./Header.css";
 import Input1 from "../Input1";
 import HeaderNotifications from "../HeaderNotifications";
@@ -14,6 +14,14 @@ const loggedIn = true;
 export default function Header() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [headerAbsolute, setHeaderAbsolute] = useState(false);
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.pathname.startsWith("/welcome")) {
+      setHeaderAbsolute(true);
+    }
+  }, [location]);
 
   const handleLogin = () => {
     console.log("LOGGIN IN");
@@ -22,7 +30,11 @@ export default function Header() {
   };
 
   return (
-    <div className="Header--container">
+    <div
+      className={`Header--container${
+        headerAbsolute ? " Header--absolute" : ""
+      }`}
+    >
       <Link to="/channels/following" className="Header--logo">
         <img src={Logo} alt="logo" />
         <h1>Playnows</h1>
