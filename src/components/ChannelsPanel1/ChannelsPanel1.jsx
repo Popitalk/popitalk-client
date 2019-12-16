@@ -110,6 +110,8 @@ export default function ChannelsPanel1() {
         effect="solid"
         className="ChannelsPanel1--tooltip"
         id="ChannelsPanel1--tooltip"
+        event="mouseover mouseenter"
+        eventOff="mouseleave mouseout scroll mousewheel"
       />
       <div
         className={`ChannelsPanel1--header${
@@ -132,6 +134,7 @@ export default function ChannelsPanel1() {
                 alt="channel icon"
                 data-for="ChannelsPanel1--tooltip"
                 data-tip={channel.name}
+                data-iscapture="true"
               />
             </div>
             <div className="ChannelsPanel1--slab" />

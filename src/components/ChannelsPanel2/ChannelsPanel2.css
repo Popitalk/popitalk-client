@@ -2,35 +2,52 @@
   background-color: #ffffff;
   border-top-left-radius: 20px;
   width: 405px;
-  overflow-y: auto;
-  overflow-x: hidden;
-}
-.ChannelsPanel2--container::-webkit-scrollbar {
-  width: 0px;
-  background: transparent;
-}
-.ChannelsPanel2--container::-webkit-scrollbar-thumb {
-  background: #ff0000;
+  border-right: 2px solid #ededed;
+  height: calc(100vh - 95px);
+  display: flex;
+  flex-direction: column;
 }
 
 .ChannelsPanel2--header {
   display: flex;
   flex-direction: row;
-  align-items: flex-start;
-  padding: 14px 25px;
-  border-bottom: 1px solid #d0d0d0;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 20px;
   height: 60px;
+  position: relative;
+  z-index: 10;
 }
-.ChannelsPanel2--header > i {
+
+.ChannelsPanel2--headerShadow {
+  box-shadow: 0 4px 6px -6px rgba(0, 0, 0, 0.5);
+}
+
+.ChannelsPanel2--container > .ChannelsPanel2--header > i {
   color: #393939;
-  margin-right: 10px;
 }
-.ChannelsPanel2--header > h2 {
-  font-size: 30px;
+.ChannelsPanel2--container > .ChannelsPanel2--header > h3 {
+  color: #393939;
+  font-size: 28px;
   font-weight: bold;
-  color: #393939;
-  margin-bottom: 0;
-  padding: 0;
+  margin-left: 12px;
+}
+
+.ChannelsPanel2--main {
+  flex-grow: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  position: relative;
+  padding-bottom: 20px;
+}
+
+.ChannelsPanel2--main::-webkit-scrollbar {
+  width: 0px;
+  background: transparent;
+}
+
+.ChannelsPanel2--main::-webkit-scrollbar-thumb {
+  background: #ff0000;
 }
 
 .ChannelsPanel2--yourChannels {

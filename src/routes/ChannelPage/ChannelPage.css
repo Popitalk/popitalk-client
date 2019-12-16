@@ -22,10 +22,6 @@
 
 .ChannelPage--container > .ChannelMain--container > .ChannelMain--header {
   width: calc(100vw - 975px);
-  /*  */
-  /*  */
-  /*  */
-  /*  */
   position: fixed;
   top: 95px;
   left: 405px;

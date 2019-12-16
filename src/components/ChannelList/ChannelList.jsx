@@ -135,7 +135,7 @@ export default function ChannelList() {
             <img src={channel.icon} alt="channel icon" />
           </div>
           <div className="ChannelList--channel--name">
-            <p>@ {channel.name}</p>
+            <p>{channel.name}</p>
             {channel.watching && (
               <AvatarDeck avatars={channel.avatars} size="small" />
             )}

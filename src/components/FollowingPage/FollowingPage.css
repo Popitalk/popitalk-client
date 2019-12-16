@@ -98,6 +98,7 @@
   padding: 4px 12px;
   border-top-left-radius: 15px;
   border-top-right-radius: 15px;
+  border-bottom: 1px solid #c3c3c3;
 }
 .FollowingPage--mainChannel--chat > *:first-child > *:not(:last-child) {
   margin-right: 10px;
@@ -148,6 +149,7 @@
   font-weight: 500;
   background-color: #ffffff;
   color: #57b7ff;
+  border-top: 1px solid #c3c3c3;
 }
 .FollowingPage--mainChannel--chat > *:nth-child(2) {
   background-color: #f4f4f4;
@@ -162,4 +164,10 @@
   gap: 20px;
   width: 100%;
   justify-items: center;
+}
+
+.FollowingPage--mainChannel--chat
+  > .ChatMessages--container:hover
+  .ChatMessages--date {
+  margin-right: -25px;
 }

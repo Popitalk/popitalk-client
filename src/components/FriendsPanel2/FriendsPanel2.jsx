@@ -280,10 +280,6 @@ export default function FriendsPanel2() {
     }
   }, [y]);
 
-  useEffect(() => {
-    console.log("Y IS", y);
-  }, [y]);
-
   const handleSubmit = () => {
     setSearch("");
   };

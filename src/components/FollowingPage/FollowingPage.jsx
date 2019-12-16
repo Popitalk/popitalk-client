@@ -44,7 +44,7 @@ export default function FollowingPage() {
           </div>
           <ChatMessages />
           <button type="button" className="button">
-            Enter to join chat
+            Join chat
           </button>
         </div>
       </div>

@@ -39,4 +39,9 @@
   left: calc(565px + (100vw - 1005px));
   position: fixed;
   top: 95px;
+  border-top-right-radius: 20px;
+}
+
+.RoomPage--container > .ChatPanel--container > .ChatHeader--container {
+  border-top-right-radius: 20px;
 }

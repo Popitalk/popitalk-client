@@ -155,7 +155,7 @@ export default function VideoQueue2({ changeQueue }) {
                           className="VideoCard2--shade"
                           {...provided.dragHandleProps}
                         />
-                        <p>Drag around</p>
+                        <p {...provided.dragHandleProps}>Drag around</p>
                         <button type="button" className="button pill">
                           Remove
                         </button>
