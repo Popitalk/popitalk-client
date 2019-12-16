@@ -4,7 +4,7 @@
 
 [Landing Page](https://playsnow.sulaiman-alabbar.com/)
 
-[Room Page](https://playsnow.sulaiman-alabbar.com/rooms/abc)
+[Room Page](https://playsnow.sulaiman-alabbar.com/rooms/abc/video)
 
 [Channel Page](https://playsnow.sulaiman-alabbar.com/channels/abc/video)
 

@@ -1,0 +1,26 @@
+.UpdateQueue--container {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  background-color: #f4f4f4;
+  padding-bottom: 45px;
+}
+
+.UpdateQueue--header {
+  padding: 20px;
+}
+.UpdateQueue--header > h2 {
+  font-size: 36px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+.UpdateQueue--header > p {
+  font-size: 17px;
+  font-weight: 400;
+  color: #525252;
+}
+.UpdateQueue--header > p > span {
+  font-size: 20px;
+  font-weight: 600;
+  margin-right: 14px;
+}

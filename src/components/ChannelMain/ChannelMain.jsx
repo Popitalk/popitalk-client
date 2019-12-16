@@ -1,42 +1,86 @@
-import React, { useEffect, useRef } from "react";
+import React, { useState, useEffect, useLayoutEffect, useRef } from "react";
+import { useScroll } from "react-use";
 import {
   Link,
   Switch,
   Route,
   useRouteMatch,
-  useLocation
+  useLocation,
+  useHistory
 } from "react-router-dom";
 import "./ChannelMain.css";
 import VideoPanel from "../VideoPanel";
 import Forum from "../Forum";
 import UpdateChannel from "../UpdateChannel";
+import UpdateQueue from "../UpdateQueue";
 
 export default function ChannelMain() {
+  const history = useHistory();
   const match = useRouteMatch();
   const location = useLocation();
   const channelRef = useRef(null);
+  const [mounted, setMounted] = useState(false);
+  const [shadow, setShadow] = useState(false);
+  const scrollRef = useRef(null);
+  const { y } = useScroll(scrollRef);
+
+  // useEffect(() => {
+  //   if (!mounted) {
+  //     setMounted(true);
+  //   }
+  // }, [mounted]);
 
   useEffect(() => {
+    // if (!mounted) return;
+
+    if (y !== 0) {
+      setShadow(true);
+    } else {
+      setShadow(false);
+    }
+
+    // const tab = location.pathname.replace(match.url, "").slice(1);
+
+    // if (tab === "video") {
+    //   if (y >= channelRef.current.offsetTop) {
+    //     history.push(`${match.url}/channel`, { noScroll: true });
+    //   }
+    // } else if (tab === "channel") {
+    //   if (y < channelRef.current.offsetTop) {
+    //     history.push(`${match.url}/video`, { noScroll: true });
+    //   }
+    // }
+  }, [y]);
+
+  useLayoutEffect(() => {
     const tab = location.pathname.replace(match.url, "").slice(1);
+    // const noScroll = location.state && location.state.noScroll;
+
+    // if (noScroll) return;
+
     if (tab === "video") {
-      window.scrollTo({ top: 0, behavior: "smooth" });
+      scrollRef.current.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
     } else if (tab === "channel") {
-      window.scrollTo({
+      scrollRef.current.scrollTo({
         top: channelRef.current.offsetTop,
         behavior: "smooth"
       });
-    } else if (tab === "settings") {
-      window.scrollTo({ top: 0 });
+      // setMounted(true);
+    } else if (tab === "settings" || tab === "queue") {
+      scrollRef.current.scrollTo({ top: 0 });
     }
-  }, [location, match]);
-
-  const handleBack = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
+  }, [location, match.url]);
 
   return (
     <div className="ChannelMain--container">
-      <div className="ChannelMain--header">
+      <div
+        className={`ChannelMain--header${
+          shadow ? " ChannelMain--headerShadow" : ""
+        }`}
+      >
         <div>
           <img src="https://i.imgur.com/tLljw1z.jpg" alt="channel icon" />
           <h2>Team Playnow</h2>
@@ -65,6 +109,17 @@ export default function ChannelMain() {
             <div className="ChannelMain--nav--slab" />
           </Link>
           <Link
+            to={`${match.url}/queue`}
+            className={`${
+              location.pathname === `${match.url}/queue`
+                ? "ChannelMain--active"
+                : "ChannelMain--inActive"
+            }`}
+          >
+            <h4>Queue</h4>
+            <div className="ChannelMain--nav--slab" />
+          </Link>
+          <Link
             to={`${match.url}/settings`}
             className={`${
               location.pathname === `${match.url}/settings`
@@ -77,21 +132,21 @@ export default function ChannelMain() {
           </Link>
         </div>
       </div>
-      <Switch>
-        <Route exact path={[`${match.path}/video`, `${match.path}/channel`]}>
-          <VideoPanel />
-          <div className="ChannelMain--back" ref={channelRef}>
-            <button type="button" className="button pill" onClick={handleBack}>
-              <i className="far fa-arrow-alt-circle-up fa-lg" />
-              <p>Back to video</p>
-            </button>
-          </div>
-          <Forum />
-        </Route>
-        <Route path={`${match.path}/settings`}>
-          <UpdateChannel />
-        </Route>
-      </Switch>
+      <section ref={scrollRef}>
+        <Switch>
+          <Route exact path={[`${match.path}/video`, `${match.path}/channel`]}>
+            <VideoPanel />
+            <div ref={channelRef} />
+            <Forum />
+          </Route>
+          <Route path={`${match.path}/settings`}>
+            <UpdateChannel />
+          </Route>
+          <Route path={`${match.path}/queue`}>
+            <UpdateQueue />
+          </Route>
+        </Switch>
+      </section>
     </div>
   );
 }

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import VideoCard2 from "../VideoCard2";
+import { Link, useRouteMatch } from "react-router-dom";
 import YoutubeLogo from "../../assets/youtube-logo.png";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import "./VideoQueue2.css";
@@ -67,6 +68,7 @@ const reorder = (list, startIndex, endIndex) => {
 };
 
 export default function VideoQueue2({ changeQueue }) {
+  const match = useRouteMatch();
   const [items, setItems] = useState(videos);
 
   const onDragEnd = result => {
@@ -113,13 +115,13 @@ export default function VideoQueue2({ changeQueue }) {
                             <h6>Some Video</h6>
                             <p>Playnows | 50k users. Something New</p>
                           </div>
-                          <button
+                          <Link
+                            to={`${match.url.replace("video", "")}queue`}
                             type="button"
                             className="button"
-                            onClick={changeQueue}
                           >
                             <i className="fas fa-plus fa-2x" />
-                          </button>
+                          </Link>
                         </div>
                       );
                     return (

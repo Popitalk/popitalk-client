@@ -3,13 +3,133 @@
   display: flex;
   flex-direction: column;
   background-color: #f4f4f4;
+}
+
+.RoomMain--container > section {
+  flex-grow: 1;
   overflow-y: auto;
   overflow-x: hidden;
+  position: relative;
+  padding-bottom: 20px;
 }
-.RoomMain--container::-webkit-scrollbar {
+
+.RoomMain--container > section::-webkit-scrollbar {
   width: 0px;
   background: transparent;
 }
-.RoomMain--container::-webkit-scrollbar-thumb {
+
+.RoomMain--container > section::-webkit-scrollbar-thumb {
   background: #ff0000;
+}
+
+.RoomMain--header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  height: 60px;
+  border-bottom: 2px solid #ededed;
+  background-color: #ffffff;
+  position: relative;
+  z-index: 10;
+}
+
+.RoomMain--headerShadow {
+  box-shadow: 0 4px 6px -6px rgba(0, 0, 0, 0.5);
+}
+
+.RoomMain--header > *:first-child {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 10px 10px;
+}
+
+.RoomMain--header > *:first-child > img {
+  height: 37px;
+  width: 37px;
+  border-radius: 50%;
+  margin-right: 16px;
+  -webkit-user-drag: none;
+  user-select: none;
+}
+.RoomMain--header > *:first-child > h2 {
+  font-size: 26px;
+  font-weight: 500;
+}
+
+.RoomMain--nav {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0 25px;
+  height: 100%;
+  user-select: none;
+}
+
+.RoomMain--nav > *:not(:last-child) {
+  margin-right: 28px;
+}
+.RoomMain--nav > * {
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  position: relative;
+}
+.RoomMain--nav > * > h4 {
+  font-size: 26px;
+  font-weight: bold;
+  color: #a0a0a0;
+}
+
+.RoomMain--nav--slab {
+  display: none;
+  transition: width 0.12s ease-in-out;
+}
+
+.RoomMain--active > h4 {
+  color: #009dff;
+}
+.RoomMain--active > .RoomMain--nav--slab {
+  display: block;
+  height: 8px;
+  width: 100%;
+  background-color: #009dff;
+  border-top-right-radius: 6px;
+  border-top-left-radius: 6px;
+  position: absolute;
+  bottom: 0;
+}
+
+.RoomMain--inActive:hover > .RoomMain--nav--slab {
+  display: block;
+  height: 8px;
+  width: 50%;
+  background-color: #009dff;
+  border-top-right-radius: 6px;
+  border-top-left-radius: 6px;
+  position: absolute;
+  bottom: 0;
+  animation: RoomMain--slabExpand 0.17s ease-in-out;
+}
+
+@keyframes RoomMain--slabExpand {
+  0% {
+    width: 0;
+  }
+
+  1% {
+    width: 10%;
+  }
+
+  100% {
+    width: 50%;
+  }
+}
+
+.RoomMain--nav a {
+  text-decoration: none;
 }
