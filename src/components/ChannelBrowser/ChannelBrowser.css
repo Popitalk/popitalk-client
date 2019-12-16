@@ -1,10 +1,24 @@
 .ChannelBrowser--container {
-  /* flex-grow: 1; */
   display: flex;
   flex-direction: column;
-  /* width: 1300px; */
-  margin-right: 125px;
-  width: calc(100vw - 550px);
+  background-color: #f4f4f4;
+}
+
+.ChannelBrowser--container > section {
+  flex-grow: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  position: relative;
+  padding-bottom: 20px;
+}
+
+.ChannelBrowser--container > section::-webkit-scrollbar {
+  width: 0px;
+  background: transparent;
+}
+
+.ChannelBrowser--container > section::-webkit-scrollbar-thumb {
+  background: #ff0000;
 }
 
 .ChannelBrowser--header {
@@ -17,6 +31,12 @@
   height: 60px;
   border-bottom: 1px solid #d0d0d0;
   user-select: none;
+  position: relative;
+  z-index: 10;
+}
+
+.ChannelBrowser--headerShadow {
+  box-shadow: 0 4px 6px -6px rgba(0, 0, 0, 0.5);
 }
 
 .ChannelBrowser--header > *:first-child {

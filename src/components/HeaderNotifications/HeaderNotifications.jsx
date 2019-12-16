@@ -13,7 +13,7 @@ function HeaderNotifications() {
       <i className="fas fa-bell fa-2x" role="button" onClick={toggle} />
       {open && (
         <div className="HeaderNotifications--popup">
-          <Notifications />
+          <Notifications closePopup={() => setOpen(false)} />
         </div>
       )}
     </div>

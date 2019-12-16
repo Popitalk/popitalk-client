@@ -49,11 +49,14 @@
 }
 
 .FriendsPanel1--rooms {
-  padding: 2px 0 0px 0;
+  padding: 10px 0;
   flex-grow: 1;
   overflow-y: auto;
   overflow-x: hidden;
   position: relative;
+}
+.FriendsPanel1--expanded .FriendsPanel1--rooms {
+  padding: 0;
 }
 
 .FriendsPanel1--rooms::-webkit-scrollbar {

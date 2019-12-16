@@ -144,8 +144,12 @@ export default function InviteModal() {
           ) : (
             filteredUsers.map(user => (
               <div className="InviteModal--user" key={user.id}>
-                <img src={user.avatar} alt={`${user.username} avatar`} />
-                <div>
+                <img
+                  src={user.avatar}
+                  alt={`${user.username} avatar`}
+                  onClick={openProfileModalDispatcher}
+                />
+                <div role="button" onClick={openProfileModalDispatcher}>
                   <p>{user.username}</p>
                   <p>Slacking Slack</p>
                 </div>

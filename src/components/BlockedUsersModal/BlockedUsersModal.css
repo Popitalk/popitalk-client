@@ -108,26 +108,23 @@
   flex-direction: row;
   align-items: center;
   padding: 15px 15px;
-  /* cursor: pointer; */
   background-color: #ffffff;
   transition: filter 0.17s ease-in-out;
   border-radius: 5px;
 }
-/* .BlockedUsersModal--user:hover {
-  filter: brightness(90%);
-}
-.BlockedUsersModal--user:active {
-  filter: brightness(80%);
-} */
 
 .BlockedUsersModal--user > img {
   width: 60px;
   height: 60px;
   border-radius: 50%;
-  box-shadow: 0px 3px 6px #00000029;
   -webkit-user-drag: none;
   user-select: none;
   margin-right: 22px;
+  cursor: pointer;
+}
+.BlockedUsersModal--user > div {
+  cursor: pointer;
+  user-select: none;
 }
 
 .BlockedUsersModal--user > div > *:first-child {
@@ -144,6 +141,7 @@
 
 .BlockedUsersModal--user > button {
   margin-left: auto;
+  box-shadow: 0px 3px 6px #00000029;
 }
 
 .BlockedUsersModal--noneFound {

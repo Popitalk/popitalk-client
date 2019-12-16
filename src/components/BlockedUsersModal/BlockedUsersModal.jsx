@@ -1,6 +1,6 @@
 import React, { useState, useCallback } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { closeModal } from "../../redux/actions";
+import { openProfileModal, closeModal } from "../../redux/actions";
 import "./BlockedUsersModal.css";
 
 const users = [
@@ -79,9 +79,13 @@ const users = [
 export default function BlockedUsersModal() {
   const [search, setSearch] = useState("");
   const firstModal = useSelector(
-    ({ modalState }) => modalState.open.length === 1
+    ({ modalState }) => modalState.components.length === 1
   );
   const dispatch = useDispatch();
+  const openProfileModalDispatcher = useCallback(
+    () => dispatch(openProfileModal()),
+    [dispatch]
+  );
   const closeModalDispatcher = useCallback(() => dispatch(closeModal()), [
     dispatch
   ]);
@@ -114,20 +118,6 @@ export default function BlockedUsersModal() {
           </div>
         </div>
       </div>
-      {/* <div className="BlockedUsersModal--search">
-        <div>
-          <div>
-            <i className="fas fa-search fa-lg" />
-          </div>
-          <input
-            type="text"
-            placeholder="Search"
-            value={search}
-            onChange={e => setSearch(e.target.value)}
-            spellCheck={false}
-          />
-        </div>
-      </div> */}
       <div className="BlockedUsersModal--users">
         {filteredUsers.length === 0 ? (
           <div className="BlockedUsersModal--noneFound">
@@ -136,8 +126,12 @@ export default function BlockedUsersModal() {
         ) : (
           filteredUsers.map(user => (
             <div className="BlockedUsersModal--user" key={user.id}>
-              <img src={user.avatar} alt={`${user.username} avatar`} />
-              <div>
+              <img
+                src={user.avatar}
+                alt={`${user.username} avatar`}
+                onClick={openProfileModalDispatcher}
+              />
+              <div role="button" onClick={openProfileModalDispatcher}>
                 <p>{user.username}</p>
                 <p>Slacking Slack</p>
               </div>

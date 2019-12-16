@@ -34,7 +34,7 @@ export default function EditUserSettingsModal() {
   const [displayedIcon, setDisplayedIcon] = useState(false);
   const [uploadedImage, setUploadedImage] = useState(null);
   const firstModal = useSelector(
-    ({ modalState }) => modalState.open.length === 1
+    ({ modalState }) => modalState.components.length === 1
   );
   const dispatch = useDispatch();
   const closeModalDispatcher = useCallback(() => dispatch(closeModal()), [

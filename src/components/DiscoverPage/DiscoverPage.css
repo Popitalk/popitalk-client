@@ -92,25 +92,3 @@
 .DiscoverPage--recommended--nav > .DiscoverPage--activeTab {
   color: #009dff;
 }
-
-/* .ChannelBrowser--discover--recommended--nav > div {
-  background-color: #fff;
-  height: 100%;
-  cursor: pointer;
-}
-.ChannelBrowser--discover--recommended--nav > div:hover {
-  filter: brightness(90%);
-} */
-/* .ChannelBrowser--discover--recommended--nav {
-  margin: 0 auto;
-  margin-bottom: 45px;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  width: 370px;
-} */
-/* .ChannelBrowser--discover--recommended--nav p {
-  font-size: 22px;
-  font-weight: 600;
-  color: #a0a0a0;
-} */

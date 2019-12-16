@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useCallback } from "react";
+import { useDispatch } from "react-redux";
+import { openProfileModal } from "../../redux/actions";
 import "./Notifications.css";
 
 const requests = [
@@ -79,7 +81,13 @@ const updates = [
   }
 ];
 
-export default function Notifications() {
+export default function Notifications({ closePopup }) {
+  const dispatch = useDispatch();
+  const openProfileModalDispatcher = useCallback(() => {
+    closePopup();
+    dispatch(openProfileModal());
+  }, [closePopup, dispatch]);
+
   return (
     <div className="Notifications--container">
       <div className="Notifications--header">
@@ -109,7 +117,11 @@ export default function Notifications() {
         <h4>New</h4>
         <div className="Notifications--new">
           {updates.map(update => (
-            <div key={update.id}>
+            <div
+              role="button"
+              key={update.id}
+              onClick={openProfileModalDispatcher}
+            >
               <img src={update.avatar} alt="avatar" />
               <p>
                 {update.username} {update.message}

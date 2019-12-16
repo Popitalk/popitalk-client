@@ -8,7 +8,7 @@ import "./ChangePasswordModal.css";
 
 export default function ChangePasswordModal() {
   const firstModal = useSelector(
-    ({ modalState }) => modalState.open.length === 1
+    ({ modalState }) => modalState.components.length === 1
   );
   const dispatch = useDispatch();
   const closeModalDispatcher = useCallback(() => dispatch(closeModal()), [
