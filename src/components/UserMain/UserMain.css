@@ -11,7 +11,7 @@
 .UserMain--container > section {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  /* align-items: center; */
   flex-grow: 1;
   overflow-y: auto;
   overflow-x: hidden;

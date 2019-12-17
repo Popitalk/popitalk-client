@@ -1,16 +1,6 @@
 .VideoQueuePanel--container {
-  /* background-color: #ffffff;
-  padding: 15px 30px 15px 30px;
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: center;
-  border-bottom: 2px solid #ededed;
-  height: 60px;
-  user-select: none; */
   width: 100%;
-  padding: 15px 0 15px 20px;
-  /* padding: 15px 20px; */
+  padding: 15px 20px 15px 20px;
 }
 
 .VideoQueuePanel--header {
