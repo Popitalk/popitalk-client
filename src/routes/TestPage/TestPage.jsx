@@ -24,7 +24,7 @@ export default function TestPage() {
             className="pic2"
           />
         </div> */}
-        <RoomIcon2 images={["https://i.imgur.com/aqjzchq.jpg"]} />
+        {/* <RoomIcon2 images={["https://i.imgur.com/aqjzchq.jpg"]} />
         <RoomIcon2
           images={["https://i.imgur.com/aqjzchq.jpg"]}
           watching={true}
@@ -41,18 +41,33 @@ export default function TestPage() {
             "https://i.imgur.com/tLljw1z.jpg"
           ]}
           watching={true}
+        /> */}
+        <RoomIcon2
+          images={["https://i.imgur.com/aqjzchq.jpg"]}
+          watching={true}
+          online={true}
         />
         <RoomIcon2
           images={[
             "https://i.imgur.com/aqjzchq.jpg",
             "https://i.imgur.com/tLljw1z.jpg"
           ]}
+          watching={true}
         />
         <RoomIcon2
           images={[
             "https://i.imgur.com/aqjzchq.jpg",
             "https://i.imgur.com/tLljw1z.jpg",
             "https://i.imgur.com/aqjzchq.jpg"
+          ]}
+          watching={true}
+        />
+        <RoomIcon2
+          images={[
+            "https://i.imgur.com/aqjzchq.jpg",
+            "https://i.imgur.com/tLljw1z.jpg",
+            "https://i.imgur.com/aqjzchq.jpg",
+            "https://i.imgur.com/tLljw1z.jpg"
           ]}
           watching={true}
         />
