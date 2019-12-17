@@ -17,6 +17,7 @@
   height: 60px;
   position: relative;
   z-index: 10;
+  border-bottom: 2px solid #ededed;
 }
 
 .ChannelsPanel2--headerShadow {

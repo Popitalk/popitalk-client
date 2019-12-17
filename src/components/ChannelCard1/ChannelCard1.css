@@ -27,13 +27,11 @@
 .ChannelCard1--container > .ChannelCard1--top > .ChannelCard1--overlay {
   position: absolute;
   z-index: 2;
-  top: 0;
   bottom: 0;
-  height: 100%;
+  background-color: green;
+  background: linear-gradient(360deg, #fff 0%, rgba(244, 0, 0, 0) 100%);
+  height: 20%;
   width: 100%;
-  border-top-right-radius: 15px;
-  border-top-left-radius: 15px;
-  box-shadow: inset 0px -29px 26px -2px rgba(255, 255, 255, 1);
 }
 
 .ChannelCard1--icon {

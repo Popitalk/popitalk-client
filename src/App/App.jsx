@@ -46,7 +46,7 @@ export default function App() {
         <Route path="/test/">
           <TestPage />
         </Route>
-        {/* <Route path="/" render={() => <Redirect to="/welcome" />} /> */}
+        <Route path="/" render={() => <Redirect to="/welcome" />} />
       </Switch>
     </section>
   );

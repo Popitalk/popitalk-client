@@ -25,6 +25,7 @@ export default function ChannelCard3() {
         <div className="ChannelCard3--title">
           <h3>Video title | Video title</h3>
         </div>
+        <div className="ChannelCard3--shade" />
       </div>
       <div className="ChannelCard3--bottom">
         <div>

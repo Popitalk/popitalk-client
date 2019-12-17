@@ -11,6 +11,7 @@
   overflow-x: hidden;
   position: relative;
   padding-bottom: 20px;
+  border-right: 2px solid #ededed;
 }
 
 .RoomMain--container > section::-webkit-scrollbar {

@@ -13,7 +13,7 @@ export default function FollowingPage() {
           <h4>Live</h4>
           <h3>Video title | Video title</h3>
           <i className="fas fa-volume-up fa-2x" />
-          <div>
+          <div className="FollowingPage--avatars">
             <AvatarDeck
               size="big"
               avatars={[
@@ -33,6 +33,7 @@ export default function FollowingPage() {
               ]}
             />
           </div>
+          <div className="FollowingPage--shade" />
         </div>
         <div className="FollowingPage--mainChannel--chat">
           <div>
