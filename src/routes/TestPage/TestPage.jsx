@@ -8,69 +8,24 @@ export default function TestPage() {
   return (
     <div className="TestPage--container">
       <div className="xyz">
-        {/* <img src="https://i.imgur.com/aqjzchq.jpg" alt="abc" className="pic1" /> */}
-        {/* <img src="https://i.imgur.com/aqjzchq.jpg" alt="abc" className="pic1" /> */}
-        {/* <div className="picx">
-          <img
-            src="https://i.imgur.com/aqjzchq.jpg"
-            alt="abc"
-            className="pic2"
+        <div className="FriendsPanel2--searchbar">
+          <input
+            type="text"
+            placeholder="Search friends"
+            // value={search}
+            // onChange={e => setSearch(e.target.value)}
+            maxLength={30}
           />
+          <div>
+            <button
+              type="button"
+              className="button round"
+              // onClick={handleSearchSelect}
+            >
+              <i className="fas fa-search" />
+            </button>
+          </div>
         </div>
-        <div className="picx picx--watching">
-          <img
-            src="https://i.imgur.com/aqjzchq.jpg"
-            alt="abc"
-            className="pic2"
-          />
-        </div> */}
-        {/* <RoomIcon2 images={["https://i.imgur.com/aqjzchq.jpg"]} />
-        <RoomIcon2
-          images={["https://i.imgur.com/aqjzchq.jpg"]}
-          watching={true}
-        />
-        <RoomIcon2 images={["https://i.imgur.com/aqjzchq.jpg"]} online={true} />
-        <RoomIcon2
-          images={["https://i.imgur.com/aqjzchq.jpg"]}
-          watching={true}
-          online={true}
-        />
-        <RoomIcon2
-          images={[
-            "https://i.imgur.com/aqjzchq.jpg",
-            "https://i.imgur.com/tLljw1z.jpg"
-          ]}
-          watching={true}
-        /> */}
-        <RoomIcon2
-          images={["https://i.imgur.com/aqjzchq.jpg"]}
-          watching={true}
-          online={true}
-        />
-        <RoomIcon2
-          images={[
-            "https://i.imgur.com/aqjzchq.jpg",
-            "https://i.imgur.com/tLljw1z.jpg"
-          ]}
-          watching={true}
-        />
-        <RoomIcon2
-          images={[
-            "https://i.imgur.com/aqjzchq.jpg",
-            "https://i.imgur.com/tLljw1z.jpg",
-            "https://i.imgur.com/aqjzchq.jpg"
-          ]}
-          watching={true}
-        />
-        <RoomIcon2
-          images={[
-            "https://i.imgur.com/aqjzchq.jpg",
-            "https://i.imgur.com/tLljw1z.jpg",
-            "https://i.imgur.com/aqjzchq.jpg",
-            "https://i.imgur.com/tLljw1z.jpg"
-          ]}
-          watching={true}
-        />
       </div>
     </div>
   );

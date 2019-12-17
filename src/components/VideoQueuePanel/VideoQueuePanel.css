@@ -9,7 +9,8 @@
   height: 60px;
   user-select: none; */
   width: 100%;
-  padding: 15px 20px;
+  padding: 15px 0 15px 20px;
+  /* padding: 15px 20px; */
 }
 
 .VideoQueuePanel--header {

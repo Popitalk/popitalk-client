@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
+import { useScroll } from "react-use";
 import VideoCard2 from "../VideoCard2";
 import { Link, useRouteMatch } from "react-router-dom";
 import YoutubeLogo from "../../assets/youtube-logo.png";
@@ -68,6 +69,10 @@ const reorder = (list, startIndex, endIndex) => {
 };
 
 export default function VideoQueue2({ changeQueue }) {
+  const [firstShadeVisible, setFirstShadeVisible] = useState(false);
+  const [secondShadeVisible, setSecondShadeVisible] = useState(true);
+  // const scrollRef = useRef(null);
+  // const { x } = useScroll(scrollRef);
   const match = useRouteMatch();
   const [items, setItems] = useState(videos);
 
@@ -87,6 +92,7 @@ export default function VideoQueue2({ changeQueue }) {
 
   return (
     <div className="VideoQueue2--container">
+      {firstShadeVisible && <div className="VideoQueue2--firstShade" />}
       <DragDropContext onDragEnd={onDragEnd}>
         <Droppable droppableId="droppable" direction="horizontal">
           {(provided, snapshot) => (
@@ -96,6 +102,21 @@ export default function VideoQueue2({ changeQueue }) {
               className={`VideoQueue2--queue${
                 snapshot.isDraggingOver ? " VideoQueue2--draggingOver" : ""
               }`}
+              onScroll={e => {
+                if (e.target.scrollLeft !== 0) {
+                  setFirstShadeVisible(true);
+                } else {
+                  setFirstShadeVisible(false);
+                }
+                if (
+                  e.target.scrollWidth - e.target.scrollLeft ===
+                  e.target.offsetWidth
+                ) {
+                  setSecondShadeVisible(false);
+                } else {
+                  setSecondShadeVisible(true);
+                }
+              }}
             >
               {items.map((video, index) => (
                 <Draggable key={video.id} draggableId={video.id} index={index}>
@@ -171,6 +192,7 @@ export default function VideoQueue2({ changeQueue }) {
           )}
         </Droppable>
       </DragDropContext>
+      {secondShadeVisible && <div className="VideoQueue2--secondShade" />}
     </div>
   );
 }
