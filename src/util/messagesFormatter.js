@@ -1,8 +1,8 @@
-import _ from "lodash";
+import groupBy from "lodash/groupBy";
 import dateFormatter from "./dateFormatter";
 
 const messagesFormatter = messages => {
-  const messagesByDate = _.groupBy(messages, x =>
+  const messagesByDate = groupBy(messages, x =>
     dateFormatter(new Date(x.createdAt), true)
   );
 
