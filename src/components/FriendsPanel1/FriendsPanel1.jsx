@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useScroll } from "react-use";
 import onClickOutside from "react-onclickoutside";
-import RoomIcon from "../RoomIcon";
+import RoomIcon2 from "../RoomIcon2";
 import "./FriendsPanel1.css";
 
 const requests = [
@@ -389,7 +389,7 @@ function FriendsPanel1() {
                   <p>{roomMessage}</p>
                 </div>
               )}
-              <RoomIcon
+              <RoomIcon2
                 images={images}
                 online={online}
                 watching={room.watching}

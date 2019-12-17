@@ -6,10 +6,16 @@ export default function ChannelCard1() {
   return (
     <div className="ChannelCard1--container">
       <div className="ChannelCard1--top">
-        <img src="https://i.imgur.com/aqjzchq.jpg" alt="channel" />
-        <div className="ChannelCard1--icon">
-          <img src="https://i.imgur.com/tLljw1z.jpg" alt="channel" />
-        </div>
+        <img
+          src="https://i.imgur.com/aqjzchq.jpg"
+          alt="channel"
+          className="ChannelCard1--cardImage"
+        />
+        <img
+          src="https://i.imgur.com/tLljw1z.jpg"
+          alt="channel"
+          className="ChannelCard1--icon"
+        />
         <div className="ChannelCard1--overlay" />
       </div>
       <div className="ChannelCard1--bottom">

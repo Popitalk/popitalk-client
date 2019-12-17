@@ -84,14 +84,13 @@ export default function WatchingUsersList() {
   return (
     <div className="WatchingUsersList--container">
       {onlineUsers.slice(0, 10).map(user => (
-        <div
+        <img
+          src={user.avatar}
+          alt="avatar"
           key={user.id}
-          role="button"
           onClick={openProfileModalDispatcher}
           className="WatchingUsersList--user"
-        >
-          <img src={user.avatar} alt="avatar" />
-        </div>
+        />
       ))}
       {onlineUsers.length > 10 && (
         <div

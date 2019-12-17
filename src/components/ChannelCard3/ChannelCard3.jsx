@@ -7,9 +7,7 @@ export default function ChannelCard3() {
   return (
     <div className="ChannelCard3--container">
       <div className="ChannelCard3--top">
-        <div>
-          <img src="https://i.imgur.com/tLljw1z.jpg" alt="channel" />
-        </div>
+        <img src="https://i.imgur.com/tLljw1z.jpg" alt="channel" />
         <h3>Channel Name</h3>
       </div>
       <div className="ChannelCard3--middle">

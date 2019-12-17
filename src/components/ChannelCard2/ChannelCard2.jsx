@@ -26,9 +26,7 @@ export default function ChannelCard2() {
         </div>
         <div className="ChannelCard2--bottom">
           <div className="ChannelCard2--nameIcon">
-            <div>
-              <img src="https://i.imgur.com/tLljw1z.jpg" alt="channel" />
-            </div>
+            <img src="https://i.imgur.com/tLljw1z.jpg" alt="channel" />
             <h3>Channel Name</h3>
           </div>
           <div className="ChannelCard2--avatars">

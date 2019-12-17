@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useScroll } from "react-use";
 import ReactTooltip from "react-tooltip";
+import RoomIcon2 from "../RoomIcon2";
 import "./ChannelsPanel1.css";
 
 const channels = [
@@ -122,20 +123,13 @@ export default function ChannelsPanel1() {
       </div>
       <div className="ChannelsPanel1--channels" ref={scrollRef}>
         {channels.map(channel => (
-          <div
-            className={`ChannelsPanel1--channel${
-              channel.watching ? " ChannelsPanel1--watching" : ""
-            }`}
-            key={channel.id}
-          >
-            <div>
-              <img
-                src={channel.icon}
-                alt="channel icon"
-                data-for="ChannelsPanel1--tooltip"
-                data-tip={channel.name}
-                data-iscapture="true"
-              />
+          <div className="ChannelsPanel1--channel" key={channel.id}>
+            <div
+              data-for="ChannelsPanel1--tooltip"
+              data-tip={channel.name}
+              data-iscapture="true"
+            >
+              <RoomIcon2 images={[channel.icon]} watching={channel.watching} />
             </div>
             <div className="ChannelsPanel1--slab" />
           </div>

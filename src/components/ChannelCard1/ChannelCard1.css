@@ -13,7 +13,7 @@
   height: 163px;
 }
 
-.ChannelCard1--container > .ChannelCard1--top > img {
+.ChannelCard1--container > .ChannelCard1--top > .ChannelCard1--cardImage {
   height: 100%;
   width: 100%;
   object-fit: cover;
@@ -43,18 +43,10 @@
   z-index: 3;
   height: 62px;
   width: 62px;
+  border: 3px solid #fff;
   border-radius: 50%;
   background-color: #fff;
   box-shadow: 0px 1px 3px #00000029;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-}
-.ChannelCard1--icon > img {
-  height: 87%;
-  width: 87%;
-  border-radius: 50%;
 }
 
 .ChannelCard1--container > .ChannelCard1--bottom {
