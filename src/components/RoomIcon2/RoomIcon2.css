@@ -1,0 +1,73 @@
+.RoomIcon2--one {
+  height: 72px;
+  width: 72px;
+  border-radius: 50%;
+  background-color: #fff;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.RoomIcon2--one > img {
+  height: 66px;
+  width: 66px;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  object-fit: cover;
+}
+
+.RoomIcon2--watching {
+  background: linear-gradient(180deg, #c330fc 0%, #00ffff 100%);
+}
+
+.RoomIcon2--online {
+  position: absolute;
+  background-color: #07ff23;
+  width: 17px;
+  height: 17px;
+  border: 1px solid #fff;
+  top: 4px;
+  right: 2px;
+  border-radius: 50%;
+  box-shadow: 0px 3px 6px #00000029;
+}
+
+.RoomIcon2--two {
+  height: 72px;
+  width: 72px;
+  border-radius: 50%;
+  background-color: #fff;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  /* box-shadow: 0px 3px 6px #00000029; */
+}
+
+.RoomIcon2--two > img {
+  height: 66px;
+  width: 66px;
+  border: 2px solid #fff;
+  object-fit: cover;
+  position: absolute;
+  z-index: 10;
+  border-radius: 50%;
+}
+.RoomIcon2--two > *:nth-child(1) {
+  clip-path: inset(0px 34px 0px 0px);
+}
+.RoomIcon2--two > *:nth-child(2) {
+  clip-path: inset(0px 0px 0px 34px);
+}
+
+.RoomIcon2--vertical {
+  position: absolute;
+  height: 66px;
+  width: 2px;
+  left: 35px;
+  background-color: #fff;
+  z-index: 2000;
+}
