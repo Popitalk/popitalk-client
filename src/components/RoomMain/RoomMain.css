@@ -10,7 +10,7 @@
   overflow-y: auto;
   overflow-x: hidden;
   position: relative;
-  padding-bottom: 20px;
+  padding-bottom: 26px;
   border-right: 2px solid #ededed;
 }
 
@@ -43,20 +43,50 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  padding: 10px 10px;
+  padding: 5px 14px 5px 14px;
+  padding: 25px 14px 13px 14px;
+  height: 100%;
+}
+.RoomMain--header > *:first-child > *:not(:last-child) {
+  margin-right: 12px;
 }
 
 .RoomMain--header > *:first-child > img {
-  height: 37px;
-  width: 37px;
+  height: 32px;
+  width: 32px;
   border-radius: 50%;
-  margin-right: 16px;
   -webkit-user-drag: none;
   user-select: none;
 }
-.RoomMain--header > *:first-child > h2 {
-  font-size: 26px;
-  font-weight: 500;
+.RoomMain--header > *:first-child > h3 {
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.RoomMain--header > *:first-child > i {
+  color: #000;
+  cursor: pointer;
+  transition: filter 0.17s ease-in-out;
+}
+.RoomMain--header > *:first-child > i:hover {
+  /* filter: contrast(110%); */
+  filter: invert(30%);
+}
+
+.RoomMain--header > *:first-child > p {
+  font-size: 18px;
+  font-weight: bold;
+  color: #64c9ef;
+  cursor: pointer;
+  user-select: none;
+  transition: filter 0.17s ease-in-out;
+}
+
+.RoomMain--header > *:first-child > p:hover {
+  filter: brightness(90%);
+}
+.RoomMain--header > *:first-child > p:active {
+  filter: brightness(80%);
 }
 
 .RoomMain--nav {
@@ -64,6 +94,7 @@
   flex-direction: row;
   align-items: center;
   padding: 0 25px;
+  /* padding: 0 14px; */
   height: 100%;
   user-select: none;
 }
@@ -102,7 +133,7 @@
   border-top-right-radius: 6px;
   border-top-left-radius: 6px;
   position: absolute;
-  bottom: 0;
+  bottom: -2px;
 }
 
 .RoomMain--inActive:hover > .RoomMain--nav--slab {
@@ -113,7 +144,7 @@
   border-top-right-radius: 6px;
   border-top-left-radius: 6px;
   position: absolute;
-  bottom: 0;
+  bottom: -2px;
   animation: RoomMain--slabExpand 0.17s ease-in-out;
 }
 

@@ -1,4 +1,6 @@
 .VideoPlayer--container {
-  height: 565px;
+  /* height: 565px; */
+  height: 535px;
+  /* height: 420px; */
   background-color: black;
 }

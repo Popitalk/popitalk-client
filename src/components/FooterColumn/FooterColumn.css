@@ -12,12 +12,11 @@
 .FooterColumn--container > h4 {
   color: var(--color-text-white);
   font-weight: bold;
-  font-size: 20px;
-  margin-bottom: 40px !important;
+  font-size: 18px;
 }
 
 .FooterColumn--container > a {
-  font-size: 16px;
+  font-size: 18px;
   color: var(--color-text-white);
   cursor: pointer;
   text-decoration: none;

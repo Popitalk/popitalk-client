@@ -5,8 +5,7 @@ import {
   Switch,
   Route,
   useRouteMatch,
-  useLocation,
-  useHistory
+  useLocation
 } from "react-router-dom";
 import VideoPanel from "../VideoPanel";
 import UpdateQueue from "../UpdateQueue";
@@ -50,7 +49,9 @@ export default function RoomMain() {
       >
         <div>
           <img src="https://i.imgur.com/tLljw1z.jpg" alt="room icon" />
-          <h2>Team Playnow</h2>
+          <h3>Team Playnow</h3>
+          <i className="fas fa-pen fa-lg" />
+          <p>120 People</p>
         </div>
         <div className="RoomMain--nav">
           <Link

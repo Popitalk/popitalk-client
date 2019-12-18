@@ -1,4 +1,5 @@
 .ChatMessages--container {
+  flex-grow: 1;
   background-color: #ffffff;
   background-color: #ffffff;
   height: 700px;

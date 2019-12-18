@@ -309,7 +309,8 @@ export default function FriendsPanel2() {
             placeholder="Search friends"
             value={search}
             onChange={e => setSearch(e.target.value)}
-            maxLength={30}
+            maxLength={25}
+            spellCheck={false}
           />
           <div>
             <button
@@ -346,7 +347,7 @@ export default function FriendsPanel2() {
           <p>2</p>
           <p>3</p>
         </div>
-        <button type="button" className="button lg FriendsPanel2--newRoom">
+        <button type="button" className="FriendsPanel2--newRoom">
           <p>Your private room</p>
           <i className="fas fa-plus-square fa-lg" />
         </button>
@@ -384,6 +385,7 @@ export default function FriendsPanel2() {
                 images={images}
                 online={online}
                 watching={room.watching}
+                type="FriendsPanel"
               />
             </div>
           );

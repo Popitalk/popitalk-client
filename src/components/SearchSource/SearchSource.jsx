@@ -51,10 +51,10 @@ const sources = [
     source: "Dailymotion",
     icon: DailymotionLogo
   },
-  {
-    source: "Twitter",
-    icon: TwitterLogo
-  },
+  // {
+  //   source: "Twitter",
+  //   icon: TwitterLogo
+  // },
   {
     source: "Spotify",
     icon: SpotifyLogo
@@ -72,7 +72,7 @@ export default function SearchSource() {
     <div className="SearchSource--container">
       <div>
         <button type="button" className="button round">
-          <i className="fas fa-carrot fa-lg" />
+          <i className="fas fa-fire fa-lg" />
         </button>
         <div className="SearchSource--input">
           <input

@@ -16,10 +16,8 @@ export default function HeaderProfile() {
       role="button"
       onClick={openProfileModalDispatcher}
     >
-      <h4>Andrew</h4>
-      <div>
-        <img src="https://i.imgur.com/aqjzchq.jpg" alt="avatar" />
-      </div>
+      <h4>Playnows</h4>
+      <img src="https://i.imgur.com/aqjzchq.jpg" alt="avatar" />
     </div>
   );
 }

@@ -2,29 +2,30 @@
   flex-grow: 1;
   display: flex;
   flex-direction: row;
-  height: calc(100vh - 95px) !important;
+  height: calc(100vh - 70px) !important;
 }
 
 .RoomPage--container > .ChannelsPanel1--container {
-  height: calc(100vh - 95px);
+  height: calc(100vh - 70px);
   position: fixed;
   left: 0;
-  top: 95px;
+  top: 70px;
   z-index: 50;
 }
 
 .RoomPage--container > .FriendsPanel2--container {
+  height: calc(100vh - 70px);
   position: fixed;
-  left: 125px;
-  top: 95px;
+  left: 106px;
+  top: 70px;
   z-index: 10;
 }
 .RoomPage--container > .RoomMain--container {
-  height: calc(100vh - 95px);
-  width: calc(100vw - 985px);
+  height: calc(100vh - 70px);
+  width: calc(100vw - 966px);
   position: absolute;
-  top: 95px;
-  left: 545px;
+  top: 70px;
+  left: 526px;
 }
 
 .RoomPage--container > .RoomMain--container > .RoomHeader--container {
@@ -36,9 +37,11 @@
 }
 
 .RoomPage--container > .ChatPanel--container {
+  height: calc(100vh - 70px);
   left: calc(565px + (100vw - 1005px));
   position: fixed;
-  top: 95px;
+  top: 70px;
+  background-color: red;
   border-top-right-radius: 20px;
 }
 

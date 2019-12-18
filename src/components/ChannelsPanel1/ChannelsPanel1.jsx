@@ -9,7 +9,7 @@ const channels = [
     id: "abc1",
     name: "channel1",
     icon: "https://i.imgur.com/aqjzchq.jpg",
-    watching: false
+    watching: true
   },
   {
     id: "abc2",
@@ -87,7 +87,7 @@ const channels = [
     id: "abc5uh",
     name: "channel14",
     icon: "https://i.imgur.com/aqjzchq.jpg",
-    watching: false
+    watching: true
   }
 ];
 
@@ -129,9 +129,13 @@ export default function ChannelsPanel1() {
               data-tip={channel.name}
               data-iscapture="true"
             >
-              <RoomIcon2 images={[channel.icon]} watching={channel.watching} />
+              <RoomIcon2
+                images={[channel.icon]}
+                watching={channel.watching}
+                type="ChannelsPanel1"
+              />
             </div>
-            <div className="ChannelsPanel1--slab" />
+            {/* <div className="ChannelsPanel1--slab" /> */}
           </div>
         ))}
       </div>

@@ -14,12 +14,12 @@ const loggedIn = true;
 export default function Header() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [headerAbsolute, setHeaderAbsolute] = useState(false);
+  const [headerLandingPage, setHeaderLandingPage] = useState(false);
   const location = useLocation();
 
   useEffect(() => {
     if (location.pathname.startsWith("/welcome")) {
-      setHeaderAbsolute(true);
+      setHeaderLandingPage(true);
     }
   }, [location]);
 
@@ -32,7 +32,7 @@ export default function Header() {
   return (
     <div
       className={`Header--container${
-        headerAbsolute ? " Header--absolute" : ""
+        headerLandingPage ? " Header--landingPage" : ""
       }`}
     >
       <Link to="/channels/following" className="Header--logo">

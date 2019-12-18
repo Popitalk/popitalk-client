@@ -17,6 +17,25 @@
   object-fit: cover;
   position: absolute;
   border-radius: 50%;
+  -webkit-user-drag: none;
+  user-select: none;
+}
+
+.RoomIcon2--ChannelsPanel1 {
+  height: 76px;
+  width: 76px;
+}
+.RoomIcon2--ChannelsPanel1 > img {
+  height: 70px;
+  width: 70px;
+}
+.RoomIcon2--FriendsPanel {
+  height: 82px;
+  width: 82px;
+}
+.RoomIcon2--FriendsPanel > img {
+  height: 76px;
+  width: 76px;
 }
 
 .RoomIcon2--watching {
@@ -65,6 +84,12 @@
 }
 .RoomIcon2--two > *:nth-child(2) {
   clip-path: inset(0px 0px 0px 34px);
+}
+.RoomIcon2--two.RoomIcon2--FriendsPanel > *:nth-child(1) {
+  clip-path: inset(0px 38px 0px 0px);
+}
+.RoomIcon2--two.RoomIcon2--FriendsPanel > *:nth-child(2) {
+  clip-path: inset(0px 0px 0px 38px);
 }
 
 .RoomIcon2--three > *:nth-child(1) {

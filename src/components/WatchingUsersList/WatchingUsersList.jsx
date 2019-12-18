@@ -83,6 +83,7 @@ export default function WatchingUsersList() {
 
   return (
     <div className="WatchingUsersList--container">
+      <p>Watching now</p>
       {onlineUsers.slice(0, 10).map(user => (
         <img
           src={user.avatar}
@@ -98,7 +99,7 @@ export default function WatchingUsersList() {
           className="WatchingUsersList--more"
           onClick={openWatchingModalDispatcher}
         >
-          <p>+{onlineUsers.length}</p>
+          <p>+123</p>
         </div>
       )}
       <button
@@ -106,7 +107,7 @@ export default function WatchingUsersList() {
         className="button round"
         onClick={openInviteModalDispatcher}
       >
-        <i className="fas fa-user-plus fa-md" />
+        <i className="fas fa-user-plus fa-sm" />
       </button>
     </div>
   );
