@@ -1,4 +1,12 @@
-import React, { useState, useEffect, useLayoutEffect, useRef } from "react";
+import React, {
+  useState,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useCallback
+} from "react";
+import { useDispatch } from "react-redux";
+import { openFollowersModal } from "../../redux/actions";
 import { useScroll } from "react-use";
 import {
   Link,
@@ -12,6 +20,11 @@ import UpdateQueue from "../UpdateQueue";
 import "./RoomMain.css";
 
 export default function RoomMain() {
+  const dispatch = useDispatch();
+  const openFollowersModalDispatcher = useCallback(
+    () => dispatch(openFollowersModal()),
+    [dispatch]
+  );
   const match = useRouteMatch();
   const location = useLocation();
   const [shadow, setShadow] = useState(false);
@@ -51,7 +64,7 @@ export default function RoomMain() {
           <img src="https://i.imgur.com/tLljw1z.jpg" alt="room icon" />
           <h3>Team Playnow</h3>
           <i className="fas fa-pen fa-lg" />
-          <p>120 People</p>
+          <p onClick={openFollowersModalDispatcher}>120 People</p>
         </div>
         <div className="RoomMain--nav">
           <Link

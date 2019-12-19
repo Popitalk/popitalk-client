@@ -12,6 +12,7 @@ export const MODAL_INVITE = "modal/MODAL_INVITE";
 export const MODAL_PROFILE = "modal/MODAL_PROFILE";
 export const MODAL_IMAGE = "modal/MODAL_IMAGE";
 export const MODAL_WATCHING = "modal/MODAL_WATCHING";
+export const MODAL_MEMBERS = "modal/MODAL_MEMBERS";
 export const MODAL_FOLLOWERS = "modal/MODAL_FOLLOWERS";
 export const MODAL_USER_SETTINGS = "modal/MODAL_USER_SETTINGS";
 export const MODAL_EDIT_USER_SETTINGS = "modal/MODAL_EDIT_USER_SETTINGS";

@@ -100,8 +100,6 @@
   flex-direction: row;
   align-items: center;
   background-color: #fff;
-  /* transition: filter 0.17s ease-in-out; */
-  /* transition: background-color 0.17s ease-in-out; */
   border-radius: 20px;
   margin: 0 5px;
   cursor: pointer;
@@ -109,12 +107,7 @@
 }
 .FriendsPanel2--room:hover {
   background-color: #f0f0f0;
-  /* filter: brightness(90%); */
-  /* filter: brightness(95%); */
 }
-/* .FriendsPanel2--room:active {
-  filter: brightness(80%);
-} */
 
 .FriendsPanel2--searchbar {
   display: flex;
@@ -198,7 +191,6 @@
 
 .FriendsPanel2--friendRequests {
   padding: 0 14px;
-  /* margin-bottom: 20px; */
   margin-top: 20px;
 }
 

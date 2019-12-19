@@ -6,13 +6,13 @@ import ChannelBrowser from "../../components/ChannelBrowser";
 import CreateChannel from "../../components/CreateChannel";
 import ChannelMain from "../../components/ChannelMain";
 import ChatPanel from "../../components/ChatPanel";
-import FriendsPanel1 from "../../components/FriendsPanel1";
+import FriendsPanel from "../../components/FriendsPanel";
 
 export default function ChannelPage() {
   return (
     <div className="ChannelPage--container">
       <ChannelsPanel2 />
-      <Switch>
+      {/* <Switch>
         <Route path={["/channels/following", "/channels/discover"]}>
           <ChannelBrowser />
         </Route>
@@ -23,8 +23,8 @@ export default function ChannelPage() {
           <ChannelMain />
           <ChatPanel />
         </Route>
-      </Switch>
-      <FriendsPanel1 />
+      </Switch> */}
+      <FriendsPanel />
     </div>
   );
 }

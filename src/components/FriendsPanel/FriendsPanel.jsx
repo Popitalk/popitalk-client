@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { useScroll } from "react-use";
 import onClickOutside from "react-onclickoutside";
 import RoomIcon2 from "../RoomIcon2";
-import "./FriendsPanel1.css";
+import "./FriendsPanel.css";
 
 const requests = [
   {
@@ -264,15 +264,58 @@ const rooms = [
       message: "Hi lets watch an interesting video together"
     },
     watching: false
+  },
+  {
+    id: "a3gfef",
+    name: "A room",
+    users: {
+      id3: {
+        username: "Emma",
+        avatar: "https://i.imgur.com/tLljw1z.jpg",
+        online: true
+      },
+      id5: {
+        username: "Jason",
+        avatar: "https://i.imgur.com/Y9waUNm.jpg",
+        online: true
+      }
+    },
+    lastMessage: {
+      username: "Jason",
+      message: "Hi lets watch an interesting video together"
+    },
+    watching: false
+  },
+  {
+    id: "a3gfef4343",
+    name: "A room",
+    users: {
+      id3: {
+        username: "Emma",
+        avatar: "https://i.imgur.com/tLljw1z.jpg",
+        online: true
+      },
+      id5: {
+        username: "Jason",
+        avatar: "https://i.imgur.com/Y9waUNm.jpg",
+        online: true
+      }
+    },
+    lastMessage: {
+      username: "Jason",
+      message: "Hi lets watch an interesting video together"
+    },
+    watching: false
   }
 ];
 
-function FriendsPanel1() {
+function FriendsPanel({ unexpandable = false }) {
   const [shadow, setShadow] = useState(false);
   const scrollRef = useRef(null);
+  const searchRef = useRef(null);
   const { y } = useScroll(scrollRef);
   const [search, setSearch] = useState("");
-  const [expanded, setExpanded] = useState(false);
+  const [expanded, setExpanded] = useState(unexpandable);
 
   useEffect(() => {
     if (y !== 0) {
@@ -283,7 +326,11 @@ function FriendsPanel1() {
   }, [y]);
 
   const toggle = () => setExpanded(!expanded);
-  FriendsPanel1.handleClickOutside = () => setExpanded(false);
+  FriendsPanel.handleClickOutside = () => {
+    if (!unexpandable) {
+      setExpanded(false);
+    }
+  };
 
   const handleSubmit = () => {
     setSearch("");
@@ -293,70 +340,78 @@ function FriendsPanel1() {
     console.log("CREATING ROOM");
   };
 
-  const handleSearchSelect = () => {
-    setExpanded(true);
+  const handleSearchSelect = e => {
+    if (!expanded && !unexpandable) {
+      setExpanded(true);
+      setTimeout(() => {
+        searchRef.current.focus();
+      }, 50);
+    }
   };
   return (
     <div
-      className={`FriendsPanel1--container${
-        expanded ? " FriendsPanel1--expanded" : ""
-      }`}
+      className={`FriendsPanel--container${
+        expanded ? " FriendsPanel--expanded" : ""
+      }${unexpandable ? " FriendsPanel--unexpandable" : ""}`}
     >
       <div
-        className={`FriendsPanel1--header${
-          shadow ? " FriendsPanel1--headerShadow" : ""
+        className={`FriendsPanel--header${
+          shadow ? " FriendsPanel--headerShadow" : ""
         }`}
+        onClick={unexpandable ? undefined : () => setExpanded(!expanded)}
       >
         <i className="fas fa-user-friends fa-2x" />
-        {expanded && <h3>Friends</h3>}
+        <h3>Friends</h3>
       </div>
-      <div className="FriendsPanel1--rooms" ref={scrollRef}>
-        {expanded ? (
-          <div className="FriendsPanel1--searchbar">
-            <input
-              type="text"
-              placeholder="Search friends"
-              value={search}
-              onChange={e => setSearch(e.target.value)}
-            />
-            <div>
-              <button
-                type="button"
-                className="button round"
-                onClick={handleSearchSelect}
-              >
-                <i className="fas fa-search" />
+      <div className="FriendsPanel--rooms" ref={scrollRef}>
+        <div className="FriendsPanel--searchbar">
+          <input
+            type="text"
+            placeholder="Search friends"
+            value={search}
+            onChange={e => setSearch(e.target.value)}
+            maxLength={25}
+            spellCheck={false}
+            ref={searchRef}
+          />
+          <div>
+            <button
+              type="button"
+              className="button round"
+              onClick={handleSearchSelect}
+            >
+              <i className={`fas fa-search${expanded ? "" : " fa-2x"}`} />
+            </button>
+          </div>
+        </div>
+        {search && (
+          <div className="FriendsPanel--searching">
+            <p>Searching: {search}</p>
+            <p onClick={() => setSearch("")}>Clear</p>
+          </div>
+        )}
+        <div className="FriendsPanel--friendRequests">
+          {requests.map(request => (
+            <div key={request.id}>
+              <div>
+                <p>{request.username}</p>
+                <p>{request.fullName}</p>
+              </div>
+              <img src={request.avatar} alt="avatar" />
+              <button type="button" className="button round">
+                <i className="fas fa-user-plus" />
               </button>
             </div>
-          </div>
-        ) : (
-          <button
-            type="button"
-            className="button lg FriendsPanel1--search"
-            onClick={handleSearchSelect}
-          >
-            <i className="fas fa-search fa-lg" />
-          </button>
-        )}
-        {expanded && (
-          <div className="FriendsPanel1--friendRequests">
-            {requests.map(request => (
-              <div key={request.id}>
-                <div>
-                  <p>{request.username}</p>
-                  <p>{request.fullName}</p>
-                </div>
-                <img src={request.avatar} alt="avatar" />
-                <button type="button" className="button round">
-                  <i className="fas fa-user-plus" />
-                </button>
-              </div>
-            ))}
-          </div>
-        )}
-        <button type="button" className="button lg FriendsPanel1--newRoom">
-          {expanded && <p>Your private room</p>}
-          <i className="fas fa-plus-square fa-lg" />
+          ))}
+        </div>
+        <div className="FriendsPanel--pages">
+          <p className="FriendsPanel--pages--active">1</p>
+          <p>2</p>
+          <p>3</p>
+        </div>
+        <button type="button" className="button lg FriendsPanel--newRoom">
+          <p>Your private room</p>
+          <i className="fas fa-plus-square fa-2x" />
         </button>
         {rooms.map(room => {
           const users = Object.values(room.users);
@@ -382,17 +437,16 @@ function FriendsPanel1() {
           }
 
           return (
-            <div className="FriendsPanel1--room" key={room.id}>
-              {expanded && (
-                <div className="FriendsPanel1--nameAndMessage">
-                  <p>{roomName}</p>
-                  <p>{roomMessage}</p>
-                </div>
-              )}
+            <div className="FriendsPanel--room" key={room.id}>
+              <div className="FriendsPanel--nameAndMessage">
+                <p>{roomName}</p>
+                <p>{roomMessage}</p>
+              </div>
               <RoomIcon2
                 images={images}
                 online={online}
                 watching={room.watching}
+                type={expanded ? "FriendsPanel" : "ChannelsPanel1"}
               />
             </div>
           );
@@ -403,7 +457,7 @@ function FriendsPanel1() {
 }
 
 const clickOutsideConfig = {
-  handleClickOutside: () => FriendsPanel1.handleClickOutside
+  handleClickOutside: () => FriendsPanel.handleClickOutside
 };
 
-export default onClickOutside(FriendsPanel1, clickOutsideConfig);
+export default onClickOutside(FriendsPanel, clickOutsideConfig);

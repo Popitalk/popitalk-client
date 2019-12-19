@@ -33,7 +33,6 @@
 
 .ChannelsPanel1--channels {
   padding: 16px 0 26px 0;
-  /* padding: 10px 20px 10px 20px; */
   flex-grow: 1;
   display: flex;
   flex-direction: column;

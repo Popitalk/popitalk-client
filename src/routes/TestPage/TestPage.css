@@ -57,3 +57,71 @@
   border-radius: 50%;
   /* border: 3px solid #fff; */
 }
+
+.sb {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border: 1px solid transparent;
+  border-radius: 25px;
+  margin: 0px 14px 0px 14px;
+  height: 44px;
+  position: relative;
+  /* border: thin solid #00b1ff; */
+  /* border: thin solid #00b1ff; */
+}
+.sb:focus-within {
+  border: thin solid #00b1ff;
+}
+/* .sb:focus-within::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  border-radius: 25px;
+  border: 1px solid #00b1ff;
+} */
+
+.sb > input {
+  /* height: 44px; */
+  height: 100%;
+
+  background-color: #ecf0f2;
+  outline: none;
+  border: none;
+  /* border-top: 1px solid #00b1ff; */
+  border-top-left-radius: 25px;
+  border-bottom-left-radius: 25px;
+  padding-left: 25px;
+  padding-right: 10px;
+  font-size: 18px;
+  font-weight: 400;
+  flex-grow: 1;
+}
+.sb > input::placeholder {
+  color: #b2b1b1;
+}
+
+.sb > *:last-child {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  background-color: #ecf0f2;
+  border-top-right-radius: 25px;
+  border-bottom-right-radius: 25px;
+  /* padding-right: 10px; */
+}
+
+.sb > *:last-child > button {
+  height: 34px;
+  width: 34px;
+  background-color: #5cd8fd;
+  border-radius: 50% !important;
+  margin-right: 10px;
+  padding: 0 !important;
+  box-shadow: 0px 3px 6px #00000029;
+}

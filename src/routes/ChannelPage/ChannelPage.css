@@ -2,21 +2,21 @@
   flex-grow: 1;
   display: flex;
   flex-direction: row;
-  height: calc(100vh - 95px) !important;
+  height: calc(100vh - 70px) !important;
 }
 
 .ChannelPage--container > .ChannelsPanel2--container {
-  height: calc(100vh - 95px);
+  height: calc(100vh - 70px);
   position: absolute;
   left: 0;
-  top: 95px;
+  top: 70px;
 }
 
 .ChannelPage--container > .ChannelMain--container {
-  height: calc(100vh - 95px);
-  width: calc(100vw - 975px);
+  height: calc(100vh - 70px);
+  width: calc(100vw - 965px);
   position: absolute;
-  top: 95px;
+  top: 70px;
   /* top: 155px; */
   left: 405px;
 }
@@ -30,9 +30,10 @@
 }
 
 .ChannelPage--container > .ChatPanel--container {
+  height: calc(100vh - 70px);
   position: fixed;
-  left: calc(405px + (100vw - 975px));
-  top: 95px;
+  left: calc(405px + (100vw - 965px));
+  top: 70px;
 }
 
 .ChannelPage--container > .ChatPanel--container {
@@ -44,23 +45,31 @@
 }
 
 .ChannelPage--container > .FriendsPanel1--container {
-  position: fixed;
-  top: 95px;
+  /* height: calc(100vh - 70px); */
+  /* position: fixed; */
+  /* top: 70px; */
   z-index: 50;
   /* left: calc(405px + (100vw - 975px) + 20px + 440px); */
+  /* left: 520px; */
+  /* right: 0; */
+
+  height: calc(100vh - 70px);
+  position: fixed;
   right: 0;
+  top: 70px;
+  z-index: 50;
 }
 
 .ChannelPage--container > .CreateChannel--container {
   position: absolute;
-  top: 95px;
+  top: 70px;
   left: 405px;
 }
 
 .ChannelPage--container > .ChannelBrowser--container {
   position: absolute;
-  top: 95px;
+  top: 70px;
   left: 405px;
-  height: calc(100vh - 95px);
+  height: calc(100vh - 70px);
   width: calc(100vw - 535px);
 }
