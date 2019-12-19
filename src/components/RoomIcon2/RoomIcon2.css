@@ -67,6 +67,11 @@
   left: 40px;
 }
 
+.RoomIcon2--ChannelsPanel1 > .RoomIcon2--vertical {
+  height: 70px;
+  left: 37px;
+}
+
 .RoomIcon2--half {
   position: absolute;
   width: 33px;
@@ -82,6 +87,12 @@
   left: 40px;
 }
 
+.RoomIcon2--ChannelsPanel1 > .RoomIcon2--half {
+  width: 35px;
+  top: 37px;
+  left: 37px;
+}
+
 .RoomIcon2--horizontal {
   position: absolute;
   width: 66px;
@@ -95,17 +106,30 @@
   top: 40px;
 }
 
+.RoomIcon2--ChannelsPanel1 > .RoomIcon2--horizontal {
+  width: 70px;
+  top: 37px;
+}
+
 .RoomIcon2--two > *:nth-child(1) {
   clip-path: inset(0px 34px 0px 0px);
 }
 .RoomIcon2--two > *:nth-child(2) {
   clip-path: inset(0px 0px 0px 34px);
 }
+
 .RoomIcon2--two.RoomIcon2--FriendsPanel > *:nth-child(1) {
   clip-path: inset(0px 39px 0px 0px);
 }
 .RoomIcon2--two.RoomIcon2--FriendsPanel > *:nth-child(2) {
   clip-path: inset(0px 0px 0px 39px);
+}
+
+.RoomIcon2--two.RoomIcon2--ChannelsPanel1 > *:nth-child(1) {
+  clip-path: inset(0px 36px 0px 0px);
+}
+.RoomIcon2--two.RoomIcon2--ChannelsPanel1 > *:nth-child(2) {
+  clip-path: inset(0px 0px 0px 36px);
 }
 
 .RoomIcon2--three > *:nth-child(1) {
@@ -126,6 +150,16 @@
 }
 .RoomIcon2--three.RoomIcon2--FriendsPanel > *:nth-child(3) {
   clip-path: inset(39px 0px 0px 39px);
+}
+
+.RoomIcon2--three.RoomIcon2--ChannelsPanel1 > *:nth-child(1) {
+  clip-path: inset(0px 36px 0px 0px);
+}
+.RoomIcon2--three.RoomIcon2--ChannelsPanel1 > *:nth-child(2) {
+  clip-path: inset(0px 0px 0px 36px);
+}
+.RoomIcon2--three.RoomIcon2--ChannelsPanel1 > *:nth-child(3) {
+  clip-path: inset(36px 0px 0px 36px);
 }
 
 .RoomIcon2--four > *:nth-child(1) {
@@ -152,4 +186,17 @@
 }
 .RoomIcon2--four.RoomIcon2--FriendsPanel > *:nth-child(4) {
   clip-path: inset(39px 39px 0px 0px);
+}
+
+.RoomIcon2--four.RoomIcon2--ChannelsPanel1 > *:nth-child(1) {
+  clip-path: inset(0px 36px 0px 0px);
+}
+.RoomIcon2--four.RoomIcon2--ChannelsPanel1 > *:nth-child(2) {
+  clip-path: inset(0px 0px 0px 36px);
+}
+.RoomIcon2--four.RoomIcon2--ChannelsPanel1 > *:nth-child(3) {
+  clip-path: inset(36px 0px 0px 36px);
+}
+.RoomIcon2--four.RoomIcon2--ChannelsPanel1 > *:nth-child(4) {
+  clip-path: inset(36px 36px 0px 0px);
 }

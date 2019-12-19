@@ -98,8 +98,8 @@
 }
 
 .FriendsPanel--searchbar > *:last-child > button {
-  height: 76px;
-  width: 76px;
+  height: 70px;
+  width: 70px;
   background-color: #5cd8fd;
   box-shadow: 0px 3px 6px #00000029;
 }
@@ -195,12 +195,12 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  height: 76px;
-  width: 76px;
-  min-height: 76px;
+  height: 70px;
+  width: 70px;
+  min-height: 70px;
   border-radius: 50%;
   background-color: #57b7ff;
-  box-shadow: 0px 1px 3px #00000029;
+  box-shadow: 0px 3px 6px #00000029;
 }
 
 .FriendsPanel--newRoom > p {
@@ -214,6 +214,7 @@
   margin: 20px 14px 20px auto !important;
   border-radius: 30px;
   width: 270px;
+  height: 76px;
 }
 
 .FriendsPanel--expanded .FriendsPanel--newRoom > p {
@@ -341,10 +342,19 @@
 
 .FriendsPanel--nameAndMessage {
   display: none;
+  /* display: flex; */
+  visibility: visible;
   flex-direction: column;
   align-items: flex-end;
   margin-right: 20px;
   margin-left: auto;
+  /* transition-property: visibility, opacity; */
+  /* transition-duration: 0s, 1s; */
+  /* transition-delay: 0s, 1s; */
+  /* transition-property: visibility, opacity; */
+  /* transition-duration: 43s, 1s; */
+  /* animation-name: FriendsPanel--fadeIn;
+  animation-duration: 0.138s; */
 }
 
 .FriendsPanel--nameAndMessage > *:first-child {
@@ -363,6 +373,8 @@
 
 .FriendsPanel--expanded .FriendsPanel--nameAndMessage {
   display: flex;
+  animation-name: FriendsPanel--fadeIn;
+  animation-duration: 0.138s;
 }
 
 @keyframes FriendsPanel--slideInRight {
@@ -373,5 +385,25 @@
 
   to {
     transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes FriendsPanel--fadeIn {
+  0% {
+    /* opacity: 0; */
+    /* transform: translate3d(100%, 0, 0); */
+    /* visibility: visible; */
+    visibility: hidden;
+  }
+
+  75% {
+    /* display: flex; */
+  }
+
+  100% {
+    visibility: hidden;
+    /* display: flex; */
+    /* opacity: 1; */
+    /* transform: translate3d(0, 0, 0); */
   }
 }
