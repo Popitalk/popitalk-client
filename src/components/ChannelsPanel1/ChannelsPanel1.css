@@ -4,12 +4,25 @@
   user-select: none;
   border-top-right-radius: 15px;
   border-top-left-radius: 15px;
+  /* margin-right: 8px; */
+  background-color: #ffffff;
+  /* box-shadow: 0px 3px 10px #38383880; */
+  width: 100px;
+  /* position: relative; */
+}
+
+/* .ChannelsPanel1--container {
+  display: flex;
+  flex-direction: column;
+  user-select: none;
+  border-top-right-radius: 15px;
+  border-top-left-radius: 15px;
   margin-right: 8px;
   background-color: #ffffff;
   box-shadow: 0px 3px 10px #38383880;
   width: 100px;
   position: relative;
-}
+} */
 
 .ChannelsPanel1--container > .ChannelsPanel1--header {
   display: flex;

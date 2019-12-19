@@ -4,7 +4,6 @@
   user-select: none;
   border-top-right-radius: 15px;
   border-top-left-radius: 15px;
-  margin-right: 8px;
   background-color: #ffffff;
   box-shadow: 0px 3px 10px #38383880;
   width: 100px;
@@ -406,4 +405,21 @@
     /* opacity: 1; */
     /* transform: translate3d(0, 0, 0); */
   }
+}
+
+.FriendsPanel--tooltip {
+  font-size: 20px !important;
+  font-weight: bold !important;
+  box-shadow: 0px 3px 6px #00000040 !important;
+  /* border: 1px solid #dddddd !important; */
+  background-color: #ffffff !important;
+  color: #222222 !important;
+  border-radius: 10px !important;
+  padding-left: 12px !important;
+  padding-right: 12px !important;
+  opacity: 1 !important;
+}
+
+.FriendsPanel--tooltip.place-left:after {
+  border-left-color: #ffffff !important;
 }

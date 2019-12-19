@@ -11,12 +11,24 @@
 .UserMain--container > section {
   display: flex;
   flex-direction: column;
-  /* align-items: center; */
+  align-items: center;
   flex-grow: 1;
   overflow-y: auto;
   overflow-x: hidden;
   position: relative;
-  padding-bottom: 20px;
+  padding-bottom: 100px;
+  width: 100%;
+  /* background-color: yellow; */
+}
+.UserMain--container > section > * {
+  /* background-color: green; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.UserMain--container > section > * > *:not(:last-child) {
+  margin-bottom: 50px;
 }
 
 .UserMain--container > section::-webkit-scrollbar {
@@ -42,16 +54,23 @@
   user-select: none;
 }
 
-.UserMain--user {
+.UserMain--container > section > * > .UserMain--user {
   display: flex;
   flex-direction: row;
   align-items: center;
-  padding: 55px 50px;
+  /* padding: 0px 100px; */
+  /* padding: 0px 100px; */
+  padding: 0 100px;
+  /* padding: 0px 50px; */
+  margin: 100px 0;
+  margin-right: auto;
+  /* background-color: black; */
 }
 .UserMain--user > img {
-  height: 185px;
-  width: 185px;
-  margin-right: 35px;
+  height: 200px;
+  width: 200px;
+  /* margin-right: 35px; */
+  margin-right: 100px;
   border-radius: 50%;
   -webkit-user-drag: none;
   user-select: none;
@@ -63,14 +82,40 @@
   justify-content: space-between;
 }
 .UserMain--user > .UserMain--user--nameStats > *:first-child {
-  margin-bottom: 25px;
+  /* margin-bottom: 25px; */
+  margin-bottom: 35px;
 }
 
-.UserMain--user > .UserMain--user--nameStats > *:first-child > h3 {
+.UserMain--user > .UserMain--user--nameStats > *:first-child > *:first-child {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 52px;
+  margin-bottom: 10px;
+}
+
+.UserMain--user
+  > .UserMain--user--nameStats
+  > *:first-child
+  > *:first-child
+  > h3 {
   font-size: 40px;
   font-weight: 500;
-  margin-bottom: 4px;
+  /* margin-bottom: 4px; */
 }
+.UserMain--user
+  > .UserMain--user--nameStats
+  > *:first-child
+  > *:first-child
+  > button {
+  /* margin-top: auto; */
+  margin-left: 30px;
+  /* margin-bottom: auto; */
+  box-shadow: 0px 3px 6px #00000029;
+  height: 40px;
+  /* height: 35px; */
+}
+
 .UserMain--user > .UserMain--user--nameStats > *:first-child > p {
   font-size: 20px;
   font-weight: 500;
@@ -94,20 +139,16 @@
 .UserMain--user > .UserMain--user--nameStats > *:last-child > * span {
   font-weight: bold;
 }
-.UserMain--user > button {
-  /* margin-top: auto; */
-  margin-left: auto;
-  margin-bottom: auto;
-  box-shadow: 0px 3px 6px #00000029;
-}
 
 .UserMain--channels {
-  padding: 25px 50px;
+  padding: 0 50px;
+  /* padding: 25px 50px; */
 }
 .UserMain--channels > h3 {
   font-size: 26px;
   font-weight: 600;
-  margin-bottom: 20px;
+  /* margin-bottom: 20px; */
+  margin-bottom: 25px;
 }
 
 .UserMain--channelsGrid {

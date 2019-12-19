@@ -7,6 +7,9 @@ export default function ChatHeader() {
       <div className="ChatHeader--private">
         <p>Private Chat</p>
       </div>
+      {/* <div className="ChatHeader--live">
+        <p>Team Playnow</p>
+      </div> */}
     </div>
   );
 }

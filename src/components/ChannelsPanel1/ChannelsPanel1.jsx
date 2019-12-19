@@ -135,7 +135,6 @@ export default function ChannelsPanel1() {
                 type="ChannelsPanel1"
               />
             </div>
-            {/* <div className="ChannelsPanel1--slab" /> */}
           </div>
         ))}
       </div>

@@ -15,7 +15,7 @@
 
 .UserPage--container > .UserMain--container {
   height: calc(100vh - 70px);
-  width: calc(100vw - 240px);
+  width: calc(100vw - 212px);
   position: absolute;
   top: 70px;
   left: 106px;

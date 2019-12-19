@@ -1,6 +1,5 @@
 .ChatHeader--container {
   background-color: #ffffff;
-  padding: 15px 30px 15px 30px;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
@@ -8,6 +7,7 @@
   border-bottom: 2px solid #ededed;
   height: 60px;
   user-select: none;
+  padding: 25px 14px 13px 14px;
 }
 
 .ChatHeader--private {
@@ -19,4 +19,12 @@
   font-size: 20px;
   font-weight: bold;
   color: #a5a5a5;
+}
+
+.ChatHeader--live {
+  padding: 6px 14px;
+}
+.ChatHeader--live > p {
+  font-size: 28px;
+  font-weight: bold;
 }

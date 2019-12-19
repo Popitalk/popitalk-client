@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useScroll } from "react-use";
 import onClickOutside from "react-onclickoutside";
+import ReactTooltip from "react-tooltip";
 import RoomIcon2 from "../RoomIcon2";
 import "./FriendsPanel.css";
 
@@ -354,6 +355,14 @@ function FriendsPanel({ unexpandable = false }) {
         expanded ? " FriendsPanel--expanded" : ""
       }${unexpandable ? " FriendsPanel--unexpandable" : ""}`}
     >
+      <ReactTooltip
+        place="left"
+        effect="solid"
+        className="FriendsPanel--tooltip"
+        id="FriendsPanel--tooltip"
+        event="mouseover mouseenter"
+        eventOff="mouseleave mouseout scroll mousewheel"
+      />
       <div
         className={`FriendsPanel--header${
           shadow ? " FriendsPanel--headerShadow" : ""
@@ -379,6 +388,11 @@ function FriendsPanel({ unexpandable = false }) {
               type="button"
               className="button round"
               onClick={handleSearchSelect}
+              {...(!expanded && {
+                "data-for": "FriendsPanel--tooltip",
+                "data-tip": "Search friends",
+                "data-iscapture": true
+              })}
             >
               <i className={`fas fa-search${expanded ? "" : " fa-2x"}`} />
             </button>
@@ -409,7 +423,15 @@ function FriendsPanel({ unexpandable = false }) {
           <p>2</p>
           <p>3</p>
         </div>
-        <button type="button" className="button lg FriendsPanel--newRoom">
+        <button
+          type="button"
+          className="button lg FriendsPanel--newRoom"
+          {...(!expanded && {
+            "data-for": "FriendsPanel--tooltip",
+            "data-tip": "Your private room",
+            "data-iscapture": true
+          })}
+        >
           <p>Your private room</p>
           <i className="fas fa-plus-square fa-2x" />
         </button>
@@ -437,7 +459,15 @@ function FriendsPanel({ unexpandable = false }) {
           }
 
           return (
-            <div className="FriendsPanel--room" key={room.id}>
+            <div
+              className="FriendsPanel--room"
+              key={room.id}
+              {...(!expanded && {
+                "data-for": "FriendsPanel--tooltip",
+                "data-tip": roomName,
+                "data-iscapture": true
+              })}
+            >
               <div className="FriendsPanel--nameAndMessage">
                 <p>{roomName}</p>
                 <p>{roomMessage}</p>

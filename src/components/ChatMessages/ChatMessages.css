@@ -3,7 +3,7 @@
   background-color: #ffffff;
   background-color: #ffffff;
   height: 700px;
-  padding: 0 12px;
+  padding: 0 14px;
   overflow-y: auto;
   overflow-x: hidden;
   scrollbar-color: #cbcbcb #cbcbcb;
@@ -39,16 +39,19 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  margin: 25px auto 25px auto;
+  /* margin: 25px auto 25px auto; */
+  margin: 25px 0;
+  position: relative;
+  height: 37px;
 }
 
 .ChatMessages--container:hover .ChatMessages--date {
-  margin-right: -23px;
+  /* margin-right: -23px; */
 }
 
 .ChatMessages--date > h4 {
   background-color: #f0eaff;
-  border-radius: 23px;
+  border-radius: 50px;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -56,8 +59,13 @@
   padding: 12px 24px;
   color: #888888;
   font-size: 17px;
-  font-weight: 500;
-  height: 32px;
+  font-weight: 400;
+  height: 100%;
+  /* height: 37px; */
+  /* margin-left: 110px; */
+  position: absolute;
+  /* left: 0; */
+  /* left: 50%; */
 }
 
 .ChatMessages--messageGroup {
@@ -89,10 +97,13 @@
 }
 .ChatMessages--messageGroup > .ChatMessages--messageGroup--nameDate {
   grid-area: nameDate;
-  font-size: 22px;
-  font-weight: bold;
+  /* font-size: 22px; */
+  font-size: 18px;
+  /* font-weight: bold; */
+  font-weight: 500;
   margin-left: 15px;
-  margin-bottom: 6px;
+  /* margin-left: 20px; */
+  /* margin-bottom: 6px; */
   align-self: center;
 }
 .ChatMessages--messageGroup > .ChatMessages--messageGroup--nameDate > span {
@@ -112,15 +123,27 @@
 }
 .ChatMessages--messageGroup > .ChatMessages--messageGroup--edge > div {
   background-color: #cbcbcb;
+  background-color: #e8bba2;
+  background-color: #00c6c9;
+  background-color: #000;
+  background-color: #747474;
+  background-color: #cbcbcb;
   border-radius: 10px;
   width: 5px;
   height: 100%;
 }
 
+.ChatMessages--messageGroup > .ChatMessages--myMessages > div {
+  background-color: #1da4fe;
+}
+
 .ChatMessages--messageGroup > .ChatMessages--messages {
   grid-area: messages;
   font-size: 18px;
+  font-weight: 400;
   margin-left: 15px;
+  /* margin-left: 20px; */
+  padding-top: 6px;
   padding-bottom: 6px;
 }
 .ChatMessages--messageGroup > .ChatMessages--messages > *:not(:last-child) {
@@ -194,6 +217,7 @@
   box-shadow: 0px 3px 6px #00000029;
   cursor: pointer;
   transition: filter 0.17s ease-in-out;
+  /* margin-left: -30px; */
 }
 .ChatMessages--userImage:hover {
   filter: brightness(90%);

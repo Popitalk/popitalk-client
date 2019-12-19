@@ -4,8 +4,10 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  padding: 16px 12px;
+  /* padding: 16px 12px; */
+  padding: 10px 14px;
   position: relative;
+  /* background-color: red; */
 }
 
 .ChatDraft--textarea {

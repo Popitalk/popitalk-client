@@ -92,12 +92,46 @@ const messages = [
     image: "https://i.imgur.com/aqjzchq.jpg"
   },
   {
-    id: "id10",
+    id: "id11",
     username: "Andrew",
     avatar: "https://i.imgur.com/aqjzchq.jpg",
-    createdAt: "2019-12-04T21:04:56.254Z",
-    content:
-      "Long\n long long long long long long long\n long\n long\n long long long\n long long long\n long long long long long"
+    createdAt: "2019-12-17T20:02:18.830Z",
+    content: "abjvhgsdjgfdsyiuefw"
+  },
+  {
+    id: "id11sd",
+    username: "Playnows",
+    avatar: "https://i.imgur.com/tLljw1z.jpg",
+    createdAt: "2019-12-17T20:02:18.830Z",
+    content: "uuuuyrte"
+  },
+  {
+    id: "id11sdd",
+    username: "Playnows",
+    avatar: "https://i.imgur.com/tLljw1z.jpg",
+    createdAt: "2019-12-17T20:02:18.830Z",
+    content: "hghghghgh"
+  },
+  {
+    id: "id11sds",
+    username: "Playnows",
+    avatar: "https://i.imgur.com/tLljw1z.jpg",
+    createdAt: "2019-12-17T20:02:18.830Z",
+    content: "uuuuyrte33333"
+  },
+  {
+    id: "id12",
+    username: "Andrew",
+    avatar: "https://i.imgur.com/aqjzchq.jpg",
+    createdAt: "2019-12-18T20:02:18.830Z",
+    content: "abjvhgsdjgfdsyiuefw"
+  },
+  {
+    id: "id13",
+    username: "Andrew",
+    avatar: "https://i.imgur.com/aqjzchq.jpg",
+    createdAt: "2019-12-19T20:02:18.830Z",
+    content: "abjvhgsdjgfdsyiuefw"
   }
 ];
 
@@ -151,7 +185,13 @@ export default function ChatMessages() {
               <div className="ChatMessages--messageGroup--nameDate">
                 {msgs2.username} <span>{msgs2.createdAt}</span>
               </div>
-              <div className="ChatMessages--messageGroup--edge">
+              <div
+                className={`ChatMessages--messageGroup--edge${
+                  msgs2.username === "Playnows"
+                    ? " ChatMessages--myMessages"
+                    : ""
+                }`}
+              >
                 <div />
               </div>
               <div className="ChatMessages--messages">
