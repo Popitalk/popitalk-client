@@ -107,13 +107,13 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  border: 1px solid transparent;
+  border: thin solid transparent;
   border-radius: 25px;
   margin: 0px 14px 0px 14px;
 }
 
 .FriendsPanel--expanded .FriendsPanel--searchbar:focus-within {
-  border: 1px solid #00b1ff;
+  border: thin solid #00b1ff;
 }
 
 .FriendsPanel--expanded .FriendsPanel--searchbar > input {

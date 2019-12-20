@@ -13,12 +13,15 @@
   z-index: 50;
 }
 
-.RoomPage--container > .FriendsPanel2--container {
+.RoomPage--container > .FriendsPanel--container {
   height: calc(100vh - 70px);
   position: fixed;
   left: 106px;
   top: 70px;
   z-index: 10;
+  border-top-right-radius: 0;
+  box-shadow: none;
+  border-right: 2px solid #ededed;
 }
 .RoomPage--container > .RoomMain--container {
   height: calc(100vh - 70px);

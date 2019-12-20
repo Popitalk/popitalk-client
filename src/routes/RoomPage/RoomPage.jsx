@@ -4,13 +4,13 @@ import "./RoomPage.css";
 import RoomMain from "../../components/RoomMain";
 import ChatPanel from "../../components/ChatPanel";
 import ChannelsPanel1 from "../../components/ChannelsPanel1";
-import FriendsPanel2 from "../../components/FriendsPanel2";
+import FriendsPanel from "../../components/FriendsPanel";
 
 export default function RoomPage() {
   return (
     <div className="RoomPage--container">
       <ChannelsPanel1 />
-      <FriendsPanel2 />
+      <FriendsPanel unexpandable={true} />
       <RoomMain />
       <ChatPanel />
     </div>

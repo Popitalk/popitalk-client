@@ -33,20 +33,22 @@
 .ChatMessages--container:hover::-webkit-scrollbar-button {
   display: none;
 }
+/* .ChatMessages--container > * {
+} */
 
 .ChatMessages--date {
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  /* margin: 25px auto 25px auto; */
-  margin: 25px 0;
-  position: relative;
+
+  margin: 25px auto;
   height: 37px;
+  width: 100%;
 }
 
 .ChatMessages--container:hover .ChatMessages--date {
-  /* margin-right: -23px; */
+  margin-right: -12px;
 }
 
 .ChatMessages--date > h4 {
@@ -61,9 +63,9 @@
   font-size: 17px;
   font-weight: 400;
   height: 100%;
+  /* background-color: purple; */
   /* height: 37px; */
   /* margin-left: 110px; */
-  position: absolute;
   /* left: 0; */
   /* left: 50%; */
 }
@@ -123,11 +125,6 @@
 }
 .ChatMessages--messageGroup > .ChatMessages--messageGroup--edge > div {
   background-color: #cbcbcb;
-  background-color: #e8bba2;
-  background-color: #00c6c9;
-  background-color: #000;
-  background-color: #747474;
-  background-color: #cbcbcb;
   border-radius: 10px;
   width: 5px;
   height: 100%;
@@ -152,11 +149,11 @@
 
 .ChatMessages--messageGroup > .ChatMessages--messages i {
   display: none;
-  color: red;
+  color: #cbcbcb;
   cursor: pointer;
 }
 .ChatMessages--messageGroup > .ChatMessages--messages i:hover {
-  color: rgb(189, 0, 0);
+  color: #868686;
 }
 .ChatMessages--messageGroup > .ChatMessages--messages i:active {
   transform: translateY(1px);

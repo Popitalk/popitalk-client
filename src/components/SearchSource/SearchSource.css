@@ -33,44 +33,80 @@
   color: #ff7b46;
 } */
 
-.SearchSource--input {
-  position: relative;
-  width: 100%;
-  max-width: 480px;
-}
-
-.SearchSource--input > input {
-  padding: 16px 60px 16px 75px;
-  outline: none;
-  background-color: #fff;
-  color: #202124;
-  border: 1px solid transparent;
-  font-size: 20px;
-  font-weight: 400;
-  width: 100%;
+.SearchSource--searchbar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 50px;
   box-shadow: 0px 3px 6px #00000029;
   border-radius: 50px;
+  max-width: 460px;
+  flex-basis: 460px;
+  border: thin solid transparent;
+}
+.SearchSource--searchbar > *:first-child {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  background-color: #fff;
+  border-top-left-radius: 50px;
+  border-bottom-left-radius: 50px;
+  padding: 5px;
 }
 
-.SearchSource--input > input:focus {
-  border-color: #00b1ff;
-}
-
-.SearchSource--input > button {
-  position: absolute;
-  right: 3%;
-  top: 50%;
-  transform: translateY(-50%);
-  box-shadow: 0px 3px 6px #00000029;
-}
-.SearchSource--input > img {
+.SearchSource--searchbar > *:first-child > img {
+  /* height: 100%; */
   height: 34px;
+  /* height: auto; */
+  max-height: 34px;
   width: auto;
   max-width: 45px;
-  position: absolute;
-  left: 20px;
-  top: 50%;
-  transform: translateY(-50%);
   -webkit-user-drag: none;
   user-select: none;
+}
+
+.SearchSource--searchbar > input {
+  flex-grow: 1;
+  display: block;
+  height: 100%;
+  background-color: #fff;
+  color: #202124;
+  outline: none;
+  border: none;
+  /* padding-left: 25px; */
+  /* padding-right: 10px; */
+
+  font-size: 20px;
+  font-weight: 400;
+}
+
+.SearchSource--searchbar:focus-within {
+  border: thin solid #00b1ff;
+}
+
+.SearchSource--searchbar > input::placeholder {
+  /* color: #b2b1b1; */
+}
+
+.SearchSource--searchbar > *:last-child {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  background-color: #fff;
+  border-top-right-radius: 50px;
+  border-bottom-right-radius: 50px;
+  padding: 5px;
+}
+
+.SearchSource--searchbar > *:last-child > button {
+  /* height: 34px;
+  max-height: 34px;
+  width: auto;
+  max-width: 45px;
+  -webkit-user-drag: none;
+  user-select: none; */
 }

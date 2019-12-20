@@ -218,7 +218,7 @@ export default function ChatMessages() {
 
                       <i
                         role="button"
-                        className="fas fa-times"
+                        className="fas fa-ellipsis-v fa-sm"
                         onClick={() => handleDelete(message.id)}
                       />
                       {message.id === lastMessageId && (
@@ -243,7 +243,7 @@ export default function ChatMessages() {
                       )}
                       <i
                         role="button"
-                        className="fas fa-times"
+                        className="fas fa-ellipsis-v fa-sm"
                         onClick={() => handleDelete(message.id)}
                       />
                     </div>

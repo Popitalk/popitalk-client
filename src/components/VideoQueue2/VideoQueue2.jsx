@@ -118,76 +118,82 @@ export default function VideoQueue2({ changeQueue }) {
                 }
               }}
             >
-              {items.map((video, index) => (
-                <Draggable key={video.id} draggableId={video.id} index={index}>
-                  {(provided, snapshot) => {
-                    if (video.id === "editQueue")
+              <div>
+                {items.map((video, index) => (
+                  <Draggable
+                    key={video.id}
+                    draggableId={video.id}
+                    index={index}
+                  >
+                    {(provided, snapshot) => {
+                      if (video.id === "editQueue")
+                        return (
+                          <div
+                            ref={provided.innerRef}
+                            {...provided.draggableProps}
+                            {...provided.dragHandleProps}
+                            className="VideoQueue2--editQueue"
+                          >
+                            <div className="VideoQueue2--editQueue--top">
+                              <p>Edit queue</p>
+                            </div>
+                            <div className="VideoQueue2--editQueue--bottom">
+                              <h6>Some Video</h6>
+                              <p>Playnows | 50k users. Something New</p>
+                            </div>
+                            <Link
+                              to={`${match.url.replace("video", "")}queue`}
+                              type="button"
+                              className="button"
+                            >
+                              <i className="fas fa-plus fa-2x" />
+                            </Link>
+                          </div>
+                        );
                       return (
                         <div
                           ref={provided.innerRef}
                           {...provided.draggableProps}
-                          {...provided.dragHandleProps}
-                          className="VideoQueue2--editQueue"
+                          className={`VideoCard2--container${
+                            snapshot.isDragging ? " VideoCard2--dragged" : ""
+                          }`}
                         >
-                          <div className="VideoQueue2--editQueue--top">
-                            <p>Edit queue</p>
+                          <div className="VideoCard2--top">
+                            {index === 0 ? (
+                              <h4 className="VideoCard2--live">Live</h4>
+                            ) : (
+                              <h4>In 12min</h4>
+                            )}
+                            <img
+                              src={video.image}
+                              alt="video"
+                              className="VideoCard2--videoImage"
+                            />
+                            <img
+                              src={YoutubeLogo}
+                              alt="youtube"
+                              className="VideoCard2--sourceImage"
+                            />
                           </div>
-                          <div className="VideoQueue2--editQueue--bottom">
-                            <h6>Some Video</h6>
-                            <p>Playnows | 50k users. Something New</p>
+                          <div className="VideoCard2--bottom">
+                            <h6>{video.title}</h6>
+                            <p>{video.other}</p>
                           </div>
-                          <Link
-                            to={`${match.url.replace("video", "")}queue`}
-                            type="button"
-                            className="button"
-                          >
-                            <i className="fas fa-plus fa-2x" />
-                          </Link>
+                          <div
+                            className="VideoCard2--shade"
+                            {...provided.dragHandleProps}
+                          />
+                          <p {...provided.dragHandleProps}>Drag around</p>
+                          <button type="button" className="button pill">
+                            Remove
+                          </button>
                         </div>
                       );
-                    return (
-                      <div
-                        ref={provided.innerRef}
-                        {...provided.draggableProps}
-                        className={`VideoCard2--container${
-                          snapshot.isDragging ? " VideoCard2--dragged" : ""
-                        }`}
-                      >
-                        <div className="VideoCard2--top">
-                          {index === 0 ? (
-                            <h4 className="VideoCard2--live">Live</h4>
-                          ) : (
-                            <h4>In 12min</h4>
-                          )}
-                          <img
-                            src={video.image}
-                            alt="video"
-                            className="VideoCard2--videoImage"
-                          />
-                          <img
-                            src={YoutubeLogo}
-                            alt="youtube"
-                            className="VideoCard2--sourceImage"
-                          />
-                        </div>
-                        <div className="VideoCard2--bottom">
-                          <h6>{video.title}</h6>
-                          <p>{video.other}</p>
-                        </div>
-                        <div
-                          className="VideoCard2--shade"
-                          {...provided.dragHandleProps}
-                        />
-                        <p {...provided.dragHandleProps}>Drag around</p>
-                        <button type="button" className="button pill">
-                          Remove
-                        </button>
-                      </div>
-                    );
-                  }}
-                </Draggable>
-              ))}
-              {provided.placeholder}
+                    }}
+                  </Draggable>
+                ))}
+                {provided.placeholder}
+              </div>
             </div>
           )}
         </Droppable>

@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import VideoSources from "../VideoSources";
-import Input6 from "../Input6";
 import YoutubeLogo from "../../assets/youtube-logo.png";
 import VimeoLogo from "../../assets/vimeo-logo.png";
 import CrunchyrollLogo from "../../assets/crunchyroll-logo.png";
@@ -74,10 +73,15 @@ export default function SearchSource() {
         <button type="button" className="button round">
           <i className="fas fa-fire fa-lg" />
         </button>
-        <div className="SearchSource--input">
+        <div className="SearchSource--searchbar">
+          <div>
+            <img
+              src={sources.find(s => s.source === source).icon}
+              alt={`${source} icon`}
+            />
+          </div>
           <input
             type="text"
-            // name={name}
             value={search}
             onChange={e => setSearch(e.target.value)}
             placeholder={`Search for a ${source} video`}
@@ -86,16 +90,17 @@ export default function SearchSource() {
                 handleSubmit();
               }
             }}
-            // disabled={disabled}
             spellCheck={false}
           />
-          <img
-            src={sources.find(s => s.source === source).icon}
-            alt={`${source} icon`}
-          />
-          <button type="button" className="button round" onClick={handleSubmit}>
-            <i className="fas fa-search" />
-          </button>
+          <div>
+            <button
+              type="button"
+              className="button round"
+              onClick={handleSubmit}
+            >
+              <i className="fas fa-search" />
+            </button>
+          </div>
         </div>
       </div>
       <VideoSources

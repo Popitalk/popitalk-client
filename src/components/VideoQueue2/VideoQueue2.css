@@ -60,7 +60,13 @@
 }
 
 .VideoQueue2--queue > * {
-  margin-right: 15px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0 5px;
+}
+.VideoQueue2--queue > * > *:not(:last-child) {
+  margin-right: 10px;
 }
 
 .VideoQueue2--edit {
