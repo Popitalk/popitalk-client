@@ -42,7 +42,7 @@ export default function ProfileModal() {
             <div className="ProfileModal--user">
               <img src="https://i.imgur.com/tLljw1z.jpg" alt="avatar" />
               <div className="ProfileModal--user--nameStats">
-                <div>
+                <div className="ProfileModal--user--nameStats--name">
                   <div>
                     <h3>Djang16</h3>
                     <button type="button" className="button">
@@ -53,7 +53,7 @@ export default function ProfileModal() {
 
                   <p>Andrew Jang</p>
                 </div>
-                <div>
+                <div className="ProfileModal--user--nameStats--stats">
                   <p>
                     <span>10</span> channels
                   </p>
@@ -61,6 +61,12 @@ export default function ProfileModal() {
                     <span>10</span> friends
                   </p>
                 </div>
+                <p
+                  onClick={handleProfilePageLink}
+                  className="ProfileModal--user--nameStats--link"
+                >
+                  Go to Djang16s Profile &gt;
+                </p>
               </div>
             </div>
             <div className="ProfileModal--channels">

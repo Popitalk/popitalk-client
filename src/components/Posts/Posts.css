@@ -11,3 +11,8 @@
 .Posts--container > *:not(:last-child) {
   margin-bottom: 45px;
 }
+
+.Posts--replyDraft {
+  padding-top: 10px;
+  /* background-color: yellow; */
+}

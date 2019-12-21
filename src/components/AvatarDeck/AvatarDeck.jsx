@@ -11,8 +11,10 @@ export default function AvatarDeck({ avatars, size = "big" }) {
   return (
     <div className="AvatarDeck--container">
       {avatars.slice(0, 8).map((avatar, index) => (
-        <div
+        <img
           key={index}
+          src={avatar}
+          alt="avatar"
           className="AvatarDeck--avatar"
           style={{
             height: newSize,
@@ -23,9 +25,7 @@ export default function AvatarDeck({ avatars, size = "big" }) {
             // opacity: 1 - (0.1 + index * 0.05)
             // opacity: 1 - index * (small ? 0.04 : 0.08)
           }}
-        >
-          <img src={avatar} alt="avatar" />
-        </div>
+        ></img>
       ))}
       <p
         style={{

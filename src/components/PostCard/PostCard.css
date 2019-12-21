@@ -15,7 +15,7 @@
   display: flex;
   flex-direction: row;
   padding: 0 15px;
-  margin-bottom: 12px;
+  margin-bottom: 20px;
 }
 .PostCard--user > img {
   height: 44px;
@@ -48,7 +48,8 @@
 }
 .PostCard--post {
   padding: 0 15px;
-  margin-bottom: 12px;
+  /* margin-bottom: 12px; */
+  margin-bottom: 20px;
 }
 
 .PostCard--stats {

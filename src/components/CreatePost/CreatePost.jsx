@@ -22,11 +22,11 @@ export default function CreatePost() {
   };
 
   const handleSubmit = e => {
-    if (e.keyCode === 13 && !e.shiftKey) {
-      e.preventDefault();
-      e.target.style.height = "58px";
-      setValue("");
-    }
+    // if (e.keyCode === 13 && !e.shiftKey) {
+    //   e.preventDefault();
+    //   e.target.style.height = "58px";
+    //   setValue("");
+    // }
   };
 
   const handleSend = () => {

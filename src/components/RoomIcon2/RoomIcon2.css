@@ -37,6 +37,22 @@
   height: 76px;
   width: 76px;
 }
+.RoomIcon2--ChannelsPanel2 {
+  height: 45px;
+  width: 45px;
+}
+.RoomIcon2--ChannelsPanel2 > img {
+  height: 39px;
+  width: 39px;
+}
+.RoomIcon2--ChannelsPanel2w {
+  height: 55px;
+  width: 55px;
+}
+.RoomIcon2--ChannelsPanel2w > img {
+  height: 49px;
+  width: 49px;
+}
 
 .RoomIcon2--watching {
   background: linear-gradient(180deg, #c330fc 0%, #00ffff 100%);

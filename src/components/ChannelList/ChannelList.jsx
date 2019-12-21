@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import AvatarDeck from "../AvatarDeck";
+import RoomIcon2 from "../RoomIcon2";
 import "./ChannelList.css";
 
 const channels = [
@@ -116,31 +117,31 @@ export default function ChannelList() {
     <div className="ChannelList--container">
       {channels.map(channel => (
         <div
-          className={`ChannelList--channel${
+          key={channel.id}
+          className={`${
             channel.id === activeChannel
               ? " ChannelList--active"
               : " ChannelList--inActive"
           }`}
-          key={channel.id}
-          role="button"
-          onClick={() => setActiveChannel(channel.id)}
         >
-          <div
-            className={
-              channel.watching
-                ? "ChannelList--channel--iconWatching"
-                : "ChannelList--channel--iconNotWatching"
-            }
-          >
-            <img src={channel.icon} alt="channel icon" />
-          </div>
-          <div className="ChannelList--channel--name">
-            <p>{channel.name}</p>
-            {channel.watching && (
-              <AvatarDeck avatars={channel.avatars} size="small" />
-            )}
-          </div>
           <div className="ChannelList--slab" />
+          <div
+            className="ChannelList--channel"
+            role="button"
+            onClick={() => setActiveChannel(channel.id)}
+          >
+            <RoomIcon2
+              images={[channel.icon]}
+              watching={channel.watching}
+              type={channel.watching ? "ChannelsPanel2w" : "ChannelsPanel2"}
+            />
+            <div className="ChannelList--channel--name">
+              <p>{channel.name}</p>
+              {channel.watching && (
+                <AvatarDeck avatars={channel.avatars} size="small" />
+              )}
+            </div>
+          </div>
         </div>
       ))}
     </div>

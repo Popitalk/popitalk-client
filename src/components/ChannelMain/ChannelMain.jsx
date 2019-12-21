@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useLayoutEffect, useRef } from "react";
-import { useScroll } from "react-use";
 import {
   Link,
   Switch,
@@ -20,9 +19,7 @@ export default function ChannelMain() {
   const location = useLocation();
   const channelRef = useRef(null);
   const [mounted, setMounted] = useState(false);
-  const [shadow, setShadow] = useState(false);
   const scrollRef = useRef(null);
-  const { y } = useScroll(scrollRef);
 
   // useEffect(() => {
   //   if (!mounted) {
@@ -30,27 +27,27 @@ export default function ChannelMain() {
   //   }
   // }, [mounted]);
 
-  useEffect(() => {
-    // if (!mounted) return;
+  // useEffect(() => {
+  //   // if (!mounted) return;
 
-    if (y !== 0) {
-      setShadow(true);
-    } else {
-      setShadow(false);
-    }
+  //   if (y !== 0) {
+  //     setShadow(true);
+  //   } else {
+  //     setShadow(false);
+  //   }
 
-    // const tab = location.pathname.replace(match.url, "").slice(1);
+  //   // const tab = location.pathname.replace(match.url, "").slice(1);
 
-    // if (tab === "video") {
-    //   if (y >= channelRef.current.offsetTop) {
-    //     history.push(`${match.url}/channel`, { noScroll: true });
-    //   }
-    // } else if (tab === "channel") {
-    //   if (y < channelRef.current.offsetTop) {
-    //     history.push(`${match.url}/video`, { noScroll: true });
-    //   }
-    // }
-  }, [y]);
+  //   // if (tab === "video") {
+  //   //   if (y >= channelRef.current.offsetTop) {
+  //   //     history.push(`${match.url}/channel`, { noScroll: true });
+  //   //   }
+  //   // } else if (tab === "channel") {
+  //   //   if (y < channelRef.current.offsetTop) {
+  //   //     history.push(`${match.url}/video`, { noScroll: true });
+  //   //   }
+  //   // }
+  // }, [y]);
 
   useLayoutEffect(() => {
     const tab = location.pathname.replace(match.url, "").slice(1);
@@ -65,7 +62,7 @@ export default function ChannelMain() {
       });
     } else if (tab === "channel") {
       scrollRef.current.scrollTo({
-        top: channelRef.current.offsetTop,
+        top: channelRef.current.offsetTop + 6,
         behavior: "smooth"
       });
       // setMounted(true);
@@ -76,11 +73,7 @@ export default function ChannelMain() {
 
   return (
     <div className="ChannelMain--container">
-      <div
-        className={`ChannelMain--header${
-          shadow ? " ChannelMain--headerShadow" : ""
-        }`}
-      >
+      <div className="ChannelMain--header">
         <div>
           <img src="https://i.imgur.com/tLljw1z.jpg" alt="channel icon" />
           <h2>Team Playnow</h2>

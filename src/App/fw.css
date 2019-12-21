@@ -10,7 +10,8 @@
 }
 
 body {
-  background: linear-gradient(123deg, #76fcff 0%, #f966f8 52%, #e8bba2 100%);
+  background: linear-gradient(90deg, #76fcff 0%, #f966f8 50%, #e8bba2 100%);
+  /* background: linear-gradient(123deg, #76fcff 0%, #f966f8 52%, #e8bba2 100%); */
   /* background-color: #f676e8; */
 }
 

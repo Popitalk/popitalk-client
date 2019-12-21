@@ -7,7 +7,7 @@
 }
 .Seperator--container > div {
   background-color: #a5a5a5;
-  height: 3px;
+  height: 1px;
   flex-grow: 1;
 }
 .Seperator--container > p {

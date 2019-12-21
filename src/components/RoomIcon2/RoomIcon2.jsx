@@ -5,12 +5,14 @@ import "./RoomIcon2.css";
 export default function RoomIcon2({ images, online, watching, type }) {
   const classes = classNames({
     "RoomIcon2--container": true,
-    "RoomIcon2--watching": true,
+    "RoomIcon2--watching": watching,
     "RoomIcon2--one": images.length === 1,
     "RoomIcon2--two": images.length === 2,
     "RoomIcon2--three": images.length === 3,
     "RoomIcon2--four": images.length >= 4,
     "RoomIcon2--ChannelsPanel1": type === "ChannelsPanel1",
+    "RoomIcon2--ChannelsPanel2": type === "ChannelsPanel2",
+    "RoomIcon2--ChannelsPanel2w": type === "ChannelsPanel2w",
     "RoomIcon2--FriendsPanel": type === "FriendsPanel"
   });
 

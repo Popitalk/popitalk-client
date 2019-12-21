@@ -2,7 +2,8 @@
   border-radius: 15px;
   box-shadow: 0px 0px 6px #00000080;
   position: relative;
-  width: 385px;
+  /* width: 385px; */
+  width: 350px;
   height: 350px;
   background: linear-gradient(180deg, #03f5ff 0%, #f500ff 100%);
   display: flex;
@@ -17,6 +18,8 @@
   flex-direction: column;
   /* justify-content: center; */
   /* align-items: center; */
+  border-radius: 15px;
+  /* box-shadow: 0px 0px 6px #00000080; */
 }
 
 .ChannelCard2--top {
@@ -134,4 +137,27 @@
   align-items: flex-end;
   width: 100%;
   flex-grow: 1;
+}
+
+.ChannelCard2--avatars > button {
+  box-shadow: 0px 1px 3px #00000029;
+  text-shadow: 0px 1px 3px #00000029;
+  background: transparent linear-gradient(68deg, #009dff 0%, #5abefc 100%) 0% 0%
+    no-repeat padding-box;
+  border-radius: 10px;
+  width: 100px;
+  height: 35px;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: bold;
+  outline: none;
+  border: none;
+  color: #fff;
+  transition: filter 0.17s ease-in-out;
+}
+.ChannelCard2--avatars > button:hover {
+  filter: brightness(90%);
+}
+.ChannelCard2--avatars > button:active {
+  filter: brightness(80%);
 }

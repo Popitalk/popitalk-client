@@ -12,7 +12,7 @@ export default function ChannelPage() {
   return (
     <div className="ChannelPage--container">
       <ChannelsPanel2 />
-      {/* <Switch>
+      <Switch>
         <Route path={["/channels/following", "/channels/discover"]}>
           <ChannelBrowser />
         </Route>
@@ -23,7 +23,7 @@ export default function ChannelPage() {
           <ChannelMain />
           <ChatPanel />
         </Route>
-      </Switch> */}
+      </Switch>
       <FriendsPanel />
     </div>
   );

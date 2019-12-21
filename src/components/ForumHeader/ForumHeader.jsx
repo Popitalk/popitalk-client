@@ -12,16 +12,12 @@ export default function ForumHeader() {
 
   return (
     <div className="ForumHeader--container">
-      <div className="ForumHeader--icon">
-        <div>
-          <img src="https://i.imgur.com/tLljw1z.jpg" alt="icon" />
-        </div>
-        <p onClick={openFollowersModalDispatcher}>
-          <span>120</span> followers
-        </p>
-      </div>
+      <img src="https://i.imgur.com/tLljw1z.jpg" alt="icon" />
       <div className="ForumHeader--bio">
-        <h4>@Thelmo Society</h4>
+        <h2>Thelmo Society</h2>
+        <h4 onClick={openFollowersModalDispatcher}>
+          <span>120</span> followers
+        </h4>
         <p>
           The Thelomathesian Society was instituted in 1863 by Vasco P. Abbott
           and is the governing entity of the St. Lawrence University Student
@@ -29,6 +25,12 @@ export default function ForumHeader() {
         </p>
         <div>
           <p>ADMINS</p>
+          <div>
+            <img src="https://i.imgur.com/tLljw1z.jpg" alt="admin icons" />
+            <img src="https://i.imgur.com/tLljw1z.jpg" alt="admin icons" />
+            <img src="https://i.imgur.com/tLljw1z.jpg" alt="admin icons" />
+            <img src="https://i.imgur.com/tLljw1z.jpg" alt="admin icons" />
+          </div>
         </div>
       </div>
       <button type="button" className="button">

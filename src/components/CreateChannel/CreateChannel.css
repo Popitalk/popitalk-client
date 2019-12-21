@@ -5,26 +5,31 @@
   align-items: center;
   background-color: #f4f4f4;
   border-top-right-radius: 20px;
-  margin-right: 20px;
-  padding-bottom: 45px;
-  /* height: 300vh !important; */
-  width: calc(100vw - 550px);
+  /* margin-right: 20px; */
+  /* padding-bottom: 45px; */
+  position: relative;
 }
 .CreateChannel--container > * {
   /* margin-right: 408px; */
   /* margin-left: 154px; */
-  padding-right: 408px;
-  padding-left: 154px;
+  /* padding-right: 408px; */
+  /* padding-left: 154px; */
 }
 
 .CreateChannel--top {
-  background-color: #ffffff;
-  border-bottom: 1px solid #d0d0d0;
   height: 60px;
+  min-height: 60px;
   width: 100%;
-  border-top-right-radius: 20px;
-  margin: 0;
-  margin-bottom: 45px;
+  border-top-right-radius: 15px;
+  border-bottom: 2px solid #ededed;
+  background-color: #ffffff;
+  position: relative;
+  z-index: 10;
+}
+
+.CreateChannel--header {
+  padding: 50px 0 50px 0;
+  max-width: 840px;
 }
 
 .CreateChannel--header > h1 {
@@ -32,13 +37,34 @@
   font-weight: bold;
   margin-bottom: 15px;
 }
+
 .CreateChannel--header > h2 {
   font-size: 20px;
-  font-weight: 500;
+  font-weight: 400;
+}
+
+.CreateChannel--container > section {
+  /* padding-bottom: 40px; */
+  padding-bottom: 26px;
+  flex-grow: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.CreateChannel--container > section::-webkit-scrollbar {
+  width: 0px;
+  background: transparent;
+}
+
+.CreateChannel--container > section::-webkit-scrollbar-thumb {
+  background: #ff0000;
 }
 
 .CreateChannel--main {
-  margin-top: 80px;
+  /* margin-top: 80px; */
   /* width: 100%; */
   /* flex-grow: 1; */
   display: flex;
@@ -46,7 +72,9 @@
   width: 100%;
   /* margin-right: 408px; */
   /* margin-left: 154px; */
+  flex-grow: 1;
 }
+
 .CreateChannel--icon {
   margin-right: 66px;
 }
@@ -57,8 +85,14 @@
 }
 .CreateChannel--inputs > button {
   width: 191px;
+  height: 50px;
   margin: 0 auto;
   font-size: 26px;
+  position: absolute;
+  z-index: 10;
+  top: 110px;
+  right: 20px;
+  padding: 0 !important;
 }
 .CreateChannel--inputs > *:not(:last-child) {
   margin-bottom: 15px;
@@ -71,7 +105,7 @@
   align-items: flex-start;
   width: 100%;
   margin-top: 45px;
-  margin-bottom: 60px;
+  /* margin-bottom: 60px; */
 }
 .CreateChannel--main > .CreateChannel--inputs > .CreateChannel--private > i {
   color: #a0a0a0;
@@ -94,4 +128,8 @@
   font-size: 16px;
   font-weight: 500;
   color: #6f6f6f;
+}
+
+.CreateChannel--inputs .Select--select__control {
+  box-shadow: 0px 3px 6px #00000029;
 }

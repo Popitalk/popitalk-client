@@ -35,69 +35,76 @@ export default function CreateChannel() {
   return (
     <div className="CreateChannel--container">
       <div className="CreateChannel--top" />
-      <div className="CreateChannel--header">
-        <h1>Create a Channel</h1>
-        <h2>
-          Create a channel to broadcast scheduled videos and create you own
-          community on Playnows! To get started choose a Channel category.
-        </h2>
-      </div>
-      <div className="CreateChannel--main">
-        <div className="CreateChannel--icon">
-          <ImageUpload
-            icon={displayedIcon}
-            onUpload={handleUpload}
-            onRemove={handleRemove}
-            disabled={false}
-          />
+      <section>
+        <div className="CreateChannel--header">
+          <h1>Create a Channel</h1>
+          <h2>
+            Create a channel to broadcast scheduled videos and create you own
+            community on Playnows! To get started choose a Channel category.
+          </h2>
         </div>
-        <div className="CreateChannel--inputs">
-          <Input4
-            header="Channel Name"
-            type="text"
-            placeholder="Name your channel"
-            value={name}
-            onChange={e => setName(e.target.value)}
-            maxLength={50}
-          />
-          <Textarea2
-            header="Description"
-            placeholder="Describe your channel"
-            value={description}
-            onChange={e => setDescription(e.target.value)}
-            maxLength={220}
-          />
-          <Select
-            header="Category"
-            placeholder="Add a category to get discovered"
-            options={options}
-            name="categories"
-            value={categories}
-            onChange={s => setCategories(s)}
-          />
-          <div className="CreateChannel--private">
-            <i className="fas fa-lock fa-lg" />
-            <div className="CreateChannel--private--info">
-              <h4>Private Group</h4>
-              <p>
-                Users will have to request to follow your group in order to see
-                your content
-              </p>
-            </div>
-            <ToggleCheck
-              checked={privateGroup}
-              onChange={() => setPrivateGroup(!privateGroup)}
+        <div className="CreateChannel--main">
+          <div className="CreateChannel--icon">
+            <ImageUpload
+              icon={displayedIcon}
+              onUpload={handleUpload}
+              onRemove={handleRemove}
+              disabled={false}
             />
           </div>
-          <button
-            type="button"
-            className="button pill lg"
-            onClick={handleSubmit}
-          >
-            Create
-          </button>
+          <div className="CreateChannel--inputs">
+            <Input4
+              header="Channel Name"
+              type="text"
+              placeholder="Name your channel"
+              value={name}
+              onChange={e => setName(e.target.value)}
+              maxLength={30}
+              spellCheck={false}
+            />
+            <Textarea2
+              header="Description"
+              placeholder="Describe your channel"
+              value={description}
+              onChange={e => setDescription(e.target.value)}
+              maxLength={150}
+            />
+            <Select
+              header="Category"
+              placeholder="Add a category to get discovered"
+              options={options}
+              name="categories"
+              value={categories}
+              // onChange={s => {
+              //   console.log("DSDS", s);
+              //   setCategories(s.map(val => val.value));
+              // }}
+              // onChange={s => setCategories({ value: s, label: s })}
+            />
+            <div className="CreateChannel--private">
+              <i className="fas fa-lock fa-lg" />
+              <div className="CreateChannel--private--info">
+                <h4>Private Group</h4>
+                <p>
+                  Users will have to request to follow your group in order to
+                  see your content
+                </p>
+              </div>
+              <ToggleCheck
+                checked={privateGroup}
+                onChange={() => setPrivateGroup(!privateGroup)}
+              />
+            </div>
+            <button
+              type="button"
+              className="button pill lg"
+              onClick={handleSubmit}
+            >
+              Create
+            </button>
+          </div>
         </div>
-      </div>
+      </section>
     </div>
   );
 }

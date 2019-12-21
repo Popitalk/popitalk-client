@@ -124,15 +124,12 @@
   flex-direction: column;
   justify-content: space-between;
 }
-.ProfileModal--user > .ProfileModal--user--nameStats > *:first-child {
+.ProfileModal--user--nameStats--name {
   /* margin-bottom: 25px; */
   margin-bottom: 35px;
 }
 
-.ProfileModal--user
-  > .ProfileModal--user--nameStats
-  > *:first-child
-  > *:first-child {
+.ProfileModal--user--nameStats--name > *:first-child {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -140,20 +137,12 @@
   margin-bottom: 10px;
 }
 
-.ProfileModal--user
-  > .ProfileModal--user--nameStats
-  > *:first-child
-  > *:first-child
-  > h3 {
+.ProfileModal--user--nameStats--name > *:first-child > h3 {
   font-size: 40px;
   font-weight: 500;
   /* margin-bottom: 4px; */
 }
-.ProfileModal--user
-  > .ProfileModal--user--nameStats
-  > *:first-child
-  > *:first-child
-  > button {
+.ProfileModal--user--nameStats--name > *:first-child > button {
   /* margin-top: auto; */
   margin-left: 30px;
   /* margin-bottom: auto; */
@@ -162,31 +151,40 @@
   /* height: 35px; */
 }
 
-.ProfileModal--user > .ProfileModal--user--nameStats > *:first-child > p {
+.ProfileModal--user--nameStats--name > p {
   font-size: 20px;
   font-weight: 500;
 }
 
-.ProfileModal--user > .ProfileModal--user--nameStats > *:last-child {
+.ProfileModal--user--nameStats--stats {
   display: flex;
   flex-direction: row;
 }
-.ProfileModal--user > .ProfileModal--user--nameStats > *:last-child > * {
+.ProfileModal--user--nameStats--stats > * {
   font-size: 20px;
   font-weight: 500;
 }
-.ProfileModal--user > .ProfileModal--user--nameStats > *:last-child > * {
+.ProfileModal--user--nameStats--stats > * {
   font-size: 20px;
   font-weight: 500;
 }
-.ProfileModal--user
-  > .ProfileModal--user--nameStats
-  > *:last-child
-  > *:first-child {
+.ProfileModal--user--nameStats--stats > *:first-child {
   margin-right: 20px;
 }
-.ProfileModal--user > .ProfileModal--user--nameStats > *:last-child > * span {
+.ProfileModal--user--nameStats--stats > * span {
   font-weight: bold;
+}
+
+.ProfileModal--user--nameStats--link {
+  font-size: 18px;
+  font-weight: bold;
+  margin-top: 15px;
+  color: #0093ff;
+  cursor: pointer;
+  user-select: none;
+}
+.ProfileModal--user--nameStats--link:hover {
+  text-decoration: underline;
 }
 
 .ProfileModal--channels {

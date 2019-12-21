@@ -9,7 +9,7 @@
   overflow-y: auto;
   overflow-x: hidden;
   position: relative;
-  padding-bottom: 20px;
+  padding-bottom: 26px;
   border-right: 2px solid #ededed;
 }
 
@@ -32,10 +32,6 @@
   background-color: #ffffff;
   position: relative;
   z-index: 10;
-}
-
-.ChannelMain--headerShadow {
-  box-shadow: 0 4px 6px -6px rgba(0, 0, 0, 0.5);
 }
 
 .ChannelMain--header > *:first-child {
@@ -101,7 +97,7 @@
   border-top-right-radius: 6px;
   border-top-left-radius: 6px;
   position: absolute;
-  bottom: 0;
+  bottom: -2px;
 }
 
 .ChannelMain--inActive:hover > .ChannelMain--nav--slab {
@@ -112,7 +108,7 @@
   border-top-right-radius: 6px;
   border-top-left-radius: 6px;
   position: absolute;
-  bottom: 0;
+  bottom: -2px;
   animation: ChannelMain--slabExpand 0.17s ease-in-out;
 }
 

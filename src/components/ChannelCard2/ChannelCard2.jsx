@@ -46,11 +46,9 @@ export default function ChannelCard2() {
                 "https://i.imgur.com/tLljw1z.jpg",
                 "https://i.imgur.com/tLljw1z.jpg"
               ]}
-              size="big"
+              size="medium"
             />
-            <button type="button" className="button">
-              Follow
-            </button>
+            <button type="button">Follow</button>
           </div>
         </div>
       </div>

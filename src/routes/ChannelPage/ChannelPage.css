@@ -14,7 +14,7 @@
 
 .ChannelPage--container > .ChannelMain--container {
   height: calc(100vh - 70px);
-  width: calc(100vw - 965px);
+  width: calc(100vw - 951px);
   position: absolute;
   top: 70px;
   /* top: 155px; */
@@ -32,7 +32,7 @@
 .ChannelPage--container > .ChatPanel--container {
   height: calc(100vh - 70px);
   position: fixed;
-  left: calc(405px + (100vw - 965px));
+  left: calc(405px + (100vw - 951px));
   top: 70px;
 }
 
@@ -44,15 +44,7 @@
   border-top-right-radius: 20px;
 }
 
-.ChannelPage--container > .FriendsPanel1--container {
-  /* height: calc(100vh - 70px); */
-  /* position: fixed; */
-  /* top: 70px; */
-  z-index: 50;
-  /* left: calc(405px + (100vw - 975px) + 20px + 440px); */
-  /* left: 520px; */
-  /* right: 0; */
-
+.ChannelPage--container > .FriendsPanel--container {
   height: calc(100vh - 70px);
   position: fixed;
   right: 0;
@@ -61,6 +53,8 @@
 }
 
 .ChannelPage--container > .CreateChannel--container {
+  height: calc(100vh - 70px);
+  width: calc(100vw - 511px);
   position: absolute;
   top: 70px;
   left: 405px;
