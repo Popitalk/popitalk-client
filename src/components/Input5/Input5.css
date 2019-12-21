@@ -31,6 +31,12 @@
   right: 20px;
   top: 50%;
   transform: translateY(-50%);
+  box-shadow: 0px 3px 6px #00000029;
+}
+
+.Input5--container > button > i {
+  /* color: blue; */
+  font-size: 28px;
 }
 
 .Input5--friends {

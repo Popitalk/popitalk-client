@@ -34,7 +34,7 @@ export default function Input5({
         maxLength={maxLength}
       />
       <button type="button" className="button round" onClick={onClick}>
-        <i className="fas fa-search fa-2x" />
+        <i className="fas fa-search fa-lg" />
       </button>
     </div>
   );

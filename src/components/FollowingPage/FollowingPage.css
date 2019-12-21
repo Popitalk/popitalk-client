@@ -5,26 +5,28 @@
   flex-direction: column;
   align-items: center;
   padding: 35px 85px;
-  /* padding: 100px 130px; */
+  padding: 100px 85px;
 }
 
 .FollowingPage--mainChannel {
   display: flex;
   flex-direction: row;
   align-items: center;
-  padding: 12px 16px;
+  padding: 12px 16px 0 16px;
   background-color: #ffffff;
   box-shadow: 0px 3px 6px #00000029;
   border-radius: 15px;
   height: 500px;
   margin-bottom: 50px;
+  width: 100%;
 }
 .FollowingPage--mainChannel--video {
+  flex-grow: 1;
   margin-right: 12px;
   position: relative;
   border-radius: 15px;
-  width: 785px;
-  height: 100%;
+  height: 476px;
+  margin-bottom: 12px;
 }
 .FollowingPage--mainChannel--video > img {
   height: 100%;
@@ -43,11 +45,12 @@
   border-radius: 5px;
   padding: 6px 12px;
   position: absolute;
-  top: 10px;
-  left: 14px;
+  top: 12px;
+  left: 18px;
   z-index: 2;
   -webkit-user-drag: none;
   user-select: none;
+  box-shadow: 0px 3px 6px #00000029;
 }
 .FollowingPage--mainChannel--video > h3 {
   color: #fff;
@@ -55,8 +58,8 @@
   font-weight: bold;
   text-shadow: 0px 3px 6px #00000029;
   position: absolute;
-  bottom: 10px;
-  left: 14px;
+  bottom: 22px;
+  left: 18px;
   z-index: 2;
   -webkit-user-drag: none;
   user-select: none;
@@ -64,8 +67,8 @@
 .FollowingPage--mainChannel--video > i {
   color: #ffffff;
   position: absolute;
-  top: 10px;
-  right: 14px;
+  top: 12px;
+  right: 18px;
   z-index: 2;
   -webkit-user-drag: none;
   user-select: none;
@@ -74,7 +77,7 @@
 }
 .FollowingPage--mainChannel--video > .FollowingPage--avatars {
   position: absolute;
-  bottom: 10px;
+  bottom: 22px;
   right: 274px;
   z-index: 2;
   -webkit-user-drag: none;
@@ -99,7 +102,7 @@
 .FollowingPage--mainChannel--chat {
   display: flex;
   flex-direction: column;
-  border: 1px solid #c3c3c3;
+  /* border: 1px solid #c3c3c3; */
   border-radius: 15px;
   height: 100%;
 }
@@ -107,10 +110,10 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  padding: 4px 12px;
+  padding: 0px 12px 8px 12px;
   border-top-left-radius: 15px;
   border-top-right-radius: 15px;
-  border-bottom: 1px solid #c3c3c3;
+  /* border-bottom: 1px solid #c3c3c3; */
 }
 .FollowingPage--mainChannel--chat > *:first-child > *:not(:last-child) {
   margin-right: 10px;
@@ -151,35 +154,45 @@
   flex-direction: row;
   align-items: center;
   padding: 4px 12px;
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
-  border-bottom-left-radius: 15px;
-  border-bottom-right-radius: 15px;
+  /* border-top-left-radius: 0; */
+  /* border-top-right-radius: 0; */
+  /* border-bottom-left-radius: 15px; */
+  /* border-bottom-right-radius: 15px; */
+  /* border-top-left-radius: -15px; */
+  /* border-top-right-radius: -15px; */
   padding-top: 12px;
   padding-bottom: 12px;
-  font-size: 16px;
-  font-weight: 500;
+  font-size: 18px;
+  font-weight: bold;
   background-color: #ffffff;
   color: #57b7ff;
-  border-top: 1px solid #c3c3c3;
+  height: 50px;
+  min-height: 50px;
+  max-height: 50px;
+  border-radius: 20px;
+  /* background-color: black; */
+  /* border-top: 1px solid #c3c3c3; */
 }
 .FollowingPage--mainChannel--chat > *:nth-child(2) {
   background-color: #f4f4f4;
   /* height: 435px; */
   flex-grow: 1;
   width: 430px;
+  border-radius: 20px;
 }
 
 .FollowingPage--channels {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
-  width: 100%;
+  grid-template-columns: repeat(auto-fill, minmax(370px, 1fr));
+  column-gap: 15px;
+  row-gap: 30px;
   justify-items: center;
+  align-items: center;
+  width: 100%;
 }
 
 .FollowingPage--mainChannel--chat
   > .ChatMessages--container:hover
   .ChatMessages--date {
-  margin-right: -25px;
+  margin-right: -12px;
 }

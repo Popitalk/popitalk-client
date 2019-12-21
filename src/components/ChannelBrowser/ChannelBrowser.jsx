@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useLayoutEffect, useRef } from "react";
-import { useScroll } from "react-use";
 import {
   Link,
   Switch,
@@ -18,31 +17,23 @@ export default function ChannelBrowser() {
   const location = useLocation();
   const channelRef = useRef(null);
   const [mounted, setMounted] = useState(false);
-  const [shadow, setShadow] = useState(false);
   const scrollRef = useRef(null);
-  const { y } = useScroll(scrollRef);
 
-  useEffect(() => {
-    // if (!mounted) return;
+  // useEffect(() => {
+  //   // if (!mounted) return;
 
-    if (y !== 0) {
-      setShadow(true);
-    } else {
-      setShadow(false);
-    }
+  //   // const tab = location.pathname.replace(match.url, "").slice(1);
 
-    // const tab = location.pathname.replace(match.url, "").slice(1);
-
-    // if (tab === "video") {
-    //   if (y >= channelRef.current.offsetTop) {
-    //     history.push(`${match.url}/channel`, { noScroll: true });
-    //   }
-    // } else if (tab === "channel") {
-    //   if (y < channelRef.current.offsetTop) {
-    //     history.push(`${match.url}/video`, { noScroll: true });
-    //   }
-    // }
-  }, [y]);
+  //   // if (tab === "video") {
+  //   //   if (y >= channelRef.current.offsetTop) {
+  //   //     history.push(`${match.url}/channel`, { noScroll: true });
+  //   //   }
+  //   // } else if (tab === "channel") {
+  //   //   if (y < channelRef.current.offsetTop) {
+  //   //     history.push(`${match.url}/video`, { noScroll: true });
+  //   //   }
+  //   // }
+  // }, [y]);
 
   useLayoutEffect(() => {
     const tab = location.pathname.replace(match.url, "").slice(1);
@@ -60,11 +51,7 @@ export default function ChannelBrowser() {
 
   return (
     <div className="ChannelBrowser--container">
-      <div
-        className={`ChannelBrowser--header${
-          shadow ? " ChannelBrowser--headerShadow" : ""
-        }`}
-      >
+      <div className="ChannelBrowser--header">
         <Link
           to="/channels/following"
           className={`${

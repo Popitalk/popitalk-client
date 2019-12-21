@@ -78,5 +78,28 @@
   flex-grow: 1;
 }
 .ChannelCard1--container > .ChannelCard1--bottom > div > button {
-  box-shadow: 0px 3px 6px #00000029;
+  /* box-shadow: 0px 3px 6px #00000029; */
+}
+
+.ChannelCard1--container > .ChannelCard1--bottom > div > button {
+  box-shadow: 0px 1px 3px #00000029;
+  text-shadow: 0px 1px 3px #00000029;
+  background: transparent linear-gradient(68deg, #009dff 0%, #5abefc 100%) 0% 0%
+    no-repeat padding-box;
+  border-radius: 10px;
+  width: 100px;
+  height: 35px;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: bold;
+  outline: none;
+  border: none;
+  color: #fff;
+  transition: filter 0.17s ease-in-out;
+}
+.ChannelCard1--container > .ChannelCard1--bottom > div > button:hover {
+  filter: brightness(90%);
+}
+.ChannelCard1--container > .ChannelCard1--bottom > div > button:active {
+  filter: brightness(80%);
 }

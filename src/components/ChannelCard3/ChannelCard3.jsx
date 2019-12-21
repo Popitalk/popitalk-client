@@ -28,26 +28,26 @@ export default function ChannelCard3() {
         <div className="ChannelCard3--shade" />
       </div>
       <div className="ChannelCard3--bottom">
-        <div>
-          <AvatarDeck
-            avatars={[
-              "https://i.imgur.com/tLljw1z.jpg",
-              "https://i.imgur.com/tLljw1z.jpg",
-              "https://i.imgur.com/tLljw1z.jpg",
-              "https://i.imgur.com/tLljw1z.jpg",
-              "https://i.imgur.com/tLljw1z.jpg",
-              "https://i.imgur.com/tLljw1z.jpg",
-              "https://i.imgur.com/tLljw1z.jpg",
-              "https://i.imgur.com/tLljw1z.jpg",
-              "https://i.imgur.com/tLljw1z.jpg",
-              "https://i.imgur.com/tLljw1z.jpg",
-              "https://i.imgur.com/tLljw1z.jpg",
-              "https://i.imgur.com/tLljw1z.jpg",
-              "https://i.imgur.com/tLljw1z.jpg"
-            ]}
-            size="medium"
-          />
-        </div>
+        {/* <div> */}
+        <AvatarDeck
+          avatars={[
+            "https://i.imgur.com/tLljw1z.jpg",
+            "https://i.imgur.com/tLljw1z.jpg",
+            "https://i.imgur.com/tLljw1z.jpg",
+            "https://i.imgur.com/tLljw1z.jpg",
+            "https://i.imgur.com/tLljw1z.jpg",
+            "https://i.imgur.com/tLljw1z.jpg",
+            "https://i.imgur.com/tLljw1z.jpg",
+            "https://i.imgur.com/tLljw1z.jpg",
+            "https://i.imgur.com/tLljw1z.jpg",
+            "https://i.imgur.com/tLljw1z.jpg",
+            "https://i.imgur.com/tLljw1z.jpg",
+            "https://i.imgur.com/tLljw1z.jpg",
+            "https://i.imgur.com/tLljw1z.jpg"
+          ]}
+          size="medium"
+        />
+        {/* </div> */}
       </div>
     </div>
   );

@@ -2,8 +2,8 @@
   display: flex;
   flex-direction: column;
   background-color: #f4f4f4;
-  border-top-right-radius: 20px;
-  box-shadow: 6px -12px 6px #00000080;
+  border-top-right-radius: 15px;
+  /* box-shadow: 0px 3px 10px #38383880; */
 }
 
 .ChannelBrowser--container > section {
@@ -11,7 +11,7 @@
   overflow-y: auto;
   overflow-x: hidden;
   position: relative;
-  padding-bottom: 20px;
+  /* padding-bottom: 26px; */
 }
 
 .ChannelBrowser--container > section::-webkit-scrollbar {
@@ -31,14 +31,10 @@
   border-top-right-radius: 15px;
   padding: 0 25px;
   height: 60px;
-  border-bottom: 1px solid #d0d0d0;
   user-select: none;
   position: relative;
   z-index: 10;
-}
-
-.ChannelBrowser--headerShadow {
-  box-shadow: 0 4px 6px -6px rgba(0, 0, 0, 0.5);
+  border-bottom: 2px solid #ededed;
 }
 
 .ChannelBrowser--header > *:first-child {
@@ -76,7 +72,7 @@
   border-top-right-radius: 6px;
   border-top-left-radius: 6px;
   position: absolute;
-  bottom: 0;
+  bottom: -2px;
 }
 
 .ChannelBrowser--inActive:hover > .ChannelBrowser--header--slab {
@@ -87,7 +83,7 @@
   border-top-right-radius: 6px;
   border-top-left-radius: 6px;
   position: absolute;
-  bottom: 0;
+  bottom: -2px;
   animation: ChannelBrowser--slabExpand 0.17s ease-in-out;
 }
 
