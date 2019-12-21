@@ -11,11 +11,11 @@ export default function ChatDraft() {
 
   useEffect(() => {
     // textareaRef.current.focus();
-    textareaRef.current.style.height = "58px";
+    textareaRef.current.style.height = "52px";
   }, []);
 
   const handleChange = e => {
-    e.target.style.height = "58px";
+    e.target.style.height = "52px";
     e.target.style.height = `${Math.min(e.target.scrollHeight + 2, 168)}px`;
 
     setValue(e.target.value);
@@ -24,13 +24,13 @@ export default function ChatDraft() {
   const handleSubmit = e => {
     if (e.keyCode === 13 && !e.shiftKey) {
       e.preventDefault();
-      e.target.style.height = "58px";
+      e.target.style.height = "52px";
       setValue("");
     }
   };
 
   const handleSend = () => {
-    textareaRef.current.style.height = "58px";
+    textareaRef.current.style.height = "52px";
     setValue("");
   };
 
@@ -45,7 +45,7 @@ export default function ChatDraft() {
     <div className="ChatDraft--container">
       <div className="ChatDraft--textarea">
         <button type="button" className="button pill" onClick={handleEmoticon}>
-          <i className="far fa-smile fa-2x" />
+          <i className="far fa-smile fa-lg" />
         </button>
         <textarea
           placeholder="Type a message..."

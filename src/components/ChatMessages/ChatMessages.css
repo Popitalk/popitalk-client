@@ -190,6 +190,7 @@
   flex-direction: row;
   justify-content: flex-end;
   align-items: center;
+  /* padding-bottom: 20px; */
 }
 .ChatMessages--seenUsers > *:not(:last-child) {
   margin-right: 2px;

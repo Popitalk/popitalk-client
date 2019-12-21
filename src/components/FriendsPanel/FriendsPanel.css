@@ -13,6 +13,10 @@
   animation-duration: 0.17s;
 }
 
+.FriendsPanel--unexpandable {
+  animation: none;
+}
+
 .FriendsPanel--expanded {
   width: 420px;
   z-index: 2;
@@ -143,7 +147,6 @@
   background-color: #ecf0f2;
   border-top-right-radius: 25px;
   border-bottom-right-radius: 25px;
-  /* padding-right: 10px; */
 }
 
 .FriendsPanel--expanded .FriendsPanel--searchbar > *:last-child > button {
@@ -341,19 +344,11 @@
 
 .FriendsPanel--nameAndMessage {
   display: none;
-  /* display: flex; */
   visibility: visible;
   flex-direction: column;
   align-items: flex-end;
   margin-right: 20px;
   margin-left: auto;
-  /* transition-property: visibility, opacity; */
-  /* transition-duration: 0s, 1s; */
-  /* transition-delay: 0s, 1s; */
-  /* transition-property: visibility, opacity; */
-  /* transition-duration: 43s, 1s; */
-  /* animation-name: FriendsPanel--fadeIn;
-  animation-duration: 0.138s; */
 }
 
 .FriendsPanel--nameAndMessage > *:first-child {
@@ -376,6 +371,10 @@
   animation-duration: 0.138s;
 }
 
+.FriendsPanel--unexpandable .FriendsPanel--nameAndMessage {
+  animation: none;
+}
+
 @keyframes FriendsPanel--slideInRight {
   from {
     transform: translate3d(100%, 0, 0);
@@ -389,21 +388,11 @@
 
 @keyframes FriendsPanel--fadeIn {
   0% {
-    /* opacity: 0; */
-    /* transform: translate3d(100%, 0, 0); */
-    /* visibility: visible; */
     visibility: hidden;
-  }
-
-  75% {
-    /* display: flex; */
   }
 
   100% {
     visibility: hidden;
-    /* display: flex; */
-    /* opacity: 1; */
-    /* transform: translate3d(0, 0, 0); */
   }
 }
 
@@ -411,7 +400,6 @@
   font-size: 20px !important;
   font-weight: bold !important;
   box-shadow: 0px 3px 6px #00000040 !important;
-  /* border: 1px solid #dddddd !important; */
   background-color: #ffffff !important;
   color: #222222 !important;
   border-radius: 10px !important;

@@ -76,12 +76,10 @@ export default function VideoQueue1() {
                     className={`VideoQueue1--video${
                       snapshot.isDragging ? " VideoQueue1--video--dragging" : ""
                     }`}
+                    {...provided.dragHandleProps}
                   >
                     <div>
-                      <i
-                        className="fas fa-bars"
-                        {...provided.dragHandleProps}
-                      />
+                      <i className="fas fa-bars" />
                       <p className="VideoQueue1--position">#{index + 1}</p>
                       {index === 0 ? (
                         <div className="VideoQueue1--time VideoQueue1--live">

@@ -7,7 +7,6 @@ import React, {
 } from "react";
 import { useDispatch } from "react-redux";
 import { openFollowersModal } from "../../redux/actions";
-import { useScroll } from "react-use";
 import {
   Link,
   Switch,
@@ -27,17 +26,7 @@ export default function RoomMain() {
   );
   const match = useRouteMatch();
   const location = useLocation();
-  const [shadow, setShadow] = useState(false);
   const scrollRef = useRef(null);
-  const { y } = useScroll(scrollRef);
-
-  useEffect(() => {
-    if (y !== 0) {
-      setShadow(true);
-    } else {
-      setShadow(false);
-    }
-  }, [y]);
 
   useLayoutEffect(() => {
     const tab = location.pathname.replace(match.url, "").slice(1);
@@ -57,9 +46,7 @@ export default function RoomMain() {
 
   return (
     <div className="RoomMain--container">
-      <div
-        className={`RoomMain--header${shadow ? " RoomMain--headerShadow" : ""}`}
-      >
+      <div className="RoomMain--header">
         <div>
           <img src="https://i.imgur.com/tLljw1z.jpg" alt="room icon" />
           <h3>Team Playnow</h3>
