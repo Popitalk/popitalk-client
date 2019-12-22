@@ -112,11 +112,7 @@ export default function InviteModal() {
             <p className="InviteModal--share">Copy and share this link:</p>
             <div className="InviteModal--link">
               <p>{url}</p>
-              <button
-                type="button"
-                className="button pill sm"
-                onClick={copied ? undefined : handleCopy}
-              >
+              <button type="button" onClick={copied ? undefined : handleCopy}>
                 {copied ? "Copied!" : "Copy"}
               </button>
             </div>

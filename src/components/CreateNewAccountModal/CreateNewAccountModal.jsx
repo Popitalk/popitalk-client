@@ -203,11 +203,7 @@ export default function CreateNewAccountModal() {
                 />
               </div>
             </div>
-            <button
-              type="submit"
-              disabled={isSubmitting || !isValid || !dirty}
-              className="button pill lg"
-            >
+            <button type="submit" disabled={isSubmitting || !isValid || !dirty}>
               Continue
             </button>
           </form>

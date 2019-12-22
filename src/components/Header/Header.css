@@ -110,3 +110,17 @@
 .Header--container > .Input3--container {
   margin-right: auto;
 }
+
+.Header--community > i {
+  color: white;
+  text-shadow: 0px 3px 6px #00000029;
+  cursor: pointer;
+}
+
+.Header--community > i:hover {
+  filter: brightness(90%);
+}
+
+.Header--community > i:active {
+  filter: brightness(80%);
+}

@@ -6,7 +6,8 @@
   height: 720px;
   display: flex;
   flex-direction: column;
-  padding-bottom: 20px;
+  max-height: calc(100vh - 70px);
+  /* margin-top: 70px; */
 }
 
 .FollowersModal--header {
@@ -25,7 +26,7 @@
 
 .FollowersModal--search {
   width: 100%;
-  padding: 22px;
+  padding: 15px 22px 0px 22px;
 }
 .FollowersModal--search > * {
   background-color: #f0f0f0;
@@ -35,7 +36,7 @@
   align-items: center;
   border-radius: 25px;
   height: 46px;
-  border: 1px solid #c6c6c6;
+  border: thin solid transparent;
 }
 .FollowersModal--search > * > input {
   border: none;
@@ -46,9 +47,14 @@
   border-top-right-radius: 25px;
   border-bottom-right-radius: 25px;
   font-size: 24px;
-  font-weight: 500;
+  font-weight: 400;
   padding: 6px 25px 6px 12px;
 }
+
+.FollowersModal--search > * > input::placeholder {
+  color: #b2b1b1;
+}
+
 .FollowersModal--search > * > div {
   background-color: #f0f0f0;
   height: 100%;
@@ -59,23 +65,54 @@
   align-items: center;
   border-top-left-radius: 25px;
   border-bottom-left-radius: 25px;
+  color: #b2b1b1;
+  padding-left: 25px;
 }
 
 .FollowersModal--search > *:focus-within {
-  border: 1px solid #00b1ff;
+  border: thin solid #00b1ff;
 }
 
 .FollowersModal--users {
-  padding: 0px 22px;
-  margin-top: 20px;
+  padding: 15px 22px 15px 22px;
   flex-grow: 1;
   display: flex;
   flex-direction: column;
   overflow-y: auto;
+  overflow-x: hidden;
   scrollbar-color: #cbcbcb #cbcbcb;
 }
 
 .FollowersModal--users::-webkit-scrollbar {
+  width: 0px;
+  background: transparent;
+}
+
+.FollowersModal--users:hover::-webkit-scrollbar {
+  width: 24px;
+}
+
+.FollowersModal--users:hover::-webkit-scrollbar-thumb {
+  box-shadow: inset 0 0 24px 24px #cbcbcb;
+  border: solid 8px transparent;
+  border-radius: 50px;
+}
+
+.FollowersModal--users:hover::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 24px 24px #f0eaff;
+  border: solid 8px transparent;
+  border-radius: 50px;
+}
+
+.FollowersModal--users:hover::-webkit-scrollbar-button {
+  display: none;
+}
+
+.FollowersModal--users:hover {
+  padding-right: 0px;
+}
+
+/* .FollowersModal--users::-webkit-scrollbar {
   width: 24px;
 }
 .FollowersModal--users::-webkit-scrollbar-thumb {
@@ -92,23 +129,24 @@
 
 .FollowersModal--users::-webkit-scrollbar-button {
   display: none;
-}
+} */
 
 .FollowersModal--user {
   display: flex;
   flex-direction: row;
   align-items: center;
   padding: 15px 15px;
+  padding: 15px 0px 15px 15px;
   cursor: pointer;
   background-color: #ffffff;
-  transition: filter 0.17s ease-in-out;
+  /* transition: filter 0.17s ease-in-out; */
   border-radius: 5px;
 }
 .FollowersModal--user:hover {
-  filter: brightness(90%);
+  background-color: #f0f0f0;
 }
 .FollowersModal--user:active {
-  filter: brightness(80%);
+  background-color: #f0f0f0;
 }
 
 .FollowersModal--user > img {

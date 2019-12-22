@@ -67,9 +67,9 @@ export default function Header() {
           <HeaderFriends />
           <HeaderNotifications />
           <HeaderSettings />
-          {/* <div>
+          <a href="https://google.com" className="Header--community">
             <i className="fas fa-info-circle fa-2x" />
-          </div> */}
+          </a>
         </div>
       )}
     </div>

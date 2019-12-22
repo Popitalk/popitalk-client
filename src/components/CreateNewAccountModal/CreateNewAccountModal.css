@@ -35,7 +35,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 22px;
+  padding: 35px 22px 22px 22px;
 }
 .CreateNewAccountModal--form > .Input7--container {
   width: 100%;
@@ -45,16 +45,40 @@
   margin-bottom: 15px;
 }
 .CreateNewAccountModal--form > button {
-  margin-top: 15px;
-  border-radius: 23px;
+  margin-top: 25px;
+  color: white;
   font-size: 22px;
+  font-weight: bold;
   width: 165px;
   height: 60px;
-  background-color: #009dff;
+  background: transparent linear-gradient(253deg, #009dff 0%, #5abefc 100%) 0%
+    0% no-repeat padding-box;
+  border: none;
+  outline: none;
   box-shadow: 0px 3px 6px #00000029;
+  text-shadow: 0px 3px 6px #00000029;
+  border-radius: 28px;
+  transition: filter 0.17s ease-in-out;
+  cursor: pointer;
 }
+.CreateNewAccountModal--form > button:hover {
+  filter: brightness(90%);
+}
+.CreateNewAccountModal--form > button:active {
+  filter: brightness(80%);
+}
+
 .CreateNewAccountModal--form > button:disabled {
   box-shadow: none;
+  background: none;
+  background-color: #d0d0d0;
+  cursor: not-allowed;
+}
+.CreateNewAccountModal--form > button:disabled:hover {
+  filter: none;
+}
+.CreateNewAccountModal--form > button:disabled:active {
+  filter: none;
 }
 
 .CreateNewAccountModal--form--row {

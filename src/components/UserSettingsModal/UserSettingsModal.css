@@ -77,6 +77,7 @@
   display: flex;
   flex-direction: row;
   align-items: center;
+  margin-left: 22px;
 }
 
 .UserSettingsModal--info--email > p {
@@ -105,8 +106,10 @@
   border-radius: 0;
 }
 .UserSettingsModal--container > .UserSettingsModal--buttons > *:last-child {
-  border-bottom-right-radius: 30px;
-  border-bottom-left-radius: 30px;
+  border-bottom-right-radius: 20px;
+  border-bottom-left-radius: 20px;
+  /* background-color: red; */
+  color: #e23737;
 }
 
 .UserSettingsModal--search {

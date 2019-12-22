@@ -33,8 +33,6 @@
 .ChatMessages--container:hover::-webkit-scrollbar-button {
   display: none;
 }
-/* .ChatMessages--container > * {
-} */
 
 .ChatMessages--date {
   display: flex;

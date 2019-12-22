@@ -17,31 +17,44 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  overflow-x: hidden;
   position: relative;
   /* padding-bottom: 20px; */
   overflow-y: auto;
+  overflow-x: hidden;
   scrollbar-color: #cbcbcb #cbcbcb;
+  /* margin-bottom: 100px; */
 }
 
 .ProfileModal--profile::-webkit-scrollbar {
+  width: 0px;
+  background: transparent;
+}
+
+.ProfileModal--profile:hover::-webkit-scrollbar {
   width: 24px;
 }
-.ProfileModal--profile::-webkit-scrollbar-thumb {
+
+.ProfileModal--profile:hover::-webkit-scrollbar-thumb {
   box-shadow: inset 0 0 24px 24px #cbcbcb;
   border: solid 8px transparent;
   border-radius: 50px;
 }
 
-.ProfileModal--profile::-webkit-scrollbar-track {
+.ProfileModal--profile:hover::-webkit-scrollbar-track {
   box-shadow: inset 0 0 24px 24px #f0eaff;
   border: solid 8px transparent;
   border-radius: 50px;
 }
 
-.ProfileModal--profile::-webkit-scrollbar-button {
+.ProfileModal--profile:hover::-webkit-scrollbar-button {
   display: none;
 }
+
+.ProfileModal--profile:hover {
+  padding-left: 24px;
+}
+
+/* OLD BELOW */
 
 .ProfileModal--header {
   display: flex;
@@ -85,15 +98,6 @@
 
 .ProfileModal--profile > section > * > *:not(:last-child) {
   margin-bottom: 50px;
-}
-
-.ProfileModal--profile > section::-webkit-scrollbar {
-  width: 0px;
-  background: transparent;
-}
-
-.ProfileModal--profile > section::-webkit-scrollbar-thumb {
-  background: #ff0000;
 }
 
 .ProfileModal--profile > section > * > .ProfileModal--user {
