@@ -1,10 +1,9 @@
 .Notifications--container {
   background-color: #ffffff;
-  min-width: 450px;
+  min-width: 420px;
   max-height: 528px;
   display: flex;
   flex-direction: column;
-  padding-bottom: 20px;
   box-shadow: 0px 0px 6px #00000080;
   border-radius: 20px;
   display: flex;
@@ -42,7 +41,7 @@
 }
 
 .Notifications--notifications {
-  padding: 20px 30px 0 30px;
+  padding: 20px 15px 20px 15px;
   overflow-y: auto;
 }
 
@@ -85,12 +84,41 @@
 
 .Notifications--requests > * > *:first-child {
   margin-right: auto;
-  background-color: #dd6262;
+  background-color: #e51d1d;
+  height: 30px !important;
+  width: 30px !important;
+  font-size: 12px;
 }
 
 .Notifications--requests > * > *:last-child {
-  font-size: 20px;
+  /* font-size: 20px; */
+  /* box-shadow: 0px 3px 6px #00000029; */
+}
+
+.Notifications--requests > * > *:last-child {
+  /* margin-left: auto; */
   box-shadow: 0px 3px 6px #00000029;
+  background: transparent linear-gradient(245deg, #009dff 0%, #5abefc 100%) 0%
+    0% no-repeat padding-box;
+  /* width: 64px; */
+  padding: 6px 14px;
+  height: 35px;
+  border: none;
+  outline: none;
+  border-radius: 10px;
+  color: #fff;
+  box-shadow: 0px 3px 6px #00000029;
+  text-shadow: 0px 3px 6px #00000029;
+  font-size: 16px;
+  font-weight: bold;
+  transition: filter 0.17s ease-in-out;
+  cursor: pointer;
+}
+.Notifications--requests > * > *:last-child :hover {
+  filter: brightness(90%);
+}
+.Notifications--requests > * > *:last-child :active {
+  filter: brightness(80%);
 }
 
 .Notifications--requests > * > div {
@@ -128,13 +156,9 @@
   background-color: #fff;
   cursor: pointer;
   user-select: none;
-  transition: filter 0.17s ease-in-out;
 }
 .Notifications--new > *:hover {
-  filter: brightness(90%);
-}
-.Notifications--new > *:active {
-  filter: brightness(80%);
+  background-color: #f0f0f0;
 }
 
 .Notifications--new > *:not(:last-child) {
