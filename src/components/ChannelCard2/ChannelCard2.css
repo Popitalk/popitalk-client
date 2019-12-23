@@ -1,6 +1,5 @@
 .ChannelCard2--container {
   border-radius: 15px;
-  box-shadow: 0px 0px 6px #00000080;
   position: relative;
   /* width: 385px; */
   width: 350px;
@@ -10,6 +9,11 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  box-shadow: 0px 3px 6px #00000029;
+  transition: box-shadow 0.05s ease-in-out;
+}
+.ChannelCard2--container:hover {
+  box-shadow: 0px 3px 6px #00000080;
 }
 .ChannelCard2--container > * {
   height: 96%;
