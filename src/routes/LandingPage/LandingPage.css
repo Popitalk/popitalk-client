@@ -16,8 +16,7 @@
   border-top-right-radius: 30px;
   border-top-left-radius: 30px;
   background-image: url("https://i.imgur.com/xGLlSWC.png");
-  /* background-image: url("../../assets/landing_page.png"); */
-  /* background-size: cover; */
+  background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   background-color: #f676e8;

@@ -10,9 +10,11 @@ export default function RoomPage() {
   return (
     <div className="RoomPage--container">
       <ChannelsPanel1 />
-      <FriendsPanel unexpandable={true} />
-      <RoomMain />
-      <ChatPanel />
+      <div className="RoomPage--shadowBox">
+        <FriendsPanel unexpandable={true} />
+        <RoomMain />
+        <ChatPanel />
+      </div>
     </div>
   );
 }

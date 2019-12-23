@@ -11,19 +11,21 @@ import FriendsPanel from "../../components/FriendsPanel";
 export default function ChannelPage() {
   return (
     <div className="ChannelPage--container">
-      <ChannelsPanel2 />
-      <Switch>
-        <Route path={["/channels/following", "/channels/discover"]}>
-          <ChannelBrowser />
-        </Route>
-        <Route path="/channels/create">
-          <CreateChannel />
-        </Route>
-        <Route path="/channels/:channelId">
-          <ChannelMain />
-          <ChatPanel />
-        </Route>
-      </Switch>
+      <div className="ChannelPage--shadowBox">
+        <ChannelsPanel2 />
+        <Switch>
+          <Route path={["/channels/following", "/channels/discover"]}>
+            <ChannelBrowser />
+          </Route>
+          <Route path="/channels/create">
+            <CreateChannel />
+          </Route>
+          <Route path="/channels/:channelId">
+            <ChannelMain />
+            <ChatPanel />
+          </Route>
+        </Switch>
+      </div>
       <FriendsPanel />
     </div>
   );

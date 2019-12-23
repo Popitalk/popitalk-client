@@ -22,10 +22,6 @@ export default function Select({
   onBlur,
   maxOptions = 3
 }) {
-  // setInterval(() => {
-  //   console.log(value);
-  //   console.log(value && value.length >= maxOptions);
-  // }, 1000);
   return (
     <div className="Select--container">
       {header && <h4>{header}</h4>}
@@ -34,25 +30,37 @@ export default function Select({
         isClearable={isClearable}
         isSearchable={isSearchable}
         name={name}
-        value={value ? { value: value, label: value } : undefined}
+        value={
+          value
+            ? isMulti
+              ? value.map(v => ({ value: v, label: v }))
+              : { value: value, label: value }
+            : undefined
+        }
         onChange={onChange}
         onBlur={onBlur}
         options={
-          value && value.length >= maxOptions
-            ? []
-            : options.map(option => ({ value: option, label: option }))
+          options
+            ? isMulti && value && value.length >= maxOptions
+              ? []
+              : options.map(option => ({ value: option, label: option }))
+            : undefined
         }
-        noOptionsMessage={() => {
-          return value && value.length >= maxOptions
-            ? "You've reached the max options value"
-            : "No options available";
-        }}
+        // noOptionsMessage={() => {
+        //   return value && value.length >= maxOptions
+        //     ? "You've reached the max options value"
+        //     : "No options available";
+        // }}
         isDisabled={disabled || loading}
         placeholder={placeholder}
         isLoading={loading}
         isValidNewOption={(inputValue, selectValue, selectOptions) => {
-          if (inputValue.length >= 3 && inputValue.length <= 10) return true;
-          return false;
+          if (inputValue.length < 3) return false;
+          if (inputValue.length > 10) return false;
+          if (value) {
+            if (value.length >= maxOptions) return false;
+          }
+          return true;
         }}
         classNamePrefix="Select--select"
         styles={{

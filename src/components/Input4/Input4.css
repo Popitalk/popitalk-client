@@ -22,11 +22,11 @@
   background-color: #fff;
   color: #797575;
   color: #202124;
-  border: 1px solid #d1d1d1;
+  border: thin solid #d1d1d1;
   font-size: 20px;
   font-weight: 400;
   width: 100%;
-  box-shadow: 0px 3px 6px #00000029;
+  /* box-shadow: 0px 3px 6px #00000029; */
   border-radius: 50px;
 }
 .Input4--inputContainer > input:focus {

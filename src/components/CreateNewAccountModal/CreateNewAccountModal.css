@@ -116,3 +116,7 @@
   width: 100%;
   column-gap: 12px;
 }
+
+.CreateNewAccountModal--container .Select--select__menu-list {
+  max-height: 200px !important;
+}

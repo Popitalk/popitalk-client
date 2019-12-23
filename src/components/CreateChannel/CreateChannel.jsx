@@ -75,11 +75,11 @@ export default function CreateChannel() {
               options={options}
               name="categories"
               value={categories}
-              // onChange={s => {
-              //   console.log("DSDS", s);
-              //   setCategories(s.map(val => val.value));
-              // }}
-              // onChange={s => setCategories({ value: s, label: s })}
+              onChange={s => {
+                if (!s) setCategories([]);
+                else setCategories(s.map(val => val.value));
+              }}
+              maxOptions={2}
             />
             <div className="CreateChannel--private">
               <i className="fas fa-lock fa-lg" />

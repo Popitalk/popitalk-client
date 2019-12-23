@@ -5,7 +5,21 @@
   height: calc(100vh - 70px) !important;
 }
 
-.RoomPage--container > .ChannelsPanel1--container {
+.RoomPage--shadowBox {
+  position: absolute;
+  top: 70px;
+  left: 106px;
+  height: calc(100vh - 70px);
+  width: calc(100vw - 106px);
+  display: flex;
+  flex-direction: row;
+  box-shadow: 0px 3px 10px #38383880;
+  box-shadow: 0px 6px 20px #00000080;
+  border-top-right-radius: 15px;
+  border-top-left-radius: 15px;
+}
+
+.RoomPage--container .ChannelsPanel1--container {
   height: calc(100vh - 70px);
   position: fixed;
   left: 0;
@@ -13,7 +27,30 @@
   z-index: 50;
 }
 
-.RoomPage--container > .FriendsPanel--container {
+.RoomPage--container .FriendsPanel--container {
+  /* height: calc(100vh - 70px); */
+  /* position: fixed; */
+  /* left: 106px; */
+  /* top: 70px; */
+  /* z-index: 10; */
+  border-top-right-radius: 0;
+  box-shadow: none;
+  border-right: 2px solid #ededed;
+}
+
+.RoomPage--container .RoomMain--container {
+  width: calc(100vw - 966px);
+}
+
+/* .RoomPage--container > .ChannelsPanel1--container {
+  height: calc(100vh - 70px);
+  position: fixed;
+  left: 0;
+  top: 70px;
+  z-index: 50;
+} */
+
+/* .RoomPage--container > .FriendsPanel--container {
   height: calc(100vh - 70px);
   position: fixed;
   left: 106px;
@@ -22,14 +59,14 @@
   border-top-right-radius: 0;
   box-shadow: none;
   border-right: 2px solid #ededed;
-}
-.RoomPage--container > .RoomMain--container {
+} */
+/* .RoomPage--container > .RoomMain--container {
   height: calc(100vh - 70px);
   width: calc(100vw - 966px);
   position: absolute;
   top: 70px;
   left: 526px;
-}
+} */
 
 .RoomPage--container > .RoomMain--container > .RoomHeader--container {
   /* width: calc(100vw - 985px); */
@@ -39,7 +76,7 @@
   /* z-index: 400; */
 }
 
-.RoomPage--container > .ChatPanel--container {
+/* .RoomPage--container > .ChatPanel--container {
   height: calc(100vh - 70px);
   left: calc(565px + (100vw - 1005px));
   position: fixed;
@@ -50,4 +87,4 @@
 
 .RoomPage--container > .ChatPanel--container > .ChatHeader--container {
   border-top-right-radius: 20px;
-}
+} */

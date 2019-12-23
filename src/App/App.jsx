@@ -6,7 +6,6 @@ import LandingPage from "../routes/LandingPage";
 import RoomPage from "../routes/RoomPage";
 import ChannelPage from "../routes/ChannelPage";
 import UserPage from "../routes/UserPage";
-import TestPage from "../routes/TestPage";
 import Header from "../components/Header";
 import ModalManager from "../components/ModalManager";
 // import { validateSession } from "../redux/actions";
@@ -42,9 +41,6 @@ export default function App() {
         </Route>
         <Route path="/users/">
           <UserPage />
-        </Route>
-        <Route path="/test/">
-          <TestPage />
         </Route>
         <Route path="/" render={() => <Redirect to="/welcome" />} />
       </Switch>
