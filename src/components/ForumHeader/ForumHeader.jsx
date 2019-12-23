@@ -1,6 +1,7 @@
 import React, { useCallback } from "react";
 import { useDispatch } from "react-redux";
 import { openFollowersModal } from "../../redux/actions";
+import Button1 from "../Button1";
 import "./ForumHeader.css";
 
 export default function ForumHeader() {
@@ -33,9 +34,10 @@ export default function ForumHeader() {
           </div>
         </div>
       </div>
-      <button type="button" className="button">
+      {/* <button type="button" className="button">
         Follow
-      </button>
+      </button> */}
+      <Button1>Follow</Button1>
     </div>
   );
 }

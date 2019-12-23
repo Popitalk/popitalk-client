@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import "emoji-mart/css/emoji-mart.css";
 import { Picker } from "emoji-mart";
+import Button1 from "../Button1";
 import "./ChatDraft.css";
 
 export default function ChatDraft() {
@@ -56,9 +57,12 @@ export default function ChatDraft() {
           ref={textareaRef}
         />
         <div>
-          <button type="button" className="button round" onClick={handleUpload}>
+          {/* <button type="button" className="button round" onClick={handleUpload}>
             <i className="far fa-image" />
-          </button>
+          </button> */}
+          <Button1 onClick={handleUpload}>
+            <i className="far fa-image" />
+          </Button1>
         </div>
         <button type="button" className="button pill" onClick={handleSend}>
           Send

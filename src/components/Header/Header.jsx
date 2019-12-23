@@ -20,6 +20,8 @@ export default function Header() {
   useEffect(() => {
     if (location.pathname.startsWith("/welcome")) {
       setHeaderLandingPage(true);
+    } else {
+      setHeaderLandingPage(false);
     }
   }, [location]);
 

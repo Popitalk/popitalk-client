@@ -103,8 +103,10 @@
 .FriendsPanel--searchbar > *:last-child > button {
   height: 70px;
   width: 70px;
-  background-color: #5cd8fd;
   box-shadow: 0px 3px 6px #00000029;
+  background: transparent linear-gradient(68deg, #00c3ff 0%, #98e4fa 100%) 0% 0%
+    no-repeat padding-box;
+  border: none;
 }
 
 .FriendsPanel--expanded .FriendsPanel--searchbar {
@@ -201,8 +203,13 @@
   width: 70px;
   min-height: 70px;
   border-radius: 50%;
-  background-color: #57b7ff;
-  box-shadow: 0px 3px 6px #00000029;
+  /* background-color: #57b7ff; */
+  /* box-shadow: 0px 3px 6px #00000029; */
+  box-shadow: 0px 1px 3px #00000029;
+  text-shadow: 0px 1px 3px #00000029;
+  background: transparent linear-gradient(68deg, #009dff 0%, #5abefc 100%) 0% 0%
+    no-repeat padding-box;
+  border: none;
 }
 
 .FriendsPanel--newRoom > p {

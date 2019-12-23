@@ -3,6 +3,7 @@ import { useScroll } from "react-use";
 import onClickOutside from "react-onclickoutside";
 import ReactTooltip from "react-tooltip";
 import RoomIcon2 from "../RoomIcon2";
+import Button1 from "../Button1";
 import "./FriendsPanel.css";
 
 const requests = [
@@ -412,9 +413,12 @@ function FriendsPanel({ unexpandable = false }) {
                 <p>{request.fullName}</p>
               </div>
               <img src={request.avatar} alt="avatar" />
-              <button type="button" className="button round">
+              {/* <button type="button" className="button round">
                 <i className="fas fa-user-plus" />
-              </button>
+              </button> */}
+              <Button1>
+                <i className="fas fa-user-plus" />
+              </Button1>
             </div>
           ))}
         </div>

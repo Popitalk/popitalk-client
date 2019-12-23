@@ -3,6 +3,7 @@ import { useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { closeModal, closeAllModals } from "../../redux/actions";
 import ChannelCard1 from "../ChannelCard1";
+import Button1 from "../Button1";
 import "./ProfileModal.css";
 
 export default function ProfileModal() {
@@ -45,10 +46,14 @@ export default function ProfileModal() {
                 <div className="ProfileModal--user--nameStats--name">
                   <div>
                     <h3>Djang16</h3>
-                    <button type="button" className="button">
+                    <Button1>
                       <i className="fas fa-user-plus" />
                       <p>Add friend</p>
-                    </button>
+                    </Button1>
+                    {/* <button type="button">
+                      <i className="fas fa-user-plus" />
+                      <p>Add friend</p>
+                    </button> */}
                   </div>
 
                   <p>Andrew Jang</p>

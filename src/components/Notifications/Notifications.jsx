@@ -1,6 +1,7 @@
 import React, { useCallback } from "react";
 import { useDispatch } from "react-redux";
 import { openProfileModal } from "../../redux/actions";
+import Button1 from "../Button1";
 import "./Notifications.css";
 
 const requests = [
@@ -108,9 +109,10 @@ export default function Notifications({ closePopup }) {
                 <p>{request.fullName}</p>
               </div>
               <img src={request.avatar} alt="avatar" />
-              <button type="button" className="button">
-                Accept
-              </button>
+              {/* <button type="button" className="button">
+
+              </button> */}
+              <Button1>Accept</Button1>
             </div>
           ))}
         </div>

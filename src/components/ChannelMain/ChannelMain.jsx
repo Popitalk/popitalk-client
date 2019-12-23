@@ -30,12 +30,6 @@ export default function ChannelMain() {
   // useEffect(() => {
   //   // if (!mounted) return;
 
-  //   if (y !== 0) {
-  //     setShadow(true);
-  //   } else {
-  //     setShadow(false);
-  //   }
-
   //   // const tab = location.pathname.replace(match.url, "").slice(1);
 
   //   // if (tab === "video") {

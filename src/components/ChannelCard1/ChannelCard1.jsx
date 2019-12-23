@@ -1,5 +1,6 @@
 import React from "react";
 import AvatarDeck from "../AvatarDeck";
+import Button1 from "../Button1";
 import "./ChannelCard1.css";
 
 export default function ChannelCard1() {
@@ -43,9 +44,10 @@ export default function ChannelCard1() {
             ]}
             size="medium"
           />
-          <button type="button" className="button">
+          <Button1>Follow</Button1>
+          {/* <button type="button" className="button">
             Follow
-          </button>
+          </button> */}
         </div>
       </div>
     </div>

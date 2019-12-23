@@ -1,4 +1,5 @@
 import React from "react";
+import Button1 from "../Button1";
 import "./FriendRequests.css";
 
 const requests = [
@@ -69,9 +70,12 @@ export default function FriendRequests() {
               <p>{request.fullName}</p>
             </div>
             <img src={request.avatar} alt="avatar" />
-            <button type="button" className="button round">
+            <Button1>
               <i className="fas fa-user-plus" />
-            </button>
+            </Button1>
+            {/* <button type="button" className="button round">
+              <i className="fas fa-user-plus" />
+            </button> */}
           </div>
         ))}
       </div>

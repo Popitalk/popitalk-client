@@ -70,6 +70,11 @@
   margin-right: 30px;
   text-decoration: none;
   height: 100%;
+  /* background-color: red; */
+  transition: transform 0.1s ease-in-out;
+}
+.Header--logo:hover {
+  transform: scale(1.1);
 }
 
 .Header--logo > img {

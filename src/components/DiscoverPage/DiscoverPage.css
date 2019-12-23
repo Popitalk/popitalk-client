@@ -35,6 +35,11 @@
   justify-content: center;
   align-items: center;
 }
+.DiscoverPage--searchResults--button > button {
+  background: transparent linear-gradient(68deg, #009dff 0%, #5abefc 100%) 0% 0%
+    no-repeat padding-box;
+  border: none;
+}
 
 .DiscoverPage--channels {
   /* display: grid;

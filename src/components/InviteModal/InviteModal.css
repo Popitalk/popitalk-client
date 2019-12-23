@@ -151,11 +151,11 @@
 .InviteModal--link > button {
   position: absolute;
   right: -25px;
-  box-shadow: 0px 3px 6px #00000029;
+  /* box-shadow: 0px 3px 6px #00000029;
   background: transparent linear-gradient(245deg, #009dff 0%, #5abefc 100%) 0%
-    0% no-repeat padding-box;
+    0% no-repeat padding-box; */
   /* width: 64px; */
-  padding: 6px 14px;
+  /* padding: 6px 14px;
   height: 35px;
   border: none;
   outline: none;
@@ -166,14 +166,14 @@
   font-size: 16px;
   font-weight: bold;
   transition: filter 0.17s ease-in-out;
-  cursor: pointer;
+  cursor: pointer; */
 }
-.InviteModal--link > button:hover {
+/* .InviteModal--link > button:hover {
   filter: brightness(90%);
 }
 .InviteModal--link > button:active {
   filter: brightness(80%);
-}
+} */
 
 .InviteModal--search {
   width: 100%;
@@ -278,27 +278,27 @@
 
 .InviteModal--user > button {
   margin-left: auto;
-  background: transparent linear-gradient(75deg, #009dff 0%, #5abefc 100%) 0% 0%
-    no-repeat padding-box;
-  padding: 6px 14px;
-  height: 35px;
-  border: none;
+  /* background: transparent linear-gradient(75deg, #009dff 0%, #5abefc 100%) 0% 0%
+    no-repeat padding-box; */
+  /* padding: 6px 14px; */
+  /* height: 35px; */
+  /* border: none;
   outline: none;
   border-radius: 10px;
   color: #fff;
   box-shadow: 0px 3px 6px #00000029;
-  text-shadow: 0px 3px 6px #00000029;
-  font-size: 16px;
-  font-weight: bold;
+  text-shadow: 0px 3px 6px #00000029; */
+  /* font-size: 16px; */
+  /* font-weight: bold;
   transition: filter 0.17s ease-in-out;
-  cursor: pointer;
+  cursor: pointer;  */
 }
-.InviteModal--user > button:hover {
+/* .InviteModal--user > button:hover {
   filter: brightness(90%);
 }
 .InviteModal--user > button:active {
   filter: brightness(80%);
-}
+}  */
 
 .InviteModal--noneFound {
   display: flex;

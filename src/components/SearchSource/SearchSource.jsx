@@ -11,6 +11,7 @@ import FacebookLogo from "../../assets/facebook-logo.png";
 import DailymotionLogo from "../../assets/dailymotion-logo.png";
 import TwitterLogo from "../../assets/twitter-logo.png";
 import SpotifyLogo from "../../assets/spotify-logo.png";
+import Button1 from "../Button1";
 import "./SearchSource.css";
 
 const sources = [
@@ -93,13 +94,17 @@ export default function SearchSource() {
             spellCheck={false}
           />
           <div>
-            <button
+            {/* <button
               type="button"
               className="button round"
               onClick={handleSubmit}
             >
+              dsds
               <i className="fas fa-search" />
-            </button>
+            </button> */}
+            <Button1>
+              <i className="fas fa-search" />
+            </Button1>
           </div>
         </div>
       </div>

@@ -77,11 +77,8 @@
   width: 100%;
   flex-grow: 1;
 }
-.ChannelCard1--container > .ChannelCard1--bottom > div > button {
-  /* box-shadow: 0px 3px 6px #00000029; */
-}
 
-.ChannelCard1--container > .ChannelCard1--bottom > div > button {
+/* .ChannelCard1--container > .ChannelCard1--bottom > div > button {
   box-shadow: 0px 1px 3px #00000029;
   text-shadow: 0px 1px 3px #00000029;
   background: transparent linear-gradient(68deg, #009dff 0%, #5abefc 100%) 0% 0%
@@ -102,4 +99,4 @@
 }
 .ChannelCard1--container > .ChannelCard1--bottom > div > button:active {
   filter: brightness(80%);
-}
+} */

@@ -1,6 +1,7 @@
 import React, { useState, useCallback } from "react";
 import { useDispatch } from "react-redux";
 import { openProfileModal } from "../../redux/actions";
+import Button1 from "../Button1";
 import "./InviteModal.css";
 
 const users = [
@@ -112,9 +113,12 @@ export default function InviteModal() {
             <p className="InviteModal--share">Copy and share this link:</p>
             <div className="InviteModal--link">
               <p>{url}</p>
-              <button type="button" onClick={copied ? undefined : handleCopy}>
+              <Button1 pill onClick={copied ? undefined : handleCopy}>
                 {copied ? "Copied!" : "Copy"}
-              </button>
+              </Button1>
+              {/* <button type="button" onClick={copied ? undefined : handleCopy}>
+                {copied ? "Copied!" : "Copy"}
+              </button> */}
             </div>
           </div>
         </div>
@@ -149,9 +153,10 @@ export default function InviteModal() {
                   <p>{user.username}</p>
                   <p>Slacking Slack</p>
                 </div>
-                <button type="button" className="button">
+                {/* <button type="button" className="button">
                   Add to Room
-                </button>
+                </button> */}
+                <Button1>Add to Room</Button1>
               </div>
             ))
           )}

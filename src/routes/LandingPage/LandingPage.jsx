@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React, { useEffect, useCallback } from "react";
 import { useDispatch } from "react-redux";
 import "./LandingPage.css";
 import { openCreateNewAccountModal } from "../../redux/actions";
@@ -10,6 +10,15 @@ export default function LandingPage() {
     () => dispatch(openCreateNewAccountModal()),
     [dispatch]
   );
+
+  useEffect(() => {
+    document.body.style.background =
+      "linear-gradient(123deg, #76fcff 0%, #f966f8 50%, #e8bba2 100%)";
+    return () => {
+      document.body.style.background = null;
+    };
+  }, []);
+
   return (
     <div className="LandingPage--container">
       <div>

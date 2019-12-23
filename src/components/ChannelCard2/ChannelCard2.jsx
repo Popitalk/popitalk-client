@@ -1,6 +1,7 @@
 import React from "react";
 import AvatarDeck from "../AvatarDeck";
 import YoutubeLogo from "../../assets/youtube-logo.png";
+import Button1 from "../Button1";
 import "./ChannelCard2.css";
 
 export default function ChannelCard2() {
@@ -48,7 +49,8 @@ export default function ChannelCard2() {
               ]}
               size="medium"
             />
-            <button type="button">Follow</button>
+            {/* <button type="button">Follow</button> */}
+            <Button1>Follow</Button1>
           </div>
         </div>
       </div>
