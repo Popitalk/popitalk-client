@@ -8,6 +8,7 @@
   /* margin-right: 20px; */
   padding-bottom: 45px;
   /* height: 400vh; */
+  position: relative;
 }
 .UpdateChannel--container > * {
   /* margin-right: 408px; */

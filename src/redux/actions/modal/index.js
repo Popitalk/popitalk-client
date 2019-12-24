@@ -14,7 +14,8 @@ import {
   MODAL_BLOCKED_USERS,
   MODAL_IMAGE,
   CLOSE_MODAL,
-  CLOSE_ALL_MODAL
+  CLOSE_ALL_MODAL,
+  MODAL_DELETE_MESSAGE
 } from "../../../helpers/constants";
 
 export const openCreateNewAccountModal = () => ({
@@ -80,6 +81,12 @@ export const openBlockedUsersModal = () => ({
   type: PUSH_MODAL,
   payload: {
     component: MODAL_BLOCKED_USERS
+  }
+});
+export const openDeleteMessageModal = () => ({
+  type: PUSH_MODAL,
+  payload: {
+    component: MODAL_DELETE_MESSAGE
   }
 });
 

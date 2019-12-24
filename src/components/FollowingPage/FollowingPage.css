@@ -79,7 +79,7 @@
 .FollowingPage--mainChannel--video > .FollowingPage--avatars {
   position: absolute;
   bottom: 22px;
-  right: 274px;
+  right: 18px;
   z-index: 2;
   -webkit-user-drag: none;
   user-select: none;

@@ -3,14 +3,27 @@ import "./AvatarDeck.css";
 
 export default function AvatarDeck({ avatars, size = "big" }) {
   let newSize = 48;
+  const length = avatars.length >= 8 ? 8 : avatars.length;
 
   if (size === "big") newSize = 44;
   else if (size === "medium") newSize = 31;
   else if (size === "small") newSize = 25;
 
   return (
-    <div className="AvatarDeck--container">
-      {avatars.slice(0, 8).map((avatar, index) => (
+    <div
+      className="AvatarDeck--container"
+      style={{
+        height: newSize,
+        width:
+          avatars.length > 8
+            ? (newSize * (17 - (length - 1) * 0.85) * (length - 1)) / 22 -
+              newSize * (17 - (length - 1) * 2.54) +
+              newSize
+            : (newSize * (17 - (length - 1) * 0.85) * (length - 1)) / 22 +
+              newSize
+      }}
+    >
+      {avatars.slice(0, length).map((avatar, index) => (
         <img
           key={index}
           src={avatar}
@@ -19,25 +32,26 @@ export default function AvatarDeck({ avatars, size = "big" }) {
           style={{
             height: newSize,
             width: newSize,
-            zIndex: avatars.length - index,
-            left: `${newSize * index - index * (newSize / 4 + index * 1.1)}px`
-            // left: `${index * ((small ? 16 : 20) - (index + 1) * 1.001)}px`
-            // opacity: 1 - (0.1 + index * 0.05)
-            // opacity: 1 - index * (small ? 0.04 : 0.08)
+            zIndex: length - index,
+            left: `${(newSize * (17 - index * 0.85) * index) / 22}px`
           }}
         ></img>
       ))}
-      <p
-        style={{
-          height: newSize,
-          width: newSize,
-          left: `${newSize * 8 - 8 * (newSize / 4 + 8 * 1.1) + 15}px`,
-          fontSize:
-            size === "big" ? "14px" : size === "medium" ? "12px" : "10px"
-        }}
-      >
-        +123
-      </p>
+      {avatars.length > 8 && (
+        <p
+          style={{
+            height: newSize,
+            width: newSize,
+            left: `${(newSize * (17 - (length - 1) * 0.85) * (length - 1)) /
+              22 -
+              newSize * (17 - (length - 1) * 2.54)}px`,
+            fontSize:
+              size === "big" ? "14px" : size === "medium" ? "12px" : "10px"
+          }}
+        >
+          +{avatars.length}4
+        </p>
+      )}
     </div>
   );
 }

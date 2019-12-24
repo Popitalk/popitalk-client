@@ -4,6 +4,7 @@ import Textarea2 from "../Textarea2";
 import Select from "../Select";
 import ToggleCheck from "../ToggleCheck";
 import ImageUpload from "../ImageUpload";
+import FormSubmitPopup from "../FormSubmitPopup";
 import "./CreateChannel.css";
 
 const options = ["x1", "y2", "z2", "x3", "y3", "z3"];
@@ -95,14 +96,8 @@ export default function CreateChannel() {
                 onChange={() => setPrivateGroup(!privateGroup)}
               />
             </div>
-            <button
-              type="button"
-              className="button pill lg"
-              onClick={handleSubmit}
-            >
-              Create
-            </button>
           </div>
+          <FormSubmitPopup />
         </div>
       </section>
     </div>

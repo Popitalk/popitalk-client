@@ -13,6 +13,7 @@ import EditUserSettingsModal from "../EditUserSettingsModal";
 import ChangePasswordModal from "../ChangePasswordModal";
 import BlockedUsersModal from "../BlockedUsersModal";
 import CreateNewAccountModal from "../CreateNewAccountModal";
+import DeleteMessageModal from "../DeleteMessageModal";
 import {
   MODAL_CREATE_NEW_ACCOUNT,
   MODAL_INVITE,
@@ -23,6 +24,7 @@ import {
   MODAL_EDIT_USER_SETTINGS,
   MODAL_CHANGE_PASSWORD,
   MODAL_BLOCKED_USERS,
+  MODAL_DELETE_MESSAGE,
   MODAL_IMAGE
 } from "../../helpers/constants";
 import "./ModalManager.css";
@@ -39,6 +41,7 @@ const ModalComponents = {
   [MODAL_EDIT_USER_SETTINGS]: <EditUserSettingsModal />,
   [MODAL_CHANGE_PASSWORD]: <ChangePasswordModal />,
   [MODAL_BLOCKED_USERS]: <BlockedUsersModal />,
+  [MODAL_DELETE_MESSAGE]: <DeleteMessageModal />,
   [MODAL_IMAGE]: <ImageModal />
 };
 

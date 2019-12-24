@@ -14,6 +14,7 @@
   /* margin-left: 154px; */
   /* padding-right: 408px; */
   /* padding-left: 154px; */
+  /* position: relative; */
 }
 
 .CreateChannel--top {
@@ -30,6 +31,7 @@
 .CreateChannel--header {
   padding: 50px 0 50px 0;
   padding: 100px 0 50px 0;
+  padding: 35px 0 50px 0;
   max-width: 840px;
 }
 
@@ -74,6 +76,7 @@
   /* margin-right: 408px; */
   /* margin-left: 154px; */
   flex-grow: 1;
+  /* position: relative; */
 }
 
 .CreateChannel--icon {
@@ -84,17 +87,7 @@
   flex-direction: column;
   width: 100%;
 }
-.CreateChannel--inputs > button {
-  width: 191px;
-  height: 50px;
-  margin: 0 auto;
-  font-size: 26px;
-  position: absolute;
-  z-index: 10;
-  top: 110px;
-  right: 20px;
-  padding: 0 !important;
-}
+
 .CreateChannel--inputs > *:not(:last-child) {
   margin-bottom: 15px;
 }

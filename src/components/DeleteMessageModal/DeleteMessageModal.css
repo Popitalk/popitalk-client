@@ -1,0 +1,135 @@
+.DeleteMessageModal--container {
+  background-color: #ffffff;
+  min-width: 495px;
+  box-shadow: 0px 3px 6px #00000053;
+  border-radius: 20px;
+  padding: 30px 30px 22px 40px;
+}
+
+.DeleteMessageModal--container > h4 {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 12px;
+}
+
+.DeleteMessageModal--container > p {
+  font-size: 18px;
+  font-weight: 400;
+  margin-bottom: 28px;
+}
+
+.DeleteMessageModal--buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+}
+.DeleteMessageModal--buttons > * {
+  font-size: 17px;
+  font-weight: bold;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  user-select: none;
+}
+
+.DeleteMessageModal--buttons > *:first-child {
+  background-color: transparent;
+  color: #272727;
+  text-shadow: 0px 3px 6px #00000029;
+  margin-right: 22px;
+}
+
+.DeleteMessageModal--buttons > *:first-child:hover {
+  text-decoration: underline;
+}
+
+.DeleteMessageModal--buttons > *:first-child:active {
+  transform: translateY(1px);
+}
+
+.DeleteMessageModal--buttons > *:last-child {
+  background-color: #ff4040;
+  color: #fff;
+  box-shadow: 0px 3px 6px #00000029;
+  text-shadow: 0px 3px 6px #00000029;
+  border-radius: 23px;
+  width: 103px;
+  height: 40px;
+  transition: filter 0.17s ease-in-out;
+}
+
+.DeleteMessageModal--buttons > *:last-child:hover {
+  filter: brightness(90%);
+}
+
+.DeleteMessageModal--buttons > *:last-child:active {
+  filter: brightness(80%);
+}
+
+.DeleteMessageModal--message {
+  display: grid;
+  grid-template-areas:
+    "avatar   nameDate"
+    "edge     message";
+  grid-template-columns: 36px 1fr;
+  grid-template-rows: 36px 1fr;
+  margin-bottom: 25px;
+  width: 100%;
+}
+
+.DeleteMessageModal--message > img {
+  grid-area: avatar;
+  height: 36px;
+  width: 36px;
+  border-radius: 50%;
+  box-shadow: 0px 3px 6px #00000029;
+  -webkit-user-drag: none;
+  user-select: none;
+}
+
+.DeleteMessageModal--message--nameDate {
+  grid-area: nameDate;
+  font-size: 18px;
+  font-weight: 500;
+  margin-left: 15px;
+  align-self: center;
+}
+
+.DeleteMessageModal--message--nameDate > span {
+  color: #868686;
+  font-size: 13px;
+  font-weight: 500;
+  margin-left: 4px;
+}
+
+.DeleteMessageModal--message--edge {
+  grid-area: edge;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-top: 6px;
+}
+
+.DeleteMessageModal--message--edge > div {
+  background-color: #cbcbcb;
+  border-radius: 10px;
+  width: 5px;
+  height: 100%;
+}
+.DeleteMessageModal--message--message {
+  grid-area: message;
+  margin-left: 15px;
+  /* margin-left: 20px; */
+  padding-top: 6px;
+  padding-bottom: 6px;
+}
+.DeleteMessageModal--message--message > p {
+  font-size: 18px;
+  font-weight: 400;
+}
+
+.DeleteMessageModal--myMessage > div {
+  background-color: #1da4fe;
+}
