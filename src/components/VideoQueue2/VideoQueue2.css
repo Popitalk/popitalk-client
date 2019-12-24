@@ -170,7 +170,7 @@
   font-weight: 500;
 }
 
-.VideoQueue2--editQueue > a {
+.VideoQueue2--editQueue > .VideoQueue2--editQueue--button {
   width: 70px;
   height: 70px;
   position: absolute;

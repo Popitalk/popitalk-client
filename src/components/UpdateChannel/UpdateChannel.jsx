@@ -35,14 +35,6 @@ export default function UpdateChannel() {
 
   return (
     <div className="UpdateChannel--container">
-      <div className="UpdateChannel--top" />
-      {/* <div className="UpdateChannel--header">
-        <h1>Create a Channel</h1>
-        <h2>
-          Create a channel to broadcast scheduled videos and create you own
-          community on Playnows! To get started choose a Channel category.
-        </h2>
-      </div> */}
       <div className="UpdateChannel--main">
         <div className="UpdateChannel--icon">
           <ImageUpload
@@ -93,8 +85,8 @@ export default function UpdateChannel() {
           <button type="button" className="button pill" onClick={handleSubmit}>
             Delete Channel
           </button>
-          <FormSubmitPopup />
         </div>
+        <FormSubmitPopup type="edit" />
       </div>
     </div>
   );

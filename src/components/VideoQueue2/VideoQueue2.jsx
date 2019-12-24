@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useScroll } from "react-use";
 import VideoCard2 from "../VideoCard2";
-import { Link, useRouteMatch } from "react-router-dom";
+import { Link, useRouteMatch, useLocation } from "react-router-dom";
 import YoutubeLogo from "../../assets/youtube-logo.png";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import "./VideoQueue2.css";
@@ -75,6 +75,16 @@ export default function VideoQueue2({ changeQueue }) {
   // const { x } = useScroll(scrollRef);
   const match = useRouteMatch();
   const [items, setItems] = useState(videos);
+  const [roomPage, setRoomPage] = useState(false);
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.pathname.startsWith("/rooms")) {
+      setRoomPage(true);
+    } else {
+      setRoomPage(false);
+    }
+  }, [location]);
 
   const onDragEnd = result => {
     if (!result.destination) {
@@ -88,6 +98,16 @@ export default function VideoQueue2({ changeQueue }) {
     );
 
     setItems(newItems);
+  };
+
+  const handleAddVideo = () => {
+    console.log("HKHKDSDS");
+    // window.scrollTo({
+    //   top: "120px",
+    //   behavior: "smooth"
+    // });
+    // window.scrollTo(0, window.document.body.scrollHeight);
+    window.scrollY(120);
   };
 
   return (
@@ -135,19 +155,30 @@ export default function VideoQueue2({ changeQueue }) {
                             className="VideoQueue2--editQueue"
                           >
                             <div className="VideoQueue2--editQueue--top">
-                              <p>Edit queue</p>
+                              <p>{roomPage ? "Add video" : "Edit queue"}</p>
                             </div>
                             <div className="VideoQueue2--editQueue--bottom">
                               <h6>Some Video</h6>
                               <p>Playnows | 50k users. Something New</p>
                             </div>
-                            <Link
-                              to={`${match.url.replace("video", "")}queue`}
-                              type="button"
-                              className="button"
-                            >
-                              <i className="fas fa-plus fa-2x" />
-                            </Link>
+                            {roomPage ? (
+                              <div
+                                role="button"
+                                type="button"
+                                onClick={handleAddVideo}
+                                className="button VideoQueue2--editQueue--button"
+                              >
+                                <i className="fas fa-plus fa-2x" />
+                              </div>
+                            ) : (
+                              <Link
+                                to={`${match.url.replace("video", "")}queue`}
+                                type="button"
+                                className="button VideoQueue2--editQueue--button"
+                              >
+                                <i className="fas fa-plus fa-2x" />
+                              </Link>
+                            )}
                           </div>
                         );
                       return (

@@ -41,7 +41,7 @@ export default function CreateChannel() {
           <h1>Create a Channel</h1>
           <h2>
             Create a channel to broadcast scheduled videos and create you own
-            community on Playnows! To get started choose a Channel category.
+            community on Playnows!
           </h2>
         </div>
         <div className="CreateChannel--main">
@@ -80,7 +80,7 @@ export default function CreateChannel() {
                 if (!s) setCategories([]);
                 else setCategories(s.map(val => val.value));
               }}
-              maxOptions={2}
+              maxOptions={5}
             />
             <div className="CreateChannel--private">
               <i className="fas fa-lock fa-lg" />
@@ -97,7 +97,7 @@ export default function CreateChannel() {
               />
             </div>
           </div>
-          <FormSubmitPopup />
+          <FormSubmitPopup type="create" />
         </div>
       </section>
     </div>

@@ -2,8 +2,7 @@ import React from "react";
 import "./FormSubmitPopup.css";
 
 export default function FormSubmitPopup({
-  header,
-  type,
+  type = "create",
   name,
   value,
   placeholder,
@@ -17,13 +16,19 @@ export default function FormSubmitPopup({
 }) {
   return (
     <div className="FormSubmitPopup--container">
-      <p>Ready to make your own channel?</p>
+      <p>
+        {type === "create"
+          ? "Ready to make your own channel?"
+          : "Remember to save your changes"}
+      </p>
       <div>
-        <button type="button" className="FormSubmitPopup--reset">
-          Reset
-        </button>
+        {type === "edit" && (
+          <button type="button" className="FormSubmitPopup--reset">
+            Reset
+          </button>
+        )}
         <button type="submit" className="FormSubmitPopup--submit">
-          Create
+          {type === "create" ? "Create" : "Save"}
         </button>
       </div>
     </div>

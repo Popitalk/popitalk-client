@@ -51,9 +51,9 @@ export default function RoomMain() {
           <img src="https://i.imgur.com/tLljw1z.jpg" alt="room icon" />
           <h3>Team Playnow</h3>
           <i className="fas fa-pen fa-lg" />
-          <p onClick={openFollowersModalDispatcher}>120 People</p>
+          {/* <p onClick={openFollowersModalDispatcher}>120 People</p> */}
         </div>
-        <div className="RoomMain--nav">
+        {/* <div className="RoomMain--nav">
           <Link
             to={`${match.url}/video`}
             className={`${
@@ -76,17 +76,18 @@ export default function RoomMain() {
             <h4>Queue</h4>
             <div className="RoomMain--nav--slab" />
           </Link>
-        </div>
+        </div> */}
       </div>
       <section ref={scrollRef}>
-        <Switch>
+        <VideoPanel />
+        {/* <Switch>
           <Route exact path={`${match.path}/video`}>
             <VideoPanel />
           </Route>
           <Route path={`${match.path}/queue`}>
             <UpdateQueue />
           </Route>
-        </Switch>
+        </Switch> */}
       </section>
     </div>
   );

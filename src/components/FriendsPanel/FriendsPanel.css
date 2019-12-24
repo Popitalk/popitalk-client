@@ -206,7 +206,7 @@
   /* background-color: #57b7ff; */
   /* box-shadow: 0px 3px 6px #00000029; */
   box-shadow: 0px 1px 3px #00000029;
-  text-shadow: 0px 1px 3px #00000029;
+  /* text-shadow: 0px 1px 3px #00000029; */
   background: transparent linear-gradient(68deg, #009dff 0%, #5abefc 100%) 0% 0%
     no-repeat padding-box;
   border: none;

@@ -36,7 +36,6 @@
 .DeleteMessageModal--buttons > *:first-child {
   background-color: transparent;
   color: #272727;
-  text-shadow: 0px 3px 6px #00000029;
   margin-right: 22px;
 }
 
@@ -52,7 +51,7 @@
   background-color: #ff4040;
   color: #fff;
   box-shadow: 0px 3px 6px #00000029;
-  text-shadow: 0px 3px 6px #00000029;
+  /* text-shadow: 0px 3px 6px #00000029; */
   border-radius: 23px;
   width: 103px;
   height: 40px;

@@ -45,7 +45,7 @@
   transition: box-shadow 0.05s ease-in-out;
 }
 .ChannelCard3--middle:hover {
-  box-shadow: 0px 3px 6px #00000080;
+  box-shadow: 0px 3px 6px #00000065;
 }
 
 .ChannelCard3--middle > .ChannelCard3--channelImage {
@@ -131,4 +131,17 @@
   flex-direction: row;
   justify-content: flex-end;
   align-items: flex-start;
+}
+
+.FollowingPage--videoCards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  column-gap: 15px;
+  width: 100%;
+}
+.FollowingPage--videoCards > * {
+  width: 100%;
+}
+.FollowingPage--videoCards > * > * {
+  width: 100%;
 }

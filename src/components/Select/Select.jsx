@@ -28,7 +28,11 @@ export default function Select({
       <CreatableSelect
         isMulti={isMulti}
         isClearable={isClearable}
-        isSearchable={isSearchable}
+        isSearchable={
+          isMulti
+            ? isSearchable && (!value || (value && value.length < maxOptions))
+            : isSearchable
+        }
         name={name}
         value={
           value
@@ -55,7 +59,7 @@ export default function Select({
         placeholder={placeholder}
         isLoading={loading}
         isValidNewOption={(inputValue, selectValue, selectOptions) => {
-          if (inputValue.length < 3) return false;
+          if (inputValue.length < 2) return false;
           if (inputValue.length > 10) return false;
           if (value) {
             if (value.length >= maxOptions) return false;

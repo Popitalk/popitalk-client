@@ -145,7 +145,7 @@
   margin-bottom: 4px;
 }
 
-.ChatMessages--messageGroup > .ChatMessages--messages i {
+/* .ChatMessages--messageGroup > .ChatMessages--messages i {
   display: none;
   color: #cbcbcb;
   cursor: pointer;
@@ -155,7 +155,7 @@
 }
 .ChatMessages--messageGroup > .ChatMessages--messages i:active {
   transform: translateY(1px);
-}
+} */
 
 .ChatMessages--messageGroup > .ChatMessages--messages > * {
   display: flex;
@@ -168,7 +168,22 @@
   width: 315px;
 }
 
-.ChatMessages--messageGroup > .ChatMessages--messages > *:hover i {
+.ChatMessages--messageGroup
+  > .ChatMessages--messages
+  > .ChatMessages--message
+  .ChatMessageMenu--container {
+  display: none;
+}
+.ChatMessages--messageGroup
+  > .ChatMessages--messages
+  > .ChatMessages--message:hover
+  .ChatMessageMenu--container {
+  display: block;
+}
+.ChatMessages--messageGroup
+  > .ChatMessages--messages
+  > .ChatMessages--message
+  .ChatMessageMenu--open {
   display: block;
 }
 
@@ -180,29 +195,27 @@
   position: relative;
 }
 .ChatMessages--seenUsers {
-  position: absolute;
-  bottom: -30px;
-  right: 24px;
-  width: 100%;
+  /* position: absolute; */
+  /* bottom: -30px; */
+  /* right: 24px; */
+  /* width: 100%; */
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
   align-items: center;
+  position: relative;
+  right: 20px;
+  top: 10px;
+  margin-top: 20px;
+  /* margin-right: 20px; */
   /* padding-bottom: 20px; */
 }
 .ChatMessages--seenUsers > *:not(:last-child) {
-  margin-right: 2px;
-}
-.ChatMessages--seenUsers > img {
-  width: 18px;
-  height: 18px;
-  border-radius: 50%;
-  -webkit-user-drag: none;
-  user-select: none;
+  /* margin-right: 2px; */
 }
 
 .ChatMessages--container:hover .ChatMessages--seenUsers {
-  right: 0px;
+  /* right: 0px; */
 }
 
 .ChatMessages--userImage {
@@ -220,4 +233,14 @@
 }
 .ChatMessages--userImage:active {
   filter: brightness(80%);
+}
+
+.ChatMessages--seen {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  /* margin-top: -20px; */
+  padding-bottom: 10px;
+  /* background-color: red; */
 }

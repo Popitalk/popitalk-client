@@ -21,6 +21,7 @@
 .VideoCard2--top > .VideoCard2--videoImage {
   height: 100%;
   width: 230px;
+  width: 100%;
   object-fit: cover;
   border-top-left-radius: 15px;
   border-top-right-radius: 15px;

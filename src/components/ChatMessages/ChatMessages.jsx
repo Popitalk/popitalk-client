@@ -3,6 +3,8 @@ import React, { useCallback } from "react";
 import { useDispatch } from "react-redux";
 import { openProfileModal, openImageModal } from "../../redux/actions";
 import messagesFormatter from "../../util/messagesFormatter";
+import ChatMessageMenu from "../ChatMessageMenu";
+import AvatarDeck from "../AvatarDeck";
 
 import "./ChatMessages.css";
 
@@ -216,18 +218,12 @@ export default function ChatMessages() {
                         />
                       )}
 
-                      <i
-                        role="button"
-                        className="fas fa-ellipsis-v fa-sm"
-                        onClick={() => handleDelete(message.id)}
-                      />
-                      {message.id === lastMessageId && (
+                      <ChatMessageMenu />
+                      {/* {message.id === lastMessageId && (
                         <div className="ChatMessages--seenUsers">
-                          {seenUsers.map(user => (
-                            <img src={user} alt="avatar" key={user} />
-                          ))}
+                          <AvatarDeck size="small" avatars={seenUsers} />
                         </div>
-                      )}
+                      )} */}
                     </div>
                   ) : (
                     <div key={message.id} className="ChatMessages--message">
@@ -241,11 +237,7 @@ export default function ChatMessages() {
                           onClick={openImageModalDispatcher}
                         />
                       )}
-                      <i
-                        role="button"
-                        className="fas fa-ellipsis-v fa-sm"
-                        onClick={() => handleDelete(message.id)}
-                      />
+                      <ChatMessageMenu />
                     </div>
                   )
                 )}
@@ -254,6 +246,9 @@ export default function ChatMessages() {
           ))}
         </div>
       ))}
+      <div className="ChatMessages--seen">
+        <AvatarDeck size="small" avatars={seenUsers} />
+      </div>
     </div>
   );
 }

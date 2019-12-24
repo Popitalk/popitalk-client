@@ -6,7 +6,10 @@ import "./HeaderFriends.css";
 function HeaderFriends() {
   const [open, setOpen] = useState(false);
   const toggle = () => setOpen(!open);
-  HeaderFriends.handleClickOutside = () => setOpen(false);
+  HeaderFriends.handleClickOutside = () => {
+    console.log("000");
+    setOpen(false);
+  };
 
   return (
     <div className="HeaderFriends--container">
