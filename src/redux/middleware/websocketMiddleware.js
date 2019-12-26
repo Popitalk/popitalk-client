@@ -1,4 +1,4 @@
-import { SET_SOMETHING } from "../../helpers/constants";
+import { SET_API } from "../../helpers/constants";
 
 const websocketMiddleware = () => store => next => action => {
   next(action);
