@@ -1,9 +1,19 @@
 import React from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { Formik } from "formik";
 import * as Yup from "yup";
+import { register } from "../../redux/actions";
 import Input7 from "../Input7";
 import Select from "../Select";
 import "./CreateNewAccountModal.css";
+
+const Spinner = () => (
+  <div className="CreateNewAccountModal--spinner">
+    <div className="CreateNewAccountModal--spinner--ball">
+      <div></div>
+    </div>
+  </div>
+);
 
 const currentYear = new Date().getFullYear();
 
@@ -27,6 +37,12 @@ const months = [
 ];
 const years = new Array(100).fill(0).map((_, index) => currentYear - index);
 export default function CreateNewAccountModal() {
+  const {
+    registrationApiLoading: apiLoading,
+    registrationApiError: apiError
+  } = useSelector(state => state.apiState);
+  const dispatch = useDispatch();
+
   return (
     <div className="CreateNewAccountModal--container">
       <div className="CreateNewAccountModal--header">
@@ -40,7 +56,7 @@ export default function CreateNewAccountModal() {
           email: "",
           username: "",
           password: "",
-          date: new Date()
+          dateOfBirth: new Date()
         }}
         validationSchema={Yup.object({
           firstName: Yup.string()
@@ -58,7 +74,7 @@ export default function CreateNewAccountModal() {
             .min(2, "Username is too short.")
             .max(32, "Username is too long.")
             .required("Username is required."),
-          date: Yup.date()
+          dateOfBirth: Yup.date()
             .max(
               thirteenYearsAgo,
               "You can't use Playnow if you are younger than 13"
@@ -78,8 +94,9 @@ export default function CreateNewAccountModal() {
             .required("New Password is required.")
         })}
         onSubmit={(values, { setSubmitting, resetForm }) => {
-          alert(JSON.stringify(values, null, 2));
-          setSubmitting(true);
+          // alert(JSON.stringify(values, null, 2));
+          // setSubmitting(true);
+          dispatch(register(values));
         }}
       >
         {({
@@ -100,20 +117,17 @@ export default function CreateNewAccountModal() {
                 header="First Name"
                 name="firstName"
                 type="text"
-                disabled={isSubmitting}
+                disabled={apiLoading}
                 onChange={handleChange}
                 onBlur={handleBlur}
                 value={values.firstName}
                 error={touched.firstName && errors.firstName}
-                onKeyDown={() => {
-                  console.log("VALUES", values);
-                }}
               />
               <Input7
                 header="Last Name"
                 name="lastName"
                 type="text"
-                disabled={isSubmitting}
+                disabled={apiLoading}
                 onChange={handleChange}
                 onBlur={handleBlur}
                 value={values.lastName}
@@ -125,27 +139,34 @@ export default function CreateNewAccountModal() {
               header="Email"
               name="email"
               type="email"
-              disabled={isSubmitting}
+              disabled={apiLoading}
               onChange={handleChange}
               onBlur={handleBlur}
               value={values.email}
-              error={touched.email && errors.email}
+              error={
+                (touched.email && errors.email) ||
+                (apiError === "Email already in use" && "Email already in use")
+              }
             />
             <Input7
               header="Username"
               name="username"
               type="text"
-              disabled={isSubmitting}
+              disabled={apiLoading}
               onChange={handleChange}
               onBlur={handleBlur}
               value={values.username}
-              error={touched.username && errors.username}
+              error={
+                (touched.username && errors.username) ||
+                (apiError === "Username already in use" &&
+                  "Username already in use")
+              }
             />
             <Input7
               header="Password"
               name="password"
               type="password"
-              disabled={isSubmitting}
+              disabled={apiLoading}
               onChange={handleChange}
               onBlur={handleBlur}
               value={values.password}
@@ -153,58 +174,58 @@ export default function CreateNewAccountModal() {
             />
             <div className="CreateNewAccountModal--form--row2">
               <h4>
-                Date of Birth <span>{errors.date}</span>
+                Date of Birth <span>{errors.dateOfBirth}</span>
               </h4>
               <div>
                 <Select
-                  name="date"
+                  name="dateOfBirth"
                   placeholder="Day"
                   options={days}
                   isMulti={false}
                   isClearable={false}
                   isSearchable={false}
                   onBlur={handleBlur}
-                  disabled={isSubmitting}
-                  value={values.date.getDate()}
+                  disabled={apiLoading}
+                  value={values.dateOfBirth.getDate()}
                   onChange={v => {
-                    values.date.setDate(v.value);
-                    setFieldValue("date", values.date);
+                    values.dateOfBirth.setDate(v.value);
+                    setFieldValue("dateOfBirth", values.dateOfBirth);
                   }}
                 />
                 <Select
-                  name="date"
+                  name="dateOfBirth"
                   placeholder="Month"
                   options={months}
                   isMulti={false}
                   isClearable={false}
                   isSearchable={false}
                   onBlur={handleBlur}
-                  disabled={isSubmitting}
-                  value={months[values.date.getMonth()]}
+                  disabled={apiLoading}
+                  value={months[values.dateOfBirth.getMonth()]}
                   onChange={v => {
-                    values.date.setMonth(months.indexOf(v.value));
-                    setFieldValue("date", values.date);
+                    values.dateOfBirth.setMonth(months.indexOf(v.value));
+                    setFieldValue("dateOfBirth", values.dateOfBirth);
                   }}
                 />
                 <Select
-                  name="date"
+                  name="dateOfBirth"
                   placeholder="Year"
                   options={years}
                   isMulti={false}
                   isClearable={false}
                   isSearchable={false}
                   onBlur={handleBlur}
-                  disabled={isSubmitting}
-                  value={values.date.getFullYear()}
+                  disabled={apiLoading}
+                  value={values.dateOfBirth.getFullYear()}
                   onChange={v => {
-                    values.date.setFullYear(v.value);
-                    setFieldValue("date", values.date);
+                    values.dateOfBirth.setFullYear(v.value);
+                    setFieldValue("dateOfBirth", values.dateOfBirth);
                   }}
                 />
               </div>
             </div>
-            <button type="submit" disabled={isSubmitting || !isValid || !dirty}>
-              Continue
+            <button type="submit" disabled={apiLoading || !isValid || !dirty}>
+              {apiLoading ? <Spinner /> : "Continue"}
             </button>
           </form>
         )}

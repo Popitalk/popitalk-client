@@ -2,15 +2,16 @@ import { combineReducers, createStore, applyMiddleware, compose } from "redux";
 import { createBrowserHistory } from "history";
 import { connectRouter, routerMiddleware } from "connected-react-router";
 import thunk from "redux-thunk";
-import { modalReducer, apiReducer, wsReducer } from "./reducers";
-import { websocketMiddleware, localstorageMiddleware } from "./middleware";
+import { modalReducer, apiReducer, wsReducer, userReducer } from "./reducers";
+import { localstorageMiddleware } from "./middleware";
 
 const rootReducer = history =>
   combineReducers({
     router: connectRouter(history),
     modalState: modalReducer,
     apiState: apiReducer,
-    wsState: wsReducer
+    wsState: wsReducer,
+    userState: userReducer
   });
 
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
@@ -23,15 +24,15 @@ const middleware =
         require("redux-immutable-state-invariant").default(),
         thunk,
         localstorageMiddleware(),
-        websocketMiddleware("ws://localhost:4000/ws"),
+        // websocketMiddleware("ws://localhost:4000/ws"),
         routerMiddleware(history)
       ]
     : [
         thunk,
         localstorageMiddleware(),
-        websocketMiddleware(
-          `wss://${window.location.hostname}:${window.location.port}/ws/`
-        ),
+        // websocketMiddleware(
+        //   `wss://${window.location.hostname}:${window.location.port}/ws/`
+        // ),
         routerMiddleware(history)
       ];
 

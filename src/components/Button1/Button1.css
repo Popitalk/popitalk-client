@@ -69,3 +69,16 @@
 .Button1--container:active {
   filter: brightness(80%);
 }
+
+.Button1--container:disabled {
+  background: none;
+  background-color: #d0d0d0;
+  cursor: not-allowed;
+}
+
+.Button1--container:disabled:hover {
+  filter: none;
+}
+.Button1--container:disabled:active {
+  filter: none;
+}

@@ -1,15 +1,17 @@
-import { SET_SOMETHING } from "../../helpers/constants";
+import { SET_API } from "../../helpers/constants";
 
 const initialState = {
   generalApiLoading: false,
   generalApiError: false,
   userApiLoading: false,
-  userApiError: false
+  userApiError: false,
+  registrationApiLoading: false,
+  registrationApiError: false
 };
 
 export default (state = initialState, { type, payload }) => {
   switch (type) {
-    case SET_SOMETHING:
+    case SET_API:
       return { ...state, ...payload };
 
     default:

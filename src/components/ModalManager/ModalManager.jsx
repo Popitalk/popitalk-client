@@ -69,6 +69,7 @@ export default function ModalManager() {
         className="ModalManager--wrapper"
         onMouseDown={e => {
           if (e.target !== e.currentTarget) return;
+          if (apiLoading) return;
           dispatch(closeAllModals());
         }}
       >

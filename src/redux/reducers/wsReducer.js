@@ -1,4 +1,4 @@
-import { SET_SOMETHING } from "../../helpers/constants";
+import { SET_API } from "../../helpers/constants";
 
 const initialState = {
   connected: null,
@@ -7,7 +7,7 @@ const initialState = {
 
 export default (state = initialState, { type, payload }) => {
   switch (type) {
-    case SET_SOMETHING:
+    case SET_API:
       return { ...state, ...payload };
 
     default:

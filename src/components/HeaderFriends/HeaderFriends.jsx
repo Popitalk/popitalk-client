@@ -7,7 +7,7 @@ function HeaderFriends() {
   const [open, setOpen] = useState(false);
   const toggle = () => setOpen(!open);
   HeaderFriends.handleClickOutside = () => {
-    console.log("000");
+    // console.log("000");
     setOpen(false);
   };
 

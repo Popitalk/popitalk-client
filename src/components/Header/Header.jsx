@@ -1,23 +1,37 @@
 /* eslint-disable jsx-a11y/no-noninteractive-tabindex */
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useLayoutEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { Link, useLocation } from "react-router-dom";
 import "./Header.css";
+import { login } from "../../redux/actions";
 import Input1 from "../Input1";
 import HeaderNotifications from "../HeaderNotifications";
 import HeaderFriends from "../HeaderFriends";
 import HeaderProfile from "../HeaderProfile";
 import HeaderSettings from "../HeaderSettings";
 import Logo from "../../assets/logo.png";
+import Button1 from "../Button1";
 
-const loggedIn = true;
+const Spinner = () => (
+  <div className="Header--spinner">
+    <div className="Header--spinner--ball">
+      <div></div>
+    </div>
+  </div>
+);
 
 export default function Header() {
+  const loggedIn = useSelector(({ userState }) => Boolean(userState.id));
+  const { userApiLoading: apiLoading, userApiError: apiError } = useSelector(
+    state => state.apiState
+  );
+  const dispatch = useDispatch();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [headerLandingPage, setHeaderLandingPage] = useState(false);
   const location = useLocation();
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (location.pathname.startsWith("/welcome")) {
       setHeaderLandingPage(true);
     } else {
@@ -25,9 +39,23 @@ export default function Header() {
     }
   }, [location]);
 
+  // useEffect(() => {
+  //   if (location.pathname.startsWith("/welcome")) {
+  //     setHeaderLandingPage(true);
+  //   } else {
+  //     setHeaderLandingPage(false);
+  //   }
+  // }, [location]);
+
   const handleLogin = () => {
     console.log("LOGGIN IN");
-    setUsername("");
+    dispatch(
+      login({
+        usernameOrEmail: username,
+        password: password
+      })
+    );
+    // setUsername("");
     setPassword("");
   };
 
@@ -43,24 +71,36 @@ export default function Header() {
       </Link>
       {!loggedIn && (
         <div className="Header--login">
-          <Input1
-            type="text"
-            header="Username or email"
-            value={username}
-            spellCheck={false}
-            onChange={e => setUsername(e.target.value)}
-          />
-          <Input1
-            type="password"
-            header="Password"
-            value={password}
-            spellCheck={false}
-            onChange={e => setPassword(e.target.value)}
-          />
+          <div className={apiError ? "Header--login--error" : ""}>
+            <p>{apiError ? apiError : "Username or email"}</p>
+            <input
+              name="username"
+              type="text"
+              value={username}
+              spellCheck={false}
+              onChange={e => setUsername(e.target.value)}
+              disabled={apiLoading}
+            />
+          </div>
+          <div className={apiError ? "Header--login--error" : ""}>
+            <p>Password</p>
+            <input
+              name="password"
+              type="password"
+              value={password}
+              spellCheck={false}
+              onChange={e => setPassword(e.target.value)}
+              disabled={apiLoading}
+            />
+          </div>
           <p>Forgot Password?</p>
-          <button type="button" className="button pill" onClick={handleLogin}>
-            Log in
-          </button>
+          <Button1
+            pill
+            onClick={handleLogin}
+            disabled={apiLoading ? true : false}
+          >
+            {apiLoading ? <Spinner /> : "Log in"}
+          </Button1>
         </div>
       )}
       {loggedIn && (
