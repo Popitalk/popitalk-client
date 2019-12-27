@@ -23,14 +23,15 @@ const validateSession = () => {
       }
       localStorage.setItem("siteVersion", SITE_VERSION);
 
-      const cachedUserState = JSON.parse(localStorage.getItem("userState"));
+      // const cachedUserState = JSON.parse(localStorage.getItem("userState"));
 
-      if (cachedUserState) {
-        dispatch({
-          type: SET_USER_INFO,
-          payload: cachedUserState
-        });
-      }
+      // if (cachedUserState) {
+      //   dispatch({
+      //     type: SET_USER_INFO,
+      //     payload: cachedUserState
+      //   });
+      // }
+
       const response = await api.validateSession();
       dispatch({
         type: SET_USER_INFO,

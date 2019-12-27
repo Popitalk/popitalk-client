@@ -7,6 +7,7 @@ import RoomPage from "../routes/RoomPage";
 import ChannelPage from "../routes/ChannelPage";
 import UserPage from "../routes/UserPage";
 import Header from "../components/Header";
+import LoadingPage from "../components/LoadingPage";
 import ModalManager from "../components/ModalManager";
 import { validateSession } from "../redux/actions";
 import "@fortawesome/fontawesome-free/css/all.css";
@@ -14,47 +15,55 @@ import "./fw.css";
 import "./App.css";
 
 export default function App() {
-  const { loggedIn } = useSelector(state => state.userState);
+  const { loggedIn, validatedSession } = useSelector(state => state.userState);
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(validateSession());
-  }, [dispatch]);
+  }, [dispatch, validatedSession]);
+
+  if (!validatedSession)
+    return (
+      <section className="App--container">
+        <LoadingPage />
+      </section>
+    );
 
   return (
     <section className="App--container">
       <ModalManager />
       <Header />
       <Switch>
+        {!loggedIn && (
+          <Route exact path="/welcome">
+            <LandingPage />
+          </Route>
+        )}
+        {loggedIn && (
+          <Route path="/rooms/:roomId">
+            <RoomPage />
+          </Route>
+        )}
+        {loggedIn && (
+          <Route path="/channels/">
+            <ChannelPage />
+          </Route>
+        )}
+        {loggedIn && (
+          <Route path="/users/">
+            <UserPage />
+          </Route>
+        )}
         <Route
-          exact
-          path="/welcome"
+          path="/"
           render={() =>
-            loggedIn ? <Redirect to="/channels/following" /> : <LandingPage />
+            loggedIn ? (
+              <Redirect to="/channels/following" />
+            ) : (
+              <Redirect to="/welcome" />
+            )
           }
         />
-        {loggedIn && (
-          <>
-            <Route path="/rooms/:roomId">
-              <RoomPage />
-            </Route>
-            <Route path="/channels/">
-              <ChannelPage />
-            </Route>
-            <Route path="/users/">
-              <UserPage />
-            </Route>
-          </>
-        )}
-
-        {loggedIn ? (
-          <Route
-            path="/"
-            render={() => <Redirect to="/channels/following" />}
-          />
-        ) : (
-          <Route path="/" render={() => <Redirect to="/welcome" />} />
-        )}
       </Switch>
     </section>
   );

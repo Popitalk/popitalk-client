@@ -3,6 +3,7 @@ import { SET_USER_INFO, USER_UPDATE, LOGOUT } from "../../helpers/constants";
 
 const initialState = {
   loggedIn: false,
+  validatedSession: false,
   id: null,
   firstName: "",
   lastName: "",
@@ -21,6 +22,7 @@ export default (state = initialState, { type, payload }) => {
       return {
         ...state,
         loggedIn: true,
+        validatedSession: true,
         id: payload.id,
         firstName: payload.firstName,
         lastName: payload.lastName,
@@ -48,7 +50,8 @@ export default (state = initialState, { type, payload }) => {
     case LOGOUT:
       return {
         ...state,
-        ...initialState
+        ...initialState,
+        validatedSession: true
       };
 
     default:

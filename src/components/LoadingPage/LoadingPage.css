@@ -1,0 +1,48 @@
+.LoadingPage--container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+}
+
+@keyframes LoadingPage--spinner--circle {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+.LoadingPage--spinner--circle div {
+  position: absolute;
+  width: 120px;
+  height: 120px;
+  border: 20px solid #ffffff;
+  border-top-color: transparent;
+  border-radius: 50%;
+}
+.LoadingPage--spinner--circle div {
+  animation: LoadingPage--spinner--circle 1s linear infinite;
+  top: 100px;
+  left: 100px;
+}
+.LoadingPage--spinner {
+  width: 200px;
+  height: 200px;
+  display: inline-block;
+  overflow: hidden;
+  background: transparent;
+}
+.LoadingPage--spinner--circle {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform: translateZ(0) scale(1);
+  backface-visibility: hidden;
+  transform-origin: 0 0; /* see note above */
+}
+.LoadingPage--spinner--circle div {
+  box-sizing: content-box;
+}
