@@ -68,7 +68,7 @@ export default function UserSettingsModal() {
           <p>{`${months[d.getMonth()]} ${d.getDate()}, ${d.getFullYear()}`}</p>
         </div>
         <div className="UserSettingsModal--info--email">
-          <p>abc@gmail</p>
+          <p>{email}</p>
           <i className="fas fa-check-circle" />
         </div>
         <p onClick={openEditUserSettingsModalDispatcher}>Edit</p>

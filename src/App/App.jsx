@@ -14,7 +14,7 @@ import "./fw.css";
 import "./App.css";
 
 export default function App() {
-  const loggedIn = useSelector(({ userState }) => Boolean(userState.id));
+  const { loggedIn } = useSelector(state => state.userState);
   const dispatch = useDispatch();
 
   useEffect(() => {

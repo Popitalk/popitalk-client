@@ -1,10 +1,14 @@
 import * as api from "../../../helpers/api";
-import { SET_USER_INFO, SITE_VERSION } from "../../../helpers/constants";
+import {
+  SET_USER_INFO,
+  SITE_VERSION,
+  LOGOUT
+} from "../../../helpers/constants";
 
 const validateSession = () => {
   return async dispatch => {
     try {
-      const cachedSiteVersion = JSON.parse(localStorage.getItem("siteVersion"));
+      const cachedSiteVersion = localStorage.getItem("siteVersion");
       if (cachedSiteVersion) {
         const siteVersionArr = SITE_VERSION.split(".");
         const cachedSiteVersionArr = cachedSiteVersion.split(".");
@@ -17,7 +21,7 @@ const validateSession = () => {
           localStorage.clear();
         }
       }
-      localStorage.setItem("siteVersion", JSON.stringify(SITE_VERSION));
+      localStorage.setItem("siteVersion", SITE_VERSION);
 
       const cachedUserState = JSON.parse(localStorage.getItem("userState"));
 
@@ -34,6 +38,7 @@ const validateSession = () => {
       });
     } catch (error) {
       localStorage.removeItem("userState");
+      dispatch({ type: LOGOUT });
     }
   };
 };

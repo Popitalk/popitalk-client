@@ -21,7 +21,7 @@ const Spinner = () => (
 );
 
 export default function Header() {
-  const loggedIn = useSelector(({ userState }) => Boolean(userState.id));
+  const { loggedIn } = useSelector(state => state.userState);
   const { userApiLoading: apiLoading, userApiError: apiError } = useSelector(
     state => state.apiState
   );
