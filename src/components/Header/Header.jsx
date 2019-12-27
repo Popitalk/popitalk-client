@@ -14,7 +14,7 @@ import Button1 from "../Button1";
 
 const Spinner = () => (
   <div className="Header--spinner">
-    <div className="Header--spinner--ball">
+    <div className="Header--spinner--circle">
       <div></div>
     </div>
   </div>
@@ -47,7 +47,7 @@ export default function Header() {
         password: password
       })
     );
-    // setUsername("");
+    setUsername("");
     setPassword("");
   };
 
@@ -64,7 +64,7 @@ export default function Header() {
       {!loggedIn && (
         <div className="Header--login">
           <div className={apiError ? "Header--login--error" : ""}>
-            <p>{apiError ? apiError : "Username or email"}</p>
+            <p>Username or email</p>
             <input
               name="username"
               type="text"
@@ -86,11 +86,7 @@ export default function Header() {
             />
           </div>
           <p>Forgot Password?</p>
-          <Button1
-            pill
-            onClick={handleLogin}
-            disabled={apiLoading ? true : false}
-          >
+          <Button1 pill onClick={handleLogin} disabled={apiLoading}>
             {apiLoading ? <Spinner /> : "Log in"}
           </Button1>
         </div>

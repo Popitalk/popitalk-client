@@ -2,7 +2,7 @@ import uuidv4 from "uuid/v4";
 import { SET_USER_INFO, USER_UPDATE, LOGOUT } from "../../helpers/constants";
 
 const initialState = {
-  loggedIn: true,
+  loggedIn: false,
   id: null,
   firstName: "",
   lastName: "",
@@ -20,6 +20,7 @@ export default (state = initialState, { type, payload }) => {
     case SET_USER_INFO:
       return {
         ...state,
+        loggedIn: true,
         id: payload.id,
         firstName: payload.firstName,
         lastName: payload.lastName,
@@ -47,8 +48,7 @@ export default (state = initialState, { type, payload }) => {
     case LOGOUT:
       return {
         ...state,
-        ...initialState,
-        loggedIn: false
+        ...initialState
       };
 
     default:

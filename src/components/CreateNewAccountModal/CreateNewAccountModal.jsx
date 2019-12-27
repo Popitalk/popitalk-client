@@ -9,7 +9,7 @@ import "./CreateNewAccountModal.css";
 
 const Spinner = () => (
   <div className="CreateNewAccountModal--spinner">
-    <div className="CreateNewAccountModal--spinner--ball">
+    <div className="CreateNewAccountModal--spinner--circle">
       <div></div>
     </div>
   </div>

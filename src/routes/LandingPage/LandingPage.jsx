@@ -14,6 +14,10 @@ export default function LandingPage() {
   useEffect(() => {
     document.body.style.background =
       "linear-gradient(123deg, #76fcff 0%, #f966f8 50%, #e8bba2 100%)";
+    document.body.style.backgroundSize = "400% 400%";
+    document.body.style.animation = "gradientBG 15s ease infinite";
+    // document.body.style.background =
+    //   "linear-gradient(123deg, #76fcff 0%, #f966f8 50%, #e8bba2 100%)";
     return () => {
       document.body.style.background = null;
     };
