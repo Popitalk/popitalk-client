@@ -3,12 +3,12 @@ import { SET_USER_INFO, USER_UPDATE, LOGOUT } from "../../helpers/constants";
 
 const initialState = {
   id: null,
-  firstName: null,
-  lastName: null,
-  username: null,
+  firstName: "",
+  lastName: "",
+  username: "",
   dateOfBirth: null,
   avatar: null,
-  email: null,
+  email: "",
   emailVerified: null,
   defaultAvatar: "https://i.imgur.com/7VbpwDl.png",
   updatedAvatar: null

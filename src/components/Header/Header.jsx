@@ -39,14 +39,6 @@ export default function Header() {
     }
   }, [location]);
 
-  // useEffect(() => {
-  //   if (location.pathname.startsWith("/welcome")) {
-  //     setHeaderLandingPage(true);
-  //   } else {
-  //     setHeaderLandingPage(false);
-  //   }
-  // }, [location]);
-
   const handleLogin = () => {
     console.log("LOGGIN IN");
     dispatch(

@@ -1,16 +1,13 @@
 import * as api from "../../../helpers/api";
 import { LOGOUT } from "../../../helpers/constants";
-import { closeModal } from "../modal";
+import { closeAllModals } from "../modal";
 
 const logout = () => {
   return async dispatch => {
     try {
-      localStorage.removeItem("userState");
       await api.logout();
-      dispatch({
-        type: LOGOUT
-      });
-      dispatch(closeModal());
+      dispatch({ type: LOGOUT });
+      dispatch(closeAllModals());
     } catch (error) {}
   };
 };

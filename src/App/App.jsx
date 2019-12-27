@@ -26,9 +26,13 @@ export default function App() {
       <ModalManager />
       <Header />
       <Switch>
-        <Route exact path="/welcome">
-          <LandingPage />
-        </Route>
+        <Route
+          exact
+          path="/welcome"
+          render={() =>
+            loggedIn ? <Redirect to="/channels/following" /> : <LandingPage />
+          }
+        />
         {loggedIn && (
           <>
             <Route path="/rooms/:roomId">

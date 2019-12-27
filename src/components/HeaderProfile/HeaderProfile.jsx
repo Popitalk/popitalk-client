@@ -1,10 +1,13 @@
 import React, { useCallback } from "react";
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { openProfileModal } from "../../redux/actions";
 import "./HeaderProfile.css";
 
 export default function HeaderProfile() {
   const dispatch = useDispatch();
+  const { username, avatar, defaultAvatar } = useSelector(
+    state => state.userState
+  );
   const openProfileModalDispatcher = useCallback(
     () => dispatch(openProfileModal()),
     [dispatch]
@@ -16,8 +19,8 @@ export default function HeaderProfile() {
       role="button"
       onClick={openProfileModalDispatcher}
     >
-      <h4>Playnows</h4>
-      <img src="https://i.imgur.com/aqjzchq.jpg" alt="avatar" />
+      <h4>{username}</h4>
+      <img src={avatar || defaultAvatar} alt="avatar" />
     </div>
   );
 }
