@@ -33,8 +33,9 @@ const registrationSchema = Yup.object().shape({
 });
 
 export default function CreateNewAccount({ modal }) {
-  const loading = useSelector(({ apiState }) => apiState.userApiLoading);
-  const error = useSelector(({ apiState }) => apiState.userApiError);
+  const { userApiLoading: loading, userApiError: error } = useSelector(
+    ({ apiState }) => apiState.userApiLoading
+  );
   const dispatch = useDispatch();
 
   return (

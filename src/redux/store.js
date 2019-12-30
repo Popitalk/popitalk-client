@@ -2,7 +2,13 @@ import { combineReducers, createStore, applyMiddleware, compose } from "redux";
 import { createBrowserHistory } from "history";
 import { connectRouter, routerMiddleware } from "connected-react-router";
 import thunk from "redux-thunk";
-import { modalReducer, apiReducer, wsReducer, userReducer } from "./reducers";
+import {
+  modalReducer,
+  apiReducer,
+  wsReducer,
+  userReducer,
+  userPageReducer
+} from "./reducers";
 import { localstorageMiddleware } from "./middleware";
 
 const rootReducer = history =>
@@ -11,7 +17,8 @@ const rootReducer = history =>
     modalState: modalReducer,
     apiState: apiReducer,
     wsState: wsReducer,
-    userState: userReducer
+    userState: userReducer,
+    userPageState: userPageReducer
   });
 
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

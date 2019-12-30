@@ -6,9 +6,6 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* position: relative; */
-  /* z-index: 1000; */
-  /* box-shadow: 0px -20px 20px #00000080; */
   box-shadow: 0px 3px 10px #38383880;
 }
 
@@ -22,13 +19,12 @@
   position: relative;
   padding-bottom: 100px;
   width: 100%;
-  /* background-color: yellow; */
 }
 .UserMain--container > section > * {
-  /* background-color: green; */
   display: flex;
   flex-direction: column;
   justify-content: center;
+  width: 1245px;
 }
 
 .UserMain--container > section > * > *:not(:last-child) {
@@ -44,36 +40,18 @@
   background: #ff0000;
 }
 
-.UserMain--header {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  border-bottom: 1px solid #d0d0d0;
-  padding: 20px 16px;
-}
-.UserMain--header > h2 {
-  font-size: 30px;
-  font-weight: 600;
-  user-select: none;
-}
-
 .UserMain--container > section > * > .UserMain--user {
   display: flex;
   flex-direction: row;
   align-items: center;
-  /* padding: 0px 100px; */
-  /* padding: 0px 100px; */
   padding: 0 100px;
-  /* padding: 0px 50px; */
   margin: 100px 0;
   margin-right: auto;
-  /* background-color: black; */
 }
-.UserMain--user > img {
+
+.UserMain--user > *:first-child {
   height: 200px;
   width: 200px;
-  /* margin-right: 35px; */
   margin-right: 100px;
   border-radius: 50%;
   -webkit-user-drag: none;
@@ -86,7 +64,6 @@
   justify-content: space-between;
 }
 .UserMain--user > .UserMain--user--nameStats > *:first-child {
-  /* margin-bottom: 25px; */
   margin-bottom: 35px;
 }
 
@@ -105,19 +82,15 @@
   > h3 {
   font-size: 40px;
   font-weight: 500;
-  /* margin-bottom: 4px; */
 }
 .UserMain--user
   > .UserMain--user--nameStats
   > *:first-child
   > *:first-child
   > button {
-  /* margin-top: auto; */
   margin-left: 30px;
-  /* margin-bottom: auto; */
   box-shadow: 0px 3px 6px #00000029;
   height: 40px;
-  /* height: 35px; */
 }
 
 .UserMain--user > .UserMain--user--nameStats > *:first-child > p {
@@ -146,12 +119,10 @@
 
 .UserMain--channels {
   padding: 0 50px;
-  /* padding: 25px 50px; */
 }
 .UserMain--channels > h3 {
   font-size: 26px;
   font-weight: 600;
-  /* margin-bottom: 20px; */
   margin-bottom: 25px;
 }
 
@@ -159,4 +130,25 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 15px;
+}
+
+.UserMain--notFound {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.UserMain--notFound > h3 {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 20px !important;
+  color: gray;
+}
+.UserMain--notFound > h4 {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 0;
+  color: gray;
 }

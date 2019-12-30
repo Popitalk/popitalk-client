@@ -6,7 +6,9 @@ const initialState = {
   userApiLoading: false,
   userApiError: false,
   registrationApiLoading: false,
-  registrationApiError: false
+  registrationApiError: false,
+  userPageApiLoading: true,
+  userPageApiError: false
 };
 
 export default (state = initialState, { type, payload }) => {

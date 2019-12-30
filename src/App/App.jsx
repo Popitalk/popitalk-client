@@ -20,7 +20,7 @@ export default function App() {
 
   useEffect(() => {
     dispatch(validateSession());
-  }, [dispatch, validatedSession]);
+  }, [dispatch]);
 
   if (!validatedSession)
     return (
@@ -50,7 +50,7 @@ export default function App() {
           </Route>
         )}
         {loggedIn && (
-          <Route path="/users/">
+          <Route path="/users/:userId">
             <UserPage />
           </Route>
         )}

@@ -70,3 +70,27 @@ export const registrationApiError = error => ({
     registrationApiError: error || true
   }
 });
+
+export const userPageApiLoading = () => ({
+  type: SET_API,
+  payload: {
+    userPageApiLoading: true,
+    userPageApiError: false
+  }
+});
+
+export const userPageApiSuccess = () => ({
+  type: SET_API,
+  payload: {
+    userPageApiLoading: false,
+    userPageApiError: false
+  }
+});
+
+export const userPageApiError = error => ({
+  type: SET_API,
+  payload: {
+    userPageApiLoading: false,
+    userPageApiError: error || true
+  }
+});
