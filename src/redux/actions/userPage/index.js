@@ -17,13 +17,7 @@ export const getUserInfo = userId => {
       });
       dispatch(userPageApiSuccess());
     } catch (error) {
-      // console.log("LOL", error.response);
       dispatch(userPageApiError());
-      // if (error.response) {
-      //   dispatch(userPageApiError(error.response.data.message));
-      // } else {
-      //   dispatch(userPageApiError(`No user with the id of ${userId} found`));
-      // }
     }
   };
 };

@@ -8,7 +8,9 @@ const initialState = {
   registrationApiLoading: false,
   registrationApiError: false,
   userPageApiLoading: true,
-  userPageApiError: false
+  userPageApiError: false,
+  userSearchApiLoading: false,
+  userSearchApiError: false
 };
 
 export default (state = initialState, { type, payload }) => {

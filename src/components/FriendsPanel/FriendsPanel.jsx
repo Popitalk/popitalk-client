@@ -1,61 +1,12 @@
 import React, { useState, useEffect, useRef } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { useScroll } from "react-use";
 import onClickOutside from "react-onclickoutside";
 import ReactTooltip from "react-tooltip";
+import { searchUsers, clearUserSearch } from "../../redux/actions";
 import RoomIcon2 from "../RoomIcon2";
 import Button1 from "../Button1";
 import "./FriendsPanel.css";
-
-const requests = [
-  {
-    id: "a1",
-    username: "Andrew",
-    fullName: "Andrew Jang",
-    avatar: "https://i.imgur.com/aqjzchq.jpg"
-  },
-  {
-    id: "a2",
-    username: "Andrew",
-    fullName: "Andrew Jang",
-    avatar: "https://i.imgur.com/aqjzchq.jpg"
-  },
-  {
-    id: "a3",
-    username: "Andrew",
-    fullName: "Andrew Jang",
-    avatar: "https://i.imgur.com/aqjzchq.jpg"
-  }
-  // {
-  //   id: "a4",
-  //   username: "Andrew",
-  //   fullName: "Andrew Jang",
-  //   avatar: "https://i.imgur.com/aqjzchq.jpg"
-  // },
-  // {
-  //   id: "a5",
-  //   username: "Andrew",
-  //   fullName: "Andrew Jang",
-  //   avatar: "https://i.imgur.com/aqjzchq.jpg"
-  // },
-  // {
-  //   id: "a6",
-  //   username: "Andrew",
-  //   fullName: "Andrew Jang",
-  //   avatar: "https://i.imgur.com/aqjzchq.jpg"
-  // },
-  // {
-  //   id: "a7",
-  //   username: "Andrew",
-  //   fullName: "Andrew Jang",
-  //   avatar: "https://i.imgur.com/aqjzchq.jpg"
-  // },
-  // {
-  //   id: "a8",
-  //   username: "Andrew",
-  //   fullName: "Andrew Jang",
-  //   avatar: "https://i.imgur.com/aqjzchq.jpg"
-  // }
-];
 
 const rooms = [
   {
@@ -318,6 +269,12 @@ function FriendsPanel({ unexpandable = false }) {
   const { y } = useScroll(scrollRef);
   const [search, setSearch] = useState("");
   const [expanded, setExpanded] = useState(unexpandable);
+  const dispatch = useDispatch();
+  const { users: searchedUsers, apiError } = useSelector(
+    state => state.userSearchState
+  );
+  const { defaultAvatar } = useSelector(state => state.userState);
+  const [page, setPage] = useState(0);
 
   useEffect(() => {
     if (y !== 0) {
@@ -344,12 +301,23 @@ function FriendsPanel({ unexpandable = false }) {
 
   const handleSearchSelect = e => {
     if (!expanded && !unexpandable) {
+      console.log("jjj");
       setExpanded(true);
       setTimeout(() => {
         searchRef.current.focus();
       }, 50);
+    } else {
+      console.log("mmm");
+      dispatch(searchUsers(search));
     }
   };
+
+  const handleSearchClear = () => {
+    setSearch("");
+    setPage(0);
+    dispatch(clearUserSearch());
+  };
+
   return (
     <div
       className={`FriendsPanel--container${
@@ -402,31 +370,62 @@ function FriendsPanel({ unexpandable = false }) {
         {search && (
           <div className="FriendsPanel--searching">
             <p>Searching: {search}</p>
-            <p onClick={() => setSearch("")}>Clear</p>
+            <p onClick={handleSearchClear}>Clear</p>
           </div>
         )}
-        <div className="FriendsPanel--friendRequests">
-          {requests.map(request => (
-            <div key={request.id}>
-              <div>
-                <p>{request.username}</p>
-                <p>{request.fullName}</p>
-              </div>
-              <img src={request.avatar} alt="avatar" />
-              {/* <button type="button" className="button round">
-                <i className="fas fa-user-plus" />
-              </button> */}
-              <Button1>
-                <i className="fas fa-user-plus" />
-              </Button1>
+        {apiError && (
+          <div className="FriendsPanel--noUsersFounds">
+            <p>No Users Found</p>
+          </div>
+        )}
+        {searchedUsers.length !== 0 && (
+          <>
+            <div className="FriendsPanel--friendRequests">
+              {searchedUsers.slice(page * 3, page * 3 + 3).map(user => (
+                <div key={user.id}>
+                  <div>
+                    <p>{user.username}</p>
+                    <p>
+                      {user.firstName} {user.lastName}
+                    </p>
+                  </div>
+                  <img src={user.avatar || defaultAvatar} alt="avatar" />
+                  <Button1>
+                    <i className="fas fa-user-plus" />
+                  </Button1>
+                </div>
+              ))}
             </div>
-          ))}
-        </div>
-        <div className="FriendsPanel--pages">
-          <p className="FriendsPanel--pages--active">1</p>
-          <p>2</p>
-          <p>3</p>
-        </div>
+            <div className="FriendsPanel--pages">
+              <p
+                className={`${page === 0 ? "FriendsPanel--pages--active" : ""}`}
+                onClick={() => setPage(0)}
+              >
+                1
+              </p>
+              {searchedUsers.length > 3 && (
+                <p
+                  className={`${
+                    page === 1 ? "FriendsPanel--pages--active" : ""
+                  }`}
+                  onClick={() => setPage(1)}
+                >
+                  2
+                </p>
+              )}
+              {searchedUsers.length > 6 && (
+                <p
+                  className={`${
+                    page === 2 ? "FriendsPanel--pages--active" : ""
+                  }`}
+                  onClick={() => setPage(2)}
+                >
+                  3
+                </p>
+              )}
+            </div>
+          </>
+        )}
         <button
           type="button"
           className="button lg FriendsPanel--newRoom"

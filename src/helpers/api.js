@@ -23,3 +23,9 @@ export const updateUser = updateInfo => {
 export const getUser = userId => {
   return axios.get(`/api/users/${userId}`);
 };
+
+export const searchUsers = (username, page) => {
+  return axios.get(
+    `/api/users?username=${username}${page ? `&page=${page}` : ""}`
+  );
+};

@@ -7,7 +7,8 @@ import {
   apiReducer,
   wsReducer,
   userReducer,
-  userPageReducer
+  userPageReducer,
+  userSearchReducer
 } from "./reducers";
 import { localstorageMiddleware } from "./middleware";
 
@@ -18,7 +19,8 @@ const rootReducer = history =>
     apiState: apiReducer,
     wsState: wsReducer,
     userState: userReducer,
-    userPageState: userPageReducer
+    userPageState: userPageReducer,
+    userSearchState: userSearchReducer
   });
 
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

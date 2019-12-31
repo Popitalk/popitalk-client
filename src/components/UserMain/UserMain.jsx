@@ -22,8 +22,6 @@ export default function UserMain() {
     dispatch(getUserInfo(userId));
   }, [dispatch, userId]);
 
-  console.log("APIERROR", apiError);
-
   if (apiError) {
     return (
       <div className="UserMain--container">

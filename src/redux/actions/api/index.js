@@ -94,3 +94,27 @@ export const userPageApiError = error => ({
     userPageApiError: error || true
   }
 });
+
+// export const userSearchApiLoading = () => ({
+//   type: SET_API,
+//   payload: {
+//     userSearchApiLoading: true,
+//     userSearchApiError: false
+//   }
+// });
+
+// export const userSearchApiSuccess = () => ({
+//   type: SET_API,
+//   payload: {
+//     userSearchApiLoading: false,
+//     userSearchApiError: false
+//   }
+// });
+
+// export const userSearchApiError = error => ({
+//   type: SET_API,
+//   payload: {
+//     userSearchApiLoading: false,
+//     userSearchApiError: error || true
+//   }
+// });
