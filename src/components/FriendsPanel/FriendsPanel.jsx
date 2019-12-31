@@ -373,7 +373,7 @@ function FriendsPanel({ unexpandable = false }) {
             <p onClick={handleSearchClear}>Clear</p>
           </div>
         )}
-        {apiError && (
+        {expanded && apiError && (
           <div className="FriendsPanel--noUsersFounds">
             <p>No Users Found</p>
           </div>
