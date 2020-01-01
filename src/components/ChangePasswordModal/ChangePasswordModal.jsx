@@ -2,13 +2,22 @@ import React, { useCallback } from "react";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import { useSelector, useDispatch } from "react-redux";
-import { closeModal } from "../../redux/actions";
+import { closeModal, updateUser } from "../../redux/actions";
 import Input7 from "../Input7";
 import "./ChangePasswordModal.css";
+
+const Spinner = () => (
+  <div className="ChangePasswordModal--spinner">
+    <div className="ChangePasswordModal--spinner--circle"></div>
+  </div>
+);
 
 export default function ChangePasswordModal() {
   const firstModal = useSelector(
     ({ modalState }) => modalState.components.length === 1
+  );
+  const { userApiLoading: apiLoading, userApiError: apiError } = useSelector(
+    state => state.apiState
   );
   const dispatch = useDispatch();
   const closeModalDispatcher = useCallback(() => dispatch(closeModal()), [
@@ -45,11 +54,20 @@ export default function ChangePasswordModal() {
               "Password should have atleast one uppercase letter."
             )
             .matches(/\d+/, "Password should have atleast one number.")
+            .notOneOf(
+              [Yup.ref("oldPassword"), null],
+              "Passwords must not match"
+            )
             .required("New Password is required.")
         })}
-        onSubmit={(values, { setSubmitting, resetForm }) => {
-          alert(JSON.stringify(values, null, 2));
-          setSubmitting(true);
+        onSubmit={(values, { resetForm }) => {
+          dispatch(
+            updateUser({
+              password: values.oldPassword,
+              newPassword: values.newPassword
+            })
+          );
+          resetForm();
         }}
       >
         {({
@@ -68,17 +86,21 @@ export default function ChangePasswordModal() {
               header="Old Password"
               name="oldPassword"
               type="password"
-              disabled={isSubmitting}
+              disabled={apiLoading}
               onChange={handleChange}
               onBlur={handleBlur}
               value={values.oldPassword}
-              error={touched.oldPassword && errors.oldPassword}
+              error={
+                (touched.oldPassword && errors.oldPassword) ||
+                (apiError === "The password is incorrect" &&
+                  "Password is incorrect")
+              }
             />
             <Input7
               header="New Password"
               name="newPassword"
               type="password"
-              disabled={isSubmitting}
+              disabled={apiLoading}
               onChange={handleChange}
               onBlur={handleBlur}
               value={values.newPassword}
@@ -86,10 +108,10 @@ export default function ChangePasswordModal() {
             />
             <button
               type="submit"
-              disabled={isSubmitting || !isValid || !dirty}
+              disabled={apiLoading || !isValid || !dirty}
               className="button lg"
             >
-              Confirm
+              {apiLoading ? <Spinner /> : "Confirm"}
             </button>
           </form>
         )}

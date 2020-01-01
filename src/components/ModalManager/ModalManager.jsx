@@ -14,6 +14,8 @@ import ChangePasswordModal from "../ChangePasswordModal";
 import BlockedUsersModal from "../BlockedUsersModal";
 import CreateNewAccountModal from "../CreateNewAccountModal";
 import DeleteMessageModal from "../DeleteMessageModal";
+import AccountSettingsModal from "../AccountSettingsModal";
+import DeleteAccountModal from "../DeleteAccountModal";
 import {
   MODAL_CREATE_NEW_ACCOUNT,
   MODAL_INVITE,
@@ -25,7 +27,9 @@ import {
   MODAL_CHANGE_PASSWORD,
   MODAL_BLOCKED_USERS,
   MODAL_DELETE_MESSAGE,
-  MODAL_IMAGE
+  MODAL_IMAGE,
+  MODAL_ACCOUNT_SETTINGS,
+  MODAL_DELETE_ACCOUNT
 } from "../../helpers/constants";
 import "./ModalManager.css";
 
@@ -42,7 +46,9 @@ const ModalComponents = {
   [MODAL_CHANGE_PASSWORD]: <ChangePasswordModal />,
   [MODAL_BLOCKED_USERS]: <BlockedUsersModal />,
   [MODAL_DELETE_MESSAGE]: <DeleteMessageModal />,
-  [MODAL_IMAGE]: <ImageModal />
+  [MODAL_IMAGE]: <ImageModal />,
+  [MODAL_ACCOUNT_SETTINGS]: <AccountSettingsModal />,
+  [MODAL_DELETE_ACCOUNT]: <DeleteAccountModal />
 };
 
 export default function ModalManager() {

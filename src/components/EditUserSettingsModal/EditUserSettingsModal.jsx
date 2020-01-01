@@ -2,11 +2,17 @@ import React, { useState, useCallback } from "react";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import { useSelector, useDispatch } from "react-redux";
-import { closeModal } from "../../redux/actions";
+import { closeModal, updateUser } from "../../redux/actions";
 import Input7 from "../Input7";
 import ImageUpload from "../ImageUpload";
 import Select from "../Select";
 import "./EditUserSettingsModal.css";
+
+const Spinner = () => (
+  <div className="EditUserSettingsModal--spinner">
+    <div className="EditUserSettingsModal--spinner--circle"></div>
+  </div>
+);
 
 const currentYear = new Date().getFullYear();
 
@@ -31,28 +37,40 @@ const months = [
 const years = new Array(100).fill(0).map((_, index) => currentYear - index);
 
 export default function EditUserSettingsModal() {
-  const [displayedIcon, setDisplayedIcon] = useState(false);
-  const [uploadedImage, setUploadedImage] = useState(null);
   const firstModal = useSelector(
     ({ modalState }) => modalState.components.length === 1
+  );
+  const {
+    firstName,
+    lastName,
+    dateOfBirth,
+    email,
+    username,
+    avatar
+  } = useSelector(state => state.userState);
+  const { userApiLoading: apiLoading, userApiError: apiError } = useSelector(
+    state => state.apiState
   );
   const dispatch = useDispatch();
   const closeModalDispatcher = useCallback(() => dispatch(closeModal()), [
     dispatch
   ]);
+  const [displayedAvatar, setDisplayedAvatar] = useState(avatar);
+  const [uploadedImage, setUploadedImage] = useState(null);
 
   const handleUpload = e => {
     if (e.target.files[0]) {
       setUploadedImage(e.target.files[0]);
-      setDisplayedIcon(URL.createObjectURL(e.target.files[0]));
+      setDisplayedAvatar(URL.createObjectURL(e.target.files[0]));
     }
   };
 
   const handleRemove = () => {
-    setDisplayedIcon(false);
+    setDisplayedAvatar(false);
     setUploadedImage(null);
   };
 
+  console.log("RRR", apiError);
   return (
     <div className="EditUserSettingsModal--container">
       <div className="EditUserSettingsModal--header">
@@ -67,11 +85,11 @@ export default function EditUserSettingsModal() {
       </div>
       <Formik
         initialValues={{
-          firstName: "",
-          lastName: "",
-          email: "",
+          firstName,
+          lastName,
+          email,
           password: "",
-          date: new Date()
+          dateOfBirth: new Date(dateOfBirth)
         }}
         validationSchema={Yup.object({
           firstName: Yup.string()
@@ -82,7 +100,7 @@ export default function EditUserSettingsModal() {
             .min(2, "Last name is too short.")
             .max(32, "Last name is too long.")
             .required("Last name is required."),
-          date: Yup.date()
+          dateOfBirth: Yup.date()
             .max(
               thirteenYearsAgo,
               "You can't use Playnow if you are younger than 13"
@@ -93,9 +111,17 @@ export default function EditUserSettingsModal() {
             .required("Email is required."),
           password: Yup.string().required("Password is required.")
         })}
-        onSubmit={(values, { setSubmitting, resetForm }) => {
-          alert(JSON.stringify(values, null, 2));
-          setSubmitting(true);
+        onSubmit={(values, { setFieldValue, setFieldTouched }) => {
+          dispatch(
+            updateUser({
+              ...values,
+              dateOfBirth: values.dateOfBirth.toISOString(),
+              avatar: uploadedImage,
+              removeAvatar: !displayedAvatar
+            })
+          );
+          setFieldValue("password", "");
+          setFieldTouched("password", false);
         }}
       >
         {({
@@ -106,25 +132,24 @@ export default function EditUserSettingsModal() {
           touched,
           errors,
           isValid,
-          isSubmitting,
           dirty,
           setFieldValue
         }) => (
           <form className="EditUserSettingsModal--form" onSubmit={handleSubmit}>
             <ImageUpload
-              icon={displayedIcon}
+              icon={displayedAvatar}
               onUpload={handleUpload}
               onRemove={handleRemove}
-              disabled={isSubmitting}
+              disabled={apiLoading}
               user={true}
             />
-            <h4>Djang16</h4>
+            <h4>{username}</h4>
             <div className="EditUserSettingsModal--form--row">
               <Input7
                 header="First Name"
                 name="firstName"
                 type="text"
-                disabled={isSubmitting}
+                disabled={apiLoading}
                 onChange={handleChange}
                 onBlur={handleBlur}
                 value={values.firstName}
@@ -134,7 +159,7 @@ export default function EditUserSettingsModal() {
                 header="Last Name"
                 name="lastName"
                 type="text"
-                disabled={isSubmitting}
+                disabled={apiLoading}
                 onChange={handleChange}
                 onBlur={handleBlur}
                 value={values.lastName}
@@ -143,7 +168,7 @@ export default function EditUserSettingsModal() {
             </div>
             <div className="EditUserSettingsModal--form--row2">
               <h4>
-                Date of Birth <span>{errors.date}</span>
+                Date of Birth <span>{errors.dateOfBirth}</span>
               </h4>
               <div>
                 <Select
@@ -154,11 +179,11 @@ export default function EditUserSettingsModal() {
                   isClearable={false}
                   isSearchable={false}
                   onBlur={handleBlur}
-                  disabled={isSubmitting}
-                  value={values.date.getDate()}
+                  disabled={apiLoading}
+                  value={values.dateOfBirth.getDate()}
                   onChange={v => {
-                    values.date.setDate(v.value);
-                    setFieldValue("date", values.date);
+                    values.dateOfBirth.setDate(v.value);
+                    setFieldValue("dateOfBirth", values.dateOfBirth);
                   }}
                 />
                 <Select
@@ -169,11 +194,11 @@ export default function EditUserSettingsModal() {
                   isClearable={false}
                   isSearchable={false}
                   onBlur={handleBlur}
-                  disabled={isSubmitting}
-                  value={months[values.date.getMonth()]}
+                  disabled={apiLoading}
+                  value={months[values.dateOfBirth.getMonth()]}
                   onChange={v => {
-                    values.date.setMonth(months.indexOf(v.value));
-                    setFieldValue("date", values.date);
+                    values.dateOfBirth.setMonth(months.indexOf(v.value));
+                    setFieldValue("dateOfBirth", values.dateOfBirth);
                   }}
                 />
                 <Select
@@ -184,11 +209,11 @@ export default function EditUserSettingsModal() {
                   isClearable={false}
                   isSearchable={false}
                   onBlur={handleBlur}
-                  disabled={isSubmitting}
-                  value={values.date.getFullYear()}
+                  disabled={apiLoading}
+                  value={values.dateOfBirth.getFullYear()}
                   onChange={v => {
-                    values.date.setFullYear(v.value);
-                    setFieldValue("date", values.date);
+                    values.dateOfBirth.setFullYear(v.value);
+                    setFieldValue("dateOfBirth", values.dateOfBirth);
                   }}
                 />
               </div>
@@ -197,28 +222,35 @@ export default function EditUserSettingsModal() {
               header="Email"
               name="email"
               type="email"
-              disabled={isSubmitting}
+              disabled={apiLoading}
               onChange={handleChange}
               onBlur={handleBlur}
               value={values.email}
-              error={touched.email && errors.email}
+              error={
+                (touched.email && errors.email) ||
+                (apiError === "Email already in use" && "Email already in use")
+              }
             />
             <Input7
               header="Password"
               name="password"
               type="password"
-              disabled={isSubmitting}
+              disabled={apiLoading}
               onChange={handleChange}
               onBlur={handleBlur}
               value={values.password}
-              error={touched.password && errors.password}
+              error={
+                (touched.password && errors.password) ||
+                (apiError === "The password is incorrect" &&
+                  "Password is incorrect")
+              }
             />
             <button
               type="submit"
-              disabled={isSubmitting || !isValid || !dirty}
+              disabled={apiLoading || !isValid || !dirty}
               className="button lg"
             >
-              Save
+              {apiLoading ? <Spinner /> : "Save"}
             </button>
           </form>
         )}

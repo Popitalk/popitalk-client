@@ -15,7 +15,9 @@ import {
   MODAL_IMAGE,
   CLOSE_MODAL,
   CLOSE_ALL_MODAL,
-  MODAL_DELETE_MESSAGE
+  MODAL_DELETE_MESSAGE,
+  MODAL_ACCOUNT_SETTINGS,
+  MODAL_DELETE_ACCOUNT
 } from "../../../helpers/constants";
 
 export const openCreateNewAccountModal = () => ({
@@ -87,6 +89,18 @@ export const openDeleteMessageModal = () => ({
   type: PUSH_MODAL,
   payload: {
     component: MODAL_DELETE_MESSAGE
+  }
+});
+export const openAccountSettingsModal = () => ({
+  type: PUSH_MODAL,
+  payload: {
+    component: MODAL_ACCOUNT_SETTINGS
+  }
+});
+export const openDeleteAccountModal = () => ({
+  type: PUSH_MODAL,
+  payload: {
+    component: MODAL_DELETE_ACCOUNT
   }
 });
 

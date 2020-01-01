@@ -1,4 +1,3 @@
-import uuidv4 from "uuid/v4";
 import { SET_USER_INFO, USER_UPDATE, LOGOUT } from "../../helpers/constants";
 
 const initialState = {
@@ -36,13 +35,12 @@ export default (state = initialState, { type, payload }) => {
     case USER_UPDATE:
       return {
         ...state,
-        ...(payload.username && { username: payload.username }),
-        ...(payload.discriminator && { discriminator: payload.discriminator }),
+        ...(payload.firstName && { firstName: payload.firstName }),
+        ...(payload.lastName && { lastName: payload.lastName }),
+        ...(payload.dateOfBirth && { dateOfBirth: payload.dateOfBirth }),
         ...(payload.avatar !== undefined && {
-          avatar: payload.avatar,
-          updatedAvatar: uuidv4()
+          avatar: payload.avatar
         }),
-        ...(payload.status && { status: payload.status }),
         ...(payload.email && { email: payload.email }),
         ...(payload.emailVerified && { emailVerified: payload.emailVerified })
       };

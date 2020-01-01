@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import {
   openProfileModal,
   openBlockedUsersModal,
-  openChangePasswordModal,
+  openAccountSettingsModal,
   openEditUserSettingsModal,
   logout
 } from "../../redux/actions";
@@ -45,8 +45,8 @@ export default function UserSettingsModal() {
     () => dispatch(openBlockedUsersModal()),
     [dispatch]
   );
-  const openChangePasswordModalDispatcher = useCallback(
-    () => dispatch(openChangePasswordModal()),
+  const openAccountSettingsModalDispatcher = useCallback(
+    () => dispatch(openAccountSettingsModal()),
     [dispatch]
   );
   const logoutDispatcher = useCallback(() => dispatch(logout()), [dispatch]);
@@ -84,9 +84,9 @@ export default function UserSettingsModal() {
         <button
           type="button"
           className="button"
-          onClick={openChangePasswordModalDispatcher}
+          onClick={openAccountSettingsModalDispatcher}
         >
-          Change Password
+          Account Settings
         </button>
         <button type="button" className="button" onClick={logoutDispatcher}>
           Log Out

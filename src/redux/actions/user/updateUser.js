@@ -8,12 +8,24 @@ const updateUser = updateInfo => {
     try {
       dispatch(userApiLoading());
 
-      const { username, email, avatar } = getState().userState;
+      const {
+        firstName,
+        lastName,
+        dateOfBirth,
+        email,
+        avatar
+      } = getState().userState;
 
       const formData = new FormData();
 
-      if (updateInfo.username && updateInfo.username !== username) {
-        formData.append("username", updateInfo.username);
+      if (updateInfo.firstName && updateInfo.firstName !== firstName) {
+        formData.append("firstName", updateInfo.firstName);
+      }
+      if (updateInfo.lastName && updateInfo.lastName !== lastName) {
+        formData.append("lastName", updateInfo.lastName);
+      }
+      if (updateInfo.dateOfBirth && updateInfo.dateOfBirth !== dateOfBirth) {
+        formData.append("dateOfBirth", updateInfo.dateOfBirth);
       }
       if (updateInfo.email && updateInfo.email !== email) {
         formData.append("email", updateInfo.email);
@@ -33,10 +45,15 @@ const updateUser = updateInfo => {
 
       const formObject = Object.fromEntries(formData);
 
+      console.log("FORMOBJECT", formObject);
+
       if (
         _.isEmpty(formObject) ||
-        (!formObject.username &&
+        (!formObject.firstName &&
+          !formObject.lastName &&
+          !formObject.dateOfBirth &&
           !formObject.email &&
+          !formObject.newPassword &&
           !formObject.avatar &&
           !formObject.removeAvatar)
       ) {
@@ -46,6 +63,7 @@ const updateUser = updateInfo => {
 
       const response = await api.updateUser(formData);
 
+      console.log("RES", response);
       dispatch({
         type: USER_UPDATE,
         payload: response.data

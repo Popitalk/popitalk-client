@@ -141,7 +141,7 @@
   border-radius: 50%;
 }
 .CreateNewAccountModal--spinner--circle div {
-  animation: ldio-ciewi2u0i6t 1s linear infinite;
+  animation: CreateNewAccountModal--spinner--circle 1s linear infinite;
   top: 30px;
   left: 82px;
 }

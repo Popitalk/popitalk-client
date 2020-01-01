@@ -29,14 +29,16 @@ export default function ImageUpload({
             (user ? <p>Change Avatar</p> : <p>Change Channel Picture</p>)}
         </div>
       </div>
-      <button
-        type="button"
-        className="ImageUpload--remove"
-        onClick={onRemove}
-        disabled={disabled}
-      >
-        Remove
-      </button>
+      {icon && (
+        <button
+          type="button"
+          className="ImageUpload--remove"
+          onClick={onRemove}
+          disabled={disabled}
+        >
+          Remove
+        </button>
+      )}
     </div>
   );
 }

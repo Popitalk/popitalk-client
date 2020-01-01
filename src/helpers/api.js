@@ -29,3 +29,7 @@ export const searchUsers = (username, page) => {
     `/api/users?username=${username}${page ? `&page=${page}` : ""}`
   );
 };
+
+export const deleteAccount = () => {
+  return axios.delete("/api/users/");
+};

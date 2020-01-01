@@ -301,13 +301,11 @@ function FriendsPanel({ unexpandable = false }) {
 
   const handleSearchSelect = e => {
     if (!expanded && !unexpandable) {
-      console.log("jjj");
       setExpanded(true);
       setTimeout(() => {
         searchRef.current.focus();
       }, 50);
     } else {
-      console.log("mmm");
       dispatch(searchUsers(search));
     }
   };
