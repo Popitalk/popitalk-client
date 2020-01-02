@@ -1,12 +1,17 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useScroll } from "react-use";
-import onClickOutside from "react-onclickoutside";
+import useOnClickOutside from "use-onclickoutside";
 import ReactTooltip from "react-tooltip";
-import { searchUsers, clearUserSearch } from "../../redux/actions";
+import {
+  searchUsers,
+  clearUserSearch,
+  openProfileModal
+} from "../../redux/actions";
 import RoomIcon2 from "../RoomIcon2";
 import Button1 from "../Button1";
 import "./FriendsPanel.css";
+// import { MODAL_PROFILE } from "../../helpers/constants";
 
 const rooms = [
   {
@@ -262,7 +267,7 @@ const rooms = [
   }
 ];
 
-function FriendsPanel({ unexpandable = false }) {
+export default function FriendsPanel({ unexpandable = false }) {
   const [shadow, setShadow] = useState(false);
   const scrollRef = useRef(null);
   const searchRef = useRef(null);
@@ -274,7 +279,16 @@ function FriendsPanel({ unexpandable = false }) {
     state => state.userSearchState
   );
   const { defaultAvatar } = useSelector(state => state.userState);
+  // const modalComponent = useSelector(({ modalState }) => modalState.components);
   const [page, setPage] = useState(0);
+  // const [dontCollapse, setDontCollapse] = useState(false);
+  const ref = useRef();
+
+  useOnClickOutside(ref, () => {
+    if (!unexpandable) {
+      setExpanded(false);
+    }
+  });
 
   useEffect(() => {
     if (y !== 0) {
@@ -284,12 +298,34 @@ function FriendsPanel({ unexpandable = false }) {
     }
   }, [y]);
 
-  const toggle = () => setExpanded(!expanded);
-  FriendsPanel.handleClickOutside = () => {
-    if (!unexpandable) {
-      setExpanded(false);
-    }
-  };
+  // useEffect(() => {
+  //   console.log("MODAL MODAL", modalComponent);
+  //   // if (modalComponent.length !== 0) {
+  //   // console.log("SETTED TO NOT COLLAPSE");
+  //   setDontCollapse(true);
+  //   // }
+  // }, [modalComponent]);
+
+  // const toggle = () => setExpanded(!expanded);
+
+  // FriendsPanel.handleClickOutside = () => {
+  // if (!unexpandable) {
+  // setTimeout(() => {
+  //   console.log("DONT OR NOT", dontCollapse, modalComponent);
+  //   if (dontCollapse) {
+  //     setDontCollapse(false);
+  //   } else {
+  //     setExpanded(false);
+  //   }
+  // }, 5000);
+  // if (dontCollapse) {
+  //   setDontCollapse(false);
+  // } else {
+  //   setExpanded(false);
+  // }
+  // setExpanded(false);
+  // }
+  // };
 
   const handleSubmit = () => {
     setSearch("");
@@ -299,14 +335,16 @@ function FriendsPanel({ unexpandable = false }) {
     console.log("CREATING ROOM");
   };
 
-  const handleSearchSelect = e => {
+  const handleSearchSelect = () => {
     if (!expanded && !unexpandable) {
       setExpanded(true);
       setTimeout(() => {
         searchRef.current.focus();
       }, 50);
     } else {
-      dispatch(searchUsers(search));
+      if (search.length > 2) {
+        dispatch(searchUsers(search));
+      }
     }
   };
 
@@ -316,11 +354,17 @@ function FriendsPanel({ unexpandable = false }) {
     dispatch(clearUserSearch());
   };
 
+  const handleProfileOpen = userId => {
+    setExpanded(false);
+    dispatch(openProfileModal(userId));
+  };
+
   return (
     <div
       className={`FriendsPanel--container${
         expanded ? " FriendsPanel--expanded" : ""
       }${unexpandable ? " FriendsPanel--unexpandable" : ""}`}
+      ref={ref}
     >
       <ReactTooltip
         place="left"
@@ -346,6 +390,11 @@ function FriendsPanel({ unexpandable = false }) {
             placeholder="Search friends"
             value={search}
             onChange={e => setSearch(e.target.value)}
+            onKeyDown={e => {
+              if (e.keyCode === 13) {
+                handleSearchSelect();
+              }
+            }}
             maxLength={25}
             spellCheck={false}
             ref={searchRef}
@@ -381,13 +430,17 @@ function FriendsPanel({ unexpandable = false }) {
             <div className="FriendsPanel--friendRequests">
               {searchedUsers.slice(page * 3, page * 3 + 3).map(user => (
                 <div key={user.id}>
-                  <div>
+                  <div role="button" onClick={() => handleProfileOpen(user.id)}>
                     <p>{user.username}</p>
                     <p>
                       {user.firstName} {user.lastName}
                     </p>
                   </div>
-                  <img src={user.avatar || defaultAvatar} alt="avatar" />
+                  <img
+                    src={user.avatar || defaultAvatar}
+                    alt="avatar"
+                    onClick={() => handleProfileOpen(user.id)}
+                  />
                   <Button1>
                     <i className="fas fa-user-plus" />
                   </Button1>
@@ -486,9 +539,3 @@ function FriendsPanel({ unexpandable = false }) {
     </div>
   );
 }
-
-const clickOutsideConfig = {
-  handleClickOutside: () => FriendsPanel.handleClickOutside
-};
-
-export default onClickOutside(FriendsPanel, clickOutsideConfig);

@@ -8,6 +8,7 @@ export const POP_MODAL = "modalState/POP_MODAL";
 export const POP_ALL_MODAL = "modalState/POP_ALL_MODAL";
 export const CLOSE_MODAL = "modal/CLOSE_MODAL";
 export const CLOSE_ALL_MODAL = "modal/CLOSE_ALL_MODAL";
+export const PUSH_MODAL_PROFILE_MODAL = "modal/PUSH_MODAL_PROFILE_MODAL";
 // USERSTATE
 export const SET_USER_INFO = "userState/SET_USER_INFO";
 export const USER_UPDATE = "userState/USER_UPDATE";

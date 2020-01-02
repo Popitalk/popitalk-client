@@ -1,7 +1,12 @@
 import _ from "lodash";
 import * as api from "../../../helpers/api";
 import { USER_UPDATE } from "../../../helpers/constants";
-import { userApiLoading, userApiSuccess, userApiError } from "../api";
+import {
+  userApiLoading,
+  userApiSuccess,
+  userApiError,
+  userApiSuccess2
+} from "../api";
 
 const updateUser = updateInfo => {
   return async (dispatch, getState) => {
@@ -69,7 +74,7 @@ const updateUser = updateInfo => {
         payload: response.data
       });
 
-      dispatch(userApiSuccess());
+      dispatch(userApiSuccess2());
     } catch (error) {
       if (error.response) {
         dispatch(userApiError(error.response.data.message));

@@ -5,12 +5,12 @@ import "./HeaderProfile.css";
 
 export default function HeaderProfile() {
   const dispatch = useDispatch();
-  const { username, avatar, defaultAvatar } = useSelector(
+  const { id, username, avatar, defaultAvatar } = useSelector(
     state => state.userState
   );
   const openProfileModalDispatcher = useCallback(
-    () => dispatch(openProfileModal()),
-    [dispatch]
+    () => dispatch(openProfileModal(id)),
+    [dispatch, id]
   );
 
   return (

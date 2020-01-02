@@ -1,27 +1,30 @@
-import React, { useState } from "react";
-import onClickOutside from "react-onclickoutside";
+import React, { useState, useRef } from "react";
 import Notifications from "../Notifications";
+import useOnClickOutside from "use-onclickoutside";
 import "./HeaderNotifications.css";
 
-function HeaderNotifications() {
+export default function HeaderNotifications() {
   const [open, setOpen] = useState(false);
-  const toggle = () => setOpen(!open);
-  HeaderNotifications.handleClickOutside = () => setOpen(false);
+  const ref = useRef();
+
+  useOnClickOutside(ref, () => {
+    if (open) {
+      setOpen(false);
+    }
+  });
 
   return (
     <div className="HeaderNotifications--container">
-      <i className="fas fa-bell fa-2x" role="button" onClick={toggle} />
+      <i
+        className="fas fa-bell fa-2x"
+        role="button"
+        onClick={() => setOpen(true)}
+      />
       {open && (
-        <div className="HeaderNotifications--popup">
+        <div className="HeaderNotifications--popup" ref={ref}>
           <Notifications closePopup={() => setOpen(false)} />
         </div>
       )}
     </div>
   );
 }
-
-const clickOutsideConfig = {
-  handleClickOutside: () => HeaderNotifications.handleClickOutside
-};
-
-export default onClickOutside(HeaderNotifications, clickOutsideConfig);

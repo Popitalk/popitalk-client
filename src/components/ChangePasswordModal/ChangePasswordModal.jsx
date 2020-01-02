@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import { useSelector, useDispatch } from "react-redux";
@@ -23,6 +23,22 @@ export default function ChangePasswordModal() {
   const closeModalDispatcher = useCallback(() => dispatch(closeModal()), [
     dispatch
   ]);
+  const [showSuccessMessage, setShowSuccessMessage] = useState(false);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    if (!mounted) setMounted(true);
+  }, [mounted]);
+
+  useEffect(() => {
+    if (mounted && !apiLoading && !apiError) {
+      setShowSuccessMessage(true);
+      setTimeout(() => {
+        setShowSuccessMessage(false);
+      }, 3000);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [apiError, apiLoading]);
 
   return (
     <div className="ChangePasswordModal--container">
@@ -106,6 +122,9 @@ export default function ChangePasswordModal() {
               value={values.newPassword}
               error={touched.newPassword && errors.newPassword}
             />
+            {showSuccessMessage && (
+              <p>You successfully changed your password!</p>
+            )}
             <button
               type="submit"
               disabled={apiLoading || !isValid || !dirty}

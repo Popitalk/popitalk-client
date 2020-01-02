@@ -3,7 +3,8 @@ import {
   POP_MODAL,
   POP_ALL_MODAL,
   CLOSE_MODAL,
-  CLOSE_ALL_MODAL
+  CLOSE_ALL_MODAL,
+  PUSH_MODAL_PROFILE_MODAL
 } from "../../helpers/constants";
 
 const initialState = {
@@ -18,6 +19,14 @@ export default (state = initialState, { type, payload }) => {
         ...state,
         open: true,
         components: [...state.components, payload.component]
+      };
+
+    case PUSH_MODAL_PROFILE_MODAL:
+      return {
+        ...state,
+        open: true,
+        components: [...state.components, payload.component],
+        userId: payload.userId
       };
 
     case POP_MODAL:

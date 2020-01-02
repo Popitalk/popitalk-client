@@ -1,6 +1,7 @@
 import { USERPAGE_SET_USER_INFO } from "../../helpers/constants";
 
 const initialState = {
+  id: "",
   username: "",
   avatar: null,
   firstName: "",

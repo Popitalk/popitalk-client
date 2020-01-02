@@ -27,7 +27,8 @@ export const generalApiError = () => ({
 export const userApiLoading = () => ({
   type: SET_API,
   payload: {
-    userApiLoading: true
+    userApiLoading: true,
+    userApiSuccess: false
     // userApiError: false
   }
 });
@@ -40,11 +41,21 @@ export const userApiSuccess = () => ({
   }
 });
 
+export const userApiSuccess2 = () => ({
+  type: SET_API,
+  payload: {
+    userApiLoading: false,
+    userApiError: false,
+    userApiSuccess: true
+  }
+});
+
 export const userApiError = error => ({
   type: SET_API,
   payload: {
     userApiLoading: false,
-    userApiError: error || true
+    userApiError: error || true,
+    userApiSuccess: false
   }
 });
 export const registrationApiLoading = () => ({

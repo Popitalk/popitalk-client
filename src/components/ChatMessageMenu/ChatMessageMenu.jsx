@@ -1,24 +1,19 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useRef } from "react";
 import { useDispatch } from "react-redux";
-import onClickOutside from "react-onclickoutside";
+import useOnClickOutside from "use-onclickoutside";
 import { openDeleteMessageModal } from "../../redux/actions";
 import "./ChatMessageMenu.css";
 
-function ChatMessageMenu() {
+export default function ChatMessageMenu() {
   const dispatch = useDispatch();
-  // const openDeleteMessageModalDispatcher = useCallback(
-  //   () => dispatch(openDeleteMessageModal()),
-  //   [dispatch]
-  // );
-  // const closeModalDispatcher = useCallback(() => dispatch(closeModal()), [
-  //   dispatch
-  // ]);
   const [open, setOpen] = useState(false);
-  const toggle = () => setOpen(!open);
-  ChatMessageMenu.handleClickOutside = () => {
-    console.log("CHAT MENU MESSAGE", open);
-    setOpen(false);
-  };
+  const ref = useRef();
+
+  useOnClickOutside(ref, () => {
+    if (open) {
+      setOpen(false);
+    }
+  });
 
   const handleDelete = () => {
     dispatch(openDeleteMessageModal());
@@ -31,18 +26,16 @@ function ChatMessageMenu() {
         open ? " ChatMessageMenu--open" : ""
       }`}
     >
-      <i className="fas fa-ellipsis-v fa-sm" role="button" onClick={toggle} />
+      <i
+        className="fas fa-ellipsis-v fa-sm"
+        role="button"
+        onClick={() => setOpen(true)}
+      />
       {open && (
-        <div className="ChatMessageMenu--popup">
+        <div className="ChatMessageMenu--popup" ref={ref}>
           <p onClick={handleDelete}>Delete</p>
         </div>
       )}
     </div>
   );
 }
-
-const clickOutsideConfig = {
-  handleClickOutside: () => ChatMessageMenu.handleClickOutside
-};
-
-export default onClickOutside(ChatMessageMenu, clickOutsideConfig);

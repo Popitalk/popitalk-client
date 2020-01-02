@@ -5,6 +5,7 @@ const initialState = {
   generalApiError: false,
   userApiLoading: false,
   userApiError: false,
+  userApiSuccess: false,
   registrationApiLoading: false,
   registrationApiError: false,
   userPageApiLoading: true,

@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import { useSelector, useDispatch } from "react-redux";
@@ -48,15 +48,23 @@ export default function EditUserSettingsModal() {
     username,
     avatar
   } = useSelector(state => state.userState);
-  const { userApiLoading: apiLoading, userApiError: apiError } = useSelector(
-    state => state.apiState
-  );
+  const {
+    userApiLoading: apiLoading,
+    userApiError: apiError,
+    userApiSuccess: apiSuccess
+  } = useSelector(state => state.apiState);
   const dispatch = useDispatch();
   const closeModalDispatcher = useCallback(() => dispatch(closeModal()), [
     dispatch
   ]);
   const [displayedAvatar, setDisplayedAvatar] = useState(avatar);
   const [uploadedImage, setUploadedImage] = useState(null);
+
+  useEffect(() => {
+    if (apiSuccess) {
+      dispatch(closeModal());
+    }
+  }, [apiSuccess, dispatch]);
 
   const handleUpload = e => {
     if (e.target.files[0]) {
@@ -70,7 +78,6 @@ export default function EditUserSettingsModal() {
     setUploadedImage(null);
   };
 
-  console.log("RRR", apiError);
   return (
     <div className="EditUserSettingsModal--container">
       <div className="EditUserSettingsModal--header">

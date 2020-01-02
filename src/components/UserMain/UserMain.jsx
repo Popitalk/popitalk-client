@@ -4,12 +4,14 @@ import { useParams } from "react-router-dom";
 import ChannelCard1 from "../ChannelCard1";
 import { getUserInfo } from "../../redux/actions";
 import Skeleton from "react-loading-skeleton";
+import Button1 from "../Button1";
 import "./UserMain.css";
 
 export default function UserMain() {
   const { userId } = useParams();
+  const { userId: modalUserId } = useSelector(state => state.modalState);
   const { defaultAvatar } = useSelector(state => state.userState);
-  const { firstName, lastName, username, avatar } = useSelector(
+  const { id, firstName, lastName, username, avatar } = useSelector(
     state => state.userPageState
   );
   const {
@@ -19,8 +21,10 @@ export default function UserMain() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getUserInfo(userId));
-  }, [dispatch, userId]);
+    if (!(userId === modalUserId && userId === id)) {
+      dispatch(getUserInfo(userId));
+    }
+  }, [dispatch, id, modalUserId, userId]);
 
   if (apiError) {
     return (
@@ -51,10 +55,10 @@ export default function UserMain() {
                 <div>
                   <h3>{apiLoading ? <Skeleton width={150} /> : username}</h3>
                   {!apiLoading && (
-                    <button type="button" className="button">
+                    <Button1>
                       <i className="fas fa-user-plus" />
                       <p>Add friend</p>
-                    </button>
+                    </Button1>
                   )}
                 </div>
 

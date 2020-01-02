@@ -1,5 +1,6 @@
 import {
   PUSH_MODAL,
+  PUSH_MODAL_PROFILE_MODAL,
   POP_MODAL,
   POP_ALL_MODAL,
   MODAL_CREATE_NEW_ACCOUNT,
@@ -34,10 +35,11 @@ export const openInviteModal = () => ({
   }
 });
 
-export const openProfileModal = () => ({
-  type: PUSH_MODAL,
+export const openProfileModal = userId => ({
+  type: PUSH_MODAL_PROFILE_MODAL,
   payload: {
-    component: MODAL_PROFILE
+    component: MODAL_PROFILE,
+    userId
   }
 });
 
