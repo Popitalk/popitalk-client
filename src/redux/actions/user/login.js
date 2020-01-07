@@ -32,12 +32,14 @@ const login = loginInfo => {
             response.data.relationships && response.data.relationships.blockers
         }
       });
-      dispatch({
-        type: GENERAL_ADD_USERS,
-        payload: {
-          users: response.data.users
-        }
-      });
+      if (response.data.users) {
+        dispatch({
+          type: GENERAL_ADD_USERS,
+          payload: {
+            users: response.data.users
+          }
+        });
+      }
       dispatch(userApiSuccess());
     } catch (error) {
       console.log("ERR", error);
