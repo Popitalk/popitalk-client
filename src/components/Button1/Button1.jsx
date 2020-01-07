@@ -9,6 +9,7 @@ export default function Button1({
   disabled,
   pill,
   children,
+  className,
   size = "md",
   color = "blue"
 }) {
@@ -29,7 +30,8 @@ export default function Button1({
       style.length === 2 && style.includes("p") && style.includes("i"),
     "Button1--pill": pill,
     "Button1--lg": size === "lg",
-    "Button1--pink": color === "pink"
+    "Button1--pink": color === "pink",
+    [className]: className
   });
 
   return (

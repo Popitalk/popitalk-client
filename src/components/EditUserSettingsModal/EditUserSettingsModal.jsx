@@ -59,8 +59,15 @@ export default function EditUserSettingsModal() {
   ]);
   const [displayedAvatar, setDisplayedAvatar] = useState(avatar);
   const [uploadedImage, setUploadedImage] = useState(null);
+  // const [mounted, setMounted] = useState(false);
+
+  // useEffect(() => {
+  //   if (!mounted) setMounted(true);
+  // }, [mounted]);
 
   useEffect(() => {
+    // if (!mounted) return;
+
     if (apiSuccess) {
       dispatch(closeModal());
     }
@@ -77,6 +84,8 @@ export default function EditUserSettingsModal() {
     setDisplayedAvatar(false);
     setUploadedImage(null);
   };
+
+  // console.log("MOUNTED", mounted);
 
   return (
     <div className="EditUserSettingsModal--container">

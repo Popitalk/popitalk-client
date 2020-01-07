@@ -1,96 +1,28 @@
 import React, { useState, useCallback } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { openProfileModal, closeModal } from "../../redux/actions";
+import { openProfileModal, unblockUser, closeModal } from "../../redux/actions";
 import "./BlockedUsersModal.css";
-
-const users = [
-  {
-    id: "a1",
-    username: "x1",
-    avatar: "https://i.imgur.com/aqjzchq.jpg"
-  },
-  {
-    id: "a2",
-    username: "x2",
-    avatar: "https://i.imgur.com/88oSmeX.jpg"
-  },
-  {
-    id: "a3",
-    username: "y1",
-    avatar: "https://i.imgur.com/tLljw1z.jpg"
-  },
-  {
-    id: "a4",
-    username: "abc",
-    avatar: "https://i.imgur.com/aqjzchq.jpg"
-  },
-  {
-    id: "a5",
-    username: "abc",
-    avatar: "https://i.imgur.com/88oSmeX.jpg"
-  },
-  {
-    id: "a6",
-    username: "abc",
-    avatar: "https://i.imgur.com/tLljw1z.jpg"
-  },
-  {
-    id: "a7",
-    username: "abc",
-    avatar: "https://i.imgur.com/aqjzchq.jpg"
-  },
-  {
-    id: "a8",
-    username: "abc",
-    avatar: "https://i.imgur.com/88oSmeX.jpg"
-  },
-  {
-    id: "a9",
-    username: "abc",
-    avatar: "https://i.imgur.com/tLljw1z.jpg"
-  },
-  {
-    id: "a10",
-    username: "abc",
-    avatar: "https://i.imgur.com/aqjzchq.jpg"
-  },
-  {
-    id: "a11",
-    username: "abc",
-    avatar: "https://i.imgur.com/88oSmeX.jpg"
-  },
-  {
-    id: "a12",
-    username: "abc",
-    avatar: "https://i.imgur.com/tLljw1z.jpg"
-  },
-  {
-    id: "a13",
-    username: "abc",
-    avatar: "https://i.imgur.com/aqjzchq.jpg"
-  },
-  {
-    id: "a14",
-    username: "abc",
-    avatar: "https://i.imgur.com/88oSmeX.jpg"
-  }
-];
 
 export default function BlockedUsersModal() {
   const [search, setSearch] = useState("");
   const firstModal = useSelector(
     ({ modalState }) => modalState.components.length === 1
   );
+  const { blocked, defaultAvatar } = useSelector(state => state.userState);
+  const { users } = useSelector(state => state.generalState);
   const dispatch = useDispatch();
-  const openProfileModalDispatcher = useCallback(
-    () => dispatch(openProfileModal()),
-    [dispatch]
-  );
   const closeModalDispatcher = useCallback(() => dispatch(closeModal()), [
     dispatch
   ]);
 
-  const filteredUsers = users.filter(user => user.username.includes(search));
+  const filteredUsers = blocked
+    .map(userId => ({
+      id: userId,
+      fullName: `${users[userId].firstName} ${users[userId].lastName}`,
+      username: users[userId].username,
+      avatar: users[userId].avatar || defaultAvatar
+    }))
+    .filter(user => user.username.includes(search));
 
   return (
     <div className="BlockedUsersModal--container">
@@ -129,13 +61,20 @@ export default function BlockedUsersModal() {
               <img
                 src={user.avatar}
                 alt={`${user.username} avatar`}
-                onClick={openProfileModalDispatcher}
+                onClick={() => dispatch(openProfileModal(user.id))}
               />
-              <div role="button" onClick={openProfileModalDispatcher}>
+              <div
+                role="button"
+                onClick={() => dispatch(openProfileModal(user.id))}
+              >
                 <p>{user.username}</p>
-                <p>Slacking Slack</p>
+                <p>{user.fullName}</p>
               </div>
-              <button type="button" className="button">
+              <button
+                type="button"
+                className="button"
+                onClick={() => dispatch(unblockUser(user.id))}
+              >
                 Unblock
               </button>
             </div>

@@ -30,14 +30,17 @@ const apiError = error => ({
 });
 
 export const searchUsers = username => {
-  return async dispatch => {
+  return async (dispatch, getState) => {
     try {
+      const { blocked, blockers } = getState().userState;
+      const blocks = [...blocked, ...blockers];
+
       dispatch(apiLoading());
       const response = await api.searchUsers(username);
       dispatch({
         type: USERSEARCH_SET_USERS_INFO,
         payload: {
-          users: response.data
+          users: response.data.filter(user => !blocks.includes(user.id))
         }
       });
       dispatch(apiSuccess());

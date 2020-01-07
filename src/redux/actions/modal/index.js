@@ -21,6 +21,8 @@ import {
   MODAL_DELETE_ACCOUNT
 } from "../../../helpers/constants";
 
+import { userApiReset } from "../api";
+
 export const openCreateNewAccountModal = () => ({
   type: PUSH_MODAL,
   payload: {
@@ -110,9 +112,9 @@ export const openDeleteAccountModal = () => ({
 //   type: POP_MODAL
 // });
 
-export const closeModal = () => ({
-  type: POP_MODAL
-});
+// export const closeModal = () => ({
+//   type: POP_MODAL
+// });
 
 export const closeAllModals = () => ({
   type: CLOSE_ALL_MODAL
@@ -121,3 +123,10 @@ export const closeAllModals = () => ({
 export const popAllModals = () => ({
   type: POP_ALL_MODAL
 });
+
+export const closeModal = () => {
+  return dispatch => {
+    dispatch({ type: POP_MODAL });
+    dispatch(userApiReset());
+  };
+};

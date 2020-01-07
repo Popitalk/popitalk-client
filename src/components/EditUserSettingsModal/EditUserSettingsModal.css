@@ -2,7 +2,9 @@
   background-color: #ffffff;
   box-shadow: 0px 3px 6px #00000053;
   border-radius: 20px;
+  /* min-width: 555px; */
   min-width: 555px;
+  width: 555px;
   /* height: 720px; */
   display: flex;
   flex-direction: column;
@@ -41,6 +43,8 @@
   align-items: center;
   padding: 22px;
   padding: 22px 40px;
+  /* padding: 60px 40px 22px 40px; */
+  padding: 60px 40px 40px 40px;
   width: 100%;
 }
 .EditUserSettingsModal--form > *:not(:last-child) {

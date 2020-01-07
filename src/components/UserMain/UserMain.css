@@ -92,6 +92,15 @@
   margin-left: 30px;
   box-shadow: 0px 3px 6px #00000029;
   height: 40px;
+  margin-right: 24px;
+}
+.UserMain--user
+  > .UserMain--user--nameStats
+  > *:first-child
+  > *:first-child
+  > button:disabled {
+  cursor: default;
+  box-shadow: none;
 }
 
 .UserMain--user > .UserMain--user--nameStats > *:first-child > p {
@@ -142,14 +151,21 @@
   align-items: center;
 }
 .UserMain--notFound > h3 {
-  font-size: 18px;
+  font-size: 40px;
+  font-weight: 400 !important;
   font-weight: bold;
   margin-bottom: 20px !important;
   color: gray;
 }
 .UserMain--notFound > h4 {
-  font-size: 18px;
+  font-size: 25px;
+  font-weight: 400 !important;
   font-weight: bold;
   margin-bottom: 0;
   color: gray;
+}
+
+.UserMain--button--receivedFriendRequest {
+  background: transparent linear-gradient(68deg, #00ffb1 0%, #5abefc 100%) 0% 0%
+    no-repeat padding-box;
 }

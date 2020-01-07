@@ -1,16 +1,25 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import ChannelCard1 from "../ChannelCard1";
-import { getUserInfo } from "../../redux/actions";
+import { getUserInfo, sendFriendRequest } from "../../redux/actions";
 import Skeleton from "react-loading-skeleton";
 import Button1 from "../Button1";
+import FriendBlockMenu from "../FriendBlockMenu";
 import "./UserMain.css";
 
 export default function UserMain() {
   const { userId } = useParams();
   const { userId: modalUserId } = useSelector(state => state.modalState);
-  const { defaultAvatar } = useSelector(state => state.userState);
+  const {
+    id: ownId,
+    defaultAvatar,
+    friends,
+    sentFriendRequests,
+    receivedFriendRequests,
+    blocked,
+    blockers
+  } = useSelector(state => state.userState);
   const { id, firstName, lastName, username, avatar } = useSelector(
     state => state.userPageState
   );
@@ -18,15 +27,22 @@ export default function UserMain() {
     userPageApiLoading: apiLoading,
     userPageApiError: apiError
   } = useSelector(state => state.apiState);
+  const [error, setError] = useState(false);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (!(userId === modalUserId && userId === id)) {
+    if (blockers.includes(userId)) {
+      setError(true);
+    } else if (!(userId === modalUserId && userId === id)) {
       dispatch(getUserInfo(userId));
     }
-  }, [dispatch, id, modalUserId, userId]);
+  }, [blockers, dispatch, id, modalUserId, userId]);
 
-  if (apiError) {
+  const handleSendFriendRequest = () => {
+    dispatch(sendFriendRequest(userId || modalUserId));
+  };
+
+  if (apiError || error) {
     return (
       <div className="UserMain--container">
         <section>
@@ -38,6 +54,8 @@ export default function UserMain() {
       </div>
     );
   }
+
+  const noFriendRequests = [...friends, ...sentFriendRequests, ...blocked];
 
   return (
     <div className="UserMain--container">
@@ -54,11 +72,55 @@ export default function UserMain() {
               <div>
                 <div>
                   <h3>{apiLoading ? <Skeleton width={150} /> : username}</h3>
-                  {!apiLoading && (
-                    <Button1>
-                      <i className="fas fa-user-plus" />
-                      <p>Add friend</p>
-                    </Button1>
+                  {!apiLoading && userId !== ownId && (
+                    <>
+                      {friends.includes(userId) ? (
+                        <>
+                          <Button1 disabled={true}>
+                            <i className="fas fa-user-check" />
+                            <p>Added</p>
+                          </Button1>
+                          <FriendBlockMenu type="friend" />
+                        </>
+                      ) : sentFriendRequests.includes(userId) ? (
+                        <>
+                          <Button1 disabled={true}>
+                            <i className="fas fa-user-plus" />
+                            <p>Request Sent</p>
+                          </Button1>
+                          <FriendBlockMenu type="sent request" />
+                        </>
+                      ) : receivedFriendRequests.includes(userId) ? (
+                        <>
+                          <Button1
+                            onClick={handleSendFriendRequest}
+                            className={
+                              "UserMain--button--receivedFriendRequest"
+                            }
+                          >
+                            <i className="fas fa-user-plus" />
+                            <p>Accept</p>
+                          </Button1>
+                          <FriendBlockMenu type="received request" />
+                        </>
+                      ) : blocked.includes(userId) ? (
+                        <>
+                          <Button1 disabled={true}>
+                            <i className="fas fa-user-lock" />
+                            <p>Blocked</p>
+                          </Button1>
+                          <FriendBlockMenu type="blocked" />
+                        </>
+                      ) : (
+                        <>
+                          <Button1 onClick={handleSendFriendRequest}>
+                            <i className="fas fa-user-plus" />
+                            <p>Add friend</p>
+                          </Button1>
+                          <FriendBlockMenu />
+                        </>
+                      )}
+                    </>
                   )}
                 </div>
 
@@ -92,54 +154,62 @@ export default function UserMain() {
               </div>
             </div>
           </div>
-          <div className="UserMain--channels">
-            <h3>
-              {apiLoading ? (
-                <Skeleton width={392} />
-              ) : (
-                `Shared between you and ${username}`
-              )}
-            </h3>
-            <div className="UserMain--channelsGrid">
-              {apiLoading ? (
-                <>
-                  <Skeleton height={317} />
-                  <Skeleton height={317} />
-                  <Skeleton height={317} />
-                  <Skeleton height={317} />
-                </>
-              ) : (
-                <>
-                  <ChannelCard1 />
-                  <ChannelCard1 />
-                  <ChannelCard1 />
-                  <ChannelCard1 />
-                </>
-              )}
-            </div>
-          </div>
-          <div className="UserMain--channels">
-            <h3>
-              {apiLoading ? <Skeleton width={250} /> : `${username}'s Channels`}
-            </h3>
-            <div className="UserMain--channelsGrid">
-              {apiLoading ? (
-                <>
-                  <Skeleton height={317} />
-                  <Skeleton height={317} />
-                  <Skeleton height={317} />
-                  <Skeleton height={317} />
-                </>
-              ) : (
-                <>
-                  <ChannelCard1 />
-                  <ChannelCard1 />
-                  <ChannelCard1 />
-                  <ChannelCard1 />
-                </>
-              )}
-            </div>
-          </div>
+          {!blocked.includes(userId || modalUserId) && (
+            <>
+              <div className="UserMain--channels">
+                <h3>
+                  {apiLoading ? (
+                    <Skeleton width={392} />
+                  ) : (
+                    `Shared between you and ${username}`
+                  )}
+                </h3>
+                <div className="UserMain--channelsGrid">
+                  {apiLoading ? (
+                    <>
+                      <Skeleton height={317} />
+                      <Skeleton height={317} />
+                      <Skeleton height={317} />
+                      <Skeleton height={317} />
+                    </>
+                  ) : (
+                    <>
+                      <ChannelCard1 />
+                      <ChannelCard1 />
+                      <ChannelCard1 />
+                      <ChannelCard1 />
+                    </>
+                  )}
+                </div>
+              </div>
+              <div className="UserMain--channels">
+                <h3>
+                  {apiLoading ? (
+                    <Skeleton width={250} />
+                  ) : (
+                    `${username}'s Channels`
+                  )}
+                </h3>
+                <div className="UserMain--channelsGrid">
+                  {apiLoading ? (
+                    <>
+                      <Skeleton height={317} />
+                      <Skeleton height={317} />
+                      <Skeleton height={317} />
+                      <Skeleton height={317} />
+                    </>
+                  ) : (
+                    <>
+                      <ChannelCard1 />
+                      <ChannelCard1 />
+                      <ChannelCard1 />
+                      <ChannelCard1 />
+                    </>
+                  )}
+                </div>
+              </div>
+            </>
+          )}
         </div>
       </section>
     </div>

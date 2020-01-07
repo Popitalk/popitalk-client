@@ -6,7 +6,8 @@ import ReactTooltip from "react-tooltip";
 import {
   searchUsers,
   clearUserSearch,
-  openProfileModal
+  openProfileModal,
+  sendFriendRequest
 } from "../../redux/actions";
 import RoomIcon2 from "../RoomIcon2";
 import Button1 from "../Button1";
@@ -278,7 +279,13 @@ export default function FriendsPanel({ unexpandable = false }) {
   const { users: searchedUsers, apiError } = useSelector(
     state => state.userSearchState
   );
-  const { defaultAvatar } = useSelector(state => state.userState);
+  const {
+    id: userId,
+    defaultAvatar,
+    sentFriendRequests,
+    receivedFriendRequests,
+    friends
+  } = useSelector(state => state.userState);
   // const modalComponent = useSelector(({ modalState }) => modalState.components);
   const [page, setPage] = useState(0);
   // const [dontCollapse, setDontCollapse] = useState(false);
@@ -297,6 +304,8 @@ export default function FriendsPanel({ unexpandable = false }) {
       setShadow(false);
     }
   }, [y]);
+
+  const hiddenRequests = [...friends, ...sentFriendRequests];
 
   // useEffect(() => {
   //   console.log("MODAL MODAL", modalComponent);
@@ -440,9 +449,30 @@ export default function FriendsPanel({ unexpandable = false }) {
                     src={user.avatar || defaultAvatar}
                     alt="avatar"
                     onClick={() => handleProfileOpen(user.id)}
+                    className={`${
+                      userId === user.id ? "FriendsPanel--avatar--yourself" : ""
+                    }`}
                   />
-                  <Button1>
-                    <i className="fas fa-user-plus" />
+                  <Button1
+                    disabled={hiddenRequests.includes(user.id)}
+                    onClick={
+                      hiddenRequests.includes(user.id)
+                        ? undefined
+                        : () => dispatch(sendFriendRequest(user.id))
+                    }
+                    className={
+                      receivedFriendRequests.includes(user.id)
+                        ? "FriendsPanel--button--receivedFriendRequest"
+                        : ""
+                    }
+                  >
+                    <i
+                      className={
+                        friends.includes(user.id)
+                          ? "fas fa-user-check"
+                          : "fas fa-user-plus"
+                      }
+                    />
                   </Button1>
                 </div>
               ))}

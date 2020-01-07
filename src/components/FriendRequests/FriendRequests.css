@@ -90,3 +90,23 @@
   -webkit-user-drag: none;
   user-select: none;
 }
+.FriendRequests--requests > * > *:last-child {
+  background: transparent linear-gradient(68deg, #00ffb1 0%, #5abefc 100%) 0% 0%
+    no-repeat padding-box;
+}
+
+.FriendRequests--requests > h4 {
+  background-color: #fff;
+  color: #a5a5a5;
+  box-shadow: none;
+  font-size: 16px;
+  font-weight: 400;
+  margin: 0 auto !important;
+  width: 100%;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}

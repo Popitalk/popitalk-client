@@ -20,6 +20,10 @@ export const updateUser = updateInfo => {
   return axios.put("/api/users/", updateInfo);
 };
 
+export const updateUserRelationships = updateInfo => {
+  return axios.put("/api/users/relationships", updateInfo);
+};
+
 export const getUser = userId => {
   return axios.get(`/api/users/${userId}`);
 };

@@ -2,7 +2,8 @@ import * as api from "../../../helpers/api";
 import {
   SET_USER_INFO,
   SITE_VERSION,
-  LOGOUT
+  LOGOUT,
+  GENERAL_ADD_USERS
 } from "../../../helpers/constants";
 
 const validateSession = () => {
@@ -35,7 +36,28 @@ const validateSession = () => {
       const response = await api.validateSession();
       dispatch({
         type: SET_USER_INFO,
-        payload: response.data
+        payload: {
+          id: response.data.id,
+          firstName: response.data.firstName,
+          lastName: response.data.lastName,
+          username: response.data.username,
+          dateOfBirth: response.data.dateOfBirth,
+          avatar: response.data.avatar,
+          email: response.data.email,
+          emailVerified: response.data.emailVerified,
+          friends: response.data.relationships.friends,
+          sentFriendRequests: response.data.relationships.sentFriendRequests,
+          receivedFriendRequests:
+            response.data.relationships.receivedFriendRequests,
+          blocked: response.data.relationships.blocked,
+          blockers: response.data.relationships.blockers
+        }
+      });
+      dispatch({
+        type: GENERAL_ADD_USERS,
+        payload: {
+          users: response.data.users
+        }
       });
     } catch (error) {
       localStorage.removeItem("userState");

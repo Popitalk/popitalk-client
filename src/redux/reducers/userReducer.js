@@ -11,6 +11,11 @@ const initialState = {
   avatar: null,
   email: "",
   emailVerified: null,
+  friends: [],
+  sentFriendRequests: [],
+  receivedFriendRequests: [],
+  blocked: [],
+  blockers: [],
   defaultAvatar: "https://i.imgur.com/7VbpwDl.png",
   updatedAvatar: null
 };
@@ -27,9 +32,18 @@ export default (state = initialState, { type, payload }) => {
         lastName: payload.lastName,
         username: payload.username,
         dateOfBirth: payload.dateOfBirth,
-        avatar: payload.avatar,
+        avatar: payload.avatar !== undefined ? payload.avatar : null,
         email: payload.email,
-        emailVerified: payload.emailVerified
+        emailVerified: payload.emailVerified,
+        friends: payload.friends ? payload.friends : [],
+        sentFriendRequests: payload.sentFriendRequests
+          ? payload.sentFriendRequests
+          : [],
+        receivedFriendRequests: payload.receivedFriendRequests
+          ? payload.receivedFriendRequests
+          : [],
+        blocked: payload.blocked ? payload.blocked : [],
+        blockers: payload.blockers ? payload.blockers : []
       };
 
     case USER_UPDATE:

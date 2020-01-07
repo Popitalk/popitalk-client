@@ -50,6 +50,15 @@ export const userApiSuccess2 = () => ({
   }
 });
 
+export const userApiReset = () => ({
+  type: SET_API,
+  payload: {
+    userApiLoading: false,
+    userApiError: false,
+    userApiSuccess: false
+  }
+});
+
 export const userApiError = error => ({
   type: SET_API,
   payload: {
