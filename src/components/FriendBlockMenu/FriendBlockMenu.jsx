@@ -43,12 +43,10 @@ export default function FriendBlockMenu({ type }) {
       className={`FriendBlockMenu--container${
         open ? " FriendBlockMenu--open" : ""
       }`}
+      role="button"
+      onClick={() => setOpen(true)}
     >
-      <i
-        className="fas fa-ellipsis-v fa-lg"
-        role="button"
-        onClick={() => setOpen(true)}
-      />
+      <i className="fas fa-ellipsis-v fa-lg" />
       {open && (
         <div className="FriendBlockMenu--popup" ref={ref}>
           {type === "friend" ? (

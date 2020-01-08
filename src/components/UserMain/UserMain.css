@@ -166,6 +166,6 @@
 }
 
 .UserMain--button--receivedFriendRequest {
-  background: transparent linear-gradient(68deg, #00ffb1 0%, #5abefc 100%) 0% 0%
+  background: transparent linear-gradient(68deg, #5abefc 0%, #00ed80 100%) 0% 0%
     no-repeat padding-box;
 }

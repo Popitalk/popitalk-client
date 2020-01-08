@@ -4,15 +4,19 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  /* background-color: red; */
+  width: 25px;
+  height: 25px;
+  cursor: pointer;
 }
 .FriendBlockMenu--container > i {
   color: #cbcbcb;
-  cursor: pointer;
 }
-.FriendBlockMenu--container > i:hover {
+
+.FriendBlockMenu--container:hover > i {
   color: #868686;
 }
-.FriendBlockMenu--container > i:active {
+.FriendBlockMenu--container:active > i {
   transform: translateY(1px);
 }
 

@@ -55,8 +55,6 @@ export default function UserMain() {
     );
   }
 
-  const noFriendRequests = [...friends, ...sentFriendRequests, ...blocked];
-
   return (
     <div className="UserMain--container">
       <section>
