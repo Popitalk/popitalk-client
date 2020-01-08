@@ -18,7 +18,7 @@ export default function HeaderFriends() {
       <i
         className="fas fa-user-plus fa-2x"
         role="button"
-        onClick={() => setOpen(true)}
+        onMouseDown={() => setOpen(true)}
       />
       {open && (
         <div className="HeaderFriends--popup" ref={ref}>

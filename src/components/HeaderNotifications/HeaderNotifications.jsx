@@ -18,7 +18,7 @@ export default function HeaderNotifications() {
       <i
         className="fas fa-bell fa-2x"
         role="button"
-        onClick={() => setOpen(true)}
+        onMouseDown={() => setOpen(true)}
       />
       {open && (
         <div className="HeaderNotifications--popup" ref={ref}>

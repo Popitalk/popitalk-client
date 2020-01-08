@@ -40,7 +40,6 @@ export default function Header() {
   }, [location]);
 
   const handleLogin = () => {
-    console.log("LOGGIN IN");
     dispatch(
       login({
         usernameOrEmail: username,
@@ -72,6 +71,11 @@ export default function Header() {
               spellCheck={false}
               onChange={e => setUsername(e.target.value)}
               disabled={apiLoading}
+              onKeyDown={e => {
+                if (e.keyCode === 13) {
+                  handleLogin();
+                }
+              }}
             />
           </div>
           <div className={apiError ? "Header--login--error" : ""}>
@@ -83,6 +87,11 @@ export default function Header() {
               spellCheck={false}
               onChange={e => setPassword(e.target.value)}
               disabled={apiLoading}
+              onKeyDown={e => {
+                if (e.keyCode === 13) {
+                  handleLogin();
+                }
+              }}
             />
           </div>
           <p>Forgot Password?</p>
