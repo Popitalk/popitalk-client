@@ -3,7 +3,7 @@ import {
   SET_USER_INFO,
   SITE_VERSION,
   LOGOUT,
-  GENERAL_ADD_USERS
+  GENERAL_INIT
 } from "../../../helpers/constants";
 
 const validateSession = () => {
@@ -59,14 +59,14 @@ const validateSession = () => {
             response.data.relationships && response.data.relationships.blockers
         }
       });
-      if (response.data.users) {
-        dispatch({
-          type: GENERAL_ADD_USERS,
-          payload: {
-            users: response.data.users
-          }
-        });
-      }
+      dispatch({
+        type: GENERAL_INIT,
+        payload: {
+          channels: response.data.channels || {},
+          rooms: response.data.rooms || {},
+          users: response.data.users || {}
+        }
+      });
     } catch (error) {
       localStorage.removeItem("userState");
       dispatch({ type: LOGOUT });

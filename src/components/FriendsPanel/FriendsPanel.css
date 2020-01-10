@@ -233,6 +233,8 @@
 .FriendsPanel--room {
   cursor: pointer;
   transition: transform 0.17s ease-in-out;
+  text-decoration: none;
+  color: inherit;
 }
 
 .FriendsPanel--room:hover {
@@ -261,6 +263,12 @@
 .FriendsPanel--expanded .FriendsPanel--room:active {
   background-color: #f0f0f0;
   transform: none;
+}
+
+.FriendsPanel--expanded .FriendsPanel--activeRoom {
+  background-color: #f0f0f0;
+  transform: none;
+  pointer-events: none;
 }
 
 .FriendsPanel--friendRequests {

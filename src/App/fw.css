@@ -171,3 +171,7 @@ textarea {
 .button:disabled:active {
   filter: none;
 }
+
+.disabled-link {
+  pointer-events: none;
+}

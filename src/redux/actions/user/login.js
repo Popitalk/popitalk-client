@@ -1,5 +1,5 @@
 import * as api from "../../../helpers/api";
-import { SET_USER_INFO, GENERAL_ADD_USERS } from "../../../helpers/constants";
+import { SET_USER_INFO, GENERAL_INIT } from "../../../helpers/constants";
 import { userApiLoading, userApiSuccess, userApiError } from "../api";
 
 const login = loginInfo => {
@@ -32,14 +32,14 @@ const login = loginInfo => {
             response.data.relationships && response.data.relationships.blockers
         }
       });
-      if (response.data.users) {
-        dispatch({
-          type: GENERAL_ADD_USERS,
-          payload: {
-            users: response.data.users
-          }
-        });
-      }
+      dispatch({
+        type: GENERAL_INIT,
+        payload: {
+          channels: response.data.channels || {},
+          rooms: response.data.rooms || {},
+          users: response.data.users || {}
+        }
+      });
       dispatch(userApiSuccess());
     } catch (error) {
       console.log("ERR", error);

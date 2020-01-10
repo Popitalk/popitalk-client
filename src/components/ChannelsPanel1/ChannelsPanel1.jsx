@@ -1,97 +1,100 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useScroll } from "react-use";
+import { Link } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
 import ReactTooltip from "react-tooltip";
 import RoomIcon2 from "../RoomIcon2";
 import "./ChannelsPanel1.css";
 
-const channels = [
-  {
-    id: "abc1",
-    name: "channel1",
-    icon: "https://i.imgur.com/aqjzchq.jpg",
-    watching: true
-  },
-  {
-    id: "abc2",
-    name: "channel2",
-    icon: "https://i.imgur.com/aqjzchq.jpg",
-    watching: false
-  },
-  {
-    id: "abc3",
-    name: "channel3",
-    icon: "https://i.imgur.com/aqjzchq.jpg",
-    watching: false
-  },
-  {
-    id: "abc4",
-    name: "channel4",
-    icon: "https://i.imgur.com/aqjzchq.jpg",
-    watching: true
-  },
-  {
-    id: "abc5",
-    name: "channel5",
-    icon: "https://i.imgur.com/aqjzchq.jpg",
-    watching: false
-  },
-  {
-    id: "abcf1",
-    name: "channel6",
-    icon: "https://i.imgur.com/aqjzchq.jpg",
-    watching: false
-  },
-  {
-    id: "abc2d",
-    name: "channel7",
-    icon: "https://i.imgur.com/aqjzchq.jpg",
-    watching: false
-  },
-  {
-    id: "abc3v",
-    name: "channel8",
-    icon: "https://i.imgur.com/aqjzchq.jpg",
-    watching: false
-  },
-  {
-    id: "abct4",
-    name: "channel9",
-    icon: "https://i.imgur.com/aqjzchq.jpg",
-    watching: true
-  },
-  {
-    id: "abc5u",
-    name: "channel10",
-    icon: "https://i.imgur.com/aqjzchq.jpg",
-    watching: false
-  },
-  {
-    id: "abc2dv",
-    name: "channel11",
-    icon: "https://i.imgur.com/aqjzchq.jpg",
-    watching: false
-  },
-  {
-    id: "abc3vd",
-    name: "channel12",
-    icon: "https://i.imgur.com/aqjzchq.jpg",
-    watching: false
-  },
-  {
-    id: "abct44",
-    name: "channel13",
-    icon: "https://i.imgur.com/aqjzchq.jpg",
-    watching: true
-  },
-  {
-    id: "abc5uh",
-    name: "channel14",
-    icon: "https://i.imgur.com/aqjzchq.jpg",
-    watching: true
-  }
-];
+// const channels = [
+//   {
+//     id: "abc1",
+//     name: "channel1",
+//     icon: "https://i.imgur.com/aqjzchq.jpg",
+//     watching: true
+//   },
+//   {
+//     id: "abc2",
+//     name: "channel2",
+//     icon: "https://i.imgur.com/aqjzchq.jpg",
+//     watching: false
+//   },
+//   {
+//     id: "abc3",
+//     name: "channel3",
+//     icon: "https://i.imgur.com/aqjzchq.jpg",
+//     watching: false
+//   },
+//   {
+//     id: "abc4",
+//     name: "channel4",
+//     icon: "https://i.imgur.com/aqjzchq.jpg",
+//     watching: true
+//   },
+//   {
+//     id: "abc5",
+//     name: "channel5",
+//     icon: "https://i.imgur.com/aqjzchq.jpg",
+//     watching: false
+//   },
+//   {
+//     id: "abcf1",
+//     name: "channel6",
+//     icon: "https://i.imgur.com/aqjzchq.jpg",
+//     watching: false
+//   },
+//   {
+//     id: "abc2d",
+//     name: "channel7",
+//     icon: "https://i.imgur.com/aqjzchq.jpg",
+//     watching: false
+//   },
+//   {
+//     id: "abc3v",
+//     name: "channel8",
+//     icon: "https://i.imgur.com/aqjzchq.jpg",
+//     watching: false
+//   },
+//   {
+//     id: "abct4",
+//     name: "channel9",
+//     icon: "https://i.imgur.com/aqjzchq.jpg",
+//     watching: true
+//   },
+//   {
+//     id: "abc5u",
+//     name: "channel10",
+//     icon: "https://i.imgur.com/aqjzchq.jpg",
+//     watching: false
+//   },
+//   {
+//     id: "abc2dv",
+//     name: "channel11",
+//     icon: "https://i.imgur.com/aqjzchq.jpg",
+//     watching: false
+//   },
+//   {
+//     id: "abc3vd",
+//     name: "channel12",
+//     icon: "https://i.imgur.com/aqjzchq.jpg",
+//     watching: false
+//   },
+//   {
+//     id: "abct44",
+//     name: "channel13",
+//     icon: "https://i.imgur.com/aqjzchq.jpg",
+//     watching: true
+//   },
+//   {
+//     id: "abc5uh",
+//     name: "channel14",
+//     icon: "https://i.imgur.com/aqjzchq.jpg",
+//     watching: true
+//   }
+// ];
 
 export default function ChannelsPanel1() {
+  const { channels, defaultIcon } = useSelector(state => state.generalState);
   const [shadow, setShadow] = useState(false);
   const scrollRef = useRef(null);
   const { y } = useScroll(scrollRef);
@@ -122,20 +125,24 @@ export default function ChannelsPanel1() {
         <i className="fas fa-globe-americas fa-2x" />
       </div>
       <div className="ChannelsPanel1--channels" ref={scrollRef}>
-        {channels.map(channel => (
-          <div className="ChannelsPanel1--channel" key={channel.id}>
+        {Object.entries(channels).map(([channelId, channel]) => (
+          <Link
+            className="ChannelsPanel1--channel"
+            key={channelId}
+            to={`/channels/${channelId}/video`}
+          >
             <div
               data-for="ChannelsPanel1--tooltip"
               data-tip={channel.name}
               data-iscapture="true"
             >
               <RoomIcon2
-                images={[channel.icon]}
+                images={[channel.icon || defaultIcon]}
                 watching={channel.watching}
                 type="ChannelsPanel1"
               />
             </div>
-          </div>
+          </Link>
         ))}
       </div>
     </div>

@@ -2,7 +2,7 @@ import React from "react";
 import classNames from "classnames";
 import "./RoomIcon2.css";
 
-export default function RoomIcon2({ images, online, watching, type }) {
+export default function RoomIcon2({ images, online, watching, type, link }) {
   const classes = classNames({
     "RoomIcon2--container": true,
     "RoomIcon2--watching": watching,

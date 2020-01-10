@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useScroll } from "react-use";
+import { Link, useLocation } from "react-router-dom";
 import useOnClickOutside from "use-onclickoutside";
 import ReactTooltip from "react-tooltip";
 import {
@@ -14,259 +15,259 @@ import Button1 from "../Button1";
 import "./FriendsPanel.css";
 // import { MODAL_PROFILE } from "../../helpers/constants";
 
-const rooms = [
-  {
-    id: "a1",
-    name: null,
-    users: {
-      id1: {
-        username: "Andrew",
-        avatar: "https://i.imgur.com/aqjzchq.jpg",
-        online: true
-      },
-      id2: {
-        username: "Lawrence",
-        avatar: "https://i.imgur.com/Y9waUNm.jpg",
-        online: false
-      },
-      id3: {
-        username: "Emma",
-        avatar: "https://i.imgur.com/tLljw1z.jpg",
-        online: true
-      }
-    },
-    lastMessage: {
-      username: "Andrew",
-      message: "Hi lets watch an interesting video together"
-    },
-    watching: true
-  },
-  {
-    id: "a2",
-    name: "Team Playnow",
-    users: {
-      id1: {
-        username: "Andrew",
-        avatar: "https://i.imgur.com/aqjzchq.jpg",
-        online: true
-      },
-      id2: {
-        username: "Lawrence",
-        avatar: "https://i.imgur.com/Y9waUNm.jpg",
-        online: false
-      },
-      id3: {
-        username: "Emma",
-        avatar: "https://i.imgur.com/tLljw1z.jpg",
-        online: true
-      }
-    },
-    lastMessage: null,
-    watching: false
-  },
-  {
-    id: "a22",
-    name: null,
-    users: {
-      id1: {
-        username: "Andrew",
-        avatar: "https://i.imgur.com/aqjzchq.jpg",
-        online: true
-      },
-      id2: {
-        username: "Lawrence",
-        avatar: "https://i.imgur.com/Y9waUNm.jpg",
-        online: false
-      },
-      id3: {
-        username: "Emma",
-        avatar: "https://i.imgur.com/tLljw1z.jpg",
-        online: true
-      },
-      id4: {
-        username: "Jason",
-        avatar: "https://i.imgur.com/tLljw1z.jpg",
-        online: true
-      }
-    },
-    lastMessage: {
-      username: "Andrew",
-      message: "Hi lets watch an interesting video together"
-    },
-    watching: true
-  },
-  {
-    id: "a22xxxx",
-    name: null,
-    users: {
-      id1: {
-        username: "Andrew",
-        avatar: "https://i.imgur.com/aqjzchq.jpg",
-        online: true
-      },
-      id2: {
-        username: "Lawrence",
-        avatar: "https://i.imgur.com/Y9waUNm.jpg",
-        online: false
-      },
-      id3: {
-        username: "Emma",
-        avatar: "https://i.imgur.com/tLljw1z.jpg",
-        online: true
-      },
-      id4: {
-        username: "Jason",
-        avatar: "https://i.imgur.com/tLljw1z.jpg",
-        online: true
-      }
-    },
-    lastMessage: {
-      username: "Andrew",
-      message: "Hi lets watch an interesting video together"
-    },
-    watching: false
-  },
-  {
-    id: "a3",
-    name: null,
-    users: {
-      id3: {
-        username: "Emma",
-        avatar: "https://i.imgur.com/tLljw1z.jpg",
-        online: true
-      }
-    },
-    lastMessage: {
-      username: "Emma",
-      message: "Hi lets watch an interesting video together"
-    },
-    watching: true
-  },
-  {
-    id: "a3es",
-    name: null,
-    users: {
-      id3: {
-        username: "Jason",
-        avatar: "https://i.imgur.com/tLljw1z.jpg",
-        online: true
-      }
-    },
-    lastMessage: {
-      username: "Jason",
-      message: "Hi lets watch an interesting video together"
-    },
-    watching: false
-  },
-  {
-    id: "a3eaaa",
-    name: null,
-    users: {
-      id3: {
-        username: "Jason",
-        avatar: "https://i.imgur.com/tLljw1z.jpg",
-        online: true
-      }
-    },
-    lastMessage: {
-      username: "Jason",
-      message: "Hi lets watch an interesting video together"
-    },
-    watching: false
-  },
-  {
-    id: "a3ezz",
-    name: null,
-    users: {
-      id3: {
-        username: "Jason",
-        avatar: "https://i.imgur.com/tLljw1z.jpg",
-        online: true
-      }
-    },
-    lastMessage: null,
-    watching: false
-  },
-  {
-    id: "a3exx",
-    name: null,
-    users: {
-      id3: {
-        username: "Jason",
-        avatar: "https://i.imgur.com/tLljw1z.jpg",
-        online: true
-      }
-    },
-    lastMessage: {
-      username: "Jason",
-      message: "Hi lets watch an interesting video together"
-    },
-    watching: false
-  },
-  {
-    id: "a3ef",
-    name: "A room",
-    users: {
-      id3: {
-        username: "Emma",
-        avatar: "https://i.imgur.com/tLljw1z.jpg",
-        online: true
-      },
-      id5: {
-        username: "Jason",
-        avatar: "https://i.imgur.com/Y9waUNm.jpg",
-        online: true
-      }
-    },
-    lastMessage: {
-      username: "Jason",
-      message: "Hi lets watch an interesting video together"
-    },
-    watching: false
-  },
-  {
-    id: "a3gfef",
-    name: "A room",
-    users: {
-      id3: {
-        username: "Emma",
-        avatar: "https://i.imgur.com/tLljw1z.jpg",
-        online: true
-      },
-      id5: {
-        username: "Jason",
-        avatar: "https://i.imgur.com/Y9waUNm.jpg",
-        online: true
-      }
-    },
-    lastMessage: {
-      username: "Jason",
-      message: "Hi lets watch an interesting video together"
-    },
-    watching: false
-  },
-  {
-    id: "a3gfef4343",
-    name: "A room",
-    users: {
-      id3: {
-        username: "Emma",
-        avatar: "https://i.imgur.com/tLljw1z.jpg",
-        online: true
-      },
-      id5: {
-        username: "Jason",
-        avatar: "https://i.imgur.com/Y9waUNm.jpg",
-        online: true
-      }
-    },
-    lastMessage: {
-      username: "Jason",
-      message: "Hi lets watch an interesting video together"
-    },
-    watching: false
-  }
-];
+// const rooms = [
+//   {
+//     id: "a1",
+//     name: null,
+//     users: {
+//       id1: {
+//         username: "Andrew",
+//         avatar: "https://i.imgur.com/aqjzchq.jpg",
+//         online: true
+//       },
+//       id2: {
+//         username: "Lawrence",
+//         avatar: "https://i.imgur.com/Y9waUNm.jpg",
+//         online: false
+//       },
+//       id3: {
+//         username: "Emma",
+//         avatar: "https://i.imgur.com/tLljw1z.jpg",
+//         online: true
+//       }
+//     },
+//     lastMessage: {
+//       username: "Andrew",
+//       message: "Hi lets watch an interesting video together"
+//     },
+//     watching: true
+//   },
+//   {
+//     id: "a2",
+//     name: "Team Playnow",
+//     users: {
+//       id1: {
+//         username: "Andrew",
+//         avatar: "https://i.imgur.com/aqjzchq.jpg",
+//         online: true
+//       },
+//       id2: {
+//         username: "Lawrence",
+//         avatar: "https://i.imgur.com/Y9waUNm.jpg",
+//         online: false
+//       },
+//       id3: {
+//         username: "Emma",
+//         avatar: "https://i.imgur.com/tLljw1z.jpg",
+//         online: true
+//       }
+//     },
+//     lastMessage: null,
+//     watching: false
+//   },
+//   {
+//     id: "a22",
+//     name: null,
+//     users: {
+//       id1: {
+//         username: "Andrew",
+//         avatar: "https://i.imgur.com/aqjzchq.jpg",
+//         online: true
+//       },
+//       id2: {
+//         username: "Lawrence",
+//         avatar: "https://i.imgur.com/Y9waUNm.jpg",
+//         online: false
+//       },
+//       id3: {
+//         username: "Emma",
+//         avatar: "https://i.imgur.com/tLljw1z.jpg",
+//         online: true
+//       },
+//       id4: {
+//         username: "Jason",
+//         avatar: "https://i.imgur.com/tLljw1z.jpg",
+//         online: true
+//       }
+//     },
+//     lastMessage: {
+//       username: "Andrew",
+//       message: "Hi lets watch an interesting video together"
+//     },
+//     watching: true
+//   },
+//   {
+//     id: "a22xxxx",
+//     name: null,
+//     users: {
+//       id1: {
+//         username: "Andrew",
+//         avatar: "https://i.imgur.com/aqjzchq.jpg",
+//         online: true
+//       },
+//       id2: {
+//         username: "Lawrence",
+//         avatar: "https://i.imgur.com/Y9waUNm.jpg",
+//         online: false
+//       },
+//       id3: {
+//         username: "Emma",
+//         avatar: "https://i.imgur.com/tLljw1z.jpg",
+//         online: true
+//       },
+//       id4: {
+//         username: "Jason",
+//         avatar: "https://i.imgur.com/tLljw1z.jpg",
+//         online: true
+//       }
+//     },
+//     lastMessage: {
+//       username: "Andrew",
+//       message: "Hi lets watch an interesting video together"
+//     },
+//     watching: false
+//   },
+//   {
+//     id: "a3",
+//     name: null,
+//     users: {
+//       id3: {
+//         username: "Emma",
+//         avatar: "https://i.imgur.com/tLljw1z.jpg",
+//         online: true
+//       }
+//     },
+//     lastMessage: {
+//       username: "Emma",
+//       message: "Hi lets watch an interesting video together"
+//     },
+//     watching: true
+//   },
+//   {
+//     id: "a3es",
+//     name: null,
+//     users: {
+//       id3: {
+//         username: "Jason",
+//         avatar: "https://i.imgur.com/tLljw1z.jpg",
+//         online: true
+//       }
+//     },
+//     lastMessage: {
+//       username: "Jason",
+//       message: "Hi lets watch an interesting video together"
+//     },
+//     watching: false
+//   },
+//   {
+//     id: "a3eaaa",
+//     name: null,
+//     users: {
+//       id3: {
+//         username: "Jason",
+//         avatar: "https://i.imgur.com/tLljw1z.jpg",
+//         online: true
+//       }
+//     },
+//     lastMessage: {
+//       username: "Jason",
+//       message: "Hi lets watch an interesting video together"
+//     },
+//     watching: false
+//   },
+//   {
+//     id: "a3ezz",
+//     name: null,
+//     users: {
+//       id3: {
+//         username: "Jason",
+//         avatar: "https://i.imgur.com/tLljw1z.jpg",
+//         online: true
+//       }
+//     },
+//     lastMessage: null,
+//     watching: false
+//   },
+//   {
+//     id: "a3exx",
+//     name: null,
+//     users: {
+//       id3: {
+//         username: "Jason",
+//         avatar: "https://i.imgur.com/tLljw1z.jpg",
+//         online: true
+//       }
+//     },
+//     lastMessage: {
+//       username: "Jason",
+//       message: "Hi lets watch an interesting video together"
+//     },
+//     watching: false
+//   },
+//   {
+//     id: "a3ef",
+//     name: "A room",
+//     users: {
+//       id3: {
+//         username: "Emma",
+//         avatar: "https://i.imgur.com/tLljw1z.jpg",
+//         online: true
+//       },
+//       id5: {
+//         username: "Jason",
+//         avatar: "https://i.imgur.com/Y9waUNm.jpg",
+//         online: true
+//       }
+//     },
+//     lastMessage: {
+//       username: "Jason",
+//       message: "Hi lets watch an interesting video together"
+//     },
+//     watching: false
+//   },
+//   {
+//     id: "a3gfef",
+//     name: "A room",
+//     users: {
+//       id3: {
+//         username: "Emma",
+//         avatar: "https://i.imgur.com/tLljw1z.jpg",
+//         online: true
+//       },
+//       id5: {
+//         username: "Jason",
+//         avatar: "https://i.imgur.com/Y9waUNm.jpg",
+//         online: true
+//       }
+//     },
+//     lastMessage: {
+//       username: "Jason",
+//       message: "Hi lets watch an interesting video together"
+//     },
+//     watching: false
+//   },
+//   {
+//     id: "a3gfef4343",
+//     name: "A room",
+//     users: {
+//       id3: {
+//         username: "Emma",
+//         avatar: "https://i.imgur.com/tLljw1z.jpg",
+//         online: true
+//       },
+//       id5: {
+//         username: "Jason",
+//         avatar: "https://i.imgur.com/Y9waUNm.jpg",
+//         online: true
+//       }
+//     },
+//     lastMessage: {
+//       username: "Jason",
+//       message: "Hi lets watch an interesting video together"
+//     },
+//     watching: false
+//   }
+// ];
 
 export default function FriendsPanel({ unexpandable = false }) {
   const [shadow, setShadow] = useState(false);
@@ -276,11 +277,13 @@ export default function FriendsPanel({ unexpandable = false }) {
   const [search, setSearch] = useState("");
   const [expanded, setExpanded] = useState(unexpandable);
   const dispatch = useDispatch();
+  const location = useLocation();
   const { users: searchedUsers, apiError } = useSelector(
     state => state.userSearchState
   );
+  const { rooms, users } = useSelector(state => state.generalState);
   const {
-    id: userId,
+    id: ownId,
     defaultAvatar,
     sentFriendRequests,
     receivedFriendRequests,
@@ -304,6 +307,8 @@ export default function FriendsPanel({ unexpandable = false }) {
       setShadow(false);
     }
   }, [y]);
+
+  const activeRoom = location.pathname.split("/")[2];
 
   const hiddenRequests = [...friends, ...sentFriendRequests];
 
@@ -450,7 +455,7 @@ export default function FriendsPanel({ unexpandable = false }) {
                     alt="avatar"
                     onClick={() => handleProfileOpen(user.id)}
                     className={`${
-                      userId === user.id ? "FriendsPanel--avatar--yourself" : ""
+                      ownId === user.id ? "FriendsPanel--avatar--yourself" : ""
                     }`}
                   />
                   <Button1
@@ -519,21 +524,25 @@ export default function FriendsPanel({ unexpandable = false }) {
           <p>Your private room</p>
           <i className="fas fa-plus-square fa-2x" />
         </button>
-        {rooms.map(room => {
-          const users = Object.values(room.users);
-          const images = users.map(user => user.avatar);
-          const online = users.length === 1 && users[0].online;
+        {Object.entries(rooms).map(([roomId, room]) => {
+          const roomUsers = room.users;
+          const images =
+            roomUsers.length === 2
+              ? roomUsers
+                  .filter(userId => userId !== ownId)
+                  .map(userId => users[userId].avatar || defaultAvatar)
+              : roomUsers.map(userId => users[userId].avatar || defaultAvatar);
+          const online = roomUsers.length === 1 && roomUsers[0].online;
 
           let roomName =
             room.name ||
-            (users.length === 1
-              ? users[0].username
-              : users.map(user => user.username).join(", "));
+            (roomUsers.length === 2
+              ? users[roomUsers.filter(userId => userId !== ownId)[0]].username
+              : roomUsers.map(userId => users[userId].username).join(", "));
 
           if (roomName.length > 25) {
             roomName = `${roomName.slice(0, 25)}...`;
           }
-
           let roomMessage =
             room.lastMessage &&
             `${room.lastMessage.username}: ${room.lastMessage.message}`;
@@ -543,14 +552,17 @@ export default function FriendsPanel({ unexpandable = false }) {
           }
 
           return (
-            <div
-              className="FriendsPanel--room"
-              key={room.id}
+            <Link
+              className={`FriendsPanel--room${
+                activeRoom === roomId ? " FriendsPanel--activeRoom" : ""
+              }`}
+              key={roomId}
               {...(!expanded && {
                 "data-for": "FriendsPanel--tooltip",
                 "data-tip": roomName,
                 "data-iscapture": true
               })}
+              to={`/rooms/${roomId}/video`}
             >
               <div className="FriendsPanel--nameAndMessage">
                 <p>{roomName}</p>
@@ -562,7 +574,7 @@ export default function FriendsPanel({ unexpandable = false }) {
                 watching={room.watching}
                 type={expanded ? "FriendsPanel" : "ChannelsPanel1"}
               />
-            </div>
+            </Link>
           );
         })}
       </div>
