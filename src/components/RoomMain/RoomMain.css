@@ -58,6 +58,10 @@
   font-size: 28px;
   font-weight: bold;
 }
+.RoomMain--header > *:first-child > input {
+  font-size: 28px;
+  font-weight: bold;
+}
 
 .RoomMain--header > *:first-child > i {
   color: #000;

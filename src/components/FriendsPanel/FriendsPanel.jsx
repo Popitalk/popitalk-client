@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useScroll } from "react-use";
 import { Link, useLocation } from "react-router-dom";
@@ -8,7 +8,8 @@ import {
   searchUsers,
   clearUserSearch,
   openProfileModal,
-  sendFriendRequest
+  sendFriendRequest,
+  openCreateRoomModal
 } from "../../redux/actions";
 import RoomIcon2 from "../RoomIcon2";
 import Button1 from "../Button1";
@@ -281,7 +282,7 @@ export default function FriendsPanel({ unexpandable = false }) {
   const { users: searchedUsers, apiError } = useSelector(
     state => state.userSearchState
   );
-  const { rooms, users } = useSelector(state => state.generalState);
+  const { users, channels } = useSelector(state => state.generalState);
   const {
     id: ownId,
     defaultAvatar,
@@ -291,6 +292,10 @@ export default function FriendsPanel({ unexpandable = false }) {
   } = useSelector(state => state.userState);
   // const modalComponent = useSelector(({ modalState }) => modalState.components);
   const [page, setPage] = useState(0);
+  const openCreateRoomModalDispatcher = useCallback(
+    () => dispatch(openCreateRoomModal()),
+    [dispatch]
+  );
   // const [dontCollapse, setDontCollapse] = useState(false);
   const ref = useRef();
 
@@ -520,63 +525,88 @@ export default function FriendsPanel({ unexpandable = false }) {
             "data-tip": "Your private room",
             "data-iscapture": true
           })}
+          onClick={openCreateRoomModalDispatcher}
         >
           <p>Your private room</p>
           <i className="fas fa-plus-square fa-2x" />
         </button>
-        {Object.entries(rooms).map(([roomId, room]) => {
-          const roomUsers = room.users;
-          const images =
-            roomUsers.length === 2
-              ? roomUsers
-                  .filter(userId => userId !== ownId)
-                  .map(userId => users[userId].avatar || defaultAvatar)
-              : roomUsers.map(userId => users[userId].avatar || defaultAvatar);
-          const online = roomUsers.length === 1 && roomUsers[0].online;
+        {Object.entries(channels)
+          .filter(([channelId, channel]) => channel.type === "room")
+          .map(([roomId, room]) => {
+            const roomUsers = room.users;
+            const images =
+              roomUsers.length === 2
+                ? roomUsers
+                    .filter(userId => userId !== ownId)
+                    .map(userId => users[userId].avatar || defaultAvatar)
+                : roomUsers
+                    .sort((a, b) =>
+                      users[a].username.toLowerCase() >
+                      users[b].username.toLowerCase()
+                        ? 1
+                        : users[b].username.toLowerCase() >
+                          users[a].username.toLowerCase()
+                        ? -1
+                        : 0
+                    )
+                    .map(userId => users[userId].avatar || defaultAvatar);
+            const online = roomUsers.length === 1 && roomUsers[0].online;
 
-          let roomName =
-            room.name ||
-            (roomUsers.length === 2
-              ? users[roomUsers.filter(userId => userId !== ownId)[0]].username
-              : roomUsers.map(userId => users[userId].username).join(", "));
+            let roomName =
+              room.name ||
+              (roomUsers.length === 2
+                ? users[roomUsers.filter(userId => userId !== ownId)[0]]
+                    .username
+                : roomUsers
+                    .sort((a, b) =>
+                      users[a].username.toLowerCase() >
+                      users[b].username.toLowerCase()
+                        ? 1
+                        : users[b].username.toLowerCase() >
+                          users[a].username.toLowerCase()
+                        ? -1
+                        : 0
+                    )
+                    .map(userId => users[userId].username)
+                    .join(", "));
 
-          if (roomName.length > 25) {
-            roomName = `${roomName.slice(0, 25)}...`;
-          }
-          let roomMessage =
-            room.lastMessage &&
-            `${room.lastMessage.username}: ${room.lastMessage.message}`;
+            if (roomName.length > 25) {
+              roomName = `${roomName.slice(0, 25)}...`;
+            }
+            let roomMessage =
+              room.lastMessage &&
+              `${room.lastMessage.username}: ${room.lastMessage.message}`;
 
-          if (roomMessage && roomMessage.length > 25) {
-            roomMessage = `${roomMessage.slice(0, 25)}...`;
-          }
+            if (roomMessage && roomMessage.length > 25) {
+              roomMessage = `${roomMessage.slice(0, 25)}...`;
+            }
 
-          return (
-            <Link
-              className={`FriendsPanel--room${
-                activeRoom === roomId ? " FriendsPanel--activeRoom" : ""
-              }`}
-              key={roomId}
-              {...(!expanded && {
-                "data-for": "FriendsPanel--tooltip",
-                "data-tip": roomName,
-                "data-iscapture": true
-              })}
-              to={`/rooms/${roomId}/video`}
-            >
-              <div className="FriendsPanel--nameAndMessage">
-                <p>{roomName}</p>
-                <p>{roomMessage}</p>
-              </div>
-              <RoomIcon2
-                images={images}
-                online={online}
-                watching={room.watching}
-                type={expanded ? "FriendsPanel" : "ChannelsPanel1"}
-              />
-            </Link>
-          );
-        })}
+            return (
+              <Link
+                className={`FriendsPanel--room${
+                  activeRoom === roomId ? " FriendsPanel--activeRoom" : ""
+                }`}
+                key={roomId}
+                {...(!expanded && {
+                  "data-for": "FriendsPanel--tooltip",
+                  "data-tip": roomName,
+                  "data-iscapture": true
+                })}
+                to={`/rooms/${roomId}`}
+              >
+                <div className="FriendsPanel--nameAndMessage">
+                  <p>{roomName}</p>
+                  <p>{roomMessage}</p>
+                </div>
+                <RoomIcon2
+                  images={images}
+                  online={online}
+                  watching={room.watching}
+                  type={expanded ? "FriendsPanel" : "ChannelsPanel1"}
+                />
+              </Link>
+            );
+          })}
       </div>
     </div>
   );

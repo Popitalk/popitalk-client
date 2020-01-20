@@ -63,7 +63,6 @@ const validateSession = () => {
         type: GENERAL_INIT,
         payload: {
           channels: response.data.channels || {},
-          rooms: response.data.rooms || {},
           users: response.data.users || {}
         }
       });

@@ -1,93 +1,148 @@
-import React, {
-  useState,
-  useEffect,
-  useLayoutEffect,
-  useRef,
-  useCallback
-} from "react";
-import { useDispatch } from "react-redux";
-import { openFollowersModal } from "../../redux/actions";
-import {
-  Link,
-  Switch,
-  Route,
-  useRouteMatch,
-  useLocation
-} from "react-router-dom";
+import React, { useState, useEffect, useRef } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import _ from "lodash";
+import Skeleton from "react-loading-skeleton";
+import { getChannel, updateRoom } from "../../redux/actions";
+import { useParams } from "react-router-dom";
 import VideoPanel from "../VideoPanel";
-import UpdateQueue from "../UpdateQueue";
 import "./RoomMain.css";
 
 export default function RoomMain() {
+  const [editing, setEditing] = useState(false);
+  const [name, setName] = useState("");
   const dispatch = useDispatch();
-  const openFollowersModalDispatcher = useCallback(
-    () => dispatch(openFollowersModal()),
-    [dispatch]
-  );
-  const match = useRouteMatch();
-  const location = useLocation();
+  const { roomId } = useParams();
   const scrollRef = useRef(null);
+  const inputRef = useRef(null);
+  const { users, channels, defaultAvatar } = useSelector(
+    state => state.generalState
+  );
+  const { id: ownId, avatar, username } = useSelector(state => state.userState);
+  const { roomApiLoading: apiLoading, roomApiError: apiError } = useSelector(
+    state => state.apiState
+  );
 
-  useLayoutEffect(() => {
-    const tab = location.pathname.replace(match.url, "").slice(1);
-    // const noScroll = location.state && location.state.noScroll;
-
-    // if (noScroll) return;
-
-    if (tab === "video") {
-      scrollRef.current.scrollTo({
-        top: 0,
-        behavior: "smooth"
-      });
-    } else if (tab === "queue") {
-      scrollRef.current.scrollTo({ top: 0 });
+  useEffect(() => {
+    if (channels[roomId] && !channels[roomId]?.loaded) {
+      dispatch(getChannel(roomId));
+    } else if (!_.isEmpty(channels) && !channels[roomId]) {
+      console.log("NO ROOM");
     }
-  }, [location, match.url]);
+  }, [dispatch, roomId, channels]);
+
+  useEffect(() => {
+    if (editing) {
+      inputRef.current.select();
+    }
+  }, [editing]);
+
+  let roomUsers = channels[roomId]?.users;
+  let roomName =
+    channels[roomId]?.name ||
+    (roomUsers?.length === 2
+      ? users[roomUsers?.filter(userId => userId !== ownId)[0]].username
+      : roomUsers
+          ?.sort((a, b) =>
+            users[a].username.toLowerCase() > users[b].username.toLowerCase()
+              ? 1
+              : users[b].username.toLowerCase() >
+                users[a].username.toLowerCase()
+              ? -1
+              : 0
+          )
+          ?.map(userId => users[userId].username)
+          .join(", "));
+
+  if (roomName?.length > 25) {
+    roomName = `${roomName.slice(0, 25)}...`;
+  }
+
+  const loading = !channels[roomId]?.loaded;
+
+  const handleNameChange = () => {
+    if (name.length >= 3 && name.length <= 20) {
+      dispatch(updateRoom(roomId, { name }));
+    }
+    setEditing(false);
+  };
 
   return (
     <div className="RoomMain--container">
       <div className="RoomMain--header">
-        <div>
-          <img src="https://i.imgur.com/tLljw1z.jpg" alt="room icon" />
-          <h3>Team Playnow</h3>
-          <i className="fas fa-pen fa-lg" />
-          {/* <p onClick={openFollowersModalDispatcher}>120 People</p> */}
-        </div>
-        {/* <div className="RoomMain--nav">
-          <Link
-            to={`${match.url}/video`}
-            className={`${
-              location.pathname === `${match.url}/video`
-                ? "RoomMain--active"
-                : "RoomMain--inActive"
-            }`}
-          >
-            <h4>Video</h4>
-            <div className="RoomMain--nav--slab" />
-          </Link>
-          <Link
-            to={`${match.url}/queue`}
-            className={`${
-              location.pathname === `${match.url}/queue`
-                ? "RoomMain--active"
-                : "RoomMain--inActive"
-            }`}
-          >
-            <h4>Queue</h4>
-            <div className="RoomMain--nav--slab" />
-          </Link>
-        </div> */}
+        {loading ? (
+          <Skeleton height={20} width={250} />
+        ) : (
+          <div>
+            {roomUsers.length === 2 && (
+              <img
+                src={users[roomUsers.filter(userId => userId !== ownId)].avatar}
+                alt={`${
+                  users[roomUsers.filter(userId => userId !== ownId)].username
+                }'s avatar`}
+              />
+            )}
+            {apiLoading ? (
+              <Skeleton height={20} width={250} />
+            ) : editing ? (
+              <input
+                ref={inputRef}
+                type="text"
+                autoFocus
+                value={name}
+                onChange={e => setName(e.target.value)}
+                onKeyDown={e => {
+                  console.log("KEY IS", e.key);
+                  if (e.key === "Enter") {
+                    handleNameChange();
+                  } else if (e.key === "Escape") {
+                    setEditing(false);
+                  }
+                }}
+                onBlur={handleNameChange}
+              />
+            ) : (
+              <>
+                <h3>{roomName}</h3>
+                <i
+                  className="fas fa-pen fa-lg"
+                  role="button"
+                  onClick={() => {
+                    setName(roomName);
+                    setEditing(true);
+                  }}
+                />
+              </>
+            )}
+            {/* {editing ? (
+              <input
+                type="text"
+                autoFocus
+                value={name}
+                onChange={e => setName(e.target.value)}
+                onKeyDown={e => {
+                  if (e.keyCode === 13) {
+                    handleNameChange();
+                  }
+                }}
+                onBlur={handleNameChange}
+              />
+            ) : (
+              <h3>{roomName}</h3>
+            )}
+
+            <i
+              className="fas fa-pen fa-lg"
+              role="button"
+              onClick={() => {
+                setName(roomName);
+                setEditing(true);
+              }}
+            /> */}
+          </div>
+        )}
       </div>
       <section ref={scrollRef}>
-        <VideoPanel />
-        {/* <Switch>
-          <Route exact path={`${match.path}/video`}>
-            <VideoPanel />
-          </Route>
-          <Route path={`${match.path}/queue`}>
-            <UpdateQueue />
-          </Route>
-        </Switch> */}
+        {loading ? <Skeleton height={10000} /> : <VideoPanel />}
       </section>
     </div>
   );

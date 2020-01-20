@@ -1,15 +1,22 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useParams } from "react-router-dom";
+import { Link, useHistory, useParams } from "react-router-dom";
 import ChannelCard1 from "../ChannelCard1";
-import { getUserInfo, sendFriendRequest } from "../../redux/actions";
+import {
+  getUserInfo,
+  sendFriendRequest,
+  closeAllModals
+} from "../../redux/actions";
 import Skeleton from "react-loading-skeleton";
 import Button1 from "../Button1";
 import FriendBlockMenu from "../FriendBlockMenu";
-import "./UserMain.css";
+import "./UserProfile.css";
 
-export default function UserMain() {
+export default function UserProfile({ modal = false }) {
+  const history = useHistory();
   const { userId } = useParams();
+  const [isModal, setIsModal] = useState(modal);
+  const { userId: modalUserId } = useSelector(state => state.modalState);
   const {
     id: ownId,
     defaultAvatar,
@@ -28,26 +35,36 @@ export default function UserMain() {
   } = useSelector(state => state.apiState);
   const [error, setError] = useState(false);
   const dispatch = useDispatch();
+  const closeAllModalsDispatcher = useCallback(
+    () => dispatch(closeAllModals()),
+    [dispatch]
+  );
 
   useEffect(() => {
     if (blockers.includes(userId)) {
       setError(true);
-    } else {
-      dispatch(getUserInfo(userId));
+    } else if (!(userId === modalUserId && userId === id)) {
+      console.log("HELLO", id, userId, modalUserId);
+      dispatch(getUserInfo(userId || modalUserId));
     }
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [blockers, dispatch, userId]);
+  }, [blockers, dispatch, id, modalUserId, userId]);
 
   const handleSendFriendRequest = () => {
-    dispatch(sendFriendRequest(userId));
+    dispatch(sendFriendRequest(userId || modalUserId));
   };
 
+  const handleProfilePageLink = () => {
+    history.push(`/users/${modalUserId}`);
+    closeAllModalsDispatcher();
+    setIsModal(false);
+  };
+
+  console.log("FF", isModal);
   if (apiError || error) {
     return (
-      <div className="UserMain--container">
+      <div className="UserProfile--container">
         <section>
-          <div className="UserMain--notFound">
+          <div className="UserProfile--notFound">
             <h3>This user doesn&apos;t exist</h3>
             <h4>Are you sure you have the right link?</h4>
           </div>
@@ -57,17 +74,17 @@ export default function UserMain() {
   }
 
   return (
-    <div className="UserMain--container">
+    <div className="UserProfile--container">
       <section>
         <div>
-          <div className="UserMain--user">
+          <div className="UserProfile--user">
             {apiLoading ? (
               <Skeleton circle={true} height={200} width={200} />
             ) : (
               <img src={avatar || defaultAvatar} alt="avatar" />
             )}
 
-            <div className="UserMain--user--nameStats">
+            <div className="UserProfile--user--nameStats">
               <div>
                 <div>
                   <h3>{apiLoading ? <Skeleton width={150} /> : username}</h3>
@@ -94,7 +111,7 @@ export default function UserMain() {
                           <Button1
                             onClick={handleSendFriendRequest}
                             className={
-                              "UserMain--button--receivedFriendRequest"
+                              "UserProfile--button--receivedFriendRequest"
                             }
                           >
                             <i className="fas fa-user-plus" />
@@ -151,11 +168,24 @@ export default function UserMain() {
                   </p>
                 )}
               </div>
+              {isModal &&
+                (apiLoading ? (
+                  <p className="ProfileModal--user--nameStats--link">
+                    <Skeleton width={200} />
+                  </p>
+                ) : (
+                  <p
+                    onClick={handleProfilePageLink}
+                    className="ProfileModal--user--nameStats--link"
+                  >
+                    {`Go to ${username}'s Profile >`}
+                  </p>
+                ))}
             </div>
           </div>
-          {!blocked.includes(userId) && (
+          {!blocked.includes(userId || modalUserId) && (
             <>
-              <div className="UserMain--channels">
+              <div className="UserProfile--channels">
                 <h3>
                   {apiLoading ? (
                     <Skeleton width={392} />
@@ -163,7 +193,7 @@ export default function UserMain() {
                     `Shared between you and ${username}`
                   )}
                 </h3>
-                <div className="UserMain--channelsGrid">
+                <div className="UserProfile--channelsGrid">
                   {apiLoading ? (
                     <>
                       <Skeleton height={317} />
@@ -181,7 +211,7 @@ export default function UserMain() {
                   )}
                 </div>
               </div>
-              <div className="UserMain--channels">
+              <div className="UserProfile--channels">
                 <h3>
                   {apiLoading ? (
                     <Skeleton width={250} />
@@ -189,7 +219,7 @@ export default function UserMain() {
                     `${username}'s Channels`
                   )}
                 </h3>
-                <div className="UserMain--channelsGrid">
+                <div className="UserProfile--channelsGrid">
                   {apiLoading ? (
                     <>
                       <Skeleton height={317} />

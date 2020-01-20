@@ -50,8 +50,6 @@ const updateUser = updateInfo => {
 
       const formObject = Object.fromEntries(formData);
 
-      console.log("FORMOBJECT", formObject);
-
       if (
         _.isEmpty(formObject) ||
         (!formObject.firstName &&
@@ -68,7 +66,6 @@ const updateUser = updateInfo => {
 
       const response = await api.updateUser(formData);
 
-      console.log("RES", response);
       dispatch({
         type: USER_UPDATE,
         payload: response.data

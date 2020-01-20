@@ -11,7 +11,9 @@ const initialState = {
   userPageApiLoading: true,
   userPageApiError: false,
   userSearchApiLoading: false,
-  userSearchApiError: false
+  userSearchApiError: false,
+  roomApiLoading: false,
+  roomApiError: false
 };
 
 export default (state = initialState, { type, payload }) => {

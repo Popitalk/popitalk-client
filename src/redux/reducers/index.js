@@ -4,6 +4,7 @@ import modalReducer from "./modalReducer";
 import userReducer from "./userReducer";
 import userPageReducer from "./userPageReducer";
 import userSearchReducer from "./userSearchReducer";
+import inviteReducer from "./inviteReducer";
 import generalReducer from "./generalReducer";
 
 export {
@@ -13,5 +14,6 @@ export {
   userReducer,
   userPageReducer,
   userSearchReducer,
+  inviteReducer,
   generalReducer
 };

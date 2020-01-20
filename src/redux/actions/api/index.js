@@ -115,6 +115,54 @@ export const userPageApiError = error => ({
   }
 });
 
+export const inviteApiLoading = () => ({
+  type: SET_API,
+  payload: {
+    inviteApiLoading: true,
+    inviteApiError: false
+  }
+});
+
+export const inviteApiSuccess = () => ({
+  type: SET_API,
+  payload: {
+    inviteApiLoading: false,
+    inviteApiError: false
+  }
+});
+
+export const inviteApiError = error => ({
+  type: SET_API,
+  payload: {
+    inviteApiLoading: false,
+    inviteApiError: error || true
+  }
+});
+
+export const roomApiLoading = () => ({
+  type: SET_API,
+  payload: {
+    roomApiLoading: true,
+    roomApiError: false
+  }
+});
+
+export const roomApiSuccess = () => ({
+  type: SET_API,
+  payload: {
+    roomApiLoading: false,
+    roomApiError: false
+  }
+});
+
+export const roomApiError = error => ({
+  type: SET_API,
+  payload: {
+    roomApiLoading: false,
+    roomApiError: error || true
+  }
+});
+
 // export const userSearchApiLoading = () => ({
 //   type: SET_API,
 //   payload: {

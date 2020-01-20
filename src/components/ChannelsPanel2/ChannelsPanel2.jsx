@@ -25,13 +25,15 @@ export default function ChannelsPanel2() {
   let yourChannels = {};
   let followingChannels = {};
 
-  Object.entries(channels).forEach(([channelId, channel]) => {
-    if (channel.ownerId === ownId) {
-      yourChannels = { ...yourChannels, [channelId]: channel };
-    } else {
-      followingChannels = { ...followingChannels, [channelId]: channel };
-    }
-  });
+  Object.entries(channels)
+    .filter(([channelId, channel]) => channel.type === "channel")
+    .forEach(([channelId, channel]) => {
+      if (channel.ownerId === ownId) {
+        yourChannels = { ...yourChannels, [channelId]: channel };
+      } else {
+        followingChannels = { ...followingChannels, [channelId]: channel };
+      }
+    });
 
   const activeChannel = location.pathname.split("/")[2];
 

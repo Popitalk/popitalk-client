@@ -1,95 +1,46 @@
-import React, { useState, useCallback } from "react";
-import { useDispatch } from "react-redux";
+import React, { useState } from "react";
+import { useLocation, matchPath } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
 import { openProfileModal } from "../../redux/actions";
+import _ from "lodash";
 import "./FollowersModal.css";
 
-const users = [
-  {
-    id: "a1",
-    username: "x1",
-    avatar: "https://i.imgur.com/aqjzchq.jpg"
-  },
-  {
-    id: "a2",
-    username: "x2",
-    avatar: "https://i.imgur.com/88oSmeX.jpg"
-  },
-  {
-    id: "a3",
-    username: "y1",
-    avatar: "https://i.imgur.com/tLljw1z.jpg"
-  },
-  {
-    id: "a4",
-    username: "abc",
-    avatar: "https://i.imgur.com/aqjzchq.jpg"
-  },
-  {
-    id: "a5",
-    username: "abc",
-    avatar: "https://i.imgur.com/88oSmeX.jpg"
-  },
-  {
-    id: "a6",
-    username: "abc",
-    avatar: "https://i.imgur.com/tLljw1z.jpg"
-  },
-  {
-    id: "a7",
-    username: "abc",
-    avatar: "https://i.imgur.com/aqjzchq.jpg"
-  },
-  {
-    id: "a8",
-    username: "abc",
-    avatar: "https://i.imgur.com/88oSmeX.jpg"
-  },
-  {
-    id: "a9",
-    username: "abc",
-    avatar: "https://i.imgur.com/tLljw1z.jpg"
-  },
-  {
-    id: "a10",
-    username: "abc",
-    avatar: "https://i.imgur.com/aqjzchq.jpg"
-  },
-  {
-    id: "a11",
-    username: "abc",
-    avatar: "https://i.imgur.com/88oSmeX.jpg"
-  },
-  {
-    id: "a12",
-    username: "abc",
-    avatar: "https://i.imgur.com/tLljw1z.jpg"
-  },
-  {
-    id: "a13",
-    username: "abc",
-    avatar: "https://i.imgur.com/aqjzchq.jpg"
-  },
-  {
-    id: "a14",
-    username: "abc",
-    avatar: "https://i.imgur.com/88oSmeX.jpg"
-  }
-];
-
 export default function FollowersModal() {
+  const { pathname } = useLocation();
   const [search, setSearch] = useState("");
-  const dispatch = useDispatch();
-  const openProfileModalDispatcher = useCallback(
-    () => dispatch(openProfileModal()),
-    [dispatch]
+  const { users, channels, defaultAvatar } = useSelector(
+    state => state.generalState
   );
+  const dispatch = useDispatch();
 
-  const filteredUsers = users.filter(user => user.username.includes(search));
+  const roomId = matchPath(pathname, {
+    path: "/rooms/:roomId",
+    exact: true,
+    strict: false
+  })?.params?.roomId;
+
+  const channelId = matchPath(pathname, {
+    path: "/channels/:channelId",
+    exact: true,
+    strict: false
+  })?.params?.channelId;
+
+  const filteredUsers = channels[roomId || channelId].users
+    .filter(userId =>
+      users[userId].username.toLowerCase().includes(search.toLowerCase())
+    )
+    .sort((a, b) =>
+      users[a].username.toLowerCase() > users[b].username.toLowerCase()
+        ? 1
+        : users[b].username.toLowerCase() > users[a].username.toLowerCase()
+        ? -1
+        : 0
+    );
 
   return (
     <div className="FollowersModal--container">
       <div className="FollowersModal--header">
-        <h3>128 followers</h3>
+        <h3>{channels[roomId || channelId].users.length} followers</h3>
         <div className="FollowersModal--search">
           <div>
             <div>
@@ -111,17 +62,22 @@ export default function FollowersModal() {
             <h4>No users found</h4>
           </div>
         ) : (
-          filteredUsers.map(user => (
+          filteredUsers.map(userId => (
             <div
               role="button"
               className="FollowersModal--user"
-              key={user.id}
-              onClick={openProfileModalDispatcher}
+              key={userId}
+              onClick={() => dispatch(openProfileModal(userId))}
             >
-              <img src={user.avatar} alt={`${user.username} avatar`} />
+              <img
+                src={users[userId].avatar || defaultAvatar}
+                alt={`${users[userId].username} avatar`}
+              />
               <div>
-                <p>{user.username}</p>
-                <p>Slacking Slack</p>
+                <p>{users[userId].username}</p>
+                <p>
+                  {users[userId].firstName} {users[userId].lastName}
+                </p>
               </div>
             </div>
           ))

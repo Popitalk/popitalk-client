@@ -9,6 +9,7 @@ import {
   userReducer,
   userPageReducer,
   userSearchReducer,
+  inviteReducer,
   generalReducer
 } from "./reducers";
 import { localstorageMiddleware } from "./middleware";
@@ -22,6 +23,7 @@ const rootReducer = history =>
     userState: userReducer,
     userPageState: userPageReducer,
     userSearchState: userSearchReducer,
+    inviteState: inviteReducer,
     generalState: generalReducer
   });
 

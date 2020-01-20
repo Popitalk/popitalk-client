@@ -21,6 +21,14 @@
   left: 106px;
   z-index: 1;
 }
+.UserPage--container > .UserProfile--container {
+  height: calc(100vh - 70px);
+  width: calc(100vw - 212px);
+  position: absolute;
+  top: 70px;
+  left: 106px;
+  z-index: 1;
+}
 
 .UserPage--container > .FriendsPanel--container {
   height: calc(100vh - 70px);

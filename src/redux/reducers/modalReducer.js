@@ -2,7 +2,6 @@ import {
   PUSH_MODAL,
   POP_MODAL,
   POP_ALL_MODAL,
-  CLOSE_MODAL,
   CLOSE_ALL_MODAL,
   PUSH_MODAL_PROFILE_MODAL
 } from "../../helpers/constants";

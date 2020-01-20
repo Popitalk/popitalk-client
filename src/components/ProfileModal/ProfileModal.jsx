@@ -1,10 +1,16 @@
-import React, { useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import Skeleton from "react-loading-skeleton";
 import { useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { getUserInfo, closeModal, closeAllModals } from "../../redux/actions";
+import {
+  getUserInfoModal,
+  closeModal,
+  sendFriendRequest,
+  closeAllModals
+} from "../../redux/actions";
 import ChannelCard1 from "../ChannelCard1";
 import Button1 from "../Button1";
+import FriendBlockMenu from "../FriendBlockMenu";
 import "./ProfileModal.css";
 
 export default function ProfileModal() {
@@ -14,14 +20,28 @@ export default function ProfileModal() {
   );
   const { userId } = useSelector(state => state.modalState);
 
-  const { defaultAvatar } = useSelector(state => state.userState);
-  const { firstName, lastName, username, avatar } = useSelector(
-    state => state.userPageState
-  );
+  const {
+    id: ownId,
+    defaultAvatar,
+    friends,
+    sentFriendRequests,
+    receivedFriendRequests,
+    blocked,
+    blockers
+  } = useSelector(state => state.userState);
+
+  const {
+    modalId: id,
+    modalFirstName: firstName,
+    modalLastName: lastName,
+    modalUsername: username,
+    modalAvatar: avatar
+  } = useSelector(state => state.userPageState);
   const {
     userPageApiLoading: apiLoading,
     userPageApiError: apiError
   } = useSelector(state => state.apiState);
+  const [error, setError] = useState(false);
   const dispatch = useDispatch();
   const closeModalDispatcher = useCallback(() => dispatch(closeModal()), [
     dispatch
@@ -32,15 +52,25 @@ export default function ProfileModal() {
   );
 
   useEffect(() => {
-    dispatch(getUserInfo(userId));
+    if (blockers.includes(userId)) {
+      setError(true);
+    } else {
+      dispatch(getUserInfoModal(userId));
+    }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch, userId]);
+
+  const handleSendFriendRequest = () => {
+    dispatch(sendFriendRequest(userId));
+  };
 
   const handleProfilePageLink = () => {
     history.push(`/users/${userId}`);
     closeAllModalsDispatcher();
   };
 
-  if (apiError) {
+  if (apiError || error) {
     return (
       <div className="ProfileModal--container">
         <div className="ProfileModal--header">
@@ -90,11 +120,55 @@ export default function ProfileModal() {
                 <div className="ProfileModal--user--nameStats--name">
                   <div>
                     <h3>{apiLoading ? <Skeleton width={150} /> : username}</h3>
-                    {!apiLoading && (
-                      <Button1>
-                        <i className="fas fa-user-plus" />
-                        <p>Add friend</p>
-                      </Button1>
+                    {!apiLoading && userId !== ownId && (
+                      <>
+                        {friends.includes(userId) ? (
+                          <>
+                            <Button1 disabled={true}>
+                              <i className="fas fa-user-check" />
+                              <p>Added</p>
+                            </Button1>
+                            <FriendBlockMenu type="friend" />
+                          </>
+                        ) : sentFriendRequests.includes(userId) ? (
+                          <>
+                            <Button1 disabled={true}>
+                              <i className="fas fa-user-plus" />
+                              <p>Request Sent</p>
+                            </Button1>
+                            <FriendBlockMenu type="sent request" />
+                          </>
+                        ) : receivedFriendRequests.includes(userId) ? (
+                          <>
+                            <Button1
+                              onClick={handleSendFriendRequest}
+                              className={
+                                "UserMain--button--receivedFriendRequest"
+                              }
+                            >
+                              <i className="fas fa-user-plus" />
+                              <p>Accept</p>
+                            </Button1>
+                            <FriendBlockMenu type="received request" />
+                          </>
+                        ) : blocked.includes(userId) ? (
+                          <>
+                            <Button1 disabled={true}>
+                              <i className="fas fa-user-lock" />
+                              <p>Blocked</p>
+                            </Button1>
+                            <FriendBlockMenu type="blocked" />
+                          </>
+                        ) : (
+                          <>
+                            <Button1 onClick={handleSendFriendRequest}>
+                              <i className="fas fa-user-plus" />
+                              <p>Add friend</p>
+                            </Button1>
+                            <FriendBlockMenu />
+                          </>
+                        )}
+                      </>
                     )}
                   </div>
 
@@ -140,58 +214,62 @@ export default function ProfileModal() {
                 )}
               </div>
             </div>
-            <div className="ProfileModal--channels">
-              <h3>
-                {apiLoading ? (
-                  <Skeleton width={392} />
-                ) : (
-                  `Shared between you and ${username}`
-                )}
-              </h3>
-              <div className="ProfileModal--channelsGrid">
-                {apiLoading ? (
-                  <>
-                    <Skeleton height={317} />
-                    <Skeleton height={317} />
-                    <Skeleton height={317} />
-                    <Skeleton height={317} />
-                  </>
-                ) : (
-                  <>
-                    <ChannelCard1 />
-                    <ChannelCard1 />
-                    <ChannelCard1 />
-                    <ChannelCard1 />
-                  </>
-                )}
-              </div>
-            </div>
-            <div className="ProfileModal--channels">
-              <h3>
-                {apiLoading ? (
-                  <Skeleton width={250} />
-                ) : (
-                  `${username}'s Channels`
-                )}
-              </h3>
-              <div className="ProfileModal--channelsGrid">
-                {apiLoading ? (
-                  <>
-                    <Skeleton height={317} />
-                    <Skeleton height={317} />
-                    <Skeleton height={317} />
-                    <Skeleton height={317} />
-                  </>
-                ) : (
-                  <>
-                    <ChannelCard1 />
-                    <ChannelCard1 />
-                    <ChannelCard1 />
-                    <ChannelCard1 />
-                  </>
-                )}
-              </div>
-            </div>
+            {!blocked.includes(userId) && (
+              <>
+                <div className="ProfileModal--channels">
+                  <h3>
+                    {apiLoading ? (
+                      <Skeleton width={392} />
+                    ) : (
+                      `Shared between you and ${username}`
+                    )}
+                  </h3>
+                  <div className="ProfileModal--channelsGrid">
+                    {apiLoading ? (
+                      <>
+                        <Skeleton height={317} />
+                        <Skeleton height={317} />
+                        <Skeleton height={317} />
+                        <Skeleton height={317} />
+                      </>
+                    ) : (
+                      <>
+                        <ChannelCard1 />
+                        <ChannelCard1 />
+                        <ChannelCard1 />
+                        <ChannelCard1 />
+                      </>
+                    )}
+                  </div>
+                </div>
+                <div className="ProfileModal--channels">
+                  <h3>
+                    {apiLoading ? (
+                      <Skeleton width={250} />
+                    ) : (
+                      `${username}'s Channels`
+                    )}
+                  </h3>
+                  <div className="ProfileModal--channelsGrid">
+                    {apiLoading ? (
+                      <>
+                        <Skeleton height={317} />
+                        <Skeleton height={317} />
+                        <Skeleton height={317} />
+                        <Skeleton height={317} />
+                      </>
+                    ) : (
+                      <>
+                        <ChannelCard1 />
+                        <ChannelCard1 />
+                        <ChannelCard1 />
+                        <ChannelCard1 />
+                      </>
+                    )}
+                  </div>
+                </div>
+              </>
+            )}
           </div>
         </section>
       </div>

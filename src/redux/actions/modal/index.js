@@ -4,6 +4,7 @@ import {
   POP_MODAL,
   POP_ALL_MODAL,
   MODAL_CREATE_NEW_ACCOUNT,
+  MODAL_CREATE_ROOM,
   MODAL_INVITE,
   MODAL_PROFILE,
   MODAL_WATCHING,
@@ -14,14 +15,15 @@ import {
   MODAL_CHANGE_PASSWORD,
   MODAL_BLOCKED_USERS,
   MODAL_IMAGE,
-  CLOSE_MODAL,
   CLOSE_ALL_MODAL,
   MODAL_DELETE_MESSAGE,
   MODAL_ACCOUNT_SETTINGS,
-  MODAL_DELETE_ACCOUNT
+  MODAL_DELETE_ACCOUNT,
+  MODAL_ROOM_EXISTS
 } from "../../../helpers/constants";
 
 import { userApiReset } from "../api";
+import { clear } from "../invite";
 
 export const openCreateNewAccountModal = () => ({
   type: PUSH_MODAL,
@@ -34,6 +36,12 @@ export const openInviteModal = () => ({
   type: PUSH_MODAL,
   payload: {
     component: MODAL_INVITE
+  }
+});
+export const openCreateRoomModal = () => ({
+  type: PUSH_MODAL,
+  payload: {
+    component: MODAL_CREATE_ROOM
   }
 });
 
@@ -107,22 +115,31 @@ export const openDeleteAccountModal = () => ({
     component: MODAL_DELETE_ACCOUNT
   }
 });
-
-// export const popModal = () => ({
-//   type: POP_MODAL
-// });
-
-// export const closeModal = () => ({
-//   type: POP_MODAL
-// });
+export const openRoomExistsModal = () => ({
+  type: PUSH_MODAL,
+  payload: {
+    component: MODAL_ROOM_EXISTS
+  }
+});
 
 export const closeAllModals = () => ({
   type: CLOSE_ALL_MODAL
 });
 
-export const popAllModals = () => ({
-  type: POP_ALL_MODAL
-});
+export const popAllModals = () => {
+  return async (dispatch, getState) => {
+    dispatch({
+      type: POP_ALL_MODAL
+    });
+    if (getState().inviteState.selectedFriends.length !== 0) {
+      dispatch(clear());
+    }
+  };
+};
+
+// export const popAllModals = () => ({
+//   type: POP_ALL_MODAL
+// });
 
 export const closeModal = () => {
   return dispatch => {

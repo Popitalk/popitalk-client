@@ -37,3 +37,19 @@ export const searchUsers = (username, page) => {
 export const deleteAccount = () => {
   return axios.delete("/api/users/");
 };
+
+export const getChannel = channelId => {
+  return axios.get(`/api/channels/${channelId}`);
+};
+
+export const createRoom = userIds => {
+  return axios.post("/api/channels/room", { userIds });
+};
+
+export const inviteFriends = (channelId, userIds) => {
+  return axios.post("/api/channels/roomInvite", { channelId, userIds });
+};
+
+export const updateRoom = (roomId, updateInfo) => {
+  return axios.put(`/api/channels/rooms/${roomId}`, updateInfo);
+};

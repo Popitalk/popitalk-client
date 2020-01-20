@@ -95,6 +95,7 @@ import "./ChannelsPanel1.css";
 
 export default function ChannelsPanel1() {
   const { channels, defaultIcon } = useSelector(state => state.generalState);
+  const { id: ownId } = useSelector(state => state.userState);
   const [shadow, setShadow] = useState(false);
   const scrollRef = useRef(null);
   const { y } = useScroll(scrollRef);
@@ -106,6 +107,19 @@ export default function ChannelsPanel1() {
       setShadow(false);
     }
   }, [y]);
+
+  let yourChannels = {};
+  let followingChannels = {};
+
+  Object.entries(channels)
+    .filter(([channelId, channel]) => channel.type === "channel")
+    .forEach(([channelId, channel]) => {
+      if (channel.ownerId === ownId) {
+        yourChannels = { ...yourChannels, [channelId]: channel };
+      } else {
+        followingChannels = { ...followingChannels, [channelId]: channel };
+      }
+    });
 
   return (
     <div className="ChannelsPanel1--container">
@@ -125,25 +139,48 @@ export default function ChannelsPanel1() {
         <i className="fas fa-globe-americas fa-2x" />
       </div>
       <div className="ChannelsPanel1--channels" ref={scrollRef}>
-        {Object.entries(channels).map(([channelId, channel]) => (
-          <Link
-            className="ChannelsPanel1--channel"
-            key={channelId}
-            to={`/channels/${channelId}/video`}
-          >
-            <div
-              data-for="ChannelsPanel1--tooltip"
-              data-tip={channel.name}
-              data-iscapture="true"
+        {Object.entries(yourChannels)
+          .filter(([channelId, channel]) => channel.type === "channel")
+          .map(([channelId, channel]) => (
+            <Link
+              className="ChannelsPanel1--channel"
+              key={channelId}
+              to={`/channels/${channelId}/video`}
             >
-              <RoomIcon2
-                images={[channel.icon || defaultIcon]}
-                watching={channel.watching}
-                type="ChannelsPanel1"
-              />
-            </div>
-          </Link>
-        ))}
+              <div
+                data-for="ChannelsPanel1--tooltip"
+                data-tip={channel.name}
+                data-iscapture="true"
+              >
+                <RoomIcon2
+                  images={[channel.icon || defaultIcon]}
+                  watching={channel.watching}
+                  type="ChannelsPanel1"
+                />
+              </div>
+            </Link>
+          ))}
+        {Object.entries(followingChannels)
+          .filter(([channelId, channel]) => channel.type === "channel")
+          .map(([channelId, channel]) => (
+            <Link
+              className="ChannelsPanel1--channel"
+              key={channelId}
+              to={`/channels/${channelId}/video`}
+            >
+              <div
+                data-for="ChannelsPanel1--tooltip"
+                data-tip={channel.name}
+                data-iscapture="true"
+              >
+                <RoomIcon2
+                  images={[channel.icon || defaultIcon]}
+                  watching={channel.watching}
+                  type="ChannelsPanel1"
+                />
+              </div>
+            </Link>
+          ))}
       </div>
     </div>
   );

@@ -16,8 +16,10 @@ import CreateNewAccountModal from "../CreateNewAccountModal";
 import DeleteMessageModal from "../DeleteMessageModal";
 import AccountSettingsModal from "../AccountSettingsModal";
 import DeleteAccountModal from "../DeleteAccountModal";
+import RoomExistsModal from "../RoomExistsModal";
 import {
   MODAL_CREATE_NEW_ACCOUNT,
+  MODAL_CREATE_ROOM,
   MODAL_INVITE,
   MODAL_PROFILE,
   MODAL_WATCHING,
@@ -29,7 +31,8 @@ import {
   MODAL_DELETE_MESSAGE,
   MODAL_IMAGE,
   MODAL_ACCOUNT_SETTINGS,
-  MODAL_DELETE_ACCOUNT
+  MODAL_DELETE_ACCOUNT,
+  MODAL_ROOM_EXISTS
 } from "../../helpers/constants";
 import "./ModalManager.css";
 
@@ -37,6 +40,7 @@ Modal.setAppElement("#root");
 
 const ModalComponents = {
   [MODAL_CREATE_NEW_ACCOUNT]: <CreateNewAccountModal />,
+  [MODAL_CREATE_ROOM]: <InviteModal create />,
   [MODAL_INVITE]: <InviteModal />,
   [MODAL_PROFILE]: <ProfileModal />,
   [MODAL_WATCHING]: <WatchersModal />,
@@ -48,7 +52,8 @@ const ModalComponents = {
   [MODAL_DELETE_MESSAGE]: <DeleteMessageModal />,
   [MODAL_IMAGE]: <ImageModal />,
   [MODAL_ACCOUNT_SETTINGS]: <AccountSettingsModal />,
-  [MODAL_DELETE_ACCOUNT]: <DeleteAccountModal />
+  [MODAL_DELETE_ACCOUNT]: <DeleteAccountModal />,
+  [MODAL_ROOM_EXISTS]: <RoomExistsModal />
 };
 
 export default function ModalManager() {
@@ -60,12 +65,16 @@ export default function ModalManager() {
   const dispatch = useDispatch();
   const modalRef = useRef(null);
 
+  const modalCloseHandler = () => {
+    dispatch(closeAllModals());
+  };
+
   return (
     <Modal
       isOpen={open}
       closeTimeoutMS={170}
       contentLabel="modal"
-      onRequestClose={apiLoading ? undefined : () => dispatch(closeAllModals())}
+      // onRequestClose={apiLoading ? undefined : modalCloseHandler}
       onAfterClose={() => dispatch(popAllModals())}
       className="ModalManager--modal"
       overlayClassName="ModalManager--modalOverlay"
@@ -76,7 +85,8 @@ export default function ModalManager() {
         onMouseDown={e => {
           if (e.target !== e.currentTarget) return;
           if (apiLoading) return;
-          dispatch(closeAllModals());
+          modalCloseHandler();
+          // dispatch(closeAllModals());
         }}
       >
         {ModalComponents[components[components.length - 1]]}
