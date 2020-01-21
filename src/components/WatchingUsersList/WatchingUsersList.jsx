@@ -1,5 +1,6 @@
 import React, { useCallback } from "react";
-import { useDispatch } from "react-redux";
+import { useParams } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
 import {
   openProfileModal,
   openWatchingModal,
@@ -67,6 +68,10 @@ const onlineUsers = [
 ];
 
 export default function WatchingUsersList() {
+  const { roomId, channelId } = useParams();
+  const { channels, groupRoomMemberLimit } = useSelector(
+    state => state.generalState
+  );
   const dispatch = useDispatch();
   const openWatchingModalDispatcher = useCallback(
     () => dispatch(openWatchingModal()),
@@ -102,13 +107,17 @@ export default function WatchingUsersList() {
           <p>+123</p>
         </div>
       )}
-      <button
-        type="button"
-        className="button round"
-        onClick={openInviteModalDispatcher}
-      >
-        <i className="fas fa-user-plus fa-sm" />
-      </button>
+      {(channels[roomId || channelId].type === "channels" ||
+        (channels[roomId || channelId].type === "group" &&
+          channels[roomId].users.length < groupRoomMemberLimit)) && (
+        <button
+          type="button"
+          className="button round"
+          onClick={openInviteModalDispatcher}
+        >
+          <i className="fas fa-user-plus fa-sm" />
+        </button>
+      )}
     </div>
   );
 }

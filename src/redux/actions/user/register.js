@@ -1,5 +1,5 @@
 import * as api from "../../../helpers/api";
-import { SET_USER_INFO } from "../../../helpers/constants";
+import { SET_USER_INFO, GENERAL_INIT } from "../../../helpers/constants";
 import {
   registrationApiLoading,
   registrationApiSuccess,
@@ -11,9 +11,9 @@ const register = registerInfo => {
   return async dispatch => {
     try {
       dispatch(registrationApiLoading());
-      const response = await api.register(registerInfo);
+      await api.register(registerInfo);
 
-      await api.login({
+      const response = await api.login({
         usernameOrEmail: registerInfo.email,
         password: registerInfo.password
       });
@@ -21,6 +21,14 @@ const register = registerInfo => {
       dispatch({
         type: SET_USER_INFO,
         payload: response.data
+      });
+
+      dispatch({
+        type: GENERAL_INIT,
+        payload: {
+          channels: response.data.channels || {},
+          users: response.data.users || {}
+        }
       });
 
       dispatch(closeAllModals());

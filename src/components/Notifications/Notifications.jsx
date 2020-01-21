@@ -109,9 +109,6 @@ export default function Notifications({ closePopup }) {
                 <p>{request.fullName}</p>
               </div>
               <img src={request.avatar} alt="avatar" />
-              {/* <button type="button" className="button">
-
-              </button> */}
               <Button1>Accept</Button1>
             </div>
           ))}

@@ -29,7 +29,7 @@ export default function ChatMessageMenu() {
       <i
         className="fas fa-ellipsis-v fa-sm"
         role="button"
-        onClick={() => setOpen(true)}
+        onMouseDown={() => setOpen(true)}
       />
       {open && (
         <div className="ChatMessageMenu--popup" ref={ref}>

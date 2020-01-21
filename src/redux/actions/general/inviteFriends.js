@@ -1,5 +1,5 @@
 import * as api from "../../../helpers/api";
-// import { GENERAL_ADD_CHANNEL } from "../../../helpers/constants";
+import { GENERAL_ADD_MEMBERS } from "../../../helpers/constants";
 import { inviteApiLoading, inviteApiSuccess, inviteApiError } from "../api";
 import { clear } from "../invite";
 import { closeAllModals } from "../modal";
@@ -11,14 +11,17 @@ const inviteFriends = () => {
       dispatch(inviteApiLoading());
 
       const response = await api.inviteFriends(channelId, selectedFriends);
-      // dispatch({
-      //   type: GENERAL_ADD_CHANNEL,
-      //   payload: response.data
-      // });
+      console.log("RES", response);
+      dispatch({
+        type: GENERAL_ADD_MEMBERS,
+        payload: response.data
+      });
+      console.log("LOLOL");
       dispatch(inviteApiSuccess());
       dispatch(closeAllModals());
       dispatch(clear());
     } catch (error) {
+      console.log("ER", error);
       dispatch(inviteApiError());
     }
   };

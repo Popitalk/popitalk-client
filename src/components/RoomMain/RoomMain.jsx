@@ -5,6 +5,7 @@ import Skeleton from "react-loading-skeleton";
 import { getChannel, updateRoom } from "../../redux/actions";
 import { useParams } from "react-router-dom";
 import VideoPanel from "../VideoPanel";
+import RoomMenu from "../RoomMenu";
 import "./RoomMain.css";
 
 export default function RoomMain() {
@@ -17,7 +18,9 @@ export default function RoomMain() {
   const { users, channels, defaultAvatar } = useSelector(
     state => state.generalState
   );
-  const { id: ownId, avatar, username } = useSelector(state => state.userState);
+  const { id: ownId, username: ownUsername, avatar: ownAvatar } = useSelector(
+    state => state.userState
+  );
   const { roomApiLoading: apiLoading, roomApiError: apiError } = useSelector(
     state => state.apiState
   );
@@ -38,10 +41,12 @@ export default function RoomMain() {
 
   let roomUsers = channels[roomId]?.users;
   let roomName =
-    channels[roomId]?.name ||
-    (roomUsers?.length === 2
+    channels[roomId]?.type === "self"
+      ? ownUsername
+      : channels[roomId]?.type === "friend"
       ? users[roomUsers?.filter(userId => userId !== ownId)[0]].username
-      : roomUsers
+      : channels[roomId]?.name ||
+        roomUsers
           ?.sort((a, b) =>
             users[a].username.toLowerCase() > users[b].username.toLowerCase()
               ? 1
@@ -51,7 +56,7 @@ export default function RoomMain() {
               : 0
           )
           ?.map(userId => users[userId].username)
-          .join(", "));
+          .join(", ");
 
   if (roomName?.length > 25) {
     roomName = `${roomName.slice(0, 25)}...`;
@@ -73,9 +78,18 @@ export default function RoomMain() {
           <Skeleton height={20} width={250} />
         ) : (
           <div>
-            {roomUsers.length === 2 && (
+            {channels[roomId].type === "self" && (
               <img
-                src={users[roomUsers.filter(userId => userId !== ownId)].avatar}
+                src={users[ownId].avatar || defaultAvatar}
+                alt={`${users[ownId].username}'s avatar`}
+              />
+            )}
+            {channels[roomId].type === "friend" && (
+              <img
+                src={
+                  users[roomUsers.filter(userId => userId !== ownId)].avatar ||
+                  defaultAvatar
+                }
                 alt={`${
                   users[roomUsers.filter(userId => userId !== ownId)].username
                 }'s avatar`}
@@ -91,7 +105,6 @@ export default function RoomMain() {
                 value={name}
                 onChange={e => setName(e.target.value)}
                 onKeyDown={e => {
-                  console.log("KEY IS", e.key);
                   if (e.key === "Enter") {
                     handleNameChange();
                   } else if (e.key === "Escape") {
@@ -103,43 +116,30 @@ export default function RoomMain() {
             ) : (
               <>
                 <h3>{roomName}</h3>
-                <i
-                  className="fas fa-pen fa-lg"
-                  role="button"
-                  onClick={() => {
-                    setName(roomName);
-                    setEditing(true);
-                  }}
-                />
+                {channels[roomId].type === "group" && (
+                  <i
+                    className="fas fa-pen fa-lg"
+                    role="button"
+                    onClick={() => {
+                      setName(roomName);
+                      setEditing(true);
+                    }}
+                  />
+                )}
+                {channels[roomId].type === "group" && channels[roomId].name && (
+                  <p
+                    onClick={() => {
+                      dispatch(updateRoom(roomId, { resetName: true }));
+                    }}
+                  >
+                    Reset
+                  </p>
+                )}
               </>
             )}
-            {/* {editing ? (
-              <input
-                type="text"
-                autoFocus
-                value={name}
-                onChange={e => setName(e.target.value)}
-                onKeyDown={e => {
-                  if (e.keyCode === 13) {
-                    handleNameChange();
-                  }
-                }}
-                onBlur={handleNameChange}
-              />
-            ) : (
-              <h3>{roomName}</h3>
-            )}
-
-            <i
-              className="fas fa-pen fa-lg"
-              role="button"
-              onClick={() => {
-                setName(roomName);
-                setEditing(true);
-              }}
-            /> */}
           </div>
         )}
+        {!loading && channels[roomId].type === "group" && <RoomMenu />}
       </div>
       <section ref={scrollRef}>
         {loading ? <Skeleton height={10000} /> : <VideoPanel />}

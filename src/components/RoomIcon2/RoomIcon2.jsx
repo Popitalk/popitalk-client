@@ -2,7 +2,7 @@ import React from "react";
 import classNames from "classnames";
 import "./RoomIcon2.css";
 
-export default function RoomIcon2({ images, online, watching, type, link }) {
+export default function RoomIcon2({ images, online, watching, type, self }) {
   const classes = classNames({
     "RoomIcon2--container": true,
     "RoomIcon2--watching": watching,
@@ -21,6 +21,7 @@ export default function RoomIcon2({ images, online, watching, type, link }) {
       <div className={classes}>
         <img src={images[0]} alt="icon" />
         {online && <div className="RoomIcon2--online" />}
+        {self && <p className="RoomIcon2--self">My room</p>}
       </div>
     );
   } else if (images.length === 2) {

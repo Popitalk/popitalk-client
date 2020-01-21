@@ -44,7 +44,7 @@ export default function RoomExistsModal() {
 
   const existingRoomArr = _.orderBy(
     Object.entries(channels).filter(
-      ([channelId, channel]) => channel.type === "room"
+      ([channelId, channel]) => channel.type === "group"
     ),
     c => new Date(c[1].createdAt),
     "desc"

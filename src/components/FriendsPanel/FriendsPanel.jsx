@@ -282,10 +282,12 @@ export default function FriendsPanel({ unexpandable = false }) {
   const { users: searchedUsers, apiError } = useSelector(
     state => state.userSearchState
   );
-  const { users, channels } = useSelector(state => state.generalState);
+  const { users, channels, defaultAvatar } = useSelector(
+    state => state.generalState
+  );
   const {
     id: ownId,
-    defaultAvatar,
+    username: ownUsername,
     sentFriendRequests,
     receivedFriendRequests,
     friends
@@ -531,14 +533,16 @@ export default function FriendsPanel({ unexpandable = false }) {
           <i className="fas fa-plus-square fa-2x" />
         </button>
         {Object.entries(channels)
-          .filter(([channelId, channel]) => channel.type === "room")
+          .filter(([channelId, channel]) => channel.type !== "channel")
           .map(([roomId, room]) => {
             const roomUsers = room.users;
             const images =
-              roomUsers.length === 2
+              room.type === "friend"
                 ? roomUsers
                     .filter(userId => userId !== ownId)
                     .map(userId => users[userId].avatar || defaultAvatar)
+                : room.type === "self"
+                ? roomUsers.map(userId => users[userId].avatar || defaultAvatar)
                 : roomUsers
                     .sort((a, b) =>
                       users[a].username.toLowerCase() >
@@ -550,13 +554,15 @@ export default function FriendsPanel({ unexpandable = false }) {
                         : 0
                     )
                     .map(userId => users[userId].avatar || defaultAvatar);
-            const online = roomUsers.length === 1 && roomUsers[0].online;
+            const online = room.type === "friend" && roomUsers[0].online;
 
             let roomName =
               room.name ||
-              (roomUsers.length === 2
+              (room.type === "friend"
                 ? users[roomUsers.filter(userId => userId !== ownId)[0]]
                     .username
+                : room.type === "self"
+                ? ownUsername
                 : roomUsers
                     .sort((a, b) =>
                       users[a].username.toLowerCase() >
@@ -602,6 +608,7 @@ export default function FriendsPanel({ unexpandable = false }) {
                   images={images}
                   online={online}
                   watching={room.watching}
+                  self={room.type === "self"}
                   type={expanded ? "FriendsPanel" : "ChannelsPanel1"}
                 />
               </Link>

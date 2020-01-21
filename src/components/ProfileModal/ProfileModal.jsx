@@ -22,13 +22,13 @@ export default function ProfileModal() {
 
   const {
     id: ownId,
-    defaultAvatar,
     friends,
     sentFriendRequests,
     receivedFriendRequests,
     blocked,
     blockers
   } = useSelector(state => state.userState);
+  const { defaultAvatar } = useSelector(state => state.generalState);
 
   const {
     modalId: id,

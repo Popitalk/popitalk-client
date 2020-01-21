@@ -36,7 +36,7 @@ export default function InviteModal({ create, anon }) {
   const dispatch = useDispatch();
 
   const rooms = Object.values(channels)
-    .filter(channel => channel.type === "room")
+    .filter(channel => channel.type === "group")
     .map(room => room.users)
     .filter(room => room.length > 2);
 
@@ -94,10 +94,6 @@ export default function InviteModal({ create, anon }) {
     disableRoomCreation = true;
   }
 
-  // disableRoomCreation = rooms.some(room =>
-  //   _.isEmpty(_.xor([...selectedFriendsIds, ownId], room))
-  // );
-
   const handleCreateRoom = () => {
     const roomExists = rooms.some(room =>
       _.isEmpty(_.xor([...selectedFriends, ownId], room))
@@ -114,7 +110,7 @@ export default function InviteModal({ create, anon }) {
     dispatch(addChannel(roomId));
 
     const roomExists = rooms.some(room =>
-      _.xor([...channels[roomId].users, ...selectedFriends], room)
+      _.isEmpty(_.xor([...channels[roomId].users, ...selectedFriends], room))
     );
 
     if (roomExists) {

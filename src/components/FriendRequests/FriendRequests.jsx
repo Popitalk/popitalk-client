@@ -5,10 +5,8 @@ import Button1 from "../Button1";
 import "./FriendRequests.css";
 
 export default function FriendRequests() {
-  const { receivedFriendRequests, defaultAvatar } = useSelector(
-    state => state.userState
-  );
-  const { users } = useSelector(state => state.generalState);
+  const { receivedFriendRequests } = useSelector(state => state.userState);
+  const { users, defaultAvatar } = useSelector(state => state.generalState);
   const dispatch = useDispatch();
 
   return (

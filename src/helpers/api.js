@@ -53,3 +53,7 @@ export const inviteFriends = (channelId, userIds) => {
 export const updateRoom = (roomId, updateInfo) => {
   return axios.put(`/api/channels/rooms/${roomId}`, updateInfo);
 };
+
+export const leaveRoom = roomId => {
+  return axios.delete(`/api/channels/rooms/${roomId}`);
+};

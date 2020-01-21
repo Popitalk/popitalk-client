@@ -12,13 +12,13 @@ export default function UserMain() {
   const { userId } = useParams();
   const {
     id: ownId,
-    defaultAvatar,
     friends,
     sentFriendRequests,
     receivedFriendRequests,
     blocked,
     blockers
   } = useSelector(state => state.userState);
+  const { defaultAvatar } = useSelector(state => state.generalState);
   const { id, firstName, lastName, username, avatar } = useSelector(
     state => state.userPageState
   );

@@ -15,9 +15,7 @@ const initialState = {
   sentFriendRequests: [],
   receivedFriendRequests: [],
   blocked: [],
-  blockers: [],
-  defaultAvatar: "https://i.imgur.com/7VbpwDl.png",
-  updatedAvatar: null
+  blockers: []
 };
 
 export default (state = initialState, { type, payload }) => {

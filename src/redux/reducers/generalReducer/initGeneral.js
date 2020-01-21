@@ -5,10 +5,6 @@ const initGeneral = (state, payload) => {
       ...state.channels,
       ...payload.channels
     },
-    rooms: {
-      ...state.dmRooms,
-      ...payload.rooms
-    },
     users: {
       ...state.users,
       ...payload.users
