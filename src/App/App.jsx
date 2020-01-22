@@ -40,7 +40,7 @@ export default function App() {
           </Route>
         )}
         {loggedIn && (
-          <Route path="/rooms/:roomId">
+          <Route path="/rooms/:channelId">
             <RoomPage />
           </Route>
         )}

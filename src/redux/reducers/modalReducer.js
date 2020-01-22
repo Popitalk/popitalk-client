@@ -3,7 +3,8 @@ import {
   POP_MODAL,
   POP_ALL_MODAL,
   CLOSE_ALL_MODAL,
-  PUSH_MODAL_PROFILE_MODAL
+  PUSH_MODAL_PROFILE_MODAL,
+  PUSH_MODAL_DELETE_MESSAGE
 } from "../../helpers/constants";
 
 const initialState = {
@@ -26,6 +27,14 @@ export default (state = initialState, { type, payload }) => {
         open: true,
         components: [...state.components, payload.component],
         userId: payload.userId
+      };
+
+    case PUSH_MODAL_DELETE_MESSAGE:
+      return {
+        ...state,
+        open: true,
+        components: [...state.components, payload.component],
+        deletingMessageId: payload.messageId
       };
 
     case POP_MODAL:

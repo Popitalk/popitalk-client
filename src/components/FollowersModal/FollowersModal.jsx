@@ -13,19 +13,21 @@ export default function FollowersModal() {
   );
   const dispatch = useDispatch();
 
-  const roomId = matchPath(pathname, {
-    path: "/rooms/:roomId",
+  const channelId1 = matchPath(pathname, {
+    path: "/rooms/:channelId",
     exact: true,
     strict: false
-  })?.params?.roomId;
+  })?.params?.channelId;
 
-  const channelId = matchPath(pathname, {
+  const channelId2 = matchPath(pathname, {
     path: "/channels/:channelId",
     exact: true,
     strict: false
   })?.params?.channelId;
 
-  const filteredUsers = channels[roomId || channelId].users
+  const channelId = channelId1 || channelId2;
+
+  const filteredUsers = channels[channelId].users
     .filter(userId =>
       users[userId].username.toLowerCase().includes(search.toLowerCase())
     )
@@ -40,7 +42,7 @@ export default function FollowersModal() {
   return (
     <div className="FollowersModal--container">
       <div className="FollowersModal--header">
-        <h3>{channels[roomId || channelId].users.length} followers</h3>
+        <h3>{channels[channelId].users.length} followers</h3>
         <div className="FollowersModal--search">
           <div>
             <div>

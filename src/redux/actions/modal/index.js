@@ -1,6 +1,7 @@
 import {
   PUSH_MODAL,
   PUSH_MODAL_PROFILE_MODAL,
+  PUSH_MODAL_DELETE_MESSAGE,
   POP_MODAL,
   POP_ALL_MODAL,
   MODAL_CREATE_NEW_ACCOUNT,
@@ -44,7 +45,6 @@ export const openCreateRoomModal = () => ({
     component: MODAL_CREATE_ROOM
   }
 });
-
 export const openProfileModal = userId => ({
   type: PUSH_MODAL_PROFILE_MODAL,
   payload: {
@@ -52,7 +52,13 @@ export const openProfileModal = userId => ({
     userId
   }
 });
-
+export const openDeleteMessageModal = messageId => ({
+  type: PUSH_MODAL_DELETE_MESSAGE,
+  payload: {
+    component: MODAL_DELETE_MESSAGE,
+    messageId
+  }
+});
 export const openWatchingModal = () => ({
   type: PUSH_MODAL,
   payload: {
@@ -95,12 +101,6 @@ export const openBlockedUsersModal = () => ({
   type: PUSH_MODAL,
   payload: {
     component: MODAL_BLOCKED_USERS
-  }
-});
-export const openDeleteMessageModal = () => ({
-  type: PUSH_MODAL,
-  payload: {
-    component: MODAL_DELETE_MESSAGE
   }
 });
 export const openAccountSettingsModal = () => ({

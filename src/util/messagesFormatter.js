@@ -15,6 +15,7 @@ const messagesFormatter = messages => {
       if (newMessages[date].length === 0) {
         newMessages[date].push({
           id: userMessage.id,
+          userId: userMessage.userId,
           username: userMessage.username,
           avatar: userMessage.avatar,
           createdAt: dateFormatter(new Date(userMessage.createdAt)),
@@ -22,7 +23,7 @@ const messagesFormatter = messages => {
             {
               id: userMessage.id,
               ...(userMessage.content && { content: userMessage.content }),
-              ...(userMessage.image && { image: userMessage.image })
+              ...(userMessage.upload && { upload: userMessage.upload })
             }
           ]
         });
@@ -34,11 +35,12 @@ const messagesFormatter = messages => {
           newMessages[date][newMessages[date].length - 1].messages.push({
             id: userMessage.id,
             ...(userMessage.content && { content: userMessage.content }),
-            ...(userMessage.image && { image: userMessage.image })
+            ...(userMessage.upload && { upload: userMessage.upload })
           });
         } else {
           newMessages[date].push({
             id: userMessage.id,
+            userId: userMessage.userId,
             username: userMessage.username,
             avatar: userMessage.avatar,
             createdAt: dateFormatter(new Date(userMessage.createdAt)),
@@ -46,7 +48,7 @@ const messagesFormatter = messages => {
               {
                 id: userMessage.id,
                 ...(userMessage.content && { content: userMessage.content }),
-                ...(userMessage.image && { image: userMessage.image })
+                ...(userMessage.upload && { upload: userMessage.upload })
               }
             ]
           });

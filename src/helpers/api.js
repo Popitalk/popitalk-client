@@ -57,3 +57,30 @@ export const updateRoom = (roomId, updateInfo) => {
 export const leaveRoom = roomId => {
   return axios.delete(`/api/channels/rooms/${roomId}`);
 };
+
+export const addMessage = messageInfo => {
+  return axios.post("/api/messages/", messageInfo);
+};
+
+export const deleteMessage = messageId => {
+  return axios.delete(`/api/messages/${messageId}`);
+};
+
+export const getMessages = ({ channelId, afterMessageId, beforeMessageId }) => {
+  if (!afterMessageId && !beforeMessageId) {
+    return axios.get(`/api/messages/${channelId}`);
+  }
+  if (afterMessageId && !beforeMessageId) {
+    return axios.get(
+      `/api/messages/${channelId}?afterMessageId=${afterMessageId}`
+    );
+  }
+  if (!afterMessageId && beforeMessageId) {
+    return axios.get(
+      `/api/messages/${channelId}?beforeMessageId=${beforeMessageId}`
+    );
+  }
+  return axios.get(
+    `/api/messages/${channelId}?afterMessageId=${afterMessageId}&beforeMessageId=${beforeMessageId}`
+  );
+};

@@ -40,11 +40,11 @@ export default function InviteModal({ create, anon }) {
     .map(room => room.users)
     .filter(room => room.length > 2);
 
-  const roomId = matchPath(pathname, {
-    path: "/rooms/:roomId",
+  const channelId = matchPath(pathname, {
+    path: "/rooms/:channelId",
     exact: true,
     strict: false
-  })?.params?.roomId;
+  })?.params?.channelId;
 
   const pageUrl = window.location.href
     .split("/")
@@ -74,11 +74,11 @@ export default function InviteModal({ create, anon }) {
   const roomCapacity = 8;
   const memberLimit = create
     ? roomCapacity
-    : roomCapacity - channels[roomId].users.length;
+    : roomCapacity - channels[channelId].users.length;
 
   if (!create) {
     filteredUsers = filteredUsers.filter(
-      user => !channels[roomId].users.includes(user.id)
+      user => !channels[channelId].users.includes(user.id)
     );
   }
 
@@ -107,10 +107,10 @@ export default function InviteModal({ create, anon }) {
   };
 
   const handleInviteFriends = () => {
-    dispatch(addChannel(roomId));
+    dispatch(addChannel(channelId));
 
     const roomExists = rooms.some(room =>
-      _.isEmpty(_.xor([...channels[roomId].users, ...selectedFriends], room))
+      _.isEmpty(_.xor([...channels[channelId].users, ...selectedFriends], room))
     );
 
     if (roomExists) {

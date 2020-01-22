@@ -1,3 +1,5 @@
+import _ from "lodash";
+
 const addChannel = (state, payload) => {
   return {
     ...state,
@@ -11,6 +13,8 @@ const addChannel = (state, payload) => {
         icon: payload.icon,
         public: payload.public,
         ownerId: payload.ownerId,
+        firstMessageId: payload.firstMessageId,
+        lastMessageAt: payload.lastMessageAt,
         createdAt: payload.createdAt,
         users: Array.isArray(payload.users)
           ? payload.users
@@ -20,6 +24,12 @@ const addChannel = (state, payload) => {
     users: {
       ...state.users,
       ...payload.users
+    },
+    messages: {
+      ...state.messages,
+      [payload.id]: state.messages[payload.id]
+        ? _.uniqBy([...payload.messages, ...state.messages[payload.id]], "id")
+        : payload.messages
     }
   };
 };

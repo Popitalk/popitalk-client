@@ -68,7 +68,7 @@ const onlineUsers = [
 ];
 
 export default function WatchingUsersList() {
-  const { roomId, channelId } = useParams();
+  const { channelId } = useParams();
   const { channels, groupRoomMemberLimit } = useSelector(
     state => state.generalState
   );
@@ -107,9 +107,9 @@ export default function WatchingUsersList() {
           <p>+123</p>
         </div>
       )}
-      {(channels[roomId || channelId].type === "channels" ||
-        (channels[roomId || channelId].type === "group" &&
-          channels[roomId].users.length < groupRoomMemberLimit)) && (
+      {(channels[channelId].type === "channels" ||
+        (channels[channelId].type === "group" &&
+          channels[channelId].users.length < groupRoomMemberLimit)) && (
         <button
           type="button"
           className="button round"

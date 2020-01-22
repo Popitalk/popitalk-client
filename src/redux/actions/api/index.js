@@ -163,26 +163,26 @@ export const roomApiError = error => ({
   }
 });
 
-// export const userSearchApiLoading = () => ({
-//   type: SET_API,
-//   payload: {
-//     userSearchApiLoading: true,
-//     userSearchApiError: false
-//   }
-// });
+export const messagesApiLoading = () => ({
+  type: SET_API,
+  payload: {
+    messagesApiLoading: true,
+    messagesApiError: false
+  }
+});
 
-// export const userSearchApiSuccess = () => ({
-//   type: SET_API,
-//   payload: {
-//     userSearchApiLoading: false,
-//     userSearchApiError: false
-//   }
-// });
+export const messagesApiSuccess = () => ({
+  type: SET_API,
+  payload: {
+    messagesApiLoading: false,
+    messagesApiError: false
+  }
+});
 
-// export const userSearchApiError = error => ({
-//   type: SET_API,
-//   payload: {
-//     userSearchApiLoading: false,
-//     userSearchApiError: error || true
-//   }
-// });
+export const messagesApiError = error => ({
+  type: SET_API,
+  payload: {
+    messagesApiLoading: false,
+    messagesApiError: error || true
+  }
+});

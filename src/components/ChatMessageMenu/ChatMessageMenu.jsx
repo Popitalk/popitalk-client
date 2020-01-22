@@ -4,7 +4,7 @@ import useOnClickOutside from "use-onclickoutside";
 import { openDeleteMessageModal } from "../../redux/actions";
 import "./ChatMessageMenu.css";
 
-export default function ChatMessageMenu() {
+export default function ChatMessageMenu({ messageId }) {
   const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
   const ref = useRef();
@@ -16,7 +16,7 @@ export default function ChatMessageMenu() {
   });
 
   const handleDelete = () => {
-    dispatch(openDeleteMessageModal());
+    dispatch(openDeleteMessageModal(messageId));
     setOpen(false);
   };
 

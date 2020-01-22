@@ -1,162 +1,99 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-to-interactive-role */
-import React, { useCallback } from "react";
-import { useDispatch } from "react-redux";
-import { openProfileModal, openImageModal } from "../../redux/actions";
+import React, {
+  useState,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useCallback
+} from "react";
+import { useParams } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { useScroll } from "react-use";
+import {
+  openProfileModal,
+  openImageModal,
+  getMessages
+} from "../../redux/actions";
 import messagesFormatter from "../../util/messagesFormatter";
 import ChatMessageMenu from "../ChatMessageMenu";
 import AvatarDeck from "../AvatarDeck";
-
 import "./ChatMessages.css";
-
-const messages = [
-  {
-    id: "id00",
-    username: "Playnows",
-    avatar: "https://i.imgur.com/tLljw1z.jpg",
-    createdAt: "2019-10-03T06:08:23.684Z",
-    content: "First."
-  },
-  {
-    id: "id0",
-    username: "Playnows",
-    avatar: "https://i.imgur.com/tLljw1z.jpg",
-    createdAt: "2019-12-03T06:08:23.684Z",
-    content: "Second."
-  },
-  {
-    id: "id1",
-    username: "Playnows",
-    avatar: "https://i.imgur.com/tLljw1z.jpg",
-    createdAt: "2019-12-04T06:08:23.684Z",
-    content: "And what you can do to improve."
-  },
-  {
-    id: "id2",
-    username: "Playnows",
-    avatar: "https://i.imgur.com/tLljw1z.jpg",
-    createdAt: "2019-12-04T06:08:26.684Z",
-    content: "I'm updating the link"
-  },
-  {
-    id: "id3",
-    username: "Playnows",
-    avatar: "https://i.imgur.com/tLljw1z.jpg",
-    createdAt: "2019-12-04T06:08:33.684Z",
-    content: "I updated the link"
-  },
-  {
-    id: "id4",
-    username: "Andrew",
-    avatar: "https://i.imgur.com/aqjzchq.jpg",
-    createdAt: "2019-12-04T06:09:23.684Z",
-    content: "andrew andrew adnreew"
-  },
-  {
-    id: "id5",
-    username: "Andrew",
-    avatar: "https://i.imgur.com/aqjzchq.jpg",
-    createdAt: "2019-12-04T06:10:23.684Z",
-    content: "abcddfregref"
-  },
-  {
-    id: "id6",
-    username: "Andrew",
-    avatar: "https://i.imgur.com/aqjzchq.jpg",
-    createdAt: "2019-12-04T08:18:23.684Z",
-    content: "kkkkkkkkjjjjjhhhh"
-  },
-  {
-    id: "id7",
-    username: "Playnows",
-    avatar: "https://i.imgur.com/tLljw1z.jpg",
-    createdAt: "2019-12-04T08:19:23.684Z",
-    content: "Hello."
-  },
-  {
-    id: "id8",
-    username: "Andrew",
-    avatar: "https://i.imgur.com/aqjzchq.jpg",
-    createdAt: "2019-12-04T20:55:04.403Z",
-    content: "Before last"
-  },
-  {
-    id: "id9",
-    username: "Andrew",
-    avatar: "https://i.imgur.com/aqjzchq.jpg",
-    createdAt: "2019-12-04T21:01:56.254Z",
-    content: "Last"
-  },
-  {
-    id: "id99",
-    username: "Andrew",
-    avatar: "https://i.imgur.com/aqjzchq.jpg",
-    createdAt: "2019-12-04T21:01:58.254Z",
-    image: "https://i.imgur.com/aqjzchq.jpg"
-  },
-  {
-    id: "id11",
-    username: "Andrew",
-    avatar: "https://i.imgur.com/aqjzchq.jpg",
-    createdAt: "2019-12-17T20:02:18.830Z",
-    content: "abjvhgsdjgfdsyiuefw"
-  },
-  {
-    id: "id11sd",
-    username: "Playnows",
-    avatar: "https://i.imgur.com/tLljw1z.jpg",
-    createdAt: "2019-12-17T20:02:18.830Z",
-    content: "uuuuyrte"
-  },
-  {
-    id: "id11sdd",
-    username: "Playnows",
-    avatar: "https://i.imgur.com/tLljw1z.jpg",
-    createdAt: "2019-12-17T20:02:18.830Z",
-    content: "hghghghgh"
-  },
-  {
-    id: "id11sds",
-    username: "Playnows",
-    avatar: "https://i.imgur.com/tLljw1z.jpg",
-    createdAt: "2019-12-17T20:02:18.830Z",
-    content: "uuuuyrte33333"
-  },
-  {
-    id: "id12",
-    username: "Andrew",
-    avatar: "https://i.imgur.com/aqjzchq.jpg",
-    createdAt: "2019-12-18T20:02:18.830Z",
-    content: "abjvhgsdjgfdsyiuefw"
-  },
-  {
-    id: "id13",
-    username: "Andrew",
-    avatar: "https://i.imgur.com/aqjzchq.jpg",
-    createdAt: "2019-12-19T20:02:18.830Z",
-    content: "abjvhgsdjgfdsyiuefw"
-  }
-];
 
 const seenUsers = [
   "https://i.imgur.com/aqjzchq.jpg",
   "https://i.imgur.com/tLljw1z.jpg"
 ];
 
+const Spinner = () => (
+  <div className="ChatMessages--spinner">
+    <div className="ChatMessages--spinner--circle" />
+  </div>
+);
+
 export default function ChatMessages() {
-  const dispatch = useDispatch();
-  const openProfileModalDispatcher = useCallback(
-    () => dispatch(openProfileModal()),
-    [dispatch]
+  const scrollRef = useRef(null);
+  const { y } = useScroll(scrollRef);
+  const { channelId } = useParams();
+  const { messages, channels, defaultAvatar } = useSelector(
+    state => state.generalState
   );
+  const {
+    messagesApiLoading: apiLoading,
+    messagesApiError: apiError
+  } = useSelector(state => state.apiState);
+  const { id: ownId } = useSelector(state => state.userState);
+  const dispatch = useDispatch();
   const openImageModalDispatcher = useCallback(
     () => dispatch(openImageModal()),
     [dispatch]
   );
+  useEffect(() => {
+    console.log("NO WAY");
+    scrollRef.current.scrollTo(0, scrollRef.current.scrollHeight);
+  }, [channelId]);
 
-  const formattedMessages = messagesFormatter(messages);
+  // useLayoutEffect(() => {
+  //   console.log("HELLO");
+  //   scrollRef.current.scrollTo(0, scrollRef.current.scrollHeight);
+  // }, [channelId, channels[channelId]?.loaded]);
+
+  // useEffect(() => {
+  //   if (
+  //     channels[channelId]?.loaded &&
+  //     channels[channelId].firstMessageId &&
+  //     channels[channelId].firstMessageId !== messages[channelId][0].id &&
+  //     !apiLoading &&
+  //     y <= 20
+  //   ) {
+  //     console.log("BYE", scrollRef);
+  //     // scrollRef.current.scrollTo
+  //     // scrollRef.current.scrollTo(0, scrollRef.current.scrollHeight);
+  //     dispatch(
+  //       getMessages({
+  //         channelId: channelId,
+  //         beforeMessageId: messages[channelId][0].id
+  //       })
+  //     );
+
+  //     scrollRef.current.scrollTo(0, 100);
+  //   }
+  // }, [apiLoading, channelId, channels, dispatch, messages, y]);
+
+  // useEffect(() => {
+  //   if (!apiLoading && channels[channelId]?.loaded) {
+  //     console.log("DOWN");
+
+  //     scrollRef.current.scrollTo(0, scrollRef.current.scrollHeight / 2);
+  //   }
+  // }, [apiLoading, channelId, channels]);
+
+  const formattedMessages = messagesFormatter(messages[channelId]);
+  // const formattedMessages = messagesFormatter(messages[channelId] || []);
 
   const formattedMessagesValues = Object.values(formattedMessages);
+
   const lastMessageId =
+    formattedMessagesValues.length !== 0 &&
     formattedMessagesValues[formattedMessagesValues.length - 1][
       formattedMessagesValues[formattedMessagesValues.length - 1].length - 1
     ].messages[
@@ -165,12 +102,9 @@ export default function ChatMessages() {
       ].messages.length - 1
     ].id;
 
-  const handleDelete = messageId => {
-    console.log("DELETING", messageId);
-  };
-
   return (
-    <div className="ChatMessages--container">
+    <div className="ChatMessages--container" ref={scrollRef}>
+      {apiLoading && <Spinner />}
       {Object.entries(formattedMessages).map(([date, msgs1]) => (
         <div key={date}>
           <div className="ChatMessages--date">
@@ -179,19 +113,17 @@ export default function ChatMessages() {
           {msgs1.map(msgs2 => (
             <div className="ChatMessages--messageGroup" key={msgs2.id}>
               <img
-                src={msgs2.avatar}
+                src={msgs2.avatar || defaultAvatar}
                 alt="avatar"
                 role="button"
-                onClick={openProfileModalDispatcher}
+                onClick={() => dispatch(openProfileModal(msgs2.userId))}
               />
               <div className="ChatMessages--messageGroup--nameDate">
                 {msgs2.username} <span>{msgs2.createdAt}</span>
               </div>
               <div
                 className={`ChatMessages--messageGroup--edge${
-                  msgs2.username === "Playnows"
-                    ? " ChatMessages--myMessages"
-                    : ""
+                  msgs2.userId === ownId ? " ChatMessages--myMessages" : ""
                 }`}
               >
                 <div />
@@ -208,36 +140,39 @@ export default function ChatMessages() {
                       }`}
                     >
                       {message.content && <p>{message.content}</p>}
-                      {message.image && (
+                      {message.upload && (
                         <img
-                          src={message.image}
-                          alt={message.image}
+                          src={message.upload}
+                          alt={message.upload}
                           className="ChatMessages--userImage"
                           role="button"
                           onClick={openImageModalDispatcher}
                         />
                       )}
 
-                      <ChatMessageMenu />
-                      {/* {message.id === lastMessageId && (
-                        <div className="ChatMessages--seenUsers">
-                          <AvatarDeck size="small" avatars={seenUsers} />
-                        </div>
-                      )} */}
+                      {(msgs2.userId === ownId ||
+                        (channels[channelId].type === "channel" &&
+                          channels[channelId].admins?.includes(ownId))) && (
+                        <ChatMessageMenu messageId={message.id} />
+                      )}
                     </div>
                   ) : (
                     <div key={message.id} className="ChatMessages--message">
                       {message.content && <div>{message.content}</div>}
-                      {message.image && (
+                      {message.upload && (
                         <img
-                          src={message.image}
-                          alt={message.image}
+                          src={message.upload}
+                          alt={message.upload}
                           className="ChatMessages--userImage"
                           role="button"
                           onClick={openImageModalDispatcher}
                         />
                       )}
-                      <ChatMessageMenu />
+                      {(msgs2.userId === ownId ||
+                        (channels[channelId].type === "channel" &&
+                          channels[channelId].admins?.includes(ownId))) && (
+                        <ChatMessageMenu messageId={message.id} />
+                      )}
                     </div>
                   )
                 )}

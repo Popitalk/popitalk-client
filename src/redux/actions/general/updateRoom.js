@@ -11,7 +11,6 @@ const updateRoom = (roomId, updateInfo) => {
       // const { selectedFriends } = getState().inviteState;
       dispatch(roomApiLoading());
       const response = await api.updateRoom(roomId, updateInfo);
-      console.log("REXXXXXX", response);
       dispatch({
         type: GENERAL_SET_ROOM_NAME,
         payload: response.data

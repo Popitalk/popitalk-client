@@ -7,6 +7,7 @@ const getChannel = channelId => {
     try {
       dispatch(userApiLoading());
       const response = await api.getChannel(channelId);
+      console.log("CHANNEL GET", response);
       dispatch({
         type: GENERAL_ADD_CHANNEL,
         payload: response.data

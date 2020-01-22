@@ -13,7 +13,9 @@ const initialState = {
   userSearchApiLoading: false,
   userSearchApiError: false,
   roomApiLoading: false,
-  roomApiError: false
+  roomApiError: false,
+  messagesApiLoading: false,
+  messagesApiError: false
 };
 
 export default (state = initialState, { type, payload }) => {

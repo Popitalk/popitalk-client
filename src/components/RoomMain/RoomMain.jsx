@@ -12,7 +12,7 @@ export default function RoomMain() {
   const [editing, setEditing] = useState(false);
   const [name, setName] = useState("");
   const dispatch = useDispatch();
-  const { roomId } = useParams();
+  const { channelId } = useParams();
   const scrollRef = useRef(null);
   const inputRef = useRef(null);
   const { users, channels, defaultAvatar } = useSelector(
@@ -26,12 +26,12 @@ export default function RoomMain() {
   );
 
   useEffect(() => {
-    if (channels[roomId] && !channels[roomId]?.loaded) {
-      dispatch(getChannel(roomId));
-    } else if (!_.isEmpty(channels) && !channels[roomId]) {
+    if (channels[channelId] && !channels[channelId]?.loaded) {
+      dispatch(getChannel(channelId));
+    } else if (!_.isEmpty(channels) && !channels[channelId]) {
       console.log("NO ROOM");
     }
-  }, [dispatch, roomId, channels]);
+  }, [dispatch, channelId, channels]);
 
   useEffect(() => {
     if (editing) {
@@ -39,13 +39,13 @@ export default function RoomMain() {
     }
   }, [editing]);
 
-  let roomUsers = channels[roomId]?.users;
+  let roomUsers = channels[channelId]?.users;
   let roomName =
-    channels[roomId]?.type === "self"
+    channels[channelId]?.type === "self"
       ? ownUsername
-      : channels[roomId]?.type === "friend"
+      : channels[channelId]?.type === "friend"
       ? users[roomUsers?.filter(userId => userId !== ownId)[0]].username
-      : channels[roomId]?.name ||
+      : channels[channelId]?.name ||
         roomUsers
           ?.sort((a, b) =>
             users[a].username.toLowerCase() > users[b].username.toLowerCase()
@@ -62,11 +62,11 @@ export default function RoomMain() {
     roomName = `${roomName.slice(0, 25)}...`;
   }
 
-  const loading = !channels[roomId]?.loaded;
+  const loading = !channels[channelId]?.loaded;
 
   const handleNameChange = () => {
     if (name.length >= 3 && name.length <= 20) {
-      dispatch(updateRoom(roomId, { name }));
+      dispatch(updateRoom(channelId, { name }));
     }
     setEditing(false);
   };
@@ -78,13 +78,13 @@ export default function RoomMain() {
           <Skeleton height={20} width={250} />
         ) : (
           <div>
-            {channels[roomId].type === "self" && (
+            {channels[channelId].type === "self" && (
               <img
                 src={users[ownId].avatar || defaultAvatar}
                 alt={`${users[ownId].username}'s avatar`}
               />
             )}
-            {channels[roomId].type === "friend" && (
+            {channels[channelId].type === "friend" && (
               <img
                 src={
                   users[roomUsers.filter(userId => userId !== ownId)].avatar ||
@@ -116,7 +116,7 @@ export default function RoomMain() {
             ) : (
               <>
                 <h3>{roomName}</h3>
-                {channels[roomId].type === "group" && (
+                {channels[channelId].type === "group" && (
                   <i
                     className="fas fa-pen fa-lg"
                     role="button"
@@ -126,20 +126,21 @@ export default function RoomMain() {
                     }}
                   />
                 )}
-                {channels[roomId].type === "group" && channels[roomId].name && (
-                  <p
-                    onClick={() => {
-                      dispatch(updateRoom(roomId, { resetName: true }));
-                    }}
-                  >
-                    Reset
-                  </p>
-                )}
+                {channels[channelId].type === "group" &&
+                  channels[channelId].name && (
+                    <p
+                      onClick={() => {
+                        dispatch(updateRoom(channelId, { resetName: true }));
+                      }}
+                    >
+                      Reset
+                    </p>
+                  )}
               </>
             )}
           </div>
         )}
-        {!loading && channels[roomId].type === "group" && <RoomMenu />}
+        {!loading && channels[channelId].type === "group" && <RoomMenu />}
       </div>
       <section ref={scrollRef}>
         {loading ? <Skeleton height={10000} /> : <VideoPanel />}

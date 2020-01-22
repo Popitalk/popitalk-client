@@ -1,38 +1,48 @@
 import React, { useState, useCallback } from "react";
-import { useDispatch } from "react-redux";
-import { closeModal } from "../../redux/actions";
+import { useLocation, matchPath } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { closeModal, deleteMessage } from "../../redux/actions";
 import dateFormatter from "../../util/dateFormatter";
 import "./DeleteMessageModal.css";
 
-const message = {
-  id: "id00",
-  username: "Playnows",
-  avatar: "https://i.imgur.com/tLljw1z.jpg",
-  createdAt: "2019-10-03T06:08:23.684Z",
-  content: "First."
-};
-
 export default function DeleteMessageModal() {
+  const { pathname } = useLocation();
+  const { id: ownId } = useSelector(state => state.userState);
+  const { messages, defaultAvatar } = useSelector(state => state.generalState);
+  const { deletingMessageId } = useSelector(state => state.modalState);
   const dispatch = useDispatch();
   const closeModalDispatcher = useCallback(() => dispatch(closeModal()), [
     dispatch
   ]);
+
+  const channelId = matchPath(pathname, {
+    path: "/rooms/:channelId",
+    exact: true,
+    strict: false
+  })?.params?.channelId;
+
+  const handleDelete = () => {
+    dispatch(deleteMessage(deletingMessageId));
+    dispatch(closeModal());
+  };
+
+  const message = messages[channelId].filter(
+    message => message.id === deletingMessageId
+  )[0];
 
   return (
     <div className="DeleteMessageModal--container">
       <h4>Delete Message</h4>
       <p>Are you sure you want to delete this message?</p>
       <div className="DeleteMessageModal--message">
-        <img src={message.avatar} alt="avatar" />
+        <img src={message.author.avatar || defaultAvatar} alt="avatar" />
         <div className="DeleteMessageModal--message--nameDate">
-          {message.username}{" "}
+          {message.author.username}{" "}
           <span>{dateFormatter(new Date(message.createdAt))}</span>
         </div>
         <div
           className={`DeleteMessageModal--message--edge${
-            message.username === "Playnows"
-              ? " DeleteMessageModal--myMessage"
-              : ""
+            message.userId === ownId ? " DeleteMessageModal--myMessage" : ""
           }`}
         >
           <div />
@@ -45,7 +55,7 @@ export default function DeleteMessageModal() {
         <button type="button" onClick={closeModalDispatcher}>
           Cancel
         </button>
-        <button type="button" onClick={closeModalDispatcher}>
+        <button type="button" onClick={handleDelete}>
           Delete
         </button>
       </div>

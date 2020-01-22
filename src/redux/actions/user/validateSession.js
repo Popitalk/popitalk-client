@@ -24,14 +24,8 @@ const validateSession = () => {
       }
       localStorage.setItem("siteVersion", SITE_VERSION);
 
-      // const cachedUserState = JSON.parse(localStorage.getItem("userState"));
-
-      // if (cachedUserState) {
-      //   dispatch({
-      //     type: SET_USER_INFO,
-      //     payload: cachedUserState
-      //   });
-      // }
+      const cachedDrafts = JSON.parse(localStorage.getItem("drafts"));
+      let reformedDrafts;
 
       const response = await api.validateSession();
       dispatch({
@@ -59,11 +53,31 @@ const validateSession = () => {
             response.data.relationships && response.data.relationships.blockers
         }
       });
+
+      if (cachedDrafts) {
+        if (!response.data.channels) {
+          reformedDrafts = {};
+        } else {
+          reformedDrafts = {
+            ...cachedDrafts
+          };
+
+          const channelIds = Object.keys(response.data.channels);
+
+          Object.keys(reformedDrafts).forEach(channelId => {
+            if (!channelIds.includes(channelId)) {
+              delete reformedDrafts[channelId];
+            }
+          });
+        }
+      }
+
       dispatch({
         type: GENERAL_INIT,
         payload: {
           channels: response.data.channels || {},
-          users: response.data.users || {}
+          users: response.data.users || {},
+          drafts: reformedDrafts || {}
         }
       });
     } catch (error) {

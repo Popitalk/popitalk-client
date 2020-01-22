@@ -6,7 +6,7 @@ import { leaveRoom } from "../../redux/actions";
 import "./RoomMenu.css";
 
 export default function RoomMenu() {
-  const { roomId } = useParams();
+  const { channelId } = useParams();
   const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
   const ref = useRef();
@@ -18,8 +18,7 @@ export default function RoomMenu() {
   });
 
   const handleRoomLeave = () => {
-    console.log("LOL", roomId);
-    dispatch(leaveRoom(roomId));
+    dispatch(leaveRoom(channelId));
     setOpen(false);
   };
 

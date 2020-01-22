@@ -6,7 +6,7 @@ import { openFollowersModal } from "../../redux/actions";
 import "./ChatHeader.css";
 
 export default function ChatHeader() {
-  const { channelId, roomId } = useParams();
+  const { channelId } = useParams();
   const { channels } = useSelector(state => state.generalState);
   const dispatch = useDispatch();
   const openFollowersModalDispatcher = useCallback(
@@ -14,13 +14,13 @@ export default function ChatHeader() {
     [dispatch]
   );
 
-  const loading = !channels[roomId || channelId]?.loaded;
+  const loading = !channels[channelId]?.loaded;
 
   return (
     <div className="ChatHeader--container">
       {loading ? (
         <Skeleton height={40} width={250} />
-      ) : channels[roomId || channelId].public ? (
+      ) : channels[channelId].public ? (
         <div className="ChatHeader--live">
           <p>Live Chat</p>
         </div>
@@ -28,7 +28,7 @@ export default function ChatHeader() {
         <div className="ChatHeader--private">
           <p onClick={openFollowersModalDispatcher}>
             Private Chat -{" "}
-            <span>{channels[roomId || channelId].users.length} people</span>
+            <span>{channels[channelId].users.length} people</span>
           </p>
         </div>
       )}
