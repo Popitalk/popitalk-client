@@ -11,6 +11,19 @@
   margin-left: 15px;
 }
 
+.Textarea2--container > h4 {
+  color: #000000;
+  font-size: 18px;
+  margin-bottom: 10px;
+  margin-left: 15px;
+}
+
+.Textarea2--container > h4 > span {
+  color: red;
+  font-size: 12px;
+  margin-left: 8px;
+}
+
 .Textarea2--inputContainer {
   position: relative;
 }
@@ -45,4 +58,45 @@
   color: #6f6f6f;
   font-weight: 400;
   color: #202124;
+}
+
+.Textarea2--error > .Textarea2--inputContainer {
+  border-color: red;
+  /* animation: shake 0.62s cubic-bezier(0.36, 0.07, 0.19, 0.97) both; */
+  animation: shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+.Textarea2--error textarea {
+  border-color: red !important;
+}
+
+.Textarea2--container textarea:disabled {
+  background-color: #ececec !important;
+  cursor: not-allowed !important;
+}
+
+@keyframes shake {
+  10%,
+  90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+
+  20%,
+  80% {
+    transform: translate3d(2px, 0, 0);
+  }
+
+  30%,
+  50%,
+  70% {
+    transform: translate3d(-4px, 0, 0);
+  }
+
+  40%,
+  60% {
+    transform: translate3d(4px, 0, 0);
+  }
 }

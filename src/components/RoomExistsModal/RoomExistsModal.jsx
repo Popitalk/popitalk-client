@@ -28,7 +28,7 @@ export default function RoomExistsModal() {
 
   const roomId = matchPath(pathname, {
     path: "/rooms/:roomId",
-    exact: true,
+    exact: false,
     strict: false
   })?.params?.roomId;
 

@@ -12,7 +12,8 @@ import { useScroll } from "react-use";
 import {
   openProfileModal,
   openImageModal,
-  getMessages
+  getMessages,
+  setScrolled
 } from "../../redux/actions";
 import messagesFormatter from "../../util/messagesFormatter";
 import ChatMessageMenu from "../ChatMessageMenu";
@@ -30,12 +31,18 @@ const Spinner = () => (
   </div>
 );
 
+const scrollMessageId = "8a429e32-6f32-4d2c-b41e-e55147c42fec";
+
 export default function ChatMessages() {
   const scrollRef = useRef(null);
+  const messageScrollRef = useRef(null);
   const { y } = useScroll(scrollRef);
   const { channelId } = useParams();
-  const { messages, channels, defaultAvatar } = useSelector(
+  const { messages, channels, scrolled, defaultAvatar } = useSelector(
     state => state.generalState
+  );
+  const channelLoaded = useSelector(state =>
+    Boolean(state.generalState.channels[channelId]?.loaded)
   );
   const {
     messagesApiLoading: apiLoading,
@@ -47,10 +54,45 @@ export default function ChatMessages() {
     () => dispatch(openImageModal()),
     [dispatch]
   );
-  useEffect(() => {
+  useLayoutEffect(() => {
     console.log("NO WAY");
     scrollRef.current.scrollTo(0, scrollRef.current.scrollHeight);
-  }, [channelId]);
+    setTimeout(() => {
+      if (messageScrollRef.current) {
+        messageScrollRef.current.scrollIntoView();
+      }
+    }, 2000);
+  }, [channelId, channelLoaded]);
+
+  useEffect(() => {
+    if (
+      channelLoaded &&
+      channels[channelId].firstMessageId &&
+      channels[channelId].firstMessageId !== messages[channelId][0].id &&
+      !apiLoading &&
+      y <= 20
+    ) {
+      console.log("BYE", scrollRef.current.scrollHeight);
+      // scrollRef.current.scrollTo
+      // scrollRef.current.scrollTo(0, scrollRef.current.scrollHeight);
+      dispatch(
+        getMessages({
+          channelId: channelId,
+          beforeMessageId: messages[channelId][0].id
+        })
+      );
+
+      scrollRef.current.scrollTo(0, 60);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [y]);
+
+  // useEffect(() => {
+  //   if (!scrolled[channelId]) {
+  //     console.log("NO WAY");
+  //     scrollRef.current.scrollTo(0, scrollRef.current.scrollHeight);
+  //   }
+  // }, [channelId, scrolled]);
 
   // useLayoutEffect(() => {
   //   console.log("HELLO");
@@ -132,6 +174,11 @@ export default function ChatMessages() {
                 {msgs2.messages.map((message, index) =>
                   index === msgs2.messages.length - 1 ? (
                     <div
+                      ref={
+                        message.id === scrollMessageId
+                          ? messageScrollRef
+                          : undefined
+                      }
                       key={message.id}
                       className={`ChatMessages--message${
                         message.id === lastMessageId
@@ -157,7 +204,15 @@ export default function ChatMessages() {
                       )}
                     </div>
                   ) : (
-                    <div key={message.id} className="ChatMessages--message">
+                    <div
+                      key={message.id}
+                      className="ChatMessages--message"
+                      ref={
+                        message.id === scrollMessageId
+                          ? messageScrollRef
+                          : undefined
+                      }
+                    >
                       {message.content && <div>{message.content}</div>}
                       {message.upload && (
                         <img

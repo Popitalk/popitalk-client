@@ -13,11 +13,16 @@ export default function Textarea2({
   required,
   autoFocus,
   spellCheck,
-  maxLength
+  maxLength,
+  error
 }) {
   return (
-    <div className="Textarea2--container">
-      {header && <h4>{header}</h4>}
+    <div className={`Textarea2--container${error ? " Textarea2--error" : ""}`}>
+      {header && (
+        <h4>
+          {header} {error && <span>{error}</span>}
+        </h4>
+      )}
       <div className="Textarea2--inputContainer">
         <textarea
           name={name}

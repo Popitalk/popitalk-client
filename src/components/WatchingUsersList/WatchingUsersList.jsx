@@ -107,8 +107,8 @@ export default function WatchingUsersList() {
           <p>+123</p>
         </div>
       )}
-      {(channels[channelId].type === "channels" ||
-        (channels[channelId].type === "group" &&
+      {(channels[channelId]?.type === "channel" ||
+        (channels[channelId]?.type === "group" &&
           channels[channelId].users.length < groupRoomMemberLimit)) && (
         <button
           type="button"

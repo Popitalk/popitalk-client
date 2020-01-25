@@ -63,6 +63,18 @@
   filter: brightness(80%);
 }
 
+.FormSubmitPopup--submit:disabled {
+  background: none;
+  background-color: #d0d0d0;
+  cursor: not-allowed;
+}
+.FormSubmitPopup--submit:disabled:hover {
+  filter: none;
+}
+.FormSubmitPopup--submit:disabled:active {
+  filter: none;
+}
+
 .FormSubmitPopup--reset {
   border: none;
   outline: none;
@@ -105,5 +117,35 @@
   to {
     visibility: hidden;
     transform: translate3d(0, 100%, 0);
+  }
+}
+
+.FormSubmitPopup--spinner {
+  /* height: 42px; */
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  /* padding: 22px 12px 8px 12px; */
+}
+
+.FormSubmitPopup--spinner--circle {
+  height: 18px;
+  width: 18px;
+  border: 3px solid #fff;
+  border-top-color: transparent;
+  border-radius: 50%;
+  box-sizing: content-box;
+  animation: FormSubmitPopup--spinner--circle 1s linear infinite;
+}
+
+@keyframes FormSubmitPopup--spinner--circle {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
   }
 }

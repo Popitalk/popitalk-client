@@ -15,13 +15,13 @@ export default function FollowersModal() {
 
   const channelId1 = matchPath(pathname, {
     path: "/rooms/:channelId",
-    exact: true,
+    exact: false,
     strict: false
   })?.params?.channelId;
 
   const channelId2 = matchPath(pathname, {
     path: "/channels/:channelId",
-    exact: true,
+    exact: false,
     strict: false
   })?.params?.channelId;
 

@@ -1,10 +1,21 @@
 import React, { useCallback } from "react";
-import { useDispatch } from "react-redux";
+import { useParams } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
 import { openFollowersModal } from "../../redux/actions";
 import Button1 from "../Button1";
 import "./ForumHeader.css";
 
 export default function ForumHeader() {
+  const { channelId } = useParams();
+  const { users, channels, defaultIcon, defaultAvatar } = useSelector(
+    state => state.generalState
+  );
+  const { id: ownId, username: ownUsername, avatar: ownAvatar } = useSelector(
+    state => state.userState
+  );
+  const { roomApiLoading: apiLoading, roomApiError: apiError } = useSelector(
+    state => state.apiState
+  );
   const dispatch = useDispatch();
   const openFollowersModalDispatcher = useCallback(
     () => dispatch(openFollowersModal()),
@@ -13,17 +24,13 @@ export default function ForumHeader() {
 
   return (
     <div className="ForumHeader--container">
-      <img src="https://i.imgur.com/tLljw1z.jpg" alt="icon" />
+      <img src={channels[channelId].icon || defaultIcon} alt="icon" />
       <div className="ForumHeader--bio">
-        <h2>Thelmo Society</h2>
+        <h2>{channels[channelId].name}</h2>
         <h4 onClick={openFollowersModalDispatcher}>
-          <span>120</span> followers
+          <span>{channels[channelId].users.length}</span> followers
         </h4>
-        <p>
-          The Thelomathesian Society was instituted in 1863 by Vasco P. Abbott
-          and is the governing entity of the St. Lawrence University Student
-          Body.
-        </p>
+        <p>{channels[channelId].description}</p>
         <div>
           <p>ADMINS</p>
           <div>

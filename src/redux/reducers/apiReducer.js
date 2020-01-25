@@ -15,7 +15,10 @@ const initialState = {
   roomApiLoading: false,
   roomApiError: false,
   messagesApiLoading: false,
-  messagesApiError: false
+  messagesApiError: false,
+  channelCreateApiLoading: false,
+  channelCreateApiError: false,
+  channelCreateApiSuccess: false
 };
 
 export default (state = initialState, { type, payload }) => {

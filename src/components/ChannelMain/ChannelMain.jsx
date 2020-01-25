@@ -1,25 +1,54 @@
 import React, { useState, useEffect, useLayoutEffect, useRef } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import {
   Link,
   Switch,
   Route,
   useRouteMatch,
   useLocation,
-  useHistory
+  useHistory,
+  useParams
 } from "react-router-dom";
-import "./ChannelMain.css";
+import Skeleton from "react-loading-skeleton";
+import _ from "lodash";
+import { getChannel, updateRoom } from "../../redux/actions";
 import VideoPanel from "../VideoPanel";
 import Forum from "../Forum";
 import UpdateChannel from "../UpdateChannel";
 import UpdateQueue from "../UpdateQueue";
+import "./ChannelMain.css";
 
 export default function ChannelMain() {
+  const { channelId } = useParams();
   const history = useHistory();
   const match = useRouteMatch();
   const location = useLocation();
+  const dispatch = useDispatch();
   const channelRef = useRef(null);
   const [mounted, setMounted] = useState(false);
   const scrollRef = useRef(null);
+  const { users, channels, defaultIcon, defaultAvatar } = useSelector(
+    state => state.generalState
+  );
+  const { id: ownId, username: ownUsername, avatar: ownAvatar } = useSelector(
+    state => state.userState
+  );
+  const { roomApiLoading: apiLoading, roomApiError: apiError } = useSelector(
+    state => state.apiState
+  );
+  const loading = useSelector(
+    state => !state.generalState.channels[channelId]?.loaded
+  );
+
+  // const loading = !channels[channelId]?.loaded;
+
+  useEffect(() => {
+    if (channels[channelId] && !channels[channelId]?.loaded) {
+      dispatch(getChannel(channelId));
+    } else if (!_.isEmpty(channels) && !channels[channelId]) {
+      console.log("NO ROOM");
+    }
+  }, [dispatch, channelId, channels]);
 
   // useEffect(() => {
   //   if (!mounted) {
@@ -44,6 +73,7 @@ export default function ChannelMain() {
   // }, [y]);
 
   useLayoutEffect(() => {
+    if (loading) return;
     const tab = location.pathname.replace(match.url, "").slice(1);
     // const noScroll = location.state && location.state.noScroll;
 
@@ -63,15 +93,25 @@ export default function ChannelMain() {
     } else if (tab === "settings" || tab === "queue") {
       scrollRef.current.scrollTo({ top: 0 });
     }
-  }, [location, match.url]);
+  }, [loading, location, match.url]);
+
+  // const loading = !channels[channelId]?.loaded;
 
   return (
     <div className="ChannelMain--container">
       <div className="ChannelMain--header">
-        <div>
-          <img src="https://i.imgur.com/tLljw1z.jpg" alt="channel icon" />
-          <h2>Team Playnow</h2>
-        </div>
+        {loading ? (
+          <Skeleton height={20} width={250} />
+        ) : (
+          <div>
+            <img
+              src={channels[channelId].icon || defaultIcon}
+              alt="channel icon"
+            />
+            <h2>{channels[channelId].name}</h2>
+          </div>
+        )}
+
         <div className="ChannelMain--nav">
           <Link
             to={`${match.url}/video`}
@@ -79,7 +119,7 @@ export default function ChannelMain() {
               location.pathname === `${match.url}/video`
                 ? "ChannelMain--active"
                 : "ChannelMain--inActive"
-            }`}
+            }${loading ? " disabled-link" : ""}`}
           >
             <h4>Video</h4>
             <div className="ChannelMain--nav--slab" />
@@ -90,7 +130,7 @@ export default function ChannelMain() {
               location.pathname === `${match.url}/channel`
                 ? "ChannelMain--active"
                 : "ChannelMain--inActive"
-            }`}
+            }${loading ? " disabled-link" : ""}`}
           >
             <h4>Channel</h4>
             <div className="ChannelMain--nav--slab" />
@@ -101,7 +141,7 @@ export default function ChannelMain() {
               location.pathname === `${match.url}/queue`
                 ? "ChannelMain--active"
                 : "ChannelMain--inActive"
-            }`}
+            }${loading ? " disabled-link" : ""}`}
           >
             <h4>Queue</h4>
             <div className="ChannelMain--nav--slab" />
@@ -112,7 +152,7 @@ export default function ChannelMain() {
               location.pathname === `${match.url}/settings`
                 ? "ChannelMain--active"
                 : "ChannelMain--inActive"
-            }`}
+            }${loading ? " disabled-link" : ""}`}
           >
             <h4>Settings</h4>
             <div className="ChannelMain--nav--slab" />
@@ -120,19 +160,26 @@ export default function ChannelMain() {
         </div>
       </div>
       <section ref={scrollRef}>
-        <Switch>
-          <Route exact path={[`${match.path}/video`, `${match.path}/channel`]}>
-            <VideoPanel />
-            <div ref={channelRef} />
-            <Forum />
-          </Route>
-          <Route path={`${match.path}/settings`}>
-            <UpdateChannel />
-          </Route>
-          <Route path={`${match.path}/queue`}>
-            <UpdateQueue />
-          </Route>
-        </Switch>
+        {loading ? (
+          <Skeleton height={10000} />
+        ) : (
+          <Switch>
+            <Route
+              exact
+              path={[`${match.path}/video`, `${match.path}/channel`]}
+            >
+              <VideoPanel />
+              <div ref={channelRef} />
+              <Forum />
+            </Route>
+            <Route path={`${match.path}/settings`}>
+              <UpdateChannel />
+            </Route>
+            <Route path={`${match.path}/queue`}>
+              <UpdateQueue />
+            </Route>
+          </Switch>
+        )}
       </section>
     </div>
   );

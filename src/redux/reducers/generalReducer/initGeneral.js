@@ -1,4 +1,8 @@
 const initGeneral = (state, payload) => {
+  let scrolled = {};
+  Object.keys(payload.channels).forEach(channelId => {
+    scrolled[channelId] = false;
+  });
   return {
     ...state,
     channels: {
@@ -16,6 +20,10 @@ const initGeneral = (state, payload) => {
     users: {
       ...state.users,
       ...payload.users
+    },
+    scrolled: {
+      ...state.scrolled,
+      ...scrolled
     }
   };
 };

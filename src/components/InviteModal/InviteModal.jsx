@@ -42,7 +42,7 @@ export default function InviteModal({ create, anon }) {
 
   const channelId = matchPath(pathname, {
     path: "/rooms/:channelId",
-    exact: true,
+    exact: false,
     strict: false
   })?.params?.channelId;
 

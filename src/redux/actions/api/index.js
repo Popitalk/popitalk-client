@@ -67,6 +67,7 @@ export const userApiError = error => ({
     userApiSuccess: false
   }
 });
+
 export const registrationApiLoading = () => ({
   type: SET_API,
   payload: {
@@ -184,5 +185,49 @@ export const messagesApiError = error => ({
   payload: {
     messagesApiLoading: false,
     messagesApiError: error || true
+  }
+});
+
+export const channelCreateApiLoading = () => ({
+  type: SET_API,
+  payload: {
+    channelCreateApiLoading: true,
+    channelCreateApiSuccess: false
+    // channelCreateApiError: false
+  }
+});
+
+export const channelCreateApiSuccess = () => ({
+  type: SET_API,
+  payload: {
+    channelCreateApiLoading: false,
+    channelCreateApiError: false
+  }
+});
+
+export const channelCreateApiSuccess2 = () => ({
+  type: SET_API,
+  payload: {
+    channelCreateApiLoading: false,
+    channelCreateApiError: false,
+    channelCreateApiSuccess: true
+  }
+});
+
+export const channelCreateApiReset = () => ({
+  type: SET_API,
+  payload: {
+    channelCreateApiLoading: false,
+    channelCreateApiError: false,
+    channelCreateApiSuccess: false
+  }
+});
+
+export const channelCreateApiError = error => ({
+  type: SET_API,
+  payload: {
+    channelCreateApiLoading: false,
+    channelCreateApiError: error || true,
+    channelCreateApiSuccess: false
   }
 });

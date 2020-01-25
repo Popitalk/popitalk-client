@@ -42,6 +42,10 @@ export const getChannel = channelId => {
   return axios.get(`/api/channels/${channelId}`);
 };
 
+export const createChannel = channelInfo => {
+  return axios.post("/api/channels", channelInfo);
+};
+
 export const createRoom = userIds => {
   return axios.post("/api/channels/room", { userIds });
 };

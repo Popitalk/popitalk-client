@@ -13,13 +13,17 @@ export default function Input4({
   disabled,
   required,
   autoFocus,
-  spellCheck,
+  spellCheck = false,
   maxLength,
-  friends
+  error
 }) {
   return (
-    <div className={`Input4--container${friends ? " Input4--friends" : ""}`}>
-      {header && <h4>{header}</h4>}
+    <div className={`Input4--container${error ? " Input4--error" : ""}`}>
+      {header && (
+        <h4>
+          {header} {error && <span>{error}</span>}
+        </h4>
+      )}
       <div className="Input4--inputContainer">
         <input
           type={type}

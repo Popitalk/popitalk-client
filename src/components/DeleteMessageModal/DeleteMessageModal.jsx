@@ -17,7 +17,7 @@ export default function DeleteMessageModal() {
 
   const channelId = matchPath(pathname, {
     path: "/rooms/:channelId",
-    exact: true,
+    exact: false,
     strict: false
   })?.params?.channelId;
 
