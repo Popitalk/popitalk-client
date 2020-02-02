@@ -1,4 +1,5 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import { Switch, Route } from "react-router-dom";
 import "./ChannelPage.css";
 import ChannelsPanel2 from "../../components/ChannelsPanel2";
@@ -9,8 +10,14 @@ import ChatPanel from "../../components/ChatPanel";
 import FriendsPanel from "../../components/FriendsPanel";
 
 export default function ChannelPage() {
+  const { channelSettingsPage } = useSelector(state => state.generalState);
+
   return (
-    <div className="ChannelPage--container">
+    <div
+      className={`ChannelPage--container${
+        channelSettingsPage ? " ChannelPage--channelSettings" : ""
+      }`}
+    >
       <div className="ChannelPage--shadowBox">
         <ChannelsPanel2 />
         <Switch>

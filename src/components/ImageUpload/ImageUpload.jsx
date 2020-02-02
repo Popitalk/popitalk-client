@@ -2,6 +2,7 @@ import React from "react";
 import "./ImageUpload.css";
 
 export default function ImageUpload({
+  name,
   icon,
   onUpload,
   onRemove,
@@ -16,6 +17,7 @@ export default function ImageUpload({
           accept="image/jpeg, image/png"
           onChange={onUpload}
           disabled={disabled}
+          name={name}
         />
         {icon ? (
           <img src={icon} alt="icon" className="ImageUpload--image" />

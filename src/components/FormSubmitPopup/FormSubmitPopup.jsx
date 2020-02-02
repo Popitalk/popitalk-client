@@ -19,7 +19,8 @@ export default function FormSubmitPopup({
   loading,
   required,
   autoFocus,
-  spellCheck
+  spellCheck,
+  onReset
 }) {
   return (
     <div className="FormSubmitPopup--container">
@@ -34,6 +35,7 @@ export default function FormSubmitPopup({
             type="button"
             className="FormSubmitPopup--reset"
             disabled={disabled}
+            onClick={onReset}
           >
             Reset
           </button>

@@ -1,0 +1,164 @@
+.ManageBanned--container {
+  flex-grow: 1;
+  padding: 85px 100px 0 85px;
+  display: flex;
+  flex-direction: column;
+}
+
+.ManageBanned--container > h3 {
+  font-size: 20px;
+  font-weight: bold;
+  color: #000000;
+  margin-bottom: 32px;
+}
+
+.ManageBanned--search {
+  width: 100%;
+  /* padding: 15px 22px 0px 22px; */
+  margin-bottom: 18px;
+}
+.ManageBanned--search > * {
+  background-color: #ffffff;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border-radius: 25px;
+  height: 46px;
+  border: thin solid transparent;
+}
+.ManageBanned--search > * > input {
+  border: none;
+  outline: none;
+  background-color: #ffffff;
+  height: 100%;
+  flex-grow: 1;
+  border-top-right-radius: 25px;
+  border-bottom-right-radius: 25px;
+  font-size: 24px;
+  font-weight: 400;
+  padding: 6px 25px 6px 12px;
+}
+
+.ManageBanned--search > * > input::placeholder {
+  color: #b2b1b1;
+}
+
+.ManageBanned--search > * > div {
+  background-color: #ffffff;
+  height: 100%;
+  width: 46px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  border-top-left-radius: 25px;
+  border-bottom-left-radius: 25px;
+  color: #b2b1b1;
+  padding-left: 25px;
+}
+
+.ManageBanned--search > *:focus-within {
+  border: thin solid #00b1ff;
+}
+
+.ManageBanned--users {
+  /* padding: 15px 22px 15px 22px; */
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-color: #cbcbcb #cbcbcb;
+  /* background-color: red; */
+}
+
+.ManageBanned--users::-webkit-scrollbar {
+  width: 0px;
+  background: transparent;
+}
+
+.ManageBanned--users:hover::-webkit-scrollbar {
+  width: 24px;
+}
+
+.ManageBanned--users:hover::-webkit-scrollbar-thumb {
+  box-shadow: inset 0 0 24px 24px #cbcbcb;
+  border: solid 8px transparent;
+  border-radius: 50px;
+}
+
+.ManageBanned--users:hover::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 24px 24px #f0eaff;
+  border: solid 8px transparent;
+  border-radius: 50px;
+}
+
+.ManageBanned--users:hover::-webkit-scrollbar-button {
+  display: none;
+}
+
+.ManageBanned--users:hover {
+  padding-right: 0px;
+}
+
+.ManageBanned--user {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 15px 15px;
+  /* background-color: #ffffff; */
+  transition: filter 0.17s ease-in-out;
+  border-radius: 5px;
+}
+.ManageBanned--users:hover > .BlockedUsersModal--user {
+  padding-right: 13px;
+}
+
+.ManageBanned--user > img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  -webkit-user-drag: none;
+  user-select: none;
+  margin-right: 22px;
+  cursor: pointer;
+}
+.ManageBanned--user--name {
+  cursor: pointer;
+  user-select: none;
+}
+
+.ManageBanned--user--name > *:first-child {
+  font-size: 24px;
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+
+.ManageBanned--user--name > *:last-child {
+  font-size: 16px;
+  font-weight: 500;
+  color: #989797;
+}
+
+.ManageBanned--noneFound {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+}
+
+.ManageBanned--noneFound > h4 {
+  font-size: 26px;
+  font-weight: 500;
+  color: #b2b1b1;
+}
+
+.ManageBanned--owner {
+  margin-left: auto;
+  font-size: 19px;
+  font-weight: 400;
+  color: #a5a5a5;
+  user-select: none;
+}

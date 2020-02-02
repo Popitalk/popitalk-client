@@ -28,16 +28,23 @@ export default function ForumHeader() {
       <div className="ForumHeader--bio">
         <h2>{channels[channelId].name}</h2>
         <h4 onClick={openFollowersModalDispatcher}>
-          <span>{channels[channelId].users.length}</span> followers
+          <span>
+            {channels[channelId].users.length +
+              channels[channelId].admins.length}
+          </span>{" "}
+          followers
         </h4>
         <p>{channels[channelId].description}</p>
         <div>
           <p>ADMINS</p>
           <div>
-            <img src="https://i.imgur.com/tLljw1z.jpg" alt="admin icons" />
-            <img src="https://i.imgur.com/tLljw1z.jpg" alt="admin icons" />
-            <img src="https://i.imgur.com/tLljw1z.jpg" alt="admin icons" />
-            <img src="https://i.imgur.com/tLljw1z.jpg" alt="admin icons" />
+            {channels[channelId].admins.map(adminId => (
+              <img
+                key={adminId}
+                src={users[adminId].avatar || defaultAvatar}
+                alt="admin icon"
+              />
+            ))}
           </div>
         </div>
       </div>

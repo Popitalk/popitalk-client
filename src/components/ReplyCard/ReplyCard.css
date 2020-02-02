@@ -62,3 +62,7 @@
   display: block;
   color: #ef4040;
 }
+
+.ReplyCard--liked {
+  color: #ef4040 !important;
+}

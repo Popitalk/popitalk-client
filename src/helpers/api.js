@@ -19,9 +19,16 @@ export const logout = () => {
 export const updateUser = updateInfo => {
   return axios.put("/api/users/", updateInfo);
 };
+export const updateChannel = (channelId, updateInfo) => {
+  return axios.put(`/api/channels/${channelId}`, updateInfo);
+};
 
 export const updateUserRelationships = updateInfo => {
   return axios.put("/api/users/relationships", updateInfo);
+};
+
+export const updateMember = updateInfo => {
+  return axios.put("/api/members/", updateInfo);
 };
 
 export const getUser = userId => {
@@ -65,9 +72,19 @@ export const leaveRoom = roomId => {
 export const addMessage = messageInfo => {
   return axios.post("/api/messages/", messageInfo);
 };
+export const addPost = postInfo => {
+  return axios.post("/api/posts/", postInfo);
+};
+export const addComment = commentInfo => {
+  return axios.post("/api/comments/", commentInfo);
+};
 
 export const deleteMessage = messageId => {
   return axios.delete(`/api/messages/${messageId}`);
+};
+
+export const deleteChannel = channelId => {
+  return axios.delete(`/api/channels/${channelId}`);
 };
 
 export const getMessages = ({ channelId, afterMessageId, beforeMessageId }) => {
@@ -87,4 +104,35 @@ export const getMessages = ({ channelId, afterMessageId, beforeMessageId }) => {
   return axios.get(
     `/api/messages/${channelId}?afterMessageId=${afterMessageId}&beforeMessageId=${beforeMessageId}`
   );
+};
+export const getPosts = ({ channelId, beforePostId }) => {
+  if (!beforePostId) {
+    return axios.get(`/api/posts/${channelId}`);
+  }
+
+  return axios.get(`/api/posts/${channelId}?beforePostId=${beforePostId}`);
+};
+
+export const getComments = ({ postId, limit }) => {
+  if (!limit) {
+    return axios.get(`/api/comments/${postId}`);
+  }
+
+  return axios.get(`/api/comments/${postId}?limit=${limit}`);
+};
+
+export const addLike = ({ postId, commentId }) => {
+  if (postId) {
+    return axios.post("/api/likes", { postId });
+  } else if (commentId) {
+    return axios.post("/api/likes", { commentId });
+  }
+};
+
+export const deleteLike = ({ postId, commentId }) => {
+  if (postId) {
+    return axios.delete(`/api/likes/?postId=${postId}`);
+  } else if (commentId) {
+    return axios.delete(`/api/likes/?commentId=${commentId}`);
+  }
 };

@@ -17,6 +17,7 @@ import DeleteMessageModal from "../DeleteMessageModal";
 import AccountSettingsModal from "../AccountSettingsModal";
 import DeleteAccountModal from "../DeleteAccountModal";
 import RoomExistsModal from "../RoomExistsModal";
+import DeleteChannelModal from "../DeleteChannelModal";
 import {
   MODAL_CREATE_NEW_ACCOUNT,
   MODAL_CREATE_ROOM,
@@ -32,6 +33,7 @@ import {
   MODAL_IMAGE,
   MODAL_ACCOUNT_SETTINGS,
   MODAL_DELETE_ACCOUNT,
+  MODAL_DELETE_CHANNEL,
   MODAL_ROOM_EXISTS
 } from "../../helpers/constants";
 import "./ModalManager.css";
@@ -53,7 +55,8 @@ const ModalComponents = {
   [MODAL_IMAGE]: <ImageModal />,
   [MODAL_ACCOUNT_SETTINGS]: <AccountSettingsModal />,
   [MODAL_DELETE_ACCOUNT]: <DeleteAccountModal />,
-  [MODAL_ROOM_EXISTS]: <RoomExistsModal />
+  [MODAL_ROOM_EXISTS]: <RoomExistsModal />,
+  [MODAL_DELETE_CHANNEL]: <DeleteChannelModal />
 };
 
 export default function ModalManager() {

@@ -1,0 +1,164 @@
+.ManageAdmins--container {
+  flex-grow: 1;
+  padding: 85px 100px 0 85px;
+  display: flex;
+  flex-direction: column;
+}
+
+.ManageAdmins--container > h3 {
+  font-size: 20px;
+  font-weight: bold;
+  color: #000000;
+  margin-bottom: 32px;
+}
+
+.ManageAdmins--search {
+  width: 100%;
+  /* padding: 15px 22px 0px 22px; */
+  margin-bottom: 18px;
+}
+.ManageAdmins--search > * {
+  background-color: #ffffff;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border-radius: 25px;
+  height: 46px;
+  border: thin solid transparent;
+}
+.ManageAdmins--search > * > input {
+  border: none;
+  outline: none;
+  background-color: #ffffff;
+  height: 100%;
+  flex-grow: 1;
+  border-top-right-radius: 25px;
+  border-bottom-right-radius: 25px;
+  font-size: 24px;
+  font-weight: 400;
+  padding: 6px 25px 6px 12px;
+}
+
+.ManageAdmins--search > * > input::placeholder {
+  color: #b2b1b1;
+}
+
+.ManageAdmins--search > * > div {
+  background-color: #ffffff;
+  height: 100%;
+  width: 46px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  border-top-left-radius: 25px;
+  border-bottom-left-radius: 25px;
+  color: #b2b1b1;
+  padding-left: 25px;
+}
+
+.ManageAdmins--search > *:focus-within {
+  border: thin solid #00b1ff;
+}
+
+.ManageAdmins--users {
+  /* padding: 15px 22px 15px 22px; */
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-color: #cbcbcb #cbcbcb;
+  /* background-color: red; */
+}
+
+.ManageAdmins--users::-webkit-scrollbar {
+  width: 0px;
+  background: transparent;
+}
+
+.ManageAdmins--users:hover::-webkit-scrollbar {
+  width: 24px;
+}
+
+.ManageAdmins--users:hover::-webkit-scrollbar-thumb {
+  box-shadow: inset 0 0 24px 24px #cbcbcb;
+  border: solid 8px transparent;
+  border-radius: 50px;
+}
+
+.ManageAdmins--users:hover::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 24px 24px #f0eaff;
+  border: solid 8px transparent;
+  border-radius: 50px;
+}
+
+.ManageAdmins--users:hover::-webkit-scrollbar-button {
+  display: none;
+}
+
+.ManageAdmins--users:hover {
+  padding-right: 0px;
+}
+
+.ManageAdmins--user {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 15px 15px;
+  /* background-color: #ffffff; */
+  transition: filter 0.17s ease-in-out;
+  border-radius: 5px;
+}
+.ManageAdmins--users:hover > .BlockedUsersModal--user {
+  padding-right: 13px;
+}
+
+.ManageAdmins--user > img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  -webkit-user-drag: none;
+  user-select: none;
+  margin-right: 22px;
+  cursor: pointer;
+}
+.ManageAdmins--user--name {
+  cursor: pointer;
+  user-select: none;
+}
+
+.ManageAdmins--user--name > *:first-child {
+  font-size: 24px;
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+
+.ManageAdmins--user--name > *:last-child {
+  font-size: 16px;
+  font-weight: 500;
+  color: #989797;
+}
+
+.ManageAdmins--noneFound {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+}
+
+.ManageAdmins--noneFound > h4 {
+  font-size: 26px;
+  font-weight: 500;
+  color: #b2b1b1;
+}
+
+.ManageAdmins--owner {
+  margin-left: auto;
+  font-size: 19px;
+  font-weight: 400;
+  color: #a5a5a5;
+  user-select: none;
+}

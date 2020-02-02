@@ -188,6 +188,54 @@ export const messagesApiError = error => ({
   }
 });
 
+export const postsApiLoading = () => ({
+  type: SET_API,
+  payload: {
+    postsApiLoading: true,
+    postsApiError: false
+  }
+});
+
+export const postsApiSuccess = () => ({
+  type: SET_API,
+  payload: {
+    postsApiLoading: false,
+    postsApiError: false
+  }
+});
+
+export const postsApiError = error => ({
+  type: SET_API,
+  payload: {
+    postsApiLoading: false,
+    postsApiError: error || true
+  }
+});
+
+export const commentsApiLoading = () => ({
+  type: SET_API,
+  payload: {
+    commentsApiLoading: true,
+    commentsApiError: false
+  }
+});
+
+export const commentsApiSuccess = () => ({
+  type: SET_API,
+  payload: {
+    commentsApiLoading: false,
+    commentsApiError: false
+  }
+});
+
+export const commentsApiError = error => ({
+  type: SET_API,
+  payload: {
+    commentsApiLoading: false,
+    commentsApiError: error || true
+  }
+});
+
 export const channelCreateApiLoading = () => ({
   type: SET_API,
   payload: {
@@ -229,5 +277,56 @@ export const channelCreateApiError = error => ({
     channelCreateApiLoading: false,
     channelCreateApiError: error || true,
     channelCreateApiSuccess: false
+  }
+});
+
+export const likesApiLoading = () => ({
+  type: SET_API,
+  payload: {
+    likesApiLoading: true,
+    likesApiError: false
+  }
+});
+
+export const likesApiSuccess = () => ({
+  type: SET_API,
+  payload: {
+    likesApiLoading: false,
+    likesApiError: false
+  }
+});
+
+export const likesApiError = error => ({
+  type: SET_API,
+  payload: {
+    likesApiLoading: false,
+    likesApiError: error || true
+  }
+});
+
+export const userListApiLoading = userId => ({
+  type: SET_API,
+  payload: {
+    userListApiLoading: true,
+    userListApiError: false,
+    userListApiUserId: userId
+  }
+});
+
+export const userListApiSuccess = () => ({
+  type: SET_API,
+  payload: {
+    userListApiLoading: false,
+    userListApiError: false,
+    userListApiUserId: null
+  }
+});
+
+export const userListApiError = error => ({
+  type: SET_API,
+  payload: {
+    userListApiLoading: false,
+    userListApiError: error || true,
+    userListApiUserId: null
   }
 });

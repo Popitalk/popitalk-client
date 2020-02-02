@@ -1,165 +1,104 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { useParams } from "react-router-dom";
 import "./Posts.css";
+import {
+  getPosts,
+  getComments,
+  refreshPosts,
+  updateLike
+} from "../../redux/actions";
+import InfiniteScroller from "../InfiniteScroller";
 import PostCard from "../PostCard";
 import ReplyCard from "../ReplyCard";
 import CreateReply from "../CreateReply";
 
-const posts = {
-  abc1: {
-    username: "Username1",
-    avatar: "https://i.imgur.com/tLljw1z.jpg",
-    likes: 6,
-    createdAt: "2019-12-03T01:30:27.206Z",
-    comments: 2,
-    post:
-      "qweqweqdasasadasdasdsaddsadsasdasdasaqweqqQweqeqwe qweqweqweqweqweqweqweqweqweqe"
-  },
-  abc2: {
-    username: "Username1",
-    avatar: "https://i.imgur.com/tLljw1z.jpg",
-    likes: 12,
-    createdAt: "2019-12-03T01:30:27.206Z",
-    comments: 2,
-    post:
-      "qweqweqdasasadasdasdsaddsadsasdasdasaqweqqQweqeqwe qweqweqweqweqweqweqweqweqweqe"
-  },
-  abc3: {
-    username: "Username1",
-    avatar: "https://i.imgur.com/tLljw1z.jpg",
-    likes: 12,
-    createdAt: "2019-12-03T01:30:27.206Z",
-    comments: 2,
-    post:
-      "qweqweqdasasadasdasdsaddsadsasdasdasaqweqqQweqeqwe qweqweqweqweqweqweqweqweqweqe"
-  },
-  abc4: {
-    username: "Username1",
-    avatar: "https://i.imgur.com/tLljw1z.jpg",
-    likes: 122,
-    createdAt: "2019-12-03T01:30:27.206Z",
-    comments: 2,
-    post:
-      "qweqweqdasasadasdasdsaddsadsasdasdasaqweqqQweqeqwe qweqweqweqweqweqweqweqweqweqe"
-  }
-};
-
-const replies = {
-  abc1: [
-    {
-      id: "xyz1",
-      username: "Username1",
-      avatar: "https://i.imgur.com/tLljw1z.jpg",
-      likes: 6,
-      createdAt: "2019-12-03T01:30:27.206Z",
-      comments: 2,
-      reply:
-        "qweqweqdasasadasdasdsaddsadsasdasdasaqweqqQweqeqwe qweqweqweqweqweqweqweqweqweqe"
-    },
-    {
-      id: "xyz2",
-      username: "Username1",
-      avatar: "https://i.imgur.com/tLljw1z.jpg",
-      likes: 6,
-      createdAt: "2019-12-03T01:30:27.206Z",
-      reply:
-        "qweqweqdasasadasdasdsaddsadsasdasdasaqweqqQweqeqwe qweqweqweqweqweqweqweqweqweqe"
-    }
-  ],
-  abc2: [
-    {
-      id: "xyz3",
-      username: "Username1",
-      avatar: "https://i.imgur.com/tLljw1z.jpg",
-      likes: 6,
-      createdAt: "2019-12-03T01:30:27.206Z",
-      comments: 2,
-      reply:
-        "qweqweqdasasadasdasdsaddsadsasdasdasaqweqqQweqeqwe qweqweqweqweqweqweqweqweqweqe"
-    },
-    {
-      id: "xyz4",
-      username: "Username1",
-      avatar: "https://i.imgur.com/tLljw1z.jpg",
-      likes: 6,
-      createdAt: "2019-12-03T01:30:27.206Z",
-      reply:
-        "qweqweqdasasadasdasdsaddsadsasdasdasaqweqqQweqeqwe qweqweqweqweqweqweqweqweqweqe"
-    }
-  ],
-  abc3: [
-    {
-      id: "xyz5",
-      username: "Username1",
-      avatar: "https://i.imgur.com/tLljw1z.jpg",
-      likes: 6,
-      createdAt: "2019-12-03T01:30:27.206Z",
-      comments: 2,
-      reply:
-        "qweqweqdasasadasdasdsaddsadsasdasdasaqweqqQweqeqwe qweqweqweqweqweqweqweqweqweqe"
-    },
-    {
-      id: "xyz6",
-      username: "Username1",
-      avatar: "https://i.imgur.com/tLljw1z.jpg",
-      likes: 6,
-      createdAt: "2019-12-03T01:30:27.206Z",
-      reply:
-        "qweqweqdasasadasdasdsaddsadsasdasdasaqweqqQweqeqwe qweqweqweqweqweqweqweqweqweqe"
-    }
-  ],
-  abc4: [
-    {
-      id: "xyz7",
-      username: "Username1",
-      avatar: "https://i.imgur.com/tLljw1z.jpg",
-      likes: 6,
-      createdAt: "2019-12-03T01:30:27.206Z",
-      comments: 2,
-      reply:
-        "qweqweqdasasadasdasdsaddsadsasdasdasaqweqqQweqeqwe qweqweqweqweqweqweqweqweqweqe"
-    },
-    {
-      id: "xyz8",
-      username: "Username1",
-      avatar: "https://i.imgur.com/tLljw1z.jpg",
-      likes: 6,
-      createdAt: "2019-12-03T01:30:27.206Z",
-      reply:
-        "qweqweqdasasadasdasdsaddsadsasdasdasaqweqqQweqeqwe qweqweqweqweqweqweqweqweqweqe"
-    }
-  ]
-};
+const Spinner = () => (
+  <div className="Posts--spinner">
+    <div className="Posts--spinner--circle" />
+  </div>
+);
 
 export default function Posts() {
+  const { channelId } = useParams();
+  const { channels, posts, comments, defaultAvatar } = useSelector(
+    state => state.generalState
+  );
+  const { postsApiLoading, commentsApiLoading } = useSelector(
+    state => state.apiState
+  );
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    return () => {
+      dispatch(refreshPosts(channelId));
+    };
+  }, [channelId, dispatch]);
+
+  const onBottomView = () => {
+    dispatch(getPosts(channelId));
+  };
+
   return (
-    <div className="Posts--container">
-      {Object.entries(posts).map(([postId, post]) => (
-        <div key={postId} className="Posts--post">
+    <InfiniteScroller
+      className="Posts--container"
+      loading={postsApiLoading}
+      loader={Spinner}
+      onBottomView={onBottomView}
+      hasMoreBottom={
+        posts[channelId].length >= 7 &&
+        channels[channelId].firstPostId !==
+          posts[channelId][posts[channelId].length - 1].id
+      }
+    >
+      {posts[channelId].map(post => (
+        <div key={post.id} className="Posts--post">
           <PostCard
-            username={post.username}
-            avatar={post.avatar}
-            likes={post.likes}
-            comments={post.comments}
+            id={post.id}
+            username={post.author.username}
+            avatar={post.author.avatar || defaultAvatar}
+            likes={post.likesCount}
+            liked={post.liked}
+            comments={post.commentsCount}
             createdAt={post.createdAt}
-            post={post.post}
+            post={post.content}
+            channelId={channelId}
           />
-          <div className="Posts--replies">
-            {replies[postId].map(reply => (
-              <ReplyCard
-                key={reply.id}
-                username={reply.username}
-                avatar={reply.avatar}
-                likes={reply.likes}
-                createdAt={reply.createdAt}
-                reply={reply.reply}
-              />
+          {comments[post.id] &&
+            post.firstCommentId !== comments[post.id][0].id &&
+            (commentsApiLoading ? (
+              <Spinner />
+            ) : (
+              <p
+                className="Posts--viewMore"
+                onClick={() => dispatch(getComments(post.id))}
+              >
+                View more comments
+              </p>
             ))}
-          </div>
+
+          {comments[post.id] && (
+            <div className="Posts--replies">
+              {comments[post.id].map(comment => (
+                <ReplyCard
+                  key={comment.id}
+                  id={comment.id}
+                  username={comment.author.username}
+                  avatar={comment.author.avatar || defaultAvatar}
+                  likes={comment.likesCount}
+                  liked={comment.liked}
+                  createdAt={comment.createdAt}
+                  reply={comment.content}
+                  postId={post.id}
+                />
+              ))}
+            </div>
+          )}
           <div className="Posts--replyDraft">
-            <CreateReply />
+            <CreateReply postId={post.id} />
           </div>
         </div>
       ))}
-    </div>
+    </InfiniteScroller>
   );
 }

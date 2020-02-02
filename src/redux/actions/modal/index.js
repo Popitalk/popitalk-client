@@ -2,6 +2,7 @@ import {
   PUSH_MODAL,
   PUSH_MODAL_PROFILE_MODAL,
   PUSH_MODAL_DELETE_MESSAGE,
+  PUSH_MODAL_DELETE_CHANNEL,
   POP_MODAL,
   POP_ALL_MODAL,
   MODAL_CREATE_NEW_ACCOUNT,
@@ -20,6 +21,7 @@ import {
   MODAL_DELETE_MESSAGE,
   MODAL_ACCOUNT_SETTINGS,
   MODAL_DELETE_ACCOUNT,
+  MODAL_DELETE_CHANNEL,
   MODAL_ROOM_EXISTS
 } from "../../../helpers/constants";
 
@@ -59,6 +61,15 @@ export const openDeleteMessageModal = messageId => ({
     messageId
   }
 });
+
+export const openDeleteChannelModal = channelId => ({
+  type: PUSH_MODAL_DELETE_CHANNEL,
+  payload: {
+    component: MODAL_DELETE_CHANNEL,
+    channelId
+  }
+});
+
 export const openWatchingModal = () => ({
   type: PUSH_MODAL,
   payload: {

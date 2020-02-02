@@ -18,7 +18,9 @@ const createChannel = channelInfo => {
       formData.append("description", channelInfo.description);
       formData.append("public", channelInfo.public);
       // formData.append("categories", channelInfo.categories);
-      formData.append("icon", channelInfo.icon);
+      if (channelInfo.icon) {
+        formData.append("icon", channelInfo.icon);
+      }
 
       const response = await api.createChannel(formData);
 

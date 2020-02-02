@@ -26,6 +26,10 @@
   border-top-right-radius: 15px;
 }
 
+.ChannelPage--channelSettings .ChatPanel--container {
+  display: none;
+}
+
 .ChannelPage--container > .FriendsPanel--container {
   height: calc(100vh - 70px);
   position: fixed;
@@ -36,6 +40,17 @@
 
 .ChannelPage--container .ChannelMain--container {
   width: calc(100vw - 951px);
+}
+
+.ChannelPage--channelSettings .ChannelMain--container {
+  width: calc(100vw - 511px);
+  border-top-right-radius: 15px;
+}
+.ChannelPage--channelSettings .ChannelMain--container .ChannelMain--header {
+  border-top-right-radius: 15px;
+}
+.ChannelPage--channelSettings .ChannelMain--nav {
+  padding-right: 465px;
 }
 
 .ChannelPage--container .ChannelMain--container {

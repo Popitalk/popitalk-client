@@ -1,7 +1,12 @@
 import React, { useState, useEffect, useRef } from "react";
+import { useDispatch } from "react-redux";
+import { useParams } from "react-router-dom";
+import { addComment } from "../../redux/actions";
 import "./CreateReply.css";
 
-export default function CreateReply() {
+export default function CreateReply({ postId }) {
+  const { channelId } = useParams();
+  const dispatch = useDispatch();
   const [value, setValue] = useState("");
   const textareaRef = useRef();
 
@@ -22,12 +27,14 @@ export default function CreateReply() {
       e.preventDefault();
       e.target.style.height = "38px";
       setValue("");
+      dispatch(addComment({ channelId, postId, content: value }));
     }
   };
 
   const handleSend = () => {
     textareaRef.current.style.height = "38px";
     setValue("");
+    dispatch(addComment({ channelId, postId, content: value }));
   };
 
   return (

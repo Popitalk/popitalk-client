@@ -1,9 +1,14 @@
 import React, { useState, useEffect, useRef } from "react";
+import { useDispatch } from "react-redux";
+import { useParams } from "react-router-dom";
 import "emoji-mart/css/emoji-mart.css";
 import { Picker } from "emoji-mart";
+import { addPost } from "../../redux/actions";
 import "./CreatePost.css";
 
 export default function CreatePost() {
+  const { channelId } = useParams();
+  const dispatch = useDispatch();
   const [value, setValue] = useState("");
   const [pickerOpen, setPickerOpen] = useState(false);
   const textareaRef = useRef();
@@ -21,17 +26,10 @@ export default function CreatePost() {
     setValue(e.target.value);
   };
 
-  const handleSubmit = e => {
-    // if (e.keyCode === 13 && !e.shiftKey) {
-    //   e.preventDefault();
-    //   e.target.style.height = "58px";
-    //   setValue("");
-    // }
-  };
-
   const handleSend = () => {
     textareaRef.current.style.height = "58px";
     setValue("");
+    dispatch(addPost({ channelId, content: value }));
   };
 
   const handleEmoticon = () => {
@@ -52,7 +50,6 @@ export default function CreatePost() {
           placeholder="Post a thread..."
           value={value}
           onChange={handleChange}
-          onKeyDown={handleSubmit}
           maxLength={120}
           ref={textareaRef}
         />

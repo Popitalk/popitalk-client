@@ -1,0 +1,62 @@
+.ChannelSettingsSidebar--container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #e8e8e8;
+  height: 100%;
+  border-radius: 34px;
+  padding: 60px 22px 35px 22px;
+  /* width: 300px; */
+}
+
+.ChannelSettingsSidebar--nav {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.ChannelSettingsSidebar--nav > * {
+  font-size: 18px;
+  font-weight: bold;
+  text-decoration: none;
+  color: inherit;
+  /* height: 46px; */
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  border-radius: 30px;
+  padding: 12px 48px;
+  text-align: center;
+  user-select: none;
+}
+.ChannelSettingsSidebar--nav > *:not(:last-child) {
+  margin-bottom: 5px;
+}
+
+.ChannelSettingsSidebar--active {
+  color: #000000;
+  background-color: #d3d3d3;
+}
+.ChannelSettingsSidebar--inActive {
+  color: #5d5d5d;
+}
+.ChannelSettingsSidebar--inActive:hover {
+  color: #000000;
+  background-color: #d3d3d3;
+}
+
+.ChannelSettingsSidebar--delete {
+  margin-top: auto;
+  color: #ff4040;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 30px;
+  padding: 12px 48px;
+  user-select: none;
+}
+
+.ChannelSettingsSidebar--delete:hover {
+  background-color: #d3d3d3;
+}

@@ -27,7 +27,10 @@ export default function FollowersModal() {
 
   const channelId = channelId1 || channelId2;
 
-  const filteredUsers = channels[channelId].users
+  const filteredUsers = (channels[channelId].admins
+    ? [...channels[channelId].users, ...channels[channelId].admins]
+    : channels[channelId].users
+  )
     .filter(userId =>
       users[userId].username.toLowerCase().includes(search.toLowerCase())
     )
@@ -42,7 +45,13 @@ export default function FollowersModal() {
   return (
     <div className="FollowersModal--container">
       <div className="FollowersModal--header">
-        <h3>{channels[channelId].users.length} followers</h3>
+        <h3>
+          {channels[channelId].admins
+            ? channels[channelId].users.length +
+              channels[channelId].admins.length
+            : channels[channelId].users.length}{" "}
+          followers
+        </h3>
         <div className="FollowersModal--search">
           <div>
             <div>

@@ -113,9 +113,6 @@ export default function CreateChannel() {
               <div className="CreateChannel--inputs">
                 <Input4
                   name="name"
-                  onKeyDown={() => {
-                    console.log("HELLO", values);
-                  }}
                   header="Channel Name"
                   type="text"
                   placeholder="Name your channel"

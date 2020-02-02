@@ -55,7 +55,6 @@ export default function ChatMessages() {
     [dispatch]
   );
   useLayoutEffect(() => {
-    console.log("NO WAY");
     scrollRef.current.scrollTo(0, scrollRef.current.scrollHeight);
     setTimeout(() => {
       if (messageScrollRef.current) {

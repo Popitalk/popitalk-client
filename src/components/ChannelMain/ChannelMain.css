@@ -48,6 +48,7 @@
   margin-right: 16px;
   -webkit-user-drag: none;
   user-select: none;
+  object-fit: cover;
 }
 .ChannelMain--header > *:first-child > h2 {
   font-size: 26px;

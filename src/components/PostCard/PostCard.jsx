@@ -1,17 +1,28 @@
 import React from "react";
-import "./PostCard.css";
+import { useSelector, useDispatch } from "react-redux";
 import { formatDistanceToNow } from "date-fns";
+import { updateLike } from "../../redux/actions";
+import "./PostCard.css";
 
 export default function PostCard({
+  id,
   username,
   avatar,
   createdAt,
   post,
   likes,
+  liked,
   comments,
-  likeHandler,
-  commentHandler
+  channelId
 }) {
+  const { likesApiLoading: apiLoading } = useSelector(state => state.apiState);
+
+  const dispatch = useDispatch();
+
+  const likeHandler = () => {
+    dispatch(updateLike({ channelId, postId: id, liked }));
+  };
+
   return (
     <div className="PostCard--container">
       <div className="PostCard--user">
@@ -36,9 +47,15 @@ export default function PostCard({
         <p>{comments} comments</p>
       </div>
       <div className="PostCard--buttons">
-        <button type="button">
-          <i className="far fa-heart fa-lg  PostCard--buttons--visible" />
-          <i className="fas fa-heart fa-lg PostCard--buttons--hidden PostCard--like" />
+        <button type="button" onClick={apiLoading ? undefined : likeHandler}>
+          {liked ? (
+            <i className="fas fa-heart fa-lg PostCard--liked" />
+          ) : (
+            <>
+              <i className="far fa-heart fa-lg PostCard--buttons--visible" />
+              <i className="fas fa-heart fa-lg PostCard--buttons--hidden PostCard--like" />
+            </>
+          )}
           <p>Like</p>
         </button>
         <button type="button">

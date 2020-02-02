@@ -16,6 +16,7 @@ import VideoPanel from "../VideoPanel";
 import Forum from "../Forum";
 import UpdateChannel from "../UpdateChannel";
 import UpdateQueue from "../UpdateQueue";
+import ChannelSettings from "../ChannelSettings";
 import "./ChannelMain.css";
 
 export default function ChannelMain() {
@@ -149,7 +150,7 @@ export default function ChannelMain() {
           <Link
             to={`${match.url}/settings`}
             className={`${
-              location.pathname === `${match.url}/settings`
+              location.pathname.startsWith(`${match.url}/settings`)
                 ? "ChannelMain--active"
                 : "ChannelMain--inActive"
             }${loading ? " disabled-link" : ""}`}
@@ -173,7 +174,8 @@ export default function ChannelMain() {
               <Forum />
             </Route>
             <Route path={`${match.path}/settings`}>
-              <UpdateChannel />
+              <ChannelSettings />
+              {/* <UpdateChannel /> */}
             </Route>
             <Route path={`${match.path}/queue`}>
               <UpdateQueue />

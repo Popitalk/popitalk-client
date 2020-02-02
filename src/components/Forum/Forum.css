@@ -9,10 +9,10 @@
   align-items: center;
 }
 
-.Forum--container > .ForumHeader--container {
+.Forum--container .ForumHeader--container {
   /* margin-bottom: 48px; */
   margin-bottom: 70px;
 }
-.Forum--container > .CreatePost--container {
+.Forum--container .CreatePost--container {
   margin-bottom: 26px;
 }

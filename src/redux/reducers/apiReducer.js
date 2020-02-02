@@ -14,11 +14,22 @@ const initialState = {
   userSearchApiError: false,
   roomApiLoading: false,
   roomApiError: false,
+  inviteApiLoading: false,
+  inviteApiError: false,
   messagesApiLoading: false,
   messagesApiError: false,
+  postsApiLoading: false,
+  postsApiError: false,
+  commentsApiLoading: false,
+  commentsApiError: false,
+  likesApiLoading: false,
+  likesApiError: false,
   channelCreateApiLoading: false,
   channelCreateApiError: false,
-  channelCreateApiSuccess: false
+  channelCreateApiSuccess: false,
+  userListApiLoading: false,
+  userListApiError: false,
+  userListApiUserId: null
 };
 
 export default (state = initialState, { type, payload }) => {
