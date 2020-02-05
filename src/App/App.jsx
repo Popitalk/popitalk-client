@@ -23,7 +23,7 @@ export default function App() {
     dispatch(validateSession());
   }, [dispatch]);
 
-  if (!validatedSession || !wsConnected)
+  if (!validatedSession || (loggedIn && !wsConnected))
     // if (!validatedSession)
     return (
       <section className="App--container">

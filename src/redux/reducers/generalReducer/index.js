@@ -4,6 +4,7 @@ import {
   GENERAL_ADD_CHANNEL,
   GENERAL_REMOVE_CHANNEL,
   GENERAL_ADD_MEMBERS,
+  GENERAL_ADD_MESSAGE,
   GENERAL_ADD_MESSAGES,
   GENERAL_RESET,
   GENERAL_SET_ROOM_NAME,
@@ -31,6 +32,7 @@ import addChannel from "./addChannel";
 import removeChannel from "./removeChannel";
 import addMembers from "./addMembers";
 import addMessages from "./addMessages";
+import addMessage from "./addMessage";
 import addOldPosts from "./addOldPosts";
 import setRoomName from "./setRoomName";
 import setDraft from "./setDraft";
@@ -75,6 +77,7 @@ export default (state = initialState, { type, payload }) => {
   if (type === GENERAL_UPDATE_CHANNEL) return updateChannel(state, payload);
   if (type === GENERAL_ADD_MEMBERS) return addMembers(state, payload);
   if (type === GENERAL_ADD_MESSAGES) return addMessages(state, payload);
+  if (type === GENERAL_ADD_MESSAGE) return addMessage(state, payload);
   if (type === GENERAL_SET_ROOM_NAME) return setRoomName(state, payload);
   if (type === GENERAL_SET_DRAFT) return setDraft(state, payload);
   if (type === GENERAL_SET_SCROLLED) return setScrolled(state, payload);

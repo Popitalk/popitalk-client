@@ -16,8 +16,8 @@ const messagesFormatter = messages => {
         newMessages[date].push({
           id: userMessage.id,
           userId: userMessage.userId,
-          username: userMessage.username,
-          avatar: userMessage.avatar,
+          username: userMessage.author.username,
+          avatar: userMessage.author.avatar,
           createdAt: dateFormatter(new Date(userMessage.createdAt)),
           messages: [
             {
@@ -29,8 +29,8 @@ const messagesFormatter = messages => {
         });
       } else {
         if (
-          newMessages[date][newMessages[date].length - 1].username ===
-          userMessage.username
+          newMessages[date][newMessages[date].length - 1].userId ===
+          userMessage.userId
         ) {
           newMessages[date][newMessages[date].length - 1].messages.push({
             id: userMessage.id,
@@ -41,8 +41,8 @@ const messagesFormatter = messages => {
           newMessages[date].push({
             id: userMessage.id,
             userId: userMessage.userId,
-            username: userMessage.username,
-            avatar: userMessage.avatar,
+            username: userMessage.author.username,
+            avatar: userMessage.author.avatar,
             createdAt: dateFormatter(new Date(userMessage.createdAt)),
             messages: [
               {

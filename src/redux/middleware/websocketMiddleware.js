@@ -2,6 +2,7 @@ import {
   GENERAL_INIT,
   LOGOUT,
   SET_WS,
+  GENERAL_ADD_MESSAGE,
   WS_HELLO,
   WS_PING,
   WS_PONG,
@@ -76,10 +77,10 @@ const websocketMiddleware = url => {
         } else if (messageType === WS_ADD_MESSAGE) {
           console.log("RECIEVED", messageType, messagePayload);
           // ...
-          // store.dispatch({
-          //   type: GUILD_UPDATE,
-          //   payload: messagePayload
-          // });
+          store.dispatch({
+            type: GENERAL_ADD_MESSAGE,
+            payload: messagePayload
+          });
         }
       };
     } else if (action.type === LOGOUT && store.getState().wsState.connected) {
