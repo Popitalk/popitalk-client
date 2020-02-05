@@ -12,7 +12,7 @@ import {
   inviteReducer,
   generalReducer
 } from "./reducers";
-import { localstorageMiddleware } from "./middleware";
+import { localstorageMiddleware, websocketMiddleware } from "./middleware";
 
 const rootReducer = history =>
   combineReducers({
@@ -37,15 +37,15 @@ const middleware =
         require("redux-immutable-state-invariant").default(),
         thunk,
         localstorageMiddleware(),
-        // websocketMiddleware("ws://localhost:4000/ws"),
+        websocketMiddleware("ws://localhost:4000/"),
         routerMiddleware(history)
       ]
     : [
         thunk,
         localstorageMiddleware(),
-        // websocketMiddleware(
-        //   `wss://${window.location.hostname}:${window.location.port}/ws/`
-        // ),
+        websocketMiddleware(
+          `wss://${window.location.hostname}:${window.location.port}/`
+        ),
         routerMiddleware(history)
       ];
 

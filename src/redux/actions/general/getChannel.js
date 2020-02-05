@@ -14,6 +14,7 @@ const getChannel = channelId => {
       });
       dispatch(userApiSuccess());
     } catch (error) {
+      console.error("E", error);
       dispatch(userApiError());
     }
   };

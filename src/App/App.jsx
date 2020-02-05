@@ -16,19 +16,22 @@ import "./App.css";
 
 export default function App() {
   const { loggedIn, validatedSession } = useSelector(state => state.userState);
+  const { connected: wsConnected } = useSelector(state => state.wsState);
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(validateSession());
   }, [dispatch]);
 
-  if (!validatedSession)
+  if (!validatedSession || !wsConnected)
+    // if (!validatedSession)
     return (
       <section className="App--container">
         <LoadingPage />
       </section>
     );
 
+  // console.log("LOL", wsConnected);
   return (
     <section className="App--container">
       <ModalManager />

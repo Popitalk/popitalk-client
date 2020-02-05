@@ -24,9 +24,13 @@ export default function RoomMain() {
   const { roomApiLoading: apiLoading, roomApiError: apiError } = useSelector(
     state => state.apiState
   );
+  const loading = useSelector(
+    state => !state.generalState.channels[channelId]?.loaded
+  );
 
   useEffect(() => {
     if (channels[channelId] && !channels[channelId]?.loaded) {
+      console.log("HEY");
       dispatch(getChannel(channelId));
     } else if (!_.isEmpty(channels) && !channels[channelId]) {
       console.log("NO ROOM");
@@ -62,7 +66,7 @@ export default function RoomMain() {
     roomName = `${roomName.slice(0, 25)}...`;
   }
 
-  const loading = !channels[channelId]?.loaded;
+  console.log("LOAD", loading);
 
   const handleNameChange = () => {
     if (name.length >= 3 && name.length <= 20) {

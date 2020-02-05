@@ -20,9 +20,11 @@ const addChannel = (state, payload) => {
         createdAt: payload.createdAt,
         users: Array.isArray(payload.users)
           ? payload.users
-          : Object.keys(payload.users)
+          : payload.type === "channel"
+          ? Object.keys(payload.users)
               .filter(uid => !payload.admins.includes(uid))
-              .filter(uid => !payload.banned.includes(uid)),
+              .filter(uid => !payload.banned.includes(uid))
+          : Object.keys(payload.users),
         admins: payload.admins,
         banned: payload.banned
       }
@@ -31,16 +33,22 @@ const addChannel = (state, payload) => {
       ...state.users,
       ...payload.users
     },
-    posts: {
-      ...state.posts,
-      [payload.id]: state.posts[payload.id]
-        ? _.uniqBy([...payload.posts, ...state.posts[payload.id]], "id")
-        : payload.posts || []
-    },
-    comments: {
-      ...state.comments,
-      ...payload.comments
-    },
+    posts:
+      payload.type !== "channel"
+        ? state.posts
+        : {
+            ...state.posts,
+            [payload.id]: state.posts[payload.id]
+              ? _.uniqBy([...payload.posts, ...state.posts[payload.id]], "id")
+              : payload.posts || []
+          },
+    comments:
+      payload.type !== "channel"
+        ? state.comments
+        : {
+            ...state.comments,
+            ...payload.comments
+          },
     messages: {
       ...state.messages,
       [payload.id]: state.messages[payload.id]

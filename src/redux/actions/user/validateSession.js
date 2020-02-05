@@ -80,7 +80,15 @@ const validateSession = () => {
           drafts: reformedDrafts || {}
         }
       });
+
+      // ws://localhost:4000
+      // let socket = new WebSocket("ws://localhost:4000");
+
+      // socket.onopen = () => {
+      //   console.log("CONNECTED");
+      // };
     } catch (error) {
+      console.error("X", error);
       localStorage.removeItem("userState");
       dispatch({ type: LOGOUT });
     }
