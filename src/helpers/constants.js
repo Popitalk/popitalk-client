@@ -1,5 +1,5 @@
 // SITE VERSION
-export const SITE_VERSION = "0.0.2";
+export const SITE_VERSION = "0.0.4";
 // APISTATE
 export const SET_API = "apiState/SET_API";
 // WSSTATE
