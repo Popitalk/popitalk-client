@@ -5,32 +5,36 @@ import React, {
   useLayoutEffect,
   useCallback
 } from "react";
-import useDeepCompareEffect from "use-deep-compare-effect";
 import { useInView } from "react-intersection-observer";
 import { throttle } from "lodash";
 import "./InfiniteScroller.css";
 
-export default function InfiniteScroller({
-  className,
-  threshold = 100,
-  loader,
-  loading = false,
-  onBottomView,
-  onTopView,
-  hasMoreBottom = false,
-  hasMoreTop = false,
-  initialScroll = "top",
-  children
-}) {
-  const containerRef = useRef(null);
-  let [mounted, setMounted] = useState(false);
-  let [scrolled, setScrolled] = useState(false);
-  let [newChildren, setNewChildren] = useState(null);
+function InfiniteScroller(
+  {
+    className,
+    threshold = 20,
+    loader,
+    loading = false,
+    onBottomView,
+    onTopView,
+    hasMoreBottom = false,
+    hasMoreTop = false,
+    initialScroll = "top",
+    children,
+    reScroll
+  },
+  ref
+) {
+  const conRef = useRef(null);
+  const containerRef = ref || conRef;
   let [loadingItems, setLoadingItems] = useState(null);
+  // let [ready, setReady] = useState(false);
+  let [oldScrollHeight, setOldScrollHeight] = useState(0);
+  let [olderScrollHeight, setOlderScrollHeight] = useState(0);
 
   let [bottomRef, bottomInView, bottomEntry] = useInView({
     triggerOnce: false,
-    rootMargin: `${threshold}px 0px`
+    rootMargin: `${threshold * 2}px 0px`
   });
   let [topRef, topInView, topEntry] = useInView({
     triggerOnce: false,
@@ -40,7 +44,6 @@ export default function InfiniteScroller({
   const handleBottomView = useCallback(
     throttle(
       () => {
-        setScrolled(false);
         setLoadingItems("bottom");
         onBottomView();
       },
@@ -53,7 +56,6 @@ export default function InfiniteScroller({
   const handleTopView = useCallback(
     throttle(
       () => {
-        setScrolled(false);
         setLoadingItems("top");
         onTopView();
       },
@@ -63,93 +65,79 @@ export default function InfiniteScroller({
     [onTopView]
   );
 
-  const setScrolledCallback = useCallback(
-    throttle(
-      () => {
-        setScrolled(true);
-      },
-      100,
-      { leading: false }
-    ),
-    []
-  );
-
-  useDeepCompareEffect(() => {
-    if (mounted && loadingItems === "top") {
-      if (containerRef.current.scrollTop === 0) {
-        containerRef.current.scrollTo(0, 1);
-      } else {
-        containerRef.current.scrollTo(0, containerRef.current.scrollTop);
-      }
-      setScrolledCallback();
-    } else if (mounted && loadingItems === "bottom") {
-      setScrolledCallback();
-    }
-
-    setLoadingItems(null);
-
-    setNewChildren(
-      children.map((child, index) =>
-        index === 0
-          ? {
-              ...child,
-              ref: topRef
-            }
-          : index === children.length - 1
-          ? {
-              ...child,
-              ref: bottomRef
-            }
-          : child
-      )
-    );
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [children]);
-
   useLayoutEffect(() => {
-    if (mounted) return;
+    if (initialScroll === "bottom") {
+      containerRef.current.scrollTo(0, containerRef.current.scrollHeight);
+    } else if (initialScroll === "top") {
+      containerRef.current.scrollTo(0, 0);
+    } else {
+      let scrollVal;
 
-    if (initialScroll) {
-      if (initialScroll === "bottom") {
-        containerRef.current.scrollTo(0, containerRef.current.scrollHeight);
-      } else if (initialScroll === "top") {
-        containerRef.current.scrollTo(0, 0);
-      } else if (Number.isInteger(initialScroll)) {
-        containerRef.current.scrollTo(0, initialScroll);
+      if (initialScroll <= threshold) {
+        scrollVal = Math.floor(initialScroll) + threshold + 5;
+      } else {
+        scrollVal = Math.floor(initialScroll);
       }
-    }
 
-    setScrolled(true);
-    setMounted(true);
-  }, [initialScroll, mounted]);
+      containerRef.current.scrollTo(0, scrollVal);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [containerRef, reScroll, threshold]);
 
   useEffect(() => {
-    if (
-      mounted &&
-      hasMoreBottom &&
-      bottomInView &&
-      onBottomView &&
-      !loading &&
-      scrolled
-    ) {
+    if (!loading) return;
+
+    setOldScrollHeight(containerRef.current.scrollHeight);
+  }, [containerRef, loading, threshold]);
+
+  useEffect(() => {
+    if (loading) return;
+
+    if (initialScroll === 0) {
+      containerRef.current.scrollTo(0, threshold + 5);
+      containerRef.current.scrollTo({
+        top: containerRef.current.scrollHeight,
+        behavior: "smooth"
+      });
+      setOldScrollHeight(0);
+      setOlderScrollHeight(0);
+    } else {
+      const loadingTop = loadingItems === "top";
+
+      if (loadingTop && containerRef.current.scrollTop <= threshold) {
+        let scrollVal;
+
+        if (containerRef.current.scrollHeight < oldScrollHeight) {
+          let val1 = oldScrollHeight - olderScrollHeight;
+          let val2 = containerRef.current.scrollHeight - val1;
+          scrollVal = Math.floor(containerRef.current.scrollHeight - val2);
+        } else {
+          scrollVal = Math.floor(
+            containerRef.current.scrollHeight - oldScrollHeight
+          );
+        }
+        containerRef.current.scrollTo(0, scrollVal);
+        containerRef.current.focus();
+      }
+      setOlderScrollHeight(oldScrollHeight);
+    }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [loading, threshold]);
+
+  useEffect(() => {
+    if (bottomInView && !loading) {
       handleBottomView();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [hasMoreBottom, bottomInView, onBottomView]);
+  }, [bottomInView]);
 
   useEffect(() => {
-    if (
-      mounted &&
-      hasMoreTop &&
-      topInView &&
-      onTopView &&
-      !loading &&
-      scrolled
-    ) {
+    if (topInView && !loading) {
       handleTopView();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [hasMoreTop, topInView, onTopView]);
+  }, [topInView]);
 
   const Loader = loader;
 
@@ -159,11 +147,27 @@ export default function InfiniteScroller({
     classes = `${classes} ${className}`;
   }
 
+  const showTopRef = onTopView && hasMoreTop;
+  const showBottomRef = onBottomView && hasMoreBottom;
+
+  const showTopLoading = loading && loadingItems === "top";
+  const showBottomLoading = loading && loadingItems === "bottom";
+
   return (
-    <div className={classes} ref={containerRef}>
-      {loading && loadingItems === "top" && <Loader />}
-      {newChildren || children}
-      {loading && loadingItems === "bottom" && <Loader />}
+    <div className={classes} ref={containerRef} tabIndex="-1">
+      {showTopRef && (
+        <div ref={topRef} className="InfiniteScroller--sentinel" />
+      )}
+      {showTopLoading && <Loader />}
+      {children}
+      {showBottomLoading && <Loader />}
+      {showBottomRef && (
+        <div ref={bottomRef} className="InfiniteScroller--sentinel" />
+      )}
     </div>
   );
 }
+
+const forwardedInfiniteScroller = React.forwardRef(InfiniteScroller);
+
+export default forwardedInfiniteScroller;

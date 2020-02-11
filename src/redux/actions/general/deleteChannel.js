@@ -9,14 +9,13 @@ const deleteChannel = channelId => {
     try {
       // dispatch(roomApiLoading());
       await api.deleteChannel(channelId);
+      dispatch(closeAllModals());
+      dispatch(push(`/channels/following`));
       dispatch({
         type: GENERAL_REMOVE_CHANNEL,
         payload: { channelId }
       });
       // dispatch(roomApiSuccess());
-
-      dispatch(closeAllModals());
-      dispatch(push(`/channels/following`));
     } catch (error) {
       // dispatch(roomApiError());
     }

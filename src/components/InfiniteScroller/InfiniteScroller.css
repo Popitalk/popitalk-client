@@ -3,3 +3,7 @@
   overflow-x: hidden;
   height: 100%;
 }
+
+.InfiniteScroller--sentinel {
+  height: 2px;
+}

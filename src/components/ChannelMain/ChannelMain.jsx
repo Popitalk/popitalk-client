@@ -49,7 +49,8 @@ export default function ChannelMain() {
     } else if (!_.isEmpty(channels) && !channels[channelId]) {
       console.log("NO ROOM");
     }
-  }, [dispatch, channelId, channels]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [channelId]);
 
   // useEffect(() => {
   //   if (!mounted) {

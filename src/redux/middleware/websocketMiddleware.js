@@ -3,6 +3,7 @@ import {
   LOGOUT,
   SET_WS,
   GENERAL_ADD_MESSAGE,
+  GENERAL_SET_LAST_MESSAGE_ID,
   WS_HELLO,
   WS_PING,
   WS_PONG,
@@ -19,7 +20,6 @@ const websocketMiddleware = url => {
     next(action);
 
     if (action.type === GENERAL_INIT && !store.getState().wsState.connected) {
-      console.log("CONNECTING SOCKET");
       socket = new WebSocket(url);
 
       const heartbeat = () => {
@@ -37,12 +37,10 @@ const websocketMiddleware = url => {
       };
 
       socket.onopen = () => {
-        console.log("OPENED SOCKET");
         clearInterval(interval);
       };
 
       socket.onclose = () => {
-        console.log("CLOSED SOCKET");
         clearTimeout(timeout);
 
         store.dispatch({
@@ -76,11 +74,40 @@ const websocketMiddleware = url => {
           heartbeat();
         } else if (messageType === WS_ADD_MESSAGE) {
           console.log("RECIEVED", messageType, messagePayload);
-          // ...
-          store.dispatch({
-            type: GENERAL_ADD_MESSAGE,
-            payload: messagePayload
-          });
+
+          let addMessage = true;
+
+          let messagesState = store.getState().generalState.messages;
+          let channelsState = store.getState().generalState.channels;
+
+          const channelHasMessages =
+            messagesState[messagePayload.channelId]?.length !== 0;
+
+          if (channelHasMessages) {
+            const lastMessageIdInChannel =
+              channelsState[messagePayload.channelId].lastMessageId;
+            const lastMessageIdInMessages =
+              messagesState[messagePayload.channelId][
+                messagesState[messagePayload.channelId].length - 1
+              ].id;
+
+            addMessage = lastMessageIdInChannel === lastMessageIdInMessages;
+          }
+
+          if (addMessage) {
+            store.dispatch({
+              type: GENERAL_ADD_MESSAGE,
+              payload: messagePayload
+            });
+          } else {
+            store.dispatch({
+              type: GENERAL_SET_LAST_MESSAGE_ID,
+              payload: {
+                channelId: messagePayload.channelId,
+                messageId: messagePayload.message.id
+              }
+            });
+          }
         }
       };
     } else if (action.type === LOGOUT && store.getState().wsState.connected) {

@@ -18,15 +18,21 @@ const addChannel = (state, payload) => {
         lastMessageAt: payload.lastMessageAt,
         firstPostId: payload.firstPostId,
         createdAt: payload.createdAt,
+        chatSettings: {
+          capacity: 50,
+          initialScroll: null
+        },
         users: Array.isArray(payload.users)
           ? payload.users
+              .filter(uid => !payload.admins.includes(uid))
+              .filter(uid => !payload.banned.includes(uid))
           : payload.type === "channel"
           ? Object.keys(payload.users)
               .filter(uid => !payload.admins.includes(uid))
               .filter(uid => !payload.banned.includes(uid))
           : Object.keys(payload.users),
-        admins: payload.admins,
-        banned: payload.banned
+        admins: payload.admins || [],
+        banned: payload.banned || []
       }
     },
     users: {
@@ -52,7 +58,9 @@ const addChannel = (state, payload) => {
     messages: {
       ...state.messages,
       [payload.id]: state.messages[payload.id]
-        ? _.uniqBy([...payload.messages, ...state.messages[payload.id]], "id")
+        ? state.messages[payload.id].length >= 50
+          ? state.messages[payload.id]
+          : _.uniqBy([...payload.messages, ...state.messages[payload.id]], "id")
         : payload.messages
     }
   };

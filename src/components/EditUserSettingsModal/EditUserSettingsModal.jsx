@@ -57,13 +57,7 @@ export default function EditUserSettingsModal() {
   const closeModalDispatcher = useCallback(() => dispatch(closeModal()), [
     dispatch
   ]);
-  const [displayedAvatar, setDisplayedAvatar] = useState(avatar);
-  const [uploadedImage, setUploadedImage] = useState(null);
-  // const [mounted, setMounted] = useState(false);
-
-  // useEffect(() => {
-  //   if (!mounted) setMounted(true);
-  // }, [mounted]);
+  const [uploadedImage, setUploadedImage] = useState(undefined);
 
   useEffect(() => {
     // if (!mounted) return;
@@ -72,20 +66,6 @@ export default function EditUserSettingsModal() {
       dispatch(closeModal());
     }
   }, [apiSuccess, dispatch]);
-
-  const handleUpload = e => {
-    if (e.target.files[0]) {
-      setUploadedImage(e.target.files[0]);
-      setDisplayedAvatar(URL.createObjectURL(e.target.files[0]));
-    }
-  };
-
-  const handleRemove = () => {
-    setDisplayedAvatar(false);
-    setUploadedImage(null);
-  };
-
-  // console.log("MOUNTED", mounted);
 
   return (
     <div className="EditUserSettingsModal--container">
@@ -104,9 +84,11 @@ export default function EditUserSettingsModal() {
           firstName,
           lastName,
           email,
+          avatar,
           password: "",
           dateOfBirth: new Date(dateOfBirth)
         }}
+        enableReinitialize={true}
         validationSchema={Yup.object({
           firstName: Yup.string()
             .min(2, "First name is too short.")
@@ -125,19 +107,20 @@ export default function EditUserSettingsModal() {
           email: Yup.string()
             .email("Email is invalid.")
             .required("Email is required."),
-          password: Yup.string().required("Password is required.")
+          password: Yup.string().required("Password is required."),
+          avatar: Yup.mixed().notRequired()
         })}
-        onSubmit={(values, { setFieldValue, setFieldTouched }) => {
+        onSubmit={(values, { setFieldValue, setFieldTouched, resetForm }) => {
           dispatch(
             updateUser({
               ...values,
               dateOfBirth: values.dateOfBirth.toISOString(),
-              avatar: uploadedImage,
-              removeAvatar: !displayedAvatar
+              avatar: uploadedImage
             })
           );
-          setFieldValue("password", "");
-          setFieldTouched("password", false);
+          // resetForm()
+          // setFieldValue("password", "");
+          // setFieldTouched("password", false);
         }}
       >
         {({
@@ -153,9 +136,21 @@ export default function EditUserSettingsModal() {
         }) => (
           <form className="EditUserSettingsModal--form" onSubmit={handleSubmit}>
             <ImageUpload
-              icon={displayedAvatar}
-              onUpload={handleUpload}
-              onRemove={handleRemove}
+              name="avatar"
+              icon={values.avatar}
+              onUpload={e => {
+                if (e.target.files[0]) {
+                  setUploadedImage(e.target.files[0]);
+                  setFieldValue(
+                    "avatar",
+                    URL.createObjectURL(e.target.files[0])
+                  );
+                }
+              }}
+              onRemove={() => {
+                setFieldValue("avatar", null);
+                setUploadedImage(null);
+              }}
               disabled={apiLoading}
               user={true}
             />

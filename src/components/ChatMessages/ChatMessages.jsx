@@ -4,20 +4,34 @@ import React, {
   useEffect,
   useLayoutEffect,
   useRef,
-  useCallback
+  useCallback,
+  useMemo
 } from "react";
+import classNames from "classnames";
 import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { useScroll } from "react-use";
+import {
+  useScroll,
+  usePrevious,
+  useUpdateEffect,
+  useDebounce,
+  useUnmount
+} from "react-use";
+import useDeepCompareEffect from "use-deep-compare-effect";
+import { createSelector } from "reselect";
 import {
   openProfileModal,
   openImageModal,
   getMessages,
-  setScrolled
+  getNewestMessages,
+  setInitialScroll
 } from "../../redux/actions";
 import messagesFormatter from "../../util/messagesFormatter";
+import messagesFormatter2 from "../../util/messagesFormatter2";
 import ChatMessageMenu from "../ChatMessageMenu";
 import AvatarDeck from "../AvatarDeck";
+import InfiniteScroller from "../InfiniteScroller";
+import InfiniteScroller2 from "../InfiniteScroller2";
 import "./ChatMessages.css";
 
 const seenUsers = [
@@ -31,18 +45,34 @@ const Spinner = () => (
   </div>
 );
 
-const scrollMessageId = "8a429e32-6f32-4d2c-b41e-e55147c42fec";
+const OldMessagesAlert = ({ onClick }) => (
+  <div
+    className="ChatMessages--oldMessagesAlert"
+    role="button"
+    onClick={onClick}
+  >
+    <p>You&apos;re Viewing Older Messages</p>
+    <p>Jump To Present ▼</p>
+  </div>
+);
 
-export default function ChatMessages() {
-  const scrollRef = useRef(null);
-  const messageScrollRef = useRef(null);
-  const { y } = useScroll(scrollRef);
-  const { channelId } = useParams();
-  const { messages, channels, scrolled, defaultAvatar } = useSelector(
-    state => state.generalState
-  );
-  const channelLoaded = useSelector(state =>
-    Boolean(state.generalState.channels[channelId]?.loaded)
+const selectFormattedMessages = createSelector(
+  state => state.generalState.messages,
+  (_, channelId) => channelId,
+  (messages, channelId) =>
+    messages[channelId] ? messagesFormatter2(messages[channelId]) : []
+);
+
+export default function ChatMessages({ channelId, channelMessages }) {
+  const containerRef = useRef(null);
+  const { y } = useScroll(containerRef);
+  const oldScrollTop = useRef(null);
+  // const [debouncedY, setDebouncedY] = useState(null);
+  const previousChannelId = usePrevious(channelId);
+  const defaultAvatar = useSelector(state => state.generalState.defaultAvatar);
+  const channel = useSelector(state => state.generalState.channels[channelId]);
+  const messages = useSelector(state =>
+    selectFormattedMessages(state, channelId)
   );
   const {
     messagesApiLoading: apiLoading,
@@ -54,190 +84,215 @@ export default function ChatMessages() {
     () => dispatch(openImageModal()),
     [dispatch]
   );
-  useLayoutEffect(() => {
-    scrollRef.current.scrollTo(0, scrollRef.current.scrollHeight);
-    setTimeout(() => {
-      if (messageScrollRef.current) {
-        messageScrollRef.current.scrollIntoView();
+
+  const [, cancel] = useDebounce(
+    () => {
+      let yVal;
+
+      if (
+        containerRef.current.scrollHeight -
+          (containerRef.current.scrollTop + containerRef.current.clientHeight) <
+        100
+      ) {
+        yVal = null;
+      } else {
+        yVal = containerRef.current.scrollTop;
       }
-    }, 2000);
-  }, [channelId, channelLoaded]);
+      oldScrollTop.current = {
+        channelId,
+        y: yVal
+      };
+
+      dispatch(setInitialScroll(channelId, yVal));
+    },
+    1000,
+    [y]
+  );
 
   useEffect(() => {
-    if (
-      channelLoaded &&
-      channels[channelId].firstMessageId &&
-      channels[channelId].firstMessageId !== messages[channelId][0].id &&
-      !apiLoading &&
-      y <= 20
-    ) {
-      console.log("BYE", scrollRef.current.scrollHeight);
-      // scrollRef.current.scrollTo
-      // scrollRef.current.scrollTo(0, scrollRef.current.scrollHeight);
-      dispatch(
-        getMessages({
-          channelId: channelId,
-          beforeMessageId: messages[channelId][0].id
-        })
-      );
-
-      scrollRef.current.scrollTo(0, 60);
-    }
+    return () => {
+      if (oldScrollTop.current) {
+        dispatch(
+          setInitialScroll(
+            oldScrollTop.current.channelId,
+            oldScrollTop.current.y
+          )
+        );
+      }
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [y]);
+  }, [channelId]);
 
-  // useEffect(() => {
-  //   if (!scrolled[channelId]) {
-  //     console.log("NO WAY");
-  //     scrollRef.current.scrollTo(0, scrollRef.current.scrollHeight);
-  //   }
-  // }, [channelId, scrolled]);
+  useUpdateEffect(() => {
+    if (channelId !== previousChannelId) return;
+    if (!channel.lastMessagesUpdateByWebsockets) return;
 
-  // useLayoutEffect(() => {
-  //   console.log("HELLO");
-  //   scrollRef.current.scrollTo(0, scrollRef.current.scrollHeight);
-  // }, [channelId, channels[channelId]?.loaded]);
+    if (messages[messages.length - 1].userId === ownId) {
+      containerRef.current.scrollTo({
+        top: containerRef.current.scrollHeight,
+        behavior: "smooth"
+      });
+    } else if (
+      containerRef.current.scrollHeight -
+        (containerRef.current.scrollTop + containerRef.current.clientHeight) <
+      100
+    ) {
+      containerRef.current.scrollTo({
+        top: containerRef.current.scrollHeight,
+        behavior: "smooth"
+      });
+    }
 
-  // useEffect(() => {
-  //   if (
-  //     channels[channelId]?.loaded &&
-  //     channels[channelId].firstMessageId &&
-  //     channels[channelId].firstMessageId !== messages[channelId][0].id &&
-  //     !apiLoading &&
-  //     y <= 20
-  //   ) {
-  //     console.log("BYE", scrollRef);
-  //     // scrollRef.current.scrollTo
-  //     // scrollRef.current.scrollTo(0, scrollRef.current.scrollHeight);
-  //     dispatch(
-  //       getMessages({
-  //         channelId: channelId,
-  //         beforeMessageId: messages[channelId][0].id
-  //       })
-  //     );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [messages]);
 
-  //     scrollRef.current.scrollTo(0, 100);
-  //   }
-  // }, [apiLoading, channelId, channels, dispatch, messages, y]);
+  const onTopView = () => {
+    dispatch(
+      getMessages({
+        channelId: channelId,
+        beforeMessageId: channelMessages[0].id
+      })
+    );
+  };
+  const onBottomView = () => {
+    dispatch(
+      getMessages({
+        channelId: channelId,
+        afterMessageId: channelMessages[channelMessages.length - 1].id
+      })
+    );
+  };
+  const handleJumpToPresent = () => {
+    dispatch(getNewestMessages({ channelId }));
+  };
 
-  // useEffect(() => {
-  //   if (!apiLoading && channels[channelId]?.loaded) {
-  //     console.log("DOWN");
+  const hasMoreTop =
+    channel.firstMessageId && channel.firstMessageId !== channelMessages[0].id;
+  const hasMoreBottom =
+    channel.lastMessageId &&
+    channel.lastMessageId !== channelMessages[channelMessages.length - 1].id;
 
-  //     scrollRef.current.scrollTo(0, scrollRef.current.scrollHeight / 2);
-  //   }
-  // }, [apiLoading, channelId, channels]);
-
-  const formattedMessages = messagesFormatter(messages[channelId]);
-  // const formattedMessages = messagesFormatter(messages[channelId] || []);
-
-  const formattedMessagesValues = Object.values(formattedMessages);
-
-  const lastMessageId =
-    formattedMessagesValues.length !== 0 &&
-    formattedMessagesValues[formattedMessagesValues.length - 1][
-      formattedMessagesValues[formattedMessagesValues.length - 1].length - 1
-    ].messages[
-      formattedMessagesValues[formattedMessagesValues.length - 1][
-        formattedMessagesValues[formattedMessagesValues.length - 1].length - 1
-      ].messages.length - 1
-    ].id;
+  const initScroll = channel?.chatSettings?.initialScroll ?? "bottom";
 
   return (
-    <div className="ChatMessages--container" ref={scrollRef}>
-      {apiLoading && <Spinner />}
-      {Object.entries(formattedMessages).map(([date, msgs1]) => (
-        <div key={date}>
-          <div className="ChatMessages--date">
-            <h4>{date}</h4>
-          </div>
-          {msgs1.map(msgs2 => (
-            <div className="ChatMessages--messageGroup" key={msgs2.id}>
-              <img
-                src={msgs2.avatar || defaultAvatar}
-                alt="avatar"
-                role="button"
-                onClick={() => dispatch(openProfileModal(msgs2.userId))}
-              />
-              <div className="ChatMessages--messageGroup--nameDate">
-                {msgs2.username} <span>{msgs2.createdAt}</span>
+    // <div className="ChatMessages--container" ref={scrollRef}>
+    <>
+      <InfiniteScroller
+        className="ChatMessages--container"
+        ref={containerRef}
+        onTopView={onTopView}
+        hasMoreTop={hasMoreTop}
+        onBottomView={onBottomView}
+        hasMoreBottom={hasMoreBottom}
+        initialScroll={initScroll}
+        reScroll={channelId}
+        loading={apiLoading}
+        loader={Spinner}
+      >
+        {messages.map(message => {
+          if (message.type === "date")
+            return (
+              <div className="ChatMessages--date" key={message.id}>
+                <h4>{message.date}</h4>
               </div>
-              <div
-                className={`ChatMessages--messageGroup--edge${
-                  msgs2.userId === ownId ? " ChatMessages--myMessages" : ""
-                }`}
-              >
-                <div />
-              </div>
-              <div className="ChatMessages--messages">
-                {msgs2.messages.map((message, index) =>
-                  index === msgs2.messages.length - 1 ? (
-                    <div
-                      ref={
-                        message.id === scrollMessageId
-                          ? messageScrollRef
-                          : undefined
-                      }
-                      key={message.id}
-                      className={`ChatMessages--message${
-                        message.id === lastMessageId
-                          ? " ChatMessages--messages--last"
-                          : ""
-                      }`}
-                    >
-                      {message.content && <p>{message.content}</p>}
-                      {message.upload && (
-                        <img
-                          src={message.upload}
-                          alt={message.upload}
-                          className="ChatMessages--userImage"
-                          role="button"
-                          onClick={openImageModalDispatcher}
-                        />
-                      )}
+            );
+          else if (
+            message.type === "firstMessage" ||
+            message.type === "firstLastMessage"
+          ) {
+            const classes1 = classNames({
+              "ChatMessages--firstMessage":
+                message.type === "firstMessage" ||
+                message.type === "firstLastMessage",
+              "ChatMessages--lastMessage":
+                message.type === "lastMessage" ||
+                message.type === "firstLastMessage",
+              "ChatMessages--myMessage": message.userId === ownId
+            });
+            const classes2 = classNames({
+              "ChatMessages--message": true,
+              "ChatMessages--lastMessage":
+                message.type === "lastMessage" ||
+                message.type === "firstLastMessage",
+              "ChatMessages--myMessage": message.userId === ownId
+            });
 
-                      {(msgs2.userId === ownId ||
-                        (channels[channelId].type === "channel" &&
-                          channels[channelId].admins?.includes(ownId))) && (
-                        <ChatMessageMenu messageId={message.id} />
-                      )}
-                    </div>
-                  ) : (
-                    <div
-                      key={message.id}
-                      className="ChatMessages--message"
-                      ref={
-                        message.id === scrollMessageId
-                          ? messageScrollRef
-                          : undefined
-                      }
-                    >
-                      {message.content && <div>{message.content}</div>}
-                      {message.upload && (
-                        <img
-                          src={message.upload}
-                          alt={message.upload}
-                          className="ChatMessages--userImage"
-                          role="button"
-                          onClick={openImageModalDispatcher}
-                        />
-                      )}
-                      {(msgs2.userId === ownId ||
-                        (channels[channelId].type === "channel" &&
-                          channels[channelId].admins?.includes(ownId))) && (
-                        <ChatMessageMenu messageId={message.id} />
-                      )}
-                    </div>
-                  )
+            return (
+              <div className={classes1} key={message.id}>
+                <div>
+                  <img
+                    src={message.avatar || defaultAvatar}
+                    alt="avatar"
+                    role="button"
+                    onClick={() => dispatch(openProfileModal(message.userId))}
+                  />
+                  <div className="ChatMessages--nameAndDate">
+                    <p>{message.username}</p>
+                    <span>{message.createdAt}</span>
+                  </div>
+                </div>
+                <div className={classes2}>
+                  <div className="ChatMessages--edge" />
+                  <div className="ChatMessages--messageContent">
+                    {message.upload && (
+                      <img
+                        src={message.upload}
+                        alt={message.upload}
+                        className="ChatMessages--userImage"
+                        role="button"
+                        onClick={openImageModalDispatcher}
+                      />
+                    )}
+                    {message.content && <p>{message.content}</p>}
+                  </div>
+                  {(message.userId === ownId ||
+                    (channel.type === "channel" &&
+                      channel.admins?.includes(ownId))) && (
+                    <ChatMessageMenu messageId={message.id} />
+                  )}
+                </div>
+              </div>
+            );
+          } else if (
+            message.type === "message" ||
+            message.type === "lastMessage"
+          ) {
+            const classes = classNames({
+              "ChatMessages--message": true,
+              "ChatMessages--lastMessage": message.type === "lastMessage",
+              "ChatMessages--myMessage": message.userId === ownId
+            });
+            return (
+              <div className={classes} key={message.id}>
+                <div className="ChatMessages--edge" />
+                <div className="ChatMessages--messageContent">
+                  {message.upload && (
+                    <img
+                      src={message.upload}
+                      alt={message.upload}
+                      className="ChatMessages--userImage"
+                      role="button"
+                      onClick={openImageModalDispatcher}
+                    />
+                  )}
+                  {message.content && <p>{message.content}</p>}
+                </div>
+                {(message.userId === ownId ||
+                  (channel.type === "channel" &&
+                    channel.admins?.includes(ownId))) && (
+                  <ChatMessageMenu messageId={message.id} />
                 )}
               </div>
-            </div>
-          ))}
-        </div>
-      ))}
-      <div className="ChatMessages--seen">
-        <AvatarDeck size="small" avatars={seenUsers} />
-      </div>
-    </div>
+            );
+          }
+        })}
+        {!hasMoreBottom && (
+          <div className="ChatMessages--seen">
+            <AvatarDeck size="small" avatars={seenUsers} />
+          </div>
+        )}
+      </InfiniteScroller>
+      {hasMoreBottom && <OldMessagesAlert onClick={handleJumpToPresent} />}
+    </>
   );
 }

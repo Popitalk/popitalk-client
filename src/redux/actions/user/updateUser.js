@@ -21,22 +21,21 @@ const updateUser = updateInfo => {
         avatar
       } = getState().userState;
 
+      const { defaultAvatar } = getState().generalState;
+
       const formData = new FormData();
 
-      if (updateInfo.firstName && updateInfo.firstName !== firstName) {
+      if (updateInfo.firstName !== firstName) {
         formData.append("firstName", updateInfo.firstName);
       }
-      if (updateInfo.lastName && updateInfo.lastName !== lastName) {
+      if (updateInfo.lastName !== lastName) {
         formData.append("lastName", updateInfo.lastName);
       }
-      if (updateInfo.dateOfBirth && updateInfo.dateOfBirth !== dateOfBirth) {
+      if (updateInfo.dateOfBirth !== dateOfBirth) {
         formData.append("dateOfBirth", updateInfo.dateOfBirth);
       }
-      if (updateInfo.email && updateInfo.email !== email) {
+      if (updateInfo.email !== email) {
         formData.append("email", updateInfo.email);
-      }
-      if (updateInfo.avatar) {
-        formData.append("avatar", updateInfo.avatar);
       }
       if (updateInfo.password) {
         formData.append("password", updateInfo.password);
@@ -44,8 +43,10 @@ const updateUser = updateInfo => {
       if (updateInfo.newPassword) {
         formData.append("newPassword", updateInfo.newPassword);
       }
-      if (updateInfo.removeAvatar && avatar) {
+      if (updateInfo.avatar === null) {
         formData.append("removeAvatar", true);
+      } else if (updateInfo.avatar && updateInfo.avatar !== avatar) {
+        formData.append("avatar", updateInfo.avatar);
       }
 
       const formObject = Object.fromEntries(formData);

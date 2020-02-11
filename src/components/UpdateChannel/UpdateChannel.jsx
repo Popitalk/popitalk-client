@@ -23,7 +23,7 @@ export default function UpdateChannel() {
   } = useSelector(state => state.apiState);
   const dispatch = useDispatch();
   // const [categories, setCategories] = useState(null);
-  const [uploadedImage, setUploadedImage] = useState(null);
+  const [uploadedImage, setUploadedImage] = useState(undefined);
 
   return (
     <div className="UpdateChannel--container">

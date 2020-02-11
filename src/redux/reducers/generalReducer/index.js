@@ -6,10 +6,12 @@ import {
   GENERAL_ADD_MEMBERS,
   GENERAL_ADD_MESSAGE,
   GENERAL_ADD_MESSAGES,
+  GENERAL_ADD_NEWEST_MESSAGES,
   GENERAL_RESET,
   GENERAL_SET_ROOM_NAME,
   GENERAL_SET_DRAFT,
-  GENERAL_SET_SCROLLED,
+  GENERAL_SET_INITIAL_SCROLL,
+  GENERAL_SET_LAST_MESSAGE_ID,
   GENERAL_ADD_OLD_POSTS,
   GENERAL_ADD_NEW_POST,
   GENERAL_ADD_COMMENTS,
@@ -32,11 +34,11 @@ import addChannel from "./addChannel";
 import removeChannel from "./removeChannel";
 import addMembers from "./addMembers";
 import addMessages from "./addMessages";
+import addNewestMessages from "./addNewestMessages";
 import addMessage from "./addMessage";
 import addOldPosts from "./addOldPosts";
 import setRoomName from "./setRoomName";
 import setDraft from "./setDraft";
-import setScrolled from "./setScrolled";
 import addNewPost from "./addNewPost";
 import addComments from "./addComments";
 import addSelfComment from "./addSelfComment";
@@ -55,6 +57,9 @@ import addAdmin from "./addAdmin";
 import deleteAdmin from "./deleteAdmin";
 import addBanned from "./addBanned";
 import deleteBanned from "./deleteBanned";
+
+import setInitialScroll from "./setInitialScroll";
+import setLastMessageId from "./setLastMessageId";
 
 const initialState = {
   channels: {},
@@ -77,10 +82,15 @@ export default (state = initialState, { type, payload }) => {
   if (type === GENERAL_UPDATE_CHANNEL) return updateChannel(state, payload);
   if (type === GENERAL_ADD_MEMBERS) return addMembers(state, payload);
   if (type === GENERAL_ADD_MESSAGES) return addMessages(state, payload);
+  if (type === GENERAL_ADD_NEWEST_MESSAGES)
+    return addNewestMessages(state, payload);
   if (type === GENERAL_ADD_MESSAGE) return addMessage(state, payload);
   if (type === GENERAL_SET_ROOM_NAME) return setRoomName(state, payload);
   if (type === GENERAL_SET_DRAFT) return setDraft(state, payload);
-  if (type === GENERAL_SET_SCROLLED) return setScrolled(state, payload);
+  if (type === GENERAL_SET_INITIAL_SCROLL)
+    return setInitialScroll(state, payload);
+  if (type === GENERAL_SET_LAST_MESSAGE_ID)
+    return setLastMessageId(state, payload);
   if (type === GENERAL_ADD_OLD_POSTS) return addOldPosts(state, payload);
   if (type === GENERAL_ADD_NEW_POST) return addNewPost(state, payload);
   if (type === GENERAL_ADD_COMMENTS) return addComments(state, payload);

@@ -11,14 +11,12 @@ import {
 const updateChannel = (channelId, updateInfo) => {
   return async (dispatch, getState) => {
     try {
-      console.log("HELLO THERE");
       dispatch(channelCreateApiLoading());
 
       const { channels, defaultIcon } = getState().generalState;
 
       const formData = new FormData();
 
-      console.log(updateInfo);
       if (updateInfo.name !== channels[channelId].name) {
         formData.append("name", updateInfo.name);
       }

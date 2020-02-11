@@ -30,12 +30,12 @@ export default function RoomMain() {
 
   useEffect(() => {
     if (channels[channelId] && !channels[channelId]?.loaded) {
-      console.log("HEY");
       dispatch(getChannel(channelId));
     } else if (!_.isEmpty(channels) && !channels[channelId]) {
       console.log("NO ROOM");
     }
-  }, [dispatch, channelId, channels]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [channelId]);
 
   useEffect(() => {
     if (editing) {
@@ -65,8 +65,6 @@ export default function RoomMain() {
   if (roomName?.length > 25) {
     roomName = `${roomName.slice(0, 25)}...`;
   }
-
-  console.log("LOAD", loading);
 
   const handleNameChange = () => {
     if (name.length >= 3 && name.length <= 20) {

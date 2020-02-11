@@ -1,12 +1,13 @@
 .ChatMessages--container {
   flex-grow: 1;
   background-color: #ffffff;
-  background-color: #ffffff;
   height: 700px;
   padding: 0 14px;
   overflow-y: auto;
   overflow-x: hidden;
   scrollbar-color: #cbcbcb #cbcbcb;
+  outline: none;
+  position: relative;
 }
 
 .ChatMessages--container::-webkit-scrollbar {
@@ -272,4 +273,142 @@
   100% {
     transform: rotate(360deg);
   }
+}
+
+.ChatMessages--notLoaded {
+  flex-grow: 1;
+  /* height: 100%; */
+  background-color: #ffffff;
+}
+
+.ChatMessages--firstMessage > *:first-child {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.ChatMessages--firstMessage > *:first-child > img {
+  height: 36px;
+  width: 36px;
+  border-radius: 50%;
+  box-shadow: 0px 3px 6px #00000029;
+  -webkit-user-drag: none;
+  user-select: none;
+  cursor: pointer;
+  transition: filter 0.17s ease-in-out;
+  object-fit: cover;
+}
+.ChatMessages--firstMessage > *:first-child > img:hover {
+  filter: brightness(90%);
+}
+.ChatMessages--firstMessage > *:first-child > img:active {
+  filter: brightness(80%);
+}
+
+.ChatMessages--nameAndDate {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.ChatMessages--nameAndDate > p {
+  font-size: 18px;
+  font-weight: 500;
+  margin-left: 15px;
+  align-self: center;
+}
+.ChatMessages--nameAndDate > span {
+  color: #868686;
+  font-size: 13px;
+  font-weight: 500;
+  margin-left: 4px;
+}
+
+.ChatMessages--message {
+  display: grid;
+  grid-template-columns: auto 1fr 30px;
+  /* overflow-wrap: break-word !important; */
+}
+
+/* .ChatMessages--messageContent {
+
+} */
+.ChatMessages--messageContent {
+  overflow: hidden;
+}
+.ChatMessages--messageContent > p {
+  font-size: 18px;
+  font-weight: 400;
+  overflow-wrap: break-word;
+  /* word-break: break-word; */
+  max-width: 300px;
+}
+
+.ChatMessages--message > .ChatMessages--edge {
+  /* height: auto; */
+  width: 5px;
+  background-color: #cbcbcb;
+  margin-left: 16px;
+  margin-right: 30px;
+}
+
+.ChatMessages--myMessage > .ChatMessages--edge {
+  background-color: #1da4fe;
+}
+
+.ChatMessages--firstMessage > .ChatMessages--message {
+  margin-top: 6px;
+}
+
+.ChatMessages--lastMessage {
+  margin-bottom: 15px;
+}
+
+.ChatMessages--lastMessage > .ChatMessages--edge {
+  border-bottom-left-radius: 50px;
+  border-bottom-right-radius: 50px;
+}
+
+.ChatMessages--firstMessage > .ChatMessages--message > .ChatMessages--edge {
+  border-top-left-radius: 50px;
+  border-top-right-radius: 50px;
+}
+
+.ChatMessages--message > .ChatMessageMenu--container {
+  display: none;
+  margin-left: auto;
+}
+.ChatMessages--message:hover > .ChatMessageMenu--container {
+  display: block;
+}
+
+.ChatMessages--message > .ChatMessageMenu--open {
+  display: block;
+}
+
+.ChatMessages--oldMessagesAlert {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  /* position: absolute; */
+  height: 35px;
+  background-color: #cbcbcb;
+  padding: 0 12px;
+  cursor: pointer;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  user-select: none;
+}
+.ChatMessages--oldMessagesAlert:hover {
+  filter: brightness(90%);
+}
+.ChatMessages--oldMessagesAlert:active {
+  filter: brightness(80%);
+}
+
+.ChatMessages--oldMessagesAlert > p {
+  font-size: 15px;
+  font-weight: bold;
+  /* color: #fff; */
 }

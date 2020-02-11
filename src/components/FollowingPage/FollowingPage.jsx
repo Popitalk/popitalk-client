@@ -98,7 +98,7 @@ export default function FollowingPage() {
             <h3>Thelmo Society</h3>
             <p>Live chat</p>
           </div>
-          <ChatMessages />
+          {/* <ChatMessages /> */}
           <button type="button" className="button">
             Join chat
           </button>

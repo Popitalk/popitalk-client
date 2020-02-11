@@ -48,9 +48,6 @@ export default function ForumHeader() {
           </div>
         </div>
       </div>
-      {/* <button type="button" className="button">
-        Follow
-      </button> */}
       <Button1>Follow</Button1>
     </div>
   );
