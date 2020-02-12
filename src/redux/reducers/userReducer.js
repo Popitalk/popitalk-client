@@ -1,4 +1,12 @@
-import { SET_USER_INFO, USER_UPDATE, LOGOUT } from "../../helpers/constants";
+import {
+  SET_USER_INFO,
+  USER_UPDATE,
+  USER_ADD_SENT_FRIEND_REQUEST,
+  USER_DELETE_SENT_FRIEND_REQUEST,
+  USER_ADD_RECEIVED_FRIEND_REQUEST,
+  USER_DELETE_RECEIVED_FRIEND_REQUEST,
+  LOGOUT
+} from "../../helpers/constants";
 
 const initialState = {
   loggedIn: false,
@@ -55,6 +63,37 @@ export default (state = initialState, { type, payload }) => {
         }),
         ...(payload.email && { email: payload.email }),
         ...(payload.emailVerified && { emailVerified: payload.emailVerified })
+      };
+
+    case USER_ADD_SENT_FRIEND_REQUEST:
+      return {
+        ...state,
+        sentFriendRequests: [...state.sentFriendRequests, payload.friendId]
+      };
+
+    case USER_DELETE_SENT_FRIEND_REQUEST:
+      return {
+        ...state,
+        sentFriendRequests: state.sentFriendRequests.filter(
+          userId => userId !== payload.friendId
+        )
+      };
+
+    case USER_ADD_RECEIVED_FRIEND_REQUEST:
+      return {
+        ...state,
+        receivedFriendRequests: [
+          ...state.receivedFriendRequests,
+          payload.friendId
+        ]
+      };
+
+    case USER_DELETE_RECEIVED_FRIEND_REQUEST:
+      return {
+        ...state,
+        receivedFriendRequests: state.receivedFriendRequests.filter(
+          userId => userId !== payload.friendId
+        )
       };
 
     case LOGOUT:

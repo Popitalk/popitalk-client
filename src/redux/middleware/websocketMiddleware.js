@@ -3,11 +3,20 @@ import {
   LOGOUT,
   SET_WS,
   GENERAL_ADD_MESSAGE,
+  GENERAL_ADD_USER,
   GENERAL_SET_LAST_MESSAGE_ID,
+  USER_ADD_SENT_FRIEND_REQUEST,
+  USER_DELETE_SENT_FRIEND_REQUEST,
+  USER_ADD_RECEIVED_FRIEND_REQUEST,
+  USER_DELETE_RECEIVED_FRIEND_REQUEST,
   WS_HELLO,
   WS_PING,
   WS_PONG,
-  WS_ADD_MESSAGE
+  WS_ADD_MESSAGE,
+  WS_SEND_FRIEND_REQUEST,
+  WS_RECEIVE_FRIEND_REQUEST,
+  WS_ACCEPT_FRIEND_REQUEST,
+  WS_REJECT_FRIEND_REQUEST
 } from "../../helpers/constants";
 import { validateSession } from "../actions";
 
@@ -108,6 +117,21 @@ const websocketMiddleware = url => {
               }
             });
           }
+        } else if (messageType === WS_SEND_FRIEND_REQUEST) {
+          console.log("XXX");
+          store.dispatch({
+            type: USER_ADD_SENT_FRIEND_REQUEST,
+            payload: messagePayload
+          });
+        } else if (messageType === WS_RECEIVE_FRIEND_REQUEST) {
+          store.dispatch({
+            type: GENERAL_ADD_USER,
+            payload: messagePayload.user
+          });
+          store.dispatch({
+            type: USER_ADD_RECEIVED_FRIEND_REQUEST,
+            payload: messagePayload
+          });
         }
       };
     } else if (action.type === LOGOUT && store.getState().wsState.connected) {

@@ -2,6 +2,7 @@ import {
   GENERAL_INIT,
   GENERAL_SET_CHANNEL_SETTINGS_PAGE,
   GENERAL_ADD_CHANNEL,
+  GENERAL_ADD_USER,
   GENERAL_REMOVE_CHANNEL,
   GENERAL_ADD_MEMBERS,
   GENERAL_ADD_MESSAGE,
@@ -60,6 +61,7 @@ import deleteBanned from "./deleteBanned";
 
 import setInitialScroll from "./setInitialScroll";
 import setLastMessageId from "./setLastMessageId";
+import addUser from "./addUser";
 
 const initialState = {
   channels: {},
@@ -80,6 +82,7 @@ export default (state = initialState, { type, payload }) => {
   if (type === GENERAL_ADD_CHANNEL) return addChannel(state, payload);
   if (type === GENERAL_REMOVE_CHANNEL) return removeChannel(state, payload);
   if (type === GENERAL_UPDATE_CHANNEL) return updateChannel(state, payload);
+  if (type === GENERAL_ADD_USER) return addUser(state, payload);
   if (type === GENERAL_ADD_MEMBERS) return addMembers(state, payload);
   if (type === GENERAL_ADD_MESSAGES) return addMessages(state, payload);
   if (type === GENERAL_ADD_NEWEST_MESSAGES)
