@@ -27,6 +27,9 @@ export default function ChannelPage() {
           {/* <Route path={["/channels/following", "/channels/discover"]}>
             <ChannelBrowser />
           </Route> */}
+          <Route path={["/channels/following", "/channels/discover"]}>
+            <div>FOLLOWING OR DISCOVER</div>
+          </Route>
           <Route path="/channels/create">
             <CreateChannel />
           </Route>

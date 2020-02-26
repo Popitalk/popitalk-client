@@ -62,6 +62,10 @@ export const register = createAsyncThunk(
   async registerInfo => {
     try {
       await api.register(registerInfo);
+      return {
+        usernameOrEmail: registerInfo.username,
+        password: registerInfo.password
+      };
     } catch (error) {
       if (error.response) {
         throw new Error(error.response.data.message);
@@ -288,7 +292,6 @@ export const updateChannel = createAsyncThunk(
       const response = await api.updateChannel(channelId, formData);
       return response.data;
     } catch (error) {
-      console.error("E", error);
       if (error.response) {
         throw new Error(error.response.data.message);
       } else {

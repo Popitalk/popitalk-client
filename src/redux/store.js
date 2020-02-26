@@ -22,6 +22,7 @@ import localstorageMiddleware from "./middleware/localstorageMiddleware";
 import routingMiddleware from "./middleware/routingMiddleware";
 import modalMiddleware from "./middleware/modalMiddleware";
 import websocketMiddleware from "./middleware/websocketMiddleware";
+import actionsMiddleware from "./middleware/actionsMiddleware";
 
 const reducer = combineReducers({
   general: generalReducer,
@@ -42,6 +43,7 @@ const reducer = combineReducers({
 });
 
 const middleware = [
+  actionsMiddleware(),
   localstorageMiddleware(),
   routingMiddleware(),
   modalMiddleware(),

@@ -11,7 +11,7 @@ import {
 const initialState = {
   loggedIn: false,
   validatedSession: false,
-  siteVersion: "0.0.4",
+  siteVersion: "1.1.4",
   defaultAvatar: "https://i.imgur.com/h1SSoyk.png",
   defaultIcon: "https://i.imgur.com/XoUrZls.png",
   groupRoomMemberLimit: 8,

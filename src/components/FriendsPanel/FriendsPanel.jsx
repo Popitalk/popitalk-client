@@ -296,9 +296,9 @@ export default function FriendsPanel({ unexpandable = false }) {
               .filter(userId => userId !== ownId)
               .map(userId => users[userId].avatar || defaultAvatar);
           } else if (room.type === "self") {
-            images = roomUsers
-              .map(userId => users[userId].avatar || defaultAvatar)
-              .map(userId => users[userId].avatar || defaultAvatar);
+            images = roomUsers.map(
+              userId => users[userId].avatar || defaultAvatar
+            );
           } else if (room.type === "group") {
             images = sortBy(roomUsers, userId =>
               users[userId].username.toLowerCase()
