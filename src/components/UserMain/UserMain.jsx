@@ -2,48 +2,48 @@ import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import ChannelCard1 from "../ChannelCard1";
-import { getUserInfo, sendFriendRequest } from "../../redux/actions";
+import {
+  getUserInfo,
+  sendFriendRequest,
+  acceptFriendRequest
+} from "../../redux/actions";
 import Skeleton from "react-loading-skeleton";
 import Button1 from "../Button1";
-import FriendBlockMenu from "../FriendBlockMenu";
+import PopupMenu from "../PopupMenu";
 import "./UserMain.css";
 
 export default function UserMain() {
   const { userId } = useParams();
+  const { id: ownId } = useSelector(state => state.self);
   const {
-    id: ownId,
     friends,
     sentFriendRequests,
     receivedFriendRequests,
     blocked,
     blockers
-  } = useSelector(state => state.userState);
-  const { defaultAvatar } = useSelector(state => state.generalState);
+  } = useSelector(state => state.relationships);
+  const { defaultAvatar } = useSelector(state => state.general);
   const { id, firstName, lastName, username, avatar } = useSelector(
-    state => state.userPageState
+    state => state.userProfile
   );
-  const {
-    userPageApiLoading: apiLoading,
-    userPageApiError: apiError
-  } = useSelector(state => state.apiState);
-  const [error, setError] = useState(false);
+  const apiLoading = useSelector(state => state.api.userPage.loading);
+  const apiError = useSelector(state => state.api.userPage.error);
+
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (blockers.includes(userId)) {
-      setError(true);
-    } else {
-      dispatch(getUserInfo(userId));
-    }
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    dispatch(getUserInfo(userId));
   }, [blockers, dispatch, userId]);
 
   const handleSendFriendRequest = () => {
     dispatch(sendFriendRequest(userId));
   };
 
-  if (apiError || error) {
+  const handleAcceptFriendRequest = () => {
+    dispatch(acceptFriendRequest(userId));
+  };
+
+  if (apiError) {
     return (
       <div className="UserMain--container">
         <section>
@@ -79,7 +79,7 @@ export default function UserMain() {
                             <i className="fas fa-user-check" />
                             <p>Added</p>
                           </Button1>
-                          <FriendBlockMenu type="friend" />
+                          <PopupMenu type="friend" userId={userId} />
                         </>
                       ) : sentFriendRequests.includes(userId) ? (
                         <>
@@ -87,12 +87,12 @@ export default function UserMain() {
                             <i className="fas fa-user-plus" />
                             <p>Request Sent</p>
                           </Button1>
-                          <FriendBlockMenu type="sent request" />
+                          <PopupMenu type="sentRequest" userId={userId} />
                         </>
                       ) : receivedFriendRequests.includes(userId) ? (
                         <>
                           <Button1
-                            onClick={handleSendFriendRequest}
+                            onClick={handleAcceptFriendRequest}
                             className={
                               "UserMain--button--receivedFriendRequest"
                             }
@@ -100,7 +100,7 @@ export default function UserMain() {
                             <i className="fas fa-user-plus" />
                             <p>Accept</p>
                           </Button1>
-                          <FriendBlockMenu type="received request" />
+                          <PopupMenu type="receivedRequest" userId={userId} />
                         </>
                       ) : blocked.includes(userId) ? (
                         <>
@@ -108,7 +108,7 @@ export default function UserMain() {
                             <i className="fas fa-user-lock" />
                             <p>Blocked</p>
                           </Button1>
-                          <FriendBlockMenu type="blocked" />
+                          <PopupMenu type="blocked" userId={userId} />
                         </>
                       ) : (
                         <>
@@ -116,7 +116,7 @@ export default function UserMain() {
                             <i className="fas fa-user-plus" />
                             <p>Add friend</p>
                           </Button1>
-                          <FriendBlockMenu />
+                          <PopupMenu type="unrelated" userId={userId} />
                         </>
                       )}
                     </>

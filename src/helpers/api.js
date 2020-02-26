@@ -31,6 +31,13 @@ export const updateMember = updateInfo => {
   return axios.put("/api/members/", updateInfo);
 };
 
+export const followChannel = channelId => {
+  return axios.post("/api/members/", { channelId });
+};
+export const unfollowChannel = channelId => {
+  return axios.delete(`/api/members/${channelId}`);
+};
+
 export const getUser = userId => {
   return axios.get(`/api/users/${userId}`);
 };
@@ -75,8 +82,14 @@ export const addMessage = messageInfo => {
 export const addPost = postInfo => {
   return axios.post("/api/posts/", postInfo);
 };
+export const deletePost = postId => {
+  return axios.delete(`/api/posts/${postId}`);
+};
 export const addComment = commentInfo => {
   return axios.post("/api/comments/", commentInfo);
+};
+export const deleteComment = commentId => {
+  return axios.delete(`/api/comments/${commentId}`);
 };
 
 export const deleteMessage = messageId => {

@@ -44,7 +44,6 @@ export default function UserProfile({ modal = false }) {
     if (blockers.includes(userId)) {
       setError(true);
     } else if (!(userId === modalUserId && userId === id)) {
-      console.log("HELLO", id, userId, modalUserId);
       dispatch(getUserInfo(userId || modalUserId));
     }
   }, [blockers, dispatch, id, modalUserId, userId]);
@@ -59,7 +58,6 @@ export default function UserProfile({ modal = false }) {
     setIsModal(false);
   };
 
-  console.log("FF", isModal);
   if (apiError || error) {
     return (
       <div className="UserProfile--container">

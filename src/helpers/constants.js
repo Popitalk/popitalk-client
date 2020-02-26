@@ -92,9 +92,9 @@ export const INVITE_ADD_SELECTED_FRIENDS = "INVITE/INVITE_ADD_SELECTED_FRIENDS";
 export const INVITE_REMOVE_SELECTED_FRIENDS =
   "INVITE/INVITE_REMOVE_SELECTED_FRIENDS";
 // WS_EVENTS
-export const WS_HELLO = "HELLO";
-export const WS_PING = "PING";
-export const WS_PONG = "PONG";
+export const WS_HELLO = "WS_HELLO";
+export const WS_PING = "WS_PING";
+export const WS_PONG = "WS_PONG";
 
 export const WS_UPDATE_USER = "WS_UPDATE_USER";
 

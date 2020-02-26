@@ -5,8 +5,8 @@ import "./Posts.css";
 import {
   getPosts,
   getComments,
-  refreshPosts,
-  updateLike
+  flushPosts
+  // updateLike
 } from "../../redux/actions";
 import InfiniteScroller from "../InfiniteScroller";
 import PostCard from "../PostCard";
@@ -21,17 +21,20 @@ const Spinner = () => (
 
 export default function Posts() {
   const { channelId } = useParams();
-  const { channels, posts, comments, defaultAvatar } = useSelector(
-    state => state.generalState
-  );
-  const { postsApiLoading, commentsApiLoading } = useSelector(
-    state => state.apiState
-  );
+  const { defaultAvatar } = useSelector(state => state.general);
+  const channel = useSelector(state => state.channels[channelId]);
+  const posts = useSelector(state => state.posts[channelId]);
+  const comments = useSelector(state => state.comments);
+  const postsApiLoading = false;
+  const commentsApiLoading = false;
+  // const { postsApiLoading, commentsApiLoading } = useSelector(
+  //   state => state.apiState
+  // );
   const dispatch = useDispatch();
 
   useEffect(() => {
     return () => {
-      dispatch(refreshPosts(channelId));
+      dispatch(flushPosts({ channelId }));
     };
   }, [channelId, dispatch]);
 
@@ -46,26 +49,26 @@ export default function Posts() {
       loader={Spinner}
       onBottomView={onBottomView}
       hasMoreBottom={
-        posts[channelId].length >= 7 &&
-        channels[channelId].firstPostId !==
-          posts[channelId][posts[channelId].length - 1].id
+        posts.length >= 7 && channel.firstPostId !== posts[posts.length - 1].id
       }
     >
-      {posts[channelId].map(post => (
+      {posts.map(post => (
         <div key={post.id} className="Posts--post">
           <PostCard
             id={post.id}
             username={post.author.username}
             avatar={post.author.avatar || defaultAvatar}
-            likes={post.likesCount}
+            likes={post.likeCount}
             liked={post.liked}
-            comments={post.commentsCount}
+            comments={post.commentCount}
             createdAt={post.createdAt}
             post={post.content}
             channelId={channelId}
           />
           {comments[post.id] &&
-            post.firstCommentId !== comments[post.id][0].id &&
+            !comments[post.id].find(
+              comment => comment.id === post.firstCommentId
+            ) &&
             (commentsApiLoading ? (
               <Spinner />
             ) : (
@@ -85,7 +88,7 @@ export default function Posts() {
                   id={comment.id}
                   username={comment.author.username}
                   avatar={comment.author.avatar || defaultAvatar}
-                  likes={comment.likesCount}
+                  likes={comment.likeCount}
                   liked={comment.liked}
                   createdAt={comment.createdAt}
                   reply={comment.content}

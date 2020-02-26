@@ -16,6 +16,7 @@
 .PostCard--user {
   display: flex;
   flex-direction: row;
+  align-items: center;
   padding: 0 15px;
   margin-bottom: 20px;
 }
@@ -28,17 +29,17 @@
   -webkit-user-drag: none;
   user-select: none;
 }
-.PostCard--user > div {
+.PostCard--user > .PostCard--user--info {
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
-.PostCard--user > div > h6 {
+.PostCard--user > .PostCard--user--info > h6 {
   font-size: 17px;
   font-weight: 500;
   margin-bottom: 4px;
 }
-.PostCard--user > div > p {
+.PostCard--user > .PostCard--user--info > p {
   font-size: 12px;
   font-weight: 500;
   color: #838383;

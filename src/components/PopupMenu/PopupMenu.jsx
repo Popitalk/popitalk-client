@@ -2,7 +2,20 @@ import React, { useState, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import useOnClickOutside from "use-onclickoutside";
-import { updateMember } from "../../redux/actions";
+// import { updateMember } from "../../redux/actions";
+import {
+  rejectFriendRequest,
+  cancelFriendRequest,
+  deleteFriend,
+  blockUser,
+  unblockUser,
+  addBan,
+  deleteBan,
+  addAdmin,
+  deleteAdmin,
+  deletePost,
+  openDeleteMessageModal
+} from "../../redux/actions";
 import "./PopupMenu.css";
 
 const Spinner = () => (
@@ -11,7 +24,14 @@ const Spinner = () => (
   </div>
 );
 
-export default function PopupMenu({ type, userId, disabled, loading }) {
+export default function PopupMenu({
+  type,
+  userId,
+  postId,
+  messageId,
+  disabled,
+  loading
+}) {
   const { channelId } = useParams();
   const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
@@ -23,29 +43,96 @@ export default function PopupMenu({ type, userId, disabled, loading }) {
     }
   });
 
+  const handleMessageDelete = () => {
+    dispatch(openDeleteMessageModal({ channelId, messageId }));
+    setOpen(false);
+  };
+
+  const handleCancelFriendRequest = () => {
+    dispatch(cancelFriendRequest(userId));
+    setOpen(false);
+  };
+
+  const handleRejectFriendRequest = () => {
+    dispatch(rejectFriendRequest(userId));
+    setOpen(false);
+  };
+
+  const handleUnfriend = () => {
+    dispatch(deleteFriend(userId));
+    setOpen(false);
+  };
+
+  const handleBlock = () => {
+    dispatch(blockUser(userId));
+    setOpen(false);
+  };
+  const handleUnblock = () => {
+    dispatch(unblockUser(userId));
+    setOpen(false);
+  };
+
   const handleAdmin = () => {
-    dispatch(updateMember(channelId, userId, "admin"));
+    dispatch(addAdmin({ channelId, userId }));
     setOpen(false);
   };
 
   const handleUnadmin = () => {
-    dispatch(updateMember(channelId, userId, "unadmin"));
+    dispatch(deleteAdmin({ channelId, userId }));
     setOpen(false);
   };
 
   const handleBan = () => {
-    dispatch(updateMember(channelId, userId, "ban"));
+    dispatch(addBan({ channelId, userId }));
     setOpen(false);
   };
 
   const handleUnban = () => {
-    dispatch(updateMember(channelId, userId, "unban"));
+    dispatch(deleteBan({ channelId, userId }));
+    setOpen(false);
+  };
+
+  const handleDeletePost = () => {
+    dispatch(deletePost({ postId }));
     setOpen(false);
   };
 
   let menu;
 
-  if (type === "members") {
+  if (type === "friend") {
+    menu = (
+      <>
+        <p onClick={handleUnfriend}>Unfriend</p>
+        <p onClick={handleBlock}>Block</p>
+      </>
+    );
+  } else if (type === "sentRequest") {
+    menu = (
+      <>
+        <p onClick={handleCancelFriendRequest}>Cancel request</p>
+        <p onClick={handleBlock}>Block</p>
+      </>
+    );
+  } else if (type === "receivedRequest") {
+    menu = (
+      <>
+        <p onClick={handleRejectFriendRequest}>Reject request</p>
+        <p onClick={handleBlock}>Block</p>
+      </>
+    );
+  } else if (type === "blocked") {
+    menu = (
+      <>
+        <p onClick={handleUnblock}>Unblock</p>
+      </>
+    );
+  } else if (type === "unrelated") {
+    menu = (
+      <>
+        <p onClick={handleBlock}>Block</p>
+      </>
+    );
+  } else if (type === "members") {
     menu = (
       <>
         <p onClick={handleAdmin}>Admin</p>
@@ -63,6 +150,18 @@ export default function PopupMenu({ type, userId, disabled, loading }) {
     menu = (
       <>
         <p onClick={handleUnban}>Unban</p>
+      </>
+    );
+  } else if (type === "post") {
+    menu = (
+      <>
+        <p onClick={handleDeletePost}>Delete</p>
+      </>
+    );
+  } else if (type === "message") {
+    menu = (
+      <>
+        <p onClick={handleMessageDelete}>Delete</p>
       </>
     );
   }

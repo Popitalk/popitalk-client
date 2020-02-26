@@ -1,59 +1,67 @@
-import { combineReducers, createStore, applyMiddleware, compose } from "redux";
-import { createBrowserHistory } from "history";
-import { connectRouter, routerMiddleware } from "connected-react-router";
-import thunk from "redux-thunk";
 import {
-  modalReducer,
-  apiReducer,
-  wsReducer,
-  userReducer,
-  userPageReducer,
-  userSearchReducer,
-  inviteReducer,
-  generalReducer
-} from "./reducers";
-import { localstorageMiddleware, websocketMiddleware } from "./middleware";
+  combineReducers,
+  configureStore,
+  getDefaultMiddleware
+} from "@reduxjs/toolkit";
+import generalReducer from "./reducers/general";
+import apiReducer from "./reducers/api";
+import selfReducer from "./reducers/self";
+import channelsReducer from "./reducers/channels";
+import postsReducer from "./reducers/posts";
+import commentsReducer from "./reducers/comments";
+import usersReducer from "./reducers/users";
+import messagesReducer from "./reducers/messages";
+import chatDraftsReducer from "./reducers/chatDrafts";
+import postDraftsReducer from "./reducers/postDrafts";
+import modalReducer from "./reducers/modal";
+import userSearchReducer from "./reducers/userSearch";
+import inviteReducer from "./reducers/invite";
+import relationshipsReducer from "./reducers/relationships";
+import userProfileReducer from "./reducers/userProfile";
+import localstorageMiddleware from "./middleware/localstorageMiddleware";
+import routingMiddleware from "./middleware/routingMiddleware";
+import modalMiddleware from "./middleware/modalMiddleware";
+import websocketMiddleware from "./middleware/websocketMiddleware";
 
-// abc
+const reducer = combineReducers({
+  general: generalReducer,
+  api: apiReducer,
+  self: selfReducer,
+  relationships: relationshipsReducer,
+  channels: channelsReducer,
+  users: usersReducer,
+  messages: messagesReducer,
+  posts: postsReducer,
+  comments: commentsReducer,
+  chatDrafts: chatDraftsReducer,
+  postDrafts: postDraftsReducer,
+  modal: modalReducer,
+  userSearch: userSearchReducer,
+  invite: inviteReducer,
+  userProfile: userProfileReducer
+});
 
-const rootReducer = history =>
-  combineReducers({
-    router: connectRouter(history),
-    modalState: modalReducer,
-    apiState: apiReducer,
-    wsState: wsReducer,
-    userState: userReducer,
-    userPageState: userPageReducer,
-    userSearchState: userSearchReducer,
-    inviteState: inviteReducer,
-    generalState: generalReducer
-  });
-
-const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-
-export const history = createBrowserHistory();
-
-const middleware =
+const middleware = [
+  localstorageMiddleware(),
+  routingMiddleware(),
+  modalMiddleware(),
   process.env.NODE_ENV !== "production"
-    ? [
-        require("redux-immutable-state-invariant").default(),
-        thunk,
-        localstorageMiddleware(),
-        websocketMiddleware("ws://localhost:4000/"),
-        routerMiddleware(history)
-      ]
-    : [
-        thunk,
-        localstorageMiddleware(),
-        websocketMiddleware(
-          `wss://${window.location.hostname}:${window.location.port}/ws/`
-        ),
-        routerMiddleware(history)
-      ];
+    ? websocketMiddleware("ws://localhost:4000/")
+    : websocketMiddleware(
+        `wss://${window.location.hostname}:${window.location.port}/ws/`
+      ),
+  ...getDefaultMiddleware()
+];
 
-const store = createStore(
-  rootReducer(history),
-  composeEnhancer(applyMiddleware(...middleware))
-);
+const store = configureStore({
+  reducer,
+  middleware,
+  devTools: process.env.NODE_ENV !== "production"
+});
 
 export default store;
+
+//         websocketMiddleware("ws://localhost:4000/"),
+//         websocketMiddleware(
+//           `wss://${window.location.hostname}:${window.location.port}/ws/`
+//         ),

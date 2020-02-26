@@ -9,18 +9,17 @@ import "./ManageBanned.css";
 export default function ManageBanned() {
   const { channelId } = useParams();
   const [search, setSearch] = useState("");
-  const { channels, users, defaultAvatar } = useSelector(
-    state => state.generalState
-  );
-  const {
-    userListApiLoading: apiLoading,
-    userListApiUserId: apiUserId
-  } = useSelector(state => state.apiState);
+  const { defaultAvatar } = useSelector(state => state.general);
+  const channel = useSelector(state => state.channels[channelId]);
+  const users = useSelector(state => state.users);
+  const apiLoading = false;
+  const apiError = false;
+  const apiUserId = "xx";
 
   const dispatch = useDispatch();
 
   const filteredUsers = orderBy(
-    channels[channelId].banned
+    channel.banned
       .map(userId => ({
         id: userId,
         fullName: `${users[userId].firstName} ${users[userId].lastName}`,
@@ -35,7 +34,7 @@ export default function ManageBanned() {
 
   return (
     <div className="ManageBanned--container">
-      <h3>Members - {channels[channelId].banned.length} users</h3>
+      <h3>Members - {channel.banned.length} users</h3>
       <div className="ManageBanned--search">
         <div>
           <div>
@@ -71,7 +70,7 @@ export default function ManageBanned() {
                 <p>{user.username}</p>
                 <p>{user.fullName}</p>
               </div>
-              {user.id === channels[channelId].ownerId ? (
+              {user.id === channel.ownerId ? (
                 <p className="ManageBanned--owner">Owner</p>
               ) : (
                 <PopupMenu

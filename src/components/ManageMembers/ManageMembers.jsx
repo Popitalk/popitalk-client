@@ -9,17 +9,20 @@ import "./ManageMembers.css";
 export default function ManageMembers() {
   const { channelId } = useParams();
   const [search, setSearch] = useState("");
-  const { channels, users, defaultAvatar } = useSelector(
-    state => state.generalState
-  );
-  const {
-    userListApiLoading: apiLoading,
-    userListApiUserId: apiUserId
-  } = useSelector(state => state.apiState);
+  const { defaultAvatar } = useSelector(state => state.general);
+  const channel = useSelector(state => state.channels[channelId]);
+  const users = useSelector(state => state.users);
+  const apiLoading = false;
+  const apiError = false;
+  const apiUserId = "xx";
   const dispatch = useDispatch();
 
+  const notAdminMembers = channel.members.filter(
+    userId => !channel.admins.includes(userId)
+  );
+
   const filteredUsers = orderBy(
-    channels[channelId].users
+    notAdminMembers
       .map(userId => ({
         id: userId,
         fullName: `${users[userId].firstName} ${users[userId].lastName}`,
@@ -34,7 +37,7 @@ export default function ManageMembers() {
 
   return (
     <div className="ManageMembers--container">
-      <h3>Members - {channels[channelId].users.length} users</h3>
+      <h3>Members - {notAdminMembers.length} users</h3>
       <div className="ManageMembers--search">
         <div>
           <div>
@@ -70,7 +73,7 @@ export default function ManageMembers() {
                 <p>{user.username}</p>
                 <p>{user.fullName}</p>
               </div>
-              {user.id === channels[channelId].ownerId ? (
+              {user.id === channel.ownerId ? (
                 <p className="ManageMembers--owner">Owner</p>
               ) : (
                 <PopupMenu

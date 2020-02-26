@@ -1,15 +1,15 @@
 import React, { useState, useEffect, useRef } from "react";
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import "emoji-mart/css/emoji-mart.css";
 import { Picker } from "emoji-mart";
-import { addPost } from "../../redux/actions";
+import { setPostDraft, addPost } from "../../redux/actions";
 import "./CreatePost.css";
 
 export default function CreatePost() {
   const { channelId } = useParams();
+  const draft = useSelector(state => state.postDrafts[channelId]);
   const dispatch = useDispatch();
-  const [value, setValue] = useState("");
   const [pickerOpen, setPickerOpen] = useState(false);
   const textareaRef = useRef();
   const pickerRef = useRef();
@@ -22,19 +22,28 @@ export default function CreatePost() {
   const handleChange = e => {
     e.target.style.height = "58px";
     e.target.style.height = `${Math.min(e.target.scrollHeight + 2, 168)}px`;
-
-    setValue(e.target.value);
+    dispatch(setPostDraft({ channelId, draft: e.target.value }));
   };
 
   const handleSend = () => {
     textareaRef.current.style.height = "58px";
-    setValue("");
-    dispatch(addPost({ channelId, content: value }));
+
+    const text = draft?.trim();
+
+    if (text && text.length > 0) {
+      dispatch(
+        addPost({
+          channelId,
+          content: text
+        })
+      );
+    }
   };
 
   const handleEmoticon = () => {
     setPickerOpen(!pickerOpen);
   };
+
   const handleUpload = () => {
     console.log("UPLOAD");
   };
@@ -48,9 +57,9 @@ export default function CreatePost() {
         </button>
         <textarea
           placeholder="Post a thread..."
-          value={value}
+          value={draft || ""}
           onChange={handleChange}
-          maxLength={120}
+          maxLength={2000}
           ref={textareaRef}
         />
         <div>
@@ -79,7 +88,9 @@ export default function CreatePost() {
               autoFocus
               emojiTooltip={true}
               onSelect={e => {
-                setValue(`${value} ${e.native}`);
+                dispatch(
+                  setPostDraft({ channelId, draft: `${draft} ${e.native}` })
+                );
                 setPickerOpen(false);
                 textareaRef.current.focus();
               }}

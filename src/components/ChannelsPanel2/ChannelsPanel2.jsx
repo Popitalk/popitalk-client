@@ -1,15 +1,7 @@
-import React, { useState, useEffect, useRef } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import {
-  Link,
-  Switch,
-  Route,
-  useRouteMatch,
-  useLocation,
-  useParams,
-  useHistory
-} from "react-router-dom";
-import _ from "lodash";
+import React from "react";
+import { useSelector } from "react-redux";
+import { Link, useLocation } from "react-router-dom";
+// import _ from "lodash";
 import Seperator from "../Seperator";
 import ChannelList from "../ChannelList";
 import ChannelCard2 from "../ChannelCard2";
@@ -18,20 +10,21 @@ import RoomIcon2 from "../RoomIcon2";
 import "./ChannelsPanel2.css";
 
 export default function ChannelsPanel2() {
-  const { channels, defaultIcon } = useSelector(state => state.generalState);
-  const { id: ownId } = useSelector(state => state.userState);
+  const { defaultIcon } = useSelector(state => state.general);
+  const channels = useSelector(state => state.channels);
+  const { id: ownId, channelIds } = useSelector(state => state.self);
   const location = useLocation();
 
-  let yourChannels = {};
-  let followingChannels = {};
+  let yourChannels = [];
+  let followingChannels = [];
 
-  Object.entries(channels)
-    .filter(([channelId, channel]) => channel.type === "channel")
-    .forEach(([channelId, channel]) => {
+  channelIds
+    .map(channelId => ({ id: channelId, ...channels[channelId] }))
+    .forEach(channel => {
       if (channel.ownerId === ownId) {
-        yourChannels = { ...yourChannels, [channelId]: channel };
+        yourChannels.push(channel);
       } else {
-        followingChannels = { ...followingChannels, [channelId]: channel };
+        followingChannels.push(channel);
       }
     });
 
@@ -44,25 +37,24 @@ export default function ChannelsPanel2() {
         <h3>Channels</h3>
       </div>
       <div className="ChannelsPanel2--main">
-        {!_.isEmpty(yourChannels) && (
+        {yourChannels.length !== 0 && (
           <div className="ChannelsPanel2--channels">
             <h3>Your Channels</h3>
             <div className="ChannelList--container">
-              {Object.entries(yourChannels).map(([channelId, channel]) => (
+              {yourChannels.map(channel => (
                 <div
-                  key={channelId}
+                  key={channel.id}
                   className={`${
-                    channelId === activeChannel
+                    channel.id === activeChannel
                       ? " ChannelList--active"
                       : " ChannelList--inActive"
                   }`}
                 >
                   <div className="ChannelList--slab" />
                   <Link
-                    to={`/channels/${channelId}/video`}
+                    to={`/channels/${channel.id}/video`}
                     className="ChannelList--channel"
                     role="button"
-                    // onClick={() => setActiveChannel(channel.id)}
                   >
                     <RoomIcon2
                       images={[channel.icon || defaultIcon]}
@@ -90,28 +82,27 @@ export default function ChannelsPanel2() {
           </Link>
         </div>
 
-        {!_.isEmpty(followingChannels) && (
+        {followingChannels.length !== 0 && (
           <div className="ChannelsPanel2--channels">
             <h3>Following Channels</h3>
             <div className="ChannelList--container">
-              {Object.entries(followingChannels).map(([channelId, channel]) => (
+              {followingChannels.map(channel => (
                 <div
-                  key={channelId}
+                  key={channel.id}
                   className={`${
-                    channelId === activeChannel
+                    channel.id === activeChannel
                       ? " ChannelList--active"
                       : " ChannelList--inActive"
                   }`}
                 >
                   <div className="ChannelList--slab" />
                   <Link
-                    to={`/channels/${channelId}/video`}
+                    to={`/channels/${channel.id}/video`}
                     className="ChannelList--channel"
                     role="button"
-                    // onClick={() => setActiveChannel(channel.id)}
                   >
                     <RoomIcon2
-                      images={[channel.icon]}
+                      images={[channel.icon || defaultIcon]}
                       watching={channel.watching}
                       type={
                         channel.watching ? "ChannelsPanel2w" : "ChannelsPanel2"

@@ -13,12 +13,9 @@ const Spinner = () => (
 );
 
 export default function ChangePasswordModal() {
-  const firstModal = useSelector(
-    ({ modalState }) => modalState.components.length === 1
-  );
-  const { userApiLoading: apiLoading, userApiError: apiError } = useSelector(
-    state => state.apiState
-  );
+  const firstModal = useSelector(state => state.modal.components.length === 1);
+  const apiLoading = useSelector(state => state.api.userUpdateApi.loading);
+  const apiError = useSelector(state => state.api.userUpdateApi.error);
   const dispatch = useDispatch();
   const closeModalDispatcher = useCallback(() => dispatch(closeModal()), [
     dispatch

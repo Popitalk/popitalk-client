@@ -14,12 +14,13 @@ import "./RoomExistsModal.css";
 
 export default function RoomExistsModal() {
   const { pathname } = useLocation();
-  const create = useSelector(state => state.inviteState.channelId.length === 0);
-  const { id: ownId } = useSelector(state => state.userState);
-  const { selectedFriends } = useSelector(state => state.inviteState);
-  const { users, channels, defaultAvatar } = useSelector(
-    state => state.generalState
-  );
+  const create = useSelector(state => !state.invite.channelId);
+  const { id: ownId, username: ownUsername } = useSelector(state => state.self);
+  const { selectedFriends } = useSelector(state => state.invite);
+  const { defaultAvatar } = useSelector(state => state.general);
+  const users = useSelector(state => state.users);
+  const channels = useSelector(state => state.channels);
+
   const dispatch = useDispatch();
   const closeAllModalsDispatcher = useCallback(
     () => dispatch(closeAllModals()),
@@ -51,8 +52,8 @@ export default function RoomExistsModal() {
   ).find(([roomId2, room]) =>
     _.isEmpty(
       create
-        ? _.xor([...selectedFriends, ownId], room.users)
-        : _.xor([...channels[roomId].users, ...selectedFriends], room.users)
+        ? _.xor([...selectedFriends, ownId], room.members)
+        : _.xor([...channels[roomId].members, ...selectedFriends], room.members)
     )
   );
 
@@ -61,40 +62,38 @@ export default function RoomExistsModal() {
     ...existingRoomArr[1]
   };
 
-  const roomUsers = existingRoom.users;
-  const images =
-    roomUsers.length === 2
-      ? roomUsers
-          .filter(userId => userId !== ownId)
-          .map(userId => users[userId].avatar || defaultAvatar)
-      : roomUsers
-          .sort((a, b) =>
-            users[a].username.toLowerCase() > users[b].username.toLowerCase()
-              ? 1
-              : users[b].username.toLowerCase() >
-                users[a].username.toLowerCase()
-              ? -1
-              : 0
-          )
-          .map(userId => users[userId].avatar || defaultAvatar);
+  const roomUsers = existingRoom.members;
+  const online = existingRoom.type === "friend" && roomUsers[0].online;
+  let roomName;
+  let images;
 
-  const online = roomUsers.length === 1 && roomUsers[0].online;
+  if (existingRoom.type === "friend") {
+    images = roomUsers
+      .filter(userId => userId !== ownId)
+      .map(userId => users[userId].avatar || defaultAvatar);
+  } else if (existingRoom.type === "self") {
+    images = roomUsers
+      .map(userId => users[userId].avatar || defaultAvatar)
+      .map(userId => users[userId].avatar || defaultAvatar);
+  } else if (existingRoom.type === "group") {
+    images = _.sortBy(roomUsers, userId =>
+      users[userId].username.toLowerCase()
+    ).map(userId => users[userId].avatar || defaultAvatar);
+  }
 
-  let roomName =
-    existingRoom.name ||
-    (roomUsers.length === 2
-      ? users[roomUsers.filter(userId => userId !== ownId)[0]].username
-      : roomUsers
-          .sort((a, b) =>
-            users[a].username.toLowerCase() > users[b].username.toLowerCase()
-              ? 1
-              : users[b].username.toLowerCase() >
-                users[a].username.toLowerCase()
-              ? -1
-              : 0
-          )
-          .map(userId => users[userId].username)
-          .join(", "));
+  if (existingRoom.name) {
+    roomName = existingRoom.name;
+  } else if (existingRoom.type === "friend") {
+    roomName = users[roomUsers.filter(userId => userId !== ownId)[0]].username;
+  } else if (existingRoom.type === "self") {
+    roomName = ownUsername;
+  } else if (existingRoom.type === "group") {
+    roomName = _.sortBy(roomUsers, userId =>
+      users[userId].username.toLowerCase()
+    )
+      .map(userId => users[userId].username)
+      .join(", ");
+  }
 
   if (roomName.length > 25) {
     roomName = `${roomName.slice(0, 25)}...`;

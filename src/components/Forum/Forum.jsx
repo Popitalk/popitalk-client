@@ -4,12 +4,16 @@ import CreatePost from "../CreatePost";
 import Posts from "../Posts";
 import "./Forum.css";
 
-export default function Forum() {
+export default function Forum({ privateAndNotMember }) {
   return (
     <div className="Forum--container">
       <ForumHeader />
-      <CreatePost />
-      <Posts />
+      {!privateAndNotMember && (
+        <>
+          <CreatePost />
+          <Posts />
+        </>
+      )}
     </div>
   );
 }

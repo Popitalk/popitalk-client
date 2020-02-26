@@ -7,28 +7,27 @@ import "./ChatHeader.css";
 
 export default function ChatHeader() {
   const { channelId } = useParams();
-  const { channels } = useSelector(state => state.generalState);
+  const channel = useSelector(state => state.channels[channelId]);
   const dispatch = useDispatch();
   const openFollowersModalDispatcher = useCallback(
-    () => dispatch(openFollowersModal()),
-    [dispatch]
+    () => dispatch(openFollowersModal(channelId)),
+    [channelId, dispatch]
   );
 
-  const loading = !channels[channelId]?.loaded;
+  const loading = !channel?.loaded;
 
   return (
     <div className="ChatHeader--container">
       {loading ? (
         <Skeleton height={40} width={250} />
-      ) : channels[channelId].public ? (
+      ) : channel.public ? (
         <div className="ChatHeader--live">
           <p>Live Chat</p>
         </div>
       ) : (
         <div className="ChatHeader--private">
           <p onClick={openFollowersModalDispatcher}>
-            Private Chat -{" "}
-            <span>{channels[channelId].users.length} people</span>
+            Private Chat - <span>{channel.members.length} people</span>
           </p>
         </div>
       )}

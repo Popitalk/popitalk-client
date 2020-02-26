@@ -105,3 +105,14 @@
   text-align: center;
   vertical-align: center;
 }
+
+.ForumHeader--bio .ForumHeader--privateAndNotMember {
+  color: black;
+  cursor: default;
+}
+.ForumHeader--bio .ForumHeader--privateAndNotMember:hover {
+  text-decoration: none;
+}
+.ForumHeader--bio .ForumHeader--privateAndNotMember:active {
+  transform: none;
+}

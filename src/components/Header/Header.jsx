@@ -21,10 +21,9 @@ const Spinner = () => (
 );
 
 export default function Header() {
-  const { loggedIn } = useSelector(state => state.userState);
-  const { userApiLoading: apiLoading, userApiError: apiError } = useSelector(
-    state => state.apiState
-  );
+  const { loggedIn } = useSelector(state => state.general);
+  const apiLoading = useSelector(state => state.api.loginApi.loading);
+  const apiError = useSelector(state => state.api.loginApi.error);
   const dispatch = useDispatch();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");

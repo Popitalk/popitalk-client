@@ -6,9 +6,9 @@ import {
   openProfileModal,
   createRoom,
   inviteFriends,
-  addChannel,
-  addSelectedFriends,
-  removeSelectedFriends,
+  addInviteChannel,
+  addInviteFriend,
+  removeInviteFriend,
   openRoomExistsModal
 } from "../../redux/actions";
 import Button1 from "../Button1";
@@ -22,29 +22,27 @@ const Spinner = () => (
 );
 
 export default function InviteModal({ create, anon }) {
-  const { pathname } = useLocation();
   const [search, setSearch] = useState("");
   const [copied, setCopied] = useState(false);
-  const { id: ownId, friends } = useSelector(state => state.userState);
-  const { selectedFriends } = useSelector(state => state.inviteState);
-  const { users, defaultAvatar } = useSelector(state => state.generalState);
-  const channels = useSelector(state => state.generalState.channels);
-  const {
-    inviteApiLoading: apiLoading,
-    inviteApiError: apiError
-  } = useSelector(state => state.apiState);
+  const { channelId } = useSelector(state => state.modal);
+  const { id: ownId } = useSelector(state => state.self);
+  const { friends } = useSelector(state => state.relationships);
+  const { selectedFriends } = useSelector(state => state.invite);
+  const { defaultAvatar } = useSelector(state => state.general);
+  const users = useSelector(state => state.users);
+  const channels = useSelector(state => state.channels);
+  // const {
+  //   inviteApiLoading: apiLoading,
+  //   inviteApiError: apiError
+  // } = useSelector(state => state.apiState);
+  const apiLoading = false;
+  const apiError = false;
   const dispatch = useDispatch();
 
   const rooms = Object.values(channels)
     .filter(channel => channel.type === "group")
-    .map(room => room.users)
-    .filter(room => room.length > 2);
-
-  const channelId = matchPath(pathname, {
-    path: "/rooms/:channelId",
-    exact: false,
-    strict: false
-  })?.params?.channelId;
+    .map(room => room.members);
+  // .filter(room => room.length > 2);
 
   const pageUrl = window.location.href
     .split("/")
@@ -74,11 +72,11 @@ export default function InviteModal({ create, anon }) {
   const roomCapacity = 8;
   const memberLimit = create
     ? roomCapacity
-    : roomCapacity - channels[channelId].users.length;
+    : roomCapacity - channels[channelId].members.length;
 
   if (!create) {
     filteredUsers = filteredUsers.filter(
-      user => !channels[channelId].users.includes(user.id)
+      user => !channels[channelId].members.includes(user.id)
     );
   }
 
@@ -102,21 +100,23 @@ export default function InviteModal({ create, anon }) {
     if (roomExists) {
       dispatch(openRoomExistsModal());
     } else {
-      dispatch(createRoom());
+      dispatch(createRoom(selectedFriends));
     }
   };
 
   const handleInviteFriends = () => {
-    dispatch(addChannel(channelId));
+    dispatch(addInviteChannel(channelId));
 
     const roomExists = rooms.some(room =>
-      _.isEmpty(_.xor([...channels[channelId].users, ...selectedFriends], room))
+      _.isEmpty(
+        _.xor([...channels[channelId].members, ...selectedFriends], room)
+      )
     );
 
     if (roomExists) {
       dispatch(openRoomExistsModal());
     } else {
-      dispatch(inviteFriends());
+      dispatch(inviteFriends({ channelId, selectedFriends }));
     }
   };
 
@@ -160,7 +160,7 @@ export default function InviteModal({ create, anon }) {
                   key={sf}
                   role="button"
                   className="InviteModal--search--selectedFriend"
-                  onClick={() => dispatch(removeSelectedFriends(sf))}
+                  onClick={() => dispatch(removeInviteFriend(sf))}
                 >
                   <p>{users[sf].username}</p>
                   <i className="fas fa-times" />
@@ -207,8 +207,8 @@ export default function InviteModal({ create, anon }) {
                   checked={selectedFriends.includes(user.id)}
                   onChange={() =>
                     selectedFriends.includes(user.id)
-                      ? dispatch(removeSelectedFriends(user.id))
-                      : dispatch(addSelectedFriends(user.id))
+                      ? dispatch(removeInviteFriend(user.id))
+                      : dispatch(addInviteFriend(user.id))
                   }
                 />
               </div>
