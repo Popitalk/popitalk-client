@@ -2,22 +2,20 @@ import React, { useState } from "react";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import { useSelector, useDispatch } from "react-redux";
-import { createChannel } from "../../redux/actions";
+import { addChannel } from "../../redux/actions";
 import Input4 from "../Input4";
 import Textarea2 from "../Textarea2";
-import Select from "../Select";
+// import Select from "../Select";
 import ToggleCheck from "../ToggleCheck";
 import ImageUpload from "../ImageUpload";
 import FormSubmitPopup from "../FormSubmitPopup";
 import "./CreateChannel.css";
 
-const options = ["x1", "y2", "z2", "x3", "y3", "z3"];
+// const options = ["x1", "y2", "z2", "x3", "y3", "z3"];
 
 export default function CreateChannel() {
-  const {
-    channelCreateApiLoading: apiLoading,
-    channelCreateApiError: apiError
-  } = useSelector(state => state.apiState);
+  const apiLoading = useSelector(state => state.api.channel.loading);
+  const apiError = useSelector(state => state.api.channel.error);
   const dispatch = useDispatch();
   // const [categories, setCategories] = useState(null);
   const [displayedIcon, setDisplayedIcon] = useState(false);
@@ -80,14 +78,13 @@ export default function CreateChannel() {
           })}
           onSubmit={values => {
             dispatch(
-              createChannel({
+              addChannel({
                 name: values.name,
                 description: values.description,
                 public: !values.private,
                 icon: uploadedImage
               })
             );
-            console.log("VALUES", values);
           }}
         >
           {({

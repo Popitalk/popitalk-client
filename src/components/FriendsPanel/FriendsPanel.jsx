@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
+import sortBy from "lodash/sortBy";
 import { useSelector, useDispatch } from "react-redux";
 import { useScroll } from "react-use";
 import { Link, useLocation } from "react-router-dom";
@@ -24,19 +25,18 @@ export default function FriendsPanel({ unexpandable = false }) {
   const [expanded, setExpanded] = useState(unexpandable);
   const dispatch = useDispatch();
   const location = useLocation();
-  const { users: searchedUsers, apiError } = useSelector(
-    state => state.userSearchState
+  const searchedUsers = useSelector(state => state.userSearch);
+  const apiLoading = useSelector(state => state.api.userSearchApi.loading);
+  const apiError = useSelector(state => state.api.userSearchApi.error);
+  const { defaultAvatar } = useSelector(state => state.general);
+  const users = useSelector(state => state.users);
+  const channels = useSelector(state => state.channels);
+  const { id: ownId, username: ownUsername, roomIds } = useSelector(
+    state => state.self
   );
-  const { users, channels, defaultAvatar } = useSelector(
-    state => state.generalState
+  const { sentFriendRequests, receivedFriendRequests, friends } = useSelector(
+    state => state.relationships
   );
-  const {
-    id: ownId,
-    username: ownUsername,
-    sentFriendRequests,
-    receivedFriendRequests,
-    friends
-  } = useSelector(state => state.userState);
   // const modalComponent = useSelector(({ modalState }) => modalState.components);
   const [page, setPage] = useState(0);
   const openCreateRoomModalDispatcher = useCallback(
@@ -63,6 +63,14 @@ export default function FriendsPanel({ unexpandable = false }) {
   const activeRoom = location.pathname.split("/")[2];
 
   const hiddenRequests = [...friends, ...sentFriendRequests];
+
+  const rooms = sortBy(
+    roomIds.map(roomId => ({
+      id: roomId,
+      ...channels[roomId]
+    })),
+    room => new Date(room.lastMessageAt)
+  ).reverse();
 
   // useEffect(() => {
   //   console.log("MODAL MODAL", modalComponent);
@@ -277,88 +285,79 @@ export default function FriendsPanel({ unexpandable = false }) {
           <p>Your private room</p>
           <i className="fas fa-plus-square fa-2x" />
         </button>
-        {Object.entries(channels)
-          .filter(([channelId, channel]) => channel.type !== "channel")
-          .map(([roomId, room]) => {
-            const roomUsers = room.users;
-            const images =
-              room.type === "friend"
-                ? roomUsers
-                    .filter(userId => userId !== ownId)
-                    .map(userId => users[userId].avatar || defaultAvatar)
-                : room.type === "self"
-                ? roomUsers.map(userId => users[userId].avatar || defaultAvatar)
-                : roomUsers
-                    .sort((a, b) =>
-                      users[a].username.toLowerCase() >
-                      users[b].username.toLowerCase()
-                        ? 1
-                        : users[b].username.toLowerCase() >
-                          users[a].username.toLowerCase()
-                        ? -1
-                        : 0
-                    )
-                    .map(userId => users[userId].avatar || defaultAvatar);
-            const online = room.type === "friend" && roomUsers[0].online;
+        {rooms.map(room => {
+          const roomUsers = room.members;
+          const online = room.type === "friend" && roomUsers[0].online;
+          let roomName;
+          let images;
 
-            let roomName =
-              room.name ||
-              (room.type === "friend"
-                ? users[roomUsers.filter(userId => userId !== ownId)[0]]
-                    .username
-                : room.type === "self"
-                ? ownUsername
-                : roomUsers
-                    .sort((a, b) =>
-                      users[a].username.toLowerCase() >
-                      users[b].username.toLowerCase()
-                        ? 1
-                        : users[b].username.toLowerCase() >
-                          users[a].username.toLowerCase()
-                        ? -1
-                        : 0
-                    )
-                    .map(userId => users[userId].username)
-                    .join(", "));
+          if (room.type === "friend") {
+            images = roomUsers
+              .filter(userId => userId !== ownId)
+              .map(userId => users[userId].avatar || defaultAvatar);
+          } else if (room.type === "self") {
+            images = roomUsers
+              .map(userId => users[userId].avatar || defaultAvatar)
+              .map(userId => users[userId].avatar || defaultAvatar);
+          } else if (room.type === "group") {
+            images = sortBy(roomUsers, userId =>
+              users[userId].username.toLowerCase()
+            ).map(userId => users[userId].avatar || defaultAvatar);
+          }
 
-            if (roomName.length > 25) {
-              roomName = `${roomName.slice(0, 25)}...`;
-            }
-            let roomMessage =
-              room.lastMessage &&
-              `${room.lastMessage.username}: ${room.lastMessage.message}`;
+          if (room.name) {
+            roomName = room.name;
+          } else if (room.type === "friend") {
+            roomName =
+              users[roomUsers.filter(userId => userId !== ownId)[0]].username;
+          } else if (room.type === "self") {
+            roomName = ownUsername;
+          } else if (room.type === "group") {
+            roomName = sortBy(roomUsers, userId =>
+              users[userId].username.toLowerCase()
+            )
+              .map(userId => users[userId].username)
+              .join(", ");
+          }
 
-            if (roomMessage && roomMessage.length > 25) {
-              roomMessage = `${roomMessage.slice(0, 25)}...`;
-            }
+          if (roomName.length > 25) {
+            roomName = `${roomName.slice(0, 25)}...`;
+          }
+          let roomMessage =
+            room.lastMessage &&
+            `${room.lastMessage.username}: ${room.lastMessage.message}`;
 
-            return (
-              <Link
-                className={`FriendsPanel--room${
-                  activeRoom === roomId ? " FriendsPanel--activeRoom" : ""
-                }`}
-                key={roomId}
-                {...(!expanded && {
-                  "data-for": "FriendsPanel--tooltip",
-                  "data-tip": roomName,
-                  "data-iscapture": true
-                })}
-                to={`/rooms/${roomId}`}
-              >
-                <div className="FriendsPanel--nameAndMessage">
-                  <p>{roomName}</p>
-                  <p>{roomMessage}</p>
-                </div>
-                <RoomIcon2
-                  images={images}
-                  online={online}
-                  watching={room.watching}
-                  self={room.type === "self"}
-                  type={expanded ? "FriendsPanel" : "ChannelsPanel1"}
-                />
-              </Link>
-            );
-          })}
+          if (roomMessage && roomMessage.length > 25) {
+            roomMessage = `${roomMessage.slice(0, 25)}...`;
+          }
+
+          return (
+            <Link
+              className={`FriendsPanel--room${
+                activeRoom === room.id ? " FriendsPanel--activeRoom" : ""
+              }`}
+              key={room.id}
+              {...(!expanded && {
+                "data-for": "FriendsPanel--tooltip",
+                "data-tip": roomName,
+                "data-iscapture": true
+              })}
+              to={`/rooms/${room.id}`}
+            >
+              <div className="FriendsPanel--nameAndMessage">
+                <p>{roomName}</p>
+                <p>{roomMessage}</p>
+              </div>
+              <RoomIcon2
+                images={images}
+                online={online}
+                watching={room.watching}
+                self={room.type === "self"}
+                type={expanded ? "FriendsPanel" : "ChannelsPanel1"}
+              />
+            </Link>
+          );
+        })}
       </div>
     </div>
   );

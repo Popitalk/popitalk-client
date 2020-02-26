@@ -1,13 +1,13 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
-import React, { useRef } from "react";
+import React from "react";
 import Modal from "react-modal";
 import { useSelector, useDispatch } from "react-redux";
-import { closeAllModals, popAllModals } from "../../redux/actions";
+import { closeAllModals, closeModalFinal } from "../../redux/actions";
 import WatchersModal from "../WatchersModal";
 import FollowersModal from "../FollowersModal";
 import ProfileModal from "../ProfileModal";
 import InviteModal from "../InviteModal";
-import ImageModal from "../ImageModal";
+// import ImageModal from "../ImageModal";
 import UserSettingsModal from "../UserSettingsModal";
 import EditUserSettingsModal from "../EditUserSettingsModal";
 import ChangePasswordModal from "../ChangePasswordModal";
@@ -52,7 +52,7 @@ const ModalComponents = {
   [MODAL_CHANGE_PASSWORD]: <ChangePasswordModal />,
   [MODAL_BLOCKED_USERS]: <BlockedUsersModal />,
   [MODAL_DELETE_MESSAGE]: <DeleteMessageModal />,
-  [MODAL_IMAGE]: <ImageModal />,
+  // [MODAL_IMAGE]: <ImageModal />,
   [MODAL_ACCOUNT_SETTINGS]: <AccountSettingsModal />,
   [MODAL_DELETE_ACCOUNT]: <DeleteAccountModal />,
   [MODAL_ROOM_EXISTS]: <RoomExistsModal />,
@@ -60,38 +60,42 @@ const ModalComponents = {
 };
 
 export default function ModalManager() {
-  const open = useSelector(({ modalState }) => modalState.open);
-  const components = useSelector(({ modalState }) => modalState.components);
-  const apiLoading = useSelector(
-    ({ apiState }) => apiState.generalApiLoading || apiState.userApiLoading
-  );
+  const components = useSelector(state => state.modal.components);
+  const closing = useSelector(state => state.modal.closing);
+  // const apiLoading = useSelector(
+  //   ({ apiState }) => apiState.generalApiLoading || apiState.userApiLoading
+  // );
   const dispatch = useDispatch();
-  const modalRef = useRef(null);
 
   const modalCloseHandler = () => {
+    // if (apiLoading) return;
     dispatch(closeAllModals());
   };
 
+  const onShadeClick = e => {
+    if (e.target !== e.currentTarget) return;
+    modalCloseHandler();
+  };
+
+  const handleAfterClose = () => {
+    dispatch(closeModalFinal());
+  };
+
+  let isOpen = false;
+  if (components.length !== 0) isOpen = true;
+  if (closing) isOpen = false;
+
   return (
     <Modal
-      isOpen={open}
+      isOpen={isOpen}
       closeTimeoutMS={170}
       contentLabel="modal"
       // onRequestClose={apiLoading ? undefined : modalCloseHandler}
-      onAfterClose={() => dispatch(popAllModals())}
+      onAfterClose={handleAfterClose}
       className="ModalManager--modal"
       overlayClassName="ModalManager--modalOverlay"
-      ref={modalRef}
     >
-      <div
-        className="ModalManager--wrapper"
-        onMouseDown={e => {
-          if (e.target !== e.currentTarget) return;
-          if (apiLoading) return;
-          modalCloseHandler();
-          // dispatch(closeAllModals());
-        }}
-      >
+      <div className="ModalManager--wrapper" onMouseDown={onShadeClick}>
         {ModalComponents[components[components.length - 1]]}
       </div>
     </Modal>

@@ -5,8 +5,11 @@ import Button1 from "../Button1";
 import "./FriendRequests.css";
 
 export default function FriendRequests() {
-  const { receivedFriendRequests } = useSelector(state => state.userState);
-  const { users, defaultAvatar } = useSelector(state => state.generalState);
+  const receivedFriendRequests = useSelector(
+    state => state.relationships.receivedFriendRequests
+  );
+  const defaultAvatar = useSelector(state => state.general.defaultAvatar);
+  const users = useSelector(state => state.users);
   const dispatch = useDispatch();
 
   return (
@@ -18,23 +21,23 @@ export default function FriendRequests() {
         {receivedFriendRequests.length === 0 ? (
           <h4>Nothing to show</h4>
         ) : (
-          receivedFriendRequests.map(request => (
-            <div key={request}>
+          receivedFriendRequests.map(userId => (
+            <div key={userId}>
               <button
                 type="button"
                 className="button round"
-                onClick={() => dispatch(rejectFriendRequest(request))}
+                onClick={() => dispatch(rejectFriendRequest(userId))}
               >
                 <i className="fas fa-times fa-lg" />
               </button>
               <div>
-                <p>{users[request].username}</p>
+                <p>{users[userId].username}</p>
                 <p>
-                  {users[request].firstName} {users[request].lastName}
+                  {users[userId].firstName} {users[userId].lastName}
                 </p>
               </div>
-              <img src={users[request].avatar || defaultAvatar} alt="avatar" />
-              <Button1 onClick={() => dispatch(sendFriendRequest(request))}>
+              <img src={users[userId].avatar || defaultAvatar} alt="avatar" />
+              <Button1 onClick={() => dispatch(sendFriendRequest(userId))}>
                 <i className="fas fa-user-plus" />
               </Button1>
             </div>

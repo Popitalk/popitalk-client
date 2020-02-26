@@ -5,11 +5,10 @@ import "./BlockedUsersModal.css";
 
 export default function BlockedUsersModal() {
   const [search, setSearch] = useState("");
-  const firstModal = useSelector(
-    ({ modalState }) => modalState.components.length === 1
-  );
-  const { blocked } = useSelector(state => state.userState);
-  const { users, defaultAvatar } = useSelector(state => state.generalState);
+  const firstModal = useSelector(state => state.modal.components.length === 1);
+  const { blocked } = useSelector(state => state.relationships);
+  const { defaultAvatar } = useSelector(state => state.general);
+  const users = useSelector(state => state.users);
   const dispatch = useDispatch();
   const closeModalDispatcher = useCallback(() => dispatch(closeModal()), [
     dispatch

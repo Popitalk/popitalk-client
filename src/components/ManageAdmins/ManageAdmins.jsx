@@ -9,18 +9,17 @@ import "./ManageAdmins.css";
 export default function ManageAdmins() {
   const { channelId } = useParams();
   const [search, setSearch] = useState("");
-  const { channels, users, defaultAvatar } = useSelector(
-    state => state.generalState
-  );
-  const { id: ownId } = useSelector(state => state.userState);
-  const {
-    userListApiLoading: apiLoading,
-    userListApiUserId: apiUserId
-  } = useSelector(state => state.apiState);
+  const { defaultAvatar } = useSelector(state => state.general);
+  const channel = useSelector(state => state.channels[channelId]);
+  const users = useSelector(state => state.users);
+  const { id: ownId } = useSelector(state => state.self);
+  const apiLoading = false;
+  const apiError = false;
+  const apiUserId = "xx";
   const dispatch = useDispatch();
 
   const filteredUsers = orderBy(
-    channels[channelId].admins
+    channel.admins
       .map(userId => ({
         id: userId,
         fullName: `${users[userId].firstName} ${users[userId].lastName}`,
@@ -35,7 +34,7 @@ export default function ManageAdmins() {
 
   return (
     <div className="ManageAdmins--container">
-      <h3>Members - {channels[channelId].admins.length} users</h3>
+      <h3>Members - {channel.admins.length} users</h3>
       <div className="ManageAdmins--search">
         <div>
           <div>
@@ -71,12 +70,11 @@ export default function ManageAdmins() {
                 <p>{user.username}</p>
                 <p>{user.fullName}</p>
               </div>
-              {channels[channelId].ownerId !== ownId &&
-                user.id === channels[channelId].ownerId && (
-                  <p className="ManageAdmins--owner">Owner</p>
-                )}
-              {channels[channelId].ownerId === ownId &&
-                (user.id === channels[channelId].ownerId ? (
+              {channel.ownerId !== ownId && user.id === channel.ownerId && (
+                <p className="ManageAdmins--owner">Owner</p>
+              )}
+              {channel.ownerId === ownId &&
+                (user.id === channel.ownerId ? (
                   <p className="ManageAdmins--owner">Owner</p>
                 ) : (
                   <PopupMenu

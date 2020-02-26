@@ -1,47 +1,44 @@
 import React, { useState, useEffect, useCallback } from "react";
 import Skeleton from "react-loading-skeleton";
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import {
   getUserInfoModal,
   closeModal,
+  acceptFriendRequest,
   sendFriendRequest,
   closeAllModals
 } from "../../redux/actions";
 import ChannelCard1 from "../ChannelCard1";
 import Button1 from "../Button1";
-import FriendBlockMenu from "../FriendBlockMenu";
+import PopupMenu from "../PopupMenu";
 import "./ProfileModal.css";
 
 export default function ProfileModal() {
   const history = useHistory();
-  const firstModal = useSelector(
-    ({ modalState }) => modalState.components.length === 1
-  );
-  const { userId } = useSelector(state => state.modalState);
-
+  const firstModal = useSelector(state => state.modal.components.length === 1);
+  const { userId } = useSelector(state => state.modal);
+  const { id: ownId } = useSelector(state => state.self);
   const {
-    id: ownId,
     friends,
     sentFriendRequests,
     receivedFriendRequests,
     blocked,
     blockers
-  } = useSelector(state => state.userState);
-  const { defaultAvatar } = useSelector(state => state.generalState);
+  } = useSelector(state => state.relationships);
+  const { defaultAvatar } = useSelector(state => state.general);
 
   const {
-    modalId: id,
-    modalFirstName: firstName,
-    modalLastName: lastName,
-    modalUsername: username,
-    modalAvatar: avatar
-  } = useSelector(state => state.userPageState);
-  const {
-    userPageApiLoading: apiLoading,
-    userPageApiError: apiError
-  } = useSelector(state => state.apiState);
-  const [error, setError] = useState(false);
+    idModal: id,
+    firstNameModal: firstName,
+    lastNameModal: lastName,
+    usernameModal: username,
+    avatarModal: avatar
+  } = useSelector(state => state.userProfile);
+
+  const apiLoading = useSelector(state => state.api.userPageModal.loading);
+  const apiError = useSelector(state => state.api.userPageModal.error);
+
   const dispatch = useDispatch();
   const closeModalDispatcher = useCallback(() => dispatch(closeModal()), [
     dispatch
@@ -52,25 +49,23 @@ export default function ProfileModal() {
   );
 
   useEffect(() => {
-    if (blockers.includes(userId)) {
-      setError(true);
-    } else {
-      dispatch(getUserInfoModal(userId));
-    }
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dispatch, userId]);
+    dispatch(getUserInfoModal(userId));
+  }, [blockers, dispatch, userId]);
 
   const handleSendFriendRequest = () => {
     dispatch(sendFriendRequest(userId));
   };
 
-  const handleProfilePageLink = () => {
-    history.push(`/users/${userId}`);
-    closeAllModalsDispatcher();
+  const handleAcceptFriendRequest = () => {
+    dispatch(acceptFriendRequest(userId));
   };
 
-  if (apiError || error) {
+  // const handleProfilePageLink = () => {
+  //   history.push(`/users/${userId}`);
+  //   closeAllModalsDispatcher();
+  // };
+
+  if (apiError) {
     return (
       <div className="ProfileModal--container">
         <div className="ProfileModal--header">
@@ -128,7 +123,7 @@ export default function ProfileModal() {
                               <i className="fas fa-user-check" />
                               <p>Added</p>
                             </Button1>
-                            <FriendBlockMenu type="friend" />
+                            <PopupMenu type="friend" userId={userId} />
                           </>
                         ) : sentFriendRequests.includes(userId) ? (
                           <>
@@ -136,12 +131,12 @@ export default function ProfileModal() {
                               <i className="fas fa-user-plus" />
                               <p>Request Sent</p>
                             </Button1>
-                            <FriendBlockMenu type="sent request" />
+                            <PopupMenu type="sentRequest" userId={userId} />
                           </>
                         ) : receivedFriendRequests.includes(userId) ? (
                           <>
                             <Button1
-                              onClick={handleSendFriendRequest}
+                              onClick={handleAcceptFriendRequest}
                               className={
                                 "UserMain--button--receivedFriendRequest"
                               }
@@ -149,7 +144,7 @@ export default function ProfileModal() {
                               <i className="fas fa-user-plus" />
                               <p>Accept</p>
                             </Button1>
-                            <FriendBlockMenu type="received request" />
+                            <PopupMenu type="receivedRequest" userId={userId} />
                           </>
                         ) : blocked.includes(userId) ? (
                           <>
@@ -157,7 +152,7 @@ export default function ProfileModal() {
                               <i className="fas fa-user-lock" />
                               <p>Blocked</p>
                             </Button1>
-                            <FriendBlockMenu type="blocked" />
+                            <PopupMenu type="blocked" userId={userId} />
                           </>
                         ) : (
                           <>
@@ -165,7 +160,7 @@ export default function ProfileModal() {
                               <i className="fas fa-user-plus" />
                               <p>Add friend</p>
                             </Button1>
-                            <FriendBlockMenu />
+                            <PopupMenu type="unrelated" userId={userId} />
                           </>
                         )}
                       </>
@@ -205,12 +200,13 @@ export default function ProfileModal() {
                     <Skeleton width={200} />
                   </p>
                 ) : (
-                  <p
-                    onClick={handleProfilePageLink}
+                  <Link
+                    to={`/users/${userId}`}
+                    onClick={() => closeAllModalsDispatcher()}
                     className="ProfileModal--user--nameStats--link"
                   >
                     {`Go to ${username}'s Profile >`}
-                  </p>
+                  </Link>
                 )}
               </div>
             </div>

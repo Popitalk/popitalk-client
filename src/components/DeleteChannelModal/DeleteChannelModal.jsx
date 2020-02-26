@@ -4,7 +4,7 @@ import { deleteChannel } from "../../redux/actions";
 import "./DeleteChannelModal.css";
 
 export default function DeleteChannelModal() {
-  const { channelId } = useSelector(state => state.modalState);
+  const { channelId } = useSelector(state => state.modal);
   const dispatch = useDispatch();
   const deleteChannelDispatcher = useCallback(
     () => dispatch(deleteChannel(channelId)),

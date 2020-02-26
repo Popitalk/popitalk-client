@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import sortBy from "lodash/sortBy";
 import { useSelector, useDispatch } from "react-redux";
 import _ from "lodash";
 import Skeleton from "react-loading-skeleton";
@@ -15,23 +16,30 @@ export default function RoomMain() {
   const { channelId } = useParams();
   const scrollRef = useRef(null);
   const inputRef = useRef(null);
-  const { users, channels, defaultAvatar } = useSelector(
-    state => state.generalState
-  );
+  const { defaultAvatar } = useSelector(state => state.general);
+  const users = useSelector(state => state.users);
+  const channel = useSelector(state => state.channels[channelId]);
   const { id: ownId, username: ownUsername, avatar: ownAvatar } = useSelector(
-    state => state.userState
+    state => state.self
   );
-  const { roomApiLoading: apiLoading, roomApiError: apiError } = useSelector(
-    state => state.apiState
-  );
-  const loading = useSelector(
-    state => !state.generalState.channels[channelId]?.loaded
-  );
+  const apiLoading = useSelector(state => state.api.room.loading);
+  const apiError = useSelector(state => state.api.room.error);
+  const loading = useSelector(state => !state.channels[channelId]?.loaded);
+
+  // useEffect(() => {
+  //   if (channels[channelId] && !channels[channelId]?.loaded) {
+  //     dispatch(getChannel(channelId));
+  //   } else if (!_.isEmpty(channels) && !channels[channelId]) {
+  //     console.log("NO ROOM");
+  //   }
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [channelId]);
 
   useEffect(() => {
-    if (channels[channelId] && !channels[channelId]?.loaded) {
+    if (channel && !channel?.loaded) {
       dispatch(getChannel(channelId));
-    } else if (!_.isEmpty(channels) && !channels[channelId]) {
+    } else if (!channel) {
+      dispatch(getChannel(channelId));
       console.log("NO ROOM");
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -43,27 +51,34 @@ export default function RoomMain() {
     }
   }, [editing]);
 
-  let roomUsers = channels[channelId]?.users;
-  let roomName =
-    channels[channelId]?.type === "self"
-      ? ownUsername
-      : channels[channelId]?.type === "friend"
-      ? users[roomUsers?.filter(userId => userId !== ownId)[0]].username
-      : channels[channelId]?.name ||
-        roomUsers
-          ?.sort((a, b) =>
-            users[a].username.toLowerCase() > users[b].username.toLowerCase()
-              ? 1
-              : users[b].username.toLowerCase() >
-                users[a].username.toLowerCase()
-              ? -1
-              : 0
-          )
-          ?.map(userId => users[userId].username)
-          .join(", ");
+  let room;
+  let roomUsers;
+  let roomType;
+  let roomName;
 
-  if (roomName?.length > 25) {
-    roomName = `${roomName.slice(0, 25)}...`;
+  if (!loading) {
+    room = channel;
+    roomUsers = room.members;
+    roomType = room.type;
+
+    if (room.name) {
+      roomName = room.name;
+    } else if (roomType === "friend") {
+      roomName =
+        users[roomUsers.filter(userId => userId !== ownId)[0]].username;
+    } else if (roomType === "self") {
+      roomName = ownUsername;
+    } else if (roomType === "group") {
+      roomName = sortBy(roomUsers, userId =>
+        users[userId].username.toLowerCase()
+      )
+        .map(userId => users[userId].username)
+        .join(", ");
+    }
+
+    if (roomName.length > 25) {
+      roomName = `${roomName.slice(0, 25)}...`;
+    }
   }
 
   const handleNameChange = () => {
@@ -80,13 +95,13 @@ export default function RoomMain() {
           <Skeleton height={20} width={250} />
         ) : (
           <div>
-            {channels[channelId].type === "self" && (
+            {roomType === "self" && (
               <img
                 src={users[ownId].avatar || defaultAvatar}
                 alt={`${users[ownId].username}'s avatar`}
               />
             )}
-            {channels[channelId].type === "friend" && (
+            {roomType === "friend" && (
               <img
                 src={
                   users[roomUsers.filter(userId => userId !== ownId)].avatar ||
@@ -118,7 +133,7 @@ export default function RoomMain() {
             ) : (
               <>
                 <h3>{roomName}</h3>
-                {channels[channelId].type === "group" && (
+                {roomType === "group" && (
                   <i
                     className="fas fa-pen fa-lg"
                     role="button"
@@ -128,21 +143,20 @@ export default function RoomMain() {
                     }}
                   />
                 )}
-                {channels[channelId].type === "group" &&
-                  channels[channelId].name && (
-                    <p
-                      onClick={() => {
-                        dispatch(updateRoom(channelId, { resetName: true }));
-                      }}
-                    >
-                      Reset
-                    </p>
-                  )}
+                {roomType === "group" && roomName && (
+                  <p
+                    onClick={() => {
+                      dispatch(updateRoom(channelId, { resetName: true }));
+                    }}
+                  >
+                    Reset
+                  </p>
+                )}
               </>
             )}
           </div>
         )}
-        {!loading && channels[channelId].type === "group" && <RoomMenu />}
+        {!loading && roomType === "group" && <RoomMenu />}
       </div>
       <section ref={scrollRef}>
         {loading ? <Skeleton height={10000} /> : <VideoPanel />}

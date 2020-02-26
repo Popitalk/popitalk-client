@@ -4,9 +4,9 @@ import { closeModal, deleteAccount } from "../../redux/actions";
 import "./DeleteAccountModal.css";
 
 export default function DeleteAccountModal() {
-  const firstModal = useSelector(
-    ({ modalState }) => modalState.components.length === 1
-  );
+  const firstModal = useSelector(state => state.modal.components.length === 1);
+  const apiLoading = useSelector(state => state.api.deleteAccountApi.loading);
+  const apiError = useSelector(state => state.api.deleteAccountApi.error);
   const dispatch = useDispatch();
   const closeModalDispatcher = useCallback(() => dispatch(closeModal()), [
     dispatch

@@ -23,12 +23,12 @@ import {
   openProfileModal,
   openImageModal,
   getMessages,
-  getNewestMessages,
+  getLatestMessages,
   setInitialScroll
 } from "../../redux/actions";
 import messagesFormatter from "../../util/messagesFormatter";
 import messagesFormatter2 from "../../util/messagesFormatter2";
-import ChatMessageMenu from "../ChatMessageMenu";
+import PopupMenu from "../PopupMenu";
 import AvatarDeck from "../AvatarDeck";
 import InfiniteScroller from "../InfiniteScroller";
 import InfiniteScroller2 from "../InfiniteScroller2";
@@ -45,6 +45,12 @@ const Spinner = () => (
   </div>
 );
 
+const Spinner2 = () => (
+  <div className="ChatMessages--spinner2">
+    <div className="ChatMessages--spinner2--circle" />
+  </div>
+);
+
 const OldMessagesAlert = ({ onClick }) => (
   <div
     className="ChatMessages--oldMessagesAlert"
@@ -57,7 +63,7 @@ const OldMessagesAlert = ({ onClick }) => (
 );
 
 const selectFormattedMessages = createSelector(
-  state => state.generalState.messages,
+  state => state.messages,
   (_, channelId) => channelId,
   (messages, channelId) =>
     messages[channelId] ? messagesFormatter2(messages[channelId]) : []
@@ -69,21 +75,27 @@ export default function ChatMessages({ channelId, channelMessages }) {
   const oldScrollTop = useRef(null);
   // const [debouncedY, setDebouncedY] = useState(null);
   const previousChannelId = usePrevious(channelId);
-  const defaultAvatar = useSelector(state => state.generalState.defaultAvatar);
-  const channel = useSelector(state => state.generalState.channels[channelId]);
+  const { defaultAvatar } = useSelector(state => state.general);
+  const channel = useSelector(state => state.channels[channelId]);
+  const initialScroll = channel.chatSettings?.initialScroll ?? "bottom";
   const messages = useSelector(state =>
     selectFormattedMessages(state, channelId)
   );
-  const {
-    messagesApiLoading: apiLoading,
-    messagesApiError: apiError
-  } = useSelector(state => state.apiState);
-  const { id: ownId } = useSelector(state => state.userState);
-  const dispatch = useDispatch();
-  const openImageModalDispatcher = useCallback(
-    () => dispatch(openImageModal()),
-    [dispatch]
+  const apiLoading = useSelector(state => state.api.messages.loading);
+  const apiError = useSelector(state => state.api.messages.error);
+  const deletedMessageApiLoading = useSelector(
+    state => state.api.deleteMessage.loading
   );
+  const deletedMessageId = useSelector(
+    state => state.api.deleteMessage.args?.messageId
+  );
+
+  const { id: ownId } = useSelector(state => state.self);
+  const dispatch = useDispatch();
+  // const openImageModalDispatcher = useCallback(
+  //   () => dispatch(openImageModal()),
+  //   [dispatch]
+  // );
 
   const [, cancel] = useDebounce(
     () => {
@@ -103,9 +115,10 @@ export default function ChatMessages({ channelId, channelMessages }) {
         y: yVal
       };
 
-      dispatch(setInitialScroll(channelId, yVal));
+      // console.log("XXX", channelId, y);
+      // dispatch(setInitialScroll({ channelId: channelId, initialScroll: yVal }));
     },
-    1000,
+    5000,
     [y]
   );
 
@@ -113,10 +126,10 @@ export default function ChatMessages({ channelId, channelMessages }) {
     return () => {
       if (oldScrollTop.current) {
         dispatch(
-          setInitialScroll(
-            oldScrollTop.current.channelId,
-            oldScrollTop.current.y
-          )
+          setInitialScroll({
+            channelId: oldScrollTop.current.channelId,
+            initialScroll: oldScrollTop.current.y
+          })
         );
       }
     };
@@ -163,16 +176,14 @@ export default function ChatMessages({ channelId, channelMessages }) {
     );
   };
   const handleJumpToPresent = () => {
-    dispatch(getNewestMessages({ channelId }));
+    dispatch(getLatestMessages({ channelId }));
   };
 
   const hasMoreTop =
-    channel.firstMessageId && channel.firstMessageId !== channelMessages[0].id;
+    channel?.firstMessageId && channel.firstMessageId !== channelMessages[0].id;
   const hasMoreBottom =
-    channel.lastMessageId &&
+    channel?.lastMessageId &&
     channel.lastMessageId !== channelMessages[channelMessages.length - 1].id;
-
-  const initScroll = channel?.chatSettings?.initialScroll ?? "bottom";
 
   return (
     // <div className="ChatMessages--container" ref={scrollRef}>
@@ -184,7 +195,7 @@ export default function ChatMessages({ channelId, channelMessages }) {
         hasMoreTop={hasMoreTop}
         onBottomView={onBottomView}
         hasMoreBottom={hasMoreBottom}
-        initialScroll={initScroll}
+        initialScroll={initialScroll}
         reScroll={channelId}
         loading={apiLoading}
         loader={Spinner}
@@ -240,16 +251,24 @@ export default function ChatMessages({ channelId, channelMessages }) {
                         alt={message.upload}
                         className="ChatMessages--userImage"
                         role="button"
-                        onClick={openImageModalDispatcher}
+                        // onClick={openImageModalDispatcher}
                       />
                     )}
                     {message.content && <p>{message.content}</p>}
                   </div>
                   {(message.userId === ownId ||
-                    (channel.type === "channel" &&
-                      channel.admins?.includes(ownId))) && (
-                    <ChatMessageMenu messageId={message.id} />
-                  )}
+                    (channel?.type === "channel" &&
+                      channel.admins?.includes(ownId))) &&
+                    (deletedMessageId === message.id &&
+                    deletedMessageApiLoading ? (
+                      <Spinner2 />
+                    ) : (
+                      <PopupMenu
+                        type="message"
+                        messageId={message.id}
+                        disabled={deletedMessageApiLoading}
+                      />
+                    ))}
                 </div>
               </div>
             );
@@ -272,16 +291,24 @@ export default function ChatMessages({ channelId, channelMessages }) {
                       alt={message.upload}
                       className="ChatMessages--userImage"
                       role="button"
-                      onClick={openImageModalDispatcher}
+                      // onClick={openImageModalDispatcher}
                     />
                   )}
                   {message.content && <p>{message.content}</p>}
                 </div>
                 {(message.userId === ownId ||
-                  (channel.type === "channel" &&
-                    channel.admins?.includes(ownId))) && (
-                  <ChatMessageMenu messageId={message.id} />
-                )}
+                  (channel?.type === "channel" &&
+                    channel.admins?.includes(ownId))) &&
+                  (deletedMessageId === message.id &&
+                  deletedMessageApiLoading ? (
+                    <Spinner2 />
+                  ) : (
+                    <PopupMenu
+                      type="message"
+                      messageId={message.id}
+                      disabled={deletedMessageApiLoading}
+                    />
+                  ))}
               </div>
             );
           }

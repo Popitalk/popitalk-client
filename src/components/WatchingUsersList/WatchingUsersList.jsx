@@ -69,17 +69,16 @@ const onlineUsers = [
 
 export default function WatchingUsersList() {
   const { channelId } = useParams();
-  const { channels, groupRoomMemberLimit } = useSelector(
-    state => state.generalState
-  );
+  const { groupRoomMemberLimit } = useSelector(state => state.general);
+  const channel = useSelector(state => state.channels[channelId]);
   const dispatch = useDispatch();
   const openWatchingModalDispatcher = useCallback(
     () => dispatch(openWatchingModal()),
     [dispatch]
   );
   const openInviteModalDispatcher = useCallback(
-    () => dispatch(openInviteModal()),
-    [dispatch]
+    () => dispatch(openInviteModal(channelId)),
+    [channelId, dispatch]
   );
   const openProfileModalDispatcher = useCallback(
     () => dispatch(openProfileModal()),
@@ -107,9 +106,9 @@ export default function WatchingUsersList() {
           <p>+123</p>
         </div>
       )}
-      {(channels[channelId]?.type === "channel" ||
-        (channels[channelId]?.type === "group" &&
-          channels[channelId].users.length < groupRoomMemberLimit)) && (
+      {(channel?.type === "channel" ||
+        (channel?.type === "group" &&
+          channel.members.length < groupRoomMemberLimit)) && (
         <button
           type="button"
           className="button round"

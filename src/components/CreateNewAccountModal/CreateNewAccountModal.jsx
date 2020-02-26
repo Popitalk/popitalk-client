@@ -36,11 +36,10 @@ const months = [
   "December"
 ];
 const years = new Array(100).fill(0).map((_, index) => currentYear - index);
+
 export default function CreateNewAccountModal() {
-  const {
-    registrationApiLoading: apiLoading,
-    registrationApiError: apiError
-  } = useSelector(state => state.apiState);
+  const apiLoading = useSelector(state => state.api.registerApi.loading);
+  const apiError = useSelector(state => state.api.registerApi.error);
   const dispatch = useDispatch();
 
   return (

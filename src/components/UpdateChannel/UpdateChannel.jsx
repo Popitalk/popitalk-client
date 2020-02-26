@@ -16,11 +16,13 @@ const options = ["x1", "y2", "z2", "x3", "y3", "z3"];
 
 export default function UpdateChannel() {
   const { channelId } = useParams();
-  const { channels } = useSelector(state => state.generalState);
-  const {
-    channelCreateApiLoading: apiLoading,
-    channelCreateApiError: apiError
-  } = useSelector(state => state.apiState);
+  const channel = useSelector(state => state.channels[channelId]);
+  const apiLoading = false;
+  const apiError = false;
+  // const {
+  //   channelCreateApiLoading: apiLoading,
+  //   channelCreateApiError: apiError
+  // } = useSelector(state => state.apiState);
   const dispatch = useDispatch();
   // const [categories, setCategories] = useState(null);
   const [uploadedImage, setUploadedImage] = useState(undefined);
@@ -29,10 +31,10 @@ export default function UpdateChannel() {
     <div className="UpdateChannel--container">
       <Formik
         initialValues={{
-          name: channels[channelId].name,
-          description: channels[channelId].description,
-          private: !channels[channelId].public,
-          icon: channels[channelId].icon
+          name: channel.name,
+          description: channel.description,
+          private: !channel.public,
+          icon: channel.icon
           // categories: []
         }}
         enableReinitialize={true}
@@ -59,7 +61,8 @@ export default function UpdateChannel() {
         })}
         onSubmit={values => {
           dispatch(
-            updateChannel(channelId, {
+            updateChannel({
+              channelId,
               name: values.name,
               description: values.description,
               public: !values.private,

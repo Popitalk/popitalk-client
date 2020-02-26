@@ -1,14 +1,15 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useScroll } from "react-use";
 import { Link } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import ReactTooltip from "react-tooltip";
 import RoomIcon2 from "../RoomIcon2";
 import "./ChannelsPanel1.css";
 
 export default function ChannelsPanel1() {
-  const { channels, defaultIcon } = useSelector(state => state.generalState);
-  const { id: ownId } = useSelector(state => state.userState);
+  const { defaultIcon } = useSelector(state => state.general);
+  const channels = useSelector(state => state.channels);
+  const { id: ownId, channelIds } = useSelector(state => state.self);
   const [shadow, setShadow] = useState(false);
   const scrollRef = useRef(null);
   const { y } = useScroll(scrollRef);
@@ -21,16 +22,16 @@ export default function ChannelsPanel1() {
     }
   }, [y]);
 
-  let yourChannels = {};
-  let followingChannels = {};
+  let yourChannels = [];
+  let followingChannels = [];
 
-  Object.entries(channels)
-    .filter(([channelId, channel]) => channel.type === "channel")
-    .forEach(([channelId, channel]) => {
+  channelIds
+    .map(channelId => ({ id: channelId, ...channels[channelId] }))
+    .forEach(channel => {
       if (channel.ownerId === ownId) {
-        yourChannels = { ...yourChannels, [channelId]: channel };
+        yourChannels.push(channel);
       } else {
-        followingChannels = { ...followingChannels, [channelId]: channel };
+        followingChannels.push(channel);
       }
     });
 
@@ -52,48 +53,44 @@ export default function ChannelsPanel1() {
         <i className="fas fa-globe-americas fa-2x" />
       </div>
       <div className="ChannelsPanel1--channels" ref={scrollRef}>
-        {Object.entries(yourChannels)
-          .filter(([channelId, channel]) => channel.type === "channel")
-          .map(([channelId, channel]) => (
-            <Link
-              className="ChannelsPanel1--channel"
-              key={channelId}
-              to={`/channels/${channelId}/video`}
+        {yourChannels.map(channel => (
+          <Link
+            className="ChannelsPanel1--channel"
+            key={channel.id}
+            to={`/channels/${channel.id}/video`}
+          >
+            <div
+              data-for="ChannelsPanel1--tooltip"
+              data-tip={channel.name}
+              data-iscapture="true"
             >
-              <div
-                data-for="ChannelsPanel1--tooltip"
-                data-tip={channel.name}
-                data-iscapture="true"
-              >
-                <RoomIcon2
-                  images={[channel.icon || defaultIcon]}
-                  watching={channel.watching}
-                  type="ChannelsPanel1"
-                />
-              </div>
-            </Link>
-          ))}
-        {Object.entries(followingChannels)
-          .filter(([channelId, channel]) => channel.type === "channel")
-          .map(([channelId, channel]) => (
-            <Link
-              className="ChannelsPanel1--channel"
-              key={channelId}
-              to={`/channels/${channelId}/video`}
+              <RoomIcon2
+                images={[channel.icon || defaultIcon]}
+                watching={channel.watching}
+                type="ChannelsPanel1"
+              />
+            </div>
+          </Link>
+        ))}
+        {followingChannels.map(channel => (
+          <Link
+            className="ChannelsPanel1--channel"
+            key={channel.id}
+            to={`/channels/${channel.id}/video`}
+          >
+            <div
+              data-for="ChannelsPanel1--tooltip"
+              data-tip={channel.name}
+              data-iscapture="true"
             >
-              <div
-                data-for="ChannelsPanel1--tooltip"
-                data-tip={channel.name}
-                data-iscapture="true"
-              >
-                <RoomIcon2
-                  images={[channel.icon || defaultIcon]}
-                  watching={channel.watching}
-                  type="ChannelsPanel1"
-                />
-              </div>
-            </Link>
-          ))}
+              <RoomIcon2
+                images={[channel.icon || defaultIcon]}
+                watching={channel.watching}
+                type="ChannelsPanel1"
+              />
+            </div>
+          </Link>
+        ))}
       </div>
     </div>
   );

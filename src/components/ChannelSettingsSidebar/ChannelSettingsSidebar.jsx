@@ -1,20 +1,11 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import {
-  Link,
-  Switch,
-  Route,
-  useRouteMatch,
-  useLocation,
-  useHistory,
-  useParams
-} from "react-router-dom";
+import { Link, useRouteMatch, useLocation, useParams } from "react-router-dom";
 import "./ChannelSettingsSidebar.css";
 import { openDeleteChannelModal } from "../../redux/actions";
 
 export default function ChannelSettingsSidebar() {
   const { channelId } = useParams();
-  const history = useHistory();
   const match = useRouteMatch();
   const location = useLocation();
   const dispatch = useDispatch();

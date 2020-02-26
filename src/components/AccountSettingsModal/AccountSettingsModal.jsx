@@ -8,9 +8,7 @@ import {
 import "./AccountSettingsModal.css";
 
 export default function AccountSettingsModal() {
-  const firstModal = useSelector(
-    ({ modalState }) => modalState.components.length === 1
-  );
+  const firstModal = useSelector(state => state.modal.components.length === 1);
   const dispatch = useDispatch();
   const closeModalDispatcher = useCallback(() => dispatch(closeModal()), [
     dispatch

@@ -15,8 +15,9 @@ import "./fw.css";
 import "./App.css";
 
 export default function App() {
-  const { loggedIn, validatedSession } = useSelector(state => state.userState);
-  const { connected: wsConnected } = useSelector(state => state.wsState);
+  const validatedSession = useSelector(state => state.general.validatedSession);
+  const loggedIn = useSelector(state => state.general.loggedIn);
+  const wsConnected = useSelector(state => state.general.wsConnected);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -31,7 +32,6 @@ export default function App() {
       </section>
     );
 
-  // console.log("LOL", wsConnected);
   return (
     <section className="App--container">
       <ModalManager />

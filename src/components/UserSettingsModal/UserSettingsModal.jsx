@@ -33,8 +33,8 @@ export default function UserSettingsModal() {
     email,
     emailVerified,
     avatar
-  } = useSelector(state => state.userState);
-  const { defaultAvatar } = useSelector(state => state.generalState);
+  } = useSelector(state => state.self);
+  const { defaultAvatar } = useSelector(state => state.general);
   const [search, setSearch] = useState("");
   const dispatch = useDispatch();
   const openEditUserSettingsModalDispatcher = useCallback(

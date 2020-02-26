@@ -1,7 +1,8 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { formatDistanceToNow } from "date-fns";
-import { updateLike } from "../../redux/actions";
+import { likePost, unlikePost } from "../../redux/actions";
+import PopupMenu from "../PopupMenu";
 import "./PostCard.css";
 
 export default function PostCard({
@@ -15,19 +16,23 @@ export default function PostCard({
   comments,
   channelId
 }) {
-  const { likesApiLoading: apiLoading } = useSelector(state => state.apiState);
-
+  // const { likesApiLoading: apiLoading } = useSelector(state => state.apiState);
+  const apiLoading = false;
   const dispatch = useDispatch();
 
   const likeHandler = () => {
-    dispatch(updateLike({ channelId, postId: id, liked }));
+    if (liked) {
+      dispatch(unlikePost({ postId: id }));
+    } else {
+      dispatch(likePost({ postId: id }));
+    }
   };
 
   return (
     <div className="PostCard--container">
       <div className="PostCard--user">
         <img src={avatar} alt="avatar" />
-        <div>
+        <div className="PostCard--user--info">
           <h6>{username}</h6>
           <p>
             {formatDistanceToNow(new Date(createdAt), {
@@ -35,6 +40,7 @@ export default function PostCard({
             })}
           </p>
         </div>
+        <PopupMenu type="post" postId={id} />
       </div>
       <div className="PostCard--post">
         <p>{post}</p>

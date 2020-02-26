@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { formatDistanceToNow } from "date-fns";
-import { updateLike } from "../../redux/actions";
+import { likeComment, unlikeComment } from "../../redux/actions";
 import "./ReplyCard.css";
 
 export default function ReplyCard({
@@ -12,14 +12,19 @@ export default function ReplyCard({
   reply,
   likes,
   liked,
-  postId
+  postId,
+  comments
 }) {
-  const { likesApiLoading: apiLoading } = useSelector(state => state.apiState);
-
+  // const { likesApiLoading: apiLoading } = useSelector(state => state.apiState);
+  const apiLoading = false;
   const dispatch = useDispatch();
 
   const likeHandler = () => {
-    dispatch(updateLike({ postId, commentId: id, liked }));
+    if (liked) {
+      dispatch(unlikeComment({ commentId: id }));
+    } else {
+      dispatch(likeComment({ commentId: id }));
+    }
   };
 
   return (
@@ -45,6 +50,7 @@ export default function ReplyCard({
           </>
         )}
       </button>
+      <p>{likes}</p>
     </div>
   );
 }

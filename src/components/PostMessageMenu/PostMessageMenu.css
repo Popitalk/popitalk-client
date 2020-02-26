@@ -1,0 +1,58 @@
+.PostMessageMenu--container {
+  /* display: block; */
+  /* position: relative; */
+  /* display: flex; */
+  /* flex-direction: row; */
+  /* align-items: center; */
+  background-color: #fff;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /* position: absolute; */
+  right: 0;
+
+  /* height: 32px; */
+  /* width: 30px; */
+}
+.PostMessageMenu--container > i {
+  color: #cbcbcb;
+  cursor: pointer;
+}
+.PostMessageMenu--container > i:hover {
+  color: #868686;
+}
+.PostMessageMenu--container > i:active {
+  transform: translateY(1px);
+}
+
+.PostMessageMenu--popup {
+  background-color: #fff;
+  box-shadow: 0px 3px 6px #00000029;
+  border: 1px solid #e5e5e5;
+  border-radius: 10px;
+  /* padding: 7px 22px; */
+  padding: 6px;
+  position: absolute;
+  z-index: 10;
+  right: 0px;
+  top: 25px;
+}
+.PostMessageMenu--popup > * {
+  background-color: #fff;
+  color: #141414;
+  font-size: 18px;
+  font-weight: 400;
+  cursor: pointer;
+  width: 100%;
+  transition: filter 0.17s ease-in-out;
+  padding: 4px 10px;
+  user-select: none;
+}
+.PostMessageMenu--popup > *:hover {
+  filter: brightness(90%);
+}
+.PostMessageMenu--popup > *:active {
+  filter: brightness(80%);
+}

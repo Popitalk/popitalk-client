@@ -1,57 +1,61 @@
 import React, { useState } from "react";
 import { useLocation, matchPath } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
+import _, { orderBy } from "lodash";
 import { openProfileModal } from "../../redux/actions";
-import _ from "lodash";
+
 import "./FollowersModal.css";
 
 export default function FollowersModal() {
   const { pathname } = useLocation();
   const [search, setSearch] = useState("");
-  const { users, channels, defaultAvatar } = useSelector(
-    state => state.generalState
-  );
+  const { channelId } = useSelector(state => state.modal);
+  const { defaultAvatar } = useSelector(state => state.general);
+  const users = useSelector(state => state.users);
+
   const dispatch = useDispatch();
 
-  const channelId1 = matchPath(pathname, {
-    path: "/rooms/:channelId",
-    exact: false,
-    strict: false
-  })?.params?.channelId;
+  // const abc = matchPath(pathname, {
+  //   path: "/channels/:channelId",
+  //   exact: false,
+  //   strict: false
+  // });
+  // console.log("A", abc);
 
-  const channelId2 = matchPath(pathname, {
-    path: "/channels/:channelId",
-    exact: false,
-    strict: false
-  })?.params?.channelId;
+  // const channelId1 = matchPath(pathname, {
+  //   path: "/rooms/:channelId",
+  //   exact: false,
+  //   strict: false
+  // }).params.channelId;
 
-  const channelId = channelId1 || channelId2;
+  // const channelId2 = matchPath(pathname, {
+  //   path: "/channels/:channelId",
+  //   exact: false,
+  //   strict: false
+  // }).params.channelId;
 
-  const filteredUsers = (channels[channelId].admins
-    ? [...channels[channelId].users, ...channels[channelId].admins]
-    : channels[channelId].users
-  )
-    .filter(userId =>
-      users[userId].username.toLowerCase().includes(search.toLowerCase())
-    )
-    .sort((a, b) =>
-      users[a].username.toLowerCase() > users[b].username.toLowerCase()
-        ? 1
-        : users[b].username.toLowerCase() > users[a].username.toLowerCase()
-        ? -1
-        : 0
-    );
+  // const channelId = channelId1 || channelId2;
+
+  const channel = useSelector(state => state.channels[channelId]);
+
+  const filteredUsers = orderBy(
+    channel.members
+      .map(userId => ({
+        id: userId,
+        fullName: `${users[userId].firstName} ${users[userId].lastName}`,
+        username: users[userId].username,
+        avatar: users[userId].avatar || defaultAvatar
+      }))
+      .filter(user =>
+        user.username.toLowerCase().includes(search.toLowerCase())
+      ),
+    "username"
+  );
 
   return (
     <div className="FollowersModal--container">
       <div className="FollowersModal--header">
-        <h3>
-          {channels[channelId].admins
-            ? channels[channelId].users.length +
-              channels[channelId].admins.length
-            : channels[channelId].users.length}{" "}
-          followers
-        </h3>
+        <h3>{channel.members.length} followers</h3>
         <div className="FollowersModal--search">
           <div>
             <div>
@@ -73,21 +77,18 @@ export default function FollowersModal() {
             <h4>No users found</h4>
           </div>
         ) : (
-          filteredUsers.map(userId => (
+          filteredUsers.map(user => (
             <div
               role="button"
               className="FollowersModal--user"
-              key={userId}
-              onClick={() => dispatch(openProfileModal(userId))}
+              key={user.id}
+              onClick={() => dispatch(openProfileModal(user.id))}
             >
-              <img
-                src={users[userId].avatar || defaultAvatar}
-                alt={`${users[userId].username} avatar`}
-              />
+              <img src={user.avatar} alt={`${user.username} avatar`} />
               <div>
-                <p>{users[userId].username}</p>
+                <p>{user.username}</p>
                 <p>
-                  {users[userId].firstName} {users[userId].lastName}
+                  {user.firstName} {user.lastName}
                 </p>
               </div>
             </div>

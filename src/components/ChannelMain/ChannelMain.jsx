@@ -10,17 +10,20 @@ import {
   useParams
 } from "react-router-dom";
 import Skeleton from "react-loading-skeleton";
-import _ from "lodash";
-import { getChannel, updateRoom } from "../../redux/actions";
+// import _ from "lodash";
+import { getChannel } from "../../redux/actions";
 import VideoPanel from "../VideoPanel";
 import Forum from "../Forum";
-import UpdateChannel from "../UpdateChannel";
 import UpdateQueue from "../UpdateQueue";
 import ChannelSettings from "../ChannelSettings";
 import "./ChannelMain.css";
 
-export default function ChannelMain() {
-  const { channelId } = useParams();
+export default function ChannelMain({
+  channelId,
+  channel,
+  privateAndNotMember
+}) {
+  // const { channelId } = useParams();
   const history = useHistory();
   const match = useRouteMatch();
   const location = useLocation();
@@ -28,29 +31,26 @@ export default function ChannelMain() {
   const channelRef = useRef(null);
   const [mounted, setMounted] = useState(false);
   const scrollRef = useRef(null);
-  const { users, channels, defaultIcon, defaultAvatar } = useSelector(
-    state => state.generalState
-  );
-  const { id: ownId, username: ownUsername, avatar: ownAvatar } = useSelector(
-    state => state.userState
-  );
-  const { roomApiLoading: apiLoading, roomApiError: apiError } = useSelector(
-    state => state.apiState
-  );
-  const loading = useSelector(
-    state => !state.generalState.channels[channelId]?.loaded
-  );
+  const { defaultIcon, defaultAvatar } = useSelector(state => state.general);
+  const { id: ownId } = useSelector(state => state.self);
+  // const channel = useSelector(state => state.channels[channelId]);
+  // const users = useSelector(state => state.users);
+  // const { id: ownId, username: ownUsername, avatar: ownAvatar } = useSelector(
+  //   state => state.self
+  // );
+  const loading = useSelector(state => !state.channels[channelId]?.loaded);
 
   // const loading = !channels[channelId]?.loaded;
 
-  useEffect(() => {
-    if (channels[channelId] && !channels[channelId]?.loaded) {
-      dispatch(getChannel(channelId));
-    } else if (!_.isEmpty(channels) && !channels[channelId]) {
-      console.log("NO ROOM");
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [channelId]);
+  // useEffect(() => {
+  //   if (channel && !channel?.loaded) {
+  //     dispatch(getChannel(channelId));
+  //   } else if (!channel) {
+  //     dispatch(getChannel(channelId));
+  //     console.log("NO ROOM");
+  //   }
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [channelId]);
 
   // useEffect(() => {
   //   if (!mounted) {
@@ -76,6 +76,7 @@ export default function ChannelMain() {
 
   useLayoutEffect(() => {
     if (loading) return;
+    if (privateAndNotMember) return;
     const tab = location.pathname.replace(match.url, "").slice(1);
     // const noScroll = location.state && location.state.noScroll;
 
@@ -95,8 +96,9 @@ export default function ChannelMain() {
     } else if (tab === "settings" || tab === "queue") {
       scrollRef.current.scrollTo({ top: 0 });
     }
-  }, [loading, location, match.url]);
+  }, [loading, location, match.url, privateAndNotMember]);
 
+  const isAdmin = channel?.admins?.includes(ownId);
   // const loading = !channels[channelId]?.loaded;
 
   return (
@@ -106,11 +108,8 @@ export default function ChannelMain() {
           <Skeleton height={20} width={250} />
         ) : (
           <div>
-            <img
-              src={channels[channelId].icon || defaultIcon}
-              alt="channel icon"
-            />
-            <h2>{channels[channelId].name}</h2>
+            <img src={channel.icon || defaultIcon} alt="channel icon" />
+            <h2>{channel.name}</h2>
           </div>
         )}
 
@@ -137,28 +136,32 @@ export default function ChannelMain() {
             <h4>Channel</h4>
             <div className="ChannelMain--nav--slab" />
           </Link>
-          <Link
-            to={`${match.url}/queue`}
-            className={`${
-              location.pathname === `${match.url}/queue`
-                ? "ChannelMain--active"
-                : "ChannelMain--inActive"
-            }${loading ? " disabled-link" : ""}`}
-          >
-            <h4>Queue</h4>
-            <div className="ChannelMain--nav--slab" />
-          </Link>
-          <Link
-            to={`${match.url}/settings`}
-            className={`${
-              location.pathname.startsWith(`${match.url}/settings`)
-                ? "ChannelMain--active"
-                : "ChannelMain--inActive"
-            }${loading ? " disabled-link" : ""}`}
-          >
-            <h4>Settings</h4>
-            <div className="ChannelMain--nav--slab" />
-          </Link>
+          {isAdmin && (
+            <Link
+              to={`${match.url}/queue`}
+              className={`${
+                location.pathname === `${match.url}/queue`
+                  ? "ChannelMain--active"
+                  : "ChannelMain--inActive"
+              }${loading ? " disabled-link" : ""}`}
+            >
+              <h4>Queue</h4>
+              <div className="ChannelMain--nav--slab" />
+            </Link>
+          )}
+          {isAdmin && (
+            <Link
+              to={`${match.url}/settings`}
+              className={`${
+                location.pathname.startsWith(`${match.url}/settings`)
+                  ? "ChannelMain--active"
+                  : "ChannelMain--inActive"
+              }${loading ? " disabled-link" : ""}`}
+            >
+              <h4>Settings</h4>
+              <div className="ChannelMain--nav--slab" />
+            </Link>
+          )}
         </div>
       </div>
       <section ref={scrollRef}>
@@ -170,17 +173,26 @@ export default function ChannelMain() {
               exact
               path={[`${match.path}/video`, `${match.path}/channel`]}
             >
-              <VideoPanel />
-              <div ref={channelRef} />
-              <Forum />
+              {!privateAndNotMember && (
+                <>
+                  <VideoPanel />
+                  <div ref={channelRef} />
+                </>
+              )}
+
+              <Forum privateAndNotMember={privateAndNotMember} />
             </Route>
-            <Route path={`${match.path}/settings`}>
-              <ChannelSettings />
-              {/* <UpdateChannel /> */}
-            </Route>
-            <Route path={`${match.path}/queue`}>
-              <UpdateQueue />
-            </Route>
+
+            {!privateAndNotMember && (
+              <>
+                <Route path={`${match.path}/queue`}>
+                  <UpdateQueue />
+                </Route>
+                <Route path={`${match.path}/settings`}>
+                  <ChannelSettings />
+                </Route>
+              </>
+            )}
           </Switch>
         )}
       </section>

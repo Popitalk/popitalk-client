@@ -8,9 +8,7 @@ import "./ChatPanel.css";
 
 export default function ChatPanel() {
   const { channelId } = useParams();
-  const channelMessages = useSelector(
-    state => state.generalState.messages[channelId]
-  );
+  const channelMessages = useSelector(state => state.messages[channelId]);
   return (
     <div className="ChatPanel--container">
       <ChatHeader />

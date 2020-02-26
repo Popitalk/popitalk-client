@@ -4,10 +4,12 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 25px;
-  height: 25px;
+  /* width: 25px; */
+  /* height: 25px; */
   cursor: pointer;
   margin-left: auto;
+  user-select: none;
+  /* right: 0; */
 }
 .PopupMenu--container > i {
   color: #cbcbcb;
