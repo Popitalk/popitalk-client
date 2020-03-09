@@ -48,6 +48,18 @@ export const searchUsers = (username, page) => {
   );
 };
 
+export const searchVideos = (source, terms, page) => {
+  return axios.get(
+    `/api/videos/search?source=${source}&terms=${terms}${
+      page ? `&page=${page}` : ""
+    }`
+  );
+};
+
+export const addVideo = (channelId, videoId) => {
+  return axios.post("/api/videos/", { channelId, videoId });
+};
+
 export const deleteAccount = () => {
   return axios.delete("/api/users/");
 };

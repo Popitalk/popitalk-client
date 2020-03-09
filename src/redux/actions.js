@@ -380,6 +380,9 @@ export const unfollowChannel = createAsyncThunk(
 );
 
 export const setInitialScroll = createAction("chatSettings/setInitialScroll");
+
+export const friendOnlineWs = createAction("channels/friendOnline/ws");
+export const friendOfflineWs = createAction("channels/friendOffline/ws");
 /* -------------------------------------------------------------------------- */
 /*                                    USERS                                   */
 /* -------------------------------------------------------------------------- */
@@ -597,6 +600,37 @@ export const searchUsers = createAsyncThunk(
 export const clearUserSearch = createAction("userSearch/clear");
 
 export const searchUsersWs = createAction(searchUsers.fulfilled.type);
+
+/* -------------------------------------------------------------------------- */
+/*                                 VIDEOSEARCH                                */
+/* -------------------------------------------------------------------------- */
+
+export const searchVideos = createAsyncThunk(
+  "videoSearch/searchVideos",
+  async searchInfo => {
+    const { source, terms, page, channelId } = searchInfo;
+    const formattedTerms = terms.replace(/ /g, "+");
+
+    const response = await api.searchVideos(source, formattedTerms, page);
+
+    console.log("RESSSS", response);
+
+    return { channelId, source, terms, page, results: response.data };
+  }
+);
+
+export const addVideo = createAsyncThunk(
+  "videoSearch/addVideo",
+  async videoInfo => {
+    const { channelId, videoId } = videoInfo;
+    const response = await api.addVideo(channelId, videoId);
+
+    console.log("REVVV", response);
+
+    return response.data;
+  }
+);
+
 /* -------------------------------------------------------------------------- */
 /*                                CHANNELSEARCH                               */
 /* -------------------------------------------------------------------------- */

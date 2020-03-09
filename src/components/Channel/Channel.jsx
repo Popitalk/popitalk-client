@@ -1,14 +1,6 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import {
-  Link,
-  Switch,
-  Route,
-  useRouteMatch,
-  useLocation,
-  useHistory,
-  useParams
-} from "react-router-dom";
+import { useParams } from "react-router-dom";
 import "./Channel.css";
 import { getChannel } from "../../redux/actions";
 import ChatPanel from "../ChatPanel";
@@ -22,6 +14,8 @@ export default function Channel() {
   useEffect(() => {
     if (channel && !channel?.loaded) {
       dispatch(getChannel(channelId));
+    } else if (channel && channel?.loaded) {
+      console.log("ADD WATCHER");
     } else if (!channel) {
       dispatch(getChannel(channelId));
       console.log("NO CHANNEL");

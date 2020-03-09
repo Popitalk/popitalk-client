@@ -287,7 +287,7 @@ export default function FriendsPanel({ unexpandable = false }) {
         </button>
         {rooms.map(room => {
           const roomUsers = room.members;
-          const online = room.type === "friend" && roomUsers[0].online;
+          const online = room.type === "friend" && room.online;
           let roomName;
           let images;
 

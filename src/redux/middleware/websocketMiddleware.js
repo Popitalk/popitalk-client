@@ -28,7 +28,9 @@ import {
   addBlockerWs,
   deleteBlockerWs,
   deleteChannelWs,
-  addChannelWs
+  addChannelWs,
+  friendOnlineWs,
+  friendOfflineWs
 } from "../actions";
 
 let socket;
@@ -208,6 +210,12 @@ const websocketMiddleware = url => {
           },
           WS_UPDATE_CHANNEL() {
             store.dispatch(updateChannelWs(messagePayload));
+          },
+          WS_FRIEND_ONLINE() {
+            store.dispatch(friendOnlineWs(messagePayload));
+          },
+          WS_FRIEND_OFFLINE() {
+            store.dispatch(friendOfflineWs(messagePayload));
           }
         };
 

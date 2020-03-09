@@ -1,4 +1,7 @@
 import React, { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { useParams } from "react-router-dom";
+import { searchVideos } from "../../redux/actions";
 import VideoSources from "../VideoSources";
 import YoutubeLogo from "../../assets/youtube-logo.png";
 import VimeoLogo from "../../assets/vimeo-logo.png";
@@ -61,11 +64,23 @@ const sources = [
   }
 ];
 export default function SearchSource() {
+  const { channelId } = useParams();
   const [search, setSearch] = useState("");
   const [source, setSource] = useState("Youtube");
+  const dispatch = useDispatch();
 
   const handleSubmit = () => {
+    const text = search.trim();
+
+    if (text.length === 0) return;
     setSearch("");
+    dispatch(
+      searchVideos({
+        source: source.toLowerCase(),
+        terms: text,
+        channelId
+      })
+    );
   };
 
   return (
@@ -102,7 +117,7 @@ export default function SearchSource() {
               dsds
               <i className="fas fa-search" />
             </button> */}
-            <Button1>
+            <Button1 onClick={handleSubmit}>
               <i className="fas fa-search" />
             </Button1>
           </div>

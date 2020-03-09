@@ -44,7 +44,10 @@ import {
   acceptFriendRequest,
   setInitialScroll,
   addFriendWs,
-  inviteFriends
+  inviteFriends,
+  searchVideos,
+  friendOnlineWs,
+  friendOfflineWs
 } from "../actions";
 // import { inviteFriends } from "../../helpers/api";
 
@@ -60,6 +63,13 @@ const R_initChannels = (state, { payload }) => {
         chatSettings: {
           capacity: 50,
           initialScroll: null
+        },
+        videoSearch: {
+          source: "youtube",
+          terms: "",
+          results: [],
+          page: 1,
+          searched: false
         }
       };
     });
@@ -80,6 +90,13 @@ const R_addChannel = (state, { payload }) => {
     chatSettings: {
       capacity: 50,
       initialScroll: null
+    },
+    videoSearch: {
+      source: "youtube",
+      terms: "",
+      results: [],
+      page: 1,
+      searched: false
     }
   };
 };
@@ -206,6 +223,27 @@ const R_updateChannelInitialScroll = (state, { payload }) => {
   }
 };
 
+const R_updateSearchedVideos = (state, { payload }) => {
+  state[payload.channelId].videoSearch = {
+    source: payload.source,
+    terms: payload.terms,
+    results: [
+      ...state[payload.channelId].videoSearch.results,
+      ...payload.results
+    ],
+    page: payload.page ? payload.page : 1,
+    searched: true
+  };
+};
+
+const R_updateFriendRoomToOnline = (state, { payload }) => {
+  state[payload.channelId].online = true;
+};
+
+const R_updateFriendRoomToOffline = (state, { payload }) => {
+  state[payload.channelId].online = false;
+};
+
 const R_resetState = () => initialState;
 
 // See what the server returns when inviting friends
@@ -257,6 +295,9 @@ export default createReducer(initialState, {
   [deletePost.fulfilled]: R_deletedPostUpdate,
   [deletePostWs]: R_deletedPostUpdate,
   [setInitialScroll]: R_updateChannelInitialScroll,
+  [searchVideos.fulfilled]: R_updateSearchedVideos,
+  [friendOnlineWs]: R_updateFriendRoomToOnline,
+  [friendOfflineWs]: R_updateFriendRoomToOffline,
   [logout.fulfilled]: R_resetState,
   [deleteAccount.fulfilled]: R_resetState
 });
