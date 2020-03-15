@@ -74,16 +74,20 @@ export default function FriendsPanel({ unexpandable = false }) {
     room => new Date(room.lastMessageAt)
   ).reverse();
 
-  rooms = rooms.filter(room =>
-    room.members
-      .map(memberId => users[memberId].username)
-      .some(member => member.toLowerCase().includes(search.toLowerCase()))
-  );
+  rooms = rooms.filter(room => {
+    let roomMembers = room.members.map(memberId => users[memberId].username);
+    if (room.type !== "self") {
+      roomMembers = roomMembers.filter(username => username !== ownUsername);
+    }
+    return roomMembers.some(member =>
+      member.toLowerCase().includes(search.toLowerCase())
+    );
+  });
 
   // useEffect(() => {
-  //   console.log("MODAL MODAL", modalComponent);
+  //   console.log("MODAL", modalComponent);
   //   // if (modalComponent.length !== 0) {
-  //   // console.log("SETTED TO NOT COLLAPSE");
+  //   // console.log("SET TO NOT COLLAPSE");
   //   setDontCollapse(true);
   //   // }
   // }, [modalComponent]);
@@ -93,7 +97,6 @@ export default function FriendsPanel({ unexpandable = false }) {
   // FriendsPanel.handleClickOutside = () => {
   // if (!unexpandable) {
   // setTimeout(() => {
-  //   console.log("DONT OR NOT", dontCollapse, modalComponent);
   //   if (dontCollapse) {
   //     setDontCollapse(false);
   //   } else {
@@ -108,14 +111,6 @@ export default function FriendsPanel({ unexpandable = false }) {
   // setExpanded(false);
   // }
   // };
-
-  const handleSubmit = () => {
-    setSearch("");
-  };
-
-  const handleCreate = () => {
-    console.log("CREATING ROOM");
-  };
 
   const handleSearchSelect = () => {
     if (!expanded && !unexpandable) {
