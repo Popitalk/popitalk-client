@@ -24,6 +24,7 @@ export default function Posts() {
   const { defaultAvatar } = useSelector(state => state.general);
   const channel = useSelector(state => state.channels[channelId]);
   const posts = useSelector(state => state.posts[channelId]);
+  const { id: ownId } = useSelector(state => state.self);
   const comments = useSelector(state => state.comments);
   const postsApiLoading = false;
   const commentsApiLoading = false;
@@ -41,6 +42,8 @@ export default function Posts() {
   const onBottomView = () => {
     dispatch(getPosts(channelId));
   };
+
+  const isAdmin = channel?.admins?.includes(ownId);
 
   return (
     <InfiniteScroller
@@ -97,9 +100,11 @@ export default function Posts() {
               ))}
             </div>
           )}
-          <div className="Posts--replyDraft">
-            <CreateReply postId={post.id} />
-          </div>
+          {(isAdmin || post.selfCommentCount < 5) && (
+            <div className="Posts--replyDraft">
+              <CreateReply postId={post.id} />
+            </div>
+          )}
         </div>
       ))}
     </InfiniteScroller>

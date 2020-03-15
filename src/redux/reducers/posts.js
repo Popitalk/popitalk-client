@@ -138,7 +138,8 @@ const R_addedCommentUpdate = (state, { payload }) => {
     }
 
     state[payload.channelId][indexOfPost].lastCommentId = payload.id;
-    state[payload.channelId][indexOfPost].canComment = payload.canComment;
+    state[payload.channelId][indexOfPost].selfCommentCount =
+      payload.selfCommentCount;
 
     state[payload.channelId][indexOfPost].commentCount =
       Number(state[payload.channelId][indexOfPost].commentCount) + 1;
@@ -154,7 +155,8 @@ const R_deletedCommentUpdate = (state, { payload }) => {
     state[payload.channelId][indexOfPost].firstCommentId =
       payload.firstCommentId;
     state[payload.channelId][indexOfPost].lastCommentId = payload.lastCommentId;
-    state[payload.channelId][indexOfPost].canComment = payload.canComment;
+    state[payload.channelId][indexOfPost].selfCommentCount =
+      payload.selfCommentCount;
   }
 };
 
