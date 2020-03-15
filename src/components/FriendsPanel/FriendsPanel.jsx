@@ -64,13 +64,21 @@ export default function FriendsPanel({ unexpandable = false }) {
 
   const hiddenRequests = [...friends, ...sentFriendRequests];
 
-  const rooms = sortBy(
+  let rooms;
+
+  rooms = sortBy(
     roomIds.map(roomId => ({
       id: roomId,
       ...channels[roomId]
     })),
     room => new Date(room.lastMessageAt)
   ).reverse();
+
+  rooms = rooms.filter(room =>
+    room.members
+      .map(memberId => users[memberId].username)
+      .some(member => member.toLowerCase().includes(search.toLowerCase()))
+  );
 
   // useEffect(() => {
   //   console.log("MODAL MODAL", modalComponent);
