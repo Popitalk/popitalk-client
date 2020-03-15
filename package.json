@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
+    "start": "react-app-rewired start",
+    "build": "react-app-rewired build",
+    "test": "react-app-rewired test",
     "eject": "react-scripts eject",
     "prettier": "prettier \"./src/**/*.+(js|jsx|css|json|md|mdx)\"",
     "unprettified": "npm run prettier -- --list-different",
@@ -66,6 +66,8 @@
   "devDependencies": {
     "@types/jest": "^24.0.23",
     "@types/react": "^16.9.16",
+    "customize-cra": "^0.9.1",
+    "customize-cra-react-refresh": "^1.0.1",
     "eslint-config-prettier": "^6.7.0",
     "eslint-config-react": "^1.1.7",
     "eslint-plugin-eslint-comments": "^3.1.2",
@@ -78,7 +80,8 @@
     "husky": "^3.1.0",
     "lint-staged": "^9.5.0",
     "npm-run-all": "^4.1.5",
-    "prettier": "^1.19.1"
+    "prettier": "^1.19.1",
+    "react-app-rewired": "^2.1.5"
   },
   "browserslist": {
     "production": [
