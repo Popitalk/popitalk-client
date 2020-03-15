@@ -99,19 +99,19 @@ export const updateUser = createAsyncThunk(
 
       const formData = new FormData();
 
-      if (updateInfo.firstName !== firstName) {
+      if (updateInfo.firstName && updateInfo.firstName !== firstName) {
         formData.append("firstName", updateInfo.firstName);
       }
-      if (updateInfo.lastName !== lastName) {
+      if (updateInfo.lastName && updateInfo.lastName !== lastName) {
         formData.append("lastName", updateInfo.lastName);
       }
-      if (updateInfo.dateOfBirth !== dateOfBirth) {
+      if (updateInfo.dateOfBirth && updateInfo.dateOfBirth !== dateOfBirth) {
         formData.append("dateOfBirth", updateInfo.dateOfBirth);
       }
-      if (updateInfo.email !== email) {
+      if (updateInfo.email && updateInfo.email !== email) {
         formData.append("email", updateInfo.email);
       }
-      if (updateInfo.password) {
+      if (updateInfo.password && updateInfo.password) {
         formData.append("password", updateInfo.password);
       }
       if (updateInfo.newPassword) {
