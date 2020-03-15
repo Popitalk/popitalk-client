@@ -85,6 +85,7 @@ const R_addChannel = (state, { payload }) => {
   let { channel } = payload;
 
   state[channelId] = {
+    ...state[channelId],
     ...channel,
     loaded: true,
     chatSettings: {
