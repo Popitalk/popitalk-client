@@ -326,9 +326,14 @@ export default function FriendsPanel({ unexpandable = false }) {
           if (roomName.length > 25) {
             roomName = `${roomName.slice(0, 25)}...`;
           }
+
+          const lastMessageUsername =
+            room.lastMessageUsername && room.lastMessageUsername === ownUsername
+              ? "You"
+              : room.lastMessageUsername;
           let roomMessage =
             room.lastMessageId &&
-            `${room.lastMessageUsername}: ${room.lastMessageContent}`;
+            `${lastMessageUsername}: ${room.lastMessageContent}`;
 
           if (roomMessage && roomMessage.length > 25) {
             roomMessage = `${roomMessage.slice(0, 25)}...`;

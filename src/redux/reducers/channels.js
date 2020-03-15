@@ -116,6 +116,8 @@ const R_updateLastMessageInfo = (state, { payload }) => {
   }
   state[payload.channelId].lastMessageId = payload.id;
   state[payload.channelId].lastMessageAt = payload.createdAt;
+  state[payload.channelId].lastMessageUsername = payload.author.username;
+  state[payload.channelId].lastMessageContent = payload.content;
   state[payload.channelId].lastMessagesUpdateByWebsockets = true;
   state[payload.channelId].initialScroll = null;
 };
@@ -125,6 +127,8 @@ const R_updateLastMessageInfoWs = (state, { payload }) => {
   }
   state[payload.channelId].lastMessageId = payload.id;
   state[payload.channelId].lastMessageAt = payload.createdAt;
+  state[payload.channelId].lastMessageUsername = payload.author.username;
+  state[payload.channelId].lastMessageContent = payload.content;
   state[payload.channelId].lastMessagesUpdateByWebsockets = true;
   state[payload.channelId].initialScroll = null;
 };
