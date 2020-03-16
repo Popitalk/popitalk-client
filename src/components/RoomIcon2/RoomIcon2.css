@@ -58,6 +58,20 @@
   background: linear-gradient(180deg, #c330fc 0%, #00ffff 100%);
 }
 
+.RoomIcon2--notifications {
+  position: absolute;
+  background-color: #FF0850;
+  color: #fff;
+  width: 20px;
+  height: 20px;
+  border: 1px solid #FF0850;
+  padding-left: 4px;
+  top: 4px;
+  left: 2px;
+  border-radius: 50%;
+  box-shadow: 0px 3px 6px #00000029;
+}
+
 .RoomIcon2--online {
   position: absolute;
   background-color: #07ff23;
