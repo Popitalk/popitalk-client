@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
+import classNames from "classnames";
 import sortBy from "lodash/sortBy";
 import { useSelector, useDispatch } from "react-redux";
 import { useScroll } from "react-use";
@@ -339,6 +340,12 @@ export default function FriendsPanel({ unexpandable = false }) {
             roomMessage = `${roomMessage.slice(0, 25)}...`;
           }
 
+          const roomMessageClass = classNames({
+            "FriendsPanel--nameAndLastMessageSent": !room.lastMessageReceivedByServer,
+            "FriendsPanel--nameAndLastMessageReceived":
+              room.lastMessageReceivedByServer
+          });
+
           return (
             <Link
               className={`FriendsPanel--room${
@@ -354,7 +361,7 @@ export default function FriendsPanel({ unexpandable = false }) {
             >
               <div className="FriendsPanel--nameAndMessage">
                 <p>{roomName}</p>
-                <p>{roomMessage}</p>
+                <p className={roomMessageClass}>{roomMessage}</p>
               </div>
               <RoomIcon2
                 images={images}
