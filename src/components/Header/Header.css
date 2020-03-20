@@ -3,7 +3,7 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  padding: 0px 30px;
+  padding: 0px 32px;
   height: 70px;
   /* height: 95px; */
   position: fixed;
@@ -16,7 +16,7 @@
 .Header--landingPage {
   position: absolute;
   height: 110px;
-  padding: 0px 30px 0 200px;
+  padding: 0px 96px 0 96px;
 }
 
 .Header--login {
@@ -24,29 +24,33 @@
   grid-template-areas:
     "username   password  login"
     ".          forgot    .    ";
-  grid-gap: 8px;
+  grid-gap: 4px;
 }
 
 .Header--login > div > p {
-  font-size: 16px;
+  font-size: 18px;
   font-weight: bold;
   color: #fff;
-  text-shadow: 0px 3px 6px #00000029;
-  margin-bottom: 8px;
+  text-shadow: 0px 1px 4px #00000047;
+  margin-bottom: 4px;
   user-select: none;
 }
 .Header--login > .Header--login--error > p {
   color: red;
+  text-shadow: 0px 1px 4px #00000000;
 }
 
 .Header--login > div > input {
   padding: 8px 12px;
-  box-shadow: 0px 3px 6px #00000029;
+  box-shadow: 0px 1px 4px #00000047;
+  margin-right: 4px;
   outline: none;
   border: thin solid transparent;
-  border-radius: 10px;
+  border-color: #D1D1D1;
+  border-radius: 15px;
   color: #202124;
-  font-size: 16px;
+  font-size: 18px;
+  width: 245px;
 }
 
 .Header--login > .Header--login--error > input {
@@ -68,9 +72,9 @@
 .Header--login > :nth-child(3) {
   grid-area: forgot;
   color: var(--color-text-white);
-  font-weight: bold;
+  font-weight: regular;
   opacity: 0.5;
-  margin-left: 12px;
+  margin-left: 0px;
   cursor: pointer;
 }
 
@@ -82,7 +86,6 @@
 .Header--login > :nth-child(4) {
   grid-area: login;
   align-self: end;
-  margin-left: 8px;
   height: 37px;
 }
 
@@ -99,11 +102,11 @@
 
 .Header--logo > img {
   margin-right: 10px;
-  height: 54px;
-  width: 54px;
-  box-shadow: 0px 3px 6px #00000029;
+  height: 56px;
+  width: 56px;
+  box-shadow: 0px 1px 4px #00000029;
   border-radius: 50%;
-  transition: transform 0.1s ease-in-out;
+  transition: transform 0.05s ease-in-out;
 }
 .Header--logo > img:hover {
   transform: scale(1.1);
@@ -118,11 +121,11 @@
 .Header--logo > h1 {
   font-size: 26px;
   color: var(--color-text-white);
-  text-shadow: 0px 3px 6px #00000029;
+  text-shadow: 0px 1px 4px #00000029;
 }
 
 .Header--landingPage > .Header--logo > h1 {
-  font-size: 35px;
+  font-size: 34px;
 }
 
 .Header--user {
@@ -133,7 +136,7 @@
   padding: 5px 0;
 }
 .Header--user > *:not(:last-child) {
-  margin-right: 50px;
+  margin-right: 32px;
 }
 
 .Header--container > .Input3--container {
@@ -142,12 +145,12 @@
 
 .Header--community > i {
   color: white;
-  text-shadow: 0px 3px 6px #00000029;
+  text-shadow: 0px 1px 4spx #00000029;
   cursor: pointer;
 }
 
 .Header--community > i:hover {
-  filter: brightness(90%);
+  filter: brightness(95%);
 }
 
 .Header--community > i:active {

@@ -39,7 +39,7 @@ export default function ChannelsPanel2() {
       <div className="ChannelsPanel2--main">
         {yourChannels.length !== 0 && (
           <div className="ChannelsPanel2--channels">
-            <h3>Your Channels</h3>
+            {/* <h3>Your Channels</h3> */}
             <div className="ChannelList--container">
               {yourChannels.map(channel => (
                 <div

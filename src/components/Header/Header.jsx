@@ -57,7 +57,7 @@ export default function Header() {
     >
       <Link to="/channels/following" className="Header--logo">
         <img src={Logo} alt="logo" />
-        <h1>Playnows</h1>
+        {/* <h1>Playnows</h1> */}
       </Link>
       {!loggedIn && (
         <div className="Header--login">

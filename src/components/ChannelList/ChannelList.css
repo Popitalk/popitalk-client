@@ -6,11 +6,11 @@
 
 .ChannelList--active,
 .ChannelList--inActive {
-  height: 80px;
+  height: 84px;
   display: flex;
   flex-direction: row;
   align-items: center;
-  margin: 0 14px 0 5px;
+  margin: 0 16px 0 0;
 }
 
 .ChannelList--channel {
@@ -19,18 +19,18 @@
   flex-direction: row;
   align-items: center;
   height: 100%;
-  padding: 12px 25px;
+  padding: 12px 0px;
   cursor: pointer;
-  background-color: #fff;
+  background-color: #F2F2F2;
 
   position: relative;
 
   cursor: pointer;
 
-  background-color: #fff;
+  background-color: #F2F2F2;
   border-radius: 20px;
-  padding: 10px 9px;
-  transition: padding 0.17s ease-in-out;
+  padding: 12px 0px;
+  transition: padding 0.05s ease-in-out;
 
   text-decoration: none;
   color: inherit;
@@ -58,15 +58,15 @@
   opacity: 0;
   background-color: #009dff;
   border-radius: 6px;
-  transition: height 0.12s ease-in-out, opacity 0.1s ease-in-out;
+  transition: height 0.05s ease-in-out, opacity 0.05s ease-in-out;
   margin-right: 8px;
   animation: ChannelList--slabExpand 0.27s ease-in-out;
 }
 
 .ChannelList--active > .ChannelList--channel {
   /* filter: brightness(90%); */
-  background-color: #f0f0f0;
-  padding-left: 40px;
+  background-color: #E2E2E2;
+  padding-left: 16px;
   pointer-events: none;
 }
 
