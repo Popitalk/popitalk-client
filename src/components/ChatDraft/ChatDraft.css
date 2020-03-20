@@ -19,7 +19,7 @@
 .ChatDraft--textarea > textarea {
   padding: 12px;
   outline: none;
-  background-color: #F2F2F2;
+  background-color: #f2f2f2;
   color: #a5a5a5;
   color: #000000;
   border: 1px solid transparent;
@@ -31,14 +31,14 @@
 }
 
 .ChatDraft--textarea > *:first-child {
-  background-color: #F2F2F2;
+  background-color: #f2f2f2;
   color: #009dff;
   border-top-right-radius: 0 !important;
   border-bottom-right-radius: 0 !important;
   padding: 5px 10px 5px 15px !important;
 }
 .ChatDraft--textarea > *:nth-child(3) {
-  background-color: #F2F2F2;
+  background-color: #f2f2f2;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -46,7 +46,7 @@
   padding: 0 4px;
 }
 .ChatDraft--textarea > *:nth-child(4) {
-  background-color: #F2F2F2;
+  background-color: #f2f2f2;
   color: #a5a5a5;
   border-top-left-radius: 0 !important;
   border-bottom-left-radius: 0 !important;

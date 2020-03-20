@@ -2,7 +2,7 @@
   flex-grow: 1;
   display: flex;
   flex-direction: column;
-  background-color: #F2F2F2;
+  background-color: #f2f2f2;
 }
 
 .RoomMain--container > section {
@@ -30,7 +30,7 @@
   align-items: center;
   height: 55px;
   /* border-bottom: 2px solid #ededed; */
-  background-color: #F2F2F2;
+  background-color: #f2f2f2;
   position: relative;
   z-index: 10;
 }
