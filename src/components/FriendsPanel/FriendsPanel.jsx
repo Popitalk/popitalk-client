@@ -286,7 +286,7 @@ export default function FriendsPanel({ unexpandable = false }) {
           })}
           onClick={openCreateRoomModalDispatcher}
         >
-          <p>Your private room</p>
+          <p>New Room</p>
           <i className="fas fa-plus-square fa-2x" />
         </button>
         {rooms.map(room => {

@@ -1,24 +1,26 @@
 .ChatHeader--container {
-  background-color: #ffffff;
+  background-color: #fff;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
-  border-bottom: 2px solid #ededed;
-  height: 60px;
+  /* border-bottom: 2px solid #ededed; */
+  height: 55px;
   user-select: none;
-  padding: 25px 14px 13px 14px;
+  padding: 8px 8px 0px;
 }
 
 .ChatHeader--private {
-  background-color: #ededed;
-  padding: 6px 14px;
-  border-radius: 25px;
+  background-color: #F2F2F2;
+  padding: 8px 16px;
+  border-radius: 15px;
+  box-shadow: 0px 1px 4px #00000050;
+
 }
 .ChatHeader--private > p {
   font-size: 20px;
   font-weight: bold;
-  color: #a5a5a5;
+  color: #A5A5A5;
   cursor: pointer;
 }
 .ChatHeader--private > p > span {
@@ -28,7 +30,7 @@
 }
 
 .ChatHeader--live {
-  padding: 6px 14px;
+  padding: 8px 16px;
 }
 .ChatHeader--live > p {
   font-size: 28px;

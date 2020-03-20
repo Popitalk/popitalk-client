@@ -2,10 +2,10 @@
   flex-grow: 1;
   background-color: #ffffff;
   height: 700px;
-  padding: 0 14px;
+  padding: 0 8px;
   overflow-y: auto;
   overflow-x: hidden;
-  scrollbar-color: #cbcbcb #cbcbcb;
+  scrollbar-color: #F2F2F2;
   outline: none;
   position: relative;
 }
@@ -16,17 +16,17 @@
 }
 
 .ChatMessages--container:hover::-webkit-scrollbar {
-  width: 24px;
+  width: 22px;
 }
 
 .ChatMessages--container:hover::-webkit-scrollbar-thumb {
-  box-shadow: inset 0 0 24px 24px #cbcbcb;
+  box-shadow: inset 0 0 24px 24px #D1D1D1;
   border: solid 8px transparent;
   border-radius: 50px;
 }
 
 .ChatMessages--container:hover::-webkit-scrollbar-track {
-  box-shadow: inset 0 0 24px 24px #f0eaff;
+  box-shadow: inset 0 0 24px 24px #fff;
   border: solid 8px transparent;
   border-radius: 50px;
 }
@@ -47,7 +47,7 @@
 }
 
 .ChatMessages--container:hover .ChatMessages--date {
-  margin-right: -12px;
+  margin-right: -10.5px;
 }
 
 .ChatMessages--date > h4 {
@@ -57,9 +57,9 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  padding: 12px 24px;
-  color: #888888;
-  font-size: 17px;
+  padding: 4px 20px;
+  color: #a5a5a5;
+  font-size: 18px;
   font-weight: 400;
   height: 100%;
   /* background-color: purple; */
@@ -84,11 +84,11 @@
   height: 36px;
   width: 36px;
   border-radius: 50%;
-  box-shadow: 0px 3px 6px #00000029;
+  /* box-shadow: 0px 3px 6px #00000029; */
   -webkit-user-drag: none;
   user-select: none;
   cursor: pointer;
-  transition: filter 0.17s ease-in-out;
+  transition: filter 0.05s ease-in-out;
 }
 .ChatMessages--messageGroup > img:hover {
   filter: brightness(90%);
@@ -98,20 +98,18 @@
 }
 .ChatMessages--messageGroup > .ChatMessages--messageGroup--nameDate {
   grid-area: nameDate;
-  /* font-size: 22px; */
   font-size: 18px;
-  /* font-weight: bold; */
-  font-weight: 500;
-  margin-left: 15px;
+  font-weight: 4s00;
+  margin-left: 16px;
   /* margin-left: 20px; */
   /* margin-bottom: 6px; */
   align-self: center;
 }
 .ChatMessages--messageGroup > .ChatMessages--messageGroup--nameDate > span {
-  color: #868686;
-  font-size: 13px;
-  font-weight: 500;
-  margin-left: 4px;
+  color: #A5A5A5;
+  font-size: 14px;
+  font-weight: 400;
+  margin-left: 16px;
 }
 
 .ChatMessages--messageGroup > .ChatMessages--messageGroup--edge {
@@ -120,12 +118,12 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  margin-top: 6px;
+  margin-top: 4px;
 }
 .ChatMessages--messageGroup > .ChatMessages--messageGroup--edge > div {
   background-color: #cbcbcb;
   border-radius: 10px;
-  width: 5px;
+  width: 4px;
   height: 100%;
 }
 
@@ -137,8 +135,7 @@
   grid-area: messages;
   font-size: 18px;
   font-weight: 400;
-  margin-left: 15px;
-  /* margin-left: 20px; */
+  margin-left: 16px;
   padding-top: 6px;
   padding-bottom: 6px;
 }
@@ -227,7 +224,7 @@
   height: auto;
   border-radius: 13px;
   -webkit-user-drag: none;
-  box-shadow: 0px 3px 6px #00000029;
+  box-shadow: 0px 1px 4px #00000029;
   cursor: pointer;
   transition: filter 0.17s ease-in-out;
   /* margin-left: -30px; */
@@ -309,7 +306,7 @@
 .ChatMessages--notLoaded {
   flex-grow: 1;
   /* height: 100%; */
-  background-color: #ffffff;
+  background-color: #F2F2F2;
 }
 
 .ChatMessages--firstMessage > *:first-child {
@@ -322,11 +319,11 @@
   height: 36px;
   width: 36px;
   border-radius: 50%;
-  box-shadow: 0px 3px 6px #00000029;
+  /* box-shadow: 0px 3px 6px #00000029; */
   -webkit-user-drag: none;
   user-select: none;
   cursor: pointer;
-  transition: filter 0.17s ease-in-out;
+  transition: filter 0.05s ease-in-out;
   object-fit: cover;
 }
 .ChatMessages--firstMessage > *:first-child > img:hover {
@@ -343,16 +340,16 @@
 }
 
 .ChatMessages--nameAndDate > p {
-  font-size: 18px;
+  font-size: 20px;
   font-weight: 500;
-  margin-left: 15px;
+  margin-left: 20px;
   align-self: center;
 }
 .ChatMessages--nameAndDate > span {
-  color: #868686;
-  font-size: 13px;
-  font-weight: 500;
-  margin-left: 4px;
+  color: #A5A5A5;
+  font-size: 14px;
+  font-weight: 400;
+  margin-left: 16px;
 }
 
 .ChatMessages--message {
@@ -368,7 +365,7 @@
   overflow: hidden;
 }
 .ChatMessages--messageContent > p {
-  font-size: 18px;
+  font-size: 20px;
   font-weight: 400;
   overflow-wrap: break-word;
   /* word-break: break-word; */
@@ -377,10 +374,10 @@
 
 .ChatMessages--message > .ChatMessages--edge {
   /* height: auto; */
-  width: 5px;
-  background-color: #cbcbcb;
+  width: 4px;
+  background-color: #a5a5a5;
   margin-left: 16px;
-  margin-right: 30px;
+  margin-right: 20px;
 }
 
 .ChatMessages--myMessage > .ChatMessages--edge {
@@ -388,11 +385,11 @@
 }
 
 .ChatMessages--firstMessage > .ChatMessages--message {
-  margin-top: 6px;
+  margin-top: 8px;
 }
 
 .ChatMessages--lastMessage {
-  margin-bottom: 15px;
+  margin-bottom: 16px;
 }
 
 .ChatMessages--lastMessage > .ChatMessages--edge {
@@ -439,7 +436,7 @@
 }
 
 .ChatMessages--oldMessagesAlert > p {
-  font-size: 15px;
+  font-size: 16px;
   font-weight: bold;
   /* color: #fff; */
 }
