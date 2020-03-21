@@ -87,7 +87,7 @@ export default function WatchingUsersList() {
 
   return (
     <div className="WatchingUsersList--container">
-      <p>Watching now</p>
+      {/* <p>Watching now</p> */}
       {onlineUsers.slice(0, 10).map(user => (
         <img
           src={user.avatar}
