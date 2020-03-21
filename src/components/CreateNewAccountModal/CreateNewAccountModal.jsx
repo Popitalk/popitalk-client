@@ -55,7 +55,7 @@ export default function CreateNewAccountModal() {
           email: "",
           username: "",
           password: "",
-          dateOfBirth: new Date()
+          dateOfBirth: new Date("December 25, 2000 23:15:00")
         }}
         validationSchema={Yup.object({
           firstName: Yup.string()
@@ -223,17 +223,17 @@ export default function CreateNewAccountModal() {
                 />
               </div>
             </div>
+            <p>
+              By clicking Sign Up, you agree to the{" "}
+              <a href="https://google.com">Terms</a> and{" "}
+              <a href="https://google.com">Policy</a>
+            </p>
             <button type="submit" disabled={apiLoading || !isValid || !dirty}>
               {apiLoading ? <Spinner /> : "Continue"}
             </button>
           </form>
         )}
       </Formik>
-      <p>
-        By clicking Sign Up, you agree to the{" "}
-        <a href="https://google.com">Terms</a> and{" "}
-        <a href="https://google.com">Policy</a>
-      </p>
     </div>
   );
 }

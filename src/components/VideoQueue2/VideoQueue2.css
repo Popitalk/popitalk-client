@@ -34,7 +34,7 @@
   /* padding: 5px; */
   padding: 0px 12px 12px;
   width: 100%;
-  scrollbar-color: #F2F2F2 #F2F2F2;
+  scrollbar-color: #f2f2f2 #f2f2f2;
 }
 
 .VideoQueue2--queue::-webkit-scrollbar {
@@ -42,13 +42,13 @@
 }
 
 .VideoQueue2--queue::-webkit-scrollbar-thumb {
-  box-shadow: inset 0 0 24px 24px #D1D1D1;
+  box-shadow: inset 0 0 24px 24px #d1d1d1;
   border: solid 8px transparent;
   border-radius: 50px;
 }
 
 .VideoQueue2--queue::-webkit-scrollbar-track {
-  box-shadow: inset 0 0 24px 24px #F2F2F2;
+  box-shadow: inset 0 0 24px 24px #f2f2f2;
   border: solid 8px transparent;
   border-radius: 50px;
 }

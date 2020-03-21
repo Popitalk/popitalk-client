@@ -106,7 +106,7 @@ export default function Header() {
           <HeaderNotifications />
           <HeaderSettings />
           <a href="https://google.com" className="Header--community">
-            <i className="fas fa-info-circle fa-2x" />
+            <i className="far fa-question-circle fa-2x" />
           </a>
         </div>
       )}

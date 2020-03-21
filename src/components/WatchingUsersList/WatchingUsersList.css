@@ -73,14 +73,14 @@
   width: 54px; */
   padding: 8px;
   /* background-color: #ffffff; */
-  background-color: #F2F2F2;
+  background-color: #f2f2f2;
   border-radius: 15px;
   box-shadow: 0px 1px 4px #00000029;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  border: 1px solid #1DA4FE;
+  border: 1px solid #1da4fe;
   cursor: pointer;
   transition: transform 0.05s ease-in-out;
 }
@@ -95,5 +95,5 @@
 .WatchingUsersList--more > p {
   font-size: 16px;
   font-weight: bold;
-  color: #1DA4FE;
+  color: #1da4fe;
 }

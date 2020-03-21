@@ -103,17 +103,17 @@
 .FriendsPanel--searchbar > *:last-child > button {
   height: 72px;
   width: 72px;
+  border: none;
   box-shadow: 0px 1px 4px #00000029;
   background: transparent linear-gradient(68deg, #00c3ff 0%, #98e4fa 100%) 0% 0%
     no-repeat padding-box;
-  border: none;
 }
 
 .FriendsPanel--expanded .FriendsPanel--searchbar {
   display: flex;
   flex-direction: row;
   align-items: center;
-  border: thin solid transparent;
+  border: thin solid #E2E2E2;
   border-radius: 15px;
   margin: 0px 16px 0px 16px;
 }

@@ -113,7 +113,7 @@
 .RoomMain--nav > * > h4 {
   font-size: 22px;
   font-weight: bold;
-  color: #a0a0a0;
+  color: #a5a5a5;
 }
 
 .RoomMain--nav--slab {
@@ -129,8 +129,8 @@
   height: 8px;
   width: 100%;
   background-color: #009dff;
-  border-top-right-radius: 6px;
-  border-top-left-radius: 6px;
+  border-top-right-radius: 15px;
+  border-top-left-radius: 15px;
   position: absolute;
   bottom: -2px;
 }
@@ -140,8 +140,8 @@
   height: 8px;
   width: 50%;
   background-color: #009dff;
-  border-top-right-radius: 6px;
-  border-top-left-radius: 6px;
+  border-top-right-radius: 15px;
+  border-top-left-radius: 15px;
   position: absolute;
   bottom: -2px;
   animation: RoomMain--slabExpand 0.17s ease-in-out;

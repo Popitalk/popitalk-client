@@ -120,7 +120,7 @@
 }
 
 .VideoCard2--top > h4 {
-  background-color: #F2F2F2;
+  background-color: #f2f2f2;
   color: #a5a5a5;
   font-size: 18px;
   font-weight: bold;
@@ -135,8 +135,8 @@
 
 .VideoCard2--top > .VideoCard2--live {
   font-size: 18px;
-  color: #1DA4FE;
-  background-color: #F2F2F2;
+  color: #1da4fe;
+  background-color: #f2f2f2;
 }
 
 .VideoCard2--bottom {

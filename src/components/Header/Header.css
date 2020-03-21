@@ -5,7 +5,6 @@
   justify-content: space-between;
   padding: 0px 32px;
   height: 70px;
-  /* height: 95px; */
   position: fixed;
   left: 0;
   top: 0;
@@ -145,12 +144,12 @@
 
 .Header--community > i {
   color: white;
-  text-shadow: 0px 1px 4spx #00000029;
+  text-shadow: 0px 1px 4px #00000029;
   cursor: pointer;
 }
 
 .Header--community > i:hover {
-  filter: brightness(95%);
+  filter: brightness(90%);
 }
 
 .Header--community > i:active {
