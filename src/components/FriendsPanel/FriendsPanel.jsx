@@ -160,6 +160,21 @@ export default function FriendsPanel({ unexpandable = false }) {
       >
         <i className="fas fa-user-friends fa-2x" />
         <h3>Friends</h3>
+        {/* Testing */}
+        <button
+          type="button"
+          className="button lg FriendsPanel--newRoom1"
+          {...(!expanded && {
+            "data-for": "FriendsPanel--tooltip",
+            "data-tip": "Your private room",
+            "data-iscapture": true
+          })}
+          onClick={openCreateRoomModalDispatcher}
+        >
+          <p>New Room</p>
+          <i className="fas fa-plus-square fa-1x" />
+        </button>
+        {/* Test End*/}
       </div>
       <div className="FriendsPanel--rooms" ref={scrollRef}>
         <div className="FriendsPanel--searchbar">

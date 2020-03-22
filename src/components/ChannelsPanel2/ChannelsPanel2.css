@@ -6,7 +6,7 @@
   flex-direction: column;
 }
 
-.ChannelsPanel2--header {
+.ChannelsPanel2--main .ChannelsPanel2--header {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
@@ -15,17 +15,16 @@
   height: 60px;
   position: relative;
   z-index: 10;
-  /* border-bottom: 1px solid #ededed; */
+  /* margin-bottom: 16px; */
 }
 
-.ChannelsPanel2--container > .ChannelsPanel2--header > i {
-  color: #393939;
+.ChannelsPanel2--main > .ChannelsPanel2--header > i {
+  color: #000;
 }
-.ChannelsPanel2--container > .ChannelsPanel2--header > h3 {
-  color: #393939;
-  font-size: 34px;
-  font-weight: bold;
-  margin-left: 12px;
+.ChannelsPanel2--main > .ChannelsPanel2--header > h3 {
+  color: #000;
+  font-size: 36px;
+  font-weight: bold
 }
 
 .ChannelsPanel2--main {
@@ -50,7 +49,7 @@
   font-size: 22px;
   font-weight: bold;
   color: #a5a5a5;
-  padding: 0 14px;
+  padding: 0 16px;
   margin-bottom: 10px;
 }
 

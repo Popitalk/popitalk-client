@@ -1,6 +1,6 @@
 .ProfileModal--container {
   border-radius: 30px;
-  background-color: #F2F2F2;
+  background-color: #f2f2f2;
   width: 1270px;
   /* max-height: 800px; */
   max-height: calc(100vh - 70px);
@@ -21,7 +21,7 @@
   /* padding-bottom: 20px; */
   overflow-y: auto;
   overflow-x: hidden;
-  scrollbar-color: #D1D1D1 #D1D1D1;
+  scrollbar-color: #d1d1d1 #d1d1d1;
   /* margin-bottom: 100px; */
 }
 
@@ -35,7 +35,7 @@
 }
 
 .ProfileModal--profile:hover::-webkit-scrollbar-thumb {
-  box-shadow: inset 0 0 24px 24px #D1D1D1;
+  box-shadow: inset 0 0 24px 24px #d1d1d1;
   border: solid 8px transparent;
   border-radius: 50px;
 }
@@ -62,7 +62,7 @@
   justify-content: center;
   align-items: center;
   /* border-bottom: 1px solid #d0d0d0; */
-  box-shadow: 0px 1px 4px #00000029;
+  box-shadow: 0px 1px 4px #00000050;
   padding: 12px 16px;
   position: relative;
   z-index: 10;
@@ -212,7 +212,7 @@
   font-size: 18px;
   font-weight: bold;
   margin-top: 12px;
-  color: #1DA4FE;
+  color: #1da4fe;
   cursor: pointer;
   user-select: none;
 }

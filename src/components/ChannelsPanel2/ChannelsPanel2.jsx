@@ -32,11 +32,11 @@ export default function ChannelsPanel2() {
 
   return (
     <div className="ChannelsPanel2--container">
-      <div className="ChannelsPanel2--header">
-        <i className="fas fa-globe-americas fa-2x" />
-        <h3>Channels</h3>
-      </div>
       <div className="ChannelsPanel2--main">
+        <div className="ChannelsPanel2--header">
+          {/* <i className="fas fa-globe-americas fa-2x" /> */}
+          <h3>Channels</h3>
+        </div>
         {yourChannels.length !== 0 && (
           <div className="ChannelsPanel2--channels">
             {/* <h3>Your Channels</h3> */}

@@ -27,7 +27,7 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  padding: 16px 20px 8px 20px;
+  padding: 12px 20px 8px 20px;
   height: 60px;
   position: relative;
   z-index: 10;
@@ -36,7 +36,7 @@
 
 .FriendsPanel--expanded > .FriendsPanel--header {
   justify-content: flex-start;
-  padding: 16px 20px 8px 20px;
+  padding: 12px 20px 8px 20px;
 }
 
 .FriendsPanel--unexpandable > .FriendsPanel--header {
@@ -113,7 +113,7 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  border: thin solid #E2E2E2;
+  border: thin solid #e2e2e2;
   border-radius: 15px;
   margin: 0px 16px 0px 16px;
 }
@@ -198,14 +198,11 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  height: 72px;
+  height: wpx;
   width: 72px;
   min-height: 72px;
   border-radius: 50%;
-  /* background-color: #57b7ff; */
-  /* box-shadow: 0px 3px 6px #00000029; */
   box-shadow: 0px 1px 4px #00000029;
-  /* text-shadow: 0px 1px 3px #00000029; */
   background: transparent linear-gradient(68deg, #009dff 0%, #5abefc 100%) 0% 0%
     no-repeat padding-box;
   border: none;
@@ -219,8 +216,9 @@
 }
 
 .FriendsPanel--expanded .FriendsPanel--newRoom {
+  display: none;
   margin: 16px 16px 16px auto !important;
-  border-radius: 15px;
+  border-radius: 25px;
   width: 166px;
   height: 43px;
 }
@@ -228,6 +226,37 @@
 .FriendsPanel--expanded .FriendsPanel--newRoom > p {
   display: block;
 }
+
+.FriendsPanel--expanded .FriendsPanel--newRoom > p {
+  display: block;
+}
+
+/*Testing*/
+.FriendsPanel--header .FriendsPanel--newRoom1 {
+  display: none;
+}
+.FriendsPanel--expanded .FriendsPanel--header > button {
+  display: flex;
+  margin: 12px -8px 12px auto !important;
+  border-radius: 25px;
+  padding: 12px 16px;
+  background: transparent linear-gradient(255deg, #009dff 0%, #5abefc 100%) 0%
+    0% no-repeat padding-box;
+  box-shadow: 0px 1px 4px #00000029;
+  border: none;
+
+}
+.FriendsPanel--expanded .FriendsPanel--newRoom1 > p {
+  display: flex;
+  font-size: 18px;
+  font-weight: bold;
+  margin-right: 8px;
+}
+
+.FriendsPanel--container .FriendsPanel--newRoom1 > i {
+  display: flex;
+}
+/*Test end*/
 
 .FriendsPanel--room {
   cursor: pointer;
@@ -249,8 +278,8 @@
   flex-direction: row;
   align-items: center;
   background-color: #fff;
-  border-radius: 15px;
-  margin: 0 4px;
+  border-radius: 25px;
+  margin: 8px 8px 0;
   padding: 10px 16px;
 }
 
