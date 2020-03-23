@@ -2,7 +2,14 @@ import React from "react";
 import classNames from "classnames";
 import "./RoomIcon2.css";
 
-export default function RoomIcon2({ images, online, watching, type, self }) {
+export default function RoomIcon2({
+  images,
+  numNotifications,
+  online,
+  watching,
+  type,
+  self
+}) {
   const classes = classNames({
     "RoomIcon2--container": true,
     "RoomIcon2--watching": watching,
@@ -20,6 +27,9 @@ export default function RoomIcon2({ images, online, watching, type, self }) {
     return (
       <div className={classes}>
         <img src={images[0]} alt="icon" />
+        {numNotifications && (
+          <div className="RoomIcon2--notifications">{numNotifications}</div>
+        )}
         {online && <div className="RoomIcon2--online" />}
         {self && <p className="RoomIcon2--self">My room</p>}
       </div>
@@ -29,6 +39,9 @@ export default function RoomIcon2({ images, online, watching, type, self }) {
       <div className={classes}>
         <img src={images[0]} alt="icon" />
         <img src={images[1]} alt="icon" />
+        {numNotifications && (
+          <div className="RoomIcon2--notifications">{numNotifications}</div>
+        )}
         <div className="RoomIcon2--vertical" />
       </div>
     );
@@ -38,6 +51,9 @@ export default function RoomIcon2({ images, online, watching, type, self }) {
         <img src={images[0]} alt="icon" />
         <img src={images[1]} alt="icon" />
         <img src={images[2]} alt="icon" />
+        {numNotifications && (
+          <div className="RoomIcon2--notifications">{numNotifications}</div>
+        )}
         <div className="RoomIcon2--vertical" />
         <div className="RoomIcon2--half" />
       </div>
@@ -49,6 +65,9 @@ export default function RoomIcon2({ images, online, watching, type, self }) {
         <img src={images[1]} alt="icon" />
         <img src={images[2]} alt="icon" />
         <img src={images[3]} alt="icon" />
+        {numNotifications && (
+          <div className="RoomIcon2--notifications">{numNotifications}</div>
+        )}
         <div className="RoomIcon2--vertical" />
         <div className="RoomIcon2--horizontal" />
       </div>

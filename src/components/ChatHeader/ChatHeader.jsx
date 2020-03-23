@@ -21,13 +21,13 @@ export default function ChatHeader() {
       {loading ? (
         <Skeleton height={40} width={250} />
       ) : channel.public ? (
-        <div className="ChatHeader--live">
-          <p>Live Chat</p>
+        <div className="ChatHeader--private">
+          <p>{channel.name} Public Chat</p>
         </div>
       ) : (
         <div className="ChatHeader--private">
           <p onClick={openFollowersModalDispatcher}>
-            Private Chat - <span>{channel.members.length} people</span>
+            Private Chat <span>{channel.members.length} people</span>
           </p>
         </div>
       )}

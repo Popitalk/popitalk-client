@@ -110,12 +110,20 @@ const R_updateChannel = (state, { payload }) => {
     ...payload.updatedChannel
   };
 };
+
+const R_updateLastMessageInfoPending = (state, { meta }) => {
+  state[meta.arg.channelId].lastMessageReceivedByServer = false;
+};
+
 const R_updateLastMessageInfo = (state, { payload }) => {
   if (!state[payload.channelId].firstMessageId) {
     state[payload.channelId].firstMessageId = payload.id;
   }
   state[payload.channelId].lastMessageId = payload.id;
   state[payload.channelId].lastMessageAt = payload.createdAt;
+  state[payload.channelId].lastMessageUsername = payload.author.username;
+  state[payload.channelId].lastMessageContent = payload.content;
+  state[payload.channelId].lastMessageReceivedByServer = true;
   state[payload.channelId].lastMessagesUpdateByWebsockets = true;
   state[payload.channelId].initialScroll = null;
 };
@@ -125,6 +133,9 @@ const R_updateLastMessageInfoWs = (state, { payload }) => {
   }
   state[payload.channelId].lastMessageId = payload.id;
   state[payload.channelId].lastMessageAt = payload.createdAt;
+  state[payload.channelId].lastMessageUsername = payload.author.username;
+  state[payload.channelId].lastMessageContent = payload.content;
+  state[payload.channelId].lastMessageReceivedByServer = true;
   state[payload.channelId].lastMessagesUpdateByWebsockets = true;
   state[payload.channelId].initialScroll = null;
 };
@@ -285,7 +296,9 @@ export default createReducer(initialState, {
   [addBanWs]: R_addBan,
   [deleteBan.fulfilled]: R_deleteBan,
   [deleteBanWs]: R_deleteBan,
+  [addMessage.pending]: R_updateLastMessageInfoPending,
   [addMessage.fulfilled]: R_updateLastMessageInfo,
+  [addMessageWs.pending]: R_updateLastMessageInfoPending,
   [addMessageWs]: R_updateLastMessageInfoWs,
   [getMessages.fulfilled]: R_updateLastMessageUpdate,
   [getLatestMessages.fulfilled]: R_updateLastMessageUpdateLatest,

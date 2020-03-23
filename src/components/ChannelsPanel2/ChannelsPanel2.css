@@ -1,31 +1,31 @@
 .ChannelsPanel2--container {
-  background-color: #ffffff;
+  background-color: #f2f2f2;
   border-top-left-radius: 15px;
-  width: 405px;
+  width: 411px;
   display: flex;
   flex-direction: column;
+  box-shadow: 0px 25px 30px #00000029;
+
 }
 
-.ChannelsPanel2--header {
+.ChannelsPanel2--main .ChannelsPanel2--header {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
-  padding: 25px 14px 15px 14px;
+  padding: 0px 24px 16px 24px;
   height: 60px;
   position: relative;
   z-index: 10;
-  border-bottom: 2px solid #ededed;
 }
 
-.ChannelsPanel2--container > .ChannelsPanel2--header > i {
-  color: #393939;
+.ChannelsPanel2--main > .ChannelsPanel2--header > i {
+  color: #000;
 }
-.ChannelsPanel2--container > .ChannelsPanel2--header > h3 {
-  color: #393939;
-  font-size: 28px;
+.ChannelsPanel2--main > .ChannelsPanel2--header > h3 {
+  color: #000;
+  font-size: 36px;
   font-weight: bold;
-  margin-left: 12px;
 }
 
 .ChannelsPanel2--main {
@@ -34,7 +34,6 @@
   overflow-x: hidden;
   position: relative;
   padding: 16px 0 26px 0;
-  border-right: 2px solid #ededed;
 }
 
 .ChannelsPanel2--main::-webkit-scrollbar {
@@ -50,7 +49,7 @@
   font-size: 22px;
   font-weight: bold;
   color: #a5a5a5;
-  padding: 0 14px;
+  padding: 0 16px;
   margin-bottom: 10px;
 }
 
@@ -64,7 +63,7 @@
 .ChannelsPanel2--button > a {
   /* margin: 15px auto; */
   background: linear-gradient(77deg, #009dff 0%, #5abefc 100%);
-  box-shadow: 0px 1px 3px #00000029;
+  box-shadow: 0px 1px 4px #00000029;
   border-radius: 15px;
   font-size: 21px;
   border: none;
@@ -96,14 +95,13 @@
 }
 
 .ChannelsPanel2--seperator {
-  padding: 30px 42px 30px 42px;
+  padding: 30px 24px 16px;
 }
 
 .ChannelsPanel2--discover {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 0 14px;
 }
 .ChannelsPanel2--discover > *:not(:last-child) {
   margin-bottom: 25px;

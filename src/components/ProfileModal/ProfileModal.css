@@ -1,11 +1,11 @@
 .ProfileModal--container {
   border-radius: 30px;
-  background-color: #ffffff;
+  background-color: #f2f2f2;
   width: 1270px;
   /* max-height: 800px; */
   max-height: calc(100vh - 70px);
   /* height: calc(100vh - 70px); */
-  margin-top: 70px;
+  margin-top: 48px;
   /* padding-bottom: 30px; */
   display: flex;
   flex-direction: column;
@@ -21,7 +21,7 @@
   /* padding-bottom: 20px; */
   overflow-y: auto;
   overflow-x: hidden;
-  scrollbar-color: #cbcbcb #cbcbcb;
+  scrollbar-color: #d1d1d1 #d1d1d1;
   /* margin-bottom: 100px; */
 }
 
@@ -35,13 +35,13 @@
 }
 
 .ProfileModal--profile:hover::-webkit-scrollbar-thumb {
-  box-shadow: inset 0 0 24px 24px #cbcbcb;
+  box-shadow: inset 0 0 24px 24px #d1d1d1;
   border: solid 8px transparent;
   border-radius: 50px;
 }
 
 .ProfileModal--profile:hover::-webkit-scrollbar-track {
-  box-shadow: inset 0 0 24px 24px #f0eaff;
+  box-shadow: inset 0 0 24px 24px #fff;
   border: solid 8px transparent;
   border-radius: 50px;
 }
@@ -61,13 +61,14 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  border-bottom: 1px solid #d0d0d0;
-  padding: 20px 16px;
+  /* border-bottom: 1px solid #d0d0d0; */
+  box-shadow: 0px 1px 4px #00000050;
+  padding: 12px 16px;
   position: relative;
   z-index: 10;
 }
 .ProfileModal--header > h2 {
-  font-size: 30px;
+  font-size: 20px;
   font-weight: 600;
   user-select: none;
 }
@@ -84,7 +85,6 @@
   align-items: center;
   flex-grow: 1;
   position: relative;
-  /* padding-bottom: 80px; */
   padding-bottom: 60px;
   width: 100%;
   /* background-color: yellow; */
@@ -98,31 +98,26 @@
 }
 
 .ProfileModal--profile > section > * > *:not(:last-child) {
-  margin-bottom: 50px;
+  margin-bottom: 48px;
 }
 
 .ProfileModal--profile > section > * > .ProfileModal--user {
   display: flex;
   flex-direction: row;
   align-items: center;
-  /* padding: 0px 100px; */
-  /* padding: 0px 100px; */
-  padding: 0 100px;
-  /* padding: 0px 50px; */
+  padding: 0px 96px;
   margin: 100px 0;
-  margin: 60px 0 100px 0;
+  margin: 96px 0;
   margin-right: auto;
   /* background-color: black; */
 }
 .ProfileModal--user > *:first-child {
   height: 200px;
   width: 200px;
-  /* margin-right: 35px; */
-  margin-right: 100px;
+  margin-right: 48px;
   border-radius: 50%;
   -webkit-user-drag: none;
   user-select: none;
-  box-shadow: 0px 3px 6px #00000029;
   object-fit: cover;
 }
 .ProfileModal--user > .ProfileModal--user--nameStats {
@@ -131,8 +126,7 @@
   justify-content: space-between;
 }
 .ProfileModal--user--nameStats--name {
-  /* margin-bottom: 25px; */
-  margin-bottom: 35px;
+  margin-bottom: 24px;
 }
 
 .ProfileModal--user--nameStats--name > *:first-child {
@@ -140,11 +134,11 @@
   flex-direction: row;
   align-items: center;
   height: 52px;
-  margin-bottom: 10px;
+  margin-bottom: 12px;
 }
 
 .ProfileModal--user--nameStats--name > *:first-child > h3 {
-  font-size: 40px;
+  font-size: 34px;
   font-weight: 500;
   /* margin-bottom: 4px; */
 }
@@ -191,7 +185,8 @@
 
 .ProfileModal--user--nameStats--name > p {
   font-size: 20px;
-  font-weight: 500;
+  font-weight: 400;
+  color: #a5a5a5;
 }
 
 .ProfileModal--user--nameStats--stats {
@@ -200,11 +195,11 @@
 }
 .ProfileModal--user--nameStats--stats > * {
   font-size: 20px;
-  font-weight: 500;
+  font-weight: 400;
 }
 .ProfileModal--user--nameStats--stats > * {
   font-size: 20px;
-  font-weight: 500;
+  font-weight: 400;
 }
 .ProfileModal--user--nameStats--stats > *:first-child {
   margin-right: 20px;
@@ -216,8 +211,8 @@
 .ProfileModal--user--nameStats--link {
   font-size: 18px;
   font-weight: bold;
-  margin-top: 15px;
-  color: #0093ff;
+  margin-top: 12px;
+  color: #1da4fe;
   cursor: pointer;
   user-select: none;
 }
@@ -226,20 +221,19 @@
 }
 
 .ProfileModal--channels {
-  padding: 0 50px;
-  /* padding: 25px 50px; */
+  padding: 0 48px;
 }
 .ProfileModal--channels > h3 {
   font-size: 26px;
   font-weight: 600;
-  /* margin-bottom: 20px; */
-  margin-bottom: 25px;
+  margin-bottom: 32px;
 }
 
 .ProfileModal--channelsGrid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 15px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  row-gap: 48px;
 }
 
 .ProfileModal--notFound {
@@ -251,14 +245,14 @@
   align-items: center;
 }
 .ProfileModal--notFound > h3 {
-  font-size: 18px;
+  font-size: 20px;
   font-weight: bold;
   margin-bottom: 20px !important;
-  color: gray;
+  color: #a5a5a5;
 }
 .ProfileModal--notFound > h4 {
-  font-size: 18px;
+  font-size: 20px;
   font-weight: bold;
   margin-bottom: 0;
-  color: gray;
+  color: #a5a5a5;
 }

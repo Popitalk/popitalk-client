@@ -1,14 +1,12 @@
 .InviteModal--container {
   background-color: #ffffff;
-  box-shadow: 0px 3px 6px #00000053;
+  box-shadow: 0px 25px 30px #00000050;
   border-radius: 20px;
   /* min-width: 555px; */
-  width: 750px;
-  /* min-width: 750px; */
+  width: 628px;
   max-height: 720px;
   display: flex;
   flex-direction: column;
-  /* padding-bottom: 20px; */
 }
 
 .InviteModal--header {
@@ -16,31 +14,32 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  padding: 15px;
-  border-bottom: 1px solid #d0d0d0;
+  background-color: #f2f2f2;
+  box-shadow: 0px 1px 4px #00000050;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  padding: 12px 24px;
   width: 100%;
 }
 
 .InviteModal--header > h3 {
-  font-size: 26px;
+  font-size: 20px;
   font-weight: bold;
 }
 
 .InviteModal--container > h4 {
-  font-size: 26px;
-  font-weight: bold;
+  font-size: 22px;
+  font-weight: regular;
   width: 100%;
   padding: 22px 22px 0 22px;
 }
 
 .InviteModal--content {
-  padding: 48px 60px 28px 48px;
-  padding: 48px 48px 28px 48px;
-  padding: 60px 60px 28px 60px;
-  /* padding: 60px; */
+  margin-top: 2px;
+  padding: 20px 36px;
   overflow-y: auto;
   overflow-x: hidden;
-  scrollbar-color: #cbcbcb #cbcbcb;
+  scrollbar-color: #d1d1d1 #d1d1d1;
   /* margin-bottom: 100px; */
 }
 
@@ -49,7 +48,7 @@
   background: transparent;
 }
 
-.InviteModal--content:hover::-webkit-scrollbar {
+/* .InviteModal--content:hover::-webkit-scrollbar {
   width: 24px;
 }
 
@@ -67,7 +66,7 @@
 
 .InviteModal--content:hover::-webkit-scrollbar-button {
   display: none;
-}
+} */
 
 .InviteModal--content:hover {
   padding-right: 36px;
@@ -169,14 +168,14 @@
 
 .InviteModal--search > *:first-child {
   flex-grow: 1;
-  background-color: #f0f0f0;
+  background-color: #fff;
   width: 100%;
   display: flex;
   flex-direction: row;
   align-items: center;
   border-radius: 25px;
   min-height: 46px;
-  border: thin solid transparent;
+  border: thin solid #e2e2e2;
   margin-right: 15px;
   padding: 8px 12px;
 }

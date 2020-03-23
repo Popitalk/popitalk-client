@@ -2,7 +2,12 @@
   flex-grow: 1;
   display: flex;
   flex-direction: column;
-  background-color: #f4f4f4;
+  background-color: #f2f2f2;
+  box-shadow: 0px 25px 30px #00000029;
+/* Inner Shadow */
+  -moz-box-shadow:    inset 0 0 10px #00000029;
+  -webkit-box-shadow: inset 0 0 10px #00000029;
+  box-shadow:         inset 0 0 10px #00000029;
 }
 
 .RoomMain--container > section {
@@ -11,7 +16,7 @@
   overflow-x: hidden;
   position: relative;
   padding-bottom: 26px;
-  border-right: 2px solid #ededed;
+  /* border-right: 2px solid #F2F2F2; */
 }
 
 .RoomMain--container > section::-webkit-scrollbar {
@@ -28,9 +33,9 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  height: 60px;
-  border-bottom: 2px solid #ededed;
-  background-color: #ffffff;
+  height: 55px;
+  /* border-bottom: 2px solid #ededed; */
+  background-color: #f2f2f2;
   position: relative;
   z-index: 10;
 }
@@ -39,12 +44,11 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  padding: 5px 14px 5px 14px;
-  padding: 25px 14px 13px 14px;
+  padding: 8px 16px 6px 16px;
   height: 100%;
 }
 .RoomMain--header > *:first-child > *:not(:last-child) {
-  margin-right: 12px;
+  margin-right: 16px;
 }
 
 .RoomMain--header > *:first-child > img {
@@ -55,18 +59,18 @@
   user-select: none;
 }
 .RoomMain--header > *:first-child > h3 {
-  font-size: 28px;
+  font-size: 22px;
   font-weight: bold;
 }
 .RoomMain--header > *:first-child > input {
-  font-size: 28px;
+  font-size: 22px;
   font-weight: bold;
 }
 
 .RoomMain--header > *:first-child > i {
   color: #000;
   cursor: pointer;
-  transition: filter 0.17s ease-in-out;
+  transition: filter 0.05s ease-in-out;
 }
 .RoomMain--header > *:first-child > i:hover {
   /* filter: contrast(110%); */
@@ -112,9 +116,9 @@
   position: relative;
 }
 .RoomMain--nav > * > h4 {
-  font-size: 26px;
+  font-size: 22px;
   font-weight: bold;
-  color: #a0a0a0;
+  color: #a5a5a5;
 }
 
 .RoomMain--nav--slab {
@@ -130,8 +134,8 @@
   height: 8px;
   width: 100%;
   background-color: #009dff;
-  border-top-right-radius: 6px;
-  border-top-left-radius: 6px;
+  border-top-right-radius: 15px;
+  border-top-left-radius: 15px;
   position: absolute;
   bottom: -2px;
 }
@@ -141,8 +145,8 @@
   height: 8px;
   width: 50%;
   background-color: #009dff;
-  border-top-right-radius: 6px;
-  border-top-left-radius: 6px;
+  border-top-right-radius: 15px;
+  border-top-left-radius: 15px;
   position: absolute;
   bottom: -2px;
   animation: RoomMain--slabExpand 0.17s ease-in-out;

@@ -2,7 +2,7 @@
   height: 72px;
   width: 72px;
   border-radius: 50%;
-  background-color: #fff;
+  background-color: transparent;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -11,9 +11,8 @@
 }
 
 .RoomIcon2--container > img {
-  height: 66px;
-  width: 66px;
-  border: 2px solid #fff;
+  height: 72px;
+  width: 72px;
   object-fit: cover;
   position: absolute;
   border-radius: 50%;
@@ -22,28 +21,28 @@
 }
 
 .RoomIcon2--ChannelsPanel1 {
-  height: 76px;
-  width: 76px;
+  height: 72px;
+  width: 72px;
 }
 .RoomIcon2--ChannelsPanel1 > img {
-  height: 70px;
-  width: 70px;
+  height: 72px;
+  width: 72px;
 }
 .RoomIcon2--FriendsPanel {
-  height: 82px;
-  width: 82px;
+  height: 72px;
+  width: 72px;
 }
 .RoomIcon2--FriendsPanel > img {
   height: 76px;
   width: 76px;
 }
 .RoomIcon2--ChannelsPanel2 {
-  height: 45px;
-  width: 45px;
+  height: 48px;
+  width: 54px;
 }
 .RoomIcon2--ChannelsPanel2 > img {
-  height: 39px;
-  width: 39px;
+  height: 48px;
+  width: 48px;
 }
 .RoomIcon2--ChannelsPanel2w {
   height: 55px;
@@ -58,29 +57,43 @@
   background: linear-gradient(180deg, #c330fc 0%, #00ffff 100%);
 }
 
-.RoomIcon2--online {
+.RoomIcon2--notifications {
   position: absolute;
-  background-color: #07ff23;
-  width: 17px;
-  height: 17px;
-  border: 1px solid #fff;
+  background-color: #ff0850;
+  color: #fff;
+  width: 20px;
+  height: 20px;
+  border: 1px solid #ff0850;
+  padding-left: 4px;
   top: 4px;
-  right: 2px;
+  left: 2px;
   border-radius: 50%;
   box-shadow: 0px 3px 6px #00000029;
 }
 
+.RoomIcon2--online {
+  position: absolute;
+  background-color: #24e601;
+  width: 18px;
+  height: 18px;
+  border: 3px solid #fff;
+  top: 4px;
+  right: 2px;
+  border-radius: 50%;
+  /* box-shadow: 0px 3px 6px #00000029; */
+}
+
 .RoomIcon2--self {
   position: absolute;
-  width: 57px;
-  height: 25px;
-  bottom: 0px;
+  width: 58px;
+  height: 26px;
+  bottom: -8px;
   box-shadow: 0px 3px 6px #00000029;
   background: transparent linear-gradient(180deg, #009dff 0%, #5abefc 100%) 0%
     0% no-repeat padding-box;
   border-radius: 13px;
   color: #fff;
-  font-size: 11px;
+  font-size: 12px;
   font-weight: bold;
   display: flex;
   flex-direction: row;
@@ -92,8 +105,8 @@
   position: absolute;
   height: 66px;
   width: 2px;
-  left: 35px;
-  background-color: #fff;
+  left: 38px;
+  /* background-color: #fff; */
 }
 
 .RoomIcon2--FriendsPanel > .RoomIcon2--vertical {
@@ -109,7 +122,7 @@
 .RoomIcon2--half {
   position: absolute;
   width: 33px;
-  height: 2px;
+  height: 4px;
   top: 35px;
   left: 35px;
   background-color: #fff;
@@ -130,7 +143,7 @@
 .RoomIcon2--horizontal {
   position: absolute;
   width: 66px;
-  height: 2px;
+  height: 4px;
   top: 35px;
   background-color: #fff;
 }

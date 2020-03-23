@@ -155,7 +155,7 @@ export default function VideoQueue2({ changeQueue }) {
                             className="VideoQueue2--editQueue"
                           >
                             <div className="VideoQueue2--editQueue--top">
-                              <p>{roomPage ? "Add video" : "Edit queue"}</p>
+                              {/* <p>{roomPage ? "Add video" : "Edit queue"}</p> */}
                             </div>
                             <div className="VideoQueue2--editQueue--bottom">
                               <h6>Some Video</h6>
@@ -191,7 +191,7 @@ export default function VideoQueue2({ changeQueue }) {
                         >
                           <div className="VideoCard2--top">
                             {index === 0 ? (
-                              <h4 className="VideoCard2--live">Live</h4>
+                              <h4 className="VideoCard2--live">Playing</h4>
                             ) : (
                               <h4>In 12min</h4>
                             )}

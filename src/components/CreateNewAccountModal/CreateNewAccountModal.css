@@ -1,13 +1,13 @@
 .CreateNewAccountModal--container {
   background-color: #ffffff;
-  box-shadow: 0px 3px 6px #00000053;
+  box-shadow: 0px 25px 30px #00000053;
   border-radius: 20px;
-  min-width: 555px;
-  /* height: 720px; */
+  min-width: 576px;
+  /* height: 760px; */
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 50px 45px;
+  padding: 48px;
 }
 
 .CreateNewAccountModal--header {
@@ -21,13 +21,13 @@
 }
 
 .CreateNewAccountModal--header > h3 {
-  font-size: 50px;
+  font-size: 34px;
   font-weight: bold;
-  margin-bottom: 15px;
+  margin-bottom: 8px;
 }
 
 .CreateNewAccountModal--header > h4 {
-  font-size: 22px;
+  font-size: 20px;
   font-weight: 400;
 }
 
@@ -35,30 +35,29 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 35px 22px 22px 22px;
+  padding: 32px 0 0;
 }
 .CreateNewAccountModal--form > .Input7--container {
   width: 100%;
   max-width: 100%;
 }
 .CreateNewAccountModal--form > *:not(:last-child) {
-  margin-bottom: 15px;
+  margin-bottom: 16px;
 }
 .CreateNewAccountModal--form > button {
-  margin-top: 25px;
+  margin-top: 8px;
   color: white;
-  font-size: 22px;
+  font-size: 20px;
   font-weight: bold;
-  width: 165px;
-  height: 60px;
+  width: 156px;
+  height: 54px;
   background: transparent linear-gradient(253deg, #009dff 0%, #5abefc 100%) 0%
     0% no-repeat padding-box;
   border: none;
   outline: none;
-  box-shadow: 0px 3px 6px #00000029;
-  /* text-shadow: 0px 3px 6px #00000029; */
-  border-radius: 28px;
-  transition: filter 0.17s ease-in-out;
+  box-shadow: 0px 1px 4px #00000029;
+  border-radius: 15px;
+  transition: filter 0.05s ease-in-out;
   cursor: pointer;
   position: relative;
 }
@@ -72,7 +71,8 @@
 .CreateNewAccountModal--form > button:disabled {
   box-shadow: none;
   background: none;
-  background-color: #d0d0d0;
+  background-color: #f2f2f2;
+  color: #a5a5a5;
   cursor: not-allowed;
 }
 .CreateNewAccountModal--form > button:disabled:hover {
@@ -86,7 +86,7 @@
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   width: 100%;
-  column-gap: 12px;
+  column-gap: 8px;
 }
 
 .CreateNewAccountModal--form--row > *:first-child {
@@ -94,8 +94,8 @@
 }
 
 .CreateNewAccountModal--container > p {
-  font-size: 13px;
-  font-weight: 500;
+  font-size: 14px;
+  font-weight: 400;
 }
 
 .CreateNewAccountModal--form--row2 {
@@ -103,12 +103,13 @@
 }
 .CreateNewAccountModal--form--row2 > *:first-child {
   font-size: 18px;
-  margin: 0 0 6px 8px;
+  margin: 0 0 4px 8px;
 }
 .CreateNewAccountModal--form--row2 > *:first-child > span {
   color: red;
   font-size: 12px;
   margin-left: 8px;
+  font-weight: 400;
 }
 
 .CreateNewAccountModal--form--row2 > *:last-child {
@@ -116,6 +117,7 @@
   grid-template-columns: repeat(3, 1fr);
   width: 100%;
   column-gap: 12px;
+  margin-bottom: 24px;
 }
 
 .CreateNewAccountModal--container .Select--select__menu-list {

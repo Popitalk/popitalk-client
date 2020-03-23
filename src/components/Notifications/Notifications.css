@@ -1,10 +1,10 @@
 .Notifications--container {
   background-color: #ffffff;
-  min-width: 420px;
+  min-width: 512px;
   max-height: 528px;
   display: flex;
   flex-direction: column;
-  box-shadow: 0px 0px 6px #00000080;
+  box-shadow: 0px 25px 30px #00000050;
   border-radius: 20px;
   display: flex;
   flex-direction: column;
@@ -17,21 +17,24 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  padding: 12px 16px;
-  border-bottom: 1px solid #d0d0d0;
+  padding: 8px 16px;
+  background-color: #f2f2f2;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  box-shadow: 0px 1px 4px #00000050;
   position: relative;
 }
 
 .Notifications--header > h3 {
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 500;
 }
 .Notifications--header > p {
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 500;
   color: #0593fc;
   position: absolute;
-  right: 16px;
+  right: 24px;
   cursor: pointer;
   user-select: none;
 }
@@ -41,7 +44,7 @@
 }
 
 .Notifications--notifications {
-  padding: 20px 15px 20px 15px;
+  padding: 12px 24px;
   overflow-y: auto;
 }
 
@@ -54,14 +57,14 @@
 }
 
 .Notifications--notifications > h4 {
-  font-size: 16px;
-  font-weight: 500;
-  color: #a0a0a0;
+  font-size: 14px;
+  font-weight: 400;
+  color: #a5a5a5;
   margin-bottom: 8px;
 }
 
 .Notifications--requests {
-  margin-bottom: 20px;
+  margin-bottom: 24px;
 }
 
 .Notifications--requests > * {
@@ -69,9 +72,9 @@
   flex-direction: row;
   align-items: center;
   background-color: #ecf0f2;
-  box-shadow: 0px 1px 3px #00000033;
-  border-radius: 18px;
-  padding: 10px 15px;
+  box-shadow: 0px 1px 4px #00000050;
+  border-radius: 15px;
+  padding: 12px;
 }
 
 .Notifications--requests > *:not(:last-child) {
@@ -79,14 +82,14 @@
 }
 
 .Notifications--requests > * > *:not(:last-child) {
-  margin-right: 15px;
+  margin-right: 12px;
 }
 
 .Notifications--requests > * > *:first-child {
   margin-right: auto;
   background-color: #e51d1d;
-  height: 30px !important;
-  width: 30px !important;
+  height: 28px !important;
+  width: 28px !important;
   font-size: 12px;
 }
 

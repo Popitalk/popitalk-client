@@ -4,7 +4,7 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  padding: 10px 14px;
+  padding: 8px 12px;
   position: relative;
 }
 
@@ -17,13 +17,13 @@
 }
 
 .ChatDraft--textarea > textarea {
-  padding: 14px 12px;
+  padding: 12px;
   outline: none;
-  background-color: #ededed;
-  color: #797575;
-  color: #202124;
+  background-color: #f2f2f2;
+  color: #a5a5a5;
+  color: #000000;
   border: 1px solid transparent;
-  font-size: 18px;
+  font-size: 20px;
   font-weight: 400;
   width: 100%;
   resize: none;
@@ -31,23 +31,23 @@
 }
 
 .ChatDraft--textarea > *:first-child {
-  background-color: #ededed;
+  background-color: #f2f2f2;
   color: #009dff;
   border-top-right-radius: 0 !important;
   border-bottom-right-radius: 0 !important;
   padding: 5px 10px 5px 15px !important;
 }
 .ChatDraft--textarea > *:nth-child(3) {
-  background-color: #ededed;
+  background-color: #f2f2f2;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  padding: 0 5px;
+  padding: 0 4px;
 }
 .ChatDraft--textarea > *:nth-child(4) {
-  background-color: #ededed;
-  color: #959595;
+  background-color: #f2f2f2;
+  color: #a5a5a5;
   border-top-left-radius: 0 !important;
   border-bottom-left-radius: 0 !important;
   padding: 5px 15px 5px 10px !important;

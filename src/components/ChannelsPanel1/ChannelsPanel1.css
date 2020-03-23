@@ -4,9 +4,8 @@
   user-select: none;
   border-top-right-radius: 15px;
   border-top-left-radius: 15px;
-  /* margin-right: 8px; */
   background-color: #ffffff;
-  box-shadow: 0px 3px 10px #38383880;
+  box-shadow: 0px 25px 30px #00000029;
   width: 100px;
   /* position: relative; */
 }
@@ -29,8 +28,7 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  padding: 25px 20px 15px 20px;
-  /* padding: 20px; */
+  padding: 16px 20px 8px 20px;
   height: 60px;
   position: relative;
   z-index: 10;
@@ -41,11 +39,11 @@
 }
 
 .ChannelsPanel1--container > .ChannelsPanel1--header > i {
-  color: #393939;
+  color: #000000;
 }
 
 .ChannelsPanel1--channels {
-  padding: 16px 0 26px 0;
+  padding: 12px 0 12px 0;
   flex-grow: 1;
   display: flex;
   flex-direction: column;
@@ -65,7 +63,7 @@
 }
 
 .ChannelsPanel1--channels > *:not(:last-child) {
-  margin-bottom: 10px;
+  margin-bottom: 12px;
 }
 
 .ChannelsPanel1--channel {
@@ -83,7 +81,7 @@
   align-items: center;
   cursor: pointer;
   border-radius: 50%;
-  transition: transform 0.17s ease-in-out;
+  transition: transform 0.05s ease-in-out;
 }
 
 /* .ChannelsPanel1--slab {
@@ -130,7 +128,7 @@
   box-shadow: 0px 3px 6px #00000040 !important;
   /* border: 1px solid #dddddd !important; */
   background-color: #ffffff !important;
-  color: #222222 !important;
+  color: #000000 !important;
   border-radius: 10px !important;
   padding-left: 12px !important;
   padding-right: 12px !important;
