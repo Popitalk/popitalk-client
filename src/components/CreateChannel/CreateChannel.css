@@ -3,8 +3,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: #f4f4f4;
-  border-top-right-radius: 20px;
+  background-color: #f2f2f2;
+  border-top-right-radius: 15px;
   /* margin-right: 20px; */
   /* padding-bottom: 45px; */
   position: relative;
@@ -18,19 +18,11 @@
 }
 
 .CreateChannel--top {
-  height: 60px;
-  min-height: 60px;
-  width: 100%;
-  border-top-right-radius: 15px;
-  border-bottom: 2px solid #ededed;
-  background-color: #ffffff;
-  position: relative;
-  z-index: 10;
+  display: none;
 }
 
 .CreateChannel--container > section {
-  /* padding-bottom: 40px; */
-  padding: 16px 0 26px 0;
+  padding: 48px 0 24px;
   flex-grow: 1;
   overflow-y: auto;
   overflow-x: hidden;
@@ -41,20 +33,15 @@
 }
 
 .CreateChannel--header {
-  /* padding: 50px 0 50px 0; */
-  /* padding: 100px 0 50px 0; */
-  /* padding: 35px 0 50px 0; */
-  /* padding: 16px 0 50px 0; */
-  /* background-color: red; */
-  padding-bottom: 70px;
-  padding-left: 25px;
+  padding-bottom: 120px;
+  padding-left: 270px;
   margin-right: auto;
 }
 
 .CreateChannel--header > h1 {
-  font-size: 36px;
+  font-size: 34px;
   font-weight: bold;
-  margin-bottom: 15px;
+  margin-bottom: 16px;
 }
 
 .CreateChannel--header > h2 {

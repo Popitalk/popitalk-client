@@ -2,7 +2,7 @@
   height: 72px;
   width: 72px;
   border-radius: 50%;
-  background-color: #fff;
+  background-color: transparent;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -13,7 +13,6 @@
 .RoomIcon2--container > img {
   height: 72px;
   width: 72px;
-  /* border: 2px solid #fff; */
   object-fit: cover;
   position: absolute;
   border-radius: 50%;
@@ -38,12 +37,12 @@
   width: 76px;
 }
 .RoomIcon2--ChannelsPanel2 {
-  height: 45px;
-  width: 45px;
+  height: 48px;
+  width: 54px;
 }
 .RoomIcon2--ChannelsPanel2 > img {
-  height: 39px;
-  width: 39px;
+  height: 48px;
+  width: 48px;
 }
 .RoomIcon2--ChannelsPanel2w {
   height: 55px;

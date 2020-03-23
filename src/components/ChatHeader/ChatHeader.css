@@ -4,7 +4,6 @@
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
-  /* border-bottom: 2px solid #ededed; */
   height: 55px;
   user-select: none;
   padding: 8px 12px 0px;
@@ -23,15 +22,5 @@
   cursor: pointer;
 }
 .ChatHeader--private > p > span {
-  /* font-size: 20px; */
-  /* font-weight: bold; */
   color: #1da4fe;
-}
-
-.ChatHeader--live {
-  padding: 8px 16px;
-}
-.ChatHeader--live > p {
-  font-size: 28px;
-  font-weight: bold;
 }

@@ -1,19 +1,11 @@
 .Seperator--container {
   display: flex;
   flex-direction: row;
-  justify-content: center;
-  align-items: center;
   width: 100%;
-}
-.Seperator--container > div {
-  background-color: #a5a5a5;
-  height: 1px;
-  flex-grow: 1;
 }
 .Seperator--container > p {
   font-size: 20px;
   font-weight: 500;
   color: #a5a5a5;
-  margin-right: 15px;
-  margin-left: 15px;
+  align-items: left;
 }

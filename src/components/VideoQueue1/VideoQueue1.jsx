@@ -83,7 +83,7 @@ export default function VideoQueue1() {
                       <p className="VideoQueue1--position">#{index + 1}</p>
                       {index === 0 ? (
                         <div className="VideoQueue1--time VideoQueue1--live">
-                          <p>Playing..</p>
+                          <p>Playing</p>
                         </div>
                       ) : (
                         <div className="VideoQueue1--time">

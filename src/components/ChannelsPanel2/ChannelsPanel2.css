@@ -1,9 +1,11 @@
 .ChannelsPanel2--container {
   background-color: #f2f2f2;
   border-top-left-radius: 15px;
-  width: 416px;
+  width: 411px;
   display: flex;
   flex-direction: column;
+  box-shadow: 0px 25px 30px #00000029;
+
 }
 
 .ChannelsPanel2--main .ChannelsPanel2--header {
@@ -11,11 +13,10 @@
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
-  padding: 16px 24px 16px 24px;
+  padding: 0px 24px 16px 24px;
   height: 60px;
   position: relative;
   z-index: 10;
-  /* margin-bottom: 16px; */
 }
 
 .ChannelsPanel2--main > .ChannelsPanel2--header > i {
@@ -24,7 +25,7 @@
 .ChannelsPanel2--main > .ChannelsPanel2--header > h3 {
   color: #000;
   font-size: 36px;
-  font-weight: bold
+  font-weight: bold;
 }
 
 .ChannelsPanel2--main {
@@ -33,7 +34,6 @@
   overflow-x: hidden;
   position: relative;
   padding: 16px 0 26px 0;
-  border-right: 2px solid #ededed;
 }
 
 .ChannelsPanel2--main::-webkit-scrollbar {
@@ -95,14 +95,13 @@
 }
 
 .ChannelsPanel2--seperator {
-  padding: 30px 42px 30px 42px;
+  padding: 30px 24px 16px;
 }
 
 .ChannelsPanel2--discover {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 0 14px;
 }
 .ChannelsPanel2--discover > *:not(:last-child) {
   margin-bottom: 25px;

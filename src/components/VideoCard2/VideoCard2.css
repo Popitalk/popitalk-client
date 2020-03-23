@@ -82,10 +82,9 @@
   background: transparent linear-gradient(249deg, #fa3535 0%, #fc5aa5 100%) 0%
     0% no-repeat padding-box;
   position: absolute;
-  top: 8px;
-  left: 8px;
+  bottom: 8px;
+  right: 8px;
   z-index: 10;
-  /* height: 33px; */
   font-size: 16px;
   font-weight: bold;
   padding: 8px !important;

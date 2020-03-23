@@ -191,7 +191,7 @@ export default function VideoQueue2({ changeQueue }) {
                         >
                           <div className="VideoCard2--top">
                             {index === 0 ? (
-                              <h4 className="VideoCard2--live">Playing..</h4>
+                              <h4 className="VideoCard2--live">Playing</h4>
                             ) : (
                               <h4>In 12min</h4>
                             )}

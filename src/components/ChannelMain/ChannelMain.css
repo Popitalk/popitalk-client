@@ -1,7 +1,7 @@
 .ChannelMain--container {
   display: flex;
   flex-direction: column;
-  background-color: #f4f4f4;
+  background-color: #f2f2f2;
 }
 
 .ChannelMain--container > section {
@@ -10,7 +10,10 @@
   overflow-x: hidden;
   position: relative;
   padding-bottom: 26px;
-  border-right: 2px solid #ededed;
+  /* Inner Shadow */
+  -moz-box-shadow:    inset 0 0 10px #00000029;
+  -webkit-box-shadow: inset 0 0 10px #00000029;
+  box-shadow:         inset 0 0 10px #00000029;
 }
 
 .ChannelMain--container > section::-webkit-scrollbar {
@@ -28,8 +31,7 @@
   justify-content: space-between;
   align-items: center;
   height: 60px;
-  border-bottom: 2px solid #ededed;
-  background-color: #ffffff;
+  background-color: #f2f2f2;
   position: relative;
   z-index: 10;
 }
@@ -38,20 +40,20 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  padding: 10px 10px;
+  padding: 0 16px;
 }
 
 .ChannelMain--header > *:first-child > img {
-  height: 37px;
-  width: 37px;
+  height: 48px;
+  width: 48px;
   border-radius: 50%;
-  margin-right: 16px;
+  margin-right: 12px;
   -webkit-user-drag: none;
   user-select: none;
   object-fit: cover;
 }
 .ChannelMain--header > *:first-child > h2 {
-  font-size: 26px;
+  font-size: 24px;
   font-weight: 500;
 }
 
@@ -59,13 +61,13 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  padding: 0 25px;
+  padding: 0 24px;
   height: 100%;
   user-select: none;
 }
 
 .ChannelMain--nav > *:not(:last-child) {
-  margin-right: 28px;
+  margin-right: 20px;
 }
 .ChannelMain--nav > * {
   height: 100%;
@@ -77,39 +79,39 @@
   position: relative;
 }
 .ChannelMain--nav > * > h4 {
-  font-size: 26px;
+  font-size: 22px;
   font-weight: bold;
-  color: #a0a0a0;
+  color: #a5a5a5;
 }
 
 .ChannelMain--nav--slab {
   display: none;
-  transition: width 0.12s ease-in-out;
+  transition: width 0.05s ease-in-out;
 }
 
 .ChannelMain--active > h4 {
-  color: #009dff;
+  color: #1DA4FE;
 }
 .ChannelMain--active > .ChannelMain--nav--slab {
   display: block;
   height: 8px;
   width: 100%;
-  background-color: #009dff;
-  border-top-right-radius: 6px;
-  border-top-left-radius: 6px;
+  background-color: #1DA4FE;
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
   position: absolute;
-  bottom: -2px;
+  bottom: 0;
 }
 
 .ChannelMain--inActive:hover > .ChannelMain--nav--slab {
   display: block;
   height: 8px;
   width: 50%;
-  background-color: #009dff;
-  border-top-right-radius: 6px;
-  border-top-left-radius: 6px;
+  background-color: #1DA4FE;
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
   position: absolute;
-  bottom: -2px;
+  bottom: 0;
   animation: ChannelMain--slabExpand 0.17s ease-in-out;
 }
 

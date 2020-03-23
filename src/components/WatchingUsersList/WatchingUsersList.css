@@ -6,7 +6,6 @@
   /* grid-template-columns: 120px repeat(auto-fill, minmax(70px, 1fr)); */
   /* justify-items: center; */
   /* align-items: center; */
-  /* padding: 12px 14px; */
   padding: 20px 0 0 16px;
   /* gap: 10px; */
   /* column-gap: 3px; */
@@ -38,7 +37,6 @@
   cursor: pointer;
   transition: box-shadow 0.05s ease-in-out, transform 0.05s ease-in-out;
   box-shadow: 0px 1px 4px #00000050;
-  /* border: 4px solid #fff; */
 }
 
 .WatchingUsersList--user:hover {
@@ -49,9 +47,10 @@
 .WatchingUsersList--container > button {
   height: 42px;
   width: 42px;
-  background-color: #000000;
+  background: linear-gradient(78deg, #1da4fe 0%, #5abefc 100%);
   justify-self: center;
   align-self: center;
+  border: thin solid transparent;
   box-shadow: 0px 1px 4px #00000029;
   transition: transform 0.05s ease-in-out;
   margin-left: 8px;
@@ -80,7 +79,7 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  border: 1px solid #1da4fe;
+  border: thin solid #1da4fe;
   cursor: pointer;
   transition: transform 0.05s ease-in-out;
 }

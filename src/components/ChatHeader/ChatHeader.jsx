@@ -21,8 +21,8 @@ export default function ChatHeader() {
       {loading ? (
         <Skeleton height={40} width={250} />
       ) : channel.public ? (
-        <div className="ChatHeader--live">
-          <p>Public Chat</p>
+        <div className="ChatHeader--private">
+          <p>{channel.name} Public Chat</p>
         </div>
       ) : (
         <div className="ChatHeader--private">

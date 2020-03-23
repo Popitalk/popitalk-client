@@ -19,7 +19,7 @@ export default function ChannelCard2() {
             alt="youtube"
             className="ChannelCard2--sourceImage"
           />
-          <h4>Live</h4>
+          <h4>Playing</h4>
           <div className="ChannelCard2--title">
             <h3>Video title | Video title</h3>
           </div>
