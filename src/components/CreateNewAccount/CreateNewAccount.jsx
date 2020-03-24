@@ -14,9 +14,7 @@ const registrationSchema = Yup.object().shape({
     .min(2, "Last name is too short.")
     .max(32, "Last name is too long.")
     .required("Last name is required."),
-  email: Yup.string()
-    .email("Email is invalid.")
-    .required("Email is required."),
+  email: Yup.string().email("Email is invalid.").required("Email is required."),
   username: Yup.string()
     .min(2, "Username is too short.")
     .max(32, "Username is too long.")

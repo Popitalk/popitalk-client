@@ -11,9 +11,9 @@
   position: relative;
   padding-bottom: 26px;
   /* Inner Shadow */
-  -moz-box-shadow:    inset 0 0 10px #00000029;
+  -moz-box-shadow: inset 0 0 10px #00000029;
   -webkit-box-shadow: inset 0 0 10px #00000029;
-  box-shadow:         inset 0 0 10px #00000029;
+  box-shadow: inset 0 0 10px #00000029;
 }
 
 .ChannelMain--container > section::-webkit-scrollbar {
@@ -90,13 +90,13 @@
 }
 
 .ChannelMain--active > h4 {
-  color: #1DA4FE;
+  color: #1da4fe;
 }
 .ChannelMain--active > .ChannelMain--nav--slab {
   display: block;
   height: 8px;
   width: 100%;
-  background-color: #1DA4FE;
+  background-color: #1da4fe;
   border-top-right-radius: 10px;
   border-top-left-radius: 10px;
   position: absolute;
@@ -107,7 +107,7 @@
   display: block;
   height: 8px;
   width: 50%;
-  background-color: #1DA4FE;
+  background-color: #1da4fe;
   border-top-right-radius: 10px;
   border-top-left-radius: 10px;
   position: absolute;

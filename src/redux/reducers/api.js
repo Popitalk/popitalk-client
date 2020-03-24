@@ -35,11 +35,7 @@ import {
   getUserInfoModal
 } from "../actions";
 
-const formatType = type =>
-  type
-    .split("/")
-    .slice(0, 2)
-    .join("/");
+const formatType = type => type.split("/").slice(0, 2).join("/");
 
 const idsOfActions = {
   [formatType(register.fulfilled.type)]: "registerApi",

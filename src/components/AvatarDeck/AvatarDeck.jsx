@@ -42,9 +42,10 @@ export default function AvatarDeck({ avatars, size = "big" }) {
           style={{
             height: newSize,
             width: newSize,
-            left: `${(newSize * (17 - (length - 1) * 0.85) * (length - 1)) /
-              22 -
-              newSize * (17 - (length - 1) * 2.54)}px`,
+            left: `${
+              (newSize * (17 - (length - 1) * 0.85) * (length - 1)) / 22 -
+              newSize * (17 - (length - 1) * 2.54)
+            }px`,
             fontSize:
               size === "big" ? "14px" : size === "medium" ? "12px" : "10px"
           }}

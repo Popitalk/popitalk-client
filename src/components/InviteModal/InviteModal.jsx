@@ -44,10 +44,7 @@ export default function InviteModal({ create, anon }) {
     .map(room => room.members);
   // .filter(room => room.length > 2);
 
-  const pageUrl = window.location.href
-    .split("/")
-    .slice(0, 5)
-    .join("/");
+  const pageUrl = window.location.href.split("/").slice(0, 5).join("/");
 
   const handleCopy = async () => {
     try {
