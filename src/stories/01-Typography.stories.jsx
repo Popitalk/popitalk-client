@@ -1,6 +1,6 @@
 import React from "react";
 import { withKnobs, text, select } from "@storybook/addon-knobs";
-import Text from "../components/Text";
+import Text from "../comp/Text";
 
 export default {
   title: "Typography",
@@ -10,28 +10,28 @@ export default {
 
 export const Text123 = () => (
   <div>
-    <Text type="title1">Hello123</Text>
-    <Text type="title2" color="secondaryText">
+    <Text variant="title1">Hello123</Text>
+    <Text variant="title2" color="secondaryText">
       Hello123
     </Text>
-    <Text type="subtitle1" color="highlightText">
+    <Text variant="subtitle1" color="highlightText">
       Hello123
     </Text>
-    <Text type="subtitle2" color="errorText">
+    <Text variant="subtitle2" color="errorText">
       Hello123
     </Text>
-    <Text type="button1">Hello123</Text>
-    <Text type="button2">Hello123</Text>
-    <Text type="text1">Hello123</Text>
-    <Text type="text2">Hello123</Text>
-    <Text type="small1">Hello123</Text>
-    <Text type="small2">Hello123</Text>
+    <Text variant="button1">Hello123</Text>
+    <Text variant="button2">Hello123</Text>
+    <Text variant="text1">Hello123</Text>
+    <Text variant="text2">Hello123</Text>
+    <Text variant="small1">Hello123</Text>
+    <Text variant="small2">Hello123</Text>
   </div>
 );
 
 export const Text321 = () => {
   const content = text("children", "Hello123");
-  const type = select(
+  const variant = select(
     "select",
     [
       "title1",
@@ -61,7 +61,7 @@ export const Text321 = () => {
     "primaryText"
   );
   return (
-    <Text type={type} color={color}>
+    <Text variant={variant} color={color}>
       {content}
     </Text>
   );

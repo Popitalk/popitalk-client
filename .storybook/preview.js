@@ -2,6 +2,7 @@ import { addParameters } from "@storybook/react";
 import "./globalStyles.css";
 import { configure, addDecorator } from "@storybook/react";
 import themeDecorator from "./themeDecorator";
+import initIcons from "../src/helpers/initIcons";
 
 addDecorator(themeDecorator);
 
