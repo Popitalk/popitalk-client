@@ -2,8 +2,10 @@ import { addParameters } from "@storybook/react";
 import "./globalStyles.css";
 import { configure, addDecorator } from "@storybook/react";
 import themeDecorator from "./themeDecorator";
+import routerDecorator from "./routerDecorator";
 import initIcons from "../src/helpers/initIcons";
 
+addDecorator(routerDecorator);
 addDecorator(themeDecorator);
 
 addParameters({

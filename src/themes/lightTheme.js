@@ -6,6 +6,9 @@ const theme = {
   fonts: {
     primary: "Noto Sans, sans-serif"
   },
+  radii: {
+    rounded: "15px"
+  },
   colors: {
     primaryBackground: "#FFFFFF",
     secondaryBackground: "#F2F2F2",
