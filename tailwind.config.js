@@ -78,7 +78,8 @@ module.exports = {
       primaryBorder: "#D1D1D1",
       secondaryBorder: "#D9D9D9",
       tertiaryBorder: "#A5A5A5",
-      imageBorder1: "#FFFFFF",
+      imageBorder1: "transparent",
+      imageBorder2: "#FFFFFF",
       primaryButtonText: "#FFFFFF",
       secondaryButtonText: "#A5A5A5",
       pink: "#F966F8",
@@ -89,7 +90,7 @@ module.exports = {
       button: ["#009DFF 0%", "#5ABEFC 100%"],
       search: ["#98E4FA 0%", "#00C3FF 100%"],
       cancel: ["#FA3535 0%", "#FC5AA5 100%"],
-      channelCardOverlay: ["#fff 0%", "transparent 40%"],
+      channelCardOverlay: ["#000 0%", "transparent 40%"],
       upload: ["#03f5ff 0%", "#f500ff 100%"]
     },
     linearGradientColors: theme => theme("gradients"),

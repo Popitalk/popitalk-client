@@ -4,7 +4,7 @@ import RoomIcon from "./RoomIcon";
 
 export default function RoomsList({ rooms, selected, handleSelect }) {
   const baseRoomClasses =
-    "flex flex-row items-center justify-end p-2 bg-primaryBackground hover:bg-secondaryBackground rounded-lg cursor-pointer";
+    "flex flex-row items-center p-2 bg-primaryBackground hover:bg-secondaryBackground rounded-lg cursor-pointer";
   return (
     <div className="children:not-first:mt-1">
       {rooms.map(room => {
@@ -23,10 +23,6 @@ export default function RoomsList({ rooms, selected, handleSelect }) {
             role="button"
             onClick={() => handleSelect(room.id)}
           >
-            <div className="flex flex-col items-end mr-4">
-              <p className="text-lg font-bold">{room.name}</p>
-              <p className={messageClasses}>{room.message}</p>
-            </div>
             <RoomIcon
               images={room.images}
               self={room.self}
@@ -35,6 +31,10 @@ export default function RoomsList({ rooms, selected, handleSelect }) {
               notifications={room.notifications}
               size="xl"
             />
+            <div className="flex flex-col ml-4">
+              <p className="text-lg font-bold">{room.name}</p>
+              <p className={messageClasses}>{room.message}</p>
+            </div>
           </div>
         );
       })}

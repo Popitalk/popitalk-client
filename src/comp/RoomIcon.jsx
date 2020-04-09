@@ -28,7 +28,7 @@ export default function RoomIcon({
 }) {
   const container1Classes = classnames({
     "flex items-center justify-center relative rounded-full": true,
-    "h-10 w-10": size === "sm",
+    "h-8 w-8": size === "sm",
     "h-12 w-12": size === "md",
     "h-16 w-16": size === "lg",
     "h-20 w-20": size === "xl",
