@@ -1,71 +1,25 @@
 import React from "react";
 import { withKnobs, text, select } from "@storybook/addon-knobs";
-import Text from "../comp/Text";
 
 export default {
   title: "Typography",
-  component: Text,
   decorators: [withKnobs]
 };
 
 export const Text123 = () => (
   <div>
-    <Text variant="title1">Hello123</Text>
-    <Text variant="title2" color="secondaryText">
-      Hello123
-    </Text>
-    <Text variant="subtitle1" color="highlightText">
-      Hello123
-    </Text>
-    <Text variant="subtitle2" color="errorText">
-      Hello123
-    </Text>
-    <Text variant="button1">Hello123</Text>
-    <Text variant="button2">Hello123</Text>
-    <Text variant="text1">Hello123</Text>
-    <Text variant="text2">Hello123</Text>
-    <Text variant="small1">Hello123</Text>
-    <Text variant="small2">Hello123</Text>
+    <h1 className="text-6xl font-bold">Hello123</h1>
+    <h2 className="text-4xl font-bold">Hello123</h2>
+    <h3 className="text-2xl font-bold">Hello123</h3>
+    <h4 className="text-2xl font-bold">Hello123</h4>
+    <h5 className="text-lg font-bold">Hello123</h5>
+    <h5 className="text-lg">Hello123</h5>
+    <p className="text-base font-bold">Hello123</p>
+    <p className="text-base font">Hello123</p>
+    <p className="text-sm">Hello123</p>
+    <p className="text-xs">Hello123</p>
   </div>
 );
-
-export const Text321 = () => {
-  const content = text("children", "Hello123");
-  const variant = select(
-    "select",
-    [
-      "title1",
-      "title2",
-      "subtitle1",
-      "subtitle2",
-      "button1",
-      "button2",
-      "text1",
-      "text2",
-      "small1",
-      "small2"
-    ],
-    "text1"
-  );
-  const color = select(
-    "colors",
-    [
-      "primaryText",
-      "secondaryText",
-      "tertiaryText",
-      "highlightText",
-      "linkText",
-      "errorText",
-      "disabledText"
-    ],
-    "primaryText"
-  );
-  return (
-    <Text variant={variant} color={color}>
-      {content}
-    </Text>
-  );
-};
 
 // import { action } from "@storybook/addon-actions";
 //   <Button onClick={action("clicked")}>

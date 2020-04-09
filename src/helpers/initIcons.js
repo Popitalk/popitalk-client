@@ -7,7 +7,10 @@ import {
   faSearch,
   faPaperPlane,
   faShare,
-  faTimes
+  faTimes,
+  faUserFriends,
+  faLock,
+  faEllipsisV
 } from "@fortawesome/free-solid-svg-icons";
 // import { fab } from "@fortawesome/free-brands-svg-icons";
 
@@ -19,5 +22,8 @@ library.add(
   faSearch,
   faPaperPlane,
   faShare,
-  faTimes
+  faTimes,
+  faUserFriends,
+  faLock,
+  faEllipsisV
 );

@@ -13,6 +13,7 @@ import { validateSession } from "../redux/actions";
 import "@fortawesome/fontawesome-free/css/all.css";
 import "./fw.css";
 import "./App.css";
+import "../styles/app.css";
 
 export default function App() {
   const validatedSession = useSelector(state => state.general.validatedSession);
