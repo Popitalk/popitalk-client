@@ -15,7 +15,7 @@ export default function ChannelCard({
   handleFollow
 }) {
   return (
-    <div className="flex flex-row items-center justify-center h-64 max-w-xs shadow-lg rounded-xl hover:shadow-xl">
+    <div className="flex flex-row items-center justify-center h-64 max-w-xs rounded-xl hover:shadow-xl">
       <div className="flex-grow flex flex-row justify-center h-64 p-3 relative">
         <img
           src={videoThumbnail}
@@ -23,7 +23,7 @@ export default function ChannelCard({
           className="img absolute top-0 h-full rounded-xl z-10"
         />
         <p className="flex flex-row items-center justify-center text-md font-bold bg-gradient-br-primary text-tertiaryText px-2 rounded-pill absolute top-0 left-0 mt-3 ml-3 select-none z-30">
-          Playing
+          asd
         </p>
         <AvatarDeck
           avatars={avatars}

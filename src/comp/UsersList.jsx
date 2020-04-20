@@ -28,11 +28,11 @@ export default function UsersList({
               <img
                 src={user.avatar}
                 alt={`${user.username}'s avatar`}
-                className="img rounded-full h-16 w-16 mr-4"
+                className="img rounded-full h-12 w-12 mr-4"
               />
               <div>
                 <p className="mb-1">{user.username}</p>
-                <p className="text-secondaryText text-sm">
+                <p className="text-secondaryText text-xs">
                   {user.firstName} {user.lastName}
                 </p>
               </div>

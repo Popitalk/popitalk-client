@@ -28,16 +28,16 @@ export default function RoomIcon({
 }) {
   const container1Classes = classnames({
     "flex items-center justify-center relative rounded-full": true,
-    "h-8 w-8": size === "sm",
-    "h-12 w-12": size === "md",
-    "h-16 w-16": size === "lg",
-    "h-20 w-20": size === "xl",
+    "h-6 w-6": size === "sm",
+    "h-8 w-8": size === "md",
+    "h-10 w-10": size === "lg",
+    "h-16 w-16": size === "xl",
     "bg-imageBorder1": !watching,
     "bg-pink": watching,
     [className]: className
   });
   const container2Classes = classnames({
-    "grid gap-px border-thin p-px w-full h-full rounded-full shadow-xl": true,
+    "grid gap-px border-thin p-px w-full h-full rounded-full": true,
     "grid-cols-2": images.length !== 1,
     "border-imageBorder1": !watching,
     "border-pink": watching
@@ -48,12 +48,12 @@ export default function RoomIcon({
     "border-pink": watching
   });
   const onlineFriendClasses = classnames({
-    "h-5 w-5 rounded-full bg-onlineColor absolute right-0 top-0 mr-1 mt-1 border-2": true,
+    "h-5 w-5 rounded-full bg-onlineColor absolute right-0 top-0 border-2 border-imageBorder2": true,
     "border-imageBorder1": !watching,
     "border-pink": watching
   });
   const notificationsClasses = classnames({
-    "font-semibold text-primaryButtonText text-xs bg-notificationsColor h-5 w-5 rounded-full bg-onlineColor absolute left-0 top-0 ml-1 mt-1 flex items-center justify-center select-none": true,
+    "font-regular text-primaryButtonText text-xs bg-notificationsColor h-5 w-5 rounded-full bg-onlineColor absolute left-0 top-0 flex items-center justify-center select-none": true,
     "px-2": notifications < 10,
     "px-3": notifications >= 10 && notifications <= 99,
     "px-4": notifications >= 100
@@ -78,7 +78,7 @@ export default function RoomIcon({
       {self && (
         <p
           className="font-semibold text-xs absolute bottom-0
-         bg-gradient-br-button text-primaryButtonText rounded-pill flex items-center justify-center py-1 px-1 select-none shadow-md"
+         bg-gradient-br-button text-primaryButtonText rounded-pill flex items-center justify-center py-1 px-1 select-none"
         >
           My room
         </p>

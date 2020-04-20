@@ -78,7 +78,7 @@ export default function ChannelSettingsSidebar({ tabs }) {
       display="inline-flex"
       flexDirection="column"
       alignItems="center"
-      backgroundColor="tertiaryBackground"
+      backgroundColor="secondaryBackground"
       paddingX={[3, 4]}
       paddingY={[8, 9]}
       borderRadius="rounded"
@@ -91,7 +91,7 @@ export default function ChannelSettingsSidebar({ tabs }) {
         paddingBottom={8}
         css={cssTheme({
           "& > *:not(:last-child)": {
-            marginBottom: "2px"
+            marginBottom: "4px"
           }
         })}
       >

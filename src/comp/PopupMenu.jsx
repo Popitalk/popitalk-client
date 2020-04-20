@@ -49,12 +49,12 @@ export default function PopupMenu({
       )}
       {open && (
         <div
-          className="absolute top-0 right-0 mt-6 mr-2 flex flex-col items-center justify-center flex-shrink-0 bg-primaryBackground shadow-xl rounded-lg border border-primaryBorder"
+          className="absolute top-0 right-0 mt-5 mr-0 flex flex-col items-center justify-center flex-shrink-0 bg-primaryBackground shadow-xl rounded-lg border border-primaryBorder"
           ref={ref}
         >
           {options.map((option, index) => {
             const optionClasses = classnames(
-              "inline-flex justify-center items-center w-full bg-primaryBackground transition-filter duration-300 hover:filter-brightness-9 active:filter-brightness-8 select-none py-1 px-2 text-center",
+              "inline-flex justify-center items-center w-full bg-primaryBackground transition-filter duration-300 hover:filter-brightness-9 active:filter-brightness-8 select-none py-1 px-6 text-center",
               {
                 "rounded-t-lg": index === 0,
                 "rounded-b-lg": index + 1 === options.length
