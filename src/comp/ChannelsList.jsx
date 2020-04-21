@@ -5,9 +5,9 @@ import classnames from "classnames";
 
 export default function ChannelsList({ channels, selected, handleSelect }) {
   const baseChannelClasses =
-    "flex flex-row items-center p-2 bg-primaryBackground hover:bg-secondaryBackground rounded-lg cursor-pointer";
+    "flex flex-row items-center p-2 bg-primaryBackground rounded-xl cursor-pointer";
   return (
-    <div className="children:not-first:mt-1">
+    <div>
       {channels.map(channel => {
         const channelClasses = classnames(baseChannelClasses, {
           "bg-secondaryBackground cursor-default": selected === channel.id
@@ -24,16 +24,17 @@ export default function ChannelsList({ channels, selected, handleSelect }) {
               ids={[channel.id]}
               images={[channel.icon]}
               watching={channel.watching}
-              size={channel.id === selected ? "lg" : "sm"}
+              size={channel.id === selected ? "lg" : "lg"}
             />
-            <div className="ml-4">
-              <p className="font-bold">{channel.name}</p>
+            <div className="ml-2">
+              <p className="text-md font-semibold">{channel.name}</p>
               {channel.watching && (
-                <AvatarDeck
-                  size="sm"
-                  avatars={channel.avatars}
-                  className="mt-2"
-                />
+                <p className="text-xs mt-1">online 1234</p>
+                // <AvatarDeck
+                //   size="sm"
+                //   avatars={channel.avatars}
+                //   className="mt-1"
+                // />
               )}
             </div>
           </div>

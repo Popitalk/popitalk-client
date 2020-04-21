@@ -22,9 +22,13 @@ export default function ChannelCard({
           alt="channel"
           className="img absolute top-0 h-full rounded-xl z-10"
         />
-        <p className="flex flex-row items-center justify-center text-md font-bold bg-gradient-br-primary text-tertiaryText px-2 rounded-pill absolute top-0 left-0 mt-3 ml-3 select-none z-30">
-          asd
-        </p>
+        <Button
+          size="md"
+          icon="play"
+          className="bg-gradient-br-primary px-2 absolute top-0 left-0 mt-3 ml-3 select-none z-30"
+        />
+        {/* <p className="flex flex-row items-center justify-center text-md font-bold bg-gradient-br-primary text-tertiaryText px-2 rounded-pill absolute top-0 left-0 mt-3 ml-3 select-none z-30">
+        </p> */}
         <AvatarDeck
           avatars={avatars}
           size="md"

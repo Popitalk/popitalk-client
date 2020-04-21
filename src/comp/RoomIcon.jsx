@@ -30,7 +30,7 @@ export default function RoomIcon({
     "flex items-center justify-center relative rounded-full": true,
     "h-6 w-6": size === "sm",
     "h-8 w-8": size === "md",
-    "h-10 w-10": size === "lg",
+    "h-12 w-12": size === "lg",
     "h-16 w-16": size === "xl",
     "bg-imageBorder1": !watching,
     "bg-pink": watching,
