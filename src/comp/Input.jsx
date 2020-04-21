@@ -63,7 +63,7 @@ export default function Input({
   });
 
   const inputClasses = classnames(
-    "py-1 px-2 outline-none border-thin focus:border-highlightText disabled:cursor-not-allowed disabled:bg-disabledBackground relative bottom-0 w-full",
+    "py-2 px-4 outline-none border-thin focus:border-highlightText disabled:cursor-not-allowed disabled:bg-disabledBackground relative bottom-0 w-full",
     textClasses,
     {
       "py-2": size === "lg",
@@ -135,13 +135,13 @@ export default function Input({
             <img
               src={sourcesObj[videoSource]}
               alt={videoSource}
-              className="img absolute left-0 ml-3 w-6 h-6"
+              className="img absolute left-0 ml-4 w-6 h-6"
             />
             <Button
               icon="search"
               size="sm"
               background="primary"
-              className="absolute right-0 mr-2"
+              className="absolute right-0 mr-4"
             />
           </>
         )}

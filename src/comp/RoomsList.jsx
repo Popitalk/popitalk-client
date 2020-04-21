@@ -4,7 +4,7 @@ import RoomIcon from "./RoomIcon";
 
 export default function RoomsList({ rooms, selected, handleSelect }) {
   const baseRoomClasses =
-    "flex flex-row items-center p-2 bg-primaryBackground hover:bg-secondaryBackground rounded-lg cursor-pointer";
+    "flex flex-row items-center p-1 bg-primaryBackground hover:bg-secondaryBackground rounded-lg cursor-pointer";
   return (
     <div>
       {rooms.map(room => {

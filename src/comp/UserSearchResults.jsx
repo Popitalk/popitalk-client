@@ -13,7 +13,7 @@ export default function UserSearchResults({ results, className }) {
   return (
     <div className={className}>
       {/* <div className={`max-w-sm ${className}`}> */}
-      <div className="children:not-first:mt-2 mb-3">
+      <div className="children:not-first:mt-1 mb-3">
         {results.slice(page * 3, page * 3 + 3).map(result => (
           <RequestCard
             key={result.id}

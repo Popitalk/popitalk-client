@@ -75,7 +75,7 @@ module.exports = {
       disabledText: "#a5a5a5",
       onlineColor: "#24E601",
       notificationsColor: "#FF4040",
-      primaryBorder: "#D1D1D1",
+      primaryBorder: "#e2e2e2",
       secondaryBorder: "#D9D9D9",
       tertiaryBorder: "#A5A5A5",
       imageBorder1: "transparent",

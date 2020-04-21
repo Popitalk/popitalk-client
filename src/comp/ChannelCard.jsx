@@ -2,6 +2,7 @@ import React from "react";
 import RoomIcon from "./RoomIcon";
 import AvatarDeck from "./AvatarDeck";
 import Button from "./Button";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default function ChannelCard({
   id,
@@ -27,8 +28,6 @@ export default function ChannelCard({
           icon="play"
           className="bg-gradient-br-primary px-2 absolute top-0 left-0 mt-3 ml-3 select-none z-30"
         />
-        {/* <p className="flex flex-row items-center justify-center text-md font-bold bg-gradient-br-primary text-tertiaryText px-2 rounded-pill absolute top-0 left-0 mt-3 ml-3 select-none z-30">
-        </p> */}
         <AvatarDeck
           avatars={avatars}
           size="md"

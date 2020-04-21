@@ -10,7 +10,8 @@ import {
   faTimes,
   faUserFriends,
   faLock,
-  faEllipsisV
+  faEllipsisV,
+  faPlay
 } from "@fortawesome/free-solid-svg-icons";
 // import { fab } from "@fortawesome/free-brands-svg-icons";
 
@@ -25,5 +26,6 @@ library.add(
   faTimes,
   faUserFriends,
   faLock,
-  faEllipsisV
+  faEllipsisV,
+  faPlay
 );
