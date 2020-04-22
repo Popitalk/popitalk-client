@@ -12,7 +12,7 @@ export default function ChannelsPanel({ channels, selected, handleSelect }) {
         {/* <Button size="md">Create</Button> */}
       </div>
       <div className="flex flex-row items-center">
-        <h4 className="text-lg font-semibold text-secondaryText ml-2 mr-4 mb-2 mt-2">
+        <h4 className="text-lg font-semibold text-secondaryText ml-2 mr-2 mb-2 mt-2">
           Your channels
         </h4>
         <Button size="sm" icon="plus" background="primaryButton" onClick="" />
