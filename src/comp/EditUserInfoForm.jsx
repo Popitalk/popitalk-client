@@ -6,11 +6,14 @@ import Button from "./Button";
 import Select from "./Select";
 import ImageUpload from "./ImageUpload";
 import ControlHeader from "./ControlHeader";
+import PanelContainer from "./PanelContainer";
+import ModalHeader from "./ModalHeader";
 
 export default function EditUserInfoForm({
   username,
   initial,
   handleSubmit,
+  handleBack,
   loading
 }) {
   const [uploadedImage, setUploadedImage] = useState(undefined);
@@ -46,7 +49,8 @@ export default function EditUserInfoForm({
   });
 
   return (
-    <>
+    <PanelContainer>
+      <ModalHeader title="Edit Your Information" handleBack={handleBack} />
       <Formik
         initialValues={initial}
         enableReinitialize={true}
@@ -238,6 +242,6 @@ export default function EditUserInfoForm({
           </form>
         )}
       </Formik>
-    </>
+    </PanelContainer>
   );
 }
