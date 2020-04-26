@@ -13,6 +13,8 @@ import DailymotionLogo from "../assets/dailymotion-logo.png";
 import TwitterLogo from "../assets/twitter-logo.png";
 import SpotifyLogo from "../assets/spotify-logo.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import ControlHeader from "./ControlHeader";
+import getTextClass from "../helpers/functions";
 
 const sources = [
   { source: "Youtube", icon: YoutubeLogo },
@@ -56,11 +58,7 @@ export default function Input({
   className
 }) {
   const El = variant === "textarea" ? "textarea" : "input";
-  const textClasses = classnames({
-    "text-sm": size === "sm",
-    "text-base": size === "md",
-    "text-lg": size === "lg"
-  });
+  const textClasses = getTextClass(size);
 
   const inputClasses = classnames(
     "py-2 px-4 outline-none border-thin focus:border-highlightText disabled:cursor-not-allowed disabled:bg-disabledBackground relative bottom-0 w-full",
@@ -80,13 +78,6 @@ export default function Input({
     }
   );
 
-  const headerClasses = classnames("mb-1", textClasses, {
-    "text-sm": size === "sm",
-    "text-base": size === "md",
-    "text-lg": size === "lg",
-    "font-bold": variant === "counter" || variant === "textarea"
-  });
-
   const counterClasses = classnames("absolute right-0 mr-2", textClasses, {
     "text-sm": size === "sm",
     "text-base": size === "md",
@@ -103,14 +94,12 @@ export default function Input({
 
   return (
     <div className={className}>
-      {header && (
-        <h4 className={headerClasses}>
-          {header}{" "}
-          {error && (
-            <span className="text-errorText text-xs font-bold">{error}</span>
-          )}
-        </h4>
-      )}
+      <ControlHeader
+        header={header}
+        error={error}
+        size={size}
+        bold={variant !== "video"}
+      />
       <div className="flex flex-row items-center relative">
         {(variant === "filter" || variant === "filterModal") && (
           <FontAwesomeIcon icon="search" className={iconClasses} />
