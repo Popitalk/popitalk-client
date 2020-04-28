@@ -10,7 +10,7 @@ import ControlHeader from "./ControlHeader";
 import ModalContainer from "./ModalContainer";
 import ModalHeader from "./ModalHeader";
 
-export default function EditUserInfoForm({
+export default function EditInformationModal({
   username,
   initial,
   handleSubmit,

@@ -19,7 +19,7 @@ import ChannelForm from "../comp/ChannelForm";
 import PopupMenu from "../comp/PopupMenu";
 import UsersList from "../comp/UsersList";
 import ManageUsers from "../comp/ManageUsers";
-import EditUserInfo from "../comp/EditUserInfoForm";
+import EditInformationModal from "../comp/EditInformationModal";
 import ChangePasswordModal from "../comp/ChangePasswordModal";
 
 export default {
@@ -73,10 +73,10 @@ const Container2 = styled.div`
 //   } */
 // `;
 
-export const EditUserInfo123 = () => {
+export const EditInformationModalTest = () => {
   return (
     <Container>
-      <EditUserInfo
+      <EditInformationModal
         username="Silent Fuzzle"
         initial={{
           firstName: "",
