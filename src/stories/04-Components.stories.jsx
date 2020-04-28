@@ -19,6 +19,7 @@ import ChannelForm from "../comp/ChannelForm";
 import PopupMenu from "../comp/PopupMenu";
 import UsersList from "../comp/UsersList";
 import ManageUsers from "../comp/ManageUsers";
+import EditUserInfo from "../comp/EditUserInfoForm";
 
 export default {
   title: "Components",
@@ -70,6 +71,25 @@ const Container2 = styled.div`
 //     margin-bottom: 20px;
 //   } */
 // `;
+
+export const EditUserInfo123 = () => {
+  return (
+    <Container>
+      <EditUserInfo
+        username="Silent Fuzzle"
+        initial={{
+          firstName: "",
+          lastName: "",
+          dateOfBirth: new Date(),
+          email: "",
+          day: 1,
+          month: 1,
+          year: 1
+        }}
+      />
+    </Container>
+  );
+};
 
 export const ChannelSettingsSidebar123 = () => {
   const [input, setInput] = useState("");
