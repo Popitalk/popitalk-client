@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import Input from "./Input";
 import { Formik } from "formik";
 import * as Yup from "yup";
+import Input from "./Input";
 import Button from "./Button";
 import Select from "./Select";
 import ImageUpload from "./ImageUpload";
@@ -234,7 +234,7 @@ export default function EditUserInfoForm({
                 </div>
               </div>
               <div className="mt-4">
-                <Button type="submit" loading={loading}>
+                <Button type="submit" disabled={loading || !isValid || !dirty}>
                   Confirm
                 </Button>
               </div>
