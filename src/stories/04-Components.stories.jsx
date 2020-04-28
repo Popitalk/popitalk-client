@@ -20,6 +20,7 @@ import PopupMenu from "../comp/PopupMenu";
 import UsersList from "../comp/UsersList";
 import ManageUsers from "../comp/ManageUsers";
 import EditUserInfo from "../comp/EditUserInfoForm";
+import ChangePasswordModal from "../comp/ChangePasswordModal";
 
 export default {
   title: "Components",
@@ -87,6 +88,14 @@ export const EditUserInfo123 = () => {
           year: 1
         }}
       />
+    </Container>
+  );
+};
+
+export const ChangePasswordModalTest = () => {
+  return (
+    <Container>
+      <ChangePasswordModal />
     </Container>
   );
 };

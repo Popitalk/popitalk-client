@@ -4,9 +4,10 @@ import * as Yup from "yup";
 import Input from "./Input";
 import Button from "./Button";
 import Select from "./Select";
+import Text from "./Text";
 import ImageUpload from "./ImageUpload";
 import ControlHeader from "./ControlHeader";
-import PanelContainer from "./PanelContainer";
+import ModalContainer from "./ModalContainer";
 import ModalHeader from "./ModalHeader";
 
 export default function EditUserInfoForm({
@@ -49,7 +50,7 @@ export default function EditUserInfoForm({
   });
 
   return (
-    <PanelContainer>
+    <ModalContainer>
       <ModalHeader title="Edit Your Information" handleBack={handleBack} />
       <Formik
         initialValues={initial}
@@ -117,7 +118,9 @@ export default function EditUserInfoForm({
                 disabled={loading}
                 className=""
               />
-              <div className="text-2xl font-bold my-4">{username}</div>
+              <Text variant="title2" className="my-4">
+                {username}
+              </Text>
               <div className="w-full md:flex">
                 <div className="w-full pr-0 flex-1 md:flex-1 md:pr-2">
                   <Input
@@ -242,6 +245,6 @@ export default function EditUserInfoForm({
           </form>
         )}
       </Formik>
-    </PanelContainer>
+    </ModalContainer>
   );
 }
