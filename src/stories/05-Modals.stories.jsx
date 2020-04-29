@@ -4,6 +4,7 @@ import styled from "styled-components";
 import EditInformationModal from "../comp/EditInformationModal";
 import ChangePasswordModal from "../comp/ChangePasswordModal";
 import ForgotPasswordModal from "../comp/ForgotPasswordModal";
+import CreateNewAccountModal from "../comp/CreateNewAccountModal";
 
 export default {
   title: "Modals",
@@ -29,6 +30,14 @@ const Container = styled.div`
   }
 `;
 
+export const CreateNewAccountModalTest = () => {
+  return (
+    <Container>
+      <CreateNewAccountModal />
+    </Container>
+  );
+};
+
 export const EditInformationModalTest = () => {
   return (
     <Container>
@@ -39,10 +48,7 @@ export const EditInformationModalTest = () => {
           firstName: "",
           lastName: "",
           dateOfBirth: new Date(),
-          email: "",
-          day: 1,
-          month: 1,
-          year: 1
+          email: ""
         }}
       />
     </Container>

@@ -14,7 +14,7 @@ import TwitterLogo from "../assets/twitter-logo.png";
 import SpotifyLogo from "../assets/spotify-logo.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import ControlHeader from "./ControlHeader";
-import getTextClass from "../helpers/functions";
+import { getTextClass } from "../helpers/functions";
 
 const sources = [
   { source: "Youtube", icon: YoutubeLogo },

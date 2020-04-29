@@ -5,6 +5,7 @@ import Input from "./Input";
 import Button from "./Button";
 import ModalContainer from "./ModalContainer";
 import ModalHeader from "./ModalHeader";
+import { getSetPasswordSchema } from "../helpers/functions";
 
 export default function ChangePasswordModal({
   loading,
@@ -17,35 +18,17 @@ export default function ChangePasswordModal({
       <Formik
         initialValues={{
           oldPassword: "",
-          newPassword: "",
+          password: "",
           confirmPassword: ""
         }}
         validationSchema={Yup.object({
           oldPassword: Yup.string().required("Old Password is required."),
-          newPassword: Yup.string()
-            .min(6, "Password should be at least 6 characters long.")
-            .matches(
-              /[a-z]/,
-              "Password should have at least one lowercase letter."
-            )
-            .matches(
-              /[A-Z]/,
-              "Password should have at least one uppercase letter."
-            )
-            .matches(/\d+/, "Password should have at least one number.")
-            .notOneOf(
-              [Yup.ref("oldPassword"), null],
-              "Passwords must not match."
-            )
-            .required("New Password is required."),
-          confirmPassword: Yup.string()
-            .oneOf([Yup.ref("newPassword")], "Passwords must match.")
-            .required("Confirm Password is required.")
+          ...getSetPasswordSchema()
         })}
         onSubmit={(values, { resetForm }) => {
           handleSubmit({
             password: values.oldPassword,
-            newPassword: values.newPassword,
+            newPassword: values.password,
             confirmPassword: values.confirmPassword
           });
           resetForm();
@@ -75,13 +58,13 @@ export default function ChangePasswordModal({
             />
             <Input
               header="New Password"
-              name="newPassword"
+              name="password"
               type="password"
               disabled={loading}
               onChange={handleChange}
               onBlur={handleBlur}
-              value={values.newPassword}
-              error={touched.newPassword && errors.newPassword}
+              value={values.password}
+              error={touched.password && errors.password}
             />
             <Input
               header="Confirm New Password"
