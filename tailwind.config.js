@@ -117,6 +117,9 @@ module.exports = {
       },
       transitionProperty: {
         filter: "filter"
+      },
+      width: {
+        dropdown: "26rem"
       }
     }
   },

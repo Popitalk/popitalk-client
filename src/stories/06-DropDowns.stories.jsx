@@ -1,11 +1,20 @@
 import React from "react";
 import { withKnobs } from "@storybook/addon-knobs";
-import styled from "styled-components";
 import FriendRequests from "../comp/FriendRequests";
+import DropDownMenu from "../comp/DropDownMenu";
+import DeleteAccountDropDown from "../comp/DeleteAccountDropDown";
 
 export default {
   title: "DropDowns",
   decorators: [withKnobs]
+};
+
+const buttonTest = () => {
+  console.log("test");
+};
+
+const backHandler = () => {
+  console.log("back");
 };
 
 export const FriendRequestsTest = () => {
@@ -81,4 +90,54 @@ export const FriendRequestsTest = () => {
       handleReject={handleReject}
     />
   );
+};
+
+export const MainSettingsDropDownTest = () => {
+  const buttons = [
+    {
+      text: "Account Settings",
+      onClick: buttonTest
+    },
+    {
+      text: "Block Users",
+      onClick: buttonTest
+    },
+    {
+      text: "Log Out",
+      onClick: buttonTest,
+      danger: true
+    }
+  ];
+
+  return <DropDownMenu title="Settings" buttons={buttons} />;
+};
+
+export const AccountSettingsDropDownTest = () => {
+  const buttons = [
+    {
+      text: "Edit User Information",
+      onClick: buttonTest
+    },
+    {
+      text: "Change Password",
+      onClick: buttonTest
+    },
+    {
+      text: "Delete Account",
+      onClick: buttonTest,
+      danger: true
+    }
+  ];
+
+  return (
+    <DropDownMenu
+      title="Account Settings"
+      handleBack={backHandler}
+      buttons={buttons}
+    />
+  );
+};
+
+export const DeleteAccountDropDownTest = () => {
+  return <DeleteAccountDropDown handleBack={backHandler} />;
 };
