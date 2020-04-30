@@ -3,6 +3,7 @@ import { Formik } from "formik";
 import * as Yup from "yup";
 import Input from "./Input";
 import Button from "./Button";
+import Text from "./Text";
 import ModalContainer from "./ModalContainer";
 import ModalHeader from "./ModalHeader";
 import { getSetPasswordSchema } from "../helpers/functions";
@@ -10,7 +11,8 @@ import { getSetPasswordSchema } from "../helpers/functions";
 export default function ChangePasswordModal({
   loading,
   handleSubmit,
-  handleBack
+  handleBack,
+  passwordUpdated
 }) {
   return (
     <ModalContainer>
@@ -76,7 +78,14 @@ export default function ChangePasswordModal({
               value={values.confirmPassword}
               error={touched.confirmPassword && errors.confirmPassword}
             />
-            <div className="flex justify-center mt-4">
+            {passwordUpdated ? (
+              <Text variant="small2" className="text-linkText py-2 text-center">
+                You have successfully updated your password!
+              </Text>
+            ) : (
+              <></>
+            )}
+            <div className="flex justify-center">
               <Button type="submit" disabled={loading || !isValid || !dirty}>
                 Confirm
               </Button>
