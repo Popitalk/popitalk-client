@@ -24,7 +24,7 @@ export default function ModalHeader({ title, handleBack }) {
   );
 
   return (
-    <div className="absolute inset-x-0 top-0 bg-highlightText rounded-t-xl h-10 flex flex-row items-center justify-between">
+    <div className="inset-x-0 top-0 bg-highlightText rounded-t-xl h-10 flex flex-row items-center justify-between">
       {backButton}
       <div className="text-base font-bold text-tertiaryText inline-block">
         {title}
