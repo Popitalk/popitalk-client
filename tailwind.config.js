@@ -63,6 +63,7 @@ module.exports = {
       tertiaryBackground: "#EBEBEB",
       quaternaryBackground: "#D3D3D3",
       disabledBackground: "#F2F2F2",
+      highlightBackground: "#D3ECFF",
       primaryText: "#000000",
       secondaryText: "#A5A5A5",
       tertiaryText: "#FFFFFF",
