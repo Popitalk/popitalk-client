@@ -6,13 +6,11 @@ import Button from "./Button";
 export default function VideoCard({
   id,
   title,
-  channelName,
   views,
   timeFromUpload,
-  name,
   thumbnail = "somedefaultimagehere"
 }) {
-  const leftInfo = `${channelName} | ${views}`;
+  const leftInfo = `${views}`;
   const rightInfo = `${timeFromUpload}`;
   return (
     <div className="flex flex-row items-center justify-center h-48 max-w-xs rounded-xl hover:shadow-xl">
