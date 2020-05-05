@@ -1,7 +1,9 @@
 import React from "react";
 import NotificationCard from "./NotificationCard";
-import Updates from "./Updates";
 import Button from "./Button";
+import DropDownContainer from "./DropDownContainer";
+import ModalHeader from "./ModalHeader";
+import LargeList from "./InfoCardList";
 
 export default function Notifications({ notifications, handleProfile }) {
   const itemRenderer = n => {
@@ -16,18 +18,13 @@ export default function Notifications({ notifications, handleProfile }) {
     );
   };
 
-  const clearButton = (
-    <div className="flex justify-end pt-2">
-      <Button size="sm">Clear</Button>
-    </div>
-  );
-
   return (
-    <Updates
-      title="Notifications"
-      updates={notifications}
-      itemRenderer={itemRenderer}
-      startComponent={clearButton}
-    />
+    <DropDownContainer>
+      <ModalHeader title="Notifications" />
+      <div className="flex justify-end pt-2">
+        <Button size="sm">Clear</Button>
+      </div>
+      <LargeList items={notifications} itemRenderer={itemRenderer} />
+    </DropDownContainer>
   );
 }

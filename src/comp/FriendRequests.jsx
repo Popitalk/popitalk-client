@@ -1,6 +1,8 @@
 import React from "react";
 import RequestCard from "./RequestCard";
-import Updates from "./Updates";
+import DropDownContainer from "./DropDownContainer";
+import ModalHeader from "./ModalHeader";
+import LargeList from "./InfoCardList";
 
 export default function FriendRequests({
   friendRequests,
@@ -24,10 +26,9 @@ export default function FriendRequests({
   };
 
   return (
-    <Updates
-      title="Friend Requests"
-      updates={friendRequests}
-      itemRenderer={itemRenderer}
-    />
+    <DropDownContainer>
+      <ModalHeader title="Friend Requests" />
+      <LargeList items={friendRequests} itemRenderer={itemRenderer} />
+    </DropDownContainer>
   );
 }
