@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { withKnobs } from "@storybook/addon-knobs";
 import FriendUsersList from "../comp/InfoCardLists/FriendUsersList";
-import ChannelsList from "../comp/ChannelsList";
+import ChannelsList from "../comp/InfoCardLists/ChannelsList";
 import RoomsList from "../comp/InfoCardLists/RoomsList";
 import ManageUsersList from "../comp/InfoCardLists/ManageUsersList";
 
@@ -90,7 +90,8 @@ export const ChannelsListTest = () => {
         "https://source.unsplash.com/128x128/?2,cat",
         "https://source.unsplash.com/128x128/?3,cat",
         "https://source.unsplash.com/128x128/?4,cat"
-      ]
+      ],
+      numOnline: 9001
     },
     {
       id: 2,
@@ -102,13 +103,15 @@ export const ChannelsListTest = () => {
         "https://source.unsplash.com/128x128/?2,cat",
         "https://source.unsplash.com/128x128/?3,cat",
         "https://source.unsplash.com/128x128/?4,cat"
-      ]
+      ],
+      numOnline: 20999
     },
     {
       id: 3,
       name: "League of Legends",
       icon: "https://source.unsplash.com/128x128/?1,dog",
-      watching: false
+      watching: false,
+      numOnline: 24
     },
     {
       id: 4,
@@ -120,7 +123,8 @@ export const ChannelsListTest = () => {
         "https://source.unsplash.com/128x128/?2,cat",
         "https://source.unsplash.com/128x128/?3,cat",
         "https://source.unsplash.com/128x128/?4,cat"
-      ]
+      ],
+      numOnline: 88
     }
   ];
   return (

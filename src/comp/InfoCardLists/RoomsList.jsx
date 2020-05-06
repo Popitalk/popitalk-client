@@ -1,9 +1,7 @@
 import React from "react";
-import classnames from "classnames";
 import RoomIcon from "../RoomIcon";
 import InfoCardList from "./InfoCardList";
 import InfoCard from "../InfoCards/InfoCard";
-import Text from "../Text";
 
 export default function RoomsList({ rooms, selected, handleSelect }) {
   const itemRenderer = room => {

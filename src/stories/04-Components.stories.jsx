@@ -382,7 +382,8 @@ export const ChannelsPanel123 = () => {
         "https://source.unsplash.com/128x128/?2,cat",
         "https://source.unsplash.com/128x128/?3,cat",
         "https://source.unsplash.com/128x128/?4,cat"
-      ]
+      ],
+      numOnline: 9001
     },
     {
       id: 2,
@@ -394,7 +395,8 @@ export const ChannelsPanel123 = () => {
         "https://source.unsplash.com/128x128/?2,cat",
         "https://source.unsplash.com/128x128/?3,cat",
         "https://source.unsplash.com/128x128/?4,cat"
-      ]
+      ],
+      numOnline: 219
     },
     {
       id: 3,
@@ -406,7 +408,8 @@ export const ChannelsPanel123 = () => {
         "https://source.unsplash.com/128x128/?2,cat",
         "https://source.unsplash.com/128x128/?3,cat",
         "https://source.unsplash.com/128x128/?4,cat"
-      ]
+      ],
+      numOnline: 0
     }
   ];
 

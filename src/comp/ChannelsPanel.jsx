@@ -1,6 +1,6 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import ChannelsList from "./ChannelsList";
+import ChannelsList from "./InfoCardLists/ChannelsList";
 import Button from "./Button";
 
 export default function ChannelsPanel({ channels, selected, handleSelect }) {
