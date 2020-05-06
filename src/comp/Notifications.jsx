@@ -1,33 +1,37 @@
 import React from "react";
-import NotificationCard from "./NotificationCard";
-import Updates from "./Updates";
 import Button from "./Button";
+import DropDownContainer from "./DropDownContainer";
+import ModalHeader from "./ModalHeader";
+import InfoCardList from "./InfoCardLists/InfoCardList";
+import ImageInfoCard from "./InfoCards/ImageInfoCard";
 
-export default function Notifications({ notifications, handleProfile }) {
+export default function Notifications({
+  notifications,
+  handleProfile,
+  handleClear
+}) {
   const itemRenderer = n => {
     return (
-      <NotificationCard
+      <ImageInfoCard
         avatar={n.avatar}
         username={n.username}
-        message={n.message}
-        handleProfile={e => handleProfile(e, n.id)}
-        onClick={e => handleProfile(e, n.id)}
+        title={n.message}
+        hoverable={true}
+        cardClick={() => handleProfile(n.id)}
+        imageClick={() => handleProfile(n.id)}
       />
     );
   };
 
-  const clearButton = (
-    <div className="flex justify-end pt-2">
-      <Button size="sm">Clear</Button>
-    </div>
-  );
-
   return (
-    <Updates
-      title="Notifications"
-      updates={notifications}
-      itemRenderer={itemRenderer}
-      startComponent={clearButton}
-    />
+    <DropDownContainer>
+      <ModalHeader title="Notifications" />
+      <div className="flex justify-end pt-2 pr-2">
+        <Button size="sm" onClick={handleClear}>
+          Clear
+        </Button>
+      </div>
+      <InfoCardList items={notifications} itemRenderer={itemRenderer} />
+    </DropDownContainer>
   );
 }

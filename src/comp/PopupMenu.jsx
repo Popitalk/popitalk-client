@@ -49,7 +49,7 @@ export default function PopupMenu({
       )}
       {open && (
         <div
-          className="absolute top-0 right-0 mt-5 mr-0 flex flex-col items-center justify-center flex-shrink-0 bg-primaryBackground shadow-xl rounded-lg border border-primaryBorder"
+          className="absolute z-10 top-0 right-0 mt-5 mr-0 flex flex-col items-center justify-center flex-shrink-0 bg-primaryBackground shadow-xl rounded-lg border border-primaryBorder"
           ref={ref}
         >
           {options.map((option, index) => {

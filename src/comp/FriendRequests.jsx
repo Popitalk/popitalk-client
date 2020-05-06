@@ -1,33 +1,13 @@
 import React from "react";
-import RequestCard from "./RequestCard";
-import Updates from "./Updates";
+import DropDownContainer from "./DropDownContainer";
+import ModalHeader from "./ModalHeader";
+import FriendUsersList from "./InfoCardLists/FriendUsersList";
 
-export default function FriendRequests({
-  friendRequests,
-  handleProfile,
-  handleAccept,
-  handleReject
-}) {
-  const itemRenderer = f => {
-    return (
-      <RequestCard
-        username={f.username}
-        firstName={f.firstName}
-        lastName={f.lastName}
-        avatar={f.avatar}
-        handleProfile={() => handleProfile(f.id)}
-        handleAccept={() => handleAccept(f.id)}
-        handleReject={() => handleReject(f.id)}
-        variant="receivedFriendRequest"
-      />
-    );
-  };
-
+export default function FriendRequests({ friendRequests, ...rest }) {
   return (
-    <Updates
-      title="Friend Requests"
-      updates={friendRequests}
-      itemRenderer={itemRenderer}
-    />
+    <DropDownContainer>
+      <ModalHeader title="Friend Requests" />
+      <FriendUsersList users={friendRequests} {...rest} />
+    </DropDownContainer>
   );
 }

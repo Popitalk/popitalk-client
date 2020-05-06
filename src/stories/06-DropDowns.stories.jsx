@@ -18,11 +18,11 @@ const backHandler = () => {
   console.log("back");
 };
 
-export const FriendRequestsFriends = () => {
-  const handleProfile = id => {
-    console.log(`PROFILE ${id}`);
-  };
+const handleProfile = id => {
+  console.log(`PROFILE ${id}`);
+};
 
+export const FriendRequestsFriends = () => {
   const handleAccept = id => {
     console.log(`ACCEPT ${id}`);
   };
@@ -37,49 +37,56 @@ export const FriendRequestsFriends = () => {
       username: "Andrew",
       firstName: "Andrew",
       lastName: "Jang",
-      avatar: "https://i.imgur.com/xCGu56D.jpg"
+      avatar: "https://i.imgur.com/xCGu56D.jpg",
+      variant: "receivedRequest"
     },
     {
       id: 2,
       username: "Andrew",
       firstName: "Andrew",
       lastName: "Jang",
-      avatar: "https://i.imgur.com/xCGu56D.jpg"
+      avatar: "https://i.imgur.com/xCGu56D.jpg",
+      variant: "receivedRequest"
     },
     {
       id: 3,
       username: "Andrew",
       firstName: "Andrew",
       lastName: "Jang",
-      avatar: "https://i.imgur.com/xCGu56D.jpg"
+      avatar: "https://i.imgur.com/xCGu56D.jpg",
+      variant: "receivedRequest"
     },
     {
       id: 4,
       username: "Andrew",
       firstName: "Andrew",
       lastName: "Jang",
-      avatar: "https://i.imgur.com/xCGu56D.jpg"
+      avatar: "https://i.imgur.com/xCGu56D.jpg",
+      variant: "sentRequest"
     },
     {
       id: 5,
       username: "Andrew",
       firstName: "Andrew",
       lastName: "Jang",
-      avatar: "https://i.imgur.com/xCGu56D.jpg"
+      avatar: "https://i.imgur.com/xCGu56D.jpg",
+      variant: "receivedRequest"
     },
     {
       id: 6,
       username: "Andrew",
       firstName: "Andrew",
       lastName: "Jang",
-      avatar: "https://i.imgur.com/xCGu56D.jpg"
+      avatar: "https://i.imgur.com/xCGu56D.jpg",
+      variant: "sentRequest"
     },
     {
       id: 7,
       username: "Andrew",
       firstName: "Andrew",
       lastName: "Jang",
-      avatar: "https://i.imgur.com/xCGu56D.jpg"
+      avatar: "https://i.imgur.com/xCGu56D.jpg",
+      variant: "receivedRequest"
     }
   ];
 
@@ -97,13 +104,8 @@ export const FriendRequestsNoFriends = () => {
   return <FriendRequests />;
 };
 
-export const NotificationsTest = () => {
-  const handleProfile = (event, id) => {
-    event.stopPropagation();
-    console.log(`Display profile for user ${id}`);
-  };
-
-  const notifications = [
+export const ManyNotificationsTest = () => {
+  let notifications = [
     {
       id: 1,
       username: "Andrew",
@@ -139,6 +141,39 @@ export const NotificationsTest = () => {
       username: "Andrew",
       avatar: "https://i.imgur.com/xCGu56D.jpg",
       message: "Andrew liked your comment"
+    }
+  ];
+
+  for (let i = 0; i < 200; i++) {
+    notifications.push({
+      id: i + 7,
+      username: "Andrew",
+      avatar: "https://i.imgur.com/xCGu56D.jpg",
+      message: "Andrew liked your comment"
+    });
+  }
+
+  return (
+    <Notifications
+      notifications={notifications}
+      handleProfile={handleProfile}
+    />
+  );
+};
+
+export const SomeNotificationsTest = () => {
+  let notifications = [
+    {
+      id: 1,
+      username: "Andrew",
+      avatar: "https://i.imgur.com/xCGu56D.jpg",
+      message: "You and Andrew are now friends"
+    },
+    {
+      id: 2,
+      username: "Andrew",
+      avatar: "https://i.imgur.com/xCGu56D.jpg",
+      message: "Andrew followed your channel"
     }
   ];
 
