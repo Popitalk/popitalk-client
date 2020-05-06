@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { withKnobs } from "@storybook/addon-knobs";
 import FriendUsersList from "../comp/InfoCardLists/FriendUsersList";
 import ChannelsList from "../comp/ChannelsList";
-import RoomsList from "../comp/RoomsList";
+import RoomsList from "../comp/InfoCardLists/RoomsList";
 import ManageUsersList from "../comp/InfoCardLists/ManageUsersList";
 
 export default {
@@ -46,7 +46,7 @@ export const UserSearchResultsTest = () => {
       firstName: "Andrew",
       lastName: "Jang",
       avatar: "https://i.imgur.com/xCGu56D.jpg",
-      variant: "friend"
+      variant: "self"
     },
     {
       id: 4,
@@ -146,7 +146,8 @@ export const RoomsListTest = () => {
       watching: false,
       notifications: null,
       message: null,
-      images: ["https://source.unsplash.com/128x128/?1,cat"]
+      images: ["https://source.unsplash.com/128x128/?1,cat"],
+      messageSent: "1m"
     },
     {
       id: 2,
@@ -156,7 +157,8 @@ export const RoomsListTest = () => {
       watching: false,
       notifications: 23,
       message: null,
-      images: ["https://source.unsplash.com/128x128/?2,cat"]
+      images: ["https://source.unsplash.com/128x128/?2,cat"],
+      messageSent: "2m"
     },
     {
       id: 3,
@@ -171,7 +173,8 @@ export const RoomsListTest = () => {
         "https://source.unsplash.com/128x128/?2,cat",
         "https://source.unsplash.com/128x128/?3,cat",
         "https://source.unsplash.com/128x128/?4,cat"
-      ]
+      ],
+      messageSent: "Today"
     },
     {
       id: 4,
@@ -185,7 +188,8 @@ export const RoomsListTest = () => {
         "https://source.unsplash.com/128x128/?6,cat",
         "https://source.unsplash.com/128x128/?7,cat",
         "https://source.unsplash.com/128x128/?8,cat"
-      ]
+      ],
+      messageSent: "1/5/2019"
     }
   ];
   return (

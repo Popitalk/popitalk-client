@@ -8,11 +8,11 @@ export default function RequestCard({
   handleReject,
   handleProfile
 }) {
-  // variants: stranger, friend, receivedRequest, sentRequest
+  // variants: stranger, friend, self, receivedRequest, sentRequest
 
   const addUserDisabled = user.variant === "sentRequest";
   const addButton =
-    user.variant === "friend" ? (
+    user.variant === "friend" || user.variant === "self" ? (
       <></>
     ) : (
       <Button

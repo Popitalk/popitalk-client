@@ -6,7 +6,7 @@ import Button from "../comp/Button";
 import Text from "../comp/Text";
 import Input from "../comp/Input";
 import ChannelSettingsSidebar from "../comp/ChannelSettingsSidebar";
-import RequestCard from "../comp/RequestCard";
+import RequestCard from "../comp/InfoCards/RequestCard";
 import AvatarDeck from "../comp/AvatarDeck";
 import RoomIcon from "../comp/RoomIcon";
 import ChannelCard from "../comp/ChannelCard";
@@ -103,55 +103,59 @@ export const RequestCard123 = () => {
     console.log("REJECT");
   };
 
+  const users = [
+    {
+      username: "Andrew",
+      firstName: "Andrew",
+      lastName: "Jang",
+      avatar: "https://i.imgur.com/xCGu56D.jpg",
+      variant: "stranger"
+    },
+    {
+      username: "Andrew",
+      firstName: "Andrew",
+      lastName: "Jang",
+      avatar: "https://i.imgur.com/xCGu56D.jpg",
+      variant: "sentRequest"
+    },
+    {
+      username: "Andrew",
+      firstName: "Andrew",
+      lastName: "Jang",
+      avatar: "https://i.imgur.com/xCGu56D.jpg",
+      variant: "receivedRequest"
+    },
+    {
+      username: "Andrew",
+      firstName: "Andrew",
+      lastName: "Jang",
+      avatar: "https://i.imgur.com/xCGu56D.jpg",
+      variant: "friend"
+    },
+    {
+      username: "Andrew",
+      firstName: "Andrew",
+      lastName: "Jang",
+      avatar: "https://i.imgur.com/xCGu56D.jpg",
+      variant: "self"
+    }
+  ];
+
   return (
-    <Container>
-      <RequestCard
-        username="Andrew"
-        firstName="Andrew"
-        lastName="Jang"
-        avatar="https://i.imgur.com/xCGu56D.jpg"
-        handleProfile={handleProfile}
-        handleAccept={handleAccept}
-        handleReject={handleReject}
-        variant="stranger"
-      />
-      <RequestCard
-        username="Andrew"
-        firstName="Andrew"
-        lastName="Jang"
-        avatar="https://i.imgur.com/xCGu56D.jpg"
-        handleProfile={handleProfile}
-        handleAccept={handleAccept}
-        variant="sentFriendRequest"
-      />
-      <RequestCard
-        username="Andrew"
-        firstName="Andrew"
-        lastName="Jang"
-        avatar="https://i.imgur.com/xCGu56D.jpg"
-        handleProfile={handleProfile}
-        handleAccept={handleAccept}
-        variant="receivedFriendRequest"
-      />
-      <RequestCard
-        username="Andrew"
-        firstName="Andrew"
-        lastName="Jang"
-        avatar="https://i.imgur.com/xCGu56D.jpg"
-        handleProfile={handleProfile}
-        handleAccept={handleAccept}
-        variant="friend"
-      />
-      <RequestCard
-        username="Andrew"
-        firstName="Andrew"
-        lastName="Jang"
-        avatar="https://i.imgur.com/xCGu56D.jpg"
-        handleProfile={handleProfile}
-        handleAccept={handleAccept}
-        variant="self"
-      />
-    </Container>
+    <>
+      {users.map((u, i) => {
+        return (
+          <div key={i} className="p-2">
+            <RequestCard
+              user={u}
+              handleAccept={handleAccept}
+              handleReject={handleReject}
+              handleProfile={handleProfile}
+            />
+          </div>
+        );
+      })}
+    </>
   );
 };
 
@@ -439,9 +443,6 @@ export const FriendsPanel123 = () => {
       firstName: "Andrew",
       lastName: "Jang",
       avatar: "https://i.imgur.com/xCGu56D.jpg",
-      handleProfile: handleProfile,
-      handleAccept: handleAccept,
-      handleReject: handleReject,
       variant: "stranger"
     },
     {
@@ -450,9 +451,6 @@ export const FriendsPanel123 = () => {
       firstName: "Andrew",
       lastName: "Jang",
       avatar: "https://i.imgur.com/xCGu56D.jpg",
-      handleProfile: handleProfile,
-      handleAccept: handleAccept,
-      handleReject: handleReject,
       variant: "friend"
     },
     {
@@ -461,9 +459,6 @@ export const FriendsPanel123 = () => {
       firstName: "Andrew",
       lastName: "Jang",
       avatar: "https://i.imgur.com/xCGu56D.jpg",
-      handleProfile: handleProfile,
-      handleAccept: handleAccept,
-      handleReject: handleReject,
       variant: "self"
     },
     {
@@ -472,10 +467,7 @@ export const FriendsPanel123 = () => {
       firstName: "Andrew",
       lastName: "Jang",
       avatar: "https://i.imgur.com/xCGu56D.jpg",
-      handleProfile: handleProfile,
-      handleAccept: handleAccept,
-      handleReject: handleReject,
-      variant: "receivedFriendRequest"
+      variant: "receivedRequest"
     },
     {
       id: 5,
@@ -483,10 +475,7 @@ export const FriendsPanel123 = () => {
       firstName: "Andrew",
       lastName: "Jang",
       avatar: "https://i.imgur.com/xCGu56D.jpg",
-      handleProfile: handleProfile,
-      handleAccept: handleAccept,
-      handleReject: handleReject,
-      variant: "sentFriendRequest"
+      variant: "sentRequest"
     }
   ];
 
@@ -536,6 +525,9 @@ export const FriendsPanel123 = () => {
         selected={selectedChannel}
         handleSelect={id => setSelectedChannel(id)}
         userSearchResults={results}
+        handleAccept={handleAccept}
+        handleReject={handleReject}
+        handleProfile={handleProfile}
       />
     </div>
   );
