@@ -35,19 +35,19 @@ export default function VideoCard({
             </p>
           </div>
         </div>
-        <div className="absolute bottom-0 mb-4 flex justify-left z-40 opacity-0 group-hover:opacity-100">
+        <div className="absolute bottom-0 mb-4 z-40 opacity-0 group-hover:opacity-100">
           <Button
-            size="md"
+            size="lg"
             shape="pill"
-            className="ml-auto"
+            className="py-10 mr-8 text-center"
             onClick={handleWatch}
           >
             Watch
           </Button>
           <Button
-            size="md"
+            size="lg"
             shape="pill"
-            className="ml-auto"
+            className="py-10 ml-8 text-center"
             onClick={handleShare}
           >
             Share

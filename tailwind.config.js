@@ -130,7 +130,7 @@ module.exports = {
     backgroundColor: ["responsive", "hover", "group-hover", "disabled"],
     color: ["responsive", "hover"],
     cursor: ["responsive", "hover", "disabled"],
-    opacity: ["responsive", "hover"],
+    opacity: ['responsive', 'hover', 'focus', 'active', 'group-hover'],
     visibility: ["responsive", "group-hover"],
     filter: ["responsive", "hover", "active", "group-hover"]
   },
