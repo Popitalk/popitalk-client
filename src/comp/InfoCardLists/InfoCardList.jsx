@@ -1,6 +1,6 @@
 import React from "react";
 import { FixedSizeList } from "react-window";
-import Text from "./Text";
+import Text from "../Text";
 
 export default function InfoCardList({ items, itemRenderer }) {
   if (!items || items.length === 0) {

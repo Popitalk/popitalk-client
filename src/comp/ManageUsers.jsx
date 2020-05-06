@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import UsersList from "./UsersList";
+import ManageUsersList from "./InfoCardLists/ManageUsersList";
 import Input from "./Input";
 
 export default function ManageUsers({
@@ -28,13 +28,13 @@ export default function ManageUsers({
         className="mb-8"
       />
       {filteredUsers.length !== 0 ? (
-        <UsersList
-          variant="manage"
-          users={filteredUsers}
-          options={options}
-          handleProfile={handleProfile}
-          className="flex-grow"
-        />
+        <div className="flex-grow">
+          <ManageUsersList
+            users={filteredUsers}
+            options={options}
+            handleProfile={handleProfile}
+          />
+        </div>
       ) : (
         <h2 className="text-secondaryText font-semibold text-2xl flex-grow flex justify-center items-center">
           No Users Found

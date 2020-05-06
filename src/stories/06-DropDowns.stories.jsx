@@ -18,11 +18,7 @@ const backHandler = () => {
   console.log("back");
 };
 
-const handleProfile = (event, id) => {
-  if (event) {
-    event.stopPropagation();
-  }
-
+const handleProfile = id => {
   console.log(`PROFILE ${id}`);
 };
 
@@ -41,56 +37,63 @@ export const FriendRequestsFriends = () => {
       username: "Andrew",
       firstName: "Andrew",
       lastName: "Jang",
-      avatar: "https://i.imgur.com/xCGu56D.jpg"
+      avatar: "https://i.imgur.com/xCGu56D.jpg",
+      variant: "receivedRequest"
     },
     {
       id: 2,
       username: "Andrew",
       firstName: "Andrew",
       lastName: "Jang",
-      avatar: "https://i.imgur.com/xCGu56D.jpg"
+      avatar: "https://i.imgur.com/xCGu56D.jpg",
+      variant: "receivedRequest"
     },
     {
       id: 3,
       username: "Andrew",
       firstName: "Andrew",
       lastName: "Jang",
-      avatar: "https://i.imgur.com/xCGu56D.jpg"
+      avatar: "https://i.imgur.com/xCGu56D.jpg",
+      variant: "receivedRequest"
     },
     {
       id: 4,
       username: "Andrew",
       firstName: "Andrew",
       lastName: "Jang",
-      avatar: "https://i.imgur.com/xCGu56D.jpg"
+      avatar: "https://i.imgur.com/xCGu56D.jpg",
+      variant: "sentRequest"
     },
     {
       id: 5,
       username: "Andrew",
       firstName: "Andrew",
       lastName: "Jang",
-      avatar: "https://i.imgur.com/xCGu56D.jpg"
+      avatar: "https://i.imgur.com/xCGu56D.jpg",
+      variant: "receivedRequest"
     },
     {
       id: 6,
       username: "Andrew",
       firstName: "Andrew",
       lastName: "Jang",
-      avatar: "https://i.imgur.com/xCGu56D.jpg"
+      avatar: "https://i.imgur.com/xCGu56D.jpg",
+      variant: "sentRequest"
     },
     {
       id: 7,
       username: "Andrew",
       firstName: "Andrew",
       lastName: "Jang",
-      avatar: "https://i.imgur.com/xCGu56D.jpg"
+      avatar: "https://i.imgur.com/xCGu56D.jpg",
+      variant: "receivedRequest"
     }
   ];
 
   return (
     <FriendRequests
       friendRequests={friendRequests}
-      handleProfile={id => handleProfile(null, id)}
+      handleProfile={handleProfile}
       handleAccept={handleAccept}
       handleReject={handleReject}
     />

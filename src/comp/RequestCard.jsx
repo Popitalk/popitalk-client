@@ -1,9 +1,11 @@
 import React from "react";
 import Button from "./Button";
+import classnames from "classnames";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default function RequestCard({
   id,
+  background = "gray",
   username,
   firstName,
   lastName,
@@ -14,10 +16,15 @@ export default function RequestCard({
   handleReject,
   variant
 }) {
+  const boxClasses = classnames("flex items-center  rounded-lg px-4 py-2", {
+    "bg-secondaryBackground": background === "gray",
+    "bg-primaryBackground": background === "white"
+  });
+
   const canReject =
     variant === "sentFriendRequest" || variant === "receivedFriendRequest";
   return (
-    <div className="flex items-center bg-secondaryBackground rounded-lg px-4 py-2">
+    <div className={boxClasses}>
       {/* <div className="flex items-center bg-secondaryBackground rounded-lg px-4 py-2 max-w-sm shadow-md"> */}
       <img
         className="img w-12 h-12 rounded-circle mr-4"
