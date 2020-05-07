@@ -25,17 +25,29 @@ export const VideoCardShow = () => {
   );
 };
 
-export const SuggestionCardShow = () => {
+export const SuggestionCardStates = () => {
   return (
-    <SuggestionCard
-      id={123}
-      name="Thelmo Society"
-      icon="https://i.imgur.com/xCGu56D.jpg"
-      live={true}
-      videoTitle="Video Title"
-      videoSource="youtube"
-      videoThumbnail="https://i.imgur.com/aqjzchq.jpg"
-      activeViewers="2,000"
-    />
+    <div className="p-5 grid grid-cols-2">
+      <SuggestionCard
+        id={123}
+        name="Thelmo Society"
+        icon="https://i.imgur.com/xCGu56D.jpg"
+        videoStatus="playing"
+        videoTitle="Video Title"
+        videoSource="youtube"
+        videoThumbnail="https://i.imgur.com/aqjzchq.jpg"
+        activeViewers="2,000"
+      />
+      <SuggestionCard
+        id={123}
+        name="Thelmo Society"
+        icon="https://i.imgur.com/xCGu56D.jpg"
+        videoStatus="paused"
+        videoTitle="Video Title"
+        videoSource="youtube"
+        videoThumbnail="https://i.imgur.com/aqjzchq.jpg"
+        activeViewers="2,000"
+      />
+    </div>
   );
 };

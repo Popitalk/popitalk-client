@@ -1,46 +1,35 @@
 import React from "react";
 import RoomIcon from "./RoomIcon";
-import AvatarDeck from "./AvatarDeck";
-import Button from "./Button";
+import VideoStatus from "./VideoStatus";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import "./SuggestionCard.css";
 
 export default function SuggestionCard({
   id,
   name,
   icon,
-  live,
+  videoStatus,
   videoTitle,
   videoSource,
   videoThumbnail = "somedefaultimagehere",
   activeViewers
 }) {
   return (
-    <div className="flex flex-row items-center justify-center h-64 w-2/4 max-w-sm rounded-xl hover:shadow-xl">
-      <div className="flex-grow flex flex-row justify-center h-64 p-3 relative">
+    <div className="flex flex-row items-center justify-center h-56 w-2/4 max-w-sm rounded-xl hover:shadow-xl">
+      <div className="flex-grow flex flex-row justify-center h-56 p-3 relative">
         <div className="absolute w-full top-0 left-0 p-3 rounded-b-xl z-20">
           <div className="flex flex-row justify-between">
             <div className="flex flex-row justify-start">
               <RoomIcon
                 ids={[id]}
                 images={[icon]}
-                watching={live}
+                watching={videoStatus === "playing" ? true : false}
                 size="md"
                 className="mr-1 ml-1"
               />
               <p className="text-sm font-regular text-tertiaryText">{name}</p>
             </div>
-            {live ? (
-              <Button
-                size="sm"
-                shape="pill"
-                className="btn-text-grad shadow-md"
-              >
-                Playing
-              </Button>
-            ) : (
-              ""
-            )}
+
+            <VideoStatus status={videoStatus} />
           </div>
         </div>
         <img

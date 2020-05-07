@@ -1,4 +1,4 @@
-.btn-text-grad {
+.btn-playing {
   position: relative;
   background: -webkit-linear-gradient(
     0deg,
@@ -10,7 +10,7 @@
   -webkit-text-fill-color: transparent;
 }
 
-.btn-text-grad:after {
+.btn-playing:after {
   content: "";
   position: absolute;
   top: 0;
@@ -20,4 +20,9 @@
   background: #f2f2f2;
   z-index: -1;
   border-radius: 9999px;
+}
+
+.btn-paused {
+    color: #A5A5A5;
+    background: #f2f2f2;
 }
