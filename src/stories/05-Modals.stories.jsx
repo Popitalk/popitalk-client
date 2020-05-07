@@ -8,6 +8,8 @@ import CreateNewAccountModal from "../comp/CreateNewAccountModal";
 import ModalManager from "../comp/ModalManager";
 import ContainerHeader from "../comp/ContainerHeader";
 import RoomExistsModal from "../comp/RoomExistsModal";
+import SearchHeader from "../comp/SearchHeader";
+import FollowersList from "../comp/InfoCardLists/FollowersList";
 
 export default {
   title: "Modals",
@@ -81,7 +83,7 @@ export const ForgotPasswordModalTest = () => {
   );
 };
 
-export const RoomExistsModalText = () => {
+export const RoomExistsModalTest = () => {
   const createNewHandler = () => {
     console.log("Create New Room");
   };
@@ -109,6 +111,64 @@ export const RoomExistsModalText = () => {
         openRoomHandler={openRoomHandler}
         createNewHandler={createNewHandler}
       />
+    </ModalManager>
+  );
+};
+
+export const FollowersModalTest = () => {
+  const filterSearch = searchTerm => {
+    console.log(searchTerm);
+  };
+
+  const handleProfile = id => {
+    console.log(`Profile ${id}`);
+  };
+
+  const users = [
+    {
+      id: 1,
+      username: "Andrew",
+      firstName: "Andrew",
+      lastName: "Jang",
+      avatar: "https://i.imgur.com/xCGu56D.jpg"
+    },
+    {
+      id: 2,
+      username: "Andrew",
+      firstName: "Andrew",
+      lastName: "Jang",
+      avatar: "https://i.imgur.com/xCGu56D.jpg"
+    },
+    {
+      id: 3,
+      username: "Andrew",
+      firstName: "Andrew",
+      lastName: "Jang",
+      avatar: "https://i.imgur.com/xCGu56D.jpg"
+    },
+    {
+      id: 4,
+      username: "Andrew",
+      firstName: "Andrew",
+      lastName: "Jang",
+      avatar: "https://i.imgur.com/xCGu56D.jpg"
+    },
+    {
+      id: 5,
+      username: "Andrew",
+      firstName: "Andrew",
+      lastName: "Jang",
+      avatar: "https://i.imgur.com/xCGu56D.jpg"
+    }
+  ];
+
+  return (
+    <ModalManager
+      isOpen={true}
+      small={true}
+      header={<SearchHeader title="Following" filterSearch={filterSearch} />}
+    >
+      <FollowersList users={users} handleProfile={handleProfile} />
     </ModalManager>
   );
 };

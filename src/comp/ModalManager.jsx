@@ -15,7 +15,7 @@ export default function ModalManager({
   header,
   children
 }) {
-  const subClasses = classnames("px-8 py-8 overflow-auto", {
+  const subClasses = classnames("p-4 overflow-auto", {
     "h-75vh": fullHeight
   });
 
