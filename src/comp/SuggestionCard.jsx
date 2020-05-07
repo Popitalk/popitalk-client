@@ -2,6 +2,7 @@ import React from "react";
 import RoomIcon from "./RoomIcon";
 import AvatarDeck from "./AvatarDeck";
 import Button from "./Button";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default function SuggestionCard({
   id,
@@ -12,26 +13,13 @@ export default function SuggestionCard({
   videoSource,
   videoThumbnail = "somedefaultimagehere",
   avatars,
-  handleFollow
+  handleFollow,
+  activeViewers
 }) {
   return (
-    <div className="flex flex-row items-center justify-center h-64 max-w-xs rounded-xl hover:shadow-xl">
+    <div className="flex flex-row items-center justify-center h-64 max-w-sm rounded-xl hover:shadow-xl">
       <div className="flex-grow flex flex-row justify-center h-64 p-3 relative">
-        <img
-          src={videoThumbnail}
-          alt="channel"
-          className="img absolute top-0 h-full rounded-xl z-10"
-        />
-        <Button
-          size="md"
-          icon="play"
-          className="bg-gradient-br-primary absolute top-0 left-0 mt-2 ml-3 select-none z-30"
-        />
-        <div className="h-full w-full absolute top-0 bg-gradient-t-channelCardOverlay z-20 rounded-xl" />
-        <div className="absolute w-full bottom-0 left-0 p-3 rounded-b-xl z-20">
-          <p className="text-lg font-regular text-tertiaryText mb-1 ml-3 z-30">
-            {videoTitle}
-          </p>
+        <div className="absolute w-full top-0 left-0 p-3 rounded-b-xl z-20">
           <div className="flex flex-row items-center">
             <RoomIcon
               ids={[id]}
@@ -47,8 +35,27 @@ export default function SuggestionCard({
               className="ml-auto"
               onClick={handleFollow}
             >
-              Follow
+              Playing
             </Button>
+          </div>
+        </div>
+        <img
+          src={videoThumbnail}
+          alt="channel"
+          className="img absolute top-0 h-full rounded-xl z-10"
+        />
+        <div className="h-full w-full absolute top-0 bg-gradient-t-channelCardOverlay z-20 rounded-xl" />
+        <div className="absolute w-full bottom-0 left-0 p-3 rounded-b-xl z-20">
+          <p className="text-lg font-regular text-tertiaryText mb-1 ml-3 z-30">
+            {videoTitle}
+          </p>
+          <div>
+            <FontAwesomeIcon
+              className=""
+              style={{ color: "white" }}
+              icon="user-friends"
+            />
+            <span className="text-tertiaryText">{activeViewers}</span>
           </div>
         </div>
       </div>
