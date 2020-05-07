@@ -19,7 +19,7 @@ export default function VideoCard({
       <div className="group flex-grow flex flex-row justify-center h-48 p-3 relative">
         <img
           src={thumbnail}
-          alt="channel"
+          alt="video-thumbnail"
           className="img absolute top-0 h-full rounded-xl z-10"
         />
 
@@ -39,7 +39,7 @@ export default function VideoCard({
           <Button
             size="lg"
             shape="pill"
-            className="py-10 mr-8 text-center"
+            className="py-10 mr-2 w-32 text-center"
             onClick={handleWatch}
           >
             Watch
@@ -47,7 +47,7 @@ export default function VideoCard({
           <Button
             size="lg"
             shape="pill"
-            className="py-10 ml-8 text-center"
+            className="py-10 ml-2 w-32 text-center"
             onClick={handleShare}
           >
             Share
