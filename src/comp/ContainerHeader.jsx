@@ -2,7 +2,7 @@ import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 
-export default function ModalHeader({ title, handleBack }) {
+export default function ContainerHeader({ title, handleBack }) {
   // Ensure the title is centered even if the back button isn't displayed
   const width = "w-12";
 

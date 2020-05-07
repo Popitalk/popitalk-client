@@ -1,13 +1,13 @@
 import React from "react";
 import DropDownContainer from "./DropDownContainer";
-import ModalHeader from "./ModalHeader";
+import ContainerHeader from "./ContainerHeader";
 import Text from "./Text";
 import Button from "./Button";
 
 export default function DeleteAccountDropDown({ handleBack, handleDelete }) {
   return (
     <DropDownContainer>
-      <ModalHeader title="Delete Account" handleBack={handleBack} />
+      <ContainerHeader title="Delete Account" handleBack={handleBack} />
       <div className="p-8 flex flex-col items-center">
         <Text variant="subtitle2">Are you sure?</Text>
         <Text variant="text2" className="pt-2 pb-8">

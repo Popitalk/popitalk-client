@@ -11,6 +11,7 @@ export default function InfoCard({
   boldFont = false,
   backgroundColor = "transparent",
   hoverable,
+  addBorder,
   padding = "md",
   cardClick
 }) {
@@ -32,7 +33,8 @@ export default function InfoCard({
     "bg-highlightBackground": backgroundColor === "highlight",
     "hover:bg-highlightBackground": hoverable,
     "py-2": padding === "md",
-    "py-1": padding === "sm"
+    "py-1": padding === "sm",
+    "border border-highlightText": addBorder
   });
 
   return (

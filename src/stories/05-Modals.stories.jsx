@@ -6,7 +6,8 @@ import ChangePasswordModal from "../comp/ChangePasswordModal";
 import ForgotPasswordModal from "../comp/ForgotPasswordModal";
 import CreateNewAccountModal from "../comp/CreateNewAccountModal";
 import ModalManager from "../comp/ModalManager";
-import ModalHeader from "../comp/ModalHeader";
+import ContainerHeader from "../comp/ContainerHeader";
+import RoomExistsModal from "../comp/RoomExistsModal";
 
 export default {
   title: "Modals",
@@ -31,7 +32,10 @@ export const EditInformationModalTest = () => {
       isOpen={true}
       fullHeight={true}
       header={
-        <ModalHeader title="Edit Your Information" handleBack={handleBack} />
+        <ContainerHeader
+          title="Edit Your Information"
+          handleBack={handleBack}
+        />
       }
     >
       <EditInformationModal
@@ -53,7 +57,10 @@ export const ChangePasswordModalTest = () => {
   return (
     <ModalManager
       isOpen={true}
-      header={<ModalHeader title="Change Password" handleBack={handleBack} />}
+      small={true}
+      header={
+        <ContainerHeader title="Change Password" handleBack={handleBack} />
+      }
     >
       <ChangePasswordModal handleBack="test" passwordUpdated={true} />
     </ModalManager>
@@ -64,9 +71,44 @@ export const ForgotPasswordModalTest = () => {
   return (
     <ModalManager
       isOpen={true}
-      header={<ModalHeader title="Forgot Password" handleBack={handleBack} />}
+      small={true}
+      header={
+        <ContainerHeader title="Forgot Password" handleBack={handleBack} />
+      }
     >
       <ForgotPasswordModal confirmEmailSent={true} />
+    </ModalManager>
+  );
+};
+
+export const RoomExistsModalText = () => {
+  const createNewHandler = () => {
+    console.log("Create New Room");
+  };
+
+  const openRoomHandler = id => {
+    console.log(`Open Room ${id}`);
+  };
+
+  const room = {
+    id: 1,
+    name: "Andrew",
+    self: true,
+    online: false,
+    watching: false,
+    notifications: null,
+    message: "You: ABCD",
+    images: ["https://source.unsplash.com/128x128/?1,cat"],
+    messageSent: "1m"
+  };
+
+  return (
+    <ModalManager isOpen={true} background="gray" small={true}>
+      <RoomExistsModal
+        room={room}
+        openRoomHandler={openRoomHandler}
+        createNewHandler={createNewHandler}
+      />
     </ModalManager>
   );
 };

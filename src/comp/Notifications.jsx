@@ -1,7 +1,7 @@
 import React from "react";
 import Button from "./Button";
 import DropDownContainer from "./DropDownContainer";
-import ModalHeader from "./ModalHeader";
+import ContainerHeader from "./ContainerHeader";
 import InfoCardList from "./InfoCardLists/InfoCardList";
 import ImageInfoCard from "./InfoCards/ImageInfoCard";
 
@@ -25,7 +25,7 @@ export default function Notifications({
 
   return (
     <DropDownContainer>
-      <ModalHeader title="Notifications" />
+      <ContainerHeader title="Notifications" />
       <div className="flex justify-end pt-2 pr-2">
         <Button size="sm" onClick={handleClear}>
           Clear

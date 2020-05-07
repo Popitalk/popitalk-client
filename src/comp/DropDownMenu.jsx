@@ -1,12 +1,12 @@
 import React from "react";
 import Text from "./Text";
 import DropDownContainer from "./DropDownContainer";
-import ModalHeader from "./ModalHeader";
+import ContainerHeader from "./ContainerHeader";
 
 export default function DropDownMenu({ title, handleBack, buttons }) {
   return (
     <DropDownContainer>
-      <ModalHeader title={title} handleBack={handleBack} />
+      <ContainerHeader title={title} handleBack={handleBack} />
       <div className="p-2">
         {buttons.map((b, i) => {
           return (
