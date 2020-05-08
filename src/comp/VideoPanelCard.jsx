@@ -1,6 +1,7 @@
 import React from "react";
 import Button from "./Button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import VideoStatus from "./VideoStatus";
 
 export default function VideoPanelCard({
   id,
@@ -8,7 +9,8 @@ export default function VideoPanelCard({
   views,
   timeFromUpload,
   thumbnail = "somedefaultimagehere",
-  videoStatus
+  status,
+  statusMessage
 }) {
   const leftInfo = `${views}`;
   const rightInfo = `${timeFromUpload}`;
@@ -21,7 +23,7 @@ export default function VideoPanelCard({
       )}
       {title && (
         <div className="flex flex-row items-center justify-center h-48 max-w-xs rounded-xl hover:shadow-xl">
-          <div className="group flex-grow flex flex-row justify-center h-48 p-3 relative">
+          <div className="flex-grow flex flex-row justify-center h-48 p-3 relative">
             <img
               src={thumbnail}
               alt="video-thumbnail"
@@ -42,9 +44,18 @@ export default function VideoPanelCard({
                 </p>
               </div>
             </div>
-            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold  z-40 py-2 px-4 rounded-full">
-              <FontAwesomeIcon icon="plus" style={{ color: "white" }} />
-            </button>
+            <div className="absolute w-full top-0 left-0 p-3 rounded-b-xl z-20">
+              <div className="flex justify-between">
+                <VideoStatus status={status} statusMessage={statusMessage} />
+                <Button
+                  icon="minus"
+                  className="z-30 btn-no-mr"
+                  shape="pill"
+                  background="cancel"
+                  size="sm"
+                />
+              </div>
+            </div>
           </div>
         </div>
       )}

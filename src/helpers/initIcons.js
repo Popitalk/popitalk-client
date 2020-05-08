@@ -11,7 +11,8 @@ import {
   faUserFriends,
   faLock,
   faEllipsisV,
-  faPlay
+  faPlay,
+  faMinus
 } from "@fortawesome/free-solid-svg-icons";
 // import { fab } from "@fortawesome/free-brands-svg-icons";
 
@@ -20,6 +21,7 @@ library.add(
   faUserPlus,
   faUserCheck,
   faPlus,
+  faMinus,
   faSearch,
   faPaperPlane,
   faShare,
