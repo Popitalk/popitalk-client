@@ -2,6 +2,7 @@ import React from "react";
 import Text from "./Text";
 import RoomInfoCard from "./InfoCards/RoomInfoCard";
 import Button from "./Button";
+import { getTimeFromMessage } from "../comp/InfoCardLists/RoomsList";
 
 export default function RoomExistsModal({
   room,
@@ -15,6 +16,7 @@ export default function RoomExistsModal({
       <div className="w-full py-4">
         <RoomInfoCard
           room={room}
+          controls={getTimeFromMessage(room)}
           handleSelect={openRoomHandler}
           addBorder={true}
         />

@@ -38,7 +38,11 @@ export default function InfoCard({
   });
 
   return (
-    <div className={boxClasses} role="button" onClick={e => cardClick(e)}>
+    <div
+      className={boxClasses}
+      role={cardClick ? "button" : null}
+      onClick={cardClick ? e => cardClick(e) : null}
+    >
       {avatar}
       <div className="flex flex-col ml-4">
         {title && subtitle ? (

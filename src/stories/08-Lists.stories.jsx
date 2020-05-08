@@ -196,6 +196,7 @@ export const RoomsListTest = () => {
       messageSent: "1/5/2019"
     }
   ];
+
   return (
     <div className="p-5">
       <RoomsList

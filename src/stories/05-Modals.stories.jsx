@@ -10,6 +10,7 @@ import ContainerHeader from "../comp/ContainerHeader";
 import RoomExistsModal from "../comp/RoomExistsModal";
 import SearchHeader from "../comp/SearchHeader";
 import FollowersList from "../comp/InfoCardLists/FollowersList";
+import WatchModal from "../comp/WatchModal";
 
 export default {
   title: "Modals",
@@ -18,6 +19,10 @@ export default {
 
 const handleBack = () => {
   console.log("RETURN");
+};
+
+const filterSearch = searchTerm => {
+  console.log(searchTerm);
 };
 
 export const CreateNewAccountModalTest = () => {
@@ -116,10 +121,6 @@ export const RoomExistsModalTest = () => {
 };
 
 export const FollowersModalTest = () => {
-  const filterSearch = searchTerm => {
-    console.log(searchTerm);
-  };
-
   const handleProfile = id => {
     console.log(`Profile ${id}`);
   };
@@ -169,6 +170,87 @@ export const FollowersModalTest = () => {
       header={<SearchHeader title="Following" filterSearch={filterSearch} />}
     >
       <FollowersList users={users} handleProfile={handleProfile} />
+    </ModalManager>
+  );
+};
+
+export const WatchModalTest = () => {
+  const handleWatchNow = id => {
+    console.log(`Open Room ${id} and watch`);
+  };
+
+  const rooms = [
+    {
+      id: 1,
+      name: "Andrew",
+      self: true,
+      online: false,
+      watching: false,
+      notifications: null,
+      message: null,
+      images: ["https://source.unsplash.com/128x128/?1,cat"],
+      messageSent: "1m"
+    },
+    {
+      id: 2,
+      name: "Alex",
+      self: false,
+      online: false,
+      watching: false,
+      notifications: 23,
+      message: null,
+      images: ["https://source.unsplash.com/128x128/?2,cat"],
+      messageSent: "2m"
+    },
+    {
+      id: 3,
+      name: "John, Paul, Andrew, Jer...",
+      self: false,
+      online: false,
+      watching: false,
+      notifications: null,
+      message: "You: ABCD",
+      images: [
+        "https://source.unsplash.com/128x128/?1,cat",
+        "https://source.unsplash.com/128x128/?2,cat",
+        "https://source.unsplash.com/128x128/?3,cat",
+        "https://source.unsplash.com/128x128/?4,cat"
+      ],
+      messageSent: "Today"
+    },
+    {
+      id: 4,
+      name: "Rick, Tom, Stewart",
+      self: false,
+      online: false,
+      watching: true,
+      notifications: 2,
+      message: "Tom: xyzxyz",
+      images: [
+        "https://source.unsplash.com/128x128/?6,cat",
+        "https://source.unsplash.com/128x128/?7,cat",
+        "https://source.unsplash.com/128x128/?8,cat"
+      ],
+      messageSent: "1/5/2019"
+    }
+  ];
+
+  return (
+    <ModalManager
+      isOpen={true}
+      header={<SearchHeader title="Watch" filterSearch={filterSearch} />}
+    >
+      <WatchModal
+        rooms={rooms}
+        handleWatchNow={handleWatchNow}
+        id={123}
+        title="Video Title"
+        channelName="Channel Name"
+        views="20K views"
+        timeFromUpload="2 months ago"
+        videoSource="youtube"
+        thumbnail="https://i.imgur.com/aqjzchq.jpg"
+      />
     </ModalManager>
   );
 };
