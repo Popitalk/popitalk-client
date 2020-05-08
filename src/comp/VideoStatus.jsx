@@ -11,7 +11,7 @@ export default function VideoStatus({
   return (
     <>
       {status === "playing" && (
-        <Button size={size} shape={shape} className="btn-playing shadow-md ">
+        <Button size={size} shape={shape} className="btn-playing shadow-md">
           Playing
         </Button>
       )}
