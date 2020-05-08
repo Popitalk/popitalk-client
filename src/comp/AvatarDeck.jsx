@@ -1,7 +1,13 @@
 import React from "react";
 import classnames from "classnames";
 
-export default function AvatarDeck({ ids, avatars, size = "md", className }) {
+export default function AvatarDeck({
+  ids,
+  avatars,
+  size = "md",
+  className,
+  threshold = 6
+}) {
   const deckClasses = classnames({
     "flex flex-row-reverse justify-end overflow-hidden": true,
     "children:not-first:-mr-2": size === "sm",
@@ -15,16 +21,28 @@ export default function AvatarDeck({ ids, avatars, size = "md", className }) {
     "h-8 w-8": size === "md",
     "h-10 w-10": size === "lg"
   });
+
   return (
     <div className={deckClasses}>
-      {avatars.reverse().map((avatar, index) => (
-        <img
-          key={ids?.[index] || index}
-          src={avatar}
-          alt="avatar"
-          className={avatarClasses}
-        />
-      ))}
+      {avatars.reverse().map((avatar, index) => {
+        if (index < threshold) {
+          return (
+            <img
+              key={ids?.[index] || index}
+              src={avatar}
+              alt="avatar"
+              className={avatarClasses}
+            />
+          );
+        } else if (index === avatars.length - 1) {
+          const totalLeft = avatars.length - threshold;
+          return (
+            <button
+              className={`${avatarClasses} bg-disabledBackground text-xs self-start`}
+            >{`+${totalLeft}`}</button>
+          );
+        }
+      })}
     </div>
   );
 }

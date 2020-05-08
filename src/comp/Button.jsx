@@ -22,7 +22,9 @@ export default function Button({
     cancel: "bg-gradient-br-cancel"
   };
 
-  shape = icon ? "circle" : shape;
+  // console.log("before shape", shape);
+  //shape = !shape && icon ? "circle" : shape;
+  // console.log("after shape", shape);
 
   const shapes = {
     regular: "rounded-lg",
@@ -35,10 +37,11 @@ export default function Button({
     [`btn-${size}`]: true,
     [backgrounds[background]]: true,
     [shapes[shape]]: true,
-    "btn-icon": icon,
+    "btn-icon": icon && !shape,
     "btn-text": variant === "text",
     [className]: className
   });
+  console.log("button Classes", buttonClasses);
 
   return (
     <button className={buttonClasses} disabled={disabled} {...props}>
@@ -54,6 +57,5 @@ Button.defaultProps = {
   background: "button",
   shapes: "regular",
   color: "primaryButtonText",
-  size: "md",
-  shape: "rounded"
+  size: "md"
 };
