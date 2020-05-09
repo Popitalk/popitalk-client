@@ -16,12 +16,12 @@ export default function VideoStatus({
         </Button>
       )}
       {status === "paused" && (
-        <Button size={size} shape={shape} className="btn-paused shadow-md z-30">
+        <Button size={size} shape={shape} className="btn-paused shadow-md z-20">
           Paused
         </Button>
       )}
       {status === "queued" && statusMessage && (
-        <Button size={size} shape={shape} className="btn-paused shadow-md z-30">
+        <Button size={size} shape={shape} className="btn-paused shadow-md z-20">
           {statusMessage}
         </Button>
       )}

@@ -24,6 +24,18 @@ export default function VideoPanelCard({
       {title && (
         <div className="flex flex-row items-center justify-center h-48 max-w-xs rounded-xl hover:shadow-xl">
           <div className="flex-grow flex flex-row justify-center h-48 p-3 relative">
+            <div className="absolute w-full top-0 left-0 p-3 rounded-b-xl">
+              <div className="flex justify-between">
+                <VideoStatus status={status} statusMessage={statusMessage} />
+                <Button
+                  icon="minus"
+                  className="z-30 btn-no-mr"
+                  shape="pill"
+                  background="cancel"
+                  size="sm"
+                />
+              </div>
+            </div>
             <img
               src={thumbnail}
               alt="video-thumbnail"
@@ -42,18 +54,6 @@ export default function VideoPanelCard({
                 <p className="text-xs font-regular text-tertiaryText">
                   {rightInfo}
                 </p>
-              </div>
-            </div>
-            <div className="absolute w-full top-0 left-0 p-3 rounded-b-xl z-20">
-              <div className="flex justify-between">
-                <VideoStatus status={status} statusMessage={statusMessage} />
-                <Button
-                  icon="minus"
-                  className="z-30 btn-no-mr"
-                  shape="pill"
-                  background="cancel"
-                  size="sm"
-                />
               </div>
             </div>
           </div>
