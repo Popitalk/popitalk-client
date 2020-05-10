@@ -142,7 +142,7 @@ export const VideoChannelHeaderShow = () => {
   return (
     <VideoChannelHeader
       id={123}
-      name="Thelmo Society"
+      name="Channel #1"
       icon="https://i.imgur.com/xCGu56D.jpg"
       videoStatus="paused"
     />
