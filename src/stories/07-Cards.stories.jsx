@@ -4,6 +4,7 @@ import { withKnobs, text, select } from "@storybook/addon-knobs";
 import VideoCard from "../comp/VideoCard";
 import SuggestionCard from "../comp/SuggestionCard";
 import VideoPanelCard from "../comp/VideoPanelCard";
+import QueueSection from "../comp/QueueSection";
 
 export default {
   title: "Cards",
@@ -77,5 +78,67 @@ export const VideoPanelCardShow = () => {
         thumbnail="https://i.imgur.com/aqjzchq.jpg"
       />
     </div>
+  );
+};
+
+export const QueueSectionShow = () => {
+  const defaultThumbnail = "https://i.imgur.com/aqjzchq.jpg";
+  const queueList = [
+    {
+      id: 1,
+      title: "Video 1",
+      views: "20k views",
+      timeFromUpload: "2 months ago",
+      thumbnail: defaultThumbnail,
+      status: "queued",
+      statusMessage: "In 10min"
+    },
+    {
+      id: 2,
+      title: "Video 2",
+      views: "1M views",
+      timeFromUpload: "1 week ago",
+      thumbnail: defaultThumbnail,
+      status: "queued",
+      statusMessage: "In 14min"
+    },
+    {
+      id: 3,
+      title: "Video 3",
+      views: "200k views",
+      timeFromUpload: "1 months ago",
+      thumbnail: defaultThumbnail,
+      status: "queued",
+      statusMessage: "In 18min"
+    },
+    {
+      id: 4,
+      title: "Video 4",
+      views: "1.2M views",
+      timeFromUpload: "3 months ago",
+      thumbnail: defaultThumbnail,
+      status: "queued",
+      statusMessage: "In 25min"
+    },
+    {
+      id: 5,
+      title: "Video 5",
+      views: "1.2M views",
+      timeFromUpload: "3 months ago",
+      thumbnail: defaultThumbnail,
+      status: "queued",
+      statusMessage: "In 50min"
+    }
+  ];
+  return (
+    // <div className="p-5 grid grid-cols-2">
+    <>
+      <QueueSection queueList={queueList} />
+      <QueueSection queueList={queueList.slice(0, 4)} />
+
+      <QueueSection queueList={queueList.slice(0, 3)} />
+      <QueueSection queueList={queueList.slice(1, 2)} />
+    </>
+    // </div>
   );
 };
