@@ -15,7 +15,9 @@ export default function VideoChannelHeader({ id, name, icon, videoStatus }) {
           size="md"
           className=""
         />
-        <p className="text-sm font-regular text-primaryText py-1">{name}</p>
+        <p className="text-sm font-regular text-primaryText py-1 px-1">
+          {name}
+        </p>
       </div>
       <nav>
         <ol className="flex">
