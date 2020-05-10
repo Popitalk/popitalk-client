@@ -4,7 +4,9 @@ import { withKnobs, text, select } from "@storybook/addon-knobs";
 import VideoCard from "../comp/VideoCard";
 import SuggestionCard from "../comp/SuggestionCard";
 import VideoPanelCard from "../comp/VideoPanelCard";
+
 import QueueSection from "../comp/QueueSection";
+import VideoChannelHeader from "../comp/VideoChannelHeader";
 
 export default {
   title: "Cards",
@@ -69,14 +71,7 @@ export const VideoPanelCardShow = () => {
         statusMessage="In 14min"
       />
 
-      <VideoPanelCard
-        id={123}
-        channelName="Channel Name"
-        views="20K views"
-        timeFromUpload="2 months ago"
-        videoSource="youtube"
-        thumbnail="https://i.imgur.com/aqjzchq.jpg"
-      />
+      <VideoPanelCard />
     </div>
   );
 };
@@ -140,5 +135,16 @@ export const QueueSectionShow = () => {
       <QueueSection queueList={queueList.slice(1, 2)} />
     </>
     // </div>
+  );
+};
+
+export const VideoChannelHeaderShow = () => {
+  return (
+    <VideoChannelHeader
+      id={123}
+      name="Thelmo Society"
+      icon="https://i.imgur.com/xCGu56D.jpg"
+      videoStatus="paused"
+    />
   );
 };
