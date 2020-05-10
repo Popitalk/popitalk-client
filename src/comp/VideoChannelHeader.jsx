@@ -6,7 +6,7 @@ import RoomIcon from "./RoomIcon";
 
 export default function VideoChannelHeader({ id, name, icon, videoStatus }) {
   return (
-    <header className="flex justify-between bg-disabledBackground py-1 px-1">
+    <header className="flex justify-between bg-disabledBackground my-1 mx-1">
       <div className="flex">
         <RoomIcon
           ids={[id]}
@@ -19,10 +19,10 @@ export default function VideoChannelHeader({ id, name, icon, videoStatus }) {
       </div>
       <nav>
         <ol className="flex">
-          <li className="btn-playing mx-1 font-bold">Video</li>
-          <li className="mx-1 font-bold text-secondaryText">Queue</li>
-          <li className="mx-1 font-bold text-secondaryText">Channel</li>
-          <li className="mx-1 font-bold text-secondaryText">Setting</li>
+          <li className="btn-playing mx-1 my-1 font-bold">Video</li>
+          <li className="mx-1 my-1 font-bold text-secondaryText">Queue</li>
+          <li className="mx-1 my-1 font-bold text-secondaryText">Channel</li>
+          <li className="mx-1 my-1 font-bold text-secondaryText">Setting</li>
         </ol>
       </nav>
     </header>
