@@ -15,6 +15,8 @@ import FriendsPanel from "../comp/FriendsPanel";
 import ChannelForm from "../comp/ChannelForm";
 import PopupMenu from "../comp/PopupMenu";
 import ManageUsers from "../comp/ManageUsers";
+import SiteHeaderMain from "../comp/SiteHeaderMain";
+import SiteHeaderWelcome from "../comp/SiteHeaderWelcome";
 
 export default {
   title: "Components",
@@ -200,7 +202,7 @@ export const AvatarDeck123 = () => {
 };
 export const RoomIcon123 = () => {
   return (
-    <div className="p-5 grid grid-cols-4 gap-4">
+    <div className="grid grid-cols-4 gap-4 p-5">
       <RoomIcon
         size="sm"
         online={true}
@@ -331,7 +333,7 @@ export const RoomIcon123 = () => {
 
 export const ChannelCard123 = () => {
   return (
-    <div className="p-5 grid grid-cols-2">
+    <div className="grid grid-cols-2 p-5">
       <ChannelCard
         id={123}
         name="Thelmo Society"
@@ -540,7 +542,7 @@ export const ChannelForm123 = () => {
   const [selectedRoom, setSelectedRoom] = useState(null);
 
   return (
-    <div className="p-5 bg-secondaryBackground flex justify-center ">
+    <div className="flex justify-center p-5 bg-secondaryBackground ">
       <ChannelForm
         initial={{
           name: "",
@@ -556,7 +558,7 @@ export const PopupMenu123 = () => {
   const [selectedRoom, setSelectedRoom] = useState(null);
 
   return (
-    <div className="p-5 grid grid-cols-3 items-end justify-end">
+    <div className="grid items-end justify-end grid-cols-3 p-5">
       <PopupMenu
         options={[
           {
@@ -658,5 +660,22 @@ export const ManageUsersTest = () => {
         handleProfile={handleProfile}
       />
     </div>
+  );
+};
+
+export const SiteHeader = () => {
+  return (
+    <>
+      <Text variant="subtitle2">Main header</Text>
+      <div className="border rounded-md">
+        <SiteHeaderMain />
+      </div>
+      <Text className="mt-8" variant="subtitle2">
+        Welcome header (not logged in)
+      </Text>
+      <div className="border rounded-md">
+        <SiteHeaderWelcome />
+      </div>
+    </>
   );
 };
