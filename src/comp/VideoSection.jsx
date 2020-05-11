@@ -12,11 +12,11 @@ export default function VideoSection({
   activeFriendViewers
 }) {
   return (
-    <div className="flex flex-col ">
+    <div className="flex flex-col">
       <div className="h-64 bg-black">
         <p className="">Video Container for Video Player</p>
       </div>
-      <div className="flex flex-row justify-between bg-secondaryBackground">
+      <div className="flex flex-row justify-between bg-secondaryBackground pt-10">
         <section>
           <p className="text-xs mx-1">NOW PLAYING</p>
           <p className="text-4xl mx-1">{name}</p>
