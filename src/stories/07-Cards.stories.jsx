@@ -7,6 +7,7 @@ import VideoPanelCard from "../comp/VideoPanelCard";
 
 import QueueSection from "../comp/QueueSection";
 import VideoChannelHeader from "../comp/VideoChannelHeader";
+import VideoSection from "../comp/VideoSection";
 
 export default {
   title: "Cards",
@@ -145,6 +146,39 @@ export const VideoChannelHeaderShow = () => {
       name="Channel #1"
       icon="https://i.imgur.com/xCGu56D.jpg"
       videoStatus="paused"
+    />
+  );
+};
+
+export const VideoSectionShow = () => {
+  const activeFriendViewers = [
+    {
+      id: 1,
+      name: "Friend 1",
+      avatar: "https://source.unsplash.com/128x128/?1,cat"
+    },
+    {
+      id: 2,
+      name: "Friend 2",
+      avatar: "https://source.unsplash.com/128x128/?2,cat"
+    },
+    {
+      id: 3,
+      name: "Friend 3",
+      avatar: "https://source.unsplash.com/128x128/?3,cat"
+    },
+    {
+      id: 4,
+      name: "Friend 4",
+      avatar: "https://source.unsplash.com/128x128/?4,cat"
+    }
+  ];
+  return (
+    <VideoSection
+      id={123}
+      name="Video Title #1"
+      sourceChannelName="sourceChannel"
+      activeFriendViewers={activeFriendViewers}
     />
   );
 };
