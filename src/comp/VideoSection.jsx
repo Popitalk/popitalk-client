@@ -33,7 +33,12 @@ export default function VideoSection({
               />
             );
           })}
-          <Button icon="user-plus" size="sm" className="rotate-90 mx-px mr-2" />
+          <Button
+            icon="user-plus"
+            size="sm"
+            style={{ transform: "scaleX(-1)" }}
+            className="mx-px mr-2"
+          />
         </section>
       </div>
     </div>
