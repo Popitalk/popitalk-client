@@ -24,7 +24,7 @@ export default function ShareModal({
 
   return (
     <>
-      <div className="pb-4">
+      <div className="pb-4 flex justify-center">
         <VideoCard {...rest} />
       </div>
       <RoomsList rooms={rooms} getControls={getCheckbox} />
