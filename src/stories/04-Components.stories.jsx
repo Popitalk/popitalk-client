@@ -17,6 +17,7 @@ import PopupMenu from "../comp/PopupMenu";
 import ManageUsers from "../comp/ManageUsers";
 import SiteHeaderMain from "../comp/SiteHeaderMain";
 import SiteHeaderWelcome from "../comp/SiteHeaderWelcome";
+import ChatPanel from "../comp/ChatPanel";
 
 export default {
   title: "Components",
@@ -678,4 +679,8 @@ export const SiteHeader = () => {
       </div>
     </>
   );
+};
+
+export const ChannelChatPanel = () => {
+  return <ChatPanel />;
 };

@@ -126,6 +126,12 @@ module.exports = {
       },
       width: {
         dropdown: "26rem"
+      },
+      height: {
+        chat: "27rem"
+      },
+      gridTemplateColumns: {
+        chat: "auto 1fr auto;"
       }
     }
   },
@@ -135,7 +141,7 @@ module.exports = {
     backgroundColor: ["responsive", "hover", "group-hover", "disabled"],
     color: ["responsive", "hover"],
     cursor: ["responsive", "hover", "disabled"],
-    opacity: ['responsive', 'hover', 'focus', 'active', 'group-hover'],
+    opacity: ["responsive", "hover", "focus", "active", "group-hover"],
     visibility: ["responsive", "group-hover"],
     filter: ["responsive", "hover", "active", "group-hover"]
   },
