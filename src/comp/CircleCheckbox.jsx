@@ -5,7 +5,7 @@ import { faCheck } from "@fortawesome/free-solid-svg-icons";
 
 export default function CircleCheckBox({ checked, onChange }) {
   const checkClasses = classnames(
-    "rounded-full w-10 h-10 border-4 border-highlightText",
+    "rounded-full w-8 h-8 border-2 border-highlightText",
     {
       "bg-highlightText flex items-center justify-center": checked
     }
