@@ -15,7 +15,7 @@ export default function VideoCard({
   const leftInfo = `${views}`;
   const rightInfo = `${timeFromUpload}`;
   return (
-    <div className="flex flex-row items-center justify-center h-48 max-w-xs rounded-xl hover:shadow-xl">
+    <div className="flex flex-row items-center justify-center h-48 w-full max-w-xs rounded-xl hover:shadow-xl">
       <div className="group flex-grow flex flex-row justify-center h-48 p-3 relative">
         <img
           src={thumbnail}

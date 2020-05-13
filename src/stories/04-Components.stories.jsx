@@ -18,6 +18,7 @@ import ManageUsers from "../comp/ManageUsers";
 import SiteHeaderMain from "../comp/SiteHeaderMain";
 import SiteHeaderWelcome from "../comp/SiteHeaderWelcome";
 import ChatPanel from "../comp/ChatPanel";
+import CircleCheckBox from "../comp/CircleCheckbox";
 
 export default {
   title: "Components",
@@ -69,6 +70,16 @@ const Container2 = styled.div`
 //     margin-bottom: 20px;
 //   } */
 // `;
+
+export const CircleCheckBoxTest = () => {
+  const [checked, setChecked] = useState(true);
+
+  const onChange = () => {
+    setChecked(!checked);
+  };
+
+  return <CircleCheckBox checked={checked} onChange={onChange} />;
+};
 
 export const ChannelSettingsSidebar123 = () => {
   const [input, setInput] = useState("");
