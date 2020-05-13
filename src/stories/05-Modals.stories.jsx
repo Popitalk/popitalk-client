@@ -12,6 +12,7 @@ import SearchHeader from "../comp/SearchHeader";
 import FollowersList from "../comp/InfoCardLists/FollowersList";
 import WatchModal from "../comp/WatchModal";
 import ShareModal from "../comp/ShareModal";
+import NewRoomModal from "../comp/NewRoomModal";
 
 export default {
   title: "Modals",
@@ -24,6 +25,23 @@ const handleBack = () => {
 
 const filterSearch = searchTerm => {
   console.log(searchTerm);
+};
+
+const onCheck = (selected, setSelected, id) => {
+  const index = selected.indexOf(id);
+  if (index >= 0) {
+    setSelected(selected.filter(i => i !== id));
+  } else {
+    setSelected([...selected, id]);
+  }
+};
+
+const handleSend = selected => {
+  if (selected.length > 0) {
+    console.log(selected);
+  } else {
+    console.log("You haven't selected any rooms!");
+  }
 };
 
 const testRooms = [
@@ -79,6 +97,44 @@ const testRooms = [
       "https://source.unsplash.com/128x128/?8,cat"
     ],
     messageSent: "1/5/2019"
+  }
+];
+
+const testUsers = [
+  {
+    id: 1,
+    username: "Andrew",
+    firstName: "Andrew",
+    lastName: "Jang",
+    avatar: "https://i.imgur.com/xCGu56D.jpg"
+  },
+  {
+    id: 2,
+    username: "Andrew",
+    firstName: "Andrew",
+    lastName: "Jang",
+    avatar: "https://i.imgur.com/xCGu56D.jpg"
+  },
+  {
+    id: 3,
+    username: "Andrew",
+    firstName: "Andrew",
+    lastName: "Jang",
+    avatar: "https://i.imgur.com/xCGu56D.jpg"
+  },
+  {
+    id: 4,
+    username: "Andrew",
+    firstName: "Andrew",
+    lastName: "Jang",
+    avatar: "https://i.imgur.com/xCGu56D.jpg"
+  },
+  {
+    id: 5,
+    username: "Andrew",
+    firstName: "Andrew",
+    lastName: "Jang",
+    avatar: "https://i.imgur.com/xCGu56D.jpg"
   }
 ];
 
@@ -182,51 +238,13 @@ export const FollowersModalTest = () => {
     console.log(`Profile ${id}`);
   };
 
-  const users = [
-    {
-      id: 1,
-      username: "Andrew",
-      firstName: "Andrew",
-      lastName: "Jang",
-      avatar: "https://i.imgur.com/xCGu56D.jpg"
-    },
-    {
-      id: 2,
-      username: "Andrew",
-      firstName: "Andrew",
-      lastName: "Jang",
-      avatar: "https://i.imgur.com/xCGu56D.jpg"
-    },
-    {
-      id: 3,
-      username: "Andrew",
-      firstName: "Andrew",
-      lastName: "Jang",
-      avatar: "https://i.imgur.com/xCGu56D.jpg"
-    },
-    {
-      id: 4,
-      username: "Andrew",
-      firstName: "Andrew",
-      lastName: "Jang",
-      avatar: "https://i.imgur.com/xCGu56D.jpg"
-    },
-    {
-      id: 5,
-      username: "Andrew",
-      firstName: "Andrew",
-      lastName: "Jang",
-      avatar: "https://i.imgur.com/xCGu56D.jpg"
-    }
-  ];
-
   return (
     <ModalManager
       isOpen={true}
       small={true}
       header={<SearchHeader title="Following" filterSearch={filterSearch} />}
     >
-      <FollowersList users={users} handleProfile={handleProfile} />
+      <FollowersList users={testUsers} handleProfile={handleProfile} />
     </ModalManager>
   );
 };
@@ -259,23 +277,6 @@ export const WatchModalTest = () => {
 export const ShareModalTest = () => {
   const [selected, setSelected] = useState([]);
 
-  const onCheck = id => {
-    const index = selected.indexOf(id);
-    if (index >= 0) {
-      setSelected(selected.filter(i => i !== id));
-    } else {
-      setSelected([...selected, id]);
-    }
-  };
-
-  const handleSend = () => {
-    if (selected.length > 0) {
-      console.log(selected);
-    } else {
-      console.log("You haven't selected any rooms!");
-    }
-  };
-
   return (
     <ModalManager
       isOpen={true}
@@ -284,8 +285,8 @@ export const ShareModalTest = () => {
       <ShareModal
         rooms={testRooms}
         selected={selected}
-        onCheck={onCheck}
-        handleSend={handleSend}
+        onCheck={id => onCheck(selected, setSelected, id)}
+        handleSend={() => handleSend(selected)}
         id={123}
         title="Video Title"
         channelName="Channel Name"
@@ -293,6 +294,29 @@ export const ShareModalTest = () => {
         timeFromUpload="2 months ago"
         videoSource="youtube"
         thumbnail="https://i.imgur.com/aqjzchq.jpg"
+      />
+    </ModalManager>
+  );
+};
+
+export const NewRoomModalTest = () => {
+  const [selected, setSelected] = useState([]);
+
+  return (
+    <ModalManager
+      isOpen={true}
+      header={
+        <SearchHeader
+          title="Select Friends to Invite"
+          filterSearch={filterSearch}
+        />
+      }
+    >
+      <NewRoomModal
+        users={testUsers}
+        selected={selected}
+        onCheck={id => onCheck(selected, setSelected, id)}
+        handleSend={() => handleSend(selected)}
       />
     </ModalManager>
   );
