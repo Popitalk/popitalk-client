@@ -18,6 +18,7 @@ import PopupMenu from "../comp/PopupMenu";
 import ManageUsers from "../comp/ManageUsers";
 import SiteHeaderMain from "../comp/SiteHeaderMain";
 import SiteHeaderWelcome from "../comp/SiteHeaderWelcome";
+import ChatPanel from "../comp/ChatPanel";
 import CircleCheckBox from "../comp/CircleCheckbox";
 
 export default {
@@ -796,4 +797,8 @@ export const SiteHeader = () => {
       </div>
     </>
   );
+};
+
+export const ChannelChatPanel = () => {
+  return <ChatPanel />;
 };
