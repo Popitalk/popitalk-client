@@ -71,6 +71,17 @@ export const VideoPanelCardShow = () => {
         status="queued"
         statusMessage="In 14min"
       />
+      <VideoPanelCard
+        id={123}
+        title="Video Title"
+        channelName="Channel Name"
+        views="20K views"
+        timeFromUpload="2 months ago"
+        videoSource="youtube"
+        thumbnail="https://i.imgur.com/aqjzchq.jpg"
+        status="ended"
+        statusMessage="Ended 1hr ago"
+      />
 
       <VideoPanelCard />
     </div>
