@@ -8,6 +8,7 @@ import VideoPanelCard from "../comp/VideoPanelCard";
 import QueueSection from "../comp/QueueSection";
 import VideoChannelHeader from "../comp/VideoChannelHeader";
 import VideoSection from "../comp/VideoSection";
+import ChannelDescription from "../comp/ChannelDescription";
 
 export default {
   title: "Cards",
@@ -191,5 +192,48 @@ export const VideoSectionShow = () => {
       sourceChannelName="sourceChannel"
       activeFriendViewers={activeFriendViewers}
     />
+  );
+};
+
+export const ChannelDescriptionShow = () => {
+  const adminList = [
+    {
+      id: 1,
+      name: "Friend 1",
+      avatar: "https://source.unsplash.com/128x128/?1,cat"
+    },
+    {
+      id: 2,
+      name: "Friend 2",
+      avatar: "https://source.unsplash.com/128x128/?2,cat"
+    },
+    {
+      id: 3,
+      name: "Friend 3",
+      avatar: "https://source.unsplash.com/128x128/?3,cat"
+    },
+    {
+      id: 4,
+      name: "Friend 4",
+      avatar: "https://source.unsplash.com/128x128/?4,cat"
+    },
+    {
+      id: 5,
+      name: "Friend 5",
+      avatar: "https://source.unsplash.com/128x128/?5,cat"
+    }
+  ];
+  const description =
+    "Channel Description Channel Description Channel Description Channel Description Channel Description Channel Description Channel Description ";
+  return (
+    <div>
+      <ChannelDescription
+        id={123}
+        avatar="https://i.imgur.com/xCGu56D.jpg"
+        name="Channel Name"
+        adminList={adminList}
+        description={description}
+      />
+    </div>
   );
 };
