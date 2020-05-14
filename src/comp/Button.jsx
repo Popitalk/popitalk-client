@@ -41,7 +41,6 @@ export default function Button({
     "btn-text": variant === "text",
     [className]: className
   });
-  console.log("button Classes", buttonClasses);
 
   return (
     <button className={buttonClasses} disabled={disabled} {...props}>

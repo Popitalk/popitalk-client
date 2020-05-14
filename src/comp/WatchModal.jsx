@@ -18,7 +18,7 @@ export default function WatchModal({ rooms, handleWatchNow, ...rest }) {
 
   return (
     <>
-      <div className="pb-4">
+      <div className="pb-4 flex justify-center">
         <VideoCard {...rest} />
       </div>
       <RoomsList rooms={rooms} getControls={getButton} />

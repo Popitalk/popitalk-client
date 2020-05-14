@@ -24,6 +24,11 @@ export default function PopupMenu({
     setOpen(false);
   };
 
+  const menuHandler = event => {
+    event.stopPropagation();
+    setOpen(!open);
+  };
+
   const containerClasses = classnames(
     "group flex items-center justify-center w-4 relative",
     {
@@ -40,7 +45,8 @@ export default function PopupMenu({
     <div
       className={containerClasses}
       role="button"
-      onMouseDown={disabled ? undefined : () => setOpen(true)}
+      onClick={disabled ? undefined : menuHandler}
+      ref={ref}
     >
       {loading ? (
         <p>loading...</p>
@@ -48,16 +54,14 @@ export default function PopupMenu({
         <FontAwesomeIcon icon="ellipsis-v" className={iconClasses} />
       )}
       {open && (
-        <div
-          className="absolute z-10 top-0 right-0 mt-5 mr-0 flex flex-col items-center justify-center flex-shrink-0 bg-primaryBackground shadow-xl rounded-lg border border-primaryBorder"
-          ref={ref}
-        >
+        <div className="absolute z-10 top-0 right-0 mt-5 mr-0 flex flex-col items-center justify-center flex-shrink-0 bg-primaryBackground shadow-xl rounded-lg border border-primaryBorder">
           {options.map((option, index) => {
             const optionClasses = classnames(
-              "inline-flex justify-center items-center w-full bg-primaryBackground transition-filter duration-300 hover:filter-brightness-9 active:filter-brightness-8 select-none py-1 px-6 text-center",
+              "inline-flex justify-center items-center w-full bg-primaryBackground transition-filter duration-300 hover:bg-highlightBackground select-none py-1 px-6 text-center",
               {
                 "rounded-t-lg": index === 0,
-                "rounded-b-lg": index + 1 === options.length
+                "rounded-b-lg": index + 1 === options.length,
+                "text-errorText": option.danger
               }
             );
             return (
