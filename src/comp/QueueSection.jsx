@@ -1,13 +1,21 @@
 import React from "react";
 import VideoPanelCard from "./VideoPanelCard";
+import SortableList from "./SortableList";
 
-export default function QueueSection({ queueList }) {
+export default function QueueSection({ queueList, handlerChange }) {
+
+  const itemRenderer = (value) => (
+    <VideoPanelCard  {...value} />
+  );
+
   return (
-    <div className="flex flex-row justify-start overflow-auto">
-      {queueList.map((video, idx) => {
-        return <VideoPanelCard key={idx} {...video} />;
-      })}
-      <VideoPanelCard />
-    </div>
+    <SortableList
+      axis={"x"}
+      items={queueList}
+      itemRenderer={itemRenderer}
+      handlerChange={handlerChange}
+      height={"100%"}
+      className={"cursor-move"}>
+    </SortableList>
   );
 }
