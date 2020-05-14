@@ -14,7 +14,7 @@ export default function ManageUsers({
   );
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col w-full">
       <h3 className="font-bold mb-3">
         {category} - {filteredUsers.length} users
       </h3>
