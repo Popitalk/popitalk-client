@@ -229,7 +229,7 @@ export const ChannelDescriptionShow = () => {
     <div>
       <ChannelDescription
         id={123}
-        avatar="https://i.imgur.com/xCGu56D.jpg"
+        icon="https://i.imgur.com/xCGu56D.jpg"
         name="Channel Name"
         adminList={adminList}
         description={description}

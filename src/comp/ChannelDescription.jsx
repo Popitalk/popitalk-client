@@ -8,7 +8,7 @@ import AvatarIcon from "./InfoCards/AvatarIcon";
 export default function ChannelDescription({
   id,
   name,
-  avatar,
+  icon,
   description,
   adminList,
   threshold = 4
@@ -18,7 +18,7 @@ export default function ChannelDescription({
       <div className="flex flex-row justify-center align-middle bg-secondaryBackground mx-8 p-4">
         <AvatarIcon
           username={name}
-          avatar={avatar}
+          avatar={icon}
           className="img h-40 w-40 rounded-circle mx-px"
         />
         <section className="mx-8">
