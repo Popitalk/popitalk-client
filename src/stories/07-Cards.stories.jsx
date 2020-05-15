@@ -240,38 +240,13 @@ export const ChannelDescriptionShow = () => {
 };
 
 export const NewChannelPostShow = () => {
-  const adminList = [
-    {
-      id: 1,
-      name: "Friend 1",
-      avatar: "https://source.unsplash.com/128x128/?1,cat"
-    },
-    {
-      id: 2,
-      name: "Friend 2",
-      avatar: "https://source.unsplash.com/128x128/?2,cat"
-    },
-    {
-      id: 3,
-      name: "Friend 3",
-      avatar: "https://source.unsplash.com/128x128/?3,cat"
-    },
-    {
-      id: 4,
-      name: "Friend 4",
-      avatar: "https://source.unsplash.com/128x128/?4,cat"
-    },
-    {
-      id: 5,
-      name: "Friend 5",
-      avatar: "https://source.unsplash.com/128x128/?5,cat"
-    }
-  ];
-  const description =
-    "Channel Description Channel Description Channel Description Channel Description Channel Description Channel Description Channel Description ";
   return (
     <div>
-      <NewChannelPost />
+      <NewChannelPost
+        handleEmot={() => console.log("handle emot")}
+        handleUploadImg={() => console.log("handle img upload")}
+        handleSubmit={() => console.log("handle submit")}
+      />
     </div>
   );
 };

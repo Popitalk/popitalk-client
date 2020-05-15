@@ -42,6 +42,7 @@ export default function ChannelDescription({
                 const totalLeft = adminList.length - threshold;
                 return (
                   <button
+                    key={idx}
                     className={`img h-8 w-8 rounded-circle mx-px bg-primaryBackground text-xs shadow-md`}
                   >{`+${totalLeft}`}</button>
                 );
