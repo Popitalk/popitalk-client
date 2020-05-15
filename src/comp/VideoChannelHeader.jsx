@@ -6,7 +6,7 @@ import RoomIcon from "./RoomIcon";
 
 export default function VideoChannelHeader({ id, name, icon, videoStatus }) {
   return (
-    <header className="flex justify-between bg-disabledBackground py-1 px-1">
+    <header className="flex justify-between bg-disabledBackground my-1 mx-1">
       <div className="flex">
         <RoomIcon
           ids={[id]}
@@ -15,15 +15,35 @@ export default function VideoChannelHeader({ id, name, icon, videoStatus }) {
           size="md"
           className=""
         />
-        <p className="text-sm font-regular text-primaryText py-1">{name}</p>
+        <p className="text-sm font-regular text-primaryText py-1 px-1">
+          {name}
+        </p>
       </div>
-      <nav>
-        <ol className="flex">
-          <li className="btn-playing mx-1 font-bold">Video</li>
-          <li className="mx-1 font-bold text-secondaryText">Queue</li>
-          <li className="mx-1 font-bold text-secondaryText">Channel</li>
-          <li className="mx-1 font-bold text-secondaryText">Setting</li>
-        </ol>
+      <nav className="flex">
+        <a
+          href="https://www.google.com"
+          className="btn-playing mx-1 my-1 font-bold no-underline"
+        >
+          Video
+        </a>
+        <a
+          href="https://www.google.com"
+          className="mx-1 my-1 font-bold text-secondaryText no-underline"
+        >
+          Queue
+        </a>
+        <a
+          href="https://www.google.com"
+          className="mx-1 my-1 font-bold text-secondaryText no-underline"
+        >
+          Channel
+        </a>
+        <a
+          href="https://www.google.com"
+          className="mx-1 my-1 font-bold text-secondaryText no-underline"
+        >
+          Setting
+        </a>
       </nav>
     </header>
   );

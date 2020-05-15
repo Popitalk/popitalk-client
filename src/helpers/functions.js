@@ -39,10 +39,7 @@ export function getSetPasswordSchema() {
       .matches(/[A-Z]/, "Password should have at least one uppercase letter.")
       .matches(/\d+/, "Password should have at least one number.")
       .notOneOf([Yup.ref("oldPassword"), null], "Passwords must not match.")
-      .required("New Password is required."),
-    confirmPassword: Yup.string()
-      .oneOf([Yup.ref("password")], "Passwords must match.")
-      .required("Confirm Password is required.")
+      .required("New Password is required.")
   };
 }
 

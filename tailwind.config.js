@@ -30,11 +30,6 @@ module.exports = {
       lg: "1024px",
       xl: "1280px"
     },
-    boxShadow: {
-      search: "0px 1px 2px rgba(0, 0, 0, 0.25)",
-      md:
-        "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)"
-    },
     fontFamily: {
       sans: [
         '"Noto Sans"',
@@ -123,6 +118,10 @@ module.exports = {
       },
       transitionProperty: {
         filter: "filter"
+      },
+      boxShadow: {
+        search: "0px 1px 2px rgba(0, 0, 0, 0.25)",
+        channel: "0px 1px 4px rgba(0, 0, 0, 0.25)"
       },
       width: {
         dropdown: "26rem"

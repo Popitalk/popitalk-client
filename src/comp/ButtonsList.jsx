@@ -1,32 +1,12 @@
 import React from "react";
-import classnames from "classnames";
-import Text from "./Text";
+import MenuButton from "./MenuButton";
 
 export default function ButtonsList({ buttons }) {
   return (
-    <>
-      {buttons.map((b, i) => {
-        const buttonClasses = classnames(
-          "flex justify-center hover:bg-highlightBackground rounded-lg px-4 py-2",
-          {
-            "bg-primaryBackground": !b.selected,
-            "bg-highlightBackground": b.selected
-          }
-        );
-
-        return (
-          <div
-            role="button"
-            onClick={b.onClick}
-            key={i}
-            className={buttonClasses}
-          >
-            <Text variant="text2" className={b.danger ? "text-errorText" : ""}>
-              {b.text}
-            </Text>
-          </div>
-        );
-      })}
-    </>
+    <div className="children:not-first:mt-1">
+      {buttons.map((b, i) => (
+        <MenuButton {...b} key={i} />
+      ))}
+    </div>
   );
 }

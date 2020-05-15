@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { withKnobs, text, select } from "@storybook/addon-knobs";
+import { withKnobs } from "@storybook/addon-knobs";
 
 import VideoCard from "../comp/VideoCard";
 import SuggestionCard from "../comp/SuggestionCard";
@@ -7,6 +7,8 @@ import VideoPanelCard from "../comp/VideoPanelCard";
 
 import QueueSection from "../comp/QueueSection";
 import VideoChannelHeader from "../comp/VideoChannelHeader";
+import VideoSection from "../comp/VideoSection";
+import arrayMove from "array-move";
 
 export default {
   title: "Cards",
@@ -78,7 +80,7 @@ export const VideoPanelCardShow = () => {
 
 export const QueueSectionShow = () => {
   const defaultThumbnail = "https://i.imgur.com/aqjzchq.jpg";
-  const queueList = [
+  const [queueList, setQueueList] = useState([
     {
       id: 1,
       title: "Video 1",
@@ -124,15 +126,28 @@ export const QueueSectionShow = () => {
       status: "queued",
       statusMessage: "In 50min"
     }
-  ];
+  ]);
+  const handlerChange = ({ oldIndex, newIndex }) => {
+    setQueueList(arrayMove(queueList, oldIndex, newIndex));
+  };
+
   return (
     // <div className="p-5 grid grid-cols-2">
     <>
-      <QueueSection queueList={queueList} />
-      <QueueSection queueList={queueList.slice(0, 4)} />
+      <QueueSection queueList={queueList} handlerChange={handlerChange} />
+      <QueueSection
+        queueList={queueList.slice(0, 4)}
+        handlerChange={handlerChange}
+      />
 
-      <QueueSection queueList={queueList.slice(0, 3)} />
-      <QueueSection queueList={queueList.slice(1, 2)} />
+      <QueueSection
+        queueList={queueList.slice(0, 3)}
+        handlerChange={handlerChange}
+      />
+      <QueueSection
+        queueList={queueList.slice(1, 2)}
+        handlerChange={handlerChange}
+      />
     </>
     // </div>
   );
@@ -145,6 +160,39 @@ export const VideoChannelHeaderShow = () => {
       name="Channel #1"
       icon="https://i.imgur.com/xCGu56D.jpg"
       videoStatus="paused"
+    />
+  );
+};
+
+export const VideoSectionShow = () => {
+  const activeFriendViewers = [
+    {
+      id: 1,
+      name: "Friend 1",
+      avatar: "https://source.unsplash.com/128x128/?1,cat"
+    },
+    {
+      id: 2,
+      name: "Friend 2",
+      avatar: "https://source.unsplash.com/128x128/?2,cat"
+    },
+    {
+      id: 3,
+      name: "Friend 3",
+      avatar: "https://source.unsplash.com/128x128/?3,cat"
+    },
+    {
+      id: 4,
+      name: "Friend 4",
+      avatar: "https://source.unsplash.com/128x128/?4,cat"
+    }
+  ];
+  return (
+    <VideoSection
+      id={123}
+      name="Video Title #1"
+      sourceChannelName="sourceChannel"
+      activeFriendViewers={activeFriendViewers}
     />
   );
 };
