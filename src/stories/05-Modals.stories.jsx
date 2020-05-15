@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import { withKnobs } from "@storybook/addon-knobs";
-import styled from "styled-components";
 import EditInformationModal from "../comp/EditInformationModal";
 import ChangePasswordModal from "../comp/ChangePasswordModal";
 import ForgotPasswordModal from "../comp/ForgotPasswordModal";
-import CreateNewAccountModal from "../comp/CreateNewAccountModal";
+import CreateNewAccountForm from "../comp/CreateNewAccountForm";
 import ModalManager from "../comp/ModalManager";
 import ContainerHeader from "../comp/ContainerHeader";
 import RoomExistsModal from "../comp/RoomExistsModal";
@@ -203,7 +202,7 @@ const testQueue = [
 export const CreateNewAccountModalTest = () => {
   return (
     <ModalManager isOpen={true}>
-      <CreateNewAccountModal />
+      <CreateNewAccountForm />
     </ModalManager>
   );
 };
@@ -253,9 +252,7 @@ export const ForgotPasswordModalTest = () => {
     <ModalManager
       isOpen={true}
       small={true}
-      header={
-        <ContainerHeader title="Forgot Password" handleBack={handleBack} />
-      }
+      header={<ContainerHeader title="Forgot Password" />}
     >
       <ForgotPasswordModal confirmEmailSent={true} />
     </ModalManager>

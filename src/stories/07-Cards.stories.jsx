@@ -73,7 +73,7 @@ export const VideoPanelCardShow = () => {
         statusMessage="In 14min"
       />
 
-      <VideoPanelCard/>
+      <VideoPanelCard />
     </div>
   );
 };
@@ -128,17 +128,26 @@ export const QueueSectionShow = () => {
     }
   ]);
   const handlerChange = ({ oldIndex, newIndex }) => {
-    setQueueList(arrayMove(queueList, oldIndex, newIndex ));
+    setQueueList(arrayMove(queueList, oldIndex, newIndex));
   };
 
   return (
     // <div className="p-5 grid grid-cols-2">
     <>
-      <QueueSection queueList={queueList} handlerChange={handlerChange}/>
-      <QueueSection queueList={queueList.slice(0, 4)} handlerChange={handlerChange}/>
+      <QueueSection queueList={queueList} handlerChange={handlerChange} />
+      <QueueSection
+        queueList={queueList.slice(0, 4)}
+        handlerChange={handlerChange}
+      />
 
-      <QueueSection queueList={queueList.slice(0, 3)} handlerChange={handlerChange}/>
-      <QueueSection queueList={queueList.slice(1, 2)} handlerChange={handlerChange}/>
+      <QueueSection
+        queueList={queueList.slice(0, 3)}
+        handlerChange={handlerChange}
+      />
+      <QueueSection
+        queueList={queueList.slice(1, 2)}
+        handlerChange={handlerChange}
+      />
     </>
     // </div>
   );

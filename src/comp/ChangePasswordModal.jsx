@@ -20,7 +20,10 @@ export default function ChangePasswordModal({
       }}
       validationSchema={Yup.object({
         oldPassword: Yup.string().required("Old Password is required."),
-        ...getSetPasswordSchema()
+        ...getSetPasswordSchema(),
+        confirmPassword: Yup.string()
+          .oneOf([Yup.ref("password")], "Passwords must match.")
+          .required("Confirm Password is required.")
       })}
       onSubmit={(values, { resetForm }) => {
         handleSubmit({
