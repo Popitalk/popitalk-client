@@ -33,7 +33,7 @@ export default function ModalManager({
     >
       {header ? header : <></>}
       <div className="p-4 h-75vh flex flex-col items-stretch">
-        <div className="px-1 overflow-auto">{children}</div>
+        <div className="px-1 pb-4 overflow-auto">{children}</div>
       </div>
     </Modal>
   );

@@ -16,7 +16,7 @@ export default function CreateNewAccountForm({ handleSubmit, loading }) {
   const initialDoB = new Date();
 
   return (
-    <div className="px-4 py-8 border rounded-lg shadow-lg border-primaryBorder">
+    <>
       <Formik
         initialValues={{
           firstName: "",
@@ -29,7 +29,11 @@ export default function CreateNewAccountForm({ handleSubmit, loading }) {
         enableReinitialize={true}
         validationSchema={Yup.object({
           ...getUserInformationSchema(),
-          ...getSetPasswordSchema()
+          ...getSetPasswordSchema(),
+          username: Yup.string()
+            .min(8, "Username is too short.")
+            .max(32, "Username is too long.")
+            .required("Username is required.")
         })}
         onSubmit={values => {
           handleSubmit({
@@ -62,6 +66,17 @@ export default function CreateNewAccountForm({ handleSubmit, loading }) {
               </Text>
               <EditInformationForm loading={loading} />
               <Input
+                header="Username"
+                name="username"
+                type="text"
+                disabled={loading}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                value={values.username}
+                error={touched.username && errors.username}
+                className="w-full"
+              />
+              <Input
                 header="Password"
                 name="password"
                 type="password"
@@ -79,11 +94,7 @@ export default function CreateNewAccountForm({ handleSubmit, loading }) {
                 <a href="https://google.com">Policy</a>.
               </Text>
               <div className="mt-4">
-                <Button
-                  type="submit"
-                  shape="pill"
-                  disabled={loading || !isValid || !dirty}
-                >
+                <Button type="submit" disabled={loading || !isValid || !dirty}>
                   Sign Up
                 </Button>
               </div>
@@ -91,6 +102,6 @@ export default function CreateNewAccountForm({ handleSubmit, loading }) {
           </form>
         )}
       </Formik>
-    </div>
+    </>
   );
 }

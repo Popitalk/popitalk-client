@@ -11,7 +11,9 @@ function WelcomePage() {
       <div className="relative">
         <section className="relative z-10 flex items-center justify-center py-16 mt-4 space-x-16 shadow-2xl rounded-b-xl bg-primaryBackground">
           <img src={Welcome} alt="Welcome" />
-          <CreateNewAccountForm />
+          <div className="px-4 py-8 border rounded-lg shadow-lg border-primaryBorder">
+            <CreateNewAccountForm />
+          </div>
         </section>
         <footer className="absolute inset-x-0 px-16 py-8 -mt-4 bg-gradient-r-primary text-tertiaryText">
           <div className="flex space-x-8">
