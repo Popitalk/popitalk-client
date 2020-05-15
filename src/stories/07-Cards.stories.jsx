@@ -11,6 +11,8 @@ import VideoSection from "../comp/VideoSection";
 import ChannelDescription from "../comp/ChannelDescription";
 import NewChannelPost from "../comp/NewChannelPost";
 import ChannelPost from "../comp/ChannelPost";
+import ChannelComment from "../comp/ChannelComment";
+
 import arrayMove from "array-move";
 
 export default {
@@ -273,8 +275,29 @@ export const ChannelPostShow = () => {
         adminName="admin name"
         adminAvatar="https://source.unsplash.com/128x128/?5,cat"
         timeFromPost="20min ago"
-        post="Channel Post Channel Post Channel Post Channel Post Channel Post Channel Post Channel Post Channel Post Channel Post Channel Post Channel Post Channel Post "
+        text="Channel Post Channel Post Channel Post Channel Post Channel Post Channel Post Channel Post Channel Post Channel Post Channel Post Channel Post Channel Post "
         comments={[]}
+      />
+    </div>
+  );
+};
+
+export const ChannelCommentShow = () => {
+  return (
+    <div>
+      <ChannelComment
+        username="commenterName"
+        avatar="https://source.unsplash.com/128x128/?6,cat"
+        timeFromPost="20min ago"
+        text="Channel Comment Channel Comment Channel Comment Channel Comment Channel Comment ABC Channel Comment Channel Comment Channel Comment Channel Comment Channel Comment Channel Comment "
+        likes={0}
+      />
+      <ChannelComment
+        username="commenterName"
+        avatar="https://source.unsplash.com/128x128/?6,cat"
+        timeFromPost="20min ago"
+        text="Channel Comment Channel Comment Channel Comment Channel Comment Channel Comment ABC Channel Comment Channel Comment Channel Comment Channel Comment Channel Comment Channel Comment "
+        likes={2}
       />
     </div>
   );
