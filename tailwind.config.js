@@ -58,39 +58,49 @@ module.exports = {
     },
     colors: {
       transparent: "transparent",
+
+      /** BACKGROUNDS */
       primaryBackground: "#FFFFFF",
-      secondaryBackground: "#F2F2F2",
-      tertiaryBackground: "#EBEBEB",
-      quaternaryBackground: "#D3D3D3",
+      secondaryBackground: "#F5F5F5",
+      tertiaryBackground: "#F2F2F2",
+      quaternaryBackground: "#1DA4FE",
       disabledBackground: "#F2F2F2",
       highlightBackground: "#D3ECFF",
+      liveBackground: "#DE0000",
+
+      /** TEXTS */
       primaryText: "#000000",
       secondaryText: "#A5A5A5",
       tertiaryText: "#FFFFFF",
-      liveBackground: "#DE0000",
       liveText: "#FFFFFF",
       yyy: "#ABC",
       highlightText: "#1DA4FE",
       linkText: "#1DA4FE",
       errorText: "#FF4040",
       disabledText: "#a5a5a5",
-      onlineColor: "#24E601",
-      notificationsColor: "#FF4040",
+
+      /** BUTTON TEXT */
+      primaryButtonText: "#FFFFFF",
+      secondaryButtonText: "#A5A5A5",
+
+      /** BORDER */
       primaryBorder: "#e2e2e2",
       secondaryBorder: "#D9D9D9",
       tertiaryBorder: "#A5A5A5",
       imageBorder1: "transparent",
       imageBorder2: "#FFFFFF",
-      primaryButtonText: "#FFFFFF",
-      secondaryButtonText: "#A5A5A5",
+
+      /** OTHERS */
       pink: "#F966F8",
-      black: "#000000"
+      black: "#000000",
+      onlineColor: "#00CD46",
+      notificationsColor: "#FF0000"
     },
     gradients: {
-      primary: ["#76FCFF 0%", "#F966F8 52%", "#E8BBA2 100%"],
-      button: ["#009DFF 0%", "#5ABEFC 100%"],
+      primary: ["#76BDFF 20.56%", "#FF66FE 51.9%", "#FFC4AB 89.93%"],
+      button: ["#5ABEFC 0%", "#009DFF 100%"],
       search: ["#98E4FA 0%", "#00C3FF 100%"],
-      cancel: ["#FA3535 0%", "#FC5AA5 100%"],
+      cancel: ["#FC6D5A 0%", "#FA3535 100%"],
       channelCardOverlay: ["#000 0%", "transparent 40%"],
       upload: ["#03f5ff 0%", "#f500ff 100%"]
     },
@@ -127,10 +137,11 @@ module.exports = {
         dropdown: "26rem"
       },
       height: {
-        chat: "27rem"
+        chatBox: "27rem",
+        chatChild: "24rem"
       },
       gridTemplateColumns: {
-        chat: "auto 1fr auto;"
+        chat: "2.5rem 1fr auto;"
       }
     }
   },
