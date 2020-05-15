@@ -10,6 +10,7 @@ import VideoChannelHeader from "../comp/VideoChannelHeader";
 import VideoSection from "../comp/VideoSection";
 import ChannelDescription from "../comp/ChannelDescription";
 import NewChannelPost from "../comp/NewChannelPost";
+import ChannelPost from "../comp/ChannelPost";
 
 export default {
   title: "Cards",
@@ -246,6 +247,20 @@ export const NewChannelPostShow = () => {
         handleEmot={() => console.log("handle emot")}
         handleUploadImg={() => console.log("handle img upload")}
         handleSubmit={() => console.log("handle submit")}
+      />
+    </div>
+  );
+};
+
+export const ChannelPostShow = () => {
+  return (
+    <div>
+      <ChannelPost
+        adminName="admin name"
+        adminAvatar="https://source.unsplash.com/128x128/?5,cat"
+        timeFromPost="20min ago"
+        post="Channel Post Channel Post Channel Post Channel Post Channel Post Channel Post Channel Post Channel Post Channel Post Channel Post Channel Post Channel Post "
+        comments={[]}
       />
     </div>
   );

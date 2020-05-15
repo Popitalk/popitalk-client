@@ -26,7 +26,9 @@ import {
 import {
   faSmile as farSmile,
   faImages as farImages,
-  faBell as farBell
+  faBell as farBell,
+  faHeart as farHeart,
+  faComment as farComment
 } from "@fortawesome/free-regular-svg-icons";
 // import { fab } from "@fortawesome/free-brands-svg-icons";
 
@@ -55,5 +57,7 @@ library.add(
   farImages,
   faImage,
   faUsers,
-  faRedoAlt
+  faRedoAlt,
+  farHeart,
+  farComment
 );
