@@ -21,7 +21,7 @@ export default function NewChannelPost({
       <input
         type="text"
         placeholder="Post something..."
-        className="rounded-md mx-4"
+        className="rounded-md mx-4 pl-3 pr-10 shadow"
       />
       <button className="text-highlightText text-2xl" onClick={handleUploadImg}>
         <FontAwesomeIcon icon={["fa", "image"]} />
