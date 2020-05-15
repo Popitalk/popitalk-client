@@ -16,7 +16,7 @@ export default function CreateNewAccountForm({ handleSubmit, loading }) {
   const initialDoB = new Date();
 
   return (
-    <div className="p-4">
+    <div className="px-4 py-8 border rounded-lg shadow-lg border-primaryBorder">
       <Formik
         initialValues={{
           firstName: "",
@@ -57,7 +57,7 @@ export default function CreateNewAccountForm({ handleSubmit, loading }) {
               <Text variant="title2" className="text-center">
                 Create a new account
               </Text>
-              <Text variant="text2" className="text-center pb-8">
+              <Text variant="text2" className="pb-8 text-center">
                 Get the full experience. It&apos;s FREE!
               </Text>
               <EditInformationForm loading={loading} />
@@ -73,13 +73,17 @@ export default function CreateNewAccountForm({ handleSubmit, loading }) {
                 className="w-full"
               />
               <EditBirthdayForm loading={loading} />
-              <Text variant="small2" className="text-center pt-8">
+              <Text variant="small2" className="pt-8 text-center">
                 By clicking Sign Up, you agree to the{" "}
                 <a href="https://google.com">Terms</a> and{" "}
                 <a href="https://google.com">Policy</a>.
               </Text>
               <div className="mt-4">
-                <Button type="submit" disabled={loading || !isValid || !dirty}>
+                <Button
+                  type="submit"
+                  shape="pill"
+                  disabled={loading || !isValid || !dirty}
+                >
                   Sign Up
                 </Button>
               </div>

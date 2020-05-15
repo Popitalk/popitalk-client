@@ -5,7 +5,7 @@ import Button from "./Button";
 
 export default function SiteHeaderMain() {
   return (
-    <header className="flex flex-col justify-between px-16 py-4 md:flex-row bg-primaryBackground">
+    <header className="flex flex-col justify-between px-16 py-4 border-b md:flex-row bg-primaryBackground border-primaryBorder">
       <div className="flex items-center justify-center">
         <img src={Logo} alt="PlayNow's logo" className="w-12 h-12" />
         <span className="ml-2 text-3xl font-bold text-primaryText">
