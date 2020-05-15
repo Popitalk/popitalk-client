@@ -10,7 +10,6 @@ import HuluLogo from "../assets/hulu-logo.png";
 import GfycatLogo from "../assets/gfycat-logo.png";
 import FacebookLogo from "../assets/facebook-logo.png";
 import DailymotionLogo from "../assets/dailymotion-logo.png";
-import TwitterLogo from "../assets/twitter-logo.png";
 import SpotifyLogo from "../assets/spotify-logo.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import ControlHeader from "./ControlHeader";
@@ -48,6 +47,7 @@ export default function Input({
   onKeyDown,
   onBlur,
   disabled,
+  readOnly,
   required,
   autoFocus,
   spellCheck = false,
@@ -55,6 +55,8 @@ export default function Input({
   error,
   size = "md",
   videoSource,
+  interiorButton,
+  forwardedRef,
   className
 }) {
   const El = variant === "textarea" ? "textarea" : "input";
@@ -70,7 +72,7 @@ export default function Input({
       "rounded-lg": shape === "regular",
       "rounded-pill px-3": shape === "pill",
       "pl-12 pr-12 rounded-pill": variant === "video",
-      "pl-3 pr-12 rounded-pill bg-secondaryBackground": variant === "user",
+      "pl-3 pr-12 bg-secondaryBackground": variant === "user",
       "pr-20": variant === "counter" || variant === "textarea",
       "resize-none overflow-hidden h-32 pt-1": variant === "textarea",
       "pl-10": variant === "filter" || variant === "filterModal",
@@ -113,12 +115,17 @@ export default function Input({
           onKeyDown={onKeyDown}
           onBlur={onBlur}
           disabled={disabled}
+          readOnly={readOnly}
           autoFocus={autoFocus}
           spellCheck={spellCheck}
           required={required}
           maxLength={maxLength}
           className={inputClasses}
+          ref={forwardedRef}
         />
+        {interiorButton && (
+          <div className="absolute right-0 mr-4">{interiorButton}</div>
+        )}
         {variant === "video" && (
           <>
             <img
