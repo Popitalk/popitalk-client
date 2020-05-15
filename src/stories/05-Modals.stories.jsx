@@ -13,6 +13,7 @@ import WatchModal from "../comp/WatchModal";
 import ShareModal from "../comp/ShareModal";
 import NewRoomModal from "../comp/NewRoomModal";
 import ProfileModal from "../comp/ProfileModal";
+import InviteForm from "../comp/InviteForm";
 
 export default {
   title: "Modals",
@@ -432,6 +433,14 @@ export const MyProfileModalTest = () => {
         unfriendHandler={unfriendHandler}
         blockHandler={blockHandler}
       />
+    </ModalManager>
+  );
+};
+
+export const InviteModalTest = () => {
+  return (
+    <ModalManager isOpen={true} small={true}>
+      <InviteForm link="https://popitalk.com" />
     </ModalManager>
   );
 };
