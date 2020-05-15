@@ -14,6 +14,7 @@ import ChannelPost from "../comp/ChannelPost";
 import ChannelComment from "../comp/ChannelComment";
 
 import arrayMove from "array-move";
+import NewChannelComment from "../comp/NewChannelComment";
 
 export default {
   title: "Cards",
@@ -298,6 +299,18 @@ export const ChannelCommentShow = () => {
         timeFromPost="20min ago"
         text="Channel Comment Channel Comment Channel Comment Channel Comment Channel Comment ABC Channel Comment Channel Comment Channel Comment Channel Comment Channel Comment Channel Comment "
         likes={2}
+      />
+    </div>
+  );
+};
+
+export const NewChannelCommentShow = () => {
+  return (
+    <div>
+      <NewChannelComment
+        handleEmot={() => console.log("handle emot")}
+        handleUploadImg={() => console.log("handle img upload")}
+        handleSubmit={() => console.log("handle submit")}
       />
     </div>
   );
