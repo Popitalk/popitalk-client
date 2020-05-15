@@ -52,7 +52,7 @@ function ChatMessages() {
                 />
                 <span className="font-bold">{message.name}</span>
                 <span className="text-secondaryText">
-                  {message.date.toDateString}
+                  {message.date.toLocaleString()}
                 </span>
               </div>
               <div className="grid my-3 grid-cols-chat">
