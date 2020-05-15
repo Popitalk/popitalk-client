@@ -48,6 +48,7 @@ export default function Input({
   onKeyDown,
   onBlur,
   disabled,
+  readOnly,
   required,
   autoFocus,
   spellCheck = false,
@@ -55,6 +56,8 @@ export default function Input({
   error,
   size = "md",
   videoSource,
+  interiorButton,
+  forwardedRef,
   className
 }) {
   const El = variant === "textarea" ? "textarea" : "input";
@@ -113,12 +116,17 @@ export default function Input({
           onKeyDown={onKeyDown}
           onBlur={onBlur}
           disabled={disabled}
+          readOnly={readOnly}
           autoFocus={autoFocus}
           spellCheck={spellCheck}
           required={required}
           maxLength={maxLength}
           className={inputClasses}
+          ref={forwardedRef}
         />
+        {interiorButton && (
+          <div className="absolute right-0 mr-4">{interiorButton}</div>
+        )}
         {variant === "video" && (
           <>
             <img
