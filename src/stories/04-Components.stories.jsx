@@ -15,6 +15,7 @@ import SiteHeaderWelcome from "../comp/SiteHeaderWelcome";
 import ChatPanel from "../comp/ChatPanel";
 import CircleCheckBox from "../comp/CircleCheckbox";
 import AnonymousSidebar from "../comp/AnonymousSidebar";
+import SearchRecommendation from "../comp/SearchRecommendation";
 
 export default {
   title: "Components",
@@ -75,6 +76,14 @@ export const CircleCheckBoxTest = () => {
   };
 
   return <CircleCheckBox checked={checked} onChange={onChange} />;
+};
+
+export const SearchRecommendationTest = () => {
+  const handleCancel = id => {
+    console.log(`Cancel ${id}`);
+  };
+
+  return <SearchRecommendation name="Testing" handleCancel={handleCancel} />;
 };
 
 export const AnonymousSidebarTest = () => {

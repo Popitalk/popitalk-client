@@ -48,7 +48,7 @@ export default function ChannelForm({ initial, handleSubmit, loading }) {
         resetForm
       }) => (
         <form className="flex flex-col max-w-3xl" onSubmit={handleSubmit}>
-          <div className="flex flex-col md:flex-row justify-center mb-12 w-full ">
+          <div className="flex flex-col xl:flex-row justify-center mb-12 w-full">
             <ImageUpload
               name="icon"
               icon={values.icon}
@@ -63,7 +63,7 @@ export default function ChannelForm({ initial, handleSubmit, loading }) {
                 setUploadedImage(null);
               }}
               disabled={loading}
-              className="mb-8 md:mr-32"
+              className="mb-8 xl:mr-32"
               selectMessage="Select Channel Icon"
               changeMessage="Change Channel Icon"
             />
