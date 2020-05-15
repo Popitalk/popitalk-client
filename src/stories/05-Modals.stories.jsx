@@ -13,6 +13,7 @@ import FollowersList from "../comp/InfoCardLists/FollowersList";
 import WatchModal from "../comp/WatchModal";
 import ShareModal from "../comp/ShareModal";
 import NewRoomModal from "../comp/NewRoomModal";
+import ProfileModal from "../comp/ProfileModal";
 
 export default {
   title: "Modals",
@@ -42,6 +43,18 @@ const handleSend = selected => {
   } else {
     console.log("You haven't selected any rooms!");
   }
+};
+
+const friendHandler = id => {
+  console.log(`Friended ${id}`);
+};
+
+const unfriendHandler = id => {
+  console.log(`Unfriended ${id}`);
+};
+
+const blockHandler = id => {
+  console.log(`Blocked ${id}`);
 };
 
 const testRooms = [
@@ -138,9 +151,58 @@ const testUsers = [
   }
 ];
 
+const defaultThumbnail = "https://i.imgur.com/aqjzchq.jpg";
+const testQueue = [
+  {
+    id: 1,
+    title: "Video 1",
+    views: "20k views",
+    timeFromUpload: "2 months ago",
+    thumbnail: defaultThumbnail,
+    status: "queued",
+    statusMessage: "In 10min"
+  },
+  {
+    id: 2,
+    title: "Video 2",
+    views: "1M views",
+    timeFromUpload: "1 week ago",
+    thumbnail: defaultThumbnail,
+    status: "queued",
+    statusMessage: "In 14min"
+  },
+  {
+    id: 3,
+    title: "Video 3",
+    views: "200k views",
+    timeFromUpload: "1 months ago",
+    thumbnail: defaultThumbnail,
+    status: "queued",
+    statusMessage: "In 18min"
+  },
+  {
+    id: 4,
+    title: "Video 4",
+    views: "1.2M views",
+    timeFromUpload: "3 months ago",
+    thumbnail: defaultThumbnail,
+    status: "queued",
+    statusMessage: "In 25min"
+  },
+  {
+    id: 5,
+    title: "Video 5",
+    views: "1.2M views",
+    timeFromUpload: "3 months ago",
+    thumbnail: defaultThumbnail,
+    status: "queued",
+    statusMessage: "In 50min"
+  }
+];
+
 export const CreateNewAccountModalTest = () => {
   return (
-    <ModalManager isOpen={true} fullHeight={true}>
+    <ModalManager isOpen={true}>
       <CreateNewAccountModal />
     </ModalManager>
   );
@@ -150,7 +212,6 @@ export const EditInformationModalTest = () => {
   return (
     <ModalManager
       isOpen={true}
-      fullHeight={true}
       header={
         <ContainerHeader
           title="Edit Your Information"
@@ -317,6 +378,62 @@ export const NewRoomModalTest = () => {
         selected={selected}
         onCheck={id => onCheck(selected, setSelected, id)}
         handleSend={() => handleSend(selected)}
+      />
+    </ModalManager>
+  );
+};
+
+export const StrangerProfileModalTest = () => {
+  return (
+    <ModalManager isOpen={true}>
+      <ProfileModal
+        user={testUsers[0]}
+        showAddFriend={true}
+        following={6}
+        followers={22}
+        friends={12}
+        recentVideos={testQueue}
+        followedChannels={testQueue}
+        friendHandler={friendHandler}
+        unfriendHandler={unfriendHandler}
+        blockHandler={blockHandler}
+      />
+    </ModalManager>
+  );
+};
+
+export const FriendProfileModalTest = () => {
+  return (
+    <ModalManager isOpen={true}>
+      <ProfileModal
+        user={testUsers[0]}
+        following={6}
+        followers={22}
+        friends={12}
+        recentVideos={testQueue}
+        followedChannels={testQueue}
+        friendHandler={friendHandler}
+        unfriendHandler={unfriendHandler}
+        blockHandler={blockHandler}
+      />
+    </ModalManager>
+  );
+};
+
+export const MyProfileModalTest = () => {
+  return (
+    <ModalManager isOpen={true}>
+      <ProfileModal
+        user={testUsers[0]}
+        myProfile={true}
+        following={6}
+        followers={22}
+        friends={12}
+        recentVideos={testQueue}
+        followedChannels={testQueue}
+        friendHandler={friendHandler}
+        unfriendHandler={unfriendHandler}
+        blockHandler={blockHandler}
       />
     </ModalManager>
   );
