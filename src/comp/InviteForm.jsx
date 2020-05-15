@@ -13,7 +13,7 @@ import {
 } from "@fortawesome/free-brands-svg-icons";
 import { faPaperPlane, faAt } from "@fortawesome/free-solid-svg-icons";
 
-function InviteForm({ link }) {
+export default function InviteForm({ link }) {
   const faClassName = "text-xl";
   const ref = createRef();
 
@@ -61,7 +61,3 @@ function InviteForm({ link }) {
     </>
   );
 }
-
-InviteForm.displayName = "InviteForm";
-
-export default InviteForm;
