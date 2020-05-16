@@ -51,7 +51,7 @@ export default function ChannelPost({
       </div>
       {comments && (
         <div className="ml-6">
-          {!showComments && (
+          {!showComments && comments.length > 1 && (
             <button
               className="text-secondaryText text-sm"
               onClick={() => setShowComments(!showComments)}
@@ -59,7 +59,7 @@ export default function ChannelPost({
               View more comments
             </button>
           )}
-          {showComments && (
+          {showComments && comments.length > 1 && (
             <button
               className="text-secondaryText text-sm"
               onClick={() => setShowComments(!showComments)}
