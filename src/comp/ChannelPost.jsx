@@ -7,21 +7,24 @@ import AvatarIcon from "./InfoCards/AvatarIcon";
 
 export default function ChannelPost({
   id,
-  adminName,
-  adminAvatar,
+  name,
+  avatar,
   timeFromPost,
   text,
   comments,
-  setComments,
+  liked,
+  setLiked,
+  likes,
+  setLikes,
   handleLike = null,
   handleComment = null
 }) {
   return (
-    <div className="flex flex-col rounded-lg shadow px-8 py-3">
+    <div className="flex flex-col rounded-lg shadow px-8 py-3 bg-primaryBackground">
       <header className="flex">
-        <AvatarIcon avatar={adminAvatar} username={adminName} />
+        <AvatarIcon avatar={avatar} username={name} />
         <div className="flex flex-col pl-3">
-          <span>{adminName}</span>
+          <span>{name}</span>
           <span className="text-secondaryText text-xs">{timeFromPost}</span>
         </div>
       </header>

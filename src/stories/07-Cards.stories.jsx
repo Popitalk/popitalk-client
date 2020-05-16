@@ -15,6 +15,7 @@ import ChannelComment from "../comp/ChannelComment";
 
 import arrayMove from "array-move";
 import NewChannelComment from "../comp/NewChannelComment";
+import ChannelChat from "../comp/ChannelChat";
 
 export default {
   title: "Cards",
@@ -273,8 +274,8 @@ export const ChannelPostShow = () => {
   return (
     <div>
       <ChannelPost
-        adminName="admin name"
-        adminAvatar="https://source.unsplash.com/128x128/?5,cat"
+        name="admin name"
+        avatar="https://source.unsplash.com/128x128/?5,cat"
         timeFromPost="20min ago"
         text="Channel Post Channel Post Channel Post Channel Post Channel Post Channel Post Channel Post Channel Post Channel Post Channel Post Channel Post Channel Post "
         comments={[]}
@@ -312,6 +313,86 @@ export const NewChannelCommentShow = () => {
         handleUploadImg={() => console.log("handle img upload")}
         handleSubmit={() => console.log("handle submit")}
       />
+    </div>
+  );
+};
+
+export const ChannelChatShow = () => {
+  const posts = [
+    {
+      id: 1,
+      name: "Person 1",
+      avatar: "https://source.unsplash.com/128x128/?1,cat",
+      liked: false,
+      comments: [1, 3, 4],
+      timeFromUpload: "20days ago",
+      text: "Post Post Post Post Post"
+    },
+    {
+      id: 2,
+      name: "Person 2",
+      avatar: "https://source.unsplash.com/128x128/?1,cat",
+      liked: true,
+      comments: [],
+      timeFromUpload: "10days ago",
+      text: "Post Post Post Post Post"
+    },
+    {
+      id: 3,
+      name: "Person 3",
+      avatar: "https://source.unsplash.com/128x128/?1,cat",
+      liked: false,
+      comments: [2],
+      timeFromUpload: "5 days ago",
+      text: "Post Post Post Post Post"
+    }
+  ];
+  const comments = [
+    {
+      id: 1,
+      name: "Commenter 1",
+      avatar: "https://source.unsplash.com/128x128/?2,cat",
+      likes: 0,
+      liked: false,
+      timeFromUpload: "40min ago",
+      text: "Post Post Post Post Post"
+    },
+    {
+      id: 2,
+      name: "Commenter 2",
+      avatar: "https://source.unsplash.com/128x128/?2,cat",
+      likes: 2,
+      liked: true,
+      timeFromUpload: "30min ago",
+      text: "Post Post Post Post Post"
+    },
+    {
+      id: 3,
+      name: "Commenter 3",
+      avatar: "https://source.unsplash.com/128x128/?2,cat",
+      likes: 10,
+      liked: false,
+      timeFromUpload: "10min ago",
+      text: "Post Post Post Post Post"
+    },
+    {
+      id: 4,
+      name: "Commenter 4",
+      avatar: "https://source.unsplash.com/128x128/?2,cat",
+      likes: 10,
+      liked: false,
+      timeFromUpload: "10min ago",
+      text: "Post Post Post Post Post"
+    }
+  ];
+  return (
+    <div className=" bg-secondaryBackground p-2">
+      <h1>One post</h1>
+      <ChannelChat posts={posts.slice(0, 1)} comments={comments} />
+      <h1>More than one post</h1>
+      <ChannelChat posts={posts} comments={comments} />
+      <h1>Empty</h1>
+      <ChannelChat posts={[]} comments={comments} />
     </div>
   );
 };
