@@ -7,6 +7,7 @@ import AvatarIcon from "./InfoCards/AvatarIcon";
 import ChannelComment from "./ChannelComment";
 import NewChannelComment from "./NewChannelComment";
 import classnames from "classnames";
+import ToggleIcon from "./ToggleIcon";
 
 export default function ChannelPost({
   id,
@@ -14,26 +15,15 @@ export default function ChannelPost({
   avatar,
   timeFromPost,
   text,
-  comments,
-  likes,
-  setLikes
+  comments
 }) {
   const [showNewComment, setShowNewComment] = useState(false);
   const [showComments, setShowComments] = useState(false);
-  const [liked, setLiked] = useState(false);
 
   const handleComment = () => {
     setShowNewComment(!showNewComment);
   };
 
-  const handleLike = () => {
-    setLiked(!liked);
-  };
-
-  const colorChange = classnames({
-    "text-secondaryText": !liked,
-    "text-notificationsColor": liked
-  });
   return (
     <>
       <div className="flex flex-col rounded-lg shadow px-8 py-3 bg-primaryBackground my-2">
@@ -46,18 +36,15 @@ export default function ChannelPost({
         </header>
         <p className="text-sm py-3">{text}</p>
         <footer className="flex text-secondaryText text-2xl">
-          <button
-            className={`flex align-middle ${colorChange}`}
-            onClick={handleLike}
+          <ToggleIcon
+            icons={{ default: ["far", "heart"], toggle: ["fa", "heart"] }}
+            colors={{
+              default: "text-secondaryText",
+              toggle: "text-notificationsColor"
+            }}
           >
-            {!liked ? (
-              <FontAwesomeIcon icon={["far", "heart"]} />
-            ) : (
-              <FontAwesomeIcon icon={["fa", "heart"]} />
-            )}
-
-            <span className="text-sm font-bold ml-1">Like</span>
-          </button>
+            Like
+          </ToggleIcon>
           <button className="flex align-middle ml-12" onClick={handleComment}>
             <FontAwesomeIcon icon={["far", "comment"]} />
             <span className="text-sm font-bold ml-1">Comment</span>

@@ -2,6 +2,7 @@ import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./VideoStatus.css";
 import AvatarIcon from "./InfoCards/AvatarIcon";
+import ToggleIcon from "./ToggleIcon";
 
 export default function ChannelPost({
   id,
@@ -29,9 +30,17 @@ export default function ChannelPost({
         <span className="text-xs pt-1 text-secondaryText">{timeFromPost}</span>
       </article>
       <aside className="flex items-baseline flex-shrink-0 text-secondaryText">
-        <button className="text-lg">
+        {/* <button className="text-lg">
           <FontAwesomeIcon icon={["far", "heart"]} />
-        </button>
+        </button> */}
+        <ToggleIcon
+          icons={{ default: ["far", "heart"], toggle: ["fa", "heart"] }}
+          colors={{
+            default: "text-secondaryText",
+            toggle: "text-notificationsColor"
+          }}
+          className={{ icon: "text-lg" }}
+        />
         <span className="text-sm font-bold pl-1">{likes ? likes : ""}</span>
       </aside>
     </div>
