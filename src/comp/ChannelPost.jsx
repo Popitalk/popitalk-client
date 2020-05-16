@@ -21,9 +21,12 @@ export default function ChannelPost({
   handleLike = null
 }) {
   const [showNewComment, setShowNewComment] = useState(false);
+  const [showComments, setShowComments] = useState(false);
+
   const handleComment = () => {
     setShowNewComment(!showNewComment);
   };
+
   return (
     <>
       <div className="flex flex-col rounded-lg shadow px-8 py-3 bg-primaryBackground my-2">
@@ -48,8 +51,29 @@ export default function ChannelPost({
       </div>
       {comments && (
         <div className="ml-6">
+          {!showComments && (
+            <button
+              className="text-secondaryText text-sm"
+              onClick={() => setShowComments(!showComments)}
+            >
+              View more comments
+            </button>
+          )}
+          {showComments && (
+            <button
+              className="text-secondaryText text-sm"
+              onClick={() => setShowComments(!showComments)}
+            >
+              Hide comments
+            </button>
+          )}
           {comments.map((comment, idx) => {
-            return <ChannelComment key={idx} {...comment} />;
+            if (!showComments && idx === comments.length - 1) {
+              return <ChannelComment key={idx} {...comment} />;
+            }
+            if (showComments) {
+              return <ChannelComment key={idx} {...comment} />;
+            }
           })}
           {showNewComment && <NewChannelComment />}
         </div>
