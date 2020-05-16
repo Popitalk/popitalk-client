@@ -325,7 +325,7 @@ export const ChannelChatShow = () => {
       avatar: "https://source.unsplash.com/128x128/?1,cat",
       liked: false,
       comments: [1, 3, 4],
-      timeFromUpload: "20days ago",
+      timeFromPost: "20days ago",
       text: "Post Post Post Post Post"
     },
     {
@@ -334,7 +334,7 @@ export const ChannelChatShow = () => {
       avatar: "https://source.unsplash.com/128x128/?1,cat",
       liked: true,
       comments: [],
-      timeFromUpload: "10days ago",
+      timeFromPost: "10days ago",
       text: "Post Post Post Post Post"
     },
     {
@@ -343,7 +343,7 @@ export const ChannelChatShow = () => {
       avatar: "https://source.unsplash.com/128x128/?1,cat",
       liked: false,
       comments: [2],
-      timeFromUpload: "5 days ago",
+      timeFromPost: "5 days ago",
       text: "Post Post Post Post Post"
     }
   ];
@@ -354,7 +354,7 @@ export const ChannelChatShow = () => {
       avatar: "https://source.unsplash.com/128x128/?2,cat",
       likes: 0,
       liked: false,
-      timeFromUpload: "40min ago",
+      timeFromPost: "40min ago",
       text: "Post Post Post Post Post"
     },
     {
@@ -363,7 +363,7 @@ export const ChannelChatShow = () => {
       avatar: "https://source.unsplash.com/128x128/?2,cat",
       likes: 2,
       liked: true,
-      timeFromUpload: "30min ago",
+      timeFromPost: "30min ago",
       text: "Post Post Post Post Post"
     },
     {
@@ -372,7 +372,7 @@ export const ChannelChatShow = () => {
       avatar: "https://source.unsplash.com/128x128/?2,cat",
       likes: 10,
       liked: false,
-      timeFromUpload: "10min ago",
+      timeFromPost: "10min ago",
       text: "Post Post Post Post Post"
     },
     {
@@ -381,17 +381,17 @@ export const ChannelChatShow = () => {
       avatar: "https://source.unsplash.com/128x128/?2,cat",
       likes: 10,
       liked: false,
-      timeFromUpload: "10min ago",
+      timeFromPost: "10min ago",
       text: "Post Post Post Post Post"
     }
   ];
   return (
     <div className=" bg-secondaryBackground p-2">
-      <h1>One post</h1>
+      <h1 className="text-2xl font-bold mt-2">One post</h1>
       <ChannelChat posts={posts.slice(0, 1)} comments={comments} />
-      <h1>More than one post</h1>
+      <h1 className="text-2xl font-bold mt-2">More than one post</h1>
       <ChannelChat posts={posts} comments={comments} />
-      <h1>Empty</h1>
+      <h1 className="text-2xl font-bold mt-2">Empty</h1>
       <ChannelChat posts={[]} comments={comments} />
     </div>
   );

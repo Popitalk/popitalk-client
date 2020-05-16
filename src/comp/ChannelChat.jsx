@@ -22,14 +22,19 @@ export default function ChannelChat({ id, posts, comments }) {
           return (
             <>
               <ChannelPost key={idx} {...post} />
-              {postComments &&
-                postComments.map((comment, idx) => {
-                  return <ChannelComment key={idx} {...comment} />;
-                })}
+              {postComments && (
+                <div className="ml-3">
+                  {postComments.map((comment, idx) => {
+                    return <ChannelComment key={idx} {...comment} />;
+                  })}
+                </div>
+              )}
             </>
           );
         })}
-      {!posts && <p>Nothing to Show</p>}
+      {(!posts || (posts && posts.length === 0)) && (
+        <p className="text-secondaryText text-center">Nothing to Show</p>
+      )}
     </div>
   );
 }

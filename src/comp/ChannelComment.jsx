@@ -21,7 +21,7 @@ export default function ChannelPost({
           className="img w-10 h-10 rounded-circle"
         />
       </aside>
-      <article className="flex-shrink flex flex-col mr-2">
+      <article className="flex-shrink flex flex-col mr-2 w-full">
         <main>
           <span className="font-bold pr-1">{name} </span>
           <span>{text}</span>
