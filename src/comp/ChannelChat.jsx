@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Button from "./Button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./VideoStatus.css";
@@ -6,6 +6,7 @@ import RoomIcon from "./RoomIcon";
 import AvatarIcon from "./InfoCards/AvatarIcon";
 import ChannelPost from "./ChannelPost";
 import ChannelComment from "./ChannelComment";
+import NewChannelComment from "./NewChannelComment";
 
 export default function ChannelChat({ id, posts, comments }) {
   return (
@@ -21,14 +22,7 @@ export default function ChannelChat({ id, posts, comments }) {
 
           return (
             <>
-              <ChannelPost key={idx} {...post} />
-              {postComments && (
-                <div className="ml-3">
-                  {postComments.map((comment, idx) => {
-                    return <ChannelComment key={idx} {...comment} />;
-                  })}
-                </div>
-              )}
+              <ChannelPost key={idx} {...post} comments={postComments} />
             </>
           );
         })}

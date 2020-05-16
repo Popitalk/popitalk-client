@@ -288,14 +288,14 @@ export const ChannelCommentShow = () => {
   return (
     <div>
       <ChannelComment
-        username="commenterName"
+        name="commenterName"
         avatar="https://source.unsplash.com/128x128/?6,cat"
         timeFromPost="20min ago"
         text="Channel Comment Channel Comment Channel Comment Channel Comment Channel Comment ABC Channel Comment Channel Comment Channel Comment Channel Comment Channel Comment Channel Comment "
         likes={0}
       />
       <ChannelComment
-        username="commenterName"
+        name="commenterName"
         avatar="https://source.unsplash.com/128x128/?6,cat"
         timeFromPost="20min ago"
         text="Channel Comment Channel Comment Channel Comment Channel Comment Channel Comment ABC Channel Comment Channel Comment Channel Comment Channel Comment Channel Comment Channel Comment "

@@ -13,7 +13,7 @@ export default function ChannelPost({
   setLikes
 }) {
   return (
-    <div className="flex flex-row bg-secondaryBackground p-3">
+    <div className="flex flex-row bg-secondaryBackground p-1">
       <aside className="flex-shrink-0 pr-2">
         <AvatarIcon
           avatar={avatar}
@@ -23,8 +23,8 @@ export default function ChannelPost({
       </aside>
       <article className="flex-shrink flex flex-col mr-2 w-full">
         <main>
-          <span className="font-bold pr-1">{name} </span>
-          <span>{text}</span>
+          <span className="font-bold text-sm pr-1">{name} </span>
+          <span className="text-sm">{text}</span>
         </main>
         <span className="text-xs pt-1 text-secondaryText">{timeFromPost}</span>
       </article>

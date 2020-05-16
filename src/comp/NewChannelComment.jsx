@@ -18,12 +18,12 @@ export default function NewChannelComment({
       <input
         type="text"
         placeholder="Add a comment"
-        className="rounded-full mx-2 w-full px-3 py-2 ml-10 shadow text-sm"
+        className="rounded-full mx-2 w-full px-3 py-2 shadow text-sm"
       />
       <input
         type="submit"
-        value="Send"
-        className="mx-4 bg-transparent text-highlightText font-bold pr-3"
+        value="Post"
+        className="mx-2 bg-transparent text-highlightText font-bold mr-3"
       />
     </form>
   );
