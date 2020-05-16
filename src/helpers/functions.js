@@ -31,15 +31,23 @@ export function getUserInformationSchema() {
   };
 }
 
-export function getSetPasswordSchema() {
+export function getSetPasswordSchema(checkOldPassword) {
+  let password = Yup.string()
+    .min(6, "Password should be at least 6 characters long.")
+    .matches(/[a-z]/, "Password should have at least one lowercase letter.")
+    .matches(/[A-Z]/, "Password should have at least one uppercase letter.")
+    .matches(/\d+/, "Password should have at least one number.")
+    .required("Password is required.");
+
+  if (checkOldPassword) {
+    password = password.notOneOf(
+      [Yup.ref("oldPassword"), null],
+      "Passwords must not match."
+    );
+  }
+
   return {
-    password: Yup.string()
-      .min(6, "Password should be at least 6 characters long.")
-      .matches(/[a-z]/, "Password should have at least one lowercase letter.")
-      .matches(/[A-Z]/, "Password should have at least one uppercase letter.")
-      .matches(/\d+/, "Password should have at least one number.")
-      .notOneOf([Yup.ref("oldPassword"), null], "Passwords must not match.")
-      .required("New Password is required.")
+    password: password
   };
 }
 

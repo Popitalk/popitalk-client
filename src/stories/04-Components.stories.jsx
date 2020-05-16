@@ -14,6 +14,7 @@ import SiteHeaderMain from "../comp/SiteHeaderMain";
 import SiteHeaderWelcome from "../comp/SiteHeaderWelcome";
 import ChatPanel from "../comp/ChatPanel";
 import CircleCheckBox from "../comp/CircleCheckbox";
+import WelcomePage from "../comp/WelcomePage";
 import AnonymousSidebar from "../comp/AnonymousSidebar";
 import SearchRecommendation from "../comp/SearchRecommendation";
 
@@ -672,4 +673,8 @@ export const SiteHeader = () => {
 
 export const ChannelChatPanel = () => {
   return <ChatPanel />;
+};
+
+export const WelcomePageShow = () => {
+  return <WelcomePage />;
 };

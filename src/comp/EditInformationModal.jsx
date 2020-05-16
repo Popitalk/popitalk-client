@@ -21,7 +21,7 @@ export default function EditInformationModal({
   const [uploadedImage, setUploadedImage] = useState(undefined);
 
   return (
-    <div className="p-4">
+    <>
       <Formik
         initialValues={{
           ...initial,
@@ -84,6 +84,6 @@ export default function EditInformationModal({
           </form>
         )}
       </Formik>
-    </div>
+    </>
   );
 }
