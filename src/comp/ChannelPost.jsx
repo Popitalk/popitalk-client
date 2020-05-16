@@ -15,7 +15,8 @@ export default function ChannelPost({
   avatar,
   timeFromPost,
   text,
-  comments
+  comments,
+  liked
 }) {
   const [showNewComment, setShowNewComment] = useState(false);
   const [showComments, setShowComments] = useState(false);
@@ -42,6 +43,7 @@ export default function ChannelPost({
               default: "text-secondaryText",
               toggle: "text-notificationsColor"
             }}
+            status={liked}
           >
             Like
           </ToggleIcon>

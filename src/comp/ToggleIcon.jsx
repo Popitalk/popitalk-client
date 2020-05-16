@@ -3,8 +3,14 @@ import Button from "./Button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import classnames from "classnames";
 
-export default function ToggleIcon({ icons, colors, className, children }) {
-  const [toggle, setToggle] = useState(false);
+export default function ToggleIcon({
+  icons,
+  colors,
+  className,
+  children,
+  status
+}) {
+  const [toggle, setToggle] = useState(status);
 
   const handleToggle = () => {
     setToggle(!toggle);
