@@ -10,20 +10,32 @@ export default function NewChannelPost({
   handleEmot,
   handleSubmit
 }) {
+  const remToPixel = (rootFontSizePx = 16, rem) => {
+    return rem * rootFontSizePx;
+  };
+  const handleChange = e => {
+    e.target.style.height = "2rem";
+    e.target.style.height = `${Math.min(e.target.scrollHeight + 2, 168)}px`;
+  };
   return (
     <form
       onSubmit={handleSubmit}
       className="flex flex-row justify-center bg-secondaryBackground content-center py-2"
     >
-      <button className="text-highlightText text-2xl" onClick={handleEmot}>
+      <button className="text-highlightText text-2xl mx-4" onClick={handleEmot}>
         <FontAwesomeIcon icon={["far", "smile"]} />
       </button>
-      <input
+      <textarea
         type="text"
         placeholder="Post something..."
-        className="rounded-md mx-4 pl-3 pr-10 shadow"
+        className="rounded-lg pl-3 p-2 w-full shadow"
+        rows={1}
+        onChange={handleChange}
       />
-      <button className="text-highlightText text-2xl" onClick={handleUploadImg}>
+      <button
+        className="text-highlightText text-2xl ml-4"
+        onClick={handleUploadImg}
+      >
         <FontAwesomeIcon icon={["fa", "image"]} />
       </button>
       <input
