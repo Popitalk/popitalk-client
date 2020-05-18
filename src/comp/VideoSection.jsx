@@ -7,7 +7,7 @@ import AvatarIcon from "./InfoCards/AvatarIcon";
 
 export default function VideoSection({
   id,
-  name,
+  title,
   sourceChannelName,
   activeFriendViewers
 }) {
@@ -19,7 +19,7 @@ export default function VideoSection({
       <div className="flex flex-row justify-between bg-secondaryBackground pt-10">
         <section>
           <p className="text-xs mx-1">NOW PLAYING</p>
-          <p className="text-4xl mx-1">{name}</p>
+          <p className="text-4xl mx-1">{title}</p>
           <p className="text-sm -mt-2 mx-1">{sourceChannelName}</p>
         </section>
         <section className="flex flex-row items-center">
