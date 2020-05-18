@@ -15,7 +15,7 @@ export default function ChannelDescription({
 }) {
   return (
     <div className="flex flex-col">
-      <div className="flex flex-row justify-center align-middle bg-secondaryBackground mx-8 p-4">
+      <div className="flex flex-row justify-center align-middle bg-secondaryBackground p-4">
         <AvatarIcon
           username={name}
           avatar={icon}

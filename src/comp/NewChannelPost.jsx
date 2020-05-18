@@ -8,7 +8,8 @@ import AvatarIcon from "./InfoCards/AvatarIcon";
 export default function NewChannelPost({
   handleUploadImg,
   handleEmot,
-  handleSubmit
+  handleSubmit,
+  className
 }) {
   const remToPixel = (rootFontSizePx = 16, rem) => {
     return rem * rootFontSizePx;
@@ -20,7 +21,7 @@ export default function NewChannelPost({
   return (
     <form
       onSubmit={handleSubmit}
-      className="flex flex-row justify-center bg-secondaryBackground content-center py-2"
+      className={`flex flex-row justify-center bg-secondaryBackground content-center py-2 ${className}`}
     >
       <button className="text-highlightText text-2xl mx-4" onClick={handleEmot}>
         <FontAwesomeIcon icon={["far", "smile"]} />
