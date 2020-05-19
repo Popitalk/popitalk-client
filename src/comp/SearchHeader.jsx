@@ -13,7 +13,7 @@ export default function SearchHeader({
   // Filter the search results when the input is updated
   useEffect(() => {
     filterSearch(input);
-  }, [filterSearch, input]);
+  }, [input]);
 
   return (
     <div className="inset-x-0 top-0 bg-secondaryBackground rounded-t-xl flex flex-col items-center shadow-search py-2 px-4">
