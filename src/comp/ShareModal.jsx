@@ -15,8 +15,8 @@ export default function ShareModal({
     return (
       <div className="ml-auto">
         <CircleCheckBox
-          checked={selected.indexOf(room.id) >= 0}
-          onChange={() => onCheck(room.id)}
+          checked={selected.findIndex(r => r.id === room.id) >= 0}
+          onChange={() => onCheck(room.id, room.name)}
         />
       </div>
     );
@@ -28,7 +28,7 @@ export default function ShareModal({
         <VideoCard {...rest} />
       </div>
       <RoomsList rooms={rooms} getControls={getCheckbox} />
-      <div className="flex justify-center">
+      <div className="flex justify-center pt-2">
         <Button onClick={() => handleSend(selected)}>Send</Button>
       </div>
     </>

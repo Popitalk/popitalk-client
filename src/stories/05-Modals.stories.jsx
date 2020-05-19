@@ -24,24 +24,32 @@ const handleBack = () => {
   console.log("RETURN");
 };
 
-const filterSearch = searchTerm => {
-  console.log(searchTerm);
+const filterSearch = (list, field, setVisible, searchTerm) => {
+  const filteredItems = list.filter(i =>
+    i[field].toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
+  setVisible(filteredItems);
 };
 
-const onCheck = (selected, setSelected, id) => {
-  const index = selected.indexOf(id);
+const onCheck = (selected, setSelected, id, name) => {
+  const index = selected.findIndex(i => i.id === id);
   if (index >= 0) {
-    setSelected(selected.filter(i => i !== id));
+    setSelected(selected.filter(i => i.id !== id));
   } else {
-    setSelected([...selected, id]);
+    setSelected([...selected, { id: id, name: name }]);
   }
 };
 
-const handleSend = selected => {
+const handleCancel = (selected, setSelected, id) => {
+  setSelected(selected.filter(i => i.id !== id));
+};
+
+const handleSend = (selected, items) => {
   if (selected.length > 0) {
     console.log(selected);
   } else {
-    console.log("You haven't selected any rooms!");
+    console.log(`You haven't selected any ${items}!`);
   }
 };
 
@@ -123,28 +131,28 @@ const testUsers = [
   },
   {
     id: 2,
-    username: "Andrew",
-    firstName: "Andrew",
-    lastName: "Jang",
+    username: "SilentFuzzle",
+    firstName: "Emily",
+    lastName: "Palmieri",
     avatar: "https://i.imgur.com/xCGu56D.jpg"
   },
   {
     id: 3,
-    username: "Andrew",
-    firstName: "Andrew",
-    lastName: "Jang",
+    username: "Test",
+    firstName: "Test",
+    lastName: "Test",
     avatar: "https://i.imgur.com/xCGu56D.jpg"
   },
   {
     id: 4,
-    username: "Andrew",
+    username: "Nester",
     firstName: "Andrew",
     lastName: "Jang",
     avatar: "https://i.imgur.com/xCGu56D.jpg"
   },
   {
     id: 5,
-    username: "Andrew",
+    username: "SandPills",
     firstName: "Andrew",
     lastName: "Jang",
     avatar: "https://i.imgur.com/xCGu56D.jpg"
@@ -335,17 +343,27 @@ export const WatchModalTest = () => {
 
 export const ShareModalTest = () => {
   const [selected, setSelected] = useState([]);
+  const [visible, setVisible] = useState(testRooms);
 
   return (
     <ModalManager
       isOpen={true}
-      header={<SearchHeader title="Share" filterSearch={filterSearch} />}
+      header={
+        <SearchHeader
+          title="Share"
+          tags={selected}
+          handleCancel={id => handleCancel(selected, setSelected, id)}
+          filterSearch={searchTerm =>
+            filterSearch(testRooms, "name", setVisible, searchTerm)
+          }
+        />
+      }
     >
       <ShareModal
-        rooms={testRooms}
+        rooms={visible}
         selected={selected}
-        onCheck={id => onCheck(selected, setSelected, id)}
-        handleSend={() => handleSend(selected)}
+        onCheck={(id, name) => onCheck(selected, setSelected, id, name)}
+        handleSend={() => handleSend(selected, "rooms")}
         id={123}
         title="Video Title"
         channelName="Channel Name"
@@ -360,6 +378,7 @@ export const ShareModalTest = () => {
 
 export const NewRoomModalTest = () => {
   const [selected, setSelected] = useState([]);
+  const [visible, setVisible] = useState(testUsers);
 
   return (
     <ModalManager
@@ -367,15 +386,19 @@ export const NewRoomModalTest = () => {
       header={
         <SearchHeader
           title="Select Friends to Invite"
-          filterSearch={filterSearch}
+          tags={selected}
+          handleCancel={id => handleCancel(selected, setSelected, id)}
+          filterSearch={searchTerm =>
+            filterSearch(testUsers, "username", setVisible, searchTerm)
+          }
         />
       }
     >
       <NewRoomModal
-        users={testUsers}
+        users={visible}
         selected={selected}
-        onCheck={id => onCheck(selected, setSelected, id)}
-        handleSend={() => handleSend(selected)}
+        onCheck={(id, name) => onCheck(selected, setSelected, id, name)}
+        handleSend={() => handleSend(selected, "friends")}
       />
     </ModalManager>
   );

@@ -8,8 +8,8 @@ export default function NewRoomModal({ users, selected, onCheck, handleSend }) {
     return (
       <div className="ml-auto">
         <CircleCheckBox
-          checked={selected.indexOf(user.id) >= 0}
-          onChange={() => onCheck(user.id)}
+          checked={selected.findIndex(u => u.id === user.id) >= 0}
+          onChange={() => onCheck(user.id, user.username)}
         />
       </div>
     );
@@ -18,7 +18,7 @@ export default function NewRoomModal({ users, selected, onCheck, handleSend }) {
   return (
     <>
       <FollowersList users={users} getControls={getControls} />
-      <div className="flex justify-center">
+      <div className="flex justify-center pt-2">
         <Button onClick={() => handleSend(selected)}>Send</Button>
       </div>
     </>

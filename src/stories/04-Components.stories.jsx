@@ -16,7 +16,7 @@ import ChatPanel from "../comp/ChatPanel";
 import CircleCheckBox from "../comp/CircleCheckbox";
 import WelcomePage from "../comp/WelcomePage";
 import AnonymousSidebar from "../comp/AnonymousSidebar";
-import SearchRecommendation from "../comp/SearchRecommendation";
+import Tag from "../comp/Tag";
 
 export default {
   title: "Components",
@@ -79,12 +79,12 @@ export const CircleCheckBoxTest = () => {
   return <CircleCheckBox checked={checked} onChange={onChange} />;
 };
 
-export const SearchRecommendationTest = () => {
+export const TagTest = () => {
   const handleCancel = id => {
     console.log(`Cancel ${id}`);
   };
 
-  return <SearchRecommendation name="Testing" handleCancel={handleCancel} />;
+  return <Tag id={1} name="Testing" handleCancel={handleCancel} />;
 };
 
 export const AnonymousSidebarTest = () => {

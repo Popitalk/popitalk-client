@@ -21,40 +21,35 @@ export const ChannelSettingsPanelTest = () => {
       username: "Andrew",
       firstName: "Andrew",
       lastName: "Jang",
-      avatar: "https://i.imgur.com/xCGu56D.jpg",
-      variant: "stranger"
+      avatar: "https://i.imgur.com/xCGu56D.jpg"
     },
     {
       id: 2,
-      username: "Andrew",
-      firstName: "Andrew",
-      lastName: "Jang",
-      avatar: "https://i.imgur.com/xCGu56D.jpg",
-      variant: "sentRequest"
+      username: "SilentFuzzle",
+      firstName: "Emily",
+      lastName: "Palmieri",
+      avatar: "https://i.imgur.com/xCGu56D.jpg"
     },
     {
       id: 3,
-      username: "Andrew",
-      firstName: "Andrew",
-      lastName: "Jang",
-      avatar: "https://i.imgur.com/xCGu56D.jpg",
-      variant: "receivedRequest"
+      username: "Test",
+      firstName: "Test",
+      lastName: "Test",
+      avatar: "https://i.imgur.com/xCGu56D.jpg"
     },
     {
       id: 4,
-      username: "Andrew",
+      username: "Nester",
       firstName: "Andrew",
       lastName: "Jang",
-      avatar: "https://i.imgur.com/xCGu56D.jpg",
-      variant: "friend"
+      avatar: "https://i.imgur.com/xCGu56D.jpg"
     },
     {
       id: 5,
-      username: "Andrew",
+      username: "SandPills",
       firstName: "Andrew",
       lastName: "Jang",
-      avatar: "https://i.imgur.com/xCGu56D.jpg",
-      variant: "self"
+      avatar: "https://i.imgur.com/xCGu56D.jpg"
     }
   ];
 
