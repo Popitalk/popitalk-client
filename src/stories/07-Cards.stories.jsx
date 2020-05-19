@@ -215,12 +215,22 @@ export const VideoSectionShow = () => {
     }
   ];
   return (
-    <VideoSection
-      id={123}
-      name="Video Title #1"
-      sourceChannelName="sourceChannel"
-      activeFriendViewers={activeFriendViewers}
-    />
+    <>
+      <VideoSection
+        id={123}
+        title="Video Title #1"
+        sourceChannelName="sourceChannel"
+        activeFriendViewers={activeFriendViewers}
+        status="playing"
+      />
+      <VideoSection
+        id={123}
+        title="Video Title #1"
+        sourceChannelName="sourceChannel"
+        activeFriendViewers={activeFriendViewers}
+        status="paused"
+      />
+    </>
   );
 };
 

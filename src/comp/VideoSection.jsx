@@ -4,12 +4,14 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./VideoStatus.css";
 import RoomIcon from "./RoomIcon";
 import AvatarIcon from "./InfoCards/AvatarIcon";
+import VideoStatus from "./VideoStatus";
 
 export default function VideoSection({
   id,
   title,
   sourceChannelName,
-  activeFriendViewers
+  activeFriendViewers,
+  status
 }) {
   return (
     <div className="flex flex-col">
@@ -18,7 +20,8 @@ export default function VideoSection({
       </div>
       <div className="flex flex-row justify-between bg-secondaryBackground pt-2">
         <section className="mx-2">
-          <p className="text-xs mx-1 text-gradient-r-primary">NOW PLAYING</p>
+          {/* <p className="text-xs mx-1 text-base rainbow-text font-semibold">Playing</p> */}
+          {status ? <VideoStatus status={status} type="text" /> : <p></p>}
           <p className="text-4xl mx-1">{title}</p>
           <p className="text-sm -mt-2 mx-1">{sourceChannelName}</p>
         </section>
