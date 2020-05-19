@@ -482,7 +482,8 @@ export const ChannelVideoShow = () => {
       status: "queued",
       statusMessage: "In 50min",
       sourceChannelName: "sourceChannel"
-    }
+    },
+    {}
   ];
   const adminList = [
     {

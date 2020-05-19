@@ -41,7 +41,7 @@ export default function ChannelVideo({
         }
       />
       <VideoSection {...activeVideo} />
-      <h2 className="text-2xl pt-4">Up Next</h2>
+      <h2 className="text-2xl pt-4 px-3">Up Next</h2>
       <QueueSection queueList={queueList} handlerChange={handlerChange} />
       <div className="mx-32 mt-40">
         <ChannelDescription

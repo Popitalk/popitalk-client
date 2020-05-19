@@ -16,13 +16,13 @@ export default function VideoSection({
       <div className="h-64 bg-black">
         <p className="">Video Container for Video Player</p>
       </div>
-      <div className="flex flex-row justify-between bg-secondaryBackground pt-10">
-        <section>
-          <p className="text-xs mx-1">NOW PLAYING</p>
+      <div className="flex flex-row justify-between bg-secondaryBackground pt-2">
+        <section className="mx-2">
+          <p className="text-xs mx-1 text-gradient-r-primary">NOW PLAYING</p>
           <p className="text-4xl mx-1">{title}</p>
           <p className="text-sm -mt-2 mx-1">{sourceChannelName}</p>
         </section>
-        <section className="flex flex-row items-center">
+        <section className="flex flex-row items-top">
           {activeFriendViewers.map((friend, idx) => {
             return (
               <AvatarIcon
