@@ -272,6 +272,15 @@ export const ChannelDescriptionShow = () => {
         name="Channel Name"
         adminList={adminList}
         description={description}
+        status="playing"
+      />
+      <ChannelDescription
+        id={123}
+        icon="https://i.imgur.com/xCGu56D.jpg"
+        name="Channel Name"
+        adminList={adminList}
+        description={description}
+        status="paused"
       />
     </div>
   );
@@ -605,6 +614,7 @@ export const ChannelVideoShow = () => {
       id={123}
       name="Channel #1"
       icon="https://i.imgur.com/xCGu56D.jpg"
+      activeFriendViewers={activeFriendViewers}
       activeVideo={activeVideo}
       playlist={playlist}
       adminList={adminList}

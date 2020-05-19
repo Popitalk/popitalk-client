@@ -30,6 +30,7 @@ export default function ChannelVideo({
   const handlerChange = ({ oldIndex, newIndex }) => {
     setQueueList(arrayMove(queueList, oldIndex, newIndex));
   };
+
   return (
     <div className="flex flex-col bg-secondaryBackground">
       <VideoChannelHeader
@@ -50,6 +51,7 @@ export default function ChannelVideo({
           name={name}
           adminList={adminList}
           description={description}
+          status={activeVideo && activeVideo.status ? activeVideo.status : ""}
         />
         <NewChannelPost
           handleEmot={() => console.log("handle emot")}

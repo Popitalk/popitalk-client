@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./VideoStatus.css";
 import RoomIcon from "./RoomIcon";
 import AvatarIcon from "./InfoCards/AvatarIcon";
+import VideoStatus from "./VideoStatus";
 
 export default function ChannelDescription({
   id,
@@ -11,7 +12,8 @@ export default function ChannelDescription({
   icon,
   description,
   adminList,
-  threshold = 4
+  threshold = 4,
+  status
 }) {
   return (
     <div className="flex flex-col">
@@ -22,7 +24,8 @@ export default function ChannelDescription({
           className="img h-40 w-40 rounded-circle mx-px"
         />
         <section className="mx-8">
-          <p className="text-xs mx-1">NOW PLAYING</p>
+          {/* <p className="text-xs mx-1">NOW PLAYING</p> */}
+          {status && <VideoStatus status={status} type="text" />}
           <p className="text-4xl mx-1 font-bold">{name}</p>
           <p className="text-xs mx-1">{description}</p>
           <div className="flex flex-row items-center mt-2">
