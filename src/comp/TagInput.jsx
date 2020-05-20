@@ -21,7 +21,7 @@ export function buildTagInput(tags, handleCancel) {
 
 export default function TagInput({ input, setInput, tags, handleCancel }) {
   const fakeInputClasses = classnames(
-    "bg-primaryBackground flex items-start overflow-y-auto h-32",
+    "bg-primaryBackground flex items-start overflow-y-auto max-h-32",
     getInputClasses("regular")
   );
 
@@ -30,7 +30,7 @@ export default function TagInput({ input, setInput, tags, handleCancel }) {
       <div className="py-2 pl-3 pr-1 self-start">
         <FontAwesomeIcon icon="search" className="text-secondaryText" />
       </div>
-      <div className="flex flex-wrap items-center content-start">
+      <div className="flex flex-wrap items-center content-start w-full">
         {tags.map(t => (
           <div key={t.id} className="p-1">
             <Tag handleCancel={handleCancel} {...t} />

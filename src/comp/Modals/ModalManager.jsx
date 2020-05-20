@@ -22,7 +22,7 @@ export default function ModalManager({
     "w-full md:w-3/4 lg:w-1/2": !small
   });
 
-  const contentClasses = classnames("p-4 h-75vh flex flex-col items-stretch", {
+  const contentClasses = classnames("h-75vh flex flex-col items-stretch", {
     "h-modalFull": fixedFullSize
   });
 
@@ -38,7 +38,7 @@ export default function ModalManager({
     >
       {header ? header : <></>}
       <div className={contentClasses}>
-        <div className="px-1 pb-4 overflow-auto">{children}</div>
+        <div className="w-full h-full overflow-auto rounded-xl">{children}</div>
       </div>
     </Modal>
   );
