@@ -16,7 +16,7 @@ export default function ShareModal({
 
   useEffect(() => {
     setHeight(ref.current.clientHeight);
-  }, [ref]);
+  }, []);
 
   const getCheckbox = room => {
     return (
