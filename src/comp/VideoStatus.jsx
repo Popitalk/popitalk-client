@@ -1,6 +1,6 @@
 import React from "react";
 import Button from "./Button";
-import "./VideoStatus.css";
+// import "./VideoStatus.css";
 
 export default function VideoStatus({
   status,
@@ -41,7 +41,9 @@ export default function VideoStatus({
     return (
       <>
         {status === "playing" && (
-          <p className="mx-1 text-base btn-playing font-semibold">Playing</p>
+          <span className="mx-1 text-base rainbow-text font-semibold">
+            Playing
+          </span>
         )}
         {status === "paused" && (
           <p className="mx-1 text-base text-secondaryText font-semibold">
