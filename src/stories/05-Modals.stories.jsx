@@ -14,6 +14,8 @@ import ShareModal from "../comp/ShareModal";
 import NewRoomModal from "../comp/NewRoomModal";
 import ProfileModal from "../comp/ProfileModal";
 import InviteForm from "../comp/InviteForm";
+import TagInput from "../comp/TagInput";
+import SearchInput from "../comp/SearchInput";
 
 export default {
   title: "Modals",
@@ -395,13 +397,23 @@ export const FollowersModalTest = () => {
     console.log(`Profile ${id}`);
   };
 
+  const [visible, setVisible] = useState(testUsers);
+
   return (
     <ModalManager
       isOpen={true}
       small={true}
-      header={<SearchHeader title="Following" filterSearch={filterSearch} />}
+      header={
+        <SearchHeader title="Following">
+          <SearchInput
+            filterSearch={searchTerm =>
+              filterSearch(testUsers, "username", setVisible, searchTerm)
+            }
+          />
+        </SearchHeader>
+      }
     >
-      <FollowersList users={testUsers} handleProfile={handleProfile} />
+      <FollowersList users={visible} handleProfile={handleProfile} />
     </ModalManager>
   );
 };
@@ -411,13 +423,23 @@ export const WatchModalTest = () => {
     console.log(`Open Room ${id} and watch`);
   };
 
+  const [visible, setVisible] = useState(testRooms);
+
   return (
     <ModalManager
       isOpen={true}
-      header={<SearchHeader title="Watch" filterSearch={filterSearch} />}
+      header={
+        <SearchHeader title="Watch">
+          <SearchInput
+            filterSearch={searchTerm =>
+              filterSearch(testRooms, "name", setVisible, searchTerm)
+            }
+          />
+        </SearchHeader>
+      }
     >
       <WatchModal
-        rooms={testRooms}
+        rooms={visible}
         handleWatchNow={handleWatchNow}
         id={123}
         title="Video Title"
@@ -442,14 +464,15 @@ export const ShareModalTest = () => {
       isOpen={true}
       fixedFullSize={true}
       header={
-        <SearchHeader
-          title="Share"
-          tags={selected}
-          handleCancel={id => handleCancel(selected, setSelected, id)}
-          filterSearch={searchTerm =>
-            filterSearch(generatedRooms, "name", setVisible, searchTerm)
-          }
-        />
+        <SearchHeader title="Share">
+          <TagInput
+            tags={selected}
+            handleCancel={id => handleCancel(selected, setSelected, id)}
+            filterSearch={searchTerm =>
+              filterSearch(generatedRooms, "name", setVisible, searchTerm)
+            }
+          />
+        </SearchHeader>
       }
     >
       <ShareModal
@@ -480,14 +503,15 @@ export const NewRoomModalTest = () => {
       isOpen={true}
       fixedFullSize={true}
       header={
-        <SearchHeader
-          title="Select Friends to Invite"
-          tags={selected}
-          handleCancel={id => handleCancel(selected, setSelected, id)}
-          filterSearch={searchTerm =>
-            filterSearch(generatedUsers, "username", setVisible, searchTerm)
-          }
-        />
+        <SearchHeader title="Select Friends to Invite">
+          <TagInput
+            tags={selected}
+            handleCancel={id => handleCancel(selected, setSelected, id)}
+            filterSearch={searchTerm =>
+              filterSearch(generatedUsers, "username", setVisible, searchTerm)
+            }
+          />
+        </SearchHeader>
       }
     >
       <NewRoomModal
