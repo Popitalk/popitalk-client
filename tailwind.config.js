@@ -139,7 +139,8 @@ module.exports = {
       },
       height: {
         chatBox: "27rem",
-        chatChild: "24rem"
+        chatChild: "24rem",
+        modalFull: "50vh"
       },
       gridTemplateColumns: {
         chat: "2.5rem 1fr auto;"

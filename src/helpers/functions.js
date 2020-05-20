@@ -9,6 +9,16 @@ export function getTextClass(size) {
   });
 }
 
+export function getInputClasses(shape, error) {
+  return classnames(
+    "outline-none border-thin focus:border-highlightText disabled:cursor-not-allowed disabled:bg-disabledBackground w-full",
+    {
+      "border-primaryBorder": !error,
+      "rounded-lg": shape === "regular"
+    }
+  );
+}
+
 export function getUserInformationSchema() {
   let thirteenYearsAgo = new Date();
   thirteenYearsAgo.setFullYear(thirteenYearsAgo.getFullYear() - 13);

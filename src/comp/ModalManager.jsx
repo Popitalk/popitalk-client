@@ -8,6 +8,7 @@ Modal.setAppElement("#root");
 export default function ModalManager({
   isOpen,
   small,
+  fixedFullSize,
   handleModalClose,
   onShadeClick,
   background = "white",
@@ -21,6 +22,10 @@ export default function ModalManager({
     "w-full md:w-3/4 lg:w-1/2": !small
   });
 
+  const contentClasses = classnames("p-4 h-75vh flex flex-col items-stretch", {
+    "h-modalFull": fixedFullSize
+  });
+
   return (
     <Modal
       isOpen={isOpen}
@@ -32,7 +37,7 @@ export default function ModalManager({
       overlayClassName="ModalManager--modalOverlay"
     >
       {header ? header : <></>}
-      <div className="p-4 h-75vh flex flex-col items-stretch">
+      <div className={contentClasses}>
         <div className="px-1 pb-4 overflow-auto">{children}</div>
       </div>
     </Modal>
