@@ -7,15 +7,14 @@ import CreateNewAccountForm from "../comp/CreateNewAccountForm";
 import ModalManager from "../comp/ModalManager";
 import ContainerHeader from "../comp/ContainerHeader";
 import RoomExistsModal from "../comp/RoomExistsModal";
-import SearchHeader from "../comp/SearchHeader";
+import SearchHeader, { buildSearchInput } from "../comp/SearchHeader";
 import FollowersList from "../comp/InfoCardLists/FollowersList";
 import WatchModal from "../comp/WatchModal";
 import ShareModal from "../comp/ShareModal";
 import NewRoomModal from "../comp/NewRoomModal";
 import ProfileModal from "../comp/ProfileModal";
 import InviteForm from "../comp/InviteForm";
-import TagInput from "../comp/TagInput";
-import SearchInput from "../comp/SearchInput";
+import { buildTagInput } from "../comp/TagInput";
 
 export default {
   title: "Modals",
@@ -404,13 +403,13 @@ export const FollowersModalTest = () => {
       isOpen={true}
       small={true}
       header={
-        <SearchHeader title="Following">
-          <SearchInput
-            filterSearch={searchTerm =>
-              filterSearch(testUsers, "username", setVisible, searchTerm)
-            }
-          />
-        </SearchHeader>
+        <SearchHeader
+          title="Following"
+          filterSearch={searchTerm =>
+            filterSearch(testUsers, "username", setVisible, searchTerm)
+          }
+          buildInput={buildSearchInput}
+        />
       }
     >
       <FollowersList users={visible} handleProfile={handleProfile} />
@@ -429,13 +428,13 @@ export const WatchModalTest = () => {
     <ModalManager
       isOpen={true}
       header={
-        <SearchHeader title="Watch">
-          <SearchInput
-            filterSearch={searchTerm =>
-              filterSearch(testRooms, "name", setVisible, searchTerm)
-            }
-          />
-        </SearchHeader>
+        <SearchHeader
+          title="Watch"
+          filterSearch={searchTerm =>
+            filterSearch(testRooms, "name", setVisible, searchTerm)
+          }
+          buildInput={buildSearchInput}
+        />
       }
     >
       <WatchModal
@@ -464,15 +463,15 @@ export const ShareModalTest = () => {
       isOpen={true}
       fixedFullSize={true}
       header={
-        <SearchHeader title="Share">
-          <TagInput
-            tags={selected}
-            handleCancel={id => handleCancel(selected, setSelected, id)}
-            filterSearch={searchTerm =>
-              filterSearch(generatedRooms, "name", setVisible, searchTerm)
-            }
-          />
-        </SearchHeader>
+        <SearchHeader
+          title="Share"
+          filterSearch={searchTerm =>
+            filterSearch(generatedRooms, "name", setVisible, searchTerm)
+          }
+          buildInput={buildTagInput(selected, id =>
+            handleCancel(selected, setSelected, id)
+          )}
+        />
       }
     >
       <ShareModal
@@ -503,15 +502,15 @@ export const NewRoomModalTest = () => {
       isOpen={true}
       fixedFullSize={true}
       header={
-        <SearchHeader title="Select Friends to Invite">
-          <TagInput
-            tags={selected}
-            handleCancel={id => handleCancel(selected, setSelected, id)}
-            filterSearch={searchTerm =>
-              filterSearch(generatedUsers, "username", setVisible, searchTerm)
-            }
-          />
-        </SearchHeader>
+        <SearchHeader
+          title="Select Friends to Invite"
+          filterSearch={searchTerm =>
+            filterSearch(generatedUsers, "username", setVisible, searchTerm)
+          }
+          buildInput={buildTagInput(selected, id =>
+            handleCancel(selected, setSelected, id)
+          )}
+        />
       }
     >
       <NewRoomModal

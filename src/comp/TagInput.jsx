@@ -1,21 +1,25 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Tag from "./Tag";
 import classnames from "classnames";
 import { getInputClasses } from "../helpers/functions";
 
-export default function TagInput({ filterSearch, tags, handleCancel }) {
-  const [input, setInput] = useState("");
+export function buildTagInput(tags, handleCancel) {
+  const BuildableTagInput = (input, setInput) => {
+    return (
+      <TagInput
+        input={input}
+        setInput={setInput}
+        tags={tags}
+        handleCancel={handleCancel}
+      />
+    );
+  };
 
-  const memoizedCallback = useCallback(() => {
-    filterSearch(input);
-  }, [filterSearch, input]);
+  return BuildableTagInput;
+}
 
-  // Filter the search results when the input is updated
-  useEffect(() => {
-    memoizedCallback();
-  }, [input, memoizedCallback]);
-
+export default function TagInput({ input, setInput, tags, handleCancel }) {
   const fakeInputClasses = classnames(
     "bg-primaryBackground flex items-start overflow-y-auto h-32",
     getInputClasses("regular")
