@@ -1,7 +1,7 @@
 import React from "react";
-import FollowersList from "./InfoCardLists/FollowersList";
-import CircleCheckBox from "./CircleCheckbox";
-import Button from "./Button";
+import FollowersList from "../InfoCardLists/FollowersList";
+import CircleCheckBox from "../CircleCheckbox";
+import Button from "../Button";
 
 export default function NewRoomModal({ users, selected, onCheck, handleSend }) {
   const getControls = user => {

@@ -1,7 +1,7 @@
 import React from "react";
-import VideoCard from "./VideoCard";
-import Button from "./Button";
-import RoomsList from "./InfoCardLists/RoomsList";
+import VideoCard from "../VideoCard";
+import Button from "../Button";
+import RoomsList from "../InfoCardLists/RoomsList";
 
 export default function WatchModal({ rooms, handleWatchNow, ...rest }) {
   const getButton = room => {

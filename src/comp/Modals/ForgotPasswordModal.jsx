@@ -1,10 +1,10 @@
 import React from "react";
 import { Formik } from "formik";
 import * as Yup from "yup";
-import Input from "./Input";
-import Button from "./Button";
-import Text from "./Text";
-import ControlHeader from "./ControlHeader";
+import Input from "../Input";
+import Button from "../Button";
+import Text from "../Text";
+import ControlHeader from "../ControlHeader";
 
 export default function ForgotPasswordModal({
   loading,

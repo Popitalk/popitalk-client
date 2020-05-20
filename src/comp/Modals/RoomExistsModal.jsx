@@ -1,8 +1,8 @@
 import React from "react";
-import Text from "./Text";
-import RoomInfoCard from "./InfoCards/RoomInfoCard";
-import Button from "./Button";
-import { getTimeFromMessage } from "../comp/InfoCardLists/RoomsList";
+import Text from "../Text";
+import RoomInfoCard from "../InfoCards/RoomInfoCard";
+import Button from "../Button";
+import { getTimeFromMessage } from "../InfoCardLists/RoomsList";
 
 export default function RoomExistsModal({
   room,

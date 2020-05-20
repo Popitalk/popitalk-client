@@ -1,18 +1,18 @@
 import React, { useState } from "react";
 import { withKnobs } from "@storybook/addon-knobs";
-import EditInformationModal from "../comp/EditInformationModal";
-import ChangePasswordModal from "../comp/ChangePasswordModal";
-import ForgotPasswordModal from "../comp/ForgotPasswordModal";
+import EditInformationModal from "../comp/Modals/EditInformationModal";
+import ChangePasswordModal from "../comp/Modals/ChangePasswordModal";
+import ForgotPasswordModal from "../comp/Modals/ForgotPasswordModal";
 import CreateNewAccountForm from "../comp/CreateNewAccountForm";
-import ModalManager from "../comp/ModalManager";
+import ModalManager from "../comp/Modals/ModalManager";
 import ContainerHeader from "../comp/ContainerHeader";
-import RoomExistsModal from "../comp/RoomExistsModal";
+import RoomExistsModal from "../comp/Modals/RoomExistsModal";
 import SearchHeader, { buildSearchInput } from "../comp/SearchHeader";
 import FollowersList from "../comp/InfoCardLists/FollowersList";
-import WatchModal from "../comp/WatchModal";
-import ShareModal from "../comp/ShareModal";
-import NewRoomModal from "../comp/NewRoomModal";
-import ProfileModal from "../comp/ProfileModal";
+import WatchModal from "../comp/Modals/WatchModal";
+import ShareModal from "../comp/Modals/ShareModal";
+import NewRoomModal from "../comp/Modals/NewRoomModal";
+import ProfileModal from "../comp/Modals/ProfileModal";
 import InviteForm from "../comp/InviteForm";
 import { buildTagInput } from "../comp/TagInput";
 

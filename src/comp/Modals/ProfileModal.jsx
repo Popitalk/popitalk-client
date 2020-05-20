@@ -1,7 +1,7 @@
 import React from "react";
-import Button from "./Button";
-import QueueSection from "./QueueSection";
-import PopupMenu from "./PopupMenu";
+import Button from "../Button";
+import QueueSection from "../QueueSection";
+import PopupMenu from "../PopupMenu";
 
 export default function ProfileModal({
   user,

@@ -1,8 +1,8 @@
 import React from "react";
-import VideoCard from "./VideoCard";
-import Button from "./Button";
-import CircleCheckBox from "./CircleCheckbox";
-import RoomsList from "./InfoCardLists/RoomsList";
+import VideoCard from "../VideoCard";
+import Button from "../Button";
+import CircleCheckBox from "../CircleCheckbox";
+import RoomsList from "../InfoCardLists/RoomsList";
 
 export default function ShareModal({
   rooms,

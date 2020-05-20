@@ -1,10 +1,10 @@
 import React from "react";
 import { Formik } from "formik";
 import * as Yup from "yup";
-import Input from "./Input";
-import Button from "./Button";
-import Text from "./Text";
-import { getSetPasswordSchema } from "../helpers/functions";
+import Input from "../Input";
+import Button from "../Button";
+import Text from "../Text";
+import { getSetPasswordSchema } from "../../helpers/functions";
 
 export default function ChangePasswordModal({
   loading,
