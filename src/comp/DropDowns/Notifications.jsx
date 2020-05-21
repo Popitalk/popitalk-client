@@ -25,13 +25,17 @@ export default function Notifications({
 
   return (
     <DropDownContainer>
-      <ContainerHeader title="Notifications" />
-      <div className="flex justify-end pt-2 pr-2">
-        <Button size="sm" onClick={handleClear}>
+      <div className="relative">
+        <Button
+          size="sm"
+          onClick={handleClear}
+          className="absolute top-0 right-0 mt-1 mr-2"
+        >
           Clear
         </Button>
+        <ContainerHeader title="Notifications" />
+        <InfoCardList items={notifications} itemRenderer={itemRenderer} />
       </div>
-      <InfoCardList items={notifications} itemRenderer={itemRenderer} />
     </DropDownContainer>
   );
 }
