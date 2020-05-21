@@ -37,7 +37,7 @@ export default function ForgotPasswordModal({
         dirty
       }) => (
         <form onSubmit={handleSubmit}>
-          <div className="flex flex-col items-center w-full">
+          <div className="flex flex-col items-center w-full p-4">
             <div className="flex justify-center text-center">
               <ControlHeader
                 header="Enter your email address to search for your account"

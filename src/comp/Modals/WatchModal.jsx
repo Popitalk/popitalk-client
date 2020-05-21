@@ -2,6 +2,7 @@ import React from "react";
 import VideoCard from "../VideoCard";
 import Button from "../Button";
 import RoomsList from "../InfoCardLists/RoomsList";
+import StretchList from "../InfoCardLists/StretchList";
 
 export default function WatchModal({ rooms, handleWatchNow, ...rest }) {
   const getButton = room => {
@@ -17,11 +18,11 @@ export default function WatchModal({ rooms, handleWatchNow, ...rest }) {
   };
 
   return (
-    <>
-      <div className="pb-4 flex justify-center">
+    <div className="flex flex-col items-stretch w-full h-full">
+      <div className="py-4 flex justify-center shadow-search z-10">
         <VideoCard {...rest} />
       </div>
-      <RoomsList rooms={rooms} getControls={getButton} />
-    </>
+      <StretchList list={RoomsList} rooms={rooms} getControls={getButton} />
+    </div>
   );
 }

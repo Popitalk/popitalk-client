@@ -9,6 +9,7 @@ import ContainerHeader from "../comp/ContainerHeader";
 import RoomExistsModal from "../comp/Modals/RoomExistsModal";
 import SearchHeader, { buildSearchInput } from "../comp/SearchHeader";
 import FollowersList from "../comp/InfoCardLists/FollowersList";
+import StretchList from "../comp/InfoCardLists/StretchList";
 import WatchModal from "../comp/Modals/WatchModal";
 import ShareModal from "../comp/Modals/ShareModal";
 import NewRoomModal from "../comp/Modals/NewRoomModal";
@@ -302,7 +303,9 @@ const generateTestUsers = () => {
 export const CreateNewAccountModalTest = () => {
   return (
     <ModalManager isOpen={true}>
-      <CreateNewAccountForm />
+      <div className="p-4 overflow-auto">
+        <CreateNewAccountForm />
+      </div>
     </ModalManager>
   );
 };
@@ -391,28 +394,12 @@ export const RoomExistsModalTest = () => {
   );
 };
 
-export const FollowersModalTest = () => {
-  const handleProfile = id => {
-    console.log(`Profile ${id}`);
-  };
-
-  const [visible, setVisible] = useState(testUsers);
-
+export const InviteModalTest = () => {
   return (
-    <ModalManager
-      isOpen={true}
-      small={true}
-      header={
-        <SearchHeader
-          title="Following"
-          filterSearch={searchTerm =>
-            filterSearch(testUsers, "username", setVisible, searchTerm)
-          }
-          buildInput={buildSearchInput}
-        />
-      }
-    >
-      <FollowersList users={visible} handleProfile={handleProfile} />
+    <ModalManager isOpen={true} small={true}>
+      <div className="p-4">
+        <InviteForm link="https://popitalk.com" />
+      </div>
     </ModalManager>
   );
 };
@@ -422,16 +409,19 @@ export const WatchModalTest = () => {
     console.log(`Open Room ${id} and watch`);
   };
 
-  const [visible, setVisible] = useState(testRooms);
+  const generatedRooms = generateTestRooms();
+
+  const [visible, setVisible] = useState(generatedRooms);
 
   return (
     <ModalManager
       isOpen={true}
+      fixedFullSize={true}
       header={
         <SearchHeader
           title="Watch"
           filterSearch={searchTerm =>
-            filterSearch(testRooms, "name", setVisible, searchTerm)
+            filterSearch(generatedRooms, "name", setVisible, searchTerm)
           }
           buildInput={buildSearchInput}
         />
@@ -500,6 +490,7 @@ export const NewRoomModalTest = () => {
   return (
     <ModalManager
       isOpen={true}
+      small={true}
       fixedFullSize={true}
       header={
         <SearchHeader
@@ -518,6 +509,39 @@ export const NewRoomModalTest = () => {
         selected={selected}
         onCheck={(id, name) => onCheck(selected, setSelected, id, name)}
         handleSend={() => handleSend(selected, "friends")}
+      />
+    </ModalManager>
+  );
+};
+
+export const FollowersModalTest = () => {
+  const handleProfile = id => {
+    console.log(`Profile ${id}`);
+  };
+
+  const generatedUsers = generateTestUsers();
+
+  const [visible, setVisible] = useState(generatedUsers);
+
+  return (
+    <ModalManager
+      isOpen={true}
+      small={true}
+      fixedFullSize={true}
+      header={
+        <SearchHeader
+          title="Following"
+          filterSearch={searchTerm =>
+            filterSearch(generatedUsers, "username", setVisible, searchTerm)
+          }
+          buildInput={buildSearchInput}
+        />
+      }
+    >
+      <StretchList
+        list={FollowersList}
+        users={visible}
+        handleProfile={handleProfile}
       />
     </ModalManager>
   );
@@ -575,14 +599,6 @@ export const MyProfileModalTest = () => {
         unfriendHandler={unfriendHandler}
         blockHandler={blockHandler}
       />
-    </ModalManager>
-  );
-};
-
-export const InviteModalTest = () => {
-  return (
-    <ModalManager isOpen={true} small={true}>
-      <InviteForm link="https://popitalk.com" />
     </ModalManager>
   );
 };

@@ -3,6 +3,7 @@ import VideoCard from "../VideoCard";
 import Button from "../Button";
 import CircleCheckBox from "../CircleCheckbox";
 import RoomsList from "../InfoCardLists/RoomsList";
+import StretchList from "../InfoCardLists/StretchList";
 
 export default function ShareModal({
   rooms,
@@ -11,13 +12,6 @@ export default function ShareModal({
   handleSend,
   ...rest
 }) {
-  const [height, setHeight] = useState(0);
-  const ref = useRef();
-
-  useEffect(() => {
-    setHeight(ref.current.clientHeight);
-  }, []);
-
   const getCheckbox = room => {
     return (
       <div className="ml-auto">
@@ -30,18 +24,17 @@ export default function ShareModal({
   };
 
   return (
-    <>
-      <div className="flex flex-col items-stretch w-full h-full pt-4 relative space-y-1">
-        <div className="pb-4 flex justify-center shadow-search">
-          <VideoCard {...rest} />
-        </div>
-        <div ref={ref} className="flex flex-grow">
-          <RoomsList rooms={rooms} getControls={getCheckbox} height={height} />
-        </div>
-        <div className="absolute bottom-0 inset-x-0 pb-4 flex justify-center">
-          <Button onClick={() => handleSend(selected)}>Send</Button>
-        </div>
+    <div className="flex flex-col items-stretch w-full h-full pt-4 relative">
+      <div className="pb-4 flex justify-center shadow-search z-10">
+        <VideoCard {...rest} />
       </div>
-    </>
+      <StretchList list={RoomsList} rooms={rooms} getControls={getCheckbox} />
+      <Button
+        onClick={() => handleSend(selected)}
+        className="absolute bottom-0 self-center mb-4"
+      >
+        Send
+      </Button>
+    </div>
   );
 }

@@ -22,9 +22,14 @@ export default function ModalManager({
     "w-full md:w-3/4 lg:w-1/2": !small
   });
 
-  const contentClasses = classnames("h-75vh flex flex-col items-stretch", {
-    "h-modalFull": fixedFullSize
-  });
+  const contentClasses = classnames(
+    "h-75vh flex flex-col items-stretch overflow-hidden",
+    {
+      "h-modalFull": fixedFullSize,
+      "rounded-xl": !header,
+      "rounded-b-xl": header
+    }
+  );
 
   return (
     <Modal
@@ -37,9 +42,7 @@ export default function ModalManager({
       overlayClassName="ModalManager--modalOverlay"
     >
       {header ? header : <></>}
-      <div className={contentClasses}>
-        <div className="w-full h-full overflow-auto rounded-xl">{children}</div>
-      </div>
+      <div className={contentClasses}>{children}</div>
     </Modal>
   );
 }

@@ -2,6 +2,7 @@ import React from "react";
 import FollowersList from "../InfoCardLists/FollowersList";
 import CircleCheckBox from "../CircleCheckbox";
 import Button from "../Button";
+import StretchList from "../InfoCardLists/StretchList";
 
 export default function NewRoomModal({ users, selected, onCheck, handleSend }) {
   const getControls = user => {
@@ -16,11 +17,18 @@ export default function NewRoomModal({ users, selected, onCheck, handleSend }) {
   };
 
   return (
-    <>
-      <FollowersList users={users} getControls={getControls} />
-      <div className="flex justify-center pt-2">
-        <Button onClick={() => handleSend(selected)}>Send</Button>
-      </div>
-    </>
+    <div className="flex flex-col items-stretch w-full h-full relative">
+      <StretchList
+        list={FollowersList}
+        users={users}
+        getControls={getControls}
+      />
+      <Button
+        onClick={() => handleSend(selected)}
+        className="absolute bottom-0 self-center mb-4"
+      >
+        Send
+      </Button>
+    </div>
   );
 }

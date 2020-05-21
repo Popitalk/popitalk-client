@@ -44,7 +44,7 @@ export default function ChangePasswordModal({
         isValid,
         dirty
       }) => (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className="p-4">
           <Input
             header="Old Password"
             name="oldPassword"
