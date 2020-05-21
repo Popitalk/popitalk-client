@@ -139,6 +139,17 @@ const onCheck = (selected, setSelected, id, name) => {
   }
 };
 
+const handleEnter = (selected, setSelected, visible, nameField) => {
+  setSelected([
+    ...selected,
+    ...visible
+      .filter(v => !selected.find(s => s.id === v.id))
+      .map(i => {
+        return { id: i.id, name: i[nameField] };
+      })
+  ]);
+};
+
 const handleCancel = (selected, setSelected, id) => {
   setSelected(selected.filter(i => i.id !== id));
 };
@@ -193,7 +204,6 @@ const generateTestRooms = () => {
   const numRooms = 100;
   let testRooms = [];
 
-  const self = Math.round(Math.random() * numRooms);
   const watching = Math.round(Math.random() * numRooms);
 
   for (let i = 0; i < numRooms; i++) {
@@ -243,6 +253,9 @@ const generateTestUsers = () => {
 
   return testUsers;
 };
+
+const generatedRooms = generateTestRooms();
+const generatedUsers = generateTestUsers();
 
 export const CreateNewAccountModalTest = () => {
   return (
@@ -353,8 +366,6 @@ export const WatchModalTest = () => {
     console.log(`Open Room ${id} and watch`);
   };
 
-  const generatedRooms = generateTestRooms();
-
   const [visible, setVisible] = useState(generatedRooms);
 
   return (
@@ -387,10 +398,10 @@ export const WatchModalTest = () => {
 };
 
 export const ShareModalTest = () => {
-  const generatedRooms = generateTestRooms();
-
   const [selected, setSelected] = useState([]);
   const [visible, setVisible] = useState(generatedRooms);
+
+  const nameField = "name";
 
   return (
     <ModalManager
@@ -400,11 +411,14 @@ export const ShareModalTest = () => {
         <SearchHeader
           title="Share"
           filterSearch={searchTerm =>
-            filterSearch(generatedRooms, "name", setVisible, searchTerm)
+            filterSearch(generatedRooms, nameField, setVisible, searchTerm)
           }
           buildInput={buildTagInput(selected, id =>
             handleCancel(selected, setSelected, id)
           )}
+          handleEnter={() =>
+            handleEnter(selected, setSelected, visible, nameField)
+          }
         />
       }
     >
@@ -426,10 +440,10 @@ export const ShareModalTest = () => {
 };
 
 export const NewRoomModalTest = () => {
-  const generatedUsers = generateTestUsers();
-
   const [selected, setSelected] = useState([]);
   const [visible, setVisible] = useState(generatedUsers);
+
+  const nameField = "username";
 
   return (
     <ModalManager
@@ -440,11 +454,14 @@ export const NewRoomModalTest = () => {
         <SearchHeader
           title="Select Friends to Invite"
           filterSearch={searchTerm =>
-            filterSearch(generatedUsers, "username", setVisible, searchTerm)
+            filterSearch(generatedUsers, nameField, setVisible, searchTerm)
           }
           buildInput={buildTagInput(selected, id =>
             handleCancel(selected, setSelected, id)
           )}
+          handleEnter={() =>
+            handleEnter(selected, setSelected, visible, nameField)
+          }
         />
       }
     >
@@ -462,8 +479,6 @@ export const FollowersModalTest = () => {
   const handleProfile = id => {
     console.log(`Profile ${id}`);
   };
-
-  const generatedUsers = generateTestUsers();
 
   const [visible, setVisible] = useState(generatedUsers);
 

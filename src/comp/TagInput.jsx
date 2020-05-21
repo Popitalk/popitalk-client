@@ -5,25 +5,40 @@ import classnames from "classnames";
 import { getInputClasses } from "../helpers/functions";
 
 export function buildTagInput(tags, handleCancel) {
-  const BuildableTagInput = (input, setInput) => {
+  const WrappedTagInput = (input, setInput, handleEnter) => {
     return (
       <TagInput
         input={input}
         setInput={setInput}
         tags={tags}
         handleCancel={handleCancel}
+        handleEnter={handleEnter}
       />
     );
   };
 
-  return BuildableTagInput;
+  return WrappedTagInput;
 }
 
-export default function TagInput({ input, setInput, tags, handleCancel }) {
+export default function TagInput({
+  input,
+  setInput,
+  tags,
+  handleCancel,
+  handleEnter
+}) {
   const fakeInputClasses = classnames(
     "bg-primaryBackground flex items-start overflow-y-auto max-h-32",
     getInputClasses("regular")
   );
+
+  const detectKeyPress = e => {
+    if (e.keyCode === 13) {
+      handleEnter();
+    } else if (e.keyCode === 8 && input.length === 0 && tags.length > 0) {
+      handleCancel(tags[tags.length - 1].id);
+    }
+  };
 
   return (
     <div className={fakeInputClasses}>
@@ -39,6 +54,7 @@ export default function TagInput({ input, setInput, tags, handleCancel }) {
         <input
           value={input}
           onChange={e => setInput(e.target.value)}
+          onKeyDown={detectKeyPress}
           className="flex flex-grow outline-none border-none py-2 px-4 text-base"
         />
       </div>

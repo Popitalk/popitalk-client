@@ -39,25 +39,15 @@ export default function Input({
   variant = "primary",
   shape = "regular",
   header,
-  type,
-  name,
   value = "",
-  placeholder,
-  onChange,
-  onKeyDown,
-  onBlur,
-  disabled,
-  readOnly,
-  required,
-  autoFocus,
-  spellCheck = false,
   maxLength = 200,
   error,
   size = "md",
   videoSource,
   interiorButton,
   forwardedRef,
-  className
+  className,
+  ...rest
 }) {
   const El = variant === "textarea" ? "textarea" : "input";
   const textClasses = getTextClass(size);
@@ -105,21 +95,11 @@ export default function Input({
           <FontAwesomeIcon icon="search" className={iconClasses} />
         )}
         <El
-          type={type}
-          name={name}
           value={value}
-          placeholder={placeholder}
-          onChange={onChange}
-          onKeyDown={onKeyDown}
-          onBlur={onBlur}
-          disabled={disabled}
-          readOnly={readOnly}
-          autoFocus={autoFocus}
-          spellCheck={spellCheck}
-          required={required}
           maxLength={maxLength}
           className={inputClasses}
           ref={forwardedRef}
+          {...rest}
         />
         {interiorButton && (
           <div className="absolute right-0 mr-4">{interiorButton}</div>
