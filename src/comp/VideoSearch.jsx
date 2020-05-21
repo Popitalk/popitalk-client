@@ -1,43 +1,21 @@
 import React, { useState } from "react";
-import Button from "./Button";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import "./VideoStatus.css";
-import RoomIcon from "./RoomIcon";
-import AvatarIcon from "./InfoCards/AvatarIcon";
-import ChannelComment from "./ChannelComment";
-import NewChannelComment from "./NewChannelComment";
-import classnames from "classnames";
-import ToggleIcon from "./ToggleIcon";
-import YoutubeLogo from "../assets/youtube-logo.png";
 import sources from "./videoSourceImages";
 import Input from "./Input";
 
-export default function VideoSearch({
-  id,
-  name,
-  avatar,
-  timeFromPost,
-  text,
-  comments,
-  liked
-}) {
-  const [showNewComment, setShowNewComment] = useState(false);
-  const [showComments, setShowComments] = useState(false);
+export default function VideoSearch({ className }) {
+  const [source, setSource] = useState("Youtube");
+  const [value, setValue] = useState("");
 
-  const handleComment = () => {
-    setShowNewComment(!showNewComment);
-  };
-  console.log("sources", sources);
   return (
     <div className="bg-secondaryBackground p-2">
-      <div>
-        {/* <input type="text" placeholder="Search for a video to watch next" className="w-full rounded-lg"/>
-        <input type="submit"></input> */}
+      <div className={className ? className : "pb-2"}>
         <Input
           variant="video"
           size="lg"
           placeholder="Search for a video to watch next"
-          videoSource="Youtube"
+          value={value}
+          onChange={e => setValue(e.target.value)}
+          videoSource={source}
         />
       </div>
       <div className="flex">
@@ -45,7 +23,12 @@ export default function VideoSearch({
           return (
             <button
               key={idx}
-              className="flex justify-center align-middle mx-1 bg-primaryBackground h-10 w-10 rounded-full"
+              className={`flex justify-center mx-1 ${
+                source === img.source
+                  ? "bg-quaternaryBackground"
+                  : "bg-primaryBackground"
+              } h-10 w-10 rounded-full`}
+              onClick={() => setSource(img.source)}
             >
               <img src={img.icon} alt={img.source} className="h-6 w-6" />
             </button>
@@ -54,11 +37,4 @@ export default function VideoSearch({
       </div>
     </div>
   );
-  //   <textarea
-  //   type="text"
-  //   placeholder="Post something..."
-  //   className="rounded-lg pl-3 p-2 w-full shadow"
-  //   rows={1}
-  //   onChange={handleChange}
-  // />
 }

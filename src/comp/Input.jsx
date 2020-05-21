@@ -71,7 +71,7 @@ export default function Input({
       "border-errorText": error,
       "rounded-lg": shape === "regular",
       "rounded-pill px-3": shape === "pill",
-      "pl-12 pr-12 rounded-pill": variant === "video",
+      "pl-12 pr-12 rounded-lg": variant === "video",
       "pl-3 pr-12 bg-secondaryBackground": variant === "user",
       "pr-20": variant === "counter" || variant === "textarea",
       "resize-none overflow-hidden h-32 pt-1": variant === "textarea",
