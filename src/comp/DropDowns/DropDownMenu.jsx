@@ -1,7 +1,7 @@
 import React from "react";
 import DropDownContainer from "./DropDownContainer";
-import ContainerHeader from "./ContainerHeader";
-import ButtonsList from "./ButtonsList";
+import ContainerHeader from "../ContainerHeader";
+import ButtonsList from "../ButtonsList";
 
 export default function DropDownMenu({ title, handleBack, buttons }) {
   return (

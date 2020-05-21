@@ -1,124 +1,34 @@
 import React, { useState } from "react";
 import { withKnobs } from "@storybook/addon-knobs";
-import EditInformationModal from "../comp/EditInformationModal";
-import ChangePasswordModal from "../comp/ChangePasswordModal";
-import ForgotPasswordModal from "../comp/ForgotPasswordModal";
+import EditInformationModal from "../comp/Modals/EditInformationModal";
+import ChangePasswordModal from "../comp/Modals/ChangePasswordModal";
+import ForgotPasswordModal from "../comp/Modals/ForgotPasswordModal";
 import CreateNewAccountForm from "../comp/CreateNewAccountForm";
-import ModalManager from "../comp/ModalManager";
+import ModalManager from "../comp/Modals/ModalManager";
 import ContainerHeader from "../comp/ContainerHeader";
-import RoomExistsModal from "../comp/RoomExistsModal";
-import SearchHeader from "../comp/SearchHeader";
+import RoomExistsModal from "../comp/Modals/RoomExistsModal";
+import SearchHeader, { buildSearchInput } from "../comp/SearchHeader";
 import FollowersList from "../comp/InfoCardLists/FollowersList";
-import WatchModal from "../comp/WatchModal";
-import ShareModal from "../comp/ShareModal";
-import NewRoomModal from "../comp/NewRoomModal";
-import ProfileModal from "../comp/ProfileModal";
+import StretchList from "../comp/InfoCardLists/StretchList";
+import WatchModal from "../comp/Modals/WatchModal";
+import ShareModal from "../comp/Modals/ShareModal";
+import NewRoomModal from "../comp/Modals/NewRoomModal";
+import ProfileModal from "../comp/Modals/ProfileModal";
 import InviteForm from "../comp/InviteForm";
+import { buildTagInput } from "../comp/TagInput";
 
 export default {
   title: "Modals",
   decorators: [withKnobs]
 };
-
-const handleBack = () => {
-  console.log("RETURN");
-};
-
-const filterSearch = (list, field, setVisible, searchTerm) => {
-  const filteredItems = list.filter(i =>
-    i[field].toLowerCase().includes(searchTerm.toLowerCase())
-  );
-
-  setVisible(filteredItems);
-};
-
-const onCheck = (selected, setSelected, id, name) => {
-  const index = selected.findIndex(i => i.id === id);
-  if (index >= 0) {
-    setSelected(selected.filter(i => i.id !== id));
-  } else {
-    setSelected([...selected, { id: id, name: name }]);
-  }
-};
-
-const handleCancel = (selected, setSelected, id) => {
-  setSelected(selected.filter(i => i.id !== id));
-};
-
-const handleSend = (selected, items) => {
-  if (selected.length > 0) {
-    console.log(selected);
-  } else {
-    console.log(`You haven't selected any ${items}!`);
-  }
-};
-
-const friendHandler = id => {
-  console.log(`Friended ${id}`);
-};
-
-const unfriendHandler = id => {
-  console.log(`Unfriended ${id}`);
-};
-
-const blockHandler = id => {
-  console.log(`Blocked ${id}`);
-};
-
-const testRooms = [
-  {
-    id: 1,
-    name: "Andrew",
-    self: true,
-    online: false,
-    watching: false,
-    notifications: null,
-    message: null,
-    images: ["https://source.unsplash.com/128x128/?1,cat"],
-    messageSent: "1m"
-  },
-  {
-    id: 2,
-    name: "Alex",
-    self: false,
-    online: false,
-    watching: false,
-    notifications: 23,
-    message: null,
-    images: ["https://source.unsplash.com/128x128/?2,cat"],
-    messageSent: "2m"
-  },
-  {
-    id: 3,
-    name: "John, Paul, Andrew, Jer...",
-    self: false,
-    online: false,
-    watching: false,
-    notifications: null,
-    message: "You: ABCD",
-    images: [
-      "https://source.unsplash.com/128x128/?1,cat",
-      "https://source.unsplash.com/128x128/?2,cat",
-      "https://source.unsplash.com/128x128/?3,cat",
-      "https://source.unsplash.com/128x128/?4,cat"
-    ],
-    messageSent: "Today"
-  },
-  {
-    id: 4,
-    name: "Rick, Tom, Stewart",
-    self: false,
-    online: false,
-    watching: true,
-    notifications: 2,
-    message: "Tom: xyzxyz",
-    images: [
-      "https://source.unsplash.com/128x128/?6,cat",
-      "https://source.unsplash.com/128x128/?7,cat",
-      "https://source.unsplash.com/128x128/?8,cat"
-    ],
-    messageSent: "1/5/2019"
-  }
+const testImages = [
+  "https://source.unsplash.com/128x128/?1,cat",
+  "https://source.unsplash.com/128x128/?2,cat",
+  "https://source.unsplash.com/128x128/?3,cat",
+  "https://source.unsplash.com/128x128/?4,cat",
+  "https://source.unsplash.com/128x128/?6,cat",
+  "https://source.unsplash.com/128x128/?7,cat",
+  "https://source.unsplash.com/128x128/?8,cat"
 ];
 
 const testUsers = [
@@ -208,10 +118,138 @@ const testQueue = [
   }
 ];
 
+const handleBack = () => {
+  console.log("RETURN");
+};
+
+const filterSearch = (list, field, setVisible, searchTerm) => {
+  const filteredItems = list.filter(i =>
+    i[field].toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
+  setVisible(filteredItems);
+};
+
+const onCheck = (selected, setSelected, id, name) => {
+  const index = selected.findIndex(i => i.id === id);
+  if (index >= 0) {
+    setSelected(selected.filter(i => i.id !== id));
+  } else {
+    setSelected([...selected, { id: id, name: name }]);
+  }
+};
+
+const handleCancel = (selected, setSelected, id) => {
+  setSelected(selected.filter(i => i.id !== id));
+};
+
+const handleSend = (selected, items) => {
+  if (selected.length > 0) {
+    console.log(selected);
+  } else {
+    console.log(`You haven't selected any ${items}!`);
+  }
+};
+
+const friendHandler = id => {
+  console.log(`Friended ${id}`);
+};
+
+const unfriendHandler = id => {
+  console.log(`Unfriended ${id}`);
+};
+
+const blockHandler = id => {
+  console.log(`Blocked ${id}`);
+};
+
+let generateName = () => {
+  const consonants = "bcdfghjklmnprstvwxz";
+  const vowels = "aeiouy";
+
+  let nameLength = Math.round(Math.random() * 5) + 5;
+  let name = "";
+
+  for (let i = 0; i < nameLength; i++) {
+    const sampleCons = i % 2 === 0;
+    const sampleLength = sampleCons ? consonants.length : vowels.length;
+    const sample = Math.floor(Math.random() * sampleLength);
+
+    name += sampleCons ? consonants[sample] : vowels[sample];
+
+    if (i === 0) {
+      name = name.toUpperCase();
+    }
+  }
+
+  return name;
+};
+
+let generateImage = () => {
+  return testImages[Math.floor(Math.random() * testImages.length)];
+};
+
+const generateTestRooms = () => {
+  const numRooms = 100;
+  let testRooms = [];
+
+  const self = Math.round(Math.random() * numRooms);
+  const watching = Math.round(Math.random() * numRooms);
+
+  for (let i = 0; i < numRooms; i++) {
+    const numImages = Math.round(Math.random() * 3) + 1;
+
+    let names = "";
+    let images = [];
+    for (let j = 0; j < numImages; j++) {
+      images.push(generateImage());
+
+      names += generateName();
+      if (j !== numImages - 1) {
+        names += ",";
+      }
+    }
+
+    testRooms.push({
+      id: i + 1,
+      name: names,
+      self: Math.round(Math.random()) === 1,
+      online: Math.round(Math.random()) === 1,
+      watching: watching === i,
+      notifications:
+        Math.round(Math.random()) === 0 ? null : Math.round(Math.random() * 50),
+      message: `This is message ${i + 1}`,
+      images: images,
+      messageSent: `${Math.round(Math.random() * 58) + 1}m`
+    });
+  }
+
+  return testRooms;
+};
+
+const generateTestUsers = () => {
+  const numUsers = 100;
+  let testUsers = [];
+
+  for (let i = 0; i < numUsers; i++) {
+    testUsers.push({
+      id: i + 1,
+      username: generateName(),
+      firstName: generateName(),
+      lastName: generateName(),
+      avatar: generateImage()
+    });
+  }
+
+  return testUsers;
+};
+
 export const CreateNewAccountModalTest = () => {
   return (
     <ModalManager isOpen={true}>
-      <CreateNewAccountForm />
+      <div className="p-4 overflow-auto">
+        <CreateNewAccountForm />
+      </div>
     </ModalManager>
   );
 };
@@ -300,18 +338,12 @@ export const RoomExistsModalTest = () => {
   );
 };
 
-export const FollowersModalTest = () => {
-  const handleProfile = id => {
-    console.log(`Profile ${id}`);
-  };
-
+export const InviteModalTest = () => {
   return (
-    <ModalManager
-      isOpen={true}
-      small={true}
-      header={<SearchHeader title="Following" filterSearch={filterSearch} />}
-    >
-      <FollowersList users={testUsers} handleProfile={handleProfile} />
+    <ModalManager isOpen={true} small={true}>
+      <div className="p-4">
+        <InviteForm link="https://popitalk.com" />
+      </div>
     </ModalManager>
   );
 };
@@ -321,13 +353,26 @@ export const WatchModalTest = () => {
     console.log(`Open Room ${id} and watch`);
   };
 
+  const generatedRooms = generateTestRooms();
+
+  const [visible, setVisible] = useState(generatedRooms);
+
   return (
     <ModalManager
       isOpen={true}
-      header={<SearchHeader title="Watch" filterSearch={filterSearch} />}
+      fixedFullSize={true}
+      header={
+        <SearchHeader
+          title="Watch"
+          filterSearch={searchTerm =>
+            filterSearch(generatedRooms, "name", setVisible, searchTerm)
+          }
+          buildInput={buildSearchInput}
+        />
+      }
     >
       <WatchModal
-        rooms={testRooms}
+        rooms={visible}
         handleWatchNow={handleWatchNow}
         id={123}
         title="Video Title"
@@ -342,20 +387,24 @@ export const WatchModalTest = () => {
 };
 
 export const ShareModalTest = () => {
+  const generatedRooms = generateTestRooms();
+
   const [selected, setSelected] = useState([]);
-  const [visible, setVisible] = useState(testRooms);
+  const [visible, setVisible] = useState(generatedRooms);
 
   return (
     <ModalManager
       isOpen={true}
+      fixedFullSize={true}
       header={
         <SearchHeader
           title="Share"
-          tags={selected}
-          handleCancel={id => handleCancel(selected, setSelected, id)}
           filterSearch={searchTerm =>
-            filterSearch(testRooms, "name", setVisible, searchTerm)
+            filterSearch(generatedRooms, "name", setVisible, searchTerm)
           }
+          buildInput={buildTagInput(selected, id =>
+            handleCancel(selected, setSelected, id)
+          )}
         />
       }
     >
@@ -377,20 +426,25 @@ export const ShareModalTest = () => {
 };
 
 export const NewRoomModalTest = () => {
+  const generatedUsers = generateTestUsers();
+
   const [selected, setSelected] = useState([]);
-  const [visible, setVisible] = useState(testUsers);
+  const [visible, setVisible] = useState(generatedUsers);
 
   return (
     <ModalManager
       isOpen={true}
+      small={true}
+      fixedFullSize={true}
       header={
         <SearchHeader
           title="Select Friends to Invite"
-          tags={selected}
-          handleCancel={id => handleCancel(selected, setSelected, id)}
           filterSearch={searchTerm =>
-            filterSearch(testUsers, "username", setVisible, searchTerm)
+            filterSearch(generatedUsers, "username", setVisible, searchTerm)
           }
+          buildInput={buildTagInput(selected, id =>
+            handleCancel(selected, setSelected, id)
+          )}
         />
       }
     >
@@ -399,6 +453,39 @@ export const NewRoomModalTest = () => {
         selected={selected}
         onCheck={(id, name) => onCheck(selected, setSelected, id, name)}
         handleSend={() => handleSend(selected, "friends")}
+      />
+    </ModalManager>
+  );
+};
+
+export const FollowersModalTest = () => {
+  const handleProfile = id => {
+    console.log(`Profile ${id}`);
+  };
+
+  const generatedUsers = generateTestUsers();
+
+  const [visible, setVisible] = useState(generatedUsers);
+
+  return (
+    <ModalManager
+      isOpen={true}
+      small={true}
+      fixedFullSize={true}
+      header={
+        <SearchHeader
+          title="Following"
+          filterSearch={searchTerm =>
+            filterSearch(generatedUsers, "username", setVisible, searchTerm)
+          }
+          buildInput={buildSearchInput}
+        />
+      }
+    >
+      <StretchList
+        list={FollowersList}
+        users={visible}
+        handleProfile={handleProfile}
       />
     </ModalManager>
   );
@@ -456,14 +543,6 @@ export const MyProfileModalTest = () => {
         unfriendHandler={unfriendHandler}
         blockHandler={blockHandler}
       />
-    </ModalManager>
-  );
-};
-
-export const InviteModalTest = () => {
-  return (
-    <ModalManager isOpen={true} small={true}>
-      <InviteForm link="https://popitalk.com" />
     </ModalManager>
   );
 };

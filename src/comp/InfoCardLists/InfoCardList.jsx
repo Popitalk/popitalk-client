@@ -2,7 +2,12 @@ import React from "react";
 import { FixedSizeList } from "react-window";
 import Text from "../Text";
 
-export default function InfoCardList({ items, itemRenderer, itemSize = 64 }) {
+export default function InfoCardList({
+  items,
+  itemRenderer,
+  height = 300,
+  itemSize = 64
+}) {
   if (!items || items.length === 0) {
     return (
       <div className="h-32 w-full flex items-center justify-center">
@@ -21,18 +26,18 @@ export default function InfoCardList({ items, itemRenderer, itemSize = 64 }) {
     );
   };
 
-  let height = 300;
+  let finalHeight = height;
   const spacing = 4;
   const finalSize = itemSize + spacing;
 
   if (items.length * finalSize < height) {
-    height = items.length * finalSize;
+    finalHeight = items.length * finalSize;
   }
 
   return (
-    <div className="p-2">
+    <div className="w-full">
       <FixedSizeList
-        height={height}
+        height={finalHeight}
         width="100%"
         itemCount={items.length}
         itemSize={finalSize}

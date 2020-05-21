@@ -1,7 +1,7 @@
 import React from "react";
 import DropDownContainer from "./DropDownContainer";
-import ContainerHeader from "./ContainerHeader";
-import FriendUsersList from "./InfoCardLists/FriendUsersList";
+import ContainerHeader from "../ContainerHeader";
+import FriendUsersList from "../InfoCardLists/FriendUsersList";
 
 export default function FriendRequests({ friendRequests, ...rest }) {
   return (

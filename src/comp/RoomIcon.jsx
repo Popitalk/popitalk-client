@@ -27,7 +27,7 @@ export default function RoomIcon({
   className
 }) {
   const container1Classes = classnames({
-    "flex items-center justify-center relative rounded-full": true,
+    "flex flex-shrink-0 items-center justify-center relative rounded-full": true,
     "h-6 w-6": size === "sm",
     "h-8 w-8": size === "md",
     "h-12 w-12": size === "lg",
@@ -62,12 +62,12 @@ export default function RoomIcon({
   return (
     <div className={container1Classes}>
       <div className={container2Classes}>
-        {images.map((image, index) => (
+        {images.slice(0, 4).map((image, index) => (
           <div
             key={ids?.[index] || index}
             className={classnames(
               avatarClasses,
-              cornerRadius(index, images.length)
+              cornerRadius(index, images.length <= 4 ? images.length : 4)
             )}
           >
             <img className="img h-full" src={image} alt="dogo" />
