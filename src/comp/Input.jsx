@@ -13,7 +13,7 @@ import DailymotionLogo from "../assets/dailymotion-logo.png";
 import SpotifyLogo from "../assets/spotify-logo.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import ControlHeader from "./ControlHeader";
-import { getTextClass } from "../helpers/functions";
+import { getTextClass, getInputClasses } from "../helpers/functions";
 
 const sources = [
   { source: "Youtube", icon: YoutubeLogo },
@@ -39,37 +39,25 @@ export default function Input({
   variant = "primary",
   shape = "regular",
   header,
-  type,
-  name,
   value = "",
-  placeholder,
-  onChange,
-  onKeyDown,
-  onBlur,
-  disabled,
-  readOnly,
-  required,
-  autoFocus,
-  spellCheck = false,
   maxLength = 200,
   error,
   size = "md",
   videoSource,
   interiorButton,
   forwardedRef,
-  className
+  className,
+  ...rest
 }) {
   const El = variant === "textarea" ? "textarea" : "input";
   const textClasses = getTextClass(size);
 
   const inputClasses = classnames(
-    "py-2 px-4 outline-none border-thin focus:border-highlightText disabled:cursor-not-allowed disabled:bg-disabledBackground relative bottom-0 w-full",
+    getInputClasses(shape, error),
+    "relative bottom-0 py-2 px-4",
     textClasses,
     {
-      "py-2": size === "lg",
-      "border-primaryBorder": !error,
       "border-errorText": error,
-      "rounded-lg": shape === "regular",
       "rounded-pill px-3": shape === "pill",
       "pl-12 pr-12 rounded-lg": variant === "video",
       "pl-3 pr-12 bg-secondaryBackground": variant === "user",
@@ -107,21 +95,11 @@ export default function Input({
           <FontAwesomeIcon icon="search" className={iconClasses} />
         )}
         <El
-          type={type}
-          name={name}
           value={value}
-          placeholder={placeholder}
-          onChange={onChange}
-          onKeyDown={onKeyDown}
-          onBlur={onBlur}
-          disabled={disabled}
-          readOnly={readOnly}
-          autoFocus={autoFocus}
-          spellCheck={spellCheck}
-          required={required}
           maxLength={maxLength}
           className={inputClasses}
           ref={forwardedRef}
+          {...rest}
         />
         {interiorButton && (
           <div className="absolute right-0 mr-4">{interiorButton}</div>

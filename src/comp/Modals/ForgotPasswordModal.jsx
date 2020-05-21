@@ -1,10 +1,10 @@
 import React from "react";
 import { Formik } from "formik";
 import * as Yup from "yup";
-import Input from "./Input";
-import Button from "./Button";
-import Text from "./Text";
-import ControlHeader from "./ControlHeader";
+import Input from "../Input";
+import Button from "../Button";
+import Text from "../Text";
+import ControlHeader from "../ControlHeader";
 
 export default function ForgotPasswordModal({
   loading,
@@ -37,7 +37,7 @@ export default function ForgotPasswordModal({
         dirty
       }) => (
         <form onSubmit={handleSubmit}>
-          <div className="flex flex-col items-center w-full">
+          <div className="flex flex-col items-center w-full p-4">
             <div className="flex justify-center text-center">
               <ControlHeader
                 header="Enter your email address to search for your account"

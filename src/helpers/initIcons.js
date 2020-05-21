@@ -22,7 +22,9 @@ import {
   faUsers,
   faRedoAlt,
   faImage,
-  faHeart
+  faHeart,
+  faVolumeUp,
+  faCompress
 } from "@fortawesome/free-solid-svg-icons";
 import {
   faSmile as farSmile,
@@ -61,5 +63,7 @@ library.add(
   faRedoAlt,
   farHeart,
   farComment,
-  faHeart
+  faHeart,
+  faVolumeUp,
+  faCompress
 );

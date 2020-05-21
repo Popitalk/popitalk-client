@@ -2,7 +2,12 @@ import React from "react";
 import ImageInfoCard from "../InfoCards/ImageInfoCard";
 import InfoCardList from "./InfoCardList";
 
-export default function FollowersList({ users, getControls, handleProfile }) {
+export default function FollowersList({
+  users,
+  getControls,
+  handleProfile,
+  ...rest
+}) {
   const itemRenderer = u => {
     return (
       <ImageInfoCard
@@ -16,5 +21,5 @@ export default function FollowersList({ users, getControls, handleProfile }) {
     );
   };
 
-  return <InfoCardList items={users} itemRenderer={itemRenderer} />;
+  return <InfoCardList items={users} itemRenderer={itemRenderer} {...rest} />;
 }

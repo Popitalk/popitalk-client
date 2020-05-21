@@ -1,38 +1,63 @@
-import React, { useState, useEffect } from "react";
+import React, { Component } from "react";
 import Input from "./Input";
-import Tag from "./Tag";
 
-export default function SearchHeader({
-  title,
-  tags,
-  filterSearch,
-  handleCancel
-}) {
-  const [input, setInput] = useState("");
-
-  // Filter the search results when the input is updated
-  useEffect(() => {
-    filterSearch(input);
-  }, [input]);
-
+export function buildSearchInput(input, setInput) {
   return (
-    <div className="inset-x-0 top-0 bg-secondaryBackground rounded-t-xl flex flex-col items-center shadow-search py-2 px-4">
-      <h4 className="text-base font-bold pb-2">{title}</h4>
-      <Input
-        variant="filter"
-        size="md"
-        value={input}
-        placeholder="Search"
-        onChange={e => setInput(e.target.value)}
-        className="w-full"
-      />
-      <div className="w-full flex flex-wrap items-center content-start pt-2">
-        {tags.map(t => (
-          <div key={t.id} className="p-1">
-            <Tag handleCancel={handleCancel} {...t} />
-          </div>
-        ))}
-      </div>
-    </div>
+    <Input
+      variant="filter"
+      size="md"
+      value={input}
+      placeholder="Search"
+      onChange={e => setInput(e.target.value)}
+      className="w-full"
+    />
   );
 }
+
+class SearchHeader extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      input: ""
+    };
+
+    this.setInput = this.setInput.bind(this);
+    this.handleEnter = this.handleEnter.bind(this);
+  }
+
+  setInput(value) {
+    this.setState({
+      input: value
+    });
+  }
+
+  handleEnter() {
+    this.setState({
+      input: ""
+    });
+
+    this.props.handleEnter();
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.input !== prevState.input) {
+      this.props.filterSearch(this.state.input);
+    }
+  }
+
+  render() {
+    return (
+      <div className="inset-x-0 top-0 bg-secondaryBackground rounded-t-xl flex flex-col items-center shadow-search py-2 px-4">
+        <h4 className="text-base font-bold pb-2">{this.props.title}</h4>
+        {this.props.buildInput(
+          this.state.input,
+          this.setInput,
+          this.handleEnter
+        )}
+      </div>
+    );
+  }
+}
+
+export default SearchHeader;

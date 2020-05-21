@@ -1,8 +1,8 @@
 import React from "react";
 import DropDownContainer from "./DropDownContainer";
-import ContainerHeader from "./ContainerHeader";
-import Text from "./Text";
-import Button from "./Button";
+import ContainerHeader from "../ContainerHeader";
+import Text from "../Text";
+import Button from "../Button";
 
 export default function DeleteAccountDropDown({ handleBack, handleDelete }) {
   return (

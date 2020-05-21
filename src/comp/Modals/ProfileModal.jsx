@@ -1,7 +1,7 @@
 import React from "react";
-import Button from "./Button";
-import QueueSection from "./QueueSection";
-import PopupMenu from "./PopupMenu";
+import Button from "../Button";
+import QueueSection from "../QueueSection";
+import PopupMenu from "../PopupMenu";
 
 export default function ProfileModal({
   user,
@@ -31,7 +31,7 @@ export default function ProfileModal({
 
   //TODO: Replace QueueSection with static list of videos when component exists
   return (
-    <>
+    <div className="p-4 overflow-auto">
       {options ? (
         <div className="flex justify-end">
           <PopupMenu id={user.id} options={options} />
@@ -88,6 +88,6 @@ export default function ProfileModal({
           handlerChange={handlerChange}
         />
       </div>
-    </>
+    </div>
   );
 }

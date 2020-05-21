@@ -17,6 +17,7 @@ import CircleCheckBox from "../comp/CircleCheckbox";
 import WelcomePage from "../comp/WelcomePage";
 import AnonymousSidebar from "../comp/AnonymousSidebar";
 import Tag from "../comp/Tag";
+import VideoPlayer from "../comp/VideoPlayer";
 
 export default {
   title: "Components",
@@ -677,4 +678,8 @@ export const ChannelChatPanel = () => {
 
 export const WelcomePageShow = () => {
   return <WelcomePage />;
+};
+
+export const VideoPlayerShow = () => {
+  return <VideoPlayer />;
 };

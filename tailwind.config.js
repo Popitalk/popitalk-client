@@ -94,7 +94,8 @@ module.exports = {
       pink: "#F966F8",
       black: "#000000",
       onlineColor: "#00CD46",
-      notificationsColor: "#FF0000"
+      notificationsColor: "#FF0000",
+      playerControlsHover: "rgba(255, 255, 255, 0.4)"
     },
     gradients: {
       primary: ["#76BDFF 20.56%", "#FF66FE 51.9%", "#FFC4AB 89.93%"],
@@ -102,7 +103,12 @@ module.exports = {
       search: ["#98E4FA 0%", "#00C3FF 100%"],
       cancel: ["#FC6D5A 0%", "#FA3535 100%"],
       channelCardOverlay: ["#000 0%", "transparent 40%"],
-      upload: ["#03f5ff 0%", "#f500ff 100%"]
+      upload: ["#03f5ff 0%", "#f500ff 100%"],
+      player: [
+        "rgba(0, 0, 0, 0.8) 0%",
+        "rgba(0, 0, 0, 0.1) 34.52%",
+        "rgba(0, 0, 0, 0) 100%"
+      ]
     },
     linearGradientColors: theme => theme("gradients"),
     radialGradientColors: theme => theme("gradients"),
@@ -139,7 +145,11 @@ module.exports = {
       },
       height: {
         chatBox: "27rem",
-        chatChild: "24rem"
+        chatChild: "24rem",
+        modalFull: "70vh"
+      },
+      maxHeight: {
+        "32": "8rem"
       },
       gridTemplateColumns: {
         chat: "2.5rem 1fr auto;"
@@ -154,7 +164,8 @@ module.exports = {
     cursor: ["responsive", "hover", "disabled"],
     opacity: ["responsive", "hover", "focus", "active", "group-hover"],
     visibility: ["responsive", "group-hover"],
-    filter: ["responsive", "hover", "active", "group-hover"]
+    filter: ["responsive", "hover", "active", "group-hover"],
+    linearGradients: ["responsive", "hover", "active", "group-hover"]
   },
   plugins: [
     require("tailwindcss-gradients"),
