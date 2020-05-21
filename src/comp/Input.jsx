@@ -136,7 +136,7 @@ export default function Input({
             <Button
               icon="search"
               size="sm"
-              background="primary"
+              background="secondary"
               className="absolute right-0 mr-4"
             />
           </>

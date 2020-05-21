@@ -18,7 +18,12 @@ export default function VideoPanelCard({
     <>
       {!title && (
         <div className="flex flex-row flex-shrink-0 items-center justify-center h-48 w-full max-w-xs rounded-xl hover:shadow-xl bg-disabledBackground m-1">
-          <Button size="lg" icon="plus" className="z-30" />
+          <Button
+            size="lg"
+            icon="plus"
+            className="z-30"
+            background="secondary"
+          />
         </div>
       )}
       {title && (
