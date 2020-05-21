@@ -1,9 +1,9 @@
 import React from "react";
 import { withKnobs } from "@storybook/addon-knobs";
-import FriendRequests from "../comp/FriendRequests";
-import DropDownMenu from "../comp/DropDownMenu";
-import DeleteAccountDropDown from "../comp/DeleteAccountDropDown";
-import Notifications from "../comp/Notifications";
+import FriendRequests from "../comp/DropDowns/FriendRequests";
+import DropDownMenu from "../comp/DropDowns/DropDownMenu";
+import DeleteAccountDropDown from "../comp/DropDowns/DeleteAccountDropDown";
+import Notifications from "../comp/DropDowns/Notifications";
 
 export default {
   title: "DropDowns",
