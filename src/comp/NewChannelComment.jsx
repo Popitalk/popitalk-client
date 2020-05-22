@@ -17,7 +17,7 @@ export default function NewChannelComment({
   return (
     <form
       onSubmit={handleSubmit}
-      className="flex flex-row justify-center bg-secondaryBackground content-center"
+      className="flex flex-row justify-center bg-secondaryBackground content-center py-2"
     >
       <textarea
         type="text"
