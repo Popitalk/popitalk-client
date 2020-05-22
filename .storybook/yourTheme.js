@@ -5,7 +5,7 @@ export default create({
   base: 'light',
 
   colorPrimary: '#1DA4FE',
-  colorSecondary: '#1DA4FE',
+  colorSecondary: '#D3ECFF',
 
   // UI
   appBg: 'white',
@@ -27,8 +27,8 @@ export default create({
   barBg: '#1DA4FE',
 
   // Form colors
-  inputBg: 'transparent',
-  inputBorder: 'transparent',
+  inputBg: 'black',
+  inputBorder: 'black',
   inputTextColor: 'black',
   inputBorderRadius: 4,
 
