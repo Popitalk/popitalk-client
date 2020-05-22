@@ -17,6 +17,7 @@ import arrayMove from "array-move";
 import NewChannelComment from "../comp/NewChannelComment";
 import ChannelChat from "../comp/ChannelChat";
 import ChannelVideo from "../comp/ChannelVideo";
+import VideoSearch from "../comp/VideoSearch";
 
 export default {
   title: "Cards",
@@ -622,5 +623,13 @@ export const ChannelVideoShow = () => {
       comments={comments}
       posts={posts}
     />
+  );
+};
+
+export const VideoSearchShow = () => {
+  return (
+    <div>
+      <VideoSearch />
+    </div>
   );
 };
