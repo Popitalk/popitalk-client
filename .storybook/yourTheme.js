@@ -5,17 +5,17 @@ export default create({
   base: 'light',
 
   colorPrimary: '#1DA4FE',
-  colorSecondary: '#D3ECFF',
+  colorSecondary: '#1DA4FE',
 
   // UI
   appBg: 'white',
   appContentBg: '#F5F5F5',
-  appBorderColor: 'transparent',
+  appBorderColor: '#e2e2e2',
   appBorderRadius: 10,
 
   // Typography
-  fontBase: '"Noto Sans"',
-  fontCode: 'monospace',
+  fontBase: '"Noto Sans", Noto Sans',
+  fontCode: 'Courier, monospace',
 
   // Text colors
   textColor: 'black',
