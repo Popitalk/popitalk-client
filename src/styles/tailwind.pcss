@@ -50,7 +50,12 @@ a {
       filter: active;
     }
   }
-
+  &.btn-sqr {
+    @apply py-1 px-2;
+    & > svg, & > i{
+      @apply w-5 h-5 mr-0;
+    }
+  }
   &.btn-sm {
     @apply py-1 px-3;
     & > span {
