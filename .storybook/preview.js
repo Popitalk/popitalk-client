@@ -5,6 +5,7 @@ import themeDecorator from "./themeDecorator";
 import routerDecorator from "./routerDecorator";
 import initIcons from "../src/helpers/initIcons";
 import "../src/styles/app.css";
+import yourTheme from './yourTheme';
 
 addDecorator(routerDecorator);
 addDecorator(themeDecorator);
@@ -12,8 +13,13 @@ addDecorator(themeDecorator);
 addParameters({
   backgrounds: [
     { name: "twitter", value: "#00aced" },
-    { name: "facebook", value: "#3b5998" }
-  ]
+    { name: "facebook", value: "#3b5998" },
+    { name: "white", value: "#ffffff" },
+    { name: "dark", value: "#a1a1a1"}
+  ],
+  options: {
+    theme: yourTheme,
+  },
 });
 
 // addParameters({

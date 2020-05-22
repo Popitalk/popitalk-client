@@ -32,11 +32,12 @@ class StretchList extends Component {
   }
 
   render() {
-    const List = this.props.list;
+    const { list, ...rest } = this.props;
+    const List = list;
 
     return (
       <div ref={this.ref} className="flex flex-grow">
-        <List height={this.state.height} {...this.props} />
+        <List height={this.state.height} {...rest} />
       </div>
     );
   }

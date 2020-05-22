@@ -14,6 +14,10 @@ const handleProfile = id => {
   console.log(`PROFILE ${id}`);
 };
 
+const handleSubmit = data => {
+  console.log(data);
+};
+
 export const ChannelSettingsPanelTest = () => {
   const users = [
     {
@@ -86,7 +90,8 @@ export const ChannelSettingsPanelTest = () => {
         name: "",
         description: "",
         private: false,
-        icon: null
+        icon: null,
+        category: ""
       }}
       handleProfile={handleProfile}
       handleDeleteChannel={deleteChannel}
@@ -95,6 +100,7 @@ export const ChannelSettingsPanelTest = () => {
       kickUserHandler={kickUser}
       addBanHandler={addBan}
       removeBanHandler={removeBan}
+      handleChannelFormSubmit={handleSubmit}
     />
   );
 };
@@ -136,9 +142,7 @@ export const ChannelSettingsSidebar123 = () => {
   );
 };
 
-export const ChannelForm123 = () => {
-  const [selectedRoom, setSelectedRoom] = useState(null);
-
+export const ChannelFormTest = () => {
   return (
     <div className="flex justify-center p-5 bg-secondaryBackground ">
       <ChannelForm
@@ -146,8 +150,10 @@ export const ChannelForm123 = () => {
           name: "",
           description: "",
           private: false,
-          icon: null
+          icon: null,
+          category: ""
         }}
+        handleSubmit={handleSubmit}
       />
     </div>
   );

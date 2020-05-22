@@ -1,17 +1,92 @@
 import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Formik } from "formik";
+import { Formik, connect } from "formik";
 import * as Yup from "yup";
 import Input from "./Input";
 import ImageUpload from "./ImageUpload";
 import ToggleCheckbox from "./ToggleCheckbox";
 import ChannelFormSubmit from "./ChannelFormSubmit";
+import TagInput from "./TagInput";
+import ControlHeader from "./ControlHeader";
+
+const CategoryInput = connect(
+  ({ formik, loading, tags, handleCancel, handleEnter }) => {
+    return (
+      <TagInput
+        input={formik.values.tags}
+        tags={tags}
+        handleCancel={id => handleCancel(formik, id)}
+        handleEnter={() => handleEnter(formik)}
+        name="tags"
+        type="text"
+        disabled={loading}
+        onChange={formik.handleChange}
+        onBlur={formik.handleBlur}
+        value={formik.values.tags}
+        error={formik.touched.tags && formik.errors.category}
+      />
+    );
+  }
+);
+
+let tagID = 1;
+
+const categoryToTags = category => {
+  return category
+    .split(",")
+    .filter(c => c.trim().length > 0)
+    .map(n => {
+      return { id: tagID++, name: n.trim() };
+    })
+    .reduce((unique, t) => {
+      return unique.find(u => u.name === t.name) ? unique : [...unique, t];
+    }, []);
+};
+
+const tagsToCategory = tags => {
+  return tags.reduce((c, t) => {
+    return c.length > 0 ? `${c},${t.name}` : t.name;
+  }, "");
+};
 
 export default function ChannelForm({ initial, handleSubmit, loading }) {
   const [uploadedImage, setUploadedImage] = useState(undefined);
+  const [tags, setTags] = useState(categoryToTags(initial.category));
+
+  const handleEnter = formik => {
+    const newTags = categoryToTags(formik.values.tags.trim()).filter(
+      n => !tags.find(t => t.name === n.name)
+    );
+
+    if (newTags.length > 0) {
+      setTags([...tags, ...newTags]);
+
+      const tempCategory = tagsToCategory(newTags);
+      const newCategory =
+        formik.values.category.length > 0
+          ? `${formik.values.category},${tempCategory}`
+          : tempCategory;
+
+      formik.setFieldValue("category", newCategory);
+      formik.values.category = newCategory;
+    }
+
+    formik.setFieldValue("tags", "");
+    formik.values.tags = "";
+  };
+
+  const handleCancel = (formik, id) => {
+    const newTags = tags.filter(t => t.id !== id);
+    setTags(newTags);
+
+    const newCategory = tagsToCategory(newTags);
+    formik.setFieldValue("category", newCategory);
+    formik.values.category = newCategory;
+  };
+
   return (
     <Formik
-      initialValues={initial}
+      initialValues={{ ...initial, tags: "" }}
       enableReinitialize={true}
       validationSchema={Yup.object({
         name: Yup.string()
@@ -23,7 +98,8 @@ export default function ChannelForm({ initial, handleSubmit, loading }) {
           .max(150, "Description is too long.")
           .required("Description is required."),
         private: Yup.boolean().required(),
-        icon: Yup.mixed().notRequired()
+        icon: Yup.mixed().notRequired(),
+        category: Yup.string().notRequired()
       })}
       onSubmit={values => {
         handleSubmit({
@@ -31,7 +107,8 @@ export default function ChannelForm({ initial, handleSubmit, loading }) {
           name: values.name,
           description: values.description,
           public: !values.private,
-          icon: uploadedImage
+          icon: uploadedImage,
+          category: values.category
         });
       }}
     >
@@ -97,7 +174,18 @@ export default function ChannelForm({ initial, handleSubmit, loading }) {
                 maxLength={150}
                 className="mb-8"
               />
-              <div className="flex items-center">
+              <ControlHeader
+                header="Category"
+                error={touched.tags && errors.category}
+                size="md"
+              />
+              <CategoryInput
+                loading={loading}
+                tags={tags}
+                handleCancel={handleCancel}
+                handleEnter={handleEnter}
+              />
+              <div className="flex items-center mt-8">
                 <div className="mr-8">
                   <div className="flex items-center mb-1">
                     <FontAwesomeIcon
