@@ -20,6 +20,9 @@ import Tag from "../comp/Tag";
 import VideoPlayer from "../comp/VideoPlayer";
 import RecommendedChannels from "../comp/RecommendedChannels";
 import RecommendedVideos from "../comp/RecommendedVideos";
+import DefaultLayout from "../comp/DefaultLayout";
+import VideoChannelHeader from "../comp/VideoChannelHeader";
+import { testChannels, testRooms, testUsers } from "./seed-arrays";
 
 export default {
   title: "Components",
@@ -72,6 +75,32 @@ const Container = styled.div`
 //   } */
 // `;
 
+export const DefaultLayoutTest = () => {
+  const {selectedChannel, setSelectedChannel} = useState(null)
+  return (
+    <DefaultLayout>
+      <div className="flex">
+        <div className="w-3/12">
+          <ChannelsPanel
+            channels={testChannels}
+            friends={testUsers}
+            selected={selectedChannel}
+            handleSelect={id => setSelectedChannel(id)}
+          />
+        </div>
+        <div className="w-6/12">
+          <VideoChannelHeader/>
+        </div>
+        <div className="w-3/12">
+
+        </div>
+
+      </div>
+
+    </DefaultLayout>
+  );
+};
+
 export const CircleCheckBoxTest = () => {
   const [checked, setChecked] = useState(true);
 
@@ -79,7 +108,7 @@ export const CircleCheckBoxTest = () => {
     setChecked(!checked);
   };
 
-  return <CircleCheckBox checked={checked} onChange={onChange} />;
+  return <CircleCheckBox checked={checked} onChange={onChange}/>;
 };
 
 export const TagTest = () => {
@@ -87,7 +116,7 @@ export const TagTest = () => {
     console.log(`Cancel ${id}`);
   };
 
-  return <Tag id={1} name="Testing" handleCancel={handleCancel} />;
+  return <Tag id={1} name="Testing" handleCancel={handleCancel}/>;
 };
 
 export const AnonymousSidebarTest = () => {
@@ -96,7 +125,7 @@ export const AnonymousSidebarTest = () => {
   };
 
   return (
-    <AnonymousSidebar link="https://popitalk.com" handleSubmit={handleSubmit} />
+    <AnonymousSidebar link="https://popitalk.com" handleSubmit={handleSubmit}/>
   );
 };
 
@@ -115,47 +144,9 @@ export const RequestCard123 = () => {
     console.log("REJECT");
   };
 
-  const users = [
-    {
-      username: "Andrew",
-      firstName: "Andrew",
-      lastName: "Jang",
-      avatar: "https://i.imgur.com/xCGu56D.jpg",
-      variant: "stranger"
-    },
-    {
-      username: "Andrew",
-      firstName: "Andrew",
-      lastName: "Jang",
-      avatar: "https://i.imgur.com/xCGu56D.jpg",
-      variant: "sentRequest"
-    },
-    {
-      username: "Andrew",
-      firstName: "Andrew",
-      lastName: "Jang",
-      avatar: "https://i.imgur.com/xCGu56D.jpg",
-      variant: "receivedRequest"
-    },
-    {
-      username: "Andrew",
-      firstName: "Andrew",
-      lastName: "Jang",
-      avatar: "https://i.imgur.com/xCGu56D.jpg",
-      variant: "friend"
-    },
-    {
-      username: "Andrew",
-      firstName: "Andrew",
-      lastName: "Jang",
-      avatar: "https://i.imgur.com/xCGu56D.jpg",
-      variant: "self"
-    }
-  ];
-
   return (
     <>
-      {users.map((u, i) => {
+      {testUsers.map((u, i) => {
         return (
           <div key={i} className="p-2">
             <RequestCard
@@ -383,111 +374,11 @@ export const ChannelCard123 = () => {
 export const ChannelsPanel123 = () => {
   const [selectedChannel, setSelectedChannel] = useState(null);
 
-  const channels = [
-    {
-      id: 1,
-      name: "League of Legends",
-      icon: "https://source.unsplash.com/128x128/?1,dog",
-      watching: false,
-      avatars: [
-        "https://source.unsplash.com/128x128/?1,cat",
-        "https://source.unsplash.com/128x128/?2,cat",
-        "https://source.unsplash.com/128x128/?3,cat",
-        "https://source.unsplash.com/128x128/?4,cat"
-      ],
-      numOnline: 9001
-    },
-    {
-      id: 2,
-      name: "League of Legends",
-      icon: "https://source.unsplash.com/128x128/?1,dog",
-      watching: true,
-      avatars: [
-        "https://source.unsplash.com/128x128/?1,cat",
-        "https://source.unsplash.com/128x128/?2,cat",
-        "https://source.unsplash.com/128x128/?3,cat",
-        "https://source.unsplash.com/128x128/?4,cat"
-      ],
-      numOnline: 219
-    },
-    {
-      id: 3,
-      name: "League of Legends",
-      icon: "https://source.unsplash.com/128x128/?1,dog",
-      watching: true,
-      avatars: [
-        "https://source.unsplash.com/128x128/?1,cat",
-        "https://source.unsplash.com/128x128/?2,cat",
-        "https://source.unsplash.com/128x128/?3,cat",
-        "https://source.unsplash.com/128x128/?4,cat"
-      ],
-      numOnline: 0
-    }
-  ];
-  const results = [
-    {
-      id: 1,
-      username: "Andrew",
-      firstName: "Andrew",
-      lastName: "Jang",
-      avatar: "https://i.imgur.com/xCGu56D.jpg",
-      variant: "friend"
-    },
-    {
-      id: 2,
-      username: "Andrew",
-      firstName: "Andrew",
-      lastName: "Jang",
-      avatar: "https://i.imgur.com/xCGu56D.jpg",
-      variant: "friend"
-    },
-    {
-      id: 3,
-      username: "Andrew",
-      firstName: "Andrew",
-      lastName: "Jang",
-      avatar: "https://images.unsplash.com/photo-1584404268984-89c43e841646?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1408&q=80",
-      variant: "self"
-    },
-    {
-      id: 4,
-      username: "Andrew",
-      firstName: "Andrew",
-      lastName: "Jang",
-      avatar: "https://images.unsplash.com/photo-1488654715439-fbf461f0eb8d?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
-      variant: "receivedRequest"
-    },
-    {
-      id: 5,
-      username: "Andrew",
-      firstName: "Andrew",
-      lastName: "Jang",
-      avatar: "https://images.unsplash.com/photo-1495615080073-6b89c9839ce0?ixlib=rb-1.2.1&auto=format&fit=crop&w=522&q=80",
-      variant: "sentRequest"
-    },
-    // {
-    //   id: 6,
-    //   username: "Andrew",
-    //   firstName: "Andrew",
-    //   lastName: "Jang",
-    //   avatar: "https://images.unsplash.com/photo-1495615080073-6b89c9839ce0?ixlib=rb-1.2.1&auto=format&fit=crop&w=522&q=80",
-    //   variant: "sentRequest"
-    // },
-    // {
-    //   id: 7,
-    //   username: "Andrew",
-    //   firstName: "Andrew",
-    //   lastName: "Jang",
-    //   avatar: "https://images.unsplash.com/photo-1495615080073-6b89c9839ce0?ixlib=rb-1.2.1&auto=format&fit=crop&w=522&q=80",
-    //   variant: "sentRequest"
-    // }
-  ];
-
   return (
     <div className="p-5 bg-secondaryBackground">
       <ChannelsPanel
-        channels={channels}
-        friends={results}
+        channels={testChannels}
+        friends={testUsers}
         selected={selectedChannel}
         handleSelect={id => setSelectedChannel(id)}
       />
@@ -510,107 +401,15 @@ export const FriendsPanel123 = () => {
     console.log("REJECT");
   };
 
-
-  const results = [
-    {
-      id: 1,
-      username: "Andrew",
-      firstName: "Andrew",
-      lastName: "Jang",
-      avatar: "https://i.imgur.com/xCGu56D.jpg",
-      variant: "stranger"
-    },
-    {
-      id: 2,
-      username: "Andrew",
-      firstName: "Andrew",
-      lastName: "Jang",
-      avatar: "https://i.imgur.com/xCGu56D.jpg",
-      variant: "stranger"
-    },
-    {
-      id: 3,
-      username: "Andrew",
-      firstName: "Andrew",
-      lastName: "Jang",
-      avatar: "https://i.imgur.com/xCGu56D.jpg",
-      variant: "stranger"
-    }
-  ];
-
-  const channels = [
-    {
-      id: 1,
-      name: "League of Legends",
-      icon: "https://source.unsplash.com/128x128/?1,dog",
-      watching: false,
-      avatars: [
-        "https://source.unsplash.com/128x128/?1,cat",
-        "https://source.unsplash.com/128x128/?2,cat",
-        "https://source.unsplash.com/128x128/?3,cat",
-        "https://source.unsplash.com/128x128/?4,cat"
-      ]
-    },
-    {
-      id: 2,
-      name: "League of Legends",
-      icon: "https://source.unsplash.com/128x128/?1,dog",
-      watching: true,
-      avatars: [
-        "https://source.unsplash.com/128x128/?1,cat",
-        "https://source.unsplash.com/128x128/?2,cat",
-        "https://source.unsplash.com/128x128/?3,cat",
-        "https://source.unsplash.com/128x128/?4,cat"
-      ]
-    },
-    {
-      id: 3,
-      name: "League of Legends",
-      icon: "https://source.unsplash.com/128x128/?1,dog",
-      watching: true,
-      avatars: [
-        "https://source.unsplash.com/128x128/?1,cat",
-        "https://source.unsplash.com/128x128/?2,cat",
-        "https://source.unsplash.com/128x128/?3,cat",
-        "https://source.unsplash.com/128x128/?4,cat"
-      ]
-    }
-  ];
-
-  const rooms = [
-    {
-      id: 1,
-      name: "Andrew",
-      self: true,
-      online: false,
-      watching: false,
-      notifications: null,
-      message: null,
-      images: ["https://source.unsplash.com/128x128/?1,cat"],
-      messageSent: "Today"
-    },
-    {
-      id: 2,
-      name: "Alex",
-      self: false,
-      online: false,
-      watching: false,
-      notifications: 23,
-      message: null,
-      images: ["https://source.unsplash.com/128x128/?2,cat"],
-      messageSent: "2m"
-    },
-  ];
-
   return (
     <div className="p-5 bg-secondaryBackground">
 
       <FriendsPanel
-        roomsResults={rooms}
-        channels={channels}
+        roomsResults={testRooms}
+        channels={testChannels}
         selected={selectedChannel}
         handleSelect={id => setSelectedChannel(id)}
-        userSearchResults={results}
+        userSearchResults={testUsers}
         handleAccept={handleAccept}
         handleReject={handleReject}
         handleProfile={handleProfile}
@@ -671,41 +470,6 @@ export const PopupMenu123 = () => {
 export const ManageUsersTest = () => {
   const [selectedChannel, setSelectedChannel] = useState(null);
 
-  const users = [
-    {
-      id: 1,
-      username: "abc11",
-      firstName: "Sul",
-      lastName: "man",
-      avatar: "https://source.unsplash.com/128x128/?1,cat",
-      owner: false
-    },
-    {
-      id: 2,
-      username: "abc22",
-      firstName: "Sul",
-      lastName: "man",
-      avatar: "https://source.unsplash.com/128x128/?2,cat",
-      owner: false
-    },
-    {
-      id: 3,
-      username: "abc33",
-      firstName: "Sul",
-      lastName: "man",
-      avatar: "https://source.unsplash.com/128x128/?3,cat",
-      owner: true
-    },
-    {
-      id: 4,
-      username: "abc44",
-      firstName: "Sul",
-      lastName: "man",
-      avatar: "https://source.unsplash.com/128x128/?4,cat",
-      owner: false
-    }
-  ];
-
   const options = [
     { name: "Admin", handler: userId => console.log("ADMIN", userId) },
     { name: "Ban", handler: userId => console.log("BAN", userId) }
@@ -720,7 +484,7 @@ export const ManageUsersTest = () => {
       <ManageUsers
         variant="manage"
         category="Banned Members"
-        users={users}
+        users={testUsers}
         options={options}
         handleProfile={handleProfile}
       />
@@ -733,262 +497,60 @@ export const SiteHeader = () => {
     <>
       <Text variant="subtitle2">Main header</Text>
       <div className="border rounded-md">
-        <SiteHeaderMain />
+        <SiteHeaderMain/>
       </div>
       <Text className="mt-8" variant="subtitle2">
         Welcome header (not logged in)
       </Text>
       <div className="border rounded-md">
-        <SiteHeaderWelcome />
+        <SiteHeaderWelcome/>
       </div>
     </>
   );
 };
 
 export const ChannelChatPanel = () => {
-  return <ChatPanel />;
+  return <ChatPanel/>;
 };
 
 export const WelcomePageShow = () => {
-  return <WelcomePage />;
+  return <WelcomePage/>;
 };
 
 export const VideoPlayerShow = () => {
-  return <VideoPlayer />;
+  return <VideoPlayer/>;
 };
 
 const list = [
   {
     title: "Following Channels",
-    channels: [
-      {
-        id: 1,
-        name: "Thelmo Society",
-        icon: "https://i.imgur.com/xCGu56D.jpg",
-        avatars: [
-          "https://source.unsplash.com/128x128/?1,cat",
-          "https://source.unsplash.com/128x128/?2,cat",
-          "https://source.unsplash.com/128x128/?3,cat",
-          "https://source.unsplash.com/128x128/?4,cat"
-        ],
-        videoTitle: "Video Title",
-        videoSource: "youtube",
-        live: true,
-        videoThumbnail: "https://i.imgur.com/aqjzchq.jpg"
-      },
-      {
-        id: 2,
-        name: "Thelmo Society",
-        icon: "https://i.imgur.com/xCGu56D.jpg",
-        avatars: [
-          "https://source.unsplash.com/128x128/?1,cat",
-          "https://source.unsplash.com/128x128/?2,cat",
-          "https://source.unsplash.com/128x128/?3,cat",
-          "https://source.unsplash.com/128x128/?4,cat"
-        ],
-        live: true,
-        videoTitle: "Video Title",
-        videoSource: "youtube",
-        videoThumbnail: "https://i.imgur.com/aqjzchq.jpg"
-      },
-      {
-        id: 3,
-        name: "Thelmo Society",
-        icon: "https://i.imgur.com/xCGu56D.jpg",
-        avatars: [
-          "https://source.unsplash.com/128x128/?1,cat",
-          "https://source.unsplash.com/128x128/?2,cat",
-          "https://source.unsplash.com/128x128/?3,cat",
-          "https://source.unsplash.com/128x128/?4,cat"
-        ],
-        live: true,
-        videoTitle: "Video Title",
-        videoSource: "youtube",
-        videoThumbnail: "https://i.imgur.com/aqjzchq.jpg"
-      }
-    ]
+    channels: testChannels
   },
   {
     title: "Recommended Channels",
-    channels: [
-      {
-        id: 1,
-        name: "Thelmo Society",
-        icon: "https://i.imgur.com/xCGu56D.jpg",
-        avatars: [
-          "https://source.unsplash.com/128x128/?1,cat",
-          "https://source.unsplash.com/128x128/?2,cat",
-          "https://source.unsplash.com/128x128/?3,cat",
-          "https://source.unsplash.com/128x128/?4,cat"
-        ],
-        videoTitle: "Video Title",
-        videoSource: "youtube",
-        live: true,
-        videoThumbnail: "https://i.imgur.com/aqjzchq.jpg"
-      },
-      {
-        id: 2,
-        name: "Thelmo Society",
-        icon: "https://i.imgur.com/xCGu56D.jpg",
-        avatars: [
-          "https://source.unsplash.com/128x128/?1,cat",
-          "https://source.unsplash.com/128x128/?2,cat",
-          "https://source.unsplash.com/128x128/?3,cat",
-          "https://source.unsplash.com/128x128/?4,cat"
-        ],
-        live: true,
-        videoTitle: "Video Title",
-        videoSource: "youtube",
-        videoThumbnail: "https://i.imgur.com/aqjzchq.jpg"
-      },
-      {
-        id: 3,
-        name: "Thelmo Society",
-        icon: "https://i.imgur.com/xCGu56D.jpg",
-        avatars: [
-          "https://source.unsplash.com/128x128/?1,cat",
-          "https://source.unsplash.com/128x128/?2,cat",
-          "https://source.unsplash.com/128x128/?3,cat",
-          "https://source.unsplash.com/128x128/?4,cat"
-        ],
-        live: true,
-        videoTitle: "Video Title",
-        videoSource: "youtube",
-        videoThumbnail: "https://i.imgur.com/aqjzchq.jpg"
-      }
-    ]
+    channels: testChannels
   }
 ];
 
 export function RecommendedChannelsSection() {
-  return <RecommendedChannels list={list} />;
+  return <RecommendedChannels list={list}/>;
 }
 
 const videoList = [
   {
     title: "Videos friends are watching",
-    channels: [
-      {
-        id: 123,
-        title: "Video Title",
-        channelName: "Channel Name",
-        views: "20K views",
-        timeFromUpload: "2 months ago",
-        videoSource: "youtube",
-        thumbnail: "https://i.imgur.com/aqjzchq.jpg"
-      },
-      {
-        id: 2,
-        title: "Video Title",
-        channelName: "Channel Name",
-        views: "20K views",
-        timeFromUpload: "2 months ago",
-        videoSource: "youtube",
-        thumbnail: "https://i.imgur.com/aqjzchq.jpg"
-      },
-      {
-        id: 3,
-        title: "Video Title",
-        channelName: "Channel Name",
-        views: "20K views",
-        timeFromUpload: "2 months ago",
-        videoSource: "youtube",
-        thumbnail: "https://i.imgur.com/aqjzchq.jpg"
-      },
-      {
-        id: 4,
-        title: "Video Title",
-        channelName: "Channel Name",
-        views: "20K views",
-        timeFromUpload: "2 months ago",
-        videoSource: "youtube",
-        thumbnail: "https://i.imgur.com/aqjzchq.jpg"
-      }
-    ]
+    channels: testChannels
   },
   {
     title: "Recommended",
-    channels: [
-      {
-        id: 123,
-        title: "Video Title",
-        channelName: "Channel Name",
-        views: "20K views",
-        timeFromUpload: "2 months ago",
-        videoSource: "youtube",
-        thumbnail: "https://i.imgur.com/aqjzchq.jpg"
-      },
-      {
-        id: 2,
-        title: "Video Title",
-        channelName: "Channel Name",
-        views: "20K views",
-        timeFromUpload: "2 months ago",
-        videoSource: "youtube",
-        thumbnail: "https://i.imgur.com/aqjzchq.jpg"
-      },
-      {
-        id: 3,
-        title: "Video Title",
-        channelName: "Channel Name",
-        views: "20K views",
-        timeFromUpload: "2 months ago",
-        videoSource: "youtube",
-        thumbnail: "https://i.imgur.com/aqjzchq.jpg"
-      },
-      {
-        id: 4,
-        title: "Video Title",
-        channelName: "Channel Name",
-        views: "20K views",
-        timeFromUpload: "2 months ago",
-        videoSource: "youtube",
-        thumbnail: "https://i.imgur.com/aqjzchq.jpg"
-      }
-    ]
+    channels: testChannels
   },
   {
     title: "Trending right now",
-    channels: [
-      {
-        id: 123,
-        title: "Video Title",
-        channelName: "Channel Name",
-        views: "20K views",
-        timeFromUpload: "2 months ago",
-        videoSource: "youtube",
-        thumbnail: "https://i.imgur.com/aqjzchq.jpg"
-      },
-      {
-        id: 2,
-        title: "Video Title",
-        channelName: "Channel Name",
-        views: "20K views",
-        timeFromUpload: "2 months ago",
-        videoSource: "youtube",
-        thumbnail: "https://i.imgur.com/aqjzchq.jpg"
-      },
-      {
-        id: 3,
-        title: "Video Title",
-        channelName: "Channel Name",
-        views: "20K views",
-        timeFromUpload: "2 months ago",
-        videoSource: "youtube",
-        thumbnail: "https://i.imgur.com/aqjzchq.jpg"
-      },
-      {
-        id: 4,
-        title: "Video Title",
-        channelName: "Channel Name",
-        views: "20K views",
-        timeFromUpload: "2 months ago",
-        videoSource: "youtube",
-        thumbnail: "https://i.imgur.com/aqjzchq.jpg"
-      }
-    ]
+    channels: testChannels
   }
 ];
+
 export function RecommendedVideoSection() {
-  return <RecommendedVideos list={videoList} />;
+  return <RecommendedVideos list={videoList}/>;
 }

@@ -4,6 +4,7 @@ import { Switch, Route } from "react-router";
 import ChannelSettingsPanel from "../comp/ChannelSettingsPanel";
 import ChannelSettingsSidebar from "../comp/ChannelSettingsSidebar";
 import ChannelForm from "../comp/ChannelForm";
+import { testUsers } from "./seed-arrays";
 
 export default {
   title: "ChannelSettings",
@@ -19,44 +20,6 @@ const handleSubmit = data => {
 };
 
 export const ChannelSettingsPanelTest = () => {
-  const users = [
-    {
-      id: 1,
-      username: "Andrew",
-      firstName: "Andrew",
-      lastName: "Jang",
-      avatar: "https://i.imgur.com/xCGu56D.jpg"
-    },
-    {
-      id: 2,
-      username: "SilentFuzzle",
-      firstName: "Emily",
-      lastName: "Palmieri",
-      avatar: "https://i.imgur.com/xCGu56D.jpg"
-    },
-    {
-      id: 3,
-      username: "Test",
-      firstName: "Test",
-      lastName: "Test",
-      avatar: "https://i.imgur.com/xCGu56D.jpg"
-    },
-    {
-      id: 4,
-      username: "Nester",
-      firstName: "Andrew",
-      lastName: "Jang",
-      avatar: "https://i.imgur.com/xCGu56D.jpg"
-    },
-    {
-      id: 5,
-      username: "SandPills",
-      firstName: "Andrew",
-      lastName: "Jang",
-      avatar: "https://i.imgur.com/xCGu56D.jpg"
-    }
-  ];
-
   const deleteChannel = () => {
     console.log("Deleting channel");
   };
@@ -83,9 +46,9 @@ export const ChannelSettingsPanelTest = () => {
 
   return (
     <ChannelSettingsPanel
-      followers={users}
-      admins={users}
-      bannedUsers={users}
+      followers={testUsers}
+      admins={testUsers}
+      bannedUsers={testUsers}
       initialChannelForm={{
         name: "",
         description: "",

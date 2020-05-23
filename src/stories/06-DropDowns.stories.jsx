@@ -4,6 +4,7 @@ import FriendRequests from "../comp/DropDowns/FriendRequests";
 import DropDownMenu from "../comp/DropDowns/DropDownMenu";
 import DeleteAccountDropDown from "../comp/DropDowns/DeleteAccountDropDown";
 import Notifications from "../comp/DropDowns/Notifications";
+import { testUsers, testNotifications } from "./seed-arrays";
 
 export default {
   title: "DropDowns",
@@ -31,68 +32,10 @@ export const FriendRequestsFriends = () => {
     console.log(`REJECT ${id}`);
   };
 
-  const friendRequests = [
-    {
-      id: 1,
-      username: "Andrew",
-      firstName: "Andrew",
-      lastName: "Jang",
-      avatar: "https://i.imgur.com/xCGu56D.jpg",
-      variant: "receivedRequest"
-    },
-    {
-      id: 2,
-      username: "Andrew",
-      firstName: "Andrew",
-      lastName: "Jang",
-      avatar: "https://i.imgur.com/xCGu56D.jpg",
-      variant: "receivedRequest"
-    },
-    {
-      id: 3,
-      username: "Andrew",
-      firstName: "Andrew",
-      lastName: "Jang",
-      avatar: "https://i.imgur.com/xCGu56D.jpg",
-      variant: "receivedRequest"
-    },
-    {
-      id: 4,
-      username: "Andrew",
-      firstName: "Andrew",
-      lastName: "Jang",
-      avatar: "https://i.imgur.com/xCGu56D.jpg",
-      variant: "sentRequest"
-    },
-    {
-      id: 5,
-      username: "Andrew",
-      firstName: "Andrew",
-      lastName: "Jang",
-      avatar: "https://i.imgur.com/xCGu56D.jpg",
-      variant: "receivedRequest"
-    },
-    {
-      id: 6,
-      username: "Andrew",
-      firstName: "Andrew",
-      lastName: "Jang",
-      avatar: "https://i.imgur.com/xCGu56D.jpg",
-      variant: "sentRequest"
-    },
-    {
-      id: 7,
-      username: "Andrew",
-      firstName: "Andrew",
-      lastName: "Jang",
-      avatar: "https://i.imgur.com/xCGu56D.jpg",
-      variant: "receivedRequest"
-    }
-  ];
 
   return (
     <FriendRequests
-      friendRequests={friendRequests}
+      friendRequests={testUsers}
       handleProfile={handleProfile}
       handleAccept={handleAccept}
       handleReject={handleReject}
@@ -101,51 +44,13 @@ export const FriendRequestsFriends = () => {
 };
 
 export const FriendRequestsNoFriends = () => {
-  return <FriendRequests />;
+  return <FriendRequests/>;
 };
 
 export const ManyNotificationsTest = () => {
-  let notifications = [
-    {
-      id: 1,
-      username: "Andrew",
-      avatar: "https://i.imgur.com/xCGu56D.jpg",
-      message: "You and Andrew are now friends"
-    },
-    {
-      id: 2,
-      username: "Andrew",
-      avatar: "https://i.imgur.com/xCGu56D.jpg",
-      message: "Andrew followed your channel"
-    },
-    {
-      id: 3,
-      username: "Andrew",
-      avatar: "https://i.imgur.com/xCGu56D.jpg",
-      message: "Andrew posted on your channel"
-    },
-    {
-      id: 4,
-      username: "Andrew",
-      avatar: "https://i.imgur.com/xCGu56D.jpg",
-      message: "Andrew commented on your post"
-    },
-    {
-      id: 5,
-      username: "Andrew",
-      avatar: "https://i.imgur.com/xCGu56D.jpg",
-      message: "Andrew liked your post"
-    },
-    {
-      id: 6,
-      username: "Andrew",
-      avatar: "https://i.imgur.com/xCGu56D.jpg",
-      message: "Andrew liked your comment"
-    }
-  ];
 
   for (let i = 0; i < 200; i++) {
-    notifications.push({
+    testNotifications.push({
       id: i + 7,
       username: "Andrew",
       avatar: "https://i.imgur.com/xCGu56D.jpg",
@@ -155,38 +60,24 @@ export const ManyNotificationsTest = () => {
 
   return (
     <Notifications
-      notifications={notifications}
+      notifications={testNotifications}
       handleProfile={handleProfile}
     />
   );
 };
 
 export const SomeNotificationsTest = () => {
-  let notifications = [
-    {
-      id: 1,
-      username: "Andrew",
-      avatar: "https://i.imgur.com/xCGu56D.jpg",
-      message: "You and Andrew are now friends"
-    },
-    {
-      id: 2,
-      username: "Andrew",
-      avatar: "https://i.imgur.com/xCGu56D.jpg",
-      message: "Andrew followed your channel"
-    }
-  ];
 
   return (
     <Notifications
-      notifications={notifications}
+      notifications={testNotifications}
       handleProfile={handleProfile}
     />
   );
 };
 
 export const NoNotificationsTest = () => {
-  return <Notifications />;
+  return <Notifications/>;
 };
 
 export const MainSettingsDropDownTest = () => {
@@ -206,7 +97,7 @@ export const MainSettingsDropDownTest = () => {
     }
   ];
 
-  return <DropDownMenu title="Settings" buttons={buttons} />;
+  return <DropDownMenu title="Settings" buttons={buttons}/>;
 };
 
 export const AccountSettingsDropDownTest = () => {
@@ -236,5 +127,5 @@ export const AccountSettingsDropDownTest = () => {
 };
 
 export const DeleteAccountDropDownTest = () => {
-  return <DeleteAccountDropDown handleBack={backHandler} />;
+  return <DeleteAccountDropDown handleBack={backHandler}/>;
 };
