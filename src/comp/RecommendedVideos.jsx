@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import VideoCardList from "./VideoCardList.jsx";
 import Input from "./Input.jsx";
 
-function RecommendedChannels({ list }) {
+function RecommendedVideos({ list }) {
   const [search, setSearch] = React.useState("");
   return (
     <div>
@@ -29,10 +29,10 @@ function RecommendedChannels({ list }) {
   );
 }
 
-RecommendedChannels.propTypes = {
+RecommendedVideos.propTypes = {
   list: PropTypes.array
 };
-RecommendedChannels.defaultProps = {
+RecommendedVideos.defaultProps = {
   list: []
 };
-export default RecommendedChannels;
+export default RecommendedVideos;
