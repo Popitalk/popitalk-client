@@ -76,7 +76,7 @@ const Container = styled.div`
 // `;
 
 export const DefaultLayoutTest = () => {
-  const {selectedChannel, setSelectedChannel} = useState(null)
+  const { selectedChannel, setSelectedChannel } = useState(null);
   return (
     <DefaultLayout>
       <div className="flex">
@@ -89,14 +89,10 @@ export const DefaultLayoutTest = () => {
           />
         </div>
         <div className="w-6/12">
-          <VideoChannelHeader/>
+          <VideoChannelHeader />
         </div>
-        <div className="w-3/12">
-
-        </div>
-
+        <div className="w-3/12"></div>
       </div>
-
     </DefaultLayout>
   );
 };
@@ -108,7 +104,7 @@ export const CircleCheckBoxTest = () => {
     setChecked(!checked);
   };
 
-  return <CircleCheckBox checked={checked} onChange={onChange}/>;
+  return <CircleCheckBox checked={checked} onChange={onChange} />;
 };
 
 export const TagTest = () => {
@@ -116,7 +112,7 @@ export const TagTest = () => {
     console.log(`Cancel ${id}`);
   };
 
-  return <Tag id={1} name="Testing" handleCancel={handleCancel}/>;
+  return <Tag id={1} name="Testing" handleCancel={handleCancel} />;
 };
 
 export const AnonymousSidebarTest = () => {
@@ -125,7 +121,7 @@ export const AnonymousSidebarTest = () => {
   };
 
   return (
-    <AnonymousSidebar link="https://popitalk.com" handleSubmit={handleSubmit}/>
+    <AnonymousSidebar link="https://popitalk.com" handleSubmit={handleSubmit} />
   );
 };
 
@@ -237,6 +233,7 @@ export const RoomIcon123 = () => {
       <RoomIcon
         size="lg"
         watching={true}
+        online={true}
         images={["https://source.unsplash.com/128x128/?1,dog"]}
       />
       <RoomIcon
@@ -403,7 +400,6 @@ export const FriendsPanel123 = () => {
 
   return (
     <div className="p-5 bg-secondaryBackground">
-
       <FriendsPanel
         roomsResults={testRooms}
         channels={testChannels}
@@ -497,28 +493,28 @@ export const SiteHeader = () => {
     <>
       <Text variant="subtitle2">Main header</Text>
       <div className="border rounded-md">
-        <SiteHeaderMain/>
+        <SiteHeaderMain />
       </div>
       <Text className="mt-8" variant="subtitle2">
         Welcome header (not logged in)
       </Text>
       <div className="border rounded-md">
-        <SiteHeaderWelcome/>
+        <SiteHeaderWelcome />
       </div>
     </>
   );
 };
 
 export const ChannelChatPanel = () => {
-  return <ChatPanel/>;
+  return <ChatPanel />;
 };
 
 export const WelcomePageShow = () => {
-  return <WelcomePage/>;
+  return <WelcomePage />;
 };
 
 export const VideoPlayerShow = () => {
-  return <VideoPlayer/>;
+  return <VideoPlayer />;
 };
 
 const list = [
@@ -533,7 +529,7 @@ const list = [
 ];
 
 export function RecommendedChannelsSection() {
-  return <RecommendedChannels list={list}/>;
+  return <RecommendedChannels list={list} />;
 }
 
 const videoList = [
@@ -552,5 +548,5 @@ const videoList = [
 ];
 
 export function RecommendedVideoSection() {
-  return <RecommendedVideos list={videoList}/>;
+  return <RecommendedVideos list={videoList} />;
 }

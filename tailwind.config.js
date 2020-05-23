@@ -153,6 +153,9 @@ module.exports = {
       },
       gridTemplateColumns: {
         chat: "2.5rem 1fr auto;"
+      },
+      padding: {
+        "2px": "2px"
       }
     }
   },

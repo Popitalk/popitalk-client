@@ -1,5 +1,6 @@
 import React from "react";
 import classnames from "classnames";
+import PopitalkLogo from "../assets/logo.png";
 
 const corners = [
   "rounded-tl-full",
@@ -7,6 +8,10 @@ const corners = [
   "rounded-bl-full",
   "rounded-br-full"
 ];
+
+const LogoStyle = {
+  bottom: "-4px"
+};
 
 const cornerRadius = (index, length) => {
   if (length === 1) return "rounded-full";
@@ -26,31 +31,50 @@ export default function RoomIcon({
   size = "md",
   className
 }) {
+  const OnlineFriendStyle = {
+    top:
+      size === "sm"
+        ? "-2px"
+        : size === "md"
+        ? "0"
+        : size === "lg"
+        ? "2px"
+        : "4px",
+    right:
+      size === "sm"
+        ? "-2px"
+        : size === "md"
+        ? "0"
+        : size === "lg"
+        ? "2px"
+        : "4px"
+  };
+
   const container1Classes = classnames({
-    "flex flex-shrink-0 items-center justify-center relative rounded-full": true,
-    "h-6 w-6": size === "sm",
-    "h-8 w-8": size === "md",
-    "h-12 w-12": size === "lg",
-    "h-16 w-16": size === "xl",
+    "flex flex-shrink-0 items-center justify-center relative rounded-full ": true,
+    "h-8 w-8": size === "sm",
+    "h-12 w-12": size === "md",
+    "h-16 w-16": size === "lg",
+    "h-20 w-20": size === "xl",
     "bg-imageBorder1": !watching,
-    "bg-pink": watching,
+    "bg-gradient-t-primary p-2px": watching,
     [className]: className
   });
   const container2Classes = classnames({
-    "grid gap-px border-thin p-px w-full h-full rounded-full": true,
+    "grid gap-px border-thin  w-full h-full rounded-full ": true,
     "grid-cols-2": images.length !== 1,
     "border-imageBorder1": !watching,
-    "border-pink": watching
+    "border-none bg-primaryBackground p-2px": watching
   });
   const avatarClasses = classnames({
     "border-thin overflow-hidden": true,
     "border-imageBorder1": !watching,
-    "border-pink": watching
+    "border-none": watching
   });
   const onlineFriendClasses = classnames({
-    "h-5 w-5 rounded-full bg-onlineColor absolute right-0 top-0 border-2 border-imageBorder2": true,
+    "h-4 w-4 rounded-full bg-onlineColor absolute border-2 border-imageBorder2": true,
     "border-imageBorder1": !watching,
-    "border-pink": watching
+    "border-primaryBackground": watching
   });
   const notificationsClasses = classnames({
     "font-regular text-primaryButtonText text-xs bg-notificationsColor h-5 w-5 rounded-full bg-onlineColor absolute left-0 top-0 flex items-center justify-center select-none": true,
@@ -74,14 +98,24 @@ export default function RoomIcon({
           </div>
         ))}
       </div>
-      {online && <div className={onlineFriendClasses} />}
+      {online && (
+        <div className={onlineFriendClasses} style={OnlineFriendStyle} />
+      )}
       {self && (
         <p
           className="font-semibold text-xs absolute bottom-0
-         bg-gradient-br-button text-primaryButtonText rounded-pill flex items-center justify-center py-1 px-1 select-none"
+         bg-gradient-br-button text-primaryButtonText rounded flex items-center justify-center p-px px-1 select-none"
         >
           My room
         </p>
+      )}
+      {watching && (
+        <img
+          src={PopitalkLogo}
+          style={LogoStyle}
+          className="w-4 absolute bottom-0"
+          alt=""
+        />
       )}
       {notifications && (
         <p className={notificationsClasses}>
