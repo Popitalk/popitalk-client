@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import ImageInfoCard from "./InfoCards/ImageInfoCard";
 import Button from "./Button";
 import AvatarIcon from "./InfoCards/AvatarIcon";
 
@@ -16,7 +15,6 @@ export default function MiniFriendsList({ friends }) {
           <Button shape="circle" size="sm" icon="plus" className="w-full h-full"/>
         </div>
       </div>
-
     </div>
   );
 }

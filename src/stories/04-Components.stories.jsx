@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { withKnobs, text, select } from "@storybook/addon-knobs";
+import { withKnobs } from "@storybook/addon-knobs";
 import styled from "styled-components";
 import Text from "../comp/Text";
 import RequestCard from "../comp/InfoCards/RequestCard";
@@ -44,16 +44,16 @@ const Container = styled.div`
     margin-bottom: 20px;
   }
 `;
-const Container2 = styled.div`
-  display: grid;
-  /* grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr; */
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  justify-items: center;
-  justify-items: center;
-  align-items: center;
-  row-gap: 25px;
-  /* gap: 20px; */
-`;
+// const Container2 = styled.div`
+//   display: grid;
+//   /* grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr; */
+//   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+//   justify-items: center;
+//   justify-items: center;
+//   align-items: center;
+//   row-gap: 25px;
+//   /* gap: 20px; */
+// `;
 
 // const Container = styled.div`
 //   /* display: flex; */
@@ -101,7 +101,7 @@ export const AnonymousSidebarTest = () => {
 };
 
 export const RequestCard123 = () => {
-  const [input, setInput] = useState("");
+  // const [input, setInput] = useState("");
 
   const handleProfile = id => {
     console.log(`PROFILE ${id}`);
@@ -510,6 +510,7 @@ export const FriendsPanel123 = () => {
     console.log("REJECT");
   };
 
+
   const results = [
     {
       id: 1,
@@ -619,7 +620,7 @@ export const FriendsPanel123 = () => {
 };
 
 export const PopupMenu123 = () => {
-  const [selectedRoom, setSelectedRoom] = useState(null);
+  // const [selectedRoom, setSelectedRoom] = useState(null);
 
   return (
     <div className="grid items-end justify-end grid-cols-3 p-5">
