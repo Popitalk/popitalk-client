@@ -18,7 +18,9 @@ import WelcomePage from "../comp/WelcomePage";
 import AnonymousSidebar from "../comp/AnonymousSidebar";
 import Tag from "../comp/Tag";
 import VideoPlayer from "../comp/VideoPlayer";
-import RecommendedChannels from "../comp/RecommendedChannels.jsx";
+import RecommendedChannels from "../comp/RecommendedChannels";
+import RecommendedVideos from "../comp/RecommendedVideos";
+
 export default {
   title: "Components",
   decorators: [withKnobs]
@@ -789,4 +791,133 @@ const list = [
 
 export function RecommendedChannelsSection() {
   return <RecommendedChannels list={list} />;
+}
+
+const videoList = [
+  {
+    title: "Videos friends are watching",
+    channels: [
+      {
+        id: 123,
+        title: "Video Title",
+        channelName: "Channel Name",
+        views: "20K views",
+        timeFromUpload: "2 months ago",
+        videoSource: "youtube",
+        thumbnail: "https://i.imgur.com/aqjzchq.jpg"
+      },
+      {
+        id: 2,
+        title: "Video Title",
+        channelName: "Channel Name",
+        views: "20K views",
+        timeFromUpload: "2 months ago",
+        videoSource: "youtube",
+        thumbnail: "https://i.imgur.com/aqjzchq.jpg"
+      },
+      {
+        id: 3,
+        title: "Video Title",
+        channelName: "Channel Name",
+        views: "20K views",
+        timeFromUpload: "2 months ago",
+        videoSource: "youtube",
+        thumbnail: "https://i.imgur.com/aqjzchq.jpg"
+      },
+      {
+        id: 4,
+        title: "Video Title",
+        channelName: "Channel Name",
+        views: "20K views",
+        timeFromUpload: "2 months ago",
+        videoSource: "youtube",
+        thumbnail: "https://i.imgur.com/aqjzchq.jpg"
+      }
+    ]
+  },
+  {
+    title: "Recommended",
+    channels: [
+      {
+        id: 123,
+        title: "Video Title",
+        channelName: "Channel Name",
+        views: "20K views",
+        timeFromUpload: "2 months ago",
+        videoSource: "youtube",
+        thumbnail: "https://i.imgur.com/aqjzchq.jpg"
+      },
+      {
+        id: 2,
+        title: "Video Title",
+        channelName: "Channel Name",
+        views: "20K views",
+        timeFromUpload: "2 months ago",
+        videoSource: "youtube",
+        thumbnail: "https://i.imgur.com/aqjzchq.jpg"
+      },
+      {
+        id: 3,
+        title: "Video Title",
+        channelName: "Channel Name",
+        views: "20K views",
+        timeFromUpload: "2 months ago",
+        videoSource: "youtube",
+        thumbnail: "https://i.imgur.com/aqjzchq.jpg"
+      },
+      {
+        id: 4,
+        title: "Video Title",
+        channelName: "Channel Name",
+        views: "20K views",
+        timeFromUpload: "2 months ago",
+        videoSource: "youtube",
+        thumbnail: "https://i.imgur.com/aqjzchq.jpg"
+      }
+    ]
+  },
+  {
+    title: "Trending right now",
+    channels: [
+      {
+        id: 123,
+        title: "Video Title",
+        channelName: "Channel Name",
+        views: "20K views",
+        timeFromUpload: "2 months ago",
+        videoSource: "youtube",
+        thumbnail: "https://i.imgur.com/aqjzchq.jpg"
+      },
+      {
+        id: 2,
+        title: "Video Title",
+        channelName: "Channel Name",
+        views: "20K views",
+        timeFromUpload: "2 months ago",
+        videoSource: "youtube",
+        thumbnail: "https://i.imgur.com/aqjzchq.jpg"
+      },
+      {
+        id: 3,
+        title: "Video Title",
+        channelName: "Channel Name",
+        views: "20K views",
+        timeFromUpload: "2 months ago",
+        videoSource: "youtube",
+        thumbnail: "https://i.imgur.com/aqjzchq.jpg"
+      },
+      {
+        id: 4,
+        title: "Video Title",
+        channelName: "Channel Name",
+        views: "20K views",
+        timeFromUpload: "2 months ago",
+        videoSource: "youtube",
+        thumbnail: "https://i.imgur.com/aqjzchq.jpg"
+      }
+    ]
+  }
+];
+export function RecommendedVideoSection() {
+  return <RecommendedVideos list={videoList} />;
 }

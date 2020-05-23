@@ -4,8 +4,8 @@ import FriendUsersList from "../comp/InfoCardLists/FriendUsersList";
 import ChannelsList from "../comp/InfoCardLists/ChannelsList";
 import RoomsList from "../comp/InfoCardLists/RoomsList";
 import ManageUsersList from "../comp/InfoCardLists/ManageUsersList";
-import ChannelCardListWithHeader from "../comp/ChannelCardList.jsx";
-
+import ChannelCardListWithHeader from "../comp/ChannelCardList";
+import VideoCardListWithHeader from "../comp/VideoCardList";
 export default {
   title: "Lists",
   decorators: [withKnobs]
@@ -321,6 +321,54 @@ export function ChannelListInCategory() {
     <ChannelCardListWithHeader
       header="Following Channel"
       channelList={channelList}
+    />
+  );
+}
+
+const videoList = [
+  {
+    id: 123,
+    title: "Video Title",
+    channelName: "Channel Name",
+    views: "20K views",
+    timeFromUpload: "2 months ago",
+    videoSource: "youtube",
+    thumbnail: "https://i.imgur.com/aqjzchq.jpg"
+  },
+  {
+    id: 2,
+    title: "Video Title",
+    channelName: "Channel Name",
+    views: "20K views",
+    timeFromUpload: "2 months ago",
+    videoSource: "youtube",
+    thumbnail: "https://i.imgur.com/aqjzchq.jpg"
+  },
+  {
+    id: 3,
+    title: "Video Title",
+    channelName: "Channel Name",
+    views: "20K views",
+    timeFromUpload: "2 months ago",
+    videoSource: "youtube",
+    thumbnail: "https://i.imgur.com/aqjzchq.jpg"
+  },
+  {
+    id: 4,
+    title: "Video Title",
+    channelName: "Channel Name",
+    views: "20K views",
+    timeFromUpload: "2 months ago",
+    videoSource: "youtube",
+    thumbnail: "https://i.imgur.com/aqjzchq.jpg"
+  }
+];
+
+export function videoListWithHeader() {
+  return (
+    <VideoCardListWithHeader
+      header="Videos friends are watchin"
+      videoList={videoList}
     />
   );
 }
