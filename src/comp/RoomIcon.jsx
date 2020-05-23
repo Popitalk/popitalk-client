@@ -1,6 +1,6 @@
 import React from "react";
 import classnames from "classnames";
-import PopitalkLogo from "../assets/logo.png";
+import YoutubeGradient from "../assets/youtube-gradient-logo.png";
 
 const corners = [
   "rounded-tl-full",
@@ -10,7 +10,7 @@ const corners = [
 ];
 
 const LogoStyle = {
-  bottom: "-4px"
+  bottom: "-5px"
 };
 
 const cornerRadius = (index, length) => {
@@ -57,7 +57,7 @@ export default function RoomIcon({
     "h-16 w-16": size === "lg",
     "h-20 w-20": size === "xl",
     "bg-imageBorder1": !watching,
-    "bg-gradient-t-primary p-2px": watching,
+    "bg-gradient-r-primary p-2px": watching,
     [className]: className
   });
   const container2Classes = classnames({
@@ -111,9 +111,9 @@ export default function RoomIcon({
       )}
       {watching && (
         <img
-          src={PopitalkLogo}
+          src={YoutubeGradient}
           style={LogoStyle}
-          className="w-4 absolute bottom-0"
+          className="w-6 absolute bottom-0"
           alt=""
         />
       )}
