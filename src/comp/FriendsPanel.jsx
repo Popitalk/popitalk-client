@@ -15,15 +15,15 @@ export default function FriendsPanel({ userSearchResults, roomsResults, ...rest 
         <h3 className="text-2xl font-bold btn-playing">Channels</h3>
         <h3 className="text-3xl font-bold btn-playing">Friends</h3>
       </div>
-      <div className="px-4">
-        <Input
-          variant="user"
-          size="lg"
-          value={search}
-          placeholder="Search friends"
-          onChange={e => setSearch(e.target.value)}
-        />
-        <div className="space-x-1 flex justify-between pl-1 pt-1">
+      <Input
+        variant="user"
+        size="lg"
+        value={search}
+        placeholder="Search friends"
+        onChange={e => setSearch(e.target.value)}
+      />
+      <div className="shadow-md py-2  px-4 border-top-none rounded-md">
+        <div className="space-x-1 flex  justify-between pl-1 pt-1">
           <div>
             <span className="font-light text-xs">Searching:</span>
             <span className="font-light text-xs">{search}</span>
@@ -39,26 +39,27 @@ export default function FriendsPanel({ userSearchResults, roomsResults, ...rest 
           </div>
 
         </div>
-      </div>
+        <FriendUsersList
+          users={userSearchResults.slice(activeIndex * 3, activeIndex * 3 + 3)}
+          {...rest}
+        />
 
-      <FriendUsersList
-        users={userSearchResults.slice(activeIndex * 3, activeIndex * 3 + 3)}
-        {...rest}
-      />
-      <div className="flex justify-end px-4 space-x-5 text-xs font-bold">
-        {[0, 1, 2].map(idx => (
-          <span
-            key={idx}
-            role="button"
-            onClick={() => setActiveIndex(idx)}
-            className={`${
-              activeIndex === idx ? "text-black" : "text-highlightText"
-            } no-underline`}
-          >
+        <div className="flex justify-end px-4 space-x-5 text-xs font-bold">
+          {[0, 1, 2].map(idx => (
+            <span
+              key={idx}
+              role="button"
+              onClick={() => setActiveIndex(idx)}
+              className={`${
+                activeIndex === idx ? "text-black" : "text-highlightText"
+              } no-underline`}
+            >
             {idx}
           </span>
-        ))}
+          ))}
+        </div>
       </div>
+
       <div className="my-4">
         <RoomsList rooms={roomsResults}/>
       </div>
