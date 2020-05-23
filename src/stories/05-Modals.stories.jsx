@@ -16,107 +16,12 @@ import NewRoomModal from "../comp/Modals/NewRoomModal";
 import ProfileModal from "../comp/Modals/ProfileModal";
 import InviteForm from "../comp/InviteForm";
 import { buildTagInput } from "../comp/TagInput";
+import {testImages, testUsers, testQueue} from "./seed-arrays";
 
 export default {
   title: "Modals",
   decorators: [withKnobs]
 };
-const testImages = [
-  "https://source.unsplash.com/128x128/?1,cat",
-  "https://source.unsplash.com/128x128/?2,cat",
-  "https://source.unsplash.com/128x128/?3,cat",
-  "https://source.unsplash.com/128x128/?4,cat",
-  "https://source.unsplash.com/128x128/?6,cat",
-  "https://source.unsplash.com/128x128/?7,cat",
-  "https://source.unsplash.com/128x128/?8,cat"
-];
-
-const testUsers = [
-  {
-    id: 1,
-    username: "Andrew",
-    firstName: "Andrew",
-    lastName: "Jang",
-    avatar: "https://i.imgur.com/xCGu56D.jpg"
-  },
-  {
-    id: 2,
-    username: "SilentFuzzle",
-    firstName: "Emily",
-    lastName: "Palmieri",
-    avatar: "https://i.imgur.com/xCGu56D.jpg"
-  },
-  {
-    id: 3,
-    username: "Test",
-    firstName: "Test",
-    lastName: "Test",
-    avatar: "https://i.imgur.com/xCGu56D.jpg"
-  },
-  {
-    id: 4,
-    username: "Nester",
-    firstName: "Andrew",
-    lastName: "Jang",
-    avatar: "https://i.imgur.com/xCGu56D.jpg"
-  },
-  {
-    id: 5,
-    username: "SandPills",
-    firstName: "Andrew",
-    lastName: "Jang",
-    avatar: "https://i.imgur.com/xCGu56D.jpg"
-  }
-];
-
-const defaultThumbnail = "https://i.imgur.com/aqjzchq.jpg";
-const testQueue = [
-  {
-    id: 1,
-    title: "Video 1",
-    views: "20k views",
-    timeFromUpload: "2 months ago",
-    thumbnail: defaultThumbnail,
-    status: "queued",
-    statusMessage: "In 10min"
-  },
-  {
-    id: 2,
-    title: "Video 2",
-    views: "1M views",
-    timeFromUpload: "1 week ago",
-    thumbnail: defaultThumbnail,
-    status: "queued",
-    statusMessage: "In 14min"
-  },
-  {
-    id: 3,
-    title: "Video 3",
-    views: "200k views",
-    timeFromUpload: "1 months ago",
-    thumbnail: defaultThumbnail,
-    status: "queued",
-    statusMessage: "In 18min"
-  },
-  {
-    id: 4,
-    title: "Video 4",
-    views: "1.2M views",
-    timeFromUpload: "3 months ago",
-    thumbnail: defaultThumbnail,
-    status: "queued",
-    statusMessage: "In 25min"
-  },
-  {
-    id: 5,
-    title: "Video 5",
-    views: "1.2M views",
-    timeFromUpload: "3 months ago",
-    thumbnail: defaultThumbnail,
-    status: "queued",
-    statusMessage: "In 50min"
-  }
-];
 
 const handleBack = () => {
   console.log("RETURN");

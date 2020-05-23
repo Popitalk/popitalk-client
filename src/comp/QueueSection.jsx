@@ -3,7 +3,10 @@ import VideoPanelCard from "./VideoPanelCard";
 import SortableList from "./SortableList";
 
 export default function QueueSection({ queueList, handlerChange }) {
-  const itemRenderer = value => <VideoPanelCard {...value} />;
+
+  const itemRenderer = (value) => (
+    <VideoPanelCard  {...value} />
+  );
 
   return (
     <SortableList
@@ -12,7 +15,8 @@ export default function QueueSection({ queueList, handlerChange }) {
       itemRenderer={itemRenderer}
       handlerChange={handlerChange}
       height={"100%"}
-      className={"cursor-move"}
-    ></SortableList>
+      className={"cursor-move"}>
+      <VideoPanelCard/>
+    </SortableList>
   );
 }

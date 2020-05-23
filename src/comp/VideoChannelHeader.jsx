@@ -7,7 +7,7 @@ import RoomIcon from "./RoomIcon";
 export default function VideoChannelHeader({ id, name, icon, videoStatus }) {
   return (
     <header className="flex justify-between bg-disabledBackground my-1 mx-1">
-      <div className="flex">
+      <div className="flex items-center">
         <RoomIcon
           ids={[id]}
           images={[icon]}
@@ -19,7 +19,7 @@ export default function VideoChannelHeader({ id, name, icon, videoStatus }) {
           {name}
         </p>
       </div>
-      <nav className="flex">
+      <nav className="flex flex-wrap justify-center">
         <a
           href="https://www.google.com"
           className="btn-playing mx-1 my-1 font-bold no-underline"
@@ -42,7 +42,7 @@ export default function VideoChannelHeader({ id, name, icon, videoStatus }) {
           href="https://www.google.com"
           className="mx-1 my-1 font-bold text-secondaryText no-underline"
         >
-          Setting
+          Settings
         </a>
       </nav>
     </header>

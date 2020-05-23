@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { withKnobs, text, select } from "@storybook/addon-knobs";
+import { withKnobs } from "@storybook/addon-knobs";
 import styled from "styled-components";
 import Text from "../comp/Text";
 import RequestCard from "../comp/InfoCards/RequestCard";
@@ -18,6 +18,11 @@ import WelcomePage from "../comp/WelcomePage";
 import AnonymousSidebar from "../comp/AnonymousSidebar";
 import Tag from "../comp/Tag";
 import VideoPlayer from "../comp/VideoPlayer";
+import RecommendedChannels from "../comp/RecommendedChannels";
+import RecommendedVideos from "../comp/RecommendedVideos";
+import DefaultLayout from "../comp/DefaultLayout";
+import VideoChannelHeader from "../comp/VideoChannelHeader";
+import { testChannels, testRooms, testUsers } from "./seed-arrays";
 
 export default {
   title: "Components",
@@ -42,16 +47,16 @@ const Container = styled.div`
     margin-bottom: 20px;
   }
 `;
-const Container2 = styled.div`
-  display: grid;
-  /* grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr; */
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  justify-items: center;
-  justify-items: center;
-  align-items: center;
-  row-gap: 25px;
-  /* gap: 20px; */
-`;
+// const Container2 = styled.div`
+//   display: grid;
+//   /* grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr; */
+//   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+//   justify-items: center;
+//   justify-items: center;
+//   align-items: center;
+//   row-gap: 25px;
+//   /* gap: 20px; */
+// `;
 
 // const Container = styled.div`
 //   /* display: flex; */
@@ -69,6 +74,28 @@ const Container2 = styled.div`
 //     margin-bottom: 20px;
 //   } */
 // `;
+
+export const DefaultLayoutTest = () => {
+  const { selectedChannel, setSelectedChannel } = useState(null);
+  return (
+    <DefaultLayout>
+      <div className="flex">
+        <div className="w-3/12">
+          <ChannelsPanel
+            channels={testChannels}
+            friends={testUsers}
+            selected={selectedChannel}
+            handleSelect={id => setSelectedChannel(id)}
+          />
+        </div>
+        <div className="w-6/12">
+          <VideoChannelHeader />
+        </div>
+        <div className="w-3/12"></div>
+      </div>
+    </DefaultLayout>
+  );
+};
 
 export const CircleCheckBoxTest = () => {
   const [checked, setChecked] = useState(true);
@@ -99,7 +126,7 @@ export const AnonymousSidebarTest = () => {
 };
 
 export const RequestCard123 = () => {
-  const [input, setInput] = useState("");
+  // const [input, setInput] = useState("");
 
   const handleProfile = id => {
     console.log(`PROFILE ${id}`);
@@ -113,47 +140,9 @@ export const RequestCard123 = () => {
     console.log("REJECT");
   };
 
-  const users = [
-    {
-      username: "Andrew",
-      firstName: "Andrew",
-      lastName: "Jang",
-      avatar: "https://i.imgur.com/xCGu56D.jpg",
-      variant: "stranger"
-    },
-    {
-      username: "Andrew",
-      firstName: "Andrew",
-      lastName: "Jang",
-      avatar: "https://i.imgur.com/xCGu56D.jpg",
-      variant: "sentRequest"
-    },
-    {
-      username: "Andrew",
-      firstName: "Andrew",
-      lastName: "Jang",
-      avatar: "https://i.imgur.com/xCGu56D.jpg",
-      variant: "receivedRequest"
-    },
-    {
-      username: "Andrew",
-      firstName: "Andrew",
-      lastName: "Jang",
-      avatar: "https://i.imgur.com/xCGu56D.jpg",
-      variant: "friend"
-    },
-    {
-      username: "Andrew",
-      firstName: "Andrew",
-      lastName: "Jang",
-      avatar: "https://i.imgur.com/xCGu56D.jpg",
-      variant: "self"
-    }
-  ];
-
   return (
     <>
-      {users.map((u, i) => {
+      {testUsers.map((u, i) => {
         return (
           <div key={i} className="p-2">
             <RequestCard
@@ -244,6 +233,7 @@ export const RoomIcon123 = () => {
       <RoomIcon
         size="lg"
         watching={true}
+        online={true}
         images={["https://source.unsplash.com/128x128/?1,dog"]}
       />
       <RoomIcon
@@ -381,52 +371,11 @@ export const ChannelCard123 = () => {
 export const ChannelsPanel123 = () => {
   const [selectedChannel, setSelectedChannel] = useState(null);
 
-  const channels = [
-    {
-      id: 1,
-      name: "League of Legends",
-      icon: "https://source.unsplash.com/128x128/?1,dog",
-      watching: false,
-      avatars: [
-        "https://source.unsplash.com/128x128/?1,cat",
-        "https://source.unsplash.com/128x128/?2,cat",
-        "https://source.unsplash.com/128x128/?3,cat",
-        "https://source.unsplash.com/128x128/?4,cat"
-      ],
-      numOnline: 9001
-    },
-    {
-      id: 2,
-      name: "League of Legends",
-      icon: "https://source.unsplash.com/128x128/?1,dog",
-      watching: true,
-      avatars: [
-        "https://source.unsplash.com/128x128/?1,cat",
-        "https://source.unsplash.com/128x128/?2,cat",
-        "https://source.unsplash.com/128x128/?3,cat",
-        "https://source.unsplash.com/128x128/?4,cat"
-      ],
-      numOnline: 219
-    },
-    {
-      id: 3,
-      name: "League of Legends",
-      icon: "https://source.unsplash.com/128x128/?1,dog",
-      watching: true,
-      avatars: [
-        "https://source.unsplash.com/128x128/?1,cat",
-        "https://source.unsplash.com/128x128/?2,cat",
-        "https://source.unsplash.com/128x128/?3,cat",
-        "https://source.unsplash.com/128x128/?4,cat"
-      ],
-      numOnline: 0
-    }
-  ];
-
   return (
-    <div className="p-5">
+    <div className="p-5 bg-secondaryBackground">
       <ChannelsPanel
-        channels={channels}
+        channels={testChannels}
+        friends={testUsers}
         selected={selectedChannel}
         handleSelect={id => setSelectedChannel(id)}
       />
@@ -449,95 +398,14 @@ export const FriendsPanel123 = () => {
     console.log("REJECT");
   };
 
-  const results = [
-    {
-      id: 1,
-      username: "Andrew",
-      firstName: "Andrew",
-      lastName: "Jang",
-      avatar: "https://i.imgur.com/xCGu56D.jpg",
-      variant: "stranger"
-    },
-    {
-      id: 2,
-      username: "Andrew",
-      firstName: "Andrew",
-      lastName: "Jang",
-      avatar: "https://i.imgur.com/xCGu56D.jpg",
-      variant: "friend"
-    },
-    {
-      id: 3,
-      username: "Andrew",
-      firstName: "Andrew",
-      lastName: "Jang",
-      avatar: "https://i.imgur.com/xCGu56D.jpg",
-      variant: "self"
-    },
-    {
-      id: 4,
-      username: "Andrew",
-      firstName: "Andrew",
-      lastName: "Jang",
-      avatar: "https://i.imgur.com/xCGu56D.jpg",
-      variant: "receivedRequest"
-    },
-    {
-      id: 5,
-      username: "Andrew",
-      firstName: "Andrew",
-      lastName: "Jang",
-      avatar: "https://i.imgur.com/xCGu56D.jpg",
-      variant: "sentRequest"
-    }
-  ];
-
-  const channels = [
-    {
-      id: 1,
-      name: "League of Legends",
-      icon: "https://source.unsplash.com/128x128/?1,dog",
-      watching: false,
-      avatars: [
-        "https://source.unsplash.com/128x128/?1,cat",
-        "https://source.unsplash.com/128x128/?2,cat",
-        "https://source.unsplash.com/128x128/?3,cat",
-        "https://source.unsplash.com/128x128/?4,cat"
-      ]
-    },
-    {
-      id: 2,
-      name: "League of Legends",
-      icon: "https://source.unsplash.com/128x128/?1,dog",
-      watching: true,
-      avatars: [
-        "https://source.unsplash.com/128x128/?1,cat",
-        "https://source.unsplash.com/128x128/?2,cat",
-        "https://source.unsplash.com/128x128/?3,cat",
-        "https://source.unsplash.com/128x128/?4,cat"
-      ]
-    },
-    {
-      id: 3,
-      name: "League of Legends",
-      icon: "https://source.unsplash.com/128x128/?1,dog",
-      watching: true,
-      avatars: [
-        "https://source.unsplash.com/128x128/?1,cat",
-        "https://source.unsplash.com/128x128/?2,cat",
-        "https://source.unsplash.com/128x128/?3,cat",
-        "https://source.unsplash.com/128x128/?4,cat"
-      ]
-    }
-  ];
-
   return (
-    <div className="p-5">
+    <div className="p-5 bg-secondaryBackground">
       <FriendsPanel
-        channels={channels}
+        roomsResults={testRooms}
+        channels={testChannels}
         selected={selectedChannel}
         handleSelect={id => setSelectedChannel(id)}
-        userSearchResults={results}
+        userSearchResults={testUsers}
         handleAccept={handleAccept}
         handleReject={handleReject}
         handleProfile={handleProfile}
@@ -547,7 +415,7 @@ export const FriendsPanel123 = () => {
 };
 
 export const PopupMenu123 = () => {
-  const [selectedRoom, setSelectedRoom] = useState(null);
+  // const [selectedRoom, setSelectedRoom] = useState(null);
 
   return (
     <div className="grid items-end justify-end grid-cols-3 p-5">
@@ -598,41 +466,6 @@ export const PopupMenu123 = () => {
 export const ManageUsersTest = () => {
   const [selectedChannel, setSelectedChannel] = useState(null);
 
-  const users = [
-    {
-      id: 1,
-      username: "abc11",
-      firstName: "Sul",
-      lastName: "man",
-      avatar: "https://source.unsplash.com/128x128/?1,cat",
-      owner: false
-    },
-    {
-      id: 2,
-      username: "abc22",
-      firstName: "Sul",
-      lastName: "man",
-      avatar: "https://source.unsplash.com/128x128/?2,cat",
-      owner: false
-    },
-    {
-      id: 3,
-      username: "abc33",
-      firstName: "Sul",
-      lastName: "man",
-      avatar: "https://source.unsplash.com/128x128/?3,cat",
-      owner: true
-    },
-    {
-      id: 4,
-      username: "abc44",
-      firstName: "Sul",
-      lastName: "man",
-      avatar: "https://source.unsplash.com/128x128/?4,cat",
-      owner: false
-    }
-  ];
-
   const options = [
     { name: "Admin", handler: userId => console.log("ADMIN", userId) },
     { name: "Ban", handler: userId => console.log("BAN", userId) }
@@ -647,7 +480,7 @@ export const ManageUsersTest = () => {
       <ManageUsers
         variant="manage"
         category="Banned Members"
-        users={users}
+        users={testUsers}
         options={options}
         handleProfile={handleProfile}
       />
@@ -683,3 +516,37 @@ export const WelcomePageShow = () => {
 export const VideoPlayerShow = () => {
   return <VideoPlayer />;
 };
+
+const list = [
+  {
+    title: "Following Channels",
+    channels: testChannels
+  },
+  {
+    title: "Recommended Channels",
+    channels: testChannels
+  }
+];
+
+export function RecommendedChannelsSection() {
+  return <RecommendedChannels list={list} />;
+}
+
+const videoList = [
+  {
+    title: "Videos friends are watching",
+    channels: testChannels
+  },
+  {
+    title: "Recommended",
+    channels: testChannels
+  },
+  {
+    title: "Trending right now",
+    channels: testChannels
+  }
+];
+
+export function RecommendedVideoSection() {
+  return <RecommendedVideos list={videoList} />;
+}
