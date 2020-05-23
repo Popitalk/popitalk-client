@@ -18,7 +18,7 @@ import WelcomePage from "../comp/WelcomePage";
 import AnonymousSidebar from "../comp/AnonymousSidebar";
 import Tag from "../comp/Tag";
 import VideoPlayer from "../comp/VideoPlayer";
-
+import RecommendedChannels from "../comp/RecommendedChannels.jsx";
 export default {
   title: "Components",
   decorators: [withKnobs]
@@ -683,3 +683,110 @@ export const WelcomePageShow = () => {
 export const VideoPlayerShow = () => {
   return <VideoPlayer />;
 };
+
+const list = [
+  {
+    title: "Following Channels",
+    channels: [
+      {
+        id: 1,
+        name: "Thelmo Society",
+        icon: "https://i.imgur.com/xCGu56D.jpg",
+        avatars: [
+          "https://source.unsplash.com/128x128/?1,cat",
+          "https://source.unsplash.com/128x128/?2,cat",
+          "https://source.unsplash.com/128x128/?3,cat",
+          "https://source.unsplash.com/128x128/?4,cat"
+        ],
+        videoTitle: "Video Title",
+        videoSource: "youtube",
+        live: true,
+        videoThumbnail: "https://i.imgur.com/aqjzchq.jpg"
+      },
+      {
+        id: 2,
+        name: "Thelmo Society",
+        icon: "https://i.imgur.com/xCGu56D.jpg",
+        avatars: [
+          "https://source.unsplash.com/128x128/?1,cat",
+          "https://source.unsplash.com/128x128/?2,cat",
+          "https://source.unsplash.com/128x128/?3,cat",
+          "https://source.unsplash.com/128x128/?4,cat"
+        ],
+        live: true,
+        videoTitle: "Video Title",
+        videoSource: "youtube",
+        videoThumbnail: "https://i.imgur.com/aqjzchq.jpg"
+      },
+      {
+        id: 3,
+        name: "Thelmo Society",
+        icon: "https://i.imgur.com/xCGu56D.jpg",
+        avatars: [
+          "https://source.unsplash.com/128x128/?1,cat",
+          "https://source.unsplash.com/128x128/?2,cat",
+          "https://source.unsplash.com/128x128/?3,cat",
+          "https://source.unsplash.com/128x128/?4,cat"
+        ],
+        live: true,
+        videoTitle: "Video Title",
+        videoSource: "youtube",
+        videoThumbnail: "https://i.imgur.com/aqjzchq.jpg"
+      }
+    ]
+  },
+  {
+    title: "Recommended Channels",
+    channels: [
+      {
+        id: 1,
+        name: "Thelmo Society",
+        icon: "https://i.imgur.com/xCGu56D.jpg",
+        avatars: [
+          "https://source.unsplash.com/128x128/?1,cat",
+          "https://source.unsplash.com/128x128/?2,cat",
+          "https://source.unsplash.com/128x128/?3,cat",
+          "https://source.unsplash.com/128x128/?4,cat"
+        ],
+        videoTitle: "Video Title",
+        videoSource: "youtube",
+        live: true,
+        videoThumbnail: "https://i.imgur.com/aqjzchq.jpg"
+      },
+      {
+        id: 2,
+        name: "Thelmo Society",
+        icon: "https://i.imgur.com/xCGu56D.jpg",
+        avatars: [
+          "https://source.unsplash.com/128x128/?1,cat",
+          "https://source.unsplash.com/128x128/?2,cat",
+          "https://source.unsplash.com/128x128/?3,cat",
+          "https://source.unsplash.com/128x128/?4,cat"
+        ],
+        live: true,
+        videoTitle: "Video Title",
+        videoSource: "youtube",
+        videoThumbnail: "https://i.imgur.com/aqjzchq.jpg"
+      },
+      {
+        id: 3,
+        name: "Thelmo Society",
+        icon: "https://i.imgur.com/xCGu56D.jpg",
+        avatars: [
+          "https://source.unsplash.com/128x128/?1,cat",
+          "https://source.unsplash.com/128x128/?2,cat",
+          "https://source.unsplash.com/128x128/?3,cat",
+          "https://source.unsplash.com/128x128/?4,cat"
+        ],
+        live: true,
+        videoTitle: "Video Title",
+        videoSource: "youtube",
+        videoThumbnail: "https://i.imgur.com/aqjzchq.jpg"
+      }
+    ]
+  }
+];
+
+export function RecommendedChannelsSection() {
+  return <RecommendedChannels list={list} />;
+}
