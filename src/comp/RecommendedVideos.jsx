@@ -12,7 +12,7 @@ function RecommendedChannels({ list }) {
           variant="user"
           size="lg"
           value={search}
-          placeholder="Search for a channel"
+          placeholder="Search for a video"
           onChange={e => setSearch(e.target.value)}
         />
       </div>
