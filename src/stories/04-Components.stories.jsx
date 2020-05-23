@@ -18,6 +18,8 @@ import WelcomePage from "../comp/WelcomePage";
 import AnonymousSidebar from "../comp/AnonymousSidebar";
 import Tag from "../comp/Tag";
 import VideoPlayer from "../comp/VideoPlayer";
+import RecommendedChannels from "../comp/RecommendedChannels";
+import RecommendedVideos from "../comp/RecommendedVideos";
 
 export default {
   title: "Components",
@@ -683,3 +685,239 @@ export const WelcomePageShow = () => {
 export const VideoPlayerShow = () => {
   return <VideoPlayer />;
 };
+
+const list = [
+  {
+    title: "Following Channels",
+    channels: [
+      {
+        id: 1,
+        name: "Thelmo Society",
+        icon: "https://i.imgur.com/xCGu56D.jpg",
+        avatars: [
+          "https://source.unsplash.com/128x128/?1,cat",
+          "https://source.unsplash.com/128x128/?2,cat",
+          "https://source.unsplash.com/128x128/?3,cat",
+          "https://source.unsplash.com/128x128/?4,cat"
+        ],
+        videoTitle: "Video Title",
+        videoSource: "youtube",
+        live: true,
+        videoThumbnail: "https://i.imgur.com/aqjzchq.jpg"
+      },
+      {
+        id: 2,
+        name: "Thelmo Society",
+        icon: "https://i.imgur.com/xCGu56D.jpg",
+        avatars: [
+          "https://source.unsplash.com/128x128/?1,cat",
+          "https://source.unsplash.com/128x128/?2,cat",
+          "https://source.unsplash.com/128x128/?3,cat",
+          "https://source.unsplash.com/128x128/?4,cat"
+        ],
+        live: true,
+        videoTitle: "Video Title",
+        videoSource: "youtube",
+        videoThumbnail: "https://i.imgur.com/aqjzchq.jpg"
+      },
+      {
+        id: 3,
+        name: "Thelmo Society",
+        icon: "https://i.imgur.com/xCGu56D.jpg",
+        avatars: [
+          "https://source.unsplash.com/128x128/?1,cat",
+          "https://source.unsplash.com/128x128/?2,cat",
+          "https://source.unsplash.com/128x128/?3,cat",
+          "https://source.unsplash.com/128x128/?4,cat"
+        ],
+        live: true,
+        videoTitle: "Video Title",
+        videoSource: "youtube",
+        videoThumbnail: "https://i.imgur.com/aqjzchq.jpg"
+      }
+    ]
+  },
+  {
+    title: "Recommended Channels",
+    channels: [
+      {
+        id: 1,
+        name: "Thelmo Society",
+        icon: "https://i.imgur.com/xCGu56D.jpg",
+        avatars: [
+          "https://source.unsplash.com/128x128/?1,cat",
+          "https://source.unsplash.com/128x128/?2,cat",
+          "https://source.unsplash.com/128x128/?3,cat",
+          "https://source.unsplash.com/128x128/?4,cat"
+        ],
+        videoTitle: "Video Title",
+        videoSource: "youtube",
+        live: true,
+        videoThumbnail: "https://i.imgur.com/aqjzchq.jpg"
+      },
+      {
+        id: 2,
+        name: "Thelmo Society",
+        icon: "https://i.imgur.com/xCGu56D.jpg",
+        avatars: [
+          "https://source.unsplash.com/128x128/?1,cat",
+          "https://source.unsplash.com/128x128/?2,cat",
+          "https://source.unsplash.com/128x128/?3,cat",
+          "https://source.unsplash.com/128x128/?4,cat"
+        ],
+        live: true,
+        videoTitle: "Video Title",
+        videoSource: "youtube",
+        videoThumbnail: "https://i.imgur.com/aqjzchq.jpg"
+      },
+      {
+        id: 3,
+        name: "Thelmo Society",
+        icon: "https://i.imgur.com/xCGu56D.jpg",
+        avatars: [
+          "https://source.unsplash.com/128x128/?1,cat",
+          "https://source.unsplash.com/128x128/?2,cat",
+          "https://source.unsplash.com/128x128/?3,cat",
+          "https://source.unsplash.com/128x128/?4,cat"
+        ],
+        live: true,
+        videoTitle: "Video Title",
+        videoSource: "youtube",
+        videoThumbnail: "https://i.imgur.com/aqjzchq.jpg"
+      }
+    ]
+  }
+];
+
+export function RecommendedChannelsSection() {
+  return <RecommendedChannels list={list} />;
+}
+
+const videoList = [
+  {
+    title: "Videos friends are watching",
+    channels: [
+      {
+        id: 123,
+        title: "Video Title",
+        channelName: "Channel Name",
+        views: "20K views",
+        timeFromUpload: "2 months ago",
+        videoSource: "youtube",
+        thumbnail: "https://i.imgur.com/aqjzchq.jpg"
+      },
+      {
+        id: 2,
+        title: "Video Title",
+        channelName: "Channel Name",
+        views: "20K views",
+        timeFromUpload: "2 months ago",
+        videoSource: "youtube",
+        thumbnail: "https://i.imgur.com/aqjzchq.jpg"
+      },
+      {
+        id: 3,
+        title: "Video Title",
+        channelName: "Channel Name",
+        views: "20K views",
+        timeFromUpload: "2 months ago",
+        videoSource: "youtube",
+        thumbnail: "https://i.imgur.com/aqjzchq.jpg"
+      },
+      {
+        id: 4,
+        title: "Video Title",
+        channelName: "Channel Name",
+        views: "20K views",
+        timeFromUpload: "2 months ago",
+        videoSource: "youtube",
+        thumbnail: "https://i.imgur.com/aqjzchq.jpg"
+      }
+    ]
+  },
+  {
+    title: "Recommended",
+    channels: [
+      {
+        id: 123,
+        title: "Video Title",
+        channelName: "Channel Name",
+        views: "20K views",
+        timeFromUpload: "2 months ago",
+        videoSource: "youtube",
+        thumbnail: "https://i.imgur.com/aqjzchq.jpg"
+      },
+      {
+        id: 2,
+        title: "Video Title",
+        channelName: "Channel Name",
+        views: "20K views",
+        timeFromUpload: "2 months ago",
+        videoSource: "youtube",
+        thumbnail: "https://i.imgur.com/aqjzchq.jpg"
+      },
+      {
+        id: 3,
+        title: "Video Title",
+        channelName: "Channel Name",
+        views: "20K views",
+        timeFromUpload: "2 months ago",
+        videoSource: "youtube",
+        thumbnail: "https://i.imgur.com/aqjzchq.jpg"
+      },
+      {
+        id: 4,
+        title: "Video Title",
+        channelName: "Channel Name",
+        views: "20K views",
+        timeFromUpload: "2 months ago",
+        videoSource: "youtube",
+        thumbnail: "https://i.imgur.com/aqjzchq.jpg"
+      }
+    ]
+  },
+  {
+    title: "Trending right now",
+    channels: [
+      {
+        id: 123,
+        title: "Video Title",
+        channelName: "Channel Name",
+        views: "20K views",
+        timeFromUpload: "2 months ago",
+        videoSource: "youtube",
+        thumbnail: "https://i.imgur.com/aqjzchq.jpg"
+      },
+      {
+        id: 2,
+        title: "Video Title",
+        channelName: "Channel Name",
+        views: "20K views",
+        timeFromUpload: "2 months ago",
+        videoSource: "youtube",
+        thumbnail: "https://i.imgur.com/aqjzchq.jpg"
+      },
+      {
+        id: 3,
+        title: "Video Title",
+        channelName: "Channel Name",
+        views: "20K views",
+        timeFromUpload: "2 months ago",
+        videoSource: "youtube",
+        thumbnail: "https://i.imgur.com/aqjzchq.jpg"
+      },
+      {
+        id: 4,
+        title: "Video Title",
+        channelName: "Channel Name",
+        views: "20K views",
+        timeFromUpload: "2 months ago",
+        videoSource: "youtube",
+        thumbnail: "https://i.imgur.com/aqjzchq.jpg"
+      }
+    ]
+  }
+];
+export function RecommendedVideoSection() {
+  return <RecommendedVideos list={videoList} />;
+}
