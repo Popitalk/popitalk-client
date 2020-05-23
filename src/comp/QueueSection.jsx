@@ -16,6 +16,7 @@ export default function QueueSection({ queueList, handlerChange }) {
       handlerChange={handlerChange}
       height={"100%"}
       className={"cursor-move"}>
+      <VideoPanelCard/>
     </SortableList>
   );
 }

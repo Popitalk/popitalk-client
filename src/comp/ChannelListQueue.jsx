@@ -66,6 +66,6 @@ export default function ChannelListQueue({}) {
   );
 
   return (
-    <SortableList items={items} itemRenderer={itemRenderer} handlerChange={handleChange}/>
+    <SortableList items={items} itemRenderer={itemRenderer} handlerChange={handleChange}><VideoMinimalQueueCard/></SortableList>
   );
 };

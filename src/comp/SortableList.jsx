@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { SortableContainer, SortableElement } from "react-sortable-hoc";
 import Text from "./Text";
+import VideoPanelCard from "./VideoPanelCard";
 
 // Handler Change Params ({oldIndex, newIndex)}
-export default function SortableList({ items, itemRenderer, handlerChange, axis = "y", height = '100%' }) {
+export default function SortableList({ items, itemRenderer, children, handlerChange, axis = "y", height = "100%" }) {
 
   if (!items || items.length === 0) {
     return (
@@ -15,8 +16,8 @@ export default function SortableList({ items, itemRenderer, handlerChange, axis 
 
   const ULStyle = {
     height,
-    spacing: 4,
-    width: "100%"
+    spacing: 4
+    // width: "100%"
   };
 
   const SortableItem = SortableElement(({ value }) => itemRenderer(value));
@@ -24,11 +25,11 @@ export default function SortableList({ items, itemRenderer, handlerChange, axis 
   const SortableList = SortableContainer(({ items }) => {
     return (
       <div
-        className={(axis === "y" ? "flex-col" : "flex-row") + " flex relative overflow-auto p-2 bg-secondaryBackground"}
-        style={ULStyle}>
+        className={(axis === "y" ? "flex-col" : "flex-row") + " flex flex-grow overflow-auto"}>
         {items.map((value, index) => (
           <SortableItem key={`item-${value}`} index={index} value={value}/>
         ))}
+        {children}
       </div>
     );
   });

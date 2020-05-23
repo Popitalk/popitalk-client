@@ -533,11 +533,70 @@ export const ChannelsPanel123 = () => {
       numOnline: 0
     }
   ];
+  const results = [
+    {
+      id: 1,
+      username: "Andrew",
+      firstName: "Andrew",
+      lastName: "Jang",
+      avatar: "https://i.imgur.com/xCGu56D.jpg",
+      variant: "friend"
+    },
+    {
+      id: 2,
+      username: "Andrew",
+      firstName: "Andrew",
+      lastName: "Jang",
+      avatar: "https://i.imgur.com/xCGu56D.jpg",
+      variant: "friend"
+    },
+    {
+      id: 3,
+      username: "Andrew",
+      firstName: "Andrew",
+      lastName: "Jang",
+      avatar: "https://images.unsplash.com/photo-1584404268984-89c43e841646?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1408&q=80",
+      variant: "self"
+    },
+    {
+      id: 4,
+      username: "Andrew",
+      firstName: "Andrew",
+      lastName: "Jang",
+      avatar: "https://images.unsplash.com/photo-1488654715439-fbf461f0eb8d?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
+      variant: "receivedRequest"
+    },
+    {
+      id: 5,
+      username: "Andrew",
+      firstName: "Andrew",
+      lastName: "Jang",
+      avatar: "https://images.unsplash.com/photo-1495615080073-6b89c9839ce0?ixlib=rb-1.2.1&auto=format&fit=crop&w=522&q=80",
+      variant: "sentRequest"
+    },
+    // {
+    //   id: 6,
+    //   username: "Andrew",
+    //   firstName: "Andrew",
+    //   lastName: "Jang",
+    //   avatar: "https://images.unsplash.com/photo-1495615080073-6b89c9839ce0?ixlib=rb-1.2.1&auto=format&fit=crop&w=522&q=80",
+    //   variant: "sentRequest"
+    // },
+    // {
+    //   id: 7,
+    //   username: "Andrew",
+    //   firstName: "Andrew",
+    //   lastName: "Jang",
+    //   avatar: "https://images.unsplash.com/photo-1495615080073-6b89c9839ce0?ixlib=rb-1.2.1&auto=format&fit=crop&w=522&q=80",
+    //   variant: "sentRequest"
+    // }
+  ];
 
   return (
-    <div className="p-5">
+    <div className="p-5 bg-secondaryBackground">
       <ChannelsPanel
         channels={channels}
+        friends={results}
         selected={selectedChannel}
         handleSelect={id => setSelectedChannel(id)}
       />
@@ -575,7 +634,7 @@ export const FriendsPanel123 = () => {
       firstName: "Andrew",
       lastName: "Jang",
       avatar: "https://i.imgur.com/xCGu56D.jpg",
-      variant: "friend"
+      variant: "stranger"
     },
     {
       id: 3,
@@ -583,23 +642,7 @@ export const FriendsPanel123 = () => {
       firstName: "Andrew",
       lastName: "Jang",
       avatar: "https://i.imgur.com/xCGu56D.jpg",
-      variant: "self"
-    },
-    {
-      id: 4,
-      username: "Andrew",
-      firstName: "Andrew",
-      lastName: "Jang",
-      avatar: "https://i.imgur.com/xCGu56D.jpg",
-      variant: "receivedRequest"
-    },
-    {
-      id: 5,
-      username: "Andrew",
-      firstName: "Andrew",
-      lastName: "Jang",
-      avatar: "https://i.imgur.com/xCGu56D.jpg",
-      variant: "sentRequest"
+      variant: "stranger"
     }
   ];
 
@@ -642,9 +685,36 @@ export const FriendsPanel123 = () => {
     }
   ];
 
+  const rooms = [
+    {
+      id: 1,
+      name: "Andrew",
+      self: true,
+      online: false,
+      watching: false,
+      notifications: null,
+      message: null,
+      images: ["https://source.unsplash.com/128x128/?1,cat"],
+      messageSent: "Today"
+    },
+    {
+      id: 2,
+      name: "Alex",
+      self: false,
+      online: false,
+      watching: false,
+      notifications: 23,
+      message: null,
+      images: ["https://source.unsplash.com/128x128/?2,cat"],
+      messageSent: "2m"
+    },
+  ];
+
   return (
-    <div className="p-5">
+    <div className="p-5 bg-secondaryBackground">
+
       <FriendsPanel
+        roomsResults={rooms}
         channels={channels}
         selected={selectedChannel}
         handleSelect={id => setSelectedChannel(id)}
