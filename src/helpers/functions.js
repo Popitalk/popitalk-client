@@ -9,6 +9,16 @@ export function getTextClass(size) {
   });
 }
 
+export function getInputClasses(shape, error) {
+  return classnames(
+    "outline-none border-thin focus:border-highlightText disabled:cursor-not-allowed disabled:bg-disabledBackground w-full",
+    {
+      "border-primaryBorder": !error,
+      "rounded-lg": shape === "regular"
+    }
+  );
+}
+
 export function getUserInformationSchema() {
   let thirteenYearsAgo = new Date();
   thirteenYearsAgo.setFullYear(thirteenYearsAgo.getFullYear() - 13);
@@ -31,18 +41,23 @@ export function getUserInformationSchema() {
   };
 }
 
-export function getSetPasswordSchema() {
+export function getSetPasswordSchema(checkOldPassword) {
+  let password = Yup.string()
+    .min(6, "Password should be at least 6 characters long.")
+    .matches(/[a-z]/, "Password should have at least one lowercase letter.")
+    .matches(/[A-Z]/, "Password should have at least one uppercase letter.")
+    .matches(/\d+/, "Password should have at least one number.")
+    .required("Password is required.");
+
+  if (checkOldPassword) {
+    password = password.notOneOf(
+      [Yup.ref("oldPassword"), null],
+      "Passwords must not match."
+    );
+  }
+
   return {
-    password: Yup.string()
-      .min(6, "Password should be at least 6 characters long.")
-      .matches(/[a-z]/, "Password should have at least one lowercase letter.")
-      .matches(/[A-Z]/, "Password should have at least one uppercase letter.")
-      .matches(/\d+/, "Password should have at least one number.")
-      .notOneOf([Yup.ref("oldPassword"), null], "Passwords must not match.")
-      .required("New Password is required."),
-    confirmPassword: Yup.string()
-      .oneOf([Yup.ref("password")], "Passwords must match.")
-      .required("Confirm Password is required.")
+    password: password
   };
 }
 

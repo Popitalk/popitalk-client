@@ -14,7 +14,8 @@ export default function RoomsList({
   rooms,
   getControls = getTimeFromMessage,
   selected,
-  handleSelect
+  handleSelect,
+  ...rest
 }) {
   const itemRenderer = room => {
     return (
@@ -28,6 +29,11 @@ export default function RoomsList({
   };
 
   return (
-    <InfoCardList items={rooms} itemRenderer={itemRenderer} itemSize={72} />
+    <InfoCardList
+      items={rooms}
+      itemRenderer={itemRenderer}
+      itemSize={72}
+      {...rest}
+    />
   );
 }

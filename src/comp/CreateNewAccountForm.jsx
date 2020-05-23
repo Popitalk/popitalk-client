@@ -5,17 +5,18 @@ import Input from "./Input";
 import Button from "./Button";
 import Text from "./Text";
 import EditInformationForm from "./EditInformationForm";
+import EditBirthdayForm from "./EditBirthdayForm";
 import {
   getUserInformationSchema,
   getSetPasswordSchema,
   getInitialDatePickerValues
 } from "../helpers/functions";
 
-export default function CreateNewAccountModal({ handleSubmit, loading }) {
+export default function CreateNewAccountForm({ handleSubmit, loading }) {
   const initialDoB = new Date();
 
   return (
-    <div className="p-4">
+    <>
       <Formik
         initialValues={{
           firstName: "",
@@ -23,13 +24,16 @@ export default function CreateNewAccountModal({ handleSubmit, loading }) {
           dateOfBirth: initialDoB,
           email: "",
           ...getInitialDatePickerValues(initialDoB),
-          password: "",
-          confirmPassword: ""
+          password: ""
         }}
         enableReinitialize={true}
         validationSchema={Yup.object({
           ...getUserInformationSchema(),
-          ...getSetPasswordSchema()
+          ...getSetPasswordSchema(),
+          username: Yup.string()
+            .min(8, "Username is too short.")
+            .max(32, "Username is too long.")
+            .required("Username is required.")
         })}
         onSubmit={values => {
           handleSubmit({
@@ -57,10 +61,21 @@ export default function CreateNewAccountModal({ handleSubmit, loading }) {
               <Text variant="title2" className="text-center">
                 Create a new account
               </Text>
-              <Text variant="text2" className="text-center pb-8">
+              <Text variant="text2" className="pb-8 text-center">
                 Get the full experience. It&apos;s FREE!
               </Text>
               <EditInformationForm loading={loading} />
+              <Input
+                header="Username"
+                name="username"
+                type="text"
+                disabled={loading}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                value={values.username}
+                error={touched.username && errors.username}
+                className="w-full"
+              />
               <Input
                 header="Password"
                 name="password"
@@ -72,18 +87,8 @@ export default function CreateNewAccountModal({ handleSubmit, loading }) {
                 error={touched.password && errors.password}
                 className="w-full"
               />
-              <Input
-                header="Confirm Password"
-                name="confirmPassword"
-                type="password"
-                disabled={loading}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                value={values.confirmPassword}
-                error={touched.confirmPassword && errors.confirmPassword}
-                className="w-full"
-              />
-              <Text variant="small2" className="text-center pt-8">
+              <EditBirthdayForm loading={loading} />
+              <Text variant="small2" className="pt-8 text-center">
                 By clicking Sign Up, you agree to the{" "}
                 <a href="https://google.com">Terms</a> and{" "}
                 <a href="https://google.com">Policy</a>.
@@ -97,6 +102,6 @@ export default function CreateNewAccountModal({ handleSubmit, loading }) {
           </form>
         )}
       </Formik>
-    </div>
+    </>
   );
 }

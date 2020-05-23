@@ -9,6 +9,8 @@ export default {
 
 export const GridDragAndDrop = () => {
   return (
-    <div><ChannelListQueue/></div>
+    <div>
+      <ChannelListQueue />
+    </div>
   );
 };

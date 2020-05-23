@@ -1,8 +1,8 @@
 import React from "react";
-import Text from "./Text";
-import RoomInfoCard from "./InfoCards/RoomInfoCard";
-import Button from "./Button";
-import { getTimeFromMessage } from "../comp/InfoCardLists/RoomsList";
+import Text from "../Text";
+import RoomInfoCard from "../InfoCards/RoomInfoCard";
+import Button from "../Button";
+import { getTimeFromMessage } from "../InfoCardLists/RoomsList";
 
 export default function RoomExistsModal({
   room,
@@ -10,7 +10,7 @@ export default function RoomExistsModal({
   createNewHandler
 }) {
   return (
-    <div className="flex flex-col items-center">
+    <div className="flex flex-col items-center p-4">
       <Text variant="text1">This room already exists</Text>
       <Text variant="small1">Click below to enter the existing room</Text>
       <div className="w-full py-4">

@@ -6,7 +6,7 @@ import ChatActions from "./ChatActions";
 
 function ChatPanel() {
   return (
-    <section className="relative p-2 bg-primaryBackground">
+    <section className="relative max-w-sm p-2 bg-primaryBackground">
       <ChatHeader />
       <ChatMessages />
       <ChatActions />

@@ -20,12 +20,18 @@ import {
   faBars,
   faSmile as fasSmile,
   faUsers,
-  faRedoAlt
+  faRedoAlt,
+  faImage,
+  faHeart,
+  faVolumeUp,
+  faCompress
 } from "@fortawesome/free-solid-svg-icons";
 import {
   faSmile as farSmile,
   faImages as farImages,
-  faBell as farBell
+  faBell as farBell,
+  faHeart as farHeart,
+  faComment as farComment
 } from "@fortawesome/free-regular-svg-icons";
 // import { fab } from "@fortawesome/free-brands-svg-icons";
 
@@ -52,6 +58,12 @@ library.add(
   fasSmile,
   farSmile,
   farImages,
+  faImage,
   faUsers,
-  faRedoAlt
+  faRedoAlt,
+  farHeart,
+  farComment,
+  faHeart,
+  faVolumeUp,
+  faCompress
 );

@@ -4,11 +4,12 @@ import * as Yup from "yup";
 import {
   getInitialDatePickerValues,
   getUserInformationSchema
-} from "../helpers/functions";
-import Button from "./Button";
-import Text from "./Text";
-import ImageUpload from "./ImageUpload";
-import EditInformationForm from "./EditInformationForm";
+} from "../../helpers/functions";
+import Button from "../Button";
+import Text from "../Text";
+import ImageUpload from "../ImageUpload";
+import EditInformationForm from "../EditInformationForm";
+import EditBirthdayForm from "../EditBirthdayForm";
 
 export default function EditInformationModal({
   username,
@@ -20,7 +21,7 @@ export default function EditInformationModal({
   const [uploadedImage, setUploadedImage] = useState(undefined);
 
   return (
-    <div className="p-4">
+    <div className="p-4 overflow-auto">
       <Formik
         initialValues={{
           ...initial,
@@ -66,6 +67,7 @@ export default function EditInformationModal({
                 {username}
               </Text>
               <EditInformationForm loading={loading} />
+              <EditBirthdayForm loading={loading} />
               {informationUpdated ? (
                 <Text variant="small2" className="text-linkText pb-2 pt-8">
                   You have successfully updated your information!

@@ -28,7 +28,6 @@ export default function SuggestionCard({
               />
               <p className="text-sm font-regular text-tertiaryText">{name}</p>
             </div>
-
             <VideoStatus status={videoStatus} />
           </div>
         </div>

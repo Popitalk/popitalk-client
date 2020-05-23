@@ -4,52 +4,11 @@ import FriendUsersList from "../comp/InfoCardLists/FriendUsersList";
 import ChannelsList from "../comp/InfoCardLists/ChannelsList";
 import RoomsList from "../comp/InfoCardLists/RoomsList";
 import ManageUsersList from "../comp/InfoCardLists/ManageUsersList";
-import MiniFriendsList from "../comp/MiniFriendsList";
 
 export default {
   title: "Lists",
   decorators: [withKnobs]
 };
-
-export const MiniFriendsListTest= () => {
-  const results = [
-    {
-      id: 2,
-      username: "Andrew",
-      firstName: "Andrew",
-      lastName: "Jang",
-      avatar: "https://i.imgur.com/xCGu56D.jpg",
-      variant: "friend"
-    },
-    {
-      id: 3,
-      username: "Andrew",
-      firstName: "Andrew",
-      lastName: "Jang",
-      avatar: "https://images.unsplash.com/photo-1584404268984-89c43e841646?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1408&q=80",
-      variant: "self"
-    },
-    {
-      id: 4,
-      username: "Andrew",
-      firstName: "Andrew",
-      lastName: "Jang",
-      avatar: "https://images.unsplash.com/photo-1488654715439-fbf461f0eb8d?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
-      variant: "receivedRequest"
-    },
-    {
-      id: 5,
-      username: "Andrew",
-      firstName: "Andrew",
-      lastName: "Jang",
-      avatar: "https://images.unsplash.com/photo-1495615080073-6b89c9839ce0?ixlib=rb-1.2.1&auto=format&fit=crop&w=522&q=80",
-      variant: "sentRequest"
-    }
-  ];
-  return (
-    <MiniFriendsList friends={results}/>
-  );
-}
 
 export const UserSearchResultsTest = () => {
   const handleProfile = () => {

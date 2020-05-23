@@ -5,8 +5,8 @@ import Button from "./Button";
 
 export default function SiteHeaderMain() {
   return (
-    <header className="flex justify-between px-16 py-4 bg-primaryBackground">
-      <div className="flex items-center">
+    <header className="flex flex-col justify-between px-16 py-4 border-b md:flex-row bg-primaryBackground border-primaryBorder">
+      <div className="flex items-center justify-center">
         <img src={Logo} alt="PlayNow's logo" className="w-12 h-12" />
         <span className="ml-2 text-3xl font-bold text-primaryText">
           Popitalk
@@ -14,7 +14,7 @@ export default function SiteHeaderMain() {
       </div>
       <nav>
         <form>
-          <ul className="flex space-x-2">
+          <ul className="flex flex-col md:space-x-2 md:flex-row">
             <li className="flex flex-col">
               <label className="mb-1 text-sm font-bold" htmlFor="user">
                 Username or email

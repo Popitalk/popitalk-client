@@ -1,16 +1,9 @@
 import React from "react";
-import classnames from "classnames";
 import PopupMenu from "../PopupMenu";
 import ImageInfoCard from "../InfoCards/ImageInfoCard";
 import InfoCardList from "./InfoCardList";
 
-export default function ManageUsersList({
-  variant = "manage",
-  users,
-  handleProfile,
-  options,
-  className
-}) {
+export default function ManageUsersList({ users, handleProfile, options }) {
   const itemRenderer = a => {
     const control = a.owner ? (
       <p className="text-secondaryText ml-auto">Owner</p>

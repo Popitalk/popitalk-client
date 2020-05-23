@@ -1,10 +1,10 @@
 import React from "react";
 import { Formik } from "formik";
 import * as Yup from "yup";
-import Input from "./Input";
-import Button from "./Button";
-import Text from "./Text";
-import { getSetPasswordSchema } from "../helpers/functions";
+import Input from "../Input";
+import Button from "../Button";
+import Text from "../Text";
+import { getSetPasswordSchema } from "../../helpers/functions";
 
 export default function ChangePasswordModal({
   loading,
@@ -20,7 +20,10 @@ export default function ChangePasswordModal({
       }}
       validationSchema={Yup.object({
         oldPassword: Yup.string().required("Old Password is required."),
-        ...getSetPasswordSchema()
+        ...getSetPasswordSchema(true),
+        confirmPassword: Yup.string()
+          .oneOf([Yup.ref("password")], "Passwords must match.")
+          .required("Confirm Password is required.")
       })}
       onSubmit={(values, { resetForm }) => {
         handleSubmit({
@@ -41,7 +44,7 @@ export default function ChangePasswordModal({
         isValid,
         dirty
       }) => (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className="p-4">
           <Input
             header="Old Password"
             name="oldPassword"
