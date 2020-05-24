@@ -315,9 +315,13 @@ export const ChannelVideoShow = () => {
 
 export const VideoSearchBarShow = () => {
   const [searchTerm, setSearchTerm] = useState("");
+
+  const handleClick = (value) => {
+    setSearchTerm(value);
+  }
   return (
     <div>
-      <VideoSearchBar setSearchTerm={setSearchTerm}/>
+      <VideoSearchBar onClick={handleClick}/>
     </div>
   );
 };
@@ -339,11 +343,18 @@ export const VideoResultShow = () => {
 };
 
 export const VideoSearchShow = () => {
-  const results = testResult;
+  const trendingResults = testResult;
+  const searchResults = testResult.slice(0,3);
+
   return (
     <div>
-      {/* <h1 className="text-2xl font-bold mt-2">Within threshold</h1> */}
-      <VideoSearch results={results} threshold={3}/>
+      <h2 className="text-2xl font-bold mt-2">With Search Result Divisible by threshold 3</h2>
+      <VideoSearch trendingResults={trendingResults} searchResults={searchResults} threshold={3}/>
+      <h2 className="text-2xl font-bold mt-2">With Search Result NOT Divisible by threshold 3</h2>
+      <VideoSearch trendingResults={trendingResults} searchResults={testResult.slice(0,5)} threshold={3}/>
+
+      <h2 className="text-2xl font-bold mt-2">No Search Result</h2>
+      <VideoSearch trendingResults={trendingResults} searchResults={[]} threshold={3}/>
 
     </div>
   );

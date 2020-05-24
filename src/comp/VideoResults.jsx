@@ -5,15 +5,14 @@ import VideoPanelCard from "./VideoPanelCard";
 
 export default function VideoResults({ results, threshold = 24 }) {
   const [currThreshold, setCurrThreshold] = useState(threshold);
-  const [showMore, setShowMore] = useState(true);
 
   const handleClick = () => {
-    setCurrThreshold(prev => prev + threshold);
+    setCurrThreshold(prev => {
+      console.log ("prev thres", prev, results.length);
+      console.log("prev up thres", prev+threshold, results.length);
+      return prev + threshold
+    });
   };
-
-  useEffect(() => {
-    if (currThreshold >= results.length) setShowMore(!showMore);
-  }, [currThreshold]);
 
   return (
     <div className="flex flex-col justify-center bg-secondaryBackground p-2">
@@ -25,7 +24,7 @@ export default function VideoResults({ results, threshold = 24 }) {
         })}
       </div>
 
-      {showMore && results.length > 1 && (
+      {currThreshold < results.length && (
         <button
           className="text-secondaryText text-sm focus:outline-none"
           onClick={handleClick}

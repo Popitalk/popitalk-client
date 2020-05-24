@@ -4,22 +4,32 @@ import Input from "./Input";
 import VideoSearchBar from "./VideoSearchBar";
 import VideoResults from "./VideoResults";
 
-export default function VideoSearch({ className, results, threshold }) {
+export default function VideoSearch({
+  className,
+  trendingResults,
+  searchResults,
+  threshold
+}) {
   const [searchTerm, setSearchTerm] = useState("");
 
-  const handleClick = (value) => {
+  const handleClick = value => {
     setSearchTerm(value);
-  }
+  };
   return (
     <div className="flex flex-col bg-secondaryBackground px-2">
-      <VideoSearchBar onClick={handleClick}/>
-      <p>{searchTerm}</p>
+      <VideoSearchBar onClick={handleClick} />
       <div className="pt-4 px-3">
         <span className="text-base rainbow-text font-bold">
-          Trending videos right now
+          {searchTerm
+            ? `Results for ${searchTerm}`
+            : "Trending videos right now"}
         </span>
       </div>
-      <VideoResults results={results} threshold={threshold} />
+      {searchTerm.length>0 ? (
+        <VideoResults results={searchResults} threshold={threshold} />
+      ) : (
+        <VideoResults results={trendingResults} threshold={threshold} />
+      )}
     </div>
   );
 }
