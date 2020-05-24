@@ -289,7 +289,8 @@ export const ChannelVideoShow = () => {
   const description =
     "Channel Description Channel Description Channel Description Channel Description Channel Description Channel Description Channel Description ";
 
-  const activeVideo = testQueue.shift();
+  const copyTestQueue = [...testQueue];
+  const activeVideo = copyTestQueue.shift();
   activeVideo.status = "playing";
   activeVideo.activeFriendViewers = testUserMinimal;
 
@@ -300,7 +301,7 @@ export const ChannelVideoShow = () => {
       icon="https://i.imgur.com/xCGu56D.jpg"
       activeFriendViewers={testUserMinimal}
       activeVideo={activeVideo}
-      queue={testQueue}
+      queue={copyTestQueue}
       adminList={testUserMinimal}
       description={description}
       comments={testComments}
@@ -353,5 +354,35 @@ export const VideoSearchShow = () => {
       <VideoSearch trendingResults={trendingResults} searchResults={[]} threshold={3}/>
 
     </div>
+  );
+};
+
+export const RoomVideoShow = () => {
+  const description =
+    "Channel Description Channel Description Channel Description Channel Description Channel Description Channel Description Channel Description ";
+
+  const copyTestQueue = [...testQueue];
+  const activeVideo = copyTestQueue.shift();
+  activeVideo.status = "playing";
+  activeVideo.activeFriendViewers = testUserMinimal;
+  const trendingResults = testResult;
+  const searchResults = testResult.slice(0,3);
+
+  return (
+    <ChannelVideo
+      id={123}
+      name="Channel #1"
+      icon="https://i.imgur.com/xCGu56D.jpg"
+      activeFriendViewers={testUserMinimal}
+      activeVideo={activeVideo}
+      queue={copyTestQueue}
+      adminList={testUserMinimal}
+      description={description}
+      comments={testComments}
+      posts={testPosts}
+      type="room"
+      trendingResults={trendingResults}
+      searchResults={searchResults}
+    />
   );
 };
