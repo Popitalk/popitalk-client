@@ -13,7 +13,7 @@ export default function VideoResults({ results, threshold = 24 }) {
 
   useEffect(() => {
     if (currThreshold >= results.length) setShowMore(!showMore);
-  }, [currThreshold, results.length, showMore]);
+  }, [currThreshold]);
 
   return (
     <div className="flex flex-col justify-center bg-secondaryBackground p-2">
