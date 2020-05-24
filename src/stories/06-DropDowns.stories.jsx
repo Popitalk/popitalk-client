@@ -32,7 +32,6 @@ export const FriendRequestsFriends = () => {
     console.log(`REJECT ${id}`);
   };
 
-
   return (
     <FriendRequests
       friendRequests={testUsers}
@@ -44,30 +43,26 @@ export const FriendRequestsFriends = () => {
 };
 
 export const FriendRequestsNoFriends = () => {
-  return <FriendRequests/>;
+  return <FriendRequests />;
 };
 
 export const ManyNotificationsTest = () => {
-
+  let generatedNotifications = [];
   for (let i = 0; i < 200; i++) {
-    testNotifications.push({
-      id: i + 7,
-      username: "Andrew",
-      avatar: "https://i.imgur.com/xCGu56D.jpg",
-      message: "Andrew liked your comment"
-    });
+    generatedNotifications.push(
+      testNotifications[Math.floor(Math.random() * testNotifications.length)]
+    );
   }
 
   return (
     <Notifications
-      notifications={testNotifications}
+      notifications={generatedNotifications}
       handleProfile={handleProfile}
     />
   );
 };
 
 export const SomeNotificationsTest = () => {
-
   return (
     <Notifications
       notifications={testNotifications}
@@ -77,7 +72,7 @@ export const SomeNotificationsTest = () => {
 };
 
 export const NoNotificationsTest = () => {
-  return <Notifications/>;
+  return <Notifications />;
 };
 
 export const MainSettingsDropDownTest = () => {
@@ -97,7 +92,7 @@ export const MainSettingsDropDownTest = () => {
     }
   ];
 
-  return <DropDownMenu title="Settings" buttons={buttons}/>;
+  return <DropDownMenu title="Settings" buttons={buttons} />;
 };
 
 export const AccountSettingsDropDownTest = () => {
@@ -127,5 +122,5 @@ export const AccountSettingsDropDownTest = () => {
 };
 
 export const DeleteAccountDropDownTest = () => {
-  return <DeleteAccountDropDown handleBack={backHandler}/>;
+  return <DeleteAccountDropDown handleBack={backHandler} />;
 };
