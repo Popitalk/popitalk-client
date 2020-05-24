@@ -22,11 +22,11 @@ export default function ChannelVideo({
   name,
   icon,
   activeVideo,
-  playlist,
+  queue,
   adminList,
   description
 }) {
-  const [queueList, setQueueList] = useState(playlist);
+  const [queueList, setQueueList] = useState(queue);
   const handlerChange = ({ oldIndex, newIndex }) => {
     setQueueList(arrayMove(queueList, oldIndex, newIndex));
   };

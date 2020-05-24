@@ -292,11 +292,7 @@ export const ChannelVideoShow = () => {
   const activeVideo = testQueue.shift();
   activeVideo.status = "playing";
   activeVideo.activeFriendViewers = testUserMinimal;
-  // return (
-  //   <VideoSection
-  //     {...activeVideo}
-  //   />
-  // );
+
   return (
     <ChannelVideo
       id={123}
@@ -304,7 +300,7 @@ export const ChannelVideoShow = () => {
       icon="https://i.imgur.com/xCGu56D.jpg"
       activeFriendViewers={testUserMinimal}
       activeVideo={activeVideo}
-      playlist={testQueue}
+      queue={testQueue}
       adminList={testUserMinimal}
       description={description}
       comments={testComments}
