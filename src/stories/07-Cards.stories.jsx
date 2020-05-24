@@ -29,6 +29,7 @@ import {
   testVideos,
   testResult
 } from "./seed-arrays";
+import ChannelQueue from "../comp/ChannelQueue";
 
 export default {
   title: "Cards",
@@ -313,12 +314,12 @@ export const ChannelVideoShow = () => {
 export const VideoSearchBarShow = () => {
   const [searchTerm, setSearchTerm] = useState("");
 
-  const handleClick = (value) => {
+  const handleClick = value => {
     setSearchTerm(value);
-  }
+  };
   return (
     <div>
-      <VideoSearchBar onClick={handleClick}/>
+      <VideoSearchBar onClick={handleClick} />
     </div>
   );
 };
@@ -341,32 +342,45 @@ export const VideoResultShow = () => {
 
 export const VideoSearchShow = () => {
   const trendingResults = testResult;
-  const searchResults = testResult.slice(0,3);
+  const searchResults = testResult.slice(0, 3);
 
   return (
     <div>
-      <h2 className="text-2xl font-bold mt-2">With Search Result Divisible by threshold 3</h2>
-      <VideoSearch trendingResults={trendingResults} searchResults={searchResults} threshold={3}/>
-      <h2 className="text-2xl font-bold mt-2">With Search Result NOT Divisible by threshold 3</h2>
-      <VideoSearch trendingResults={trendingResults} searchResults={testResult.slice(0,5)} threshold={3}/>
+      <h2 className="text-2xl font-bold mt-2">
+        With Search Result Divisible by threshold 3
+      </h2>
+      <VideoSearch
+        trendingResults={trendingResults}
+        searchResults={searchResults}
+        threshold={3}
+      />
+      <h2 className="text-2xl font-bold mt-2">
+        With Search Result NOT Divisible by threshold 3
+      </h2>
+      <VideoSearch
+        trendingResults={trendingResults}
+        searchResults={testResult.slice(0, 5)}
+        threshold={3}
+      />
 
       <h2 className="text-2xl font-bold mt-2">No Search Result</h2>
-      <VideoSearch trendingResults={trendingResults} searchResults={[]} threshold={3}/>
-
+      <VideoSearch
+        trendingResults={trendingResults}
+        searchResults={[]}
+        threshold={3}
+      />
     </div>
   );
 };
 
 export const RoomVideoShow = () => {
-  const description =
-    "Channel Description Channel Description Channel Description Channel Description Channel Description Channel Description Channel Description ";
-
   const copyTestQueue = [...testQueue];
   const activeVideo = copyTestQueue.shift();
   activeVideo.status = "playing";
   activeVideo.activeFriendViewers = testUserMinimal;
+
   const trendingResults = testResult;
-  const searchResults = testResult.slice(0,3);
+  const searchResults = testResult.slice(0, 3);
 
   return (
     <ChannelVideo
@@ -376,13 +390,31 @@ export const RoomVideoShow = () => {
       activeFriendViewers={testUserMinimal}
       activeVideo={activeVideo}
       queue={copyTestQueue}
-      adminList={testUserMinimal}
-      description={description}
-      comments={testComments}
-      posts={testPosts}
       type="room"
       trendingResults={trendingResults}
       searchResults={searchResults}
+    />
+  );
+};
+
+export const ChannelQueueShow = () => {
+  const copyTestQueue = [...testQueue];
+  const activeVideo = copyTestQueue.shift();
+  activeVideo.status = "playing";
+  activeVideo.activeFriendViewers = testUserMinimal;
+
+  const trendingResults = testResult;
+  const searchResults = testResult.slice(0, 3);
+
+  return (
+    <ChannelQueue
+      id={123}
+      name="Channel #1"
+      icon="https://i.imgur.com/xCGu56D.jpg"
+      trendingResults={trendingResults}
+      searchResults={searchResults}
+      activeVideo={activeVideo}
+      queue={copyTestQueue}
     />
   );
 };
