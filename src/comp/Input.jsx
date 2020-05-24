@@ -47,6 +47,7 @@ export default function Input({
   interiorButton,
   forwardedRef,
   className,
+  onClick = () => console.log("clicked"),
   ...rest
 }) {
   const El = variant === "textarea" ? "textarea" : "input";
@@ -116,6 +117,7 @@ export default function Input({
               size="sm"
               background="secondary"
               className="absolute right-0 mr-4"
+              onClick={onClick}
             />
           </>
         )}
