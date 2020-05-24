@@ -68,9 +68,15 @@ export default function ChannelVideo({
           <ChannelChat comments={comments} posts={posts} />
         </div>
       )}
-      { type === "room" && (
-              <VideoSearch trendingResults={trendingResults} searchResults={searchResults} threshold={3}/>
-
+      {type === "room" && (
+        <div>
+          <h2 className="text-2xl mt-20 px-3">Find More Videos</h2>
+          <VideoSearch
+            trendingResults={trendingResults}
+            searchResults={searchResults}
+            threshold={3}
+          />
+        </div>
       )}
     </div>
   );

@@ -371,7 +371,7 @@ export const RoomVideoShow = () => {
   return (
     <ChannelVideo
       id={123}
-      name="Channel #1"
+      name="RoomOwner"
       icon="https://i.imgur.com/xCGu56D.jpg"
       activeFriendViewers={testUserMinimal}
       activeVideo={activeVideo}
