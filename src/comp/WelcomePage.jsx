@@ -9,9 +9,11 @@ function WelcomePage() {
     <>
       <SiteHeaderWelcome />
       <div className="relative">
-        <section className="relative z-10 flex items-center justify-center py-16 mt-4 space-x-16 shadow-2xl rounded-b-xl bg-primaryBackground">
-          <img src={Welcome} alt="Welcome" />
-          <div className="px-4 py-8 border rounded-lg shadow-lg border-primaryBorder">
+        <section className="z-10 relative shadow-2xl rounded-b-xl bg-primaryBackground flex items-center py-10 flex-col sm:flex-row sm:justify-around">
+          <div className="flex-shrink flex justify-center w-2/3 sm:w-1/3">
+            <img src={Welcome} alt="Welcome" />
+          </div>
+          <div className="px-4 py-8 sm:border sm:rounded-lg sm:border-primaryBorder sm:shadow-lg">
             <CreateNewAccountForm />
           </div>
         </section>
