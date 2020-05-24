@@ -17,8 +17,17 @@ import arrayMove from "array-move";
 import NewChannelComment from "../comp/NewChannelComment";
 import ChannelChat from "../comp/ChannelChat";
 import ChannelVideo from "../comp/ChannelVideo";
-import VideoSearch from "../comp/VideoSearch";
-import { testComments, testPosts, testQueue, testUserMinimal, testVideos } from "./seed-arrays";
+import VideoSearch from "../comp/VideoSearchBar";
+import {
+  testComments,
+  testPosts,
+  testQueue,
+  testUserMinimal,
+  testVideos,
+  testResult
+} from "./seed-arrays";
+import VideoResults from "../comp/VideoResults";
+import VideoSearchBar from "../comp/VideoSearchBar";
 
 export default {
   title: "Cards",
@@ -179,7 +188,6 @@ export const VideoSectionShow = () => {
 };
 
 export const ChannelDescriptionShow = () => {
-
   const description =
     "Channel Description Channel Description Channel Description Channel Description Channel Description Channel Description Channel Description ";
   return (
@@ -264,7 +272,6 @@ export const NewChannelCommentShow = () => {
 };
 
 export const ChannelChatShow = () => {
-
   return (
     <div className=" bg-secondaryBackground p-2">
       <h1 className="text-2xl font-bold mt-2">One post</h1>
@@ -278,7 +285,6 @@ export const ChannelChatShow = () => {
 };
 
 export const ChannelVideoShow = () => {
-
   const description =
     "Channel Description Channel Description Channel Description Channel Description Channel Description Channel Description Channel Description ";
 
@@ -306,10 +312,26 @@ export const ChannelVideoShow = () => {
   );
 };
 
-export const VideoSearchShow = () => {
+export const VideoSearchBarShow = () => {
   return (
     <div>
-      <VideoSearch />
+      <VideoSearchBar />
+    </div>
+  );
+};
+
+export const VideoResultShow = () => {
+  const results = testResult;
+  return (
+    <div>
+      <h1 className="text-2xl font-bold mt-2">Within threshold</h1>
+      <VideoResults results={results.slice(0, 3)} threshold={3} />
+
+      <h1 className="text-2xl font-bold mt-2">Pass threshold</h1>
+      <VideoResults results={results} threshold={3} />
+
+      <h1 className="text-2xl font-bold mt-2">Empty Result</h1>
+      <VideoResults results={[]} />
     </div>
   );
 };

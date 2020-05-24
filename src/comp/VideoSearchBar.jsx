@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import sources from "./videoSourceImages";
 import Input from "./Input";
 
-export default function VideoSearch({ className }) {
+export default function VideoSearchBar({ className }) {
   const [source, setSource] = useState("Youtube");
   const [value, setValue] = useState("");
 
@@ -23,7 +23,7 @@ export default function VideoSearch({ className }) {
           return (
             <button
               key={idx}
-              className={`flex justify-center mx-1 ${
+              className={`flex justify-center items-center mx-1 ${
                 source === img.source
                   ? "bg-quaternaryBackground"
                   : "bg-primaryBackground"
