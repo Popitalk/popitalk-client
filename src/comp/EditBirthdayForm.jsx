@@ -21,7 +21,7 @@ function EditBirthdayForm({ loading, formik }) {
           size="md"
         />
       </div>
-      <div className="flex flex-row items-end w-full space-x-8">
+      <div className="flex flex-row items-center w-full sm:space-x-8 md:space-x-4 lg:space-x-8">
         <div className="flex-1">
           <Select
             name="day"
@@ -39,10 +39,10 @@ function EditBirthdayForm({ loading, formik }) {
               formik.setFieldValue("dateOfBirth", formik.values.dateOfBirth);
               formik.setFieldTouched("day", true, false);
             }}
-            className=""
+            className="w-25 p-0"
           />
         </div>
-        <div className="flex-1 mx-4">
+        <div className="flex-1 m-0">
           <Select
             name="month"
             placeholder="Month"
@@ -59,10 +59,10 @@ function EditBirthdayForm({ loading, formik }) {
               formik.setFieldValue("dateOfBirth", formik.values.dateOfBirth);
               formik.setFieldTouched("month", true, false);
             }}
-            className=""
+            className="w-25 p-0"
           />
         </div>
-        <div className="flex-1">
+        <div className="flex-1 m-0">
           <Select
             name="year"
             placeholder="Year"
@@ -79,7 +79,7 @@ function EditBirthdayForm({ loading, formik }) {
               formik.setFieldValue("dateOfBirth", formik.values.dateOfBirth);
               formik.setFieldTouched("year", true, false);
             }}
-            className=""
+            className="w-25 p-0"
           />
         </div>
       </div>

@@ -6,7 +6,8 @@ export default function FriendUsersList({
   users,
   handleAccept,
   handleReject,
-  handleProfile
+  handleProfile,
+  ...rest
 }) {
   const itemRenderer = u => {
     return (
@@ -19,5 +20,5 @@ export default function FriendUsersList({
     );
   };
 
-  return <InfoCardList items={users} itemRenderer={itemRenderer} />;
+  return <InfoCardList items={users} itemRenderer={itemRenderer} {...rest} />;
 }

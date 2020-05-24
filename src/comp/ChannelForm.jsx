@@ -21,7 +21,10 @@ const CategoryInput = connect(
         type="text"
         disabled={loading}
         onChange={formik.handleChange}
-        onBlur={formik.handleBlur}
+        onBlur={e => {
+          handleEnter(formik);
+          formik.handleBlur(e);
+        }}
         value={formik.values.tags}
         error={formik.touched.tags && formik.errors.category}
       />
@@ -124,8 +127,11 @@ export default function ChannelForm({ initial, handleSubmit, loading }) {
         setFieldValue,
         resetForm
       }) => (
-        <form className="flex flex-col max-w-3xl" onSubmit={handleSubmit}>
-          <div className="flex flex-col xl:flex-row justify-center mb-12 w-full">
+        <form
+          className="flex flex-col md:w-3/4 lg:w-1/2"
+          onSubmit={handleSubmit}
+        >
+          <div className="flex flex-col justify-center mb-12 w-full">
             <ImageUpload
               name="icon"
               icon={values.icon}
@@ -140,7 +146,7 @@ export default function ChannelForm({ initial, handleSubmit, loading }) {
                 setUploadedImage(null);
               }}
               disabled={loading}
-              className="mb-8 xl:mr-32"
+              className="mb-8"
               selectMessage="Select Channel Icon"
               changeMessage="Change Channel Icon"
             />

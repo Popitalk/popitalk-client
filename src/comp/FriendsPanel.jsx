@@ -1,13 +1,16 @@
 import React, { useState } from "react";
 import Button from "./Button";
 import FriendUsersList from "./InfoCardLists/FriendUsersList";
+import StretchList from "./InfoCardLists/StretchList";
 import Input from "./Input";
 import RoomsList from "./InfoCardLists/RoomsList";
 
-export default function FriendsPanel({ userSearchResults, roomsResults, ...rest }) {
+export default function FriendsPanel({
+  userSearchResults,
+  roomsResults,
+  ...rest
+}) {
   const [search, setSearch] = useState("");
-
-  const [activeIndex, setActiveIndex] = useState(0);
 
   return (
     <div className="bg-primaryBackground max-w-sm py-4 pr-4 pl-4">
@@ -22,7 +25,7 @@ export default function FriendsPanel({ userSearchResults, roomsResults, ...rest 
         placeholder="Search friends"
         onChange={e => setSearch(e.target.value)}
       />
-      <div className="shadow-md py-2  px-4 border-top-none rounded-md">
+      <div className="shadow-md py-2 px-4 border-top-none rounded-md">
         <div className="space-x-1 flex  justify-between pl-1 pt-1">
           <div>
             <span className="font-light text-xs">Searching:</span>
@@ -34,39 +37,26 @@ export default function FriendsPanel({ userSearchResults, roomsResults, ...rest 
               className="text-xs no-underline font-medium cursor-pointer text-highlightText"
               onClick={() => setSearch("")}
             >
-            Clear
-          </span>
+              Clear
+            </span>
           </div>
-
         </div>
-        <FriendUsersList
-          users={userSearchResults.slice(activeIndex * 3, activeIndex * 3 + 3)}
-          {...rest}
-        />
-
-        <div className="flex justify-end px-4 space-x-5 text-xs font-bold">
-          {[0, 1, 2].map(idx => (
-            <span
-              key={idx}
-              role="button"
-              onClick={() => setActiveIndex(idx)}
-              className={`${
-                activeIndex === idx ? "text-black" : "text-highlightText"
-              } no-underline`}
-            >
-            {idx}
-          </span>
-          ))}
+        <div className="flex w-full h-64">
+          <StretchList
+            list={FriendUsersList}
+            users={userSearchResults}
+            {...rest}
+          />
         </div>
       </div>
 
       <div className="my-4">
-        <RoomsList rooms={roomsResults}/>
+        <RoomsList rooms={roomsResults} />
       </div>
       <Button size="md" leftIcon="plus" className="float-right">
         New Room
       </Button>
-      <div className="clearfix"/>
+      <div className="clearfix" />
     </div>
   );
 }

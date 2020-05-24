@@ -16,7 +16,7 @@ export default function RoomInfoCard({
       online={room.online}
       watching={room.watching}
       notifications={room.notifications}
-      size="xl"
+      size="lg"
     />
   );
 
