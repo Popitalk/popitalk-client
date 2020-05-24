@@ -2,13 +2,13 @@ import React, { useState } from "react";
 import sources from "./videoSourceImages";
 import Input from "./Input";
 
-export default function VideoSearchBar({ className }) {
+export default function VideoSearchBar({ className, onClick }) {
   const [source, setSource] = useState("Youtube");
   const [value, setValue] = useState("");
 
   return (
     <div className="bg-secondaryBackground p-2">
-      <div className={className ? className : "pb-2"}>
+      <form className={className ? className : "pb-2"} onSubmit={(e) => e.preventDefault()}>
         <Input
           variant="video"
           size="lg"
@@ -16,8 +16,9 @@ export default function VideoSearchBar({ className }) {
           value={value}
           onChange={e => setValue(e.target.value)}
           videoSource={source}
+          onClick={() => onClick(value)}
         />
-      </div>
+      </form>
       <div className="flex">
         {sources.map((img, idx) => {
           return (

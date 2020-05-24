@@ -314,9 +314,10 @@ export const ChannelVideoShow = () => {
 };
 
 export const VideoSearchBarShow = () => {
+  const [searchTerm, setSearchTerm] = useState("");
   return (
     <div>
-      <VideoSearchBar />
+      <VideoSearchBar setSearchTerm={setSearchTerm}/>
     </div>
   );
 };
