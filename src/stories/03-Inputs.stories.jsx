@@ -97,6 +97,13 @@ export const Inputs123 = () => {
         placeholder="Search friends"
         onChange={e => setInput(e.target.value)}
       />
+      <Input
+        variant="channel"
+        size="lg"
+        value={input}
+        placeholder="Search for channels"
+        onChange={e => setInput(e.target.value)}
+      />
     </div>
   );
 };
