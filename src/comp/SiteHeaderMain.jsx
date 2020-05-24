@@ -8,7 +8,7 @@ export default function SiteHeaderMain({ hasNotification }) {
   const [mobileMenu, setMobileMenu] = useState(false);
 
   return (
-    <header className="relative flex flex-col px-4 py-2">
+    <header className="relative flex flex-col px-4 bg-primaryBackground">
       {!mobileMenu && (
         <div className="flex items-center justify-between">
           <img src={Logo} alt="PlayNow's logo" className="w-12 h-12" />
@@ -79,8 +79,8 @@ export default function SiteHeaderMain({ hasNotification }) {
         leaveTo="opacity-0 scale-95"
       >
         <>
-          <div className="absolute inset-x-0 top-0 z-10 p-2 transition origin-top-right transform md:hidden">
-            <div className="p-4 space-y-6 bg-white border rounded-lg shadow-md border-primaryBorder">
+          <div className="absolute inset-x-0 top-0 z-30 p-2 transition origin-top-right transform md:hidden">
+            <div className="p-4 space-y-6 bg-white border rounded-lg shadow-md border-primaryBorder bg-primaryBackground">
               <div className="flex items-center justify-between">
                 <img src={Logo} alt="PlayNow's logo" className="w-12 h-12" />
                 <FontAwesomeIcon
