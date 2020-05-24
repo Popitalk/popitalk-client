@@ -71,16 +71,16 @@ export default function SiteHeaderMain({ hasNotification }) {
       )}
       <Transition
         show={mobileMenu}
-        enter="duration-200 ease-out"
+        enter="duration-300 ease-out"
         enterFrom="opacity-0 scale-95"
         enterTo="opacity-100 scale-100"
-        leave="duration-100 ease-in"
+        leave="duration-150 ease-in"
         leaveFrom="opacity-100 scale-100"
         leaveTo="opacity-0 scale-95"
       >
         <>
-          <div className="absolute inset-x-0 top-0 z-30 p-2 transition origin-top-right transform md:hidden">
-            <div className="p-4 space-y-6 bg-white border rounded-lg shadow-md border-primaryBorder bg-primaryBackground">
+          <div className="p-2 md:hidden">
+            <div className="p-4 space-y-6 border rounded-lg shadow-md border-primaryBorder bg-primaryBackground">
               <div className="flex items-center justify-between">
                 <img src={Logo} alt="PlayNow's logo" className="w-12 h-12" />
                 <FontAwesomeIcon

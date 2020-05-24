@@ -14,6 +14,7 @@ import arrayMove from "array-move";
 import ChannelDescription from "./ChannelDescription";
 import NewChannelPost from "./NewChannelPost";
 import ChannelChat from "./ChannelChat";
+import VideoSearch from "./VideoSearch";
 
 export default function ChannelVideo({
   id,
@@ -22,11 +23,14 @@ export default function ChannelVideo({
   name,
   icon,
   activeVideo,
-  playlist,
+  queue,
   adminList,
-  description
+  description,
+  type = "channel",
+  trendingResults = [],
+  searchResults = []
 }) {
-  const [queueList, setQueueList] = useState(playlist);
+  const [queueList, setQueueList] = useState(queue);
   const handlerChange = ({ oldIndex, newIndex }) => {
     setQueueList(arrayMove(queueList, oldIndex, newIndex));
   };
@@ -40,27 +44,40 @@ export default function ChannelVideo({
         videoStatus={
           activeVideo && activeVideo.status ? activeVideo.status : ""
         }
+        type={type}
       />
       <VideoSection {...activeVideo} />
       <h2 className="text-2xl pt-4 px-3">Up Next</h2>
       <QueueSection queueList={queueList} handlerChange={handlerChange} />
-      <div className="mx-32 mt-40">
-        <ChannelDescription
-          id={id}
-          icon={icon}
-          name={name}
-          adminList={adminList}
-          description={description}
-          status={activeVideo && activeVideo.status ? activeVideo.status : ""}
-        />
-        <NewChannelPost
-          handleEmot={() => console.log("handle emot")}
-          handleUploadImg={() => console.log("handle img upload")}
-          handleSubmit={() => console.log("handle submit")}
-          className="px-8 my-8"
-        />
-        <ChannelChat comments={comments} posts={posts} />
-      </div>
+      {type === "channel" && (
+        <div className="mx-32 mt-40">
+          <ChannelDescription
+            id={id}
+            icon={icon}
+            name={name}
+            adminList={adminList}
+            description={description}
+            status={activeVideo && activeVideo.status ? activeVideo.status : ""}
+          />
+          <NewChannelPost
+            handleEmot={() => console.log("handle emot")}
+            handleUploadImg={() => console.log("handle img upload")}
+            handleSubmit={() => console.log("handle submit")}
+            className="px-8 my-8"
+          />
+          <ChannelChat comments={comments} posts={posts} />
+        </div>
+      )}
+      {type === "room" && (
+        <div>
+          <h2 className="text-2xl mt-20 px-3">Find More Videos</h2>
+          <VideoSearch
+            trendingResults={trendingResults}
+            searchResults={searchResults}
+            threshold={3}
+          />
+        </div>
+      )}
     </div>
   );
 }

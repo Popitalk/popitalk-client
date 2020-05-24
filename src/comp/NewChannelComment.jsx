@@ -10,15 +10,21 @@ export default function NewChannelComment({
   handleEmot,
   handleSubmit
 }) {
+  const handleChange = e => {
+    e.target.style.height = "2.4rem";
+    e.target.style.height = `${Math.min(e.target.scrollHeight + 2, 168)}px`;
+  };
   return (
     <form
       onSubmit={handleSubmit}
       className="flex flex-row justify-center bg-secondaryBackground content-center py-2"
     >
-      <input
+      <textarea
         type="text"
         placeholder="Add a comment"
-        className="rounded-full mx-2 w-full px-3 py-2 shadow text-sm"
+        className="rounded-full mx-2 w-full px-6 py-2 h-10 shadow text-sm"
+        row={1}
+        onChange={handleChange}
       />
       <input
         type="submit"
