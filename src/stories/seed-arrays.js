@@ -480,6 +480,7 @@ export const testChannels = [
       "https://source.unsplash.com/128x128/?3,cat",
       "https://source.unsplash.com/128x128/?4,cat"
     ],
+    videoThumbnail: defaultThumbnail,
     numOnline: 9001
   },
   {
@@ -493,6 +494,7 @@ export const testChannels = [
       "https://source.unsplash.com/128x128/?3,cat",
       "https://source.unsplash.com/128x128/?4,cat"
     ],
+    videoThumbnail: defaultThumbnail,
     numOnline: 20999
   },
   {
@@ -500,6 +502,7 @@ export const testChannels = [
     name: "League of Legends",
     icon: "https://source.unsplash.com/128x128/?1,dog",
     watching: false,
+    videoThumbnail: defaultThumbnail,
     numOnline: 24
   },
   {
@@ -513,6 +516,7 @@ export const testChannels = [
       "https://source.unsplash.com/128x128/?3,cat",
       "https://source.unsplash.com/128x128/?4,cat"
     ],
+    videoThumbnail: defaultThumbnail,
     numOnline: 88
   }
 ];

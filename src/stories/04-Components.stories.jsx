@@ -15,6 +15,7 @@ import SiteHeaderWelcome from "../comp/SiteHeaderWelcome";
 import ChatPanel from "../comp/ChatPanel";
 import CircleCheckBox from "../comp/CircleCheckbox";
 import WelcomePage from "../comp/WelcomePage";
+import ChannelMainPage from "../comp/ChannelMainPage";
 import AnonymousSidebar from "../comp/AnonymousSidebar";
 import Tag from "../comp/Tag";
 import VideoPlayer from "../comp/VideoPlayer";
@@ -513,6 +514,21 @@ export const WelcomePageShow = () => {
   return <WelcomePage />;
 };
 
+export const ChannelMainPageShow = () => {
+  const [selectedChannel, setSelectedChannel] = useState(null);
+  return (
+    <ChannelMainPage
+      list={list}
+      channelPanelProps={{
+        channels: testChannels,
+        friends: testUsers,
+        selected: selectedChannel,
+        handleSelect: id => setSelectedChannel(id)
+      }}
+    />
+  );
+};
+
 export const VideoPlayerShow = () => {
   return <VideoPlayer />;
 };
@@ -524,6 +540,14 @@ const list = [
   },
   {
     title: "Recommended Channels",
+    channels: testChannels
+  },
+  {
+    title: "Channels Friends are following",
+    channels: testChannels
+  },
+  {
+    title: "Trending Channels right now",
     channels: testChannels
   }
 ];

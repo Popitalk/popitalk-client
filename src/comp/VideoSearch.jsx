@@ -25,7 +25,7 @@ export default function VideoSearch({
             : "Trending videos right now"}
         </span>
       </div>
-      {searchTerm.length>0 ? (
+      {searchTerm.length > 0 ? (
         <VideoResults results={searchResults} threshold={threshold} />
       ) : (
         <VideoResults results={trendingResults} threshold={threshold} />

@@ -6,10 +6,10 @@ import Input from "./Input.jsx";
 function RecommendedChannels({ list }) {
   const [search, setSearch] = React.useState("");
   return (
-    <div>
-      <div className="w-1/5 m-auto">
+    <div className="mt-5">
+      <div className="w-auto mx-2 sm:mx-auto m-auto bg-white sm:w-2/3">
         <Input
-          variant="user"
+          variant="channel"
           size="lg"
           value={search}
           placeholder="Search for a channel"

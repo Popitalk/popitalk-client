@@ -8,9 +8,9 @@ export default function VideoResults({ results, threshold = 24 }) {
 
   const handleClick = () => {
     setCurrThreshold(prev => {
-      console.log ("prev thres", prev, results.length);
-      console.log("prev up thres", prev+threshold, results.length);
-      return prev + threshold
+      console.log("prev thres", prev, results.length);
+      console.log("prev up thres", prev + threshold, results.length);
+      return prev + threshold;
     });
   };
 
