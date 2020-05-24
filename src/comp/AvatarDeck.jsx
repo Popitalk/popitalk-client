@@ -24,25 +24,26 @@ export default function AvatarDeck({
 
   return (
     <div className={deckClasses}>
-      {avatars.reverse().map((avatar, index) => {
-        if (index < threshold) {
-          return (
-            <img
-              key={ids?.[index] || index}
-              src={avatar}
-              alt="avatar"
-              className={avatarClasses}
-            />
-          );
-        } else if (index === avatars.length - 1) {
-          const totalLeft = avatars.length - threshold;
-          return (
-            <button
-              className={`${avatarClasses} bg-disabledBackground text-xs self-start`}
-            >{`+${totalLeft}`}</button>
-          );
-        }
-      })}
+      {avatars &&
+        avatars.reverse().map((avatar, index) => {
+          if (index < threshold) {
+            return (
+              <img
+                key={ids?.[index] || index}
+                src={avatar}
+                alt="avatar"
+                className={avatarClasses}
+              />
+            );
+          } else if (index === avatars.length - 1) {
+            const totalLeft = avatars.length - threshold;
+            return (
+              <button
+                className={`${avatarClasses} bg-disabledBackground text-xs self-start`}
+              >{`+${totalLeft}`}</button>
+            );
+          }
+        })}
     </div>
   );
 }
