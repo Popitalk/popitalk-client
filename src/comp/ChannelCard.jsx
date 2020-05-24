@@ -11,12 +11,12 @@ export default function ChannelCard({
   live,
   videoTitle,
   videoSource,
-  videoThumbnail = "somedefaultimagehere",
+  videoThumbnail,
   avatars,
   handleFollow
 }) {
   return (
-    <div className="flex flex-row items-center justify-center h-64 max-w-xs rounded-xl hover:shadow-xl">
+    <div className="flex flex-row items-center justify-center h-64 w-full rounded-xl hover:shadow-xl sm:max-w-xs md:my-4">
       <div className="flex-grow flex flex-row justify-center h-64 p-3 relative">
         <img
           src={videoThumbnail}
