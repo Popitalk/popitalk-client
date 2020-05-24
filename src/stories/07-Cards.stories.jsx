@@ -17,7 +17,10 @@ import arrayMove from "array-move";
 import NewChannelComment from "../comp/NewChannelComment";
 import ChannelChat from "../comp/ChannelChat";
 import ChannelVideo from "../comp/ChannelVideo";
-import VideoSearch from "../comp/VideoSearchBar";
+import VideoSearchBar from "../comp/VideoSearchBar";
+import VideoSearch from "../comp/VideoSearch";
+import VideoResults from "../comp/VideoResults";
+
 import {
   testComments,
   testPosts,
@@ -26,8 +29,6 @@ import {
   testVideos,
   testResult
 } from "./seed-arrays";
-import VideoResults from "../comp/VideoResults";
-import VideoSearchBar from "../comp/VideoSearchBar";
 
 export default {
   title: "Cards",
@@ -332,6 +333,17 @@ export const VideoResultShow = () => {
 
       <h1 className="text-2xl font-bold mt-2">Empty Result</h1>
       <VideoResults results={[]} />
+    </div>
+  );
+};
+
+export const VideoSearchShow = () => {
+  const results = testResult;
+  return (
+    <div>
+      {/* <h1 className="text-2xl font-bold mt-2">Within threshold</h1> */}
+      <VideoSearch results={results} threshold={3}/>
+
     </div>
   );
 };
