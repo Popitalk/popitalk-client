@@ -138,7 +138,8 @@ module.exports = {
       boxShadow: {
         search: "0px 1px 2px rgba(0, 0, 0, 0.25)",
         channel: "0px 1px 4px rgba(0, 0, 0, 0.25)",
-        suggestions: "0px 3px 6px rgba(0, 0, 0, 0.16);"
+        suggestions: "0px 3px 6px rgba(0, 0, 0, 0.16)",
+        account: "0px 32px 40px 5px rgba(0,0,0,0.25)"
       },
       width: {
         dropdown: "26rem"

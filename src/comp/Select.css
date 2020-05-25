@@ -34,6 +34,8 @@
   padding-bottom: 6px;
   padding-top: 6px;
   max-width: 622px !important;
+  display: flex !important;
+  flex-wrap: nowrap !important;
 }
 
 .Select--container .Select--select__control--is-focused {

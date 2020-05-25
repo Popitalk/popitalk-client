@@ -15,17 +15,14 @@ import ChannelDescription from "./ChannelDescription";
 import NewChannelPost from "./NewChannelPost";
 import ChannelChat from "./ChannelChat";
 import VideoSearch from "./VideoSearch";
+import ChannelListQueue from "./ChannelListQueue";
 
-export default function ChannelVideo({
+export default function ChannelQueue({
   id,
-  posts,
-  comments,
   name,
   icon,
   activeVideo,
   queue,
-  adminList,
-  description,
   type = "channel",
   trendingResults = [],
   searchResults = []
@@ -34,9 +31,10 @@ export default function ChannelVideo({
   const handlerChange = ({ oldIndex, newIndex }) => {
     setQueueList(arrayMove(queueList, oldIndex, newIndex));
   };
+  const playlist = [activeVideo, ...queue];
 
   return (
-    <div className="flex flex-col bg-secondaryBackground">
+    <div className="flex flex-col bg-secondaryBackground p-2">
       <VideoChannelHeader
         id={id}
         name={name}
@@ -46,38 +44,22 @@ export default function ChannelVideo({
         }
         type={type}
       />
-      <VideoSection {...activeVideo} />
-      <h2 className="text-2xl pt-4 px-3">Up Next</h2>
-      <QueueSection queueList={queueList} handlerChange={handlerChange} />
-      {type === "channel" && (
-        <div className="mx-32 mt-40">
-          <ChannelDescription
-            id={id}
-            icon={icon}
-            name={name}
-            adminList={adminList}
-            description={description}
-            status={activeVideo && activeVideo.status ? activeVideo.status : ""}
-          />
-          <NewChannelPost
-            handleEmot={() => console.log("handle emot")}
-            handleUploadImg={() => console.log("handle img upload")}
-            handleSubmit={() => console.log("handle submit")}
-            className="px-8 my-8"
-          />
-          <ChannelChat comments={comments} posts={posts} />
-        </div>
-      )}
-      {type === "room" && (
-        <div>
-          <h2 className="text-2xl mt-20 px-3">Find More Videos</h2>
-          <VideoSearch
-            trendingResults={trendingResults}
-            searchResults={searchResults}
-            threshold={3}
-          />
-        </div>
-      )}
+      <div className="mt-3">
+        <h2 className="text-2xl px-3">Queue Videos</h2>
+        <p className="text-sm text-secondaryText px-3 mb-2">
+          Add or change video up next. You can add up to 30 videos.
+        </p>
+
+        <ChannelListQueue playlist={playlist} />
+      </div>
+      <div className=" mt-16">
+        <h2 className="text-2xl px-3">Find More Videos</h2>
+        <VideoSearch
+          trendingResults={trendingResults}
+          searchResults={searchResults}
+          threshold={3}
+        />
+      </div>
     </div>
   );
 }

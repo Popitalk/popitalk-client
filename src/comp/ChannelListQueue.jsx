@@ -2,10 +2,9 @@ import React, { useState } from "react";
 import SortableList from "./SortableList";
 import arrayMove from "array-move";
 import VideoMinimalQueueCard from "./VideoMinimalQueueCard";
-import { testQueue } from "../stories/seed-arrays";
 
-export default function ChannelListQueue() {
-  const [items, setItems] = useState(testQueue);
+export default function ChannelListQueue({ playlist }) {
+  const [items, setItems] = useState(playlist);
 
   const handleChange = ({ oldIndex, newIndex }) => {
     setItems(arrayMove(items, oldIndex, newIndex));

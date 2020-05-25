@@ -17,14 +17,19 @@ import arrayMove from "array-move";
 import NewChannelComment from "../comp/NewChannelComment";
 import ChannelChat from "../comp/ChannelChat";
 import ChannelVideo from "../comp/ChannelVideo";
+import VideoSearchBar from "../comp/VideoSearchBar";
 import VideoSearch from "../comp/VideoSearch";
+import VideoResults from "../comp/VideoResults";
+
 import {
   testComments,
   testPosts,
   testQueue,
   testUserMinimal,
-  testVideos
+  testVideos,
+  testResult
 } from "./seed-arrays";
+import ChannelQueue from "../comp/ChannelQueue";
 
 export default {
   title: "Cards",
@@ -285,14 +290,11 @@ export const ChannelVideoShow = () => {
   const description =
     "Channel Description Channel Description Channel Description Channel Description Channel Description Channel Description Channel Description ";
 
-  const activeVideo = testQueue.shift();
+  const copyTestQueue = [...testQueue];
+  const activeVideo = copyTestQueue.shift();
   activeVideo.status = "playing";
   activeVideo.activeFriendViewers = testUserMinimal;
-  // return (
-  //   <VideoSection
-  //     {...activeVideo}
-  //   />
-  // );
+
   return (
     <ChannelVideo
       id={123}
@@ -300,7 +302,7 @@ export const ChannelVideoShow = () => {
       icon="https://i.imgur.com/xCGu56D.jpg"
       activeFriendViewers={testUserMinimal}
       activeVideo={activeVideo}
-      playlist={testQueue}
+      queue={copyTestQueue}
       adminList={testUserMinimal}
       description={description}
       comments={testComments}
@@ -309,10 +311,110 @@ export const ChannelVideoShow = () => {
   );
 };
 
-export const VideoSearchShow = () => {
+export const VideoSearchBarShow = () => {
+  const [searchTerm, setSearchTerm] = useState("");
+
+  const handleClick = value => {
+    setSearchTerm(value);
+  };
   return (
     <div>
-      <VideoSearch />
+      <VideoSearchBar onClick={handleClick} />
     </div>
+  );
+};
+
+export const VideoResultShow = () => {
+  const results = testResult;
+  return (
+    <div>
+      <h1 className="text-2xl font-bold mt-2">Within threshold</h1>
+      <VideoResults results={results.slice(0, 3)} threshold={3} />
+
+      <h1 className="text-2xl font-bold mt-2">Pass threshold</h1>
+      <VideoResults results={results} threshold={3} />
+
+      <h1 className="text-2xl font-bold mt-2">Empty Result</h1>
+      <VideoResults results={[]} />
+    </div>
+  );
+};
+
+export const VideoSearchShow = () => {
+  const trendingResults = testResult;
+  const searchResults = testResult.slice(0, 3);
+
+  return (
+    <div>
+      <h2 className="text-2xl font-bold mt-2">
+        With Search Result Divisible by threshold 3
+      </h2>
+      <VideoSearch
+        trendingResults={trendingResults}
+        searchResults={searchResults}
+        threshold={3}
+      />
+      <h2 className="text-2xl font-bold mt-2">
+        With Search Result NOT Divisible by threshold 3
+      </h2>
+      <VideoSearch
+        trendingResults={trendingResults}
+        searchResults={testResult.slice(0, 5)}
+        threshold={3}
+      />
+
+      <h2 className="text-2xl font-bold mt-2">No Search Result</h2>
+      <VideoSearch
+        trendingResults={trendingResults}
+        searchResults={[]}
+        threshold={3}
+      />
+    </div>
+  );
+};
+
+export const RoomVideoShow = () => {
+  const copyTestQueue = [...testQueue];
+  const activeVideo = copyTestQueue.shift();
+  activeVideo.status = "playing";
+  activeVideo.activeFriendViewers = testUserMinimal;
+
+  const trendingResults = testResult;
+  const searchResults = testResult.slice(0, 3);
+
+  return (
+    <ChannelVideo
+      id={123}
+      name="RoomOwner"
+      icon="https://i.imgur.com/xCGu56D.jpg"
+      activeFriendViewers={testUserMinimal}
+      activeVideo={activeVideo}
+      queue={copyTestQueue}
+      type="room"
+      trendingResults={trendingResults}
+      searchResults={searchResults}
+    />
+  );
+};
+
+export const ChannelQueueShow = () => {
+  const copyTestQueue = [...testQueue];
+  const activeVideo = copyTestQueue.shift();
+  activeVideo.status = "playing";
+  activeVideo.activeFriendViewers = testUserMinimal;
+
+  const trendingResults = testResult;
+  const searchResults = testResult.slice(0, 3);
+
+  return (
+    <ChannelQueue
+      id={123}
+      name="Channel #1"
+      icon="https://i.imgur.com/xCGu56D.jpg"
+      trendingResults={trendingResults}
+      searchResults={searchResults}
+      activeVideo={activeVideo}
+      queue={copyTestQueue}
+    />
   );
 };

@@ -63,6 +63,128 @@ export const testQueue = [
   }
 ];
 
+export const testResult = [
+  {
+    id: 1,
+    title: "Video 1",
+    views: "20k views",
+    timeFromUpload: "2 months ago",
+    thumbnail: "https://i.imgur.com/aqjzchq.jpg",
+    status: "queued",
+    statusMessage: "In 10min",
+    sourceChannelName: "sourceChannel"
+  },
+  {
+    id: 2,
+    title: "Video 2",
+    views: "1M views",
+    timeFromUpload: "1 week ago",
+    thumbnail: "https://i.imgur.com/aqjzchq.jpg",
+    status: "queued",
+    statusMessage: "In 14min",
+    sourceChannelName: "sourceChannel"
+  },
+  {
+    id: 3,
+    title: "Video 3",
+    views: "200k views",
+    timeFromUpload: "1 months ago",
+    thumbnail: "https://i.imgur.com/aqjzchq.jpg",
+    status: "queued",
+    statusMessage: "In 18min",
+    sourceChannelName: "sourceChannel"
+  },
+  {
+    id: 4,
+    title: "Video 4",
+    views: "1.2M views",
+    timeFromUpload: "3 months ago",
+    thumbnail: "https://i.imgur.com/aqjzchq.jpg",
+    status: "queued",
+    statusMessage: "In 25min",
+    sourceChannelName: "sourceChannel"
+  },
+  {
+    id: 5,
+    title: "Video 5",
+    views: "1.2M views",
+    timeFromUpload: "3 months ago",
+    thumbnail: "https://i.imgur.com/aqjzchq.jpg",
+    status: "queued",
+    statusMessage: "In 50min",
+    sourceChannelName: "sourceChannel"
+  },
+  {
+    id: 6,
+    title: "Video 6",
+    views: "1.2M views",
+    timeFromUpload: "3 months ago",
+    thumbnail: "https://i.imgur.com/aqjzchq.jpg",
+    status: "queued",
+    statusMessage: "In 50min",
+    sourceChannelName: "sourceChannel"
+  },
+  {
+    id: 7,
+    title: "Video 7",
+    views: "1.2M views",
+    timeFromUpload: "3 months ago",
+    thumbnail: "https://i.imgur.com/aqjzchq.jpg",
+    status: "queued",
+    statusMessage: "In 50min",
+    sourceChannelName: "sourceChannel"
+  },
+  {
+    id: 8,
+    title: "Video 8",
+    views: "1.2M views",
+    timeFromUpload: "3 months ago",
+    thumbnail: "https://i.imgur.com/aqjzchq.jpg",
+    status: "queued",
+    statusMessage: "In 50min",
+    sourceChannelName: "sourceChannel"
+  },
+  {
+    id: 9,
+    title: "Video 9",
+    views: "1.2M views",
+    timeFromUpload: "3 months ago",
+    thumbnail: "https://i.imgur.com/aqjzchq.jpg",
+    status: "queued",
+    statusMessage: "In 50min",
+    sourceChannelName: "sourceChannel"
+  },
+  {
+    id: 10,
+    title: "Video 10",
+    views: "1.2M views",
+    timeFromUpload: "3 months ago",
+    thumbnail: "https://i.imgur.com/aqjzchq.jpg",
+    status: "queued",
+    statusMessage: "In 50min",
+    sourceChannelName: "sourceChannel"
+  },
+  {
+    id: 11,
+    title: "Video 11",
+    views: "1.2M views",
+    timeFromUpload: "3 months ago",
+    thumbnail: "https://i.imgur.com/aqjzchq.jpg",
+    status: "queued",
+    statusMessage: "In 50min",
+    sourceChannelName: "sourceChannel"
+  },
+  {
+    id: 12,
+    title: "Video 12",
+    views: "1.2M views",
+    timeFromUpload: "3 months ago",
+    thumbnail: "https://i.imgur.com/aqjzchq.jpg",
+    status: "queued",
+    statusMessage: "In 50min",
+    sourceChannelName: "sourceChannel"
+  }
+];
 export const testUsers = [
   {
     id: 1,
@@ -405,6 +527,7 @@ export const testChannels = [
       "https://source.unsplash.com/128x128/?3,cat",
       "https://source.unsplash.com/128x128/?4,cat"
     ],
+    videoThumbnail: defaultThumbnail,
     numOnline: 9001
   },
   {
@@ -418,6 +541,7 @@ export const testChannels = [
       "https://source.unsplash.com/128x128/?3,cat",
       "https://source.unsplash.com/128x128/?4,cat"
     ],
+    videoThumbnail: defaultThumbnail,
     numOnline: 20999
   },
   {
@@ -425,6 +549,7 @@ export const testChannels = [
     name: "League of Legends",
     icon: "https://source.unsplash.com/128x128/?1,dog",
     watching: false,
+    videoThumbnail: defaultThumbnail,
     numOnline: 24
   },
   {
@@ -438,6 +563,7 @@ export const testChannels = [
       "https://source.unsplash.com/128x128/?3,cat",
       "https://source.unsplash.com/128x128/?4,cat"
     ],
+    videoThumbnail: defaultThumbnail,
     numOnline: 88
   }
 ];

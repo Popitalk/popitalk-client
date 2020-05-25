@@ -47,6 +47,7 @@ export default function Input({
   interiorButton,
   forwardedRef,
   className,
+  onClick = () => console.log("clicked"),
   ...rest
 }) {
   const El = variant === "textarea" ? "textarea" : "input";
@@ -61,6 +62,7 @@ export default function Input({
       "rounded-pill px-3": shape === "pill",
       "pl-12 pr-12 rounded-lg": variant === "video",
       "pl-3 pr-12 bg-secondaryBackground": variant === "user",
+      "pl-3 pr-12": variant === "channel",
       "pr-20": variant === "counter" || variant === "textarea",
       "resize-none overflow-hidden h-32 pt-1": variant === "textarea",
       "pl-10": variant === "filter" || variant === "filterModal",
@@ -116,10 +118,11 @@ export default function Input({
               size="sm"
               background="secondary"
               className="absolute right-0 mr-4"
+              onClick={onClick}
             />
           </>
         )}
-        {variant === "user" && (
+        {(variant === "user" || variant === "channel") && (
           <>
             <Button
               icon="search"
