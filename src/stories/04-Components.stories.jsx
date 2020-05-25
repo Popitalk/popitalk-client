@@ -23,7 +23,13 @@ import RecommendedChannels from "../comp/RecommendedChannels";
 import RecommendedVideos from "../comp/RecommendedVideos";
 import DefaultLayout from "../comp/DefaultLayout";
 import VideoChannelHeader from "../comp/VideoChannelHeader";
-import { testChannels, testRooms, testUsers } from "./seed-arrays";
+import {
+  testChannels,
+  testRooms,
+  testUsers,
+  testUserMinimal,
+  testMessages
+} from "./seed-arrays";
 
 export default {
   title: "Components",
@@ -507,7 +513,15 @@ export const SiteHeader = () => {
 };
 
 export const ChannelChatPanel = () => {
-  return <ChatPanel />;
+  const typers = testUserMinimal;
+
+  return (
+    <ChatPanel
+      messages={testMessages}
+      typerIDs={typers.map(t => t.id)}
+      typerAvatars={typers.map(t => t.avatar)}
+    />
+  );
 };
 
 export const WelcomePageShow = () => {

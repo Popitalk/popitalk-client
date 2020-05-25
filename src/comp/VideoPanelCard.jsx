@@ -19,12 +19,7 @@ export default function VideoPanelCard({
     <>
       {!title && (
         <div className="flex flex-row flex-shrink-0 items-center justify-center h-48 w-full max-w-xs rounded-xl hover:shadow-xl bg-disabledBackground m-1">
-          <Button
-            size="lg"
-            icon="plus"
-            className="z-30"
-            background="secondary"
-          />
+          <Button size="lg" icon="plus" />
         </div>
       )}
       {title && (
@@ -42,14 +37,6 @@ export default function VideoPanelCard({
                     size="sm"
                   />
                 )}
-                {/* <Button
-                  icon="bar"
-                  
-                  className="z-30"
-                  shape="pill"
-                  background="secondary"
-                  size="sm"
-                /> */}
                 {type === "add" && (
                   <button className="btn btn-sqr z-40">
                     <svg

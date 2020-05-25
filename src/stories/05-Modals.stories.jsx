@@ -16,7 +16,8 @@ import NewRoomModal from "../comp/Modals/NewRoomModal";
 import ProfileModal from "../comp/Modals/ProfileModal";
 import InviteForm from "../comp/InviteForm";
 import { buildTagInput } from "../comp/TagInput";
-import {testImages, testUsers, testQueue} from "./seed-arrays";
+import { testImages, testUsers, testQueue, testMessages } from "./seed-arrays";
+import DeleteMessageModal from "../comp/Modals/DeleteMessageModal";
 
 export default {
   title: "Modals",
@@ -251,6 +252,29 @@ export const RoomExistsModalTest = () => {
         room={room}
         openRoomHandler={openRoomHandler}
         createNewHandler={createNewHandler}
+      />
+    </ModalManager>
+  );
+};
+
+export const DeleteMessageModalTest = () => {
+  const handleDelete = id => {
+    console.log(`Deleteing message ${id}`);
+  };
+
+  const handleCancel = () => {
+    console.log("Close modal");
+  };
+
+  let message = { ...testMessages[0] };
+  message.me = true;
+
+  return (
+    <ModalManager isOpen={true} small={true}>
+      <DeleteMessageModal
+        message={message}
+        handleCancel={handleCancel}
+        handleDelete={handleDelete}
       />
     </ModalManager>
   );

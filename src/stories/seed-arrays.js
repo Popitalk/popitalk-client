@@ -400,6 +400,53 @@ export const testComments = [
   }
 ];
 
+export const testMessages = [
+  {
+    id: 1,
+    name: "André Gama",
+    date: new Date(),
+    avatar: "https://i.imgur.com/xCGu56D.jpg",
+    message:
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque temporibus soluta molestias error est cumque debitis eum harum fuga, quaerat provident enim a consequatur perferendis laudantium illo ipsam corrupti earum?",
+    image: ""
+  },
+  {
+    id: 2,
+    name: "André Gama",
+    date: new Date(),
+    message: "testees",
+    avatar: "https://i.imgur.com/xCGu56D.jpg",
+    image: "https://itpetblog.com.br/wp-content/uploads/2019/07/grumpy-cat.jpg"
+  },
+  {
+    id: 3,
+    name: "André Gama",
+    date: new Date(),
+    message: "testees",
+    avatar: "https://i.imgur.com/xCGu56D.jpg",
+    image: "https://itpetblog.com.br/wp-content/uploads/2019/07/grumpy-cat.jpg",
+    me: true
+  },
+  {
+    id: 4,
+    name: "André Gama",
+    date: new Date(),
+    message: "testees",
+    avatar: "https://i.imgur.com/xCGu56D.jpg",
+    image: "https://itpetblog.com.br/wp-content/uploads/2019/07/grumpy-cat.jpg",
+    me: true
+  },
+  {
+    id: 5,
+    name: "André Gama",
+    date: new Date(),
+    message: "testees",
+    avatar: "https://i.imgur.com/xCGu56D.jpg",
+    image: "https://itpetblog.com.br/wp-content/uploads/2019/07/grumpy-cat.jpg",
+    me: true
+  }
+];
+
 export const testRooms = [
   {
     id: 1,
