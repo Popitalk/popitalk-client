@@ -70,9 +70,8 @@ export const testResult = [
     views: "20k views",
     timeFromUpload: "2 months ago",
     thumbnail: "https://i.imgur.com/aqjzchq.jpg",
-    status: "queued",
-    statusMessage: "In 10min",
-    sourceChannelName: "sourceChannel"
+    sourceChannelName: "sourceChannel",
+    type: "add"
   },
   {
     id: 2,
@@ -80,9 +79,8 @@ export const testResult = [
     views: "1M views",
     timeFromUpload: "1 week ago",
     thumbnail: "https://i.imgur.com/aqjzchq.jpg",
-    status: "queued",
-    statusMessage: "In 14min",
-    sourceChannelName: "sourceChannel"
+    sourceChannelName: "sourceChannel",
+    type: "add"
   },
   {
     id: 3,
@@ -90,9 +88,8 @@ export const testResult = [
     views: "200k views",
     timeFromUpload: "1 months ago",
     thumbnail: "https://i.imgur.com/aqjzchq.jpg",
-    status: "queued",
-    statusMessage: "In 18min",
-    sourceChannelName: "sourceChannel"
+    sourceChannelName: "sourceChannel",
+    type: "add"
   },
   {
     id: 4,
@@ -100,9 +97,8 @@ export const testResult = [
     views: "1.2M views",
     timeFromUpload: "3 months ago",
     thumbnail: "https://i.imgur.com/aqjzchq.jpg",
-    status: "queued",
-    statusMessage: "In 25min",
-    sourceChannelName: "sourceChannel"
+    sourceChannelName: "sourceChannel",
+    type: "add"
   },
   {
     id: 5,
@@ -110,9 +106,8 @@ export const testResult = [
     views: "1.2M views",
     timeFromUpload: "3 months ago",
     thumbnail: "https://i.imgur.com/aqjzchq.jpg",
-    status: "queued",
-    statusMessage: "In 50min",
-    sourceChannelName: "sourceChannel"
+    sourceChannelName: "sourceChannel",
+    type: "add"
   },
   {
     id: 6,
@@ -120,9 +115,8 @@ export const testResult = [
     views: "1.2M views",
     timeFromUpload: "3 months ago",
     thumbnail: "https://i.imgur.com/aqjzchq.jpg",
-    status: "queued",
-    statusMessage: "In 50min",
-    sourceChannelName: "sourceChannel"
+    sourceChannelName: "sourceChannel",
+    type: "add"
   },
   {
     id: 7,
@@ -130,9 +124,8 @@ export const testResult = [
     views: "1.2M views",
     timeFromUpload: "3 months ago",
     thumbnail: "https://i.imgur.com/aqjzchq.jpg",
-    status: "queued",
-    statusMessage: "In 50min",
-    sourceChannelName: "sourceChannel"
+    sourceChannelName: "sourceChannel",
+    type: "add"
   },
   {
     id: 8,
@@ -140,9 +133,8 @@ export const testResult = [
     views: "1.2M views",
     timeFromUpload: "3 months ago",
     thumbnail: "https://i.imgur.com/aqjzchq.jpg",
-    status: "queued",
-    statusMessage: "In 50min",
-    sourceChannelName: "sourceChannel"
+    sourceChannelName: "sourceChannel",
+    type: "add"
   },
   {
     id: 9,
@@ -150,9 +142,8 @@ export const testResult = [
     views: "1.2M views",
     timeFromUpload: "3 months ago",
     thumbnail: "https://i.imgur.com/aqjzchq.jpg",
-    status: "queued",
-    statusMessage: "In 50min",
-    sourceChannelName: "sourceChannel"
+    sourceChannelName: "sourceChannel",
+    type: "add"
   },
   {
     id: 10,
@@ -160,9 +151,8 @@ export const testResult = [
     views: "1.2M views",
     timeFromUpload: "3 months ago",
     thumbnail: "https://i.imgur.com/aqjzchq.jpg",
-    status: "queued",
-    statusMessage: "In 50min",
-    sourceChannelName: "sourceChannel"
+    sourceChannelName: "sourceChannel",
+    type: "add"
   },
   {
     id: 11,
@@ -170,9 +160,8 @@ export const testResult = [
     views: "1.2M views",
     timeFromUpload: "3 months ago",
     thumbnail: "https://i.imgur.com/aqjzchq.jpg",
-    status: "queued",
-    statusMessage: "In 50min",
-    sourceChannelName: "sourceChannel"
+    sourceChannelName: "sourceChannel",
+    type: "add"
   },
   {
     id: 12,
@@ -180,9 +169,8 @@ export const testResult = [
     views: "1.2M views",
     timeFromUpload: "3 months ago",
     thumbnail: "https://i.imgur.com/aqjzchq.jpg",
-    status: "queued",
-    statusMessage: "In 50min",
-    sourceChannelName: "sourceChannel"
+    sourceChannelName: "sourceChannel",
+    type: "add"
   }
 ];
 export const testUsers = [

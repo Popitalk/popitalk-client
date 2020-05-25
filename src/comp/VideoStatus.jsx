@@ -3,7 +3,7 @@ import Button from "./Button";
 // import "./VideoStatus.css";
 
 export default function VideoStatus({
-  status,
+  status = "none",
   statusMessage = "",
   size = "sm",
   shape = "pill",
@@ -35,6 +35,7 @@ export default function VideoStatus({
             {statusMessage}
           </Button>
         )}
+        {status === "none" && <p></p>}
       </>
     );
   } else if (type === "text") {
