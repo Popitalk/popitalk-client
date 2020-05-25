@@ -1,7 +1,4 @@
 import React, { useState } from "react";
-import Button from "./Button";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import "./VideoStatus.css";
 import RoomIcon from "./RoomIcon";
 
 export default function VideoChannelHeader({

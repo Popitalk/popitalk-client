@@ -43,6 +43,7 @@ export default function ChannelQueue({
           activeVideo && activeVideo.status ? activeVideo.status : ""
         }
         type={type}
+        select="Queue"
       />
       <div className="mt-3">
         <h2 className="text-2xl px-3">Queue Videos</h2>
