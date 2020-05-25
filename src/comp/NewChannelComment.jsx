@@ -22,7 +22,7 @@ export default function NewChannelComment({
       <textarea
         type="text"
         placeholder="Add a comment"
-        className="rounded-full mx-2 w-full px-6 py-2 h-10 shadow text-sm"
+        className="rounded-lg mx-2 w-full px-6 py-2 h-10 shadow text-sm"
         row={1}
         onChange={handleChange}
       />
