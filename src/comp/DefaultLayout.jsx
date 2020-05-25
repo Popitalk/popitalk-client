@@ -3,11 +3,9 @@ import SiteHeaderMain from "./SiteHeaderMain";
 
 export default function DefaultLayout({ children }) {
   return (
-    <div >
+    <div>
       <SiteHeaderMain />
       {children}
     </div>
   );
 }
-
-

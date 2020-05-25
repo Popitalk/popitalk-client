@@ -18,7 +18,13 @@ import NewChannelComment from "../comp/NewChannelComment";
 import ChannelChat from "../comp/ChannelChat";
 import ChannelVideo from "../comp/ChannelVideo";
 import VideoSearch from "../comp/VideoSearch";
-import { testComments, testPosts, testQueue, testUserMinimal, testVideos } from "./seed-arrays";
+import {
+  testComments,
+  testPosts,
+  testQueue,
+  testUserMinimal,
+  testVideos
+} from "./seed-arrays";
 
 export default {
   title: "Cards",
@@ -179,7 +185,6 @@ export const VideoSectionShow = () => {
 };
 
 export const ChannelDescriptionShow = () => {
-
   const description =
     "Channel Description Channel Description Channel Description Channel Description Channel Description Channel Description Channel Description ";
   return (
@@ -264,7 +269,6 @@ export const NewChannelCommentShow = () => {
 };
 
 export const ChannelChatShow = () => {
-
   return (
     <div className=" bg-secondaryBackground p-2">
       <h1 className="text-2xl font-bold mt-2">One post</h1>
@@ -278,7 +282,6 @@ export const ChannelChatShow = () => {
 };
 
 export const ChannelVideoShow = () => {
-
   const description =
     "Channel Description Channel Description Channel Description Channel Description Channel Description Channel Description Channel Description ";
 

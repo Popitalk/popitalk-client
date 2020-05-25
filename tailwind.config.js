@@ -152,7 +152,7 @@ module.exports = {
         "32": "8rem"
       },
       gridTemplateColumns: {
-        chat: "2.5rem 1fr auto;"
+        chat: "2.5rem 1fr 5rem;"
       },
       padding: {
         "2px": "2px"

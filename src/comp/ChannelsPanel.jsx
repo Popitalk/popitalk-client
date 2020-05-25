@@ -5,7 +5,12 @@ import Button from "./Button";
 import SuggestionCard from "./SuggestionCard";
 import MiniFriendsList from "./MiniFriendsList";
 
-export default function ChannelsPanel({ channels, selected, friends, handleSelect }) {
+export default function ChannelsPanel({
+  channels,
+  selected,
+  friends,
+  handleSelect
+}) {
   return (
     <div className="bg-primaryBackground max-w-sm py-4 pr-2 pl-2">
       <div className="flex items-center justify-between px-4  w-full mb-4">
@@ -18,12 +23,12 @@ export default function ChannelsPanel({ channels, selected, friends, handleSelec
       {/*  */}
       {/*  /!* <Button size="md">Create</Button> *!/*/}
       {/*</div>*/}
-      <MiniFriendsList friends={friends}/>
+      <MiniFriendsList friends={friends} />
       <div className="flex flex-row items-center">
         <h4 className="text-lg font-semibold text-secondaryText ml-2 mr-2 mb-2 mt-2">
           Your channels
         </h4>
-        <Button size="sm" icon="plus" background="primaryButton" onClick=""/>
+        <Button size="sm" icon="plus" background="primaryButton" onClick="" />
       </div>
       <ChannelsList
         channels={channels}
@@ -69,7 +74,6 @@ export default function ChannelsPanel({ channels, selected, friends, handleSelec
           />
         </div>
       </div>
-
     </div>
   );
 }
