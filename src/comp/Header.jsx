@@ -6,7 +6,7 @@ import Transition from "./Transition";
 
 import Button from "./Button";
 
-function SiteHeader({ isWelcome }) {
+function SiteHeader({ isWelcome = false }) {
   const [mobileMenu, setMobileMenu] = useState(false);
   const hasNotification = true;
 
