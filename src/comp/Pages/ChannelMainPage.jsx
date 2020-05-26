@@ -25,7 +25,7 @@ function ChannelMainPage({ list, channelPanelProps }) {
         <div
           className={`${
             selectedPage === "channels" ? "" : "hidden"
-          } w-auto md:block`}
+          } w-full md:block md:w-auto`}
         >
           <ChannelsPanel
             channels={channels}
@@ -38,7 +38,7 @@ function ChannelMainPage({ list, channelPanelProps }) {
         <div
           className={`${
             selectedPage === "friends" ? "" : "hidden"
-          } w-auto mt-12 md:hidden`}
+          } w-full md:block md:w-auto md:hidden`}
         >
           <FriendsPanel
             channels={channels}
@@ -51,7 +51,7 @@ function ChannelMainPage({ list, channelPanelProps }) {
         <div
           className={`${
             selectedPage === "main" ? "" : "hidden"
-          } flex-grow mt-10 mx-2 md:mx-10`}
+          } flex-grow mt-10 mx-2 md:mx-10 md:block`}
         >
           <RecommendedChannels list={list} />
         </div>

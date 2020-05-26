@@ -13,8 +13,8 @@ export default function FriendsPanel({
   const [search, setSearch] = useState("");
 
   return (
-    <div className="bg-primaryBackground max-w-sm py-4 pr-4 pl-4">
-      <div className="flex flex-grow items-center justify-between mb-4 mx-2">
+    <div className="w-full my-12 bg-primaryBackground py-4 px-2 md:max-w-sm">
+      <div className="hidden items-center justify-between px-4 w-full mb-4 md:flex">
         <h3 className="text-2xl font-bold btn-playing">Channels</h3>
         <h3 className="text-3xl font-bold btn-playing">Friends</h3>
       </div>
