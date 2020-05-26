@@ -7,7 +7,7 @@ function RecommendedVideos({ list }) {
   const [search, setSearch] = React.useState("");
   return (
     <div>
-      <div className="w-1/5 m-auto">
+      <div className="w-auto m-auto mx-2 bg-white sm:mx-auto sm:w-2/3">
         <Input
           variant="user"
           size="lg"
