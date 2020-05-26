@@ -10,8 +10,6 @@ import ChannelsPanel from "../comp/Channel/ChannelsPanel";
 import FriendsPanel from "../comp/FriendsPanel";
 import PopupMenu from "../comp/PopupMenu";
 import ManageUsers from "../comp/ManageUsers";
-import SiteHeaderMain from "../comp/SiteHeaderMain";
-import SiteHeaderWelcome from "../comp/SiteHeaderWelcome";
 import ChatPanel from "../comp/Chat/ChatPanel";
 import CircleCheckBox from "../comp/CircleCheckbox";
 import AnonymousSidebar from "../comp/AnonymousSidebar";
@@ -28,6 +26,7 @@ import {
   testUserMinimal,
   testMessages
 } from "./seed-arrays";
+import SiteHeader from "../comp/SiteHeader";
 
 export default {
   title: "Components",
@@ -493,21 +492,8 @@ export const ManageUsersTest = () => {
   );
 };
 
-export const SiteHeader = () => {
-  return (
-    <>
-      <Text variant="subtitle2">Main header</Text>
-      <div className="border rounded-md">
-        <SiteHeaderMain />
-      </div>
-      <Text className="mt-8" variant="subtitle2">
-        Welcome header (not logged in)
-      </Text>
-      <div className="border rounded-md">
-        <SiteHeaderWelcome />
-      </div>
-    </>
-  );
+export const SiteHeaderShow = () => {
+  return <SiteHeader isWelcome={false} />;
 };
 
 export const ChannelChatPanel = () => {

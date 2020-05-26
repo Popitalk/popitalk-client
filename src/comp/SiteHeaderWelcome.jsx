@@ -3,7 +3,7 @@ import Logo from "../assets/logo.png";
 
 import Button from "./Button";
 
-export default function SiteHeaderMain() {
+export default function SiteHeaderWelcome() {
   return (
     <header className="flex flex-col px-16 py-4 border-b md:justify-between md:flex-row bg-primaryBackground border-primaryBorder">
       <div className="flex items-center justify-center mb-8">
