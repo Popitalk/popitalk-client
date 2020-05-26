@@ -97,14 +97,14 @@ export default function ChannelSettingsPanel({
 
   //TODO: Change width and height to match final size
   return (
-    <div className="w-screen h-screen px-4 py-8 bg-secondaryBackground flex flex-row">
-      <div className="flex-none">
+    <div className="w-screen h-screen py-8 bg-secondaryBackground flex flex-col items-center md:px-4 md:flex-row md:items-stretch">
+      <div className="flex-none mb-10">
         <ChannelSettingsSidebar
           buttons={buttons}
           handleDeleteChannel={handleDeleteChannel}
         />
       </div>
-      <div className="flex w-full h-full justify-center px-32">
+      <div className="flex w-full h-full justify-center px-10">
         {paneContent}
       </div>
     </div>
