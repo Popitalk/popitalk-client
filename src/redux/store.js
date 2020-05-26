@@ -47,11 +47,11 @@ const middleware = [
   localstorageMiddleware(),
   routingMiddleware(),
   modalMiddleware(),
-  process.env.NODE_ENV !== "production"
-    ? websocketMiddleware("ws://localhost:4000/")
-    : websocketMiddleware(
-        `wss://${window.location.hostname}:${window.location.port}/ws/`
-      ),
+  // process.env.NODE_ENV !== "production"
+  //   ? websocketMiddleware("ws://localhost:4000/")
+  //   : websocketMiddleware(
+  //       `wss://${window.location.hostname}:${window.location.port}/ws/`
+  //     ),
   ...getDefaultMiddleware()
 ];
 
@@ -62,8 +62,3 @@ const store = configureStore({
 });
 
 export default store;
-
-//         websocketMiddleware("ws://localhost:4000/"),
-//         websocketMiddleware(
-//           `wss://${window.location.hostname}:${window.location.port}/ws/`
-//         ),
