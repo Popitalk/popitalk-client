@@ -50,5 +50,5 @@ export default function HeaderContainer() {
     setPassword("");
   };
 
-  return <Header />;
+  return <Header isWelcome={headerLandingPage} />;
 }
