@@ -13,8 +13,8 @@ export default function FriendsPanel({
   const [search, setSearch] = useState("");
 
   return (
-    <div className="w-full my-12 bg-primaryBackground py-4 px-2 md:max-w-sm">
-      <div className="hidden items-center justify-between px-4 w-full mb-4 md:flex">
+    <div className="w-full px-2 py-4 my-12 md:my-0 bg-primaryBackground md:max-w-sm">
+      <div className="items-center justify-between hidden w-full px-4 mb-4 md:flex">
         <h3 className="text-2xl font-bold btn-playing">Channels</h3>
         <h3 className="text-3xl font-bold btn-playing">Friends</h3>
       </div>
@@ -25,16 +25,16 @@ export default function FriendsPanel({
         placeholder="Search friends"
         onChange={e => setSearch(e.target.value)}
       />
-      <div className="shadow-md py-2 px-4 border-top-none rounded-md">
-        <div className="space-x-1 flex  justify-between pl-1 pt-1">
+      <div className="px-4 py-2 rounded-md shadow-md border-top-none">
+        <div className="flex justify-between pt-1 pl-1 space-x-1">
           <div>
-            <span className="font-light text-xs">Searching:</span>
-            <span className="font-light text-xs">{search}</span>
+            <span className="text-xs font-light">Searching:</span>
+            <span className="text-xs font-light">{search}</span>
           </div>
           <div>
             <span
               role="button"
-              className="text-xs no-underline font-medium cursor-pointer text-highlightText"
+              className="text-xs font-medium no-underline cursor-pointer text-highlightText"
               onClick={() => setSearch("")}
             >
               Clear

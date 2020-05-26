@@ -18,7 +18,7 @@ function ChannelMainPage({ list, channelPanelProps }) {
   };
   return (
     <Fragment>
-      <div className="fixed w-full z-40">
+      <div className="fixed z-40 w-full md:relative">
         <SiteHeaderMain />
       </div>
       <div className="flex">
