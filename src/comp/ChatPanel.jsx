@@ -4,15 +4,11 @@ import ChatHeader from "./ChatHeader";
 import ChatMessages from "./ChatMessages";
 import ChatActions from "./ChatActions";
 
-function ChatPanel({ messages, typerIDs, typerAvatars }) {
+function ChatPanel(props) {
   return (
     <section className="relative max-w-sm p-2 bg-primaryBackground">
       <ChatHeader />
-      <ChatMessages
-        messages={messages}
-        typerIDs={typerIDs}
-        typerAvatars={typerAvatars}
-      />
+      <ChatMessages {...props} />
       <ChatActions />
     </section>
   );

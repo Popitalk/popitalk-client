@@ -1,7 +1,7 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-export default function ChatMessage({ message, hideButtons }) {
+export default function ChatMessage({ message, handleResend, handleDelete }) {
   return (
     <div className="flex flex-col my-6">
       <div className="flex items-center space-x-2 text-xs">
@@ -33,23 +33,37 @@ export default function ChatMessage({ message, hideButtons }) {
             />
           )}
         </span>
-        {message.me && !hideButtons ? (
+        {message.me && (handleResend || handleDelete) ? (
           <span className="mx-4">
             <div className="px-2 space-x-2 rounded-full bg-gradient-br-cancel flex flex-row justify-center">
-              <button className="focus:outline-none flex items-center py-2">
-                <FontAwesomeIcon
-                  size="xs"
-                  icon="redo-alt"
-                  className="text-tertiaryText"
-                />
-              </button>
-              <button className="focus:outline-none flex items-center py-2">
-                <FontAwesomeIcon
-                  size="xs"
-                  icon="times"
-                  className="text-tertiaryText"
-                />
-              </button>
+              {handleResend ? (
+                <button
+                  className="focus:outline-none flex items-center py-2"
+                  onClick={() => handleResend(message)}
+                >
+                  <FontAwesomeIcon
+                    size="xs"
+                    icon="redo-alt"
+                    className="text-tertiaryText"
+                  />
+                </button>
+              ) : (
+                <></>
+              )}
+              {handleDelete ? (
+                <button
+                  className="focus:outline-none flex items-center py-2"
+                  onClick={() => handleDelete(message.id)}
+                >
+                  <FontAwesomeIcon
+                    size="xs"
+                    icon="times"
+                    className="text-tertiaryText"
+                  />
+                </button>
+              ) : (
+                <></>
+              )}
             </div>
           </span>
         ) : (

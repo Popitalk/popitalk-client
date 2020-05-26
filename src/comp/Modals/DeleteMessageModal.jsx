@@ -14,7 +14,7 @@ export default function DeleteMessageModal({
       <Text variant="small1">
         Are you sure you want to delete this message?
       </Text>
-      <ChatMessage message={message} hideButtons={true} />
+      <ChatMessage message={message} />
       <div className="flex justify-end items-center">
         <span
           role="button"

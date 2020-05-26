@@ -515,11 +515,22 @@ export const SiteHeader = () => {
 export const ChannelChatPanel = () => {
   const typers = testUserMinimal;
 
+  const handleDelete = id => {
+    console.log(`Deleting message ${id}`);
+  };
+
+  const handleResend = message => {
+    console.log("Resending message");
+    console.log(message);
+  };
+
   return (
     <ChatPanel
       messages={testMessages}
       typerIDs={typers.map(t => t.id)}
       typerAvatars={typers.map(t => t.avatar)}
+      handleResend={handleResend}
+      handleDelete={handleDelete}
     />
   );
 };
