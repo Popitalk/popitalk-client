@@ -1,7 +1,4 @@
-import React from "react";
-import Button from "./Button";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import "./VideoStatus.css";
+import React, { useState } from "react";
 import RoomIcon from "./RoomIcon";
 
 export default function VideoChannelHeader({
@@ -9,8 +6,11 @@ export default function VideoChannelHeader({
   name,
   icon,
   videoStatus,
-  type = "channel"
+  type = "channel",
+  select = "Video"
 }) {
+  const [selected, setSelected] = useState(select);
+  const navButtons = ["Video", "Queue", "Channel", "Setting"];
   return (
     <header className="flex justify-between bg-disabledBackground my-1 mx-1">
       <div className="flex items-center">
@@ -25,32 +25,26 @@ export default function VideoChannelHeader({
           {type === "channel" ? name : `Private Room with ${name}`}
         </p>
       </div>
-      <nav className="flex flex-wrap justify-center">
-        <a
-          href="https://www.google.com"
-          className="btn-playing mx-1 my-1 font-bold no-underline"
-        >
-          Video
-        </a>
-        <a
-          href="https://www.google.com"
-          className="mx-1 my-1 font-bold text-secondaryText no-underline"
-        >
-          Queue
-        </a>
-        <a
-          href="https://www.google.com"
-          className="mx-1 my-1 font-bold text-secondaryText no-underline"
-        >
-          Channel
-        </a>
-        <a
-          href="https://www.google.com"
-          className="mx-1 my-1 font-bold text-secondaryText no-underline"
-        >
-          Settings
-        </a>
-      </nav>
+      {type === "channel" && (
+        <nav className="flex flex-wrap justify-center">
+          {navButtons.map(buttonName => {
+            let className = "mx-1 my-1 font-bold focus:outline-none";
+            if (selected == buttonName) {
+              className = `${className} rainbow-text`;
+            } else {
+              className = `${className} text-secondaryText`;
+            }
+            return (
+              <button
+                className={className}
+                onClick={() => setSelected(buttonName)}
+              >
+                {buttonName}
+              </button>
+            );
+          })}
+        </nav>
+      )}
     </header>
   );
 }
