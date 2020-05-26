@@ -1,10 +1,10 @@
 import React from "react";
-import Button from "./Button";
+import Button from "../Button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import "./VideoStatus.css";
-import RoomIcon from "./RoomIcon";
-import AvatarIcon from "./InfoCards/AvatarIcon";
-import VideoStatus from "./VideoStatus";
+import "../VideoStatus.css";
+import RoomIcon from "../RoomIcon";
+import AvatarIcon from "../InfoCards/AvatarIcon";
+import VideoStatus from "../VideoStatus";
 
 export default function ChannelDescription({
   id,

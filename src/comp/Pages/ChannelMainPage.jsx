@@ -1,9 +1,9 @@
 import React, { Fragment, useState } from "react";
-import RecommendedChannels from "./RecommendedChannels";
-import ChannelsPanel from "./ChannelsPanel";
-import SiteHeaderMain from "./SiteHeaderMain";
-import TabNavMobile from "./TabNavMobile";
-import FriendsPanel from "./FriendsPanel";
+import RecommendedChannels from "../Channel/RecommendedChannels";
+import ChannelsPanel from "../Channel/ChannelsPanel";
+import SiteHeaderMain from "../SiteHeaderMain";
+import TabNavMobile from "../TabNavMobile";
+import FriendsPanel from "../FriendsPanel";
 
 function ChannelMainPage({ list, channelPanelProps }) {
   const { channels, friends, selected, handleSelect } = channelPanelProps;

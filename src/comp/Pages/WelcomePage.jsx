@@ -1,8 +1,8 @@
 import React from "react";
-import SiteHeaderWelcome from "./SiteHeaderWelcome";
-import CreateNewAccountForm from "./CreateNewAccountForm";
-import Footer from "./Footer";
-import Welcome from "../assets/welcome.png";
+import SiteHeaderWelcome from "../SiteHeaderWelcome";
+import CreateNewAccountForm from "../CreateNewAccountForm";
+import Footer from "../Footer";
+import Welcome from "../../assets/welcome.png";
 
 function WelcomePage() {
   return (

@@ -1,6 +1,6 @@
 import React from "react";
-import AvatarIcon from "./InfoCards/AvatarIcon";
-import ToggleIcon from "./ToggleIcon";
+import AvatarIcon from "../InfoCards/AvatarIcon";
+import ToggleIcon from "../ToggleIcon";
 
 export default function ChannelPost({
   id,

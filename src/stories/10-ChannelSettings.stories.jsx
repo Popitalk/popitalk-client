@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { withKnobs } from "@storybook/addon-knobs";
 import { Switch, Route } from "react-router";
-import ChannelSettingsPanel from "../comp/ChannelSettingsPanel";
-import ChannelSettingsSidebar from "../comp/ChannelSettingsSidebar";
-import ChannelForm from "../comp/ChannelForm";
+import ChannelSettingsPanel from "../comp/Channel/ChannelSettingsPanel";
+import ChannelSettingsSidebar from "../comp/Channel/ChannelSettingsSidebar";
+import ChannelForm from "../comp/Channel/ChannelForm";
 import { testUsers } from "./seed-arrays";
 
 export default {

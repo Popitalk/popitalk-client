@@ -1,5 +1,5 @@
 import React from "react";
-import AvatarDeck from "./AvatarDeck";
+import AvatarDeck from "../AvatarDeck";
 import ChatMessage from "./ChatMessage";
 
 function ChatMessages({

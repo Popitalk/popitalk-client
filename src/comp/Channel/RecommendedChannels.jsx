@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import ChannelCardList from "./ChannelCardList.jsx";
-import Input from "./Input.jsx";
+import Input from "../Input.jsx";
 
 function RecommendedChannels({ list }) {
   const [search, setSearch] = React.useState("");

@@ -1,6 +1,6 @@
 import React from "react";
-import ButtonsList from "./ButtonsList";
-import MenuButton from "./MenuButton";
+import ButtonsList from "../ButtonsList";
+import MenuButton from "../MenuButton";
 
 export default function ChannelSettingsSidebar({
   buttons,

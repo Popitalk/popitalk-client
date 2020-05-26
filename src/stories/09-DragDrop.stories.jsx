@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { withKnobs } from "@storybook/addon-knobs";
-import ChannelListQueue from "../comp/ChannelListQueue";
+import ChannelListQueue from "../comp/Channel/ChannelListQueue";
 import { testQueue } from "../stories/seed-arrays";
 
 export default {

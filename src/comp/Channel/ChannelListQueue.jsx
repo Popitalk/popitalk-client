@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import SortableList from "./SortableList";
+import SortableList from "../SortableList";
 import arrayMove from "array-move";
-import VideoMinimalQueueCard from "./VideoMinimalQueueCard";
+import VideoMinimalQueueCard from "../VideoMinimalQueueCard";
 
 export default function ChannelListQueue({ playlist }) {
   const [items, setItems] = useState(playlist);

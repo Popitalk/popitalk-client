@@ -1,20 +1,13 @@
 import React, { useState } from "react";
-import Button from "./Button";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import "./VideoStatus.css";
-import RoomIcon from "./RoomIcon";
-import AvatarIcon from "./InfoCards/AvatarIcon";
-import ChannelPost from "./ChannelPost";
-import ChannelComment from "./ChannelComment";
-import NewChannelComment from "./NewChannelComment";
-import VideoSection from "./VideoSection";
-import VideoChannelHeader from "./VideoChannelHeader";
-import QueueSection from "./QueueSection";
+import "../VideoStatus.css";
+import VideoSection from "../VideoSection";
+import VideoChannelHeader from "../VideoChannelHeader";
+import QueueSection from "../QueueSection";
 import arrayMove from "array-move";
 import ChannelDescription from "./ChannelDescription";
 import NewChannelPost from "./NewChannelPost";
 import ChannelChat from "./ChannelChat";
-import VideoSearch from "./VideoSearch";
+import VideoSearch from "../VideoSearch";
 
 export default function ChannelVideo({
   id,

@@ -5,21 +5,19 @@ import Text from "../comp/Text";
 import RequestCard from "../comp/InfoCards/RequestCard";
 import AvatarDeck from "../comp/AvatarDeck";
 import RoomIcon from "../comp/RoomIcon";
-import ChannelCard from "../comp/ChannelCard";
-import ChannelsPanel from "../comp/ChannelsPanel";
+import ChannelCard from "../comp/Channel/ChannelCard";
+import ChannelsPanel from "../comp/Channel/ChannelsPanel";
 import FriendsPanel from "../comp/FriendsPanel";
 import PopupMenu from "../comp/PopupMenu";
 import ManageUsers from "../comp/ManageUsers";
 import SiteHeaderMain from "../comp/SiteHeaderMain";
 import SiteHeaderWelcome from "../comp/SiteHeaderWelcome";
-import ChatPanel from "../comp/ChatPanel";
+import ChatPanel from "../comp/Chat/ChatPanel";
 import CircleCheckBox from "../comp/CircleCheckbox";
-import WelcomePage from "../comp/WelcomePage";
-import ChannelMainPage from "../comp/ChannelMainPage";
 import AnonymousSidebar from "../comp/AnonymousSidebar";
 import Tag from "../comp/Tag";
 import VideoPlayer from "../comp/VideoPlayer";
-import RecommendedChannels from "../comp/RecommendedChannels";
+import RecommendedChannels from "../comp/Channel/RecommendedChannels";
 import RecommendedVideos from "../comp/RecommendedVideos";
 import DefaultLayout from "../comp/DefaultLayout";
 import VideoChannelHeader from "../comp/VideoChannelHeader";
@@ -531,25 +529,6 @@ export const ChannelChatPanel = () => {
       typerAvatars={typers.map(t => t.avatar)}
       handleResend={handleResend}
       handleDelete={handleDelete}
-    />
-  );
-};
-
-export const WelcomePageShow = () => {
-  return <WelcomePage />;
-};
-
-export const ChannelMainPageShow = () => {
-  const [selectedChannel, setSelectedChannel] = useState(null);
-  return (
-    <ChannelMainPage
-      list={list}
-      channelPanelProps={{
-        channels: testChannels,
-        friends: testUsers,
-        selected: selectedChannel,
-        handleSelect: id => setSelectedChannel(id)
-      }}
     />
   );
 };

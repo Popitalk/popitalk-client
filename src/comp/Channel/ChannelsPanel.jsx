@@ -1,9 +1,8 @@
 import React from "react";
-import ChannelsList from "./InfoCardLists/ChannelsList";
-import Button from "./Button";
-import SuggestionCard from "./SuggestionCard";
-import MiniFriendsList from "./MiniFriendsList";
-import "./channelsPanel.css";
+import ChannelsList from "../InfoCardLists/ChannelsList";
+import Button from "../Button";
+import SuggestionCard from "../SuggestionCard";
+import MiniFriendsList from "../MiniFriendsList";
 
 export default function ChannelsPanel({
   channels,

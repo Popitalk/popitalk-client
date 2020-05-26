@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import ChannelSettingsSidebar from "./ChannelSettingsSidebar";
 import ChannelForm from "./ChannelForm";
-import ManageUsers from "./ManageUsers";
+import ManageUsers from "../ManageUsers";
 
 export default function ChannelSettingsPanel({
   followers,

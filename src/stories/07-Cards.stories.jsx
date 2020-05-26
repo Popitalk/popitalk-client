@@ -8,15 +8,15 @@ import VideoPanelCard from "../comp/VideoPanelCard";
 import QueueSection from "../comp/QueueSection";
 import VideoChannelHeader from "../comp/VideoChannelHeader";
 import VideoSection from "../comp/VideoSection";
-import ChannelDescription from "../comp/ChannelDescription";
-import NewChannelPost from "../comp/NewChannelPost";
-import ChannelPost from "../comp/ChannelPost";
-import ChannelComment from "../comp/ChannelComment";
+import ChannelDescription from "../comp/Channel/ChannelDescription";
+import NewChannelPost from "../comp/Channel/NewChannelPost";
+import ChannelPost from "../comp/Channel/ChannelPost";
+import ChannelComment from "../comp/Channel/ChannelComment";
 
 import arrayMove from "array-move";
-import NewChannelComment from "../comp/NewChannelComment";
-import ChannelChat from "../comp/ChannelChat";
-import ChannelVideo from "../comp/ChannelVideo";
+import NewChannelComment from "../comp/Channel/NewChannelComment";
+import ChannelChat from "../comp/Channel/ChannelChat";
+import ChannelVideo from "../comp/Channel/ChannelVideo";
 import VideoSearchBar from "../comp/VideoSearchBar";
 import VideoSearch from "../comp/VideoSearch";
 import VideoResults from "../comp/VideoResults";
@@ -29,7 +29,7 @@ import {
   testVideos,
   testResult
 } from "./seed-arrays";
-import ChannelQueue from "../comp/ChannelQueue";
+import ChannelQueue from "../comp/Channel/ChannelQueue";
 
 export default {
   title: "Cards",
