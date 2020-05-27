@@ -1,14 +1,34 @@
 import React, { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { login } from "../redux/actions";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Logo from "../assets/logo.png";
+
+import { Link } from "react-router-dom";
 
 import Transition from "./Transition";
 
 import Button from "./Button";
 
-function SiteHeader({ isWelcome = false }) {
+function SiteHeader({ isWelcome = false, isLoggedIn }) {
+  const apiLoading = useSelector(state => state.api.loginApi.loading);
+  const apiError = useSelector(state => state.api.loginApi.error);
+  const dispatch = useDispatch();
   const [mobileMenu, setMobileMenu] = useState(false);
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
   const hasNotification = true;
+
+  const handleLogin = () => {
+    dispatch(
+      login({
+        usernameOrEmail: username,
+        password: password
+      })
+    );
+    setUsername("");
+    setPassword("");
+  };
 
   return isWelcome ? (
     <header className="flex flex-col px-16 py-4 border-b md:justify-between md:flex-row bg-primaryBackground border-primaryBorder">
@@ -28,7 +48,16 @@ function SiteHeader({ isWelcome = false }) {
               <input
                 className="h-8 p-2 border rounded-lg bg-tertiaryBackground border-primaryBorder focus:outline-none"
                 type="text"
+                value={username}
                 id="user"
+                spellCheck={false}
+                onChange={e => setUsername(e.target.value)}
+                disabled={apiLoading}
+                onKeyDown={e => {
+                  if (e.keyCode === 13) {
+                    handleLogin();
+                  }
+                }}
               />
             </li>
             <li className="flex flex-col">
@@ -39,11 +68,26 @@ function SiteHeader({ isWelcome = false }) {
                 className="h-8 p-2 border rounded-lg bg-tertiaryBackground border-primaryBorder focus:outline-none"
                 type="password"
                 id="password"
+                value={password}
+                spellCheck={false}
+                onChange={e => setPassword(e.target.value)}
+                disabled={apiLoading}
+                onKeyDown={e => {
+                  if (e.keyCode === 13) {
+                    handleLogin();
+                  }
+                }}
               />
               <small className="text-secondaryText">Forgot password?</small>
             </li>
             <li className="flex self-end md:self-center">
-              <Button size="sm" className="h-8 mt-1" shape="regular">
+              <Button
+                size="sm"
+                className="h-8 mt-1"
+                shape="regular"
+                onClick={handleLogin}
+                disabled={apiLoading}
+              >
                 Log In
               </Button>
             </li>
