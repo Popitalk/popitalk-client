@@ -47,6 +47,7 @@ const middleware = [
   localstorageMiddleware(),
   routingMiddleware(),
   modalMiddleware(),
+  websocketMiddleware(),
   // process.env.NODE_ENV !== "production"
   //   ? websocketMiddleware("ws://localhost:4000/")
   //   : websocketMiddleware(

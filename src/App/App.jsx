@@ -20,6 +20,7 @@ import { validateSession } from "../redux/actions";
 // import "../styles/app.css";
 import "../styles/app.css";
 import "./App.css";
+import "../helpers/initIcons";
 
 export default function App() {
   const validatedSession = useSelector(state => state.general.validatedSession);

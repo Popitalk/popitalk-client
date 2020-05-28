@@ -42,6 +42,7 @@
     "@fortawesome/free-regular-svg-icons": "^5.13.0",
     "@fortawesome/free-solid-svg-icons": "^5.13.0",
     "@fortawesome/react-fontawesome": "^0.1.9",
+    "@hapi/nes": "^12.0.2",
     "@n8tb1t/use-scroll-position": "^1.0.43",
     "@reduxjs/toolkit": "^1.3.5",
     "@storybook/addon-knobs": "^5.3.17",

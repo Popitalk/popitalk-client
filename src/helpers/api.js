@@ -89,7 +89,7 @@ export const leaveRoom = roomId => {
 };
 
 export const addMessage = messageInfo => {
-  return axios.post("/api/messages/", messageInfo);
+  return axios.post("/api/messages", messageInfo);
 };
 export const addPost = postInfo => {
   return axios.post("/api/posts/", postInfo);
