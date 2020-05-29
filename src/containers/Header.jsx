@@ -1,54 +1,43 @@
 /* eslint-disable jsx-a11y/no-noninteractive-tabindex */
-import React, { useState, useEffect, useLayoutEffect } from "react";
+import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Link, useLocation } from "react-router-dom";
-// import "./Header.css";
-import { login } from "../redux/actions";
-import Header from "../comp/Header";
-// import Input1 from "../Input1";
-// import HeaderNotifications from "../HeaderNotifications";
-// import HeaderFriends from "../HeaderFriends";
-// import HeaderProfile from "../HeaderProfile";
-// import HeaderSettings from "../HeaderSettings";
-// import Logo from "../../assets/logo.png";
-// import Button1 from "../Button1";
-
-const Spinner = () => (
-  <div className="Header--spinner">
-    <div className="Header--spinner--circle">
-      <div></div>
-    </div>
-  </div>
-);
+import { login, logout } from "../redux/actions";
+import SiteHeaderMain from "../comp/SiteHeaderMain";
+import SiteHeaderWelcome from "../comp/SiteHeaderWelcome";
 
 export default function HeaderContainer() {
   const { loggedIn } = useSelector(state => state.general);
+  const { id, username, avatar } = useSelector(state => state.self);
+  const { defaultAvatar } = useSelector(state => state.general);
   const apiLoading = useSelector(state => state.api.loginApi.loading);
-  const apiError = useSelector(state => state.api.loginApi.error);
   const dispatch = useDispatch();
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [headerLandingPage, setHeaderLandingPage] = useState(false);
-  const location = useLocation();
 
-  useLayoutEffect(() => {
-    if (location.pathname.startsWith("/welcome")) {
-      setHeaderLandingPage(true);
-    } else {
-      setHeaderLandingPage(false);
-    }
-  }, [location]);
+  //TODO: Handle login errors
+  //TODO: Retrieve notifications
+  //TODO: Open profile modal
 
-  const handleLogin = () => {
-    dispatch(
-      login({
-        usernameOrEmail: username,
-        password: password
-      })
+  if (loggedIn) {
+    return (
+      <SiteHeaderMain
+        hasNotification={true}
+        username={username}
+        avatar={avatar || defaultAvatar}
+        openProfileHandler={() => console.log(`open profile ${id}`)}
+        logoutHandler={() => dispatch(logout())}
+      />
     );
-    setUsername("");
-    setPassword("");
-  };
+  } else {
+    const handleLogin = (username, password) => {
+      dispatch(
+        login({
+          usernameOrEmail: username,
+          password: password
+        })
+      );
+    };
 
-  return <Header isWelcome={headerLandingPage} />;
+    return (
+      <SiteHeaderWelcome apiLoading={apiLoading} dispatchLogin={handleLogin} />
+    );
+  }
 }

@@ -1,9 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import Logo from "../assets/logo.png";
-
 import Button from "./Button";
 
-export default function SiteHeaderWelcome() {
+export default function SiteHeaderWelcome({ apiLoading, dispatchLogin }) {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleLogin = () => {
+    dispatchLogin(username, password);
+    setUsername("");
+    setPassword("");
+  };
+
   return (
     <header className="flex flex-col px-16 py-4 border-b md:justify-between md:flex-row bg-primaryBackground border-primaryBorder">
       <div className="flex items-center justify-center mb-8">
@@ -22,7 +30,16 @@ export default function SiteHeaderWelcome() {
               <input
                 className="h-8 p-2 border rounded-lg bg-tertiaryBackground border-primaryBorder focus:outline-none"
                 type="text"
+                value={username}
                 id="user"
+                spellCheck={false}
+                onChange={e => setUsername(e.target.value)}
+                disabled={apiLoading}
+                onKeyDown={e => {
+                  if (e.keyCode === 13) {
+                    handleLogin();
+                  }
+                }}
               />
             </li>
             <li className="flex flex-col">
@@ -33,11 +50,26 @@ export default function SiteHeaderWelcome() {
                 className="h-8 p-2 border rounded-lg bg-tertiaryBackground border-primaryBorder focus:outline-none"
                 type="password"
                 id="password"
+                value={password}
+                spellCheck={false}
+                onChange={e => setPassword(e.target.value)}
+                disabled={apiLoading}
+                onKeyDown={e => {
+                  if (e.keyCode === 13) {
+                    handleLogin();
+                  }
+                }}
               />
               <small className="text-secondaryText">Forgot password?</small>
             </li>
             <li className="flex self-end md:self-center">
-              <Button size="sm" className="h-8 mt-1" shape="regular">
+              <Button
+                size="sm"
+                className="h-8 mt-1"
+                shape="regular"
+                onClick={handleLogin}
+                disabled={apiLoading}
+              >
                 Log In
               </Button>
             </li>

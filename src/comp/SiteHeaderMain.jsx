@@ -1,11 +1,53 @@
 import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Logo from "../assets/logo.png";
-
 import Transition from "./Transition";
+import DropDownMenu from "./DropDowns/DropDownMenu";
 
-export default function SiteHeaderMain({ hasNotification }) {
+export default function SiteHeaderMain({
+  hasNotification,
+  username,
+  avatar,
+  openProfileHandler,
+  logoutHandler
+}) {
   const [mobileMenu, setMobileMenu] = useState(false);
+  const [openSettings, setOpenSettings] = useState(false);
+  const [openAccountSettings, setOpenAccountSettings] = useState(false);
+
+  //TODO: Implement Block Users action
+
+  const settingsButtons = [
+    {
+      text: "Account Settings",
+      onClick: () => setOpenAccountSettings(true)
+    },
+    {
+      text: "Block Users",
+      onClick: () => console.log("Open block users interface")
+    },
+    {
+      text: "Log Out",
+      onClick: logoutHandler,
+      danger: true
+    }
+  ];
+
+  /*const accountSettingsButtons = [
+    {
+      text: "Edit User Information",
+      onClick: buttonTest
+    },
+    {
+      text: "Change Password",
+      onClick: buttonTest
+    },
+    {
+      text: "Delete Account",
+      onClick: buttonTest,
+      danger: true
+    }
+  ];*/
 
   return (
     <header className="relative flex flex-col px-4 bg-primaryBackground">
@@ -14,12 +56,16 @@ export default function SiteHeaderMain({ hasNotification }) {
           <img src={Logo} alt="PlayNow's logo" className="w-12 h-12" />
           <ul className="items-center hidden space-x-8 md:flex">
             <li>
-              <div className="flex items-center p-2 transition-colors duration-150 cursor-pointer rounded-xl hover:bg-highlightBackground">
-                <span className="font-bold">Andrew</span>
+              <div
+                className="flex items-center p-2 transition-colors duration-150 cursor-pointer rounded-xl hover:bg-highlightBackground"
+                role="button"
+                onClick={openProfileHandler}
+              >
+                <span className="font-bold">{username}</span>
                 <img
                   className="w-8 h-8 ml-4 rounded-full"
-                  src="https://randomuser.me/api/portraits/men/75.jpg"
-                  alt="User"
+                  src={avatar}
+                  alt={`${username}'s avatar`}
                 />
               </div>
             </li>
@@ -45,10 +91,21 @@ export default function SiteHeaderMain({ hasNotification }) {
               </div>
             </li>
             <li>
-              <FontAwesomeIcon
-                icon="cog"
-                className="cursor-pointer text-secondaryText hover:text-highlightText"
-              />
+              <div className="relative">
+                <FontAwesomeIcon
+                  icon="cog"
+                  className="cursor-pointer text-secondaryText hover:text-highlightText"
+                  roll="button"
+                  onClick={() => setOpenSettings(!openSettings)}
+                />
+                {openSettings ? (
+                  <div className="absolute right-0 mt-2 z-10">
+                    <DropDownMenu title="Settings" buttons={settingsButtons} />
+                  </div>
+                ) : (
+                  <></>
+                )}
+              </div>
             </li>
             <li>
               <FontAwesomeIcon
