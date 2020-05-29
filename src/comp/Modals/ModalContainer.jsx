@@ -1,7 +1,7 @@
 import React from "react";
 import Modal from "react-modal";
 import classnames from "classnames";
-import "./ModalManager.css";
+import "./ModalContainer.css";
 
 Modal.setAppElement("#root");
 
@@ -10,7 +10,6 @@ export default function ModalManager({
   small,
   fixedFullSize,
   handleModalClose,
-  onShadeClick,
   background = "white",
   header,
   children
@@ -36,8 +35,7 @@ export default function ModalManager({
       isOpen={isOpen}
       closeTimeoutMS={170}
       contentLabel="modal"
-      // onRequestClose={apiLoading ? undefined : modalCloseHandler}
-      onAfterClose={handleModalClose}
+      onRequestClose={handleModalClose}
       className={modalClasses}
       overlayClassName="ModalManager--modalOverlay"
     >

@@ -3,28 +3,43 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Logo from "../assets/logo.png";
 import Transition from "./Transition";
 import DropDownMenu from "./DropDowns/DropDownMenu";
+import DeleteAccountDropDown from "./DropDowns/DeleteAccountDropDown";
+
+const SETTINGS = 1;
+const ACCOUNT_SETTINGS = 2;
+const DELETE_ACCOUNT = 3;
 
 export default function SiteHeaderMain({
   hasNotification,
   username,
   avatar,
   openProfileHandler,
+  deleteAccountHandler,
   logoutHandler
 }) {
   const [mobileMenu, setMobileMenu] = useState(false);
-  const [openSettings, setOpenSettings] = useState(false);
-  const [openAccountSettings, setOpenAccountSettings] = useState(false);
+  const [dropdownList, setDropdownList] = useState([]);
 
-  //TODO: Implement Block Users action
+  const toggleSettings = () => {
+    if (dropdownList.length > 0) {
+      setDropdownList([]);
+    } else {
+      setDropdownList([SETTINGS]);
+    }
+  };
+
+  const popDropdown = () => {
+    setDropdownList(dropdownList.slice(0, -1));
+  };
 
   const settingsButtons = [
     {
       text: "Account Settings",
-      onClick: () => setOpenAccountSettings(true)
+      onClick: () => setDropdownList([...dropdownList, ACCOUNT_SETTINGS])
     },
     {
       text: "Block Users",
-      onClick: () => console.log("Open block users interface")
+      onClick: () => console.log("Open block users modal")
     },
     {
       text: "Log Out",
@@ -33,21 +48,26 @@ export default function SiteHeaderMain({
     }
   ];
 
-  /*const accountSettingsButtons = [
+  const accountSettingsButtons = [
     {
       text: "Edit User Information",
-      onClick: buttonTest
+      onClick: () => console.log("Open Edit User Information modal")
     },
     {
       text: "Change Password",
-      onClick: buttonTest
+      onClick: () => console.log("Open Change Password modal")
     },
     {
       text: "Delete Account",
-      onClick: buttonTest,
+      onClick: () => setDropdownList([...dropdownList, DELETE_ACCOUNT]),
       danger: true
     }
-  ];*/
+  ];
+
+  const settingsDropdown =
+    dropdownList.length > 0 ? dropdownList[dropdownList.length - 1] : 0;
+
+  const dropdownClasses = "absolute right-0 mt-2 z-10";
 
   return (
     <header className="relative flex flex-col px-4 bg-primaryBackground">
@@ -96,11 +116,26 @@ export default function SiteHeaderMain({
                   icon="cog"
                   className="cursor-pointer text-secondaryText hover:text-highlightText"
                   roll="button"
-                  onClick={() => setOpenSettings(!openSettings)}
+                  onClick={() => toggleSettings()}
                 />
-                {openSettings ? (
-                  <div className="absolute right-0 mt-2 z-10">
+                {settingsDropdown === SETTINGS ? (
+                  <div className={dropdownClasses}>
                     <DropDownMenu title="Settings" buttons={settingsButtons} />
+                  </div>
+                ) : settingsDropdown === ACCOUNT_SETTINGS ? (
+                  <div className={dropdownClasses}>
+                    <DropDownMenu
+                      title="Account Settings"
+                      buttons={accountSettingsButtons}
+                      handleBack={popDropdown}
+                    />
+                  </div>
+                ) : settingsDropdown === DELETE_ACCOUNT ? (
+                  <div className={dropdownClasses}>
+                    <DeleteAccountDropDown
+                      handleDelete={deleteAccountHandler}
+                      handleBack={popDropdown}
+                    />
                   </div>
                 ) : (
                   <></>

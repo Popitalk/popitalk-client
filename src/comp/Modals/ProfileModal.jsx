@@ -14,7 +14,8 @@ export default function ProfileModal({
   followedChannels,
   friendHandler,
   unfriendHandler,
-  blockHandler
+  blockHandler,
+  unblockHandler
 }) {
   let options = null;
   if (!myProfile) {

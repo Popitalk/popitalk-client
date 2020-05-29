@@ -26,7 +26,6 @@ import {
   testUserMinimal,
   testMessages
 } from "./seed-arrays";
-// import SiteHeader from "../comp/SiteHeader";
 import SiteHeaderMain from "../comp/SiteHeaderMain";
 import SiteHeaderWelcome from "../comp/SiteHeaderWelcome";
 
@@ -494,14 +493,14 @@ export const ManageUsersTest = () => {
   );
 };
 
-// export const SiteHeaderShow = () => {
-//   return <SiteHeader isWelcome={false} />;
-// };
-
 export const SiteHeadersShow = () => {
   return (
     <>
-      <SiteHeaderMain />
+      <SiteHeaderMain
+        username="Test"
+        avatar="https://source.unsplash.com/128x128/?4,cat"
+      />
+
       <SiteHeaderWelcome />
     </>
   );
