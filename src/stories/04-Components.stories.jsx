@@ -26,7 +26,9 @@ import {
   testUserMinimal,
   testMessages
 } from "./seed-arrays";
-import SiteHeader from "../comp/SiteHeader";
+// import SiteHeader from "../comp/SiteHeader";
+import SiteHeaderMain from "../comp/SiteHeaderMain";
+import SiteHeaderWelcome from "../comp/SiteHeaderWelcome";
 
 export default {
   title: "Components",
@@ -492,10 +494,18 @@ export const ManageUsersTest = () => {
   );
 };
 
-export const SiteHeaderShow = () => {
-  return <SiteHeader isWelcome={false} />;
-};
+// export const SiteHeaderShow = () => {
+//   return <SiteHeader isWelcome={false} />;
+// };
 
+export const SiteHeadersShow = () => {
+  return (
+    <>
+      <SiteHeaderMain />
+      <SiteHeaderWelcome />
+    </>
+  );
+};
 export const ChannelChatPanel = () => {
   const typers = testUserMinimal;
 
