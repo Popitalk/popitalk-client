@@ -4,7 +4,7 @@ import EditInformationModal from "../comp/Modals/EditInformationModal";
 import ChangePasswordModal from "../comp/Modals/ChangePasswordModal";
 import ForgotPasswordModal from "../comp/Modals/ForgotPasswordModal";
 import CreateNewAccountForm from "../comp/CreateNewAccountForm";
-import ModalManager from "../comp/Modals/ModalManager";
+import ModalContainer from "../comp/Modals/ModalContainer";
 import ContainerHeader from "../comp/ContainerHeader";
 import RoomExistsModal from "../comp/Modals/RoomExistsModal";
 import SearchHeader, { buildSearchInput } from "../comp/SearchHeader";
@@ -165,17 +165,17 @@ const generatedUsers = generateTestUsers();
 
 export const CreateNewAccountModalTest = () => {
   return (
-    <ModalManager isOpen={true}>
+    <ModalContainer isOpen={true}>
       <div className="p-4 overflow-auto">
         <CreateNewAccountForm />
       </div>
-    </ModalManager>
+    </ModalContainer>
   );
 };
 
 export const EditInformationModalTest = () => {
   return (
-    <ModalManager
+    <ModalContainer
       isOpen={true}
       header={
         <ContainerHeader
@@ -195,13 +195,13 @@ export const EditInformationModalTest = () => {
         }}
         informationUpdated={true}
       />
-    </ModalManager>
+    </ModalContainer>
   );
 };
 
 export const ChangePasswordModalTest = () => {
   return (
-    <ModalManager
+    <ModalContainer
       isOpen={true}
       small={true}
       header={
@@ -209,19 +209,19 @@ export const ChangePasswordModalTest = () => {
       }
     >
       <ChangePasswordModal handleBack="test" passwordUpdated={true} />
-    </ModalManager>
+    </ModalContainer>
   );
 };
 
 export const ForgotPasswordModalTest = () => {
   return (
-    <ModalManager
+    <ModalContainer
       isOpen={true}
       small={true}
       header={<ContainerHeader title="Forgot Password" />}
     >
       <ForgotPasswordModal confirmEmailSent={true} />
-    </ModalManager>
+    </ModalContainer>
   );
 };
 
@@ -247,13 +247,13 @@ export const RoomExistsModalTest = () => {
   };
 
   return (
-    <ModalManager isOpen={true} background="gray" small={true}>
+    <ModalContainer isOpen={true} background="gray" small={true}>
       <RoomExistsModal
         room={room}
         openRoomHandler={openRoomHandler}
         createNewHandler={createNewHandler}
       />
-    </ModalManager>
+    </ModalContainer>
   );
 };
 
@@ -270,23 +270,23 @@ export const DeleteMessageModalTest = () => {
   message.me = true;
 
   return (
-    <ModalManager isOpen={true} small={true}>
+    <ModalContainer isOpen={true} small={true}>
       <DeleteMessageModal
         message={message}
         handleCancel={handleCancel}
         handleDelete={handleDelete}
       />
-    </ModalManager>
+    </ModalContainer>
   );
 };
 
 export const InviteModalTest = () => {
   return (
-    <ModalManager isOpen={true} small={true}>
+    <ModalContainer isOpen={true} small={true}>
       <div className="p-4">
         <InviteForm link="https://popitalk.com" />
       </div>
-    </ModalManager>
+    </ModalContainer>
   );
 };
 
@@ -298,7 +298,7 @@ export const WatchModalTest = () => {
   const [visible, setVisible] = useState(generatedRooms);
 
   return (
-    <ModalManager
+    <ModalContainer
       isOpen={true}
       fixedFullSize={true}
       header={
@@ -322,7 +322,7 @@ export const WatchModalTest = () => {
         videoSource="youtube"
         thumbnail="https://i.imgur.com/aqjzchq.jpg"
       />
-    </ModalManager>
+    </ModalContainer>
   );
 };
 
@@ -333,7 +333,7 @@ export const ShareModalTest = () => {
   const nameField = "name";
 
   return (
-    <ModalManager
+    <ModalContainer
       isOpen={true}
       fixedFullSize={true}
       header={
@@ -364,7 +364,7 @@ export const ShareModalTest = () => {
         videoSource="youtube"
         thumbnail="https://i.imgur.com/aqjzchq.jpg"
       />
-    </ModalManager>
+    </ModalContainer>
   );
 };
 
@@ -375,7 +375,7 @@ export const NewRoomModalTest = () => {
   const nameField = "username";
 
   return (
-    <ModalManager
+    <ModalContainer
       isOpen={true}
       small={true}
       fixedFullSize={true}
@@ -400,7 +400,7 @@ export const NewRoomModalTest = () => {
         onCheck={(id, name) => onCheck(selected, setSelected, id, name)}
         handleSend={() => handleSend(selected, "friends")}
       />
-    </ModalManager>
+    </ModalContainer>
   );
 };
 
@@ -412,7 +412,7 @@ export const FollowersModalTest = () => {
   const [visible, setVisible] = useState(generatedUsers);
 
   return (
-    <ModalManager
+    <ModalContainer
       isOpen={true}
       small={true}
       fixedFullSize={true}
@@ -431,13 +431,13 @@ export const FollowersModalTest = () => {
         users={visible}
         handleProfile={handleProfile}
       />
-    </ModalManager>
+    </ModalContainer>
   );
 };
 
 export const StrangerProfileModalTest = () => {
   return (
-    <ModalManager isOpen={true}>
+    <ModalContainer isOpen={true}>
       <ProfileModal
         user={testUsers[0]}
         showAddFriend={true}
@@ -450,13 +450,13 @@ export const StrangerProfileModalTest = () => {
         unfriendHandler={unfriendHandler}
         blockHandler={blockHandler}
       />
-    </ModalManager>
+    </ModalContainer>
   );
 };
 
 export const FriendProfileModalTest = () => {
   return (
-    <ModalManager isOpen={true}>
+    <ModalContainer isOpen={true}>
       <ProfileModal
         user={testUsers[0]}
         following={6}
@@ -468,13 +468,13 @@ export const FriendProfileModalTest = () => {
         unfriendHandler={unfriendHandler}
         blockHandler={blockHandler}
       />
-    </ModalManager>
+    </ModalContainer>
   );
 };
 
 export const MyProfileModalTest = () => {
   return (
-    <ModalManager isOpen={true}>
+    <ModalContainer isOpen={true}>
       <ProfileModal
         user={testUsers[0]}
         myProfile={true}
@@ -487,6 +487,6 @@ export const MyProfileModalTest = () => {
         unfriendHandler={unfriendHandler}
         blockHandler={blockHandler}
       />
-    </ModalManager>
+    </ModalContainer>
   );
 };

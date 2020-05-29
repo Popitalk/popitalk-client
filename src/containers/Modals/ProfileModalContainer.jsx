@@ -1,17 +1,27 @@
-import React from "react";
-import { useSelector } from "react-redux";
-import ModalManager from "../../comp/Modals/ModalManager";
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { getUserInfoModal } from "../../redux/actions";
+import ModalContainer from "../../comp/Modals/ModalContainer";
 import ProfileModal from "../../comp/Modals/ProfileModal";
 
 export default function ProfileModalContainer({ handleModalClose }) {
   const { userId } = useSelector(state => state.modal);
-  const { id, firstName, lastName, username, avatar } = useSelector(
-    state => state.self
-  );
+  const {
+    idModal: id,
+    firstNameModal: firstName,
+    lastNameModal: lastName,
+    usernameModal: username,
+    avatarModal: avatar
+  } = useSelector(state => state.userProfile);
   const { defaultAvatar } = useSelector(state => state.general);
 
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getUserInfoModal(userId));
+  }, [dispatch, userId]);
+
   return (
-    <ModalManager isOpen={true} handleModalClose={handleModalClose}>
+    <ModalContainer isOpen={true} handleModalClose={handleModalClose}>
       <ProfileModal
         user={{
           id: id,
@@ -27,6 +37,6 @@ export default function ProfileModalContainer({ handleModalClose }) {
         recentVideos={[]}
         followedChannels={[]}
       />
-    </ModalManager>
+    </ModalContainer>
   );
 }

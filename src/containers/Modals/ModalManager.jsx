@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { closeAllModals, closeModalFinal } from "../../redux/actions";
+import { closeModalFinal } from "../../redux/actions";
 import ProfileModal from "./ProfileModalContainer";
 import { MODAL_PROFILE } from "../../helpers/constants";
 
@@ -10,18 +10,7 @@ const ModalComponents = {
 
 export default function ModalManager() {
   const components = useSelector(state => state.modal.components);
-  const closing = useSelector(state => state.modal.closing);
   const dispatch = useDispatch();
-
-  const modalCloseHandler = () => {
-    // if (apiLoading) return;
-    dispatch(closeAllModals());
-  };
-
-  const onShadeClick = e => {
-    if (e.target !== e.currentTarget) return;
-    modalCloseHandler();
-  };
 
   const handleAfterClose = () => {
     dispatch(closeModalFinal());
@@ -37,10 +26,7 @@ export default function ModalManager() {
       {ModalType === 0 ? (
         <></>
       ) : (
-        <ModalType
-          handleModalClose={handleAfterClose}
-          onShadeClick={onShadeClick}
-        />
+        <ModalType handleModalClose={handleAfterClose} />
       )}
     </>
   );
