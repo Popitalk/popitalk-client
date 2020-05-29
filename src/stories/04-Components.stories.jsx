@@ -26,7 +26,7 @@ import {
   testUserMinimal,
   testMessages
 } from "./seed-arrays";
-import SiteHeader from "../comp/SiteHeader";
+import SiteHeaderMain from "../comp/SiteHeaderMain";
 
 export default {
   title: "Components",
@@ -493,7 +493,12 @@ export const ManageUsersTest = () => {
 };
 
 export const SiteHeaderShow = () => {
-  return <SiteHeader isWelcome={false} />;
+  return (
+    <SiteHeaderMain
+      username="Test"
+      avatar="https://source.unsplash.com/128x128/?4,cat"
+    />
+  );
 };
 
 export const ChannelChatPanel = () => {

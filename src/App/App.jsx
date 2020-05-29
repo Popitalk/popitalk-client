@@ -12,7 +12,7 @@ import Header from "../containers/Header";
 // import SiteHeaderMain from "../comp/SiteHeaderMain";
 // import SiteHeaderWelcome from "../comp/SiteHeaderWelcome";
 import LoadingPage from "../components/LoadingPage";
-import ModalManager from "../components/ModalManager";
+import ModalManager from "../containers/Modals/ModalManager";
 import { validateSession } from "../redux/actions";
 // import "@fortawesome/fontawesome-free/css/all.css";
 // import "./fw.css";
