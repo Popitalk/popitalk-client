@@ -54,7 +54,7 @@ export const VideoCardShow = () => {
 
 export const SuggestionCardStates = () => {
   return (
-    <div className="p-5 grid grid-cols-2">
+    <div className="p-5 flex flex-wrap">
       <SuggestionCard
         id={123}
         name="Thelmo Society"
