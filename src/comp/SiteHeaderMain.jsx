@@ -4,6 +4,8 @@ import Logo from "../assets/logo.png";
 import Transition from "./Transition";
 import DropDownMenu from "./DropDowns/DropDownMenu";
 import DeleteAccountDropDown from "./DropDowns/DeleteAccountDropDown";
+import FriendRequests from "./DropDowns/FriendRequests";
+import Notifications from "./DropDowns/Notifications";
 
 const SETTINGS = 1;
 const ACCOUNT_SETTINGS = 2;
@@ -11,14 +13,22 @@ const DELETE_ACCOUNT = 3;
 
 export default function SiteHeaderMain({
   hasNotification,
+  userID,
   username,
   avatar,
+  friendRequests,
+  notifications,
   openProfileHandler,
+  acceptRequestHandler,
+  rejectRequestHandler,
+  clearNotificationsHandler,
   deleteAccountHandler,
   logoutHandler
 }) {
   const [mobileMenu, setMobileMenu] = useState(false);
   const [dropdownList, setDropdownList] = useState([]);
+  const [showNotifications, setShowNotifications] = useState(false);
+  const [showRequests, setShowRequests] = useState(false);
 
   const toggleSettings = () => {
     if (dropdownList.length > 0) {
@@ -79,7 +89,7 @@ export default function SiteHeaderMain({
               <div
                 className="flex items-center p-2 transition-colors duration-150 cursor-pointer rounded-xl hover:bg-highlightBackground"
                 role="button"
-                onClick={openProfileHandler}
+                onClick={() => openProfileHandler(userID)}
               >
                 <span className="font-bold">{username}</span>
                 <img
@@ -90,10 +100,26 @@ export default function SiteHeaderMain({
               </div>
             </li>
             <li>
-              <FontAwesomeIcon
-                icon="user-plus"
-                className="cursor-pointer text-secondaryText hover:text-highlightText"
-              />
+              <div className="relative">
+                <FontAwesomeIcon
+                  icon="user-plus"
+                  className="cursor-pointer text-secondaryText hover:text-highlightText"
+                  roll="button"
+                  onClick={() => setShowRequests(!showRequests)}
+                />
+                {showRequests ? (
+                  <div className={dropdownClasses}>
+                    <FriendRequests
+                      friendRequests={friendRequests}
+                      handleProfile={openProfileHandler}
+                      handleAccept={acceptRequestHandler}
+                      handleReject={rejectRequestHandler}
+                    />
+                  </div>
+                ) : (
+                  <></>
+                )}
+              </div>
             </li>
             <li>
               <div className="relative">
@@ -104,9 +130,22 @@ export default function SiteHeaderMain({
                       ? "text-highlightText"
                       : "text-secondaryText"
                   } hover:text-highlightText`}
+                  roll="button"
+                  onClick={() => setShowNotifications(!showNotifications)}
                 />
                 {hasNotification && (
                   <div className="absolute top-0 z-10 p-1 ml-2 border-2 rounded-full border-primaryBackground bg-errorText"></div>
+                )}
+                {showNotifications ? (
+                  <div className={dropdownClasses}>
+                    <Notifications
+                      notifications={notifications}
+                      handleProfile={openProfileHandler}
+                      handleClear={clearNotificationsHandler}
+                    />
+                  </div>
+                ) : (
+                  <></>
                 )}
               </div>
             </li>
@@ -116,7 +155,7 @@ export default function SiteHeaderMain({
                   icon="cog"
                   className="cursor-pointer text-secondaryText hover:text-highlightText"
                   roll="button"
-                  onClick={() => toggleSettings()}
+                  onClick={toggleSettings}
                 />
                 {settingsDropdown === SETTINGS ? (
                   <div className={dropdownClasses}>
