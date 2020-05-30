@@ -157,7 +157,8 @@ module.exports = {
         services: "repeat(5, 40px);"
       },
       padding: {
-        "2px": "2px"
+        "2px": "2px",
+        "16/9": "56.25%"
       }
     }
   },
