@@ -153,7 +153,8 @@ module.exports = {
         "32": "8rem"
       },
       gridTemplateColumns: {
-        chat: "2.5rem 1fr 5rem;"
+        chat: "2.5rem 1fr 5rem;",
+        services: "repeat(5, 40px);"
       },
       padding: {
         "2px": "2px"
