@@ -14,7 +14,7 @@ export default function SuggestionCard({
   activeViewers
 }) {
   return (
-    <div className="flex flex-row items-center justify-center w-full rounded-xl overflow-hidden hover:shadow-xl">
+    <div className="flex flex-row items-center justify-center w-full rounded-xl overflow-hidden hover:shadow-xl transform hover:-translate-y-1 transition-all ease-in-out duration-200">
       <div className="flex-grow flex flex-row justify-center h-full p-3 pb-16/9 relative">
         <div className="absolute w-full h-full top-0 left-0 p-3 rounded-b-xl z-20">
           <div className="flex flex-row justify-between">
