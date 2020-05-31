@@ -1,5 +1,4 @@
 import React from "react";
-import { PlyrComponent } from "plyr-react";
 import "./VideoPlayer.css";
 
 export default function VideoPlayer() {
