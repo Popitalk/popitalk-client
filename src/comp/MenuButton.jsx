@@ -1,6 +1,5 @@
 import React from "react";
 import classnames from "classnames";
-import Text from "./Text";
 
 export default function MenuButton({ selected, danger, text, onClick }) {
   const buttonClasses = classnames(
@@ -12,9 +11,7 @@ export default function MenuButton({ selected, danger, text, onClick }) {
 
   return (
     <div role="button" onClick={onClick} className={buttonClasses}>
-      <Text variant="text2" className={danger ? "text-errorText" : ""}>
-        {text}
-      </Text>
+      <p className={danger ? "text-errorText" : ""}>{text}</p>
     </div>
   );
 }
