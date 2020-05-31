@@ -98,40 +98,48 @@ export const SuggestionCardStates = () => {
 
 export const VideoPanelCardShow = () => {
   return (
-    <div className="p-5 grid grid-cols-2">
-      <VideoPanelCard
-        id={123}
-        title="Video Title"
-        channelName="Channel Name"
-        views="20K views"
-        timeFromUpload="2 months ago"
-        videoSource="youtube"
-        thumbnail="https://i.imgur.com/aqjzchq.jpg"
-        status="queued"
-        statusMessage="In 14min"
-      />
-      <VideoPanelCard
-        id={123}
-        title="Video Title"
-        channelName="Channel Name"
-        views="20K views"
-        timeFromUpload="2 months ago"
-        videoSource="youtube"
-        thumbnail="https://i.imgur.com/aqjzchq.jpg"
-        status="ended"
-        statusMessage="Ended 1hr ago"
-      />
-      <VideoPanelCard
-        id={123}
-        title="Video Title"
-        channelName="Channel Name"
-        views="20K views"
-        timeFromUpload="2 months ago"
-        videoSource="youtube"
-        thumbnail="https://i.imgur.com/aqjzchq.jpg"
-        type="add"
-      />
-      <VideoPanelCard />
+    <div className="p-5 flex flex-wrap">
+      <div className="p-2 w-full sm:w-1/2 lg:w-1/4">
+        <VideoPanelCard
+          id={123}
+          title="Video Title"
+          channelName="Channel Name"
+          views="20K views"
+          timeFromUpload="2 months ago"
+          videoSource="youtube"
+          thumbnail="https://i.imgur.com/aqjzchq.jpg"
+          status="queued"
+          statusMessage="In 14min"
+        />
+      </div>
+      <div className="p-2 w-full sm:w-1/2 lg:w-1/4">
+        <VideoPanelCard
+          id={123}
+          title="Video Title"
+          channelName="Channel Name"
+          views="20K views"
+          timeFromUpload="2 months ago"
+          videoSource="youtube"
+          thumbnail="https://i.imgur.com/aqjzchq.jpg"
+          status="ended"
+          statusMessage="Ended 1hr ago"
+        />
+      </div>
+      <div className="p-2 w-full sm:w-1/2 lg:w-1/4">
+        <VideoPanelCard
+          id={123}
+          title="Video Title"
+          channelName="Channel Name"
+          views="20K views"
+          timeFromUpload="2 months ago"
+          videoSource="youtube"
+          thumbnail="https://i.imgur.com/aqjzchq.jpg"
+          type="add"
+        />
+      </div>
+      <div className="p-2 w-full sm:w-1/2 lg:w-1/4">
+        <VideoPanelCard />
+      </div>
     </div>
   );
 };

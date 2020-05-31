@@ -337,39 +337,43 @@ export const RoomIcon123 = () => {
 
 export const ChannelCard123 = () => {
   return (
-    <div className="grid grid-cols-2 p-5">
-      <ChannelCard
-        id={123}
-        name="Thelmo Society"
-        icon="https://i.imgur.com/xCGu56D.jpg"
-        avatars={[
-          "https://source.unsplash.com/128x128/?1,cat",
-          "https://source.unsplash.com/128x128/?2,cat",
-          "https://source.unsplash.com/128x128/?3,cat",
-          "https://source.unsplash.com/128x128/?4,cat"
-        ]}
-        live={false}
-        videoTitle="Video Title"
-        videoSource="youtube"
-        videoThumbnail="https://i.imgur.com/aqjzchq.jpg"
-        handleFollow={() => console.log("FOLLOW")}
-      />
-      <ChannelCard
-        id={123}
-        name="Thelmo Society"
-        icon="https://i.imgur.com/xCGu56D.jpg"
-        avatars={[
-          "https://source.unsplash.com/128x128/?1,cat",
-          "https://source.unsplash.com/128x128/?2,cat",
-          "https://source.unsplash.com/128x128/?3,cat",
-          "https://source.unsplash.com/128x128/?4,cat"
-        ]}
-        live={true}
-        videoTitle="Video Title"
-        videoSource="youtube"
-        videoThumbnail="https://i.imgur.com/aqjzchq.jpg"
-        handleFollow={() => console.log("FOLLOW")}
-      />
+    <div className="p-5 flex flex-wrap">
+      <div className="p-2 w-full sm:w-1/2 lg:w-1/3">
+        <ChannelCard
+          id={123}
+          name="Thelmo Society"
+          icon="https://i.imgur.com/xCGu56D.jpg"
+          avatars={[
+            "https://source.unsplash.com/128x128/?1,cat",
+            "https://source.unsplash.com/128x128/?2,cat",
+            "https://source.unsplash.com/128x128/?3,cat",
+            "https://source.unsplash.com/128x128/?4,cat"
+          ]}
+          live={false}
+          videoTitle="Video Title"
+          videoSource="youtube"
+          videoThumbnail="https://i.imgur.com/aqjzchq.jpg"
+          handleFollow={() => console.log("FOLLOW")}
+        />
+      </div>
+      <div className="p-2 w-full sm:w-1/2 lg:w-1/3">
+        <ChannelCard
+          id={123}
+          name="Thelmo Society"
+          icon="https://i.imgur.com/xCGu56D.jpg"
+          avatars={[
+            "https://source.unsplash.com/128x128/?1,cat",
+            "https://source.unsplash.com/128x128/?2,cat",
+            "https://source.unsplash.com/128x128/?3,cat",
+            "https://source.unsplash.com/128x128/?4,cat"
+          ]}
+          live={true}
+          videoTitle="Video Title"
+          videoSource="youtube"
+          videoThumbnail="https://i.imgur.com/aqjzchq.jpg"
+          handleFollow={() => console.log("FOLLOW")}
+        />
+      </div>
     </div>
   );
 };
