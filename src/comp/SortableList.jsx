@@ -33,7 +33,7 @@ export default function SortableList({
       <div
         className={
           (axis === "y" ? "flex-col" : "flex-row") +
-          " flex flex-grow overflow-auto"
+          " flex flex-grow overflow-auto py-4 items-start"
         }
       >
         {items.map((value, index) => (
