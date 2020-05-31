@@ -18,14 +18,14 @@ export default function VideoPanelCard({
   return (
     <>
       {!title && (
-        <div className="flex-shrink-0 w-full pb-16/9 relative max-w-xs m-1 rounded-xl hover:shadow-xl bg-disabledBackground">
+        <div className="w-full pb-16/9 relative m-1 rounded-xl hover:shadow-xl transform hover:-translate-y-1 transition-all ease-in-out duration-200 bg-disabledBackground">
           <div className="flex items-center justify-center absolute w-full h-full">
             <Button size="lg" icon="plus" />
           </div>
         </div>
       )}
       {title && (
-        <div className="w-full m-1 rounded-xl hover:shadow-xl">
+        <div className="w-full m-1 rounded-xl hover:shadow-xl transform hover:-translate-y-1 transition-all ease-in-out duration-200">
           <div className="relative flex justify-center flex-grow pb-16/9 w-full">
             <div className="absolute top-0 left-0 w-full p-3 rounded-b-xl">
               <div className="flex justify-between">
