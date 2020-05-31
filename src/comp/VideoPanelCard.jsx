@@ -18,13 +18,15 @@ export default function VideoPanelCard({
   return (
     <>
       {!title && (
-        <div className="flex flex-row items-center justify-center flex-shrink-0 w-2/6 h-48 max-w-xs m-1 md:w-full rounded-xl hover:shadow-xl bg-disabledBackground">
-          <Button size="lg" icon="plus" />
+        <div className="flex-shrink-0 w-full pb-16/9 relative max-w-xs m-1 rounded-xl hover:shadow-xl bg-disabledBackground">
+          <div className="flex items-center justify-center absolute w-full h-full">
+            <Button size="lg" icon="plus" />
+          </div>
         </div>
       )}
       {title && (
-        <div className="flex flex-row items-center justify-center flex-shrink-0 w-2/6 h-48 max-w-xs m-1 md:w-full rounded-xl hover:shadow-xl">
-          <div className="relative flex flex-row justify-center flex-grow w-2/6 h-48 p-3 md:w-full">
+        <div className="flex flex-row items-center justify-center flex-shrink-0 w-full max-w-xs m-1 rounded-xl hover:shadow-xl">
+          <div className="relative flex flex-row justify-center flex-grow pb-16/9 md:w-full">
             <div className="absolute top-0 left-0 w-full p-3 rounded-b-xl">
               <div className="flex justify-between">
                 <VideoStatus status={status} statusMessage={statusMessage} />
