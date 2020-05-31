@@ -3,7 +3,6 @@ import { Formik } from "formik";
 import * as Yup from "yup";
 import Input from "../Input";
 import Button from "../Button";
-import Text from "../Text";
 import { getSetPasswordSchema } from "../../helpers/functions";
 
 export default function ChangePasswordModal({
@@ -76,9 +75,9 @@ export default function ChangePasswordModal({
             error={touched.confirmPassword && errors.confirmPassword}
           />
           {passwordUpdated ? (
-            <Text variant="small2" className="text-linkText py-2 text-center">
+            <p className="text-linkText py-2 text-center">
               You have successfully updated your password!
-            </Text>
+            </p>
           ) : (
             <></>
           )}

@@ -1,7 +1,6 @@
 import React from "react";
 import ChatMessage from "../Chat/ChatMessage";
 import Button from "../Button";
-import Text from "../Text";
 
 export default function DeleteMessageModal({
   message,
@@ -10,10 +9,8 @@ export default function DeleteMessageModal({
 }) {
   return (
     <div className="px-8 py-4">
-      <Text variant="text1">Delete message</Text>
-      <Text variant="small1">
-        Are you sure you want to delete this message?
-      </Text>
+      <p>Delete message</p>
+      <p>Are you sure you want to delete this message?</p>
       <ChatMessage message={message} />
       <div className="flex justify-end items-center">
         <span

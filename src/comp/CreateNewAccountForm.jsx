@@ -3,7 +3,6 @@ import { Formik } from "formik";
 import * as Yup from "yup";
 import Input from "./Input";
 import Button from "./Button";
-import Text from "./Text";
 import EditInformationForm from "./EditInformationForm";
 import EditBirthdayForm from "./EditBirthdayForm";
 import {
@@ -58,12 +57,10 @@ export default function CreateNewAccountForm({ handleSubmit, loading }) {
         }) => (
           <form onSubmit={handleSubmit}>
             <div className="flex flex-col items-center w-full">
-              <Text variant="title2" className="text-center">
-                Create a new account
-              </Text>
-              <Text variant="text2" className="pb-8 text-center">
+              <p className="text-center">Create a new account</p>
+              <p className="pb-8 text-center">
                 Get the full experience. It&apos;s FREE!
-              </Text>
+              </p>
               <EditInformationForm loading={loading} />
               <Input
                 header="Username"
@@ -88,11 +85,11 @@ export default function CreateNewAccountForm({ handleSubmit, loading }) {
                 className="w-full"
               />
               <EditBirthdayForm loading={loading} />
-              <Text variant="small2" className="pt-8 text-center">
+              <p className="pt-8 text-center">
                 By clicking Sign Up, you agree to the{" "}
                 <a href="https://google.com">Terms</a> and{" "}
                 <a href="https://google.com">Policy</a>.
-              </Text>
+              </p>
               <div className="mt-4">
                 <Button type="submit" disabled={loading || !isValid || !dirty}>
                   Sign Up
