@@ -25,8 +25,8 @@ export default function VideoPanelCard({
         </div>
       )}
       {title && (
-        <div className="flex flex-row items-center justify-center flex-shrink-0 w-full max-w-xs m-1 rounded-xl hover:shadow-xl">
-          <div className="relative flex flex-row justify-center flex-grow pb-16/9 md:w-full">
+        <div className="w-full m-1 rounded-xl hover:shadow-xl">
+          <div className="relative flex justify-center flex-grow pb-16/9 w-full">
             <div className="absolute top-0 left-0 w-full p-3 rounded-b-xl">
               <div className="flex justify-between">
                 <VideoStatus status={status} statusMessage={statusMessage} />
