@@ -38,43 +38,60 @@ export default {
 
 export const VideoCardShow = () => {
   return (
-    // <div className="p-5 grid grid-cols-2">
-    <VideoCard
-      id={123}
-      title="Video Title"
-      channelName="Channel Name"
-      views="20K views"
-      timeFromUpload="2 months ago"
-      videoSource="youtube"
-      thumbnail="https://i.imgur.com/aqjzchq.jpg"
-    />
-    // </div>
+    <div className="p-5 flex flex-wrap">
+      <div className="p-2 w-full sm:w-1/2 lg:w-1/4">
+        <VideoCard
+          id={123}
+          title="Video Title"
+          channelName="Channel Name"
+          views="20K views"
+          timeFromUpload="2 months ago"
+          videoSource="youtube"
+          thumbnail="https://i.imgur.com/aqjzchq.jpg"
+        />
+      </div>
+      <div className="p-2 w-full sm:w-1/2 lg:w-1/4">
+        <VideoCard
+          id={123}
+          title="Video Title"
+          channelName="Channel Name"
+          views="20K views"
+          timeFromUpload="2 months ago"
+          videoSource="youtube"
+          thumbnail="https://i.imgur.com/aqjzchq.jpg"
+        />
+      </div>
+    </div>
   );
 };
 
 export const SuggestionCardStates = () => {
   return (
     <div className="p-5 flex flex-wrap">
-      <SuggestionCard
-        id={123}
-        name="Thelmo Society"
-        icon="https://i.imgur.com/xCGu56D.jpg"
-        videoStatus="playing"
-        videoTitle="Video Title"
-        videoSource="youtube"
-        videoThumbnail="https://i.imgur.com/aqjzchq.jpg"
-        activeViewers="2,000"
-      />
-      <SuggestionCard
-        id={123}
-        name="Thelmo Society"
-        icon="https://i.imgur.com/xCGu56D.jpg"
-        videoStatus="paused"
-        videoTitle="Video Title"
-        videoSource="youtube"
-        videoThumbnail="https://i.imgur.com/aqjzchq.jpg"
-        activeViewers="2,000"
-      />
+      <div className="p-2 w-full sm:w-1/2 lg:w-1/4">
+        <SuggestionCard
+          id={123}
+          name="Thelmo Society"
+          icon="https://i.imgur.com/xCGu56D.jpg"
+          videoStatus="playing"
+          videoTitle="Video Title"
+          videoSource="youtube"
+          videoThumbnail="https://i.imgur.com/aqjzchq.jpg"
+          activeViewers="2,000"
+        />
+      </div>
+      <div className="p-2 w-full sm:w-1/2 lg:w-1/4">
+        <SuggestionCard
+          id={123}
+          name="Thelmo Society"
+          icon="https://i.imgur.com/xCGu56D.jpg"
+          videoStatus="paused"
+          videoTitle="Video Title"
+          videoSource="youtube"
+          videoThumbnail="https://i.imgur.com/aqjzchq.jpg"
+          activeViewers="2,000"
+        />
+      </div>
     </div>
   );
 };

@@ -15,12 +15,12 @@ export default function VideoCard({
   const leftInfo = `${views}`;
   const rightInfo = `${timeFromUpload}`;
   return (
-    <div className="flex flex-row items-center justify-center h-48 w-full max-w-xs rounded-xl hover:shadow-xl">
-      <div className="group flex-grow flex flex-row justify-center h-48 p-3 relative">
+    <div className="flex flex-row items-center justify-center w-full rounded-xl overflow-hidden hover:shadow-xl">
+      <div className="group flex-grow flex flex-row justify-center items-center pb-16/9 h-full relative">
         <img
           src={thumbnail}
           alt="video-thumbnail"
-          className="img absolute top-0 h-full rounded-xl z-10"
+          className="img absolute top-0 w-full object-contain z-10"
         />
 
         <div className="h-full w-full absolute top-0 bg-gradient-t-channelCardOverlay z-20 rounded-xl" />
