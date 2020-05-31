@@ -169,10 +169,12 @@ module.exports = {
     backgroundColor: ["responsive", "hover", "group-hover", "disabled"],
     color: ["responsive", "hover"],
     cursor: ["responsive", "hover", "disabled"],
+    display: ['responsive', 'group-hover'],
     opacity: ["responsive", "hover", "focus", "active", "group-hover"],
     visibility: ["responsive", "group-hover"],
     filter: ["responsive", "hover", "active", "group-hover"],
-    linearGradients: ["responsive", "hover", "active", "group-hover"]
+    linearGradients: ["responsive", "hover", "active", "group-hover"],
+    boxShadow: ['responsive', 'hover', 'focus', 'group-hover']
   },
   plugins: [
     require("tailwindcss-gradients"),
