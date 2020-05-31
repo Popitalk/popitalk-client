@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { withKnobs } from "@storybook/addon-knobs";
 import styled from "styled-components";
-import Text from "../comp/Text";
 import RequestCard from "../comp/InfoCards/RequestCard";
 import AvatarDeck from "../comp/AvatarDeck";
 import RoomIcon from "../comp/RoomIcon";
