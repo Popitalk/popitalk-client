@@ -13,6 +13,13 @@ a {
   -webkit-text-fill-color: transparent;
 }
 
+.bg-rainbow {
+  background-color: -webkit-linear-gradient(0deg,
+    #76bdff 19.79%,
+    #ff66fe 53.6%,
+    #ffc4ab 91.15%);
+}
+
 .img {
   object-fit: cover;
   height: auto;
@@ -133,6 +140,13 @@ a {
       transform: translateY(1px);
     }
   }
+}
+
+.clamp-2 {
+  display: -webkit-box;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
 }
 
 @tailwind components;

@@ -2,7 +2,7 @@ import React from "react";
 import RoomIcon from "../RoomIcon";
 import AvatarDeck from "../AvatarDeck";
 import Button from "../Button";
-import VideoStatus from "../VideoStatus";
+import VideoStatus from "../VideoStatusIcon";
 
 export default function ChannelCard({
   id,
@@ -16,16 +16,21 @@ export default function ChannelCard({
   handleFollow
 }) {
   return (
-    <div className="w-full rounded-xl hover:shadow-xl transform hover:-translate-y-1 transition-all ease-in-out duration-200 md:my-4">
+    <div className="cursor-pointer w-full rounded-xl hover:shadow-xl transition-all ease-in-out duration-200 md:my-4">
       <div className="flex-grow flex flex-row justify-center w-full pb-5/4 p-3 relative">
         <img
           src={videoThumbnail}
           alt="channel"
           className="img absolute top-0 h-full rounded-xl"
         />
-        <div className="absolute top-0 left-0 mx-3 my-3">
-          <div className="flex flex-row justify-end">
-            <VideoStatus status={live ? "playing" : "paused"} />
+        <div className="absolute w-full">
+          <div className="flex justify-between px-3 pt-1">
+            <div className="flex items-center">
+              <VideoStatus status={live ? "playing" : "paused"} />
+              <p className="text-sm font-regular text-tertiaryText w-full max-w-xs clamp-2 mb-1 ml-3">
+                {videoTitle}
+              </p>
+            </div>
             <AvatarDeck
               avatars={avatars}
               size="md"
@@ -46,9 +51,6 @@ export default function ChannelCard({
         /> */}
         <div className="h-full w-full absolute top-0 bg-gradient-t-channelCardOverlay rounded-xl" />
         <div className="absolute w-full bottom-0 left-0 p-3 rounded-b-xl">
-          <p className="text-lg font-regular text-tertiaryText mb-1 ml-3">
-            {videoTitle}
-          </p>
           <div className="flex flex-row items-center">
             <RoomIcon
               ids={[id]}
