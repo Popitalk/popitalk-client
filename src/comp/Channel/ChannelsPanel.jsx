@@ -3,16 +3,27 @@ import ChannelsList from "../InfoCardLists/ChannelsList";
 import Button from "../Button";
 import SuggestionCard from "../SuggestionCard";
 import MiniFriendsList from "../MiniFriendsList";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default function ChannelsPanel({
   channels,
   selected,
   friends,
-  handleSelect
+  handleSelect,
+  handleCollapse
 }) {
   return (
     <div className="w-full px-2 py-4 my-12 md:my-0 bg-primaryBackground md:max-w-sm">
-      <div className="items-center justify-between hidden w-full px-4 mb-4 md:flex">
+      <div className="items-center justify-around hidden w-full px-4 pl-0 mb-4 md:flex">
+        <button
+          className="p-4 flex items-center flex-col"
+          onClick={handleCollapse}
+        >
+          <FontAwesomeIcon
+            icon="bars"
+            className="cursor-pointer text-secondaryText hover:text-highlightText"
+          />
+        </button>
         <h3 className="text-3xl font-bold btn-playing">Channels</h3>
         <h3 className="text-2xl font-bold btn-playing">Friends</h3>
       </div>
