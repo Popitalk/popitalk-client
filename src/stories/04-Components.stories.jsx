@@ -18,6 +18,7 @@ import RecommendedChannels from "../comp/Channel/RecommendedChannels";
 import RecommendedVideos from "../comp/RecommendedVideos";
 import DefaultLayout from "../comp/DefaultLayout";
 import VideoChannelHeader from "../comp/VideoChannelHeader";
+import CollapsedPanel from "../comp/CollapsedPanel";
 import {
   testChannels,
   testRooms,
@@ -576,4 +577,8 @@ const videoList = [
 
 export function RecommendedVideoSection() {
   return <RecommendedVideos list={videoList} />;
+}
+
+export function CollapsedPanelShow() {
+  return <CollapsedPanel channels={testChannels} />;
 }
