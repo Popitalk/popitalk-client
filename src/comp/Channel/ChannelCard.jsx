@@ -23,8 +23,8 @@ export default function ChannelCard({
           alt="channel"
           className="img absolute top-0 h-full rounded-xl"
         />
-        <div className="absolute w-full">
-          <div className="flex justify-between px-3 pt-1">
+        <div className="absolute w-full z-20">
+          <div className="flex justify-between px-4 py-1">
             <div className="flex items-center">
               <VideoStatus status={live ? "playing" : "paused"} />
               <p className="text-sm font-regular text-tertiaryText w-full max-w-xs clamp-2 mb-1 ml-3">
@@ -50,16 +50,17 @@ export default function ChannelCard({
           className="img absolute top-0 right-0 w-auto h-8 mt-3 mr-3 z-30"
         /> */}
         <div className="h-full w-full absolute top-0 bg-gradient-t-channelCardOverlay rounded-xl" />
+        <div className="h-full w-full absolute top-0 bg-gradient-t-channelCardOverlay transform rotate-180 rounded-xl" />
         <div className="absolute w-full bottom-0 left-0 p-3 rounded-b-xl">
-          <div className="flex flex-row items-center">
+          <div className="flex flex-row items-center px-1">
             <RoomIcon
               ids={[id]}
               images={[icon]}
               watching={live}
               size="sm"
-              className="mr-3"
+              className="mr-3 w-16 h-16"
             />
-            <p className="text-xs font-regular text-tertiaryText">{name}</p>
+            <p className="text-xl font-semibold text-tertiaryText">{name}</p>
             <Button
               size="sm"
               shape="pill"
