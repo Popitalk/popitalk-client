@@ -4,16 +4,19 @@ import { closeModalFinal } from "../../redux/actions";
 import ProfileModal from "./ProfileModalContainer";
 import EditUserSettingsContainer from "./EditUserSettingsContainer";
 import ChangePasswordContainer from "./ChangePasswordContainer";
+import BlockedUsersContainer from "./BlockedUsersContainer";
 import {
   MODAL_PROFILE,
   MODAL_EDIT_USER_SETTINGS,
-  MODAL_CHANGE_PASSWORD
+  MODAL_CHANGE_PASSWORD,
+  MODAL_BLOCKED_USERS
 } from "../../helpers/constants";
 
 const ModalComponents = {
   [MODAL_PROFILE]: ProfileModal,
   [MODAL_EDIT_USER_SETTINGS]: EditUserSettingsContainer,
-  [MODAL_CHANGE_PASSWORD]: ChangePasswordContainer
+  [MODAL_CHANGE_PASSWORD]: ChangePasswordContainer,
+  [MODAL_BLOCKED_USERS]: BlockedUsersContainer
 };
 
 export default function ModalManager() {

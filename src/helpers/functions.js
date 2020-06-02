@@ -109,3 +109,35 @@ export function getInitialDatePickerValues(date) {
     year: year.value
   };
 }
+
+export const filterSearch = (list, field, setVisible, searchTerm) => {
+  const filteredItems = list.filter(i =>
+    i[field].toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
+  setVisible(filteredItems);
+};
+
+export const onCheck = (selected, setSelected, id, name) => {
+  const index = selected.findIndex(i => i.id === id);
+  if (index >= 0) {
+    setSelected(selected.filter(i => i.id !== id));
+  } else {
+    setSelected([...selected, { id: id, name: name }]);
+  }
+};
+
+export const handleEnter = (selected, setSelected, visible, nameField) => {
+  setSelected([
+    ...selected,
+    ...visible
+      .filter(v => !selected.find(s => s.id === v.id))
+      .map(i => {
+        return { id: i.id, name: i[nameField] };
+      })
+  ]);
+};
+
+export const handleCancel = (selected, setSelected, id) => {
+  setSelected(selected.filter(i => i.id !== id));
+};
