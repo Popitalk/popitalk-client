@@ -3,14 +3,17 @@ import { useSelector, useDispatch } from "react-redux";
 import { closeModalFinal } from "../../redux/actions";
 import ProfileModal from "./ProfileModalContainer";
 import EditUserSettingsContainer from "./EditUserSettingsContainer";
+import ChangePasswordContainer from "./ChangePasswordContainer";
 import {
   MODAL_PROFILE,
-  MODAL_EDIT_USER_SETTINGS
+  MODAL_EDIT_USER_SETTINGS,
+  MODAL_CHANGE_PASSWORD
 } from "../../helpers/constants";
 
 const ModalComponents = {
   [MODAL_PROFILE]: ProfileModal,
-  [MODAL_EDIT_USER_SETTINGS]: EditUserSettingsContainer
+  [MODAL_EDIT_USER_SETTINGS]: EditUserSettingsContainer,
+  [MODAL_CHANGE_PASSWORD]: ChangePasswordContainer
 };
 
 export default function ModalManager() {

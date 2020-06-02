@@ -7,6 +7,7 @@ import {
   deleteAccount,
   openProfileModal,
   openEditUserSettingsModal,
+  openChangePasswordModal,
   acceptFriendRequest,
   rejectFriendRequest
 } from "../redux/actions";
@@ -35,6 +36,7 @@ export default function HeaderContainer() {
         notifications={[]}
         openProfileHandler={id => dispatch(openProfileModal(id))}
         openEditInformationHandler={() => dispatch(openEditUserSettingsModal())}
+        openChangePasswordHandler={() => dispatch(openChangePasswordModal())}
         acceptRequestHandler={id => dispatch(acceptFriendRequest(id))}
         rejectRequestHandler={id => dispatch(rejectFriendRequest(id))}
         clearNotificationsHandler={() => console.log("clear notifications")}

@@ -20,6 +20,7 @@ export default function SiteHeaderMain({
   notifications,
   openProfileHandler,
   openEditInformationHandler,
+  openChangePasswordHandler,
   acceptRequestHandler,
   rejectRequestHandler,
   clearNotificationsHandler,
@@ -43,6 +44,16 @@ export default function SiteHeaderMain({
     setDropdownList(dropdownList.slice(0, -1));
   };
 
+  const openEditInformationModal = () => {
+    setDropdownList([]);
+    openEditInformationHandler();
+  };
+
+  const openChangePasswordModal = () => {
+    setDropdownList([]);
+    openChangePasswordHandler();
+  };
+
   const settingsButtons = [
     {
       text: "Account Settings",
@@ -62,11 +73,11 @@ export default function SiteHeaderMain({
   const accountSettingsButtons = [
     {
       text: "Edit User Information",
-      onClick: () => openEditInformationHandler()
+      onClick: openEditInformationModal
     },
     {
       text: "Change Password",
-      onClick: () => console.log("Open Change Password modal")
+      onClick: openChangePasswordModal
     },
     {
       text: "Delete Account",

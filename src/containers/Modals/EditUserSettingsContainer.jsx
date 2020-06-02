@@ -15,13 +15,13 @@ export default function EditUserSettingsModal({ handleModalClose }) {
     avatar
   } = useSelector(state => state.self);
 
-  const apiLoading = useSelector(state => state.api.updateUser.loading);
-  const apiSuccess = useSelector(state => state.api.updateUser.status);
+  const api = useSelector(state => state.api);
+  const apiLoading = api.updateUser ? api.updateUser.loading : false;
+  const apiSuccess = api.updateUser
+    ? api.updateUser.status === "Success"
+    : false;
 
   const dispatch = useDispatch();
-  const handleSubmit = values => {
-    dispatch(updateUser(values));
-  };
 
   return (
     <ModalContainer
@@ -34,12 +34,12 @@ export default function EditUserSettingsModal({ handleModalClose }) {
         initial={{
           firstName: firstName,
           lastName: lastName,
-          dateOfBirth: dateOfBirth,
+          dateOfBirth: new Date(dateOfBirth),
           email: email,
           avatar: avatar
         }}
-        handleSubmit={handleSubmit}
-        informationUpdated={apiSuccess === "Success"}
+        handleSubmit={values => dispatch(updateUser(values))}
+        informationUpdated={apiSuccess}
         loading={apiLoading}
       />
     </ModalContainer>
