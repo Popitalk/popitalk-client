@@ -14,10 +14,10 @@ import CircleCheckBox from "../comp/CircleCheckbox";
 import AnonymousSidebar from "../comp/AnonymousSidebar";
 import Tag from "../comp/Tag";
 import VideoPlayer from "../comp/VideoPlayer";
-import RecommendedChannels from "../comp/Channel/RecommendedChannels";
 import RecommendedVideos from "../comp/RecommendedVideos";
 import DefaultLayout from "../comp/DefaultLayout";
 import VideoChannelHeader from "../comp/VideoChannelHeader";
+import CollapsedPanel from "../comp/CollapsedPanel";
 import {
   testChannels,
   testRooms,
@@ -555,10 +555,6 @@ const list = [
   }
 ];
 
-export function RecommendedChannelsSection() {
-  return <RecommendedChannels list={list} />;
-}
-
 const videoList = [
   {
     title: "Videos friends are watching",
@@ -576,4 +572,8 @@ const videoList = [
 
 export function RecommendedVideoSection() {
   return <RecommendedVideos list={videoList} />;
+}
+
+export function CollapsedPanelShow() {
+  return <CollapsedPanel channels={testChannels} />;
 }

@@ -4,20 +4,23 @@ import FriendUsersList from "./InfoCardLists/FriendUsersList";
 import StretchList from "./InfoCardLists/StretchList";
 import Input from "./Input";
 import RoomsList from "./InfoCardLists/RoomsList";
+import PanelHeader from "./PanelHeader";
 
 export default function FriendsPanel({
   userSearchResults,
   roomsResults,
+  updateSelectedPage,
+  handleCollapse,
   ...rest
 }) {
   const [search, setSearch] = useState("");
 
   return (
-    <div className="w-full px-2 py-4 my-12 md:my-0 bg-primaryBackground md:max-w-sm">
-      <div className="items-center justify-between hidden w-full px-4 mb-4 md:flex">
-        <h3 className="text-2xl font-bold btn-playing">Channels</h3>
-        <h3 className="text-3xl font-bold btn-playing">Friends</h3>
-      </div>
+    <div className="w-full px-2 py-4 my-12 md:my-0 bg-primaryBackground md:w-84">
+      <PanelHeader
+        handleCollapse={handleCollapse}
+        updateSelectedPage={updateSelectedPage}
+      />
       <Input
         variant="user"
         size="lg"

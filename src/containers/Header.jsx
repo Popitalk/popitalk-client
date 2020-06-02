@@ -6,8 +6,11 @@ import {
   logout,
   deleteAccount,
   openProfileModal,
+  openEditUserSettingsModal,
+  openChangePasswordModal,
   acceptFriendRequest,
-  rejectFriendRequest
+  rejectFriendRequest,
+  openBlockedUsersModal
 } from "../redux/actions";
 import SiteHeaderMain from "../comp/SiteHeaderMain";
 import SiteHeaderWelcome from "../comp/SiteHeaderWelcome";
@@ -33,6 +36,9 @@ export default function HeaderContainer() {
         friendRequests={receivedFriendRequests}
         notifications={[]}
         openProfileHandler={id => dispatch(openProfileModal(id))}
+        openBlockedUsersHandler={() => dispatch(openBlockedUsersModal())}
+        openEditInformationHandler={() => dispatch(openEditUserSettingsModal())}
+        openChangePasswordHandler={() => dispatch(openChangePasswordModal())}
         acceptRequestHandler={id => dispatch(acceptFriendRequest(id))}
         rejectRequestHandler={id => dispatch(rejectFriendRequest(id))}
         clearNotificationsHandler={() => console.log("clear notifications")}

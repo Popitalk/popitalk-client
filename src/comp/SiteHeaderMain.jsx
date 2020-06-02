@@ -19,6 +19,9 @@ export default function SiteHeaderMain({
   friendRequests,
   notifications,
   openProfileHandler,
+  openBlockedUsersHandler,
+  openEditInformationHandler,
+  openChangePasswordHandler,
   acceptRequestHandler,
   rejectRequestHandler,
   clearNotificationsHandler,
@@ -42,6 +45,21 @@ export default function SiteHeaderMain({
     setDropdownList(dropdownList.slice(0, -1));
   };
 
+  const openBlockedUsersModal = () => {
+    setDropdownList([]);
+    openBlockedUsersHandler();
+  };
+
+  const openEditInformationModal = () => {
+    setDropdownList([]);
+    openEditInformationHandler();
+  };
+
+  const openChangePasswordModal = () => {
+    setDropdownList([]);
+    openChangePasswordHandler();
+  };
+
   const settingsButtons = [
     {
       text: "Account Settings",
@@ -49,7 +67,7 @@ export default function SiteHeaderMain({
     },
     {
       text: "Block Users",
-      onClick: () => console.log("Open block users modal")
+      onClick: openBlockedUsersModal
     },
     {
       text: "Log Out",
@@ -61,17 +79,17 @@ export default function SiteHeaderMain({
   const accountSettingsButtons = [
     {
       text: "Edit User Information",
-      onClick: () => console.log("Open Edit User Information modal")
+      onClick: openEditInformationModal
     },
     {
       text: "Change Password",
-      onClick: () => console.log("Open Change Password modal")
-    },
+      onClick: openChangePasswordModal
+    } /*,
     {
       text: "Delete Account",
       onClick: () => setDropdownList([...dropdownList, DELETE_ACCOUNT]),
       danger: true
-    }
+    }*/
   ];
 
   const settingsDropdown =

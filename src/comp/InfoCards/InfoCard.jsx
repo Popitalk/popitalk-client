@@ -12,7 +12,7 @@ export default function InfoCard({
   backgroundColor = "transparent",
   hoverable,
   addBorder,
-  padding = "md",
+  padding = "none",
   cardClick
 }) {
   const titleClasses = classnames("text-md text-primaryText truncate", {
@@ -34,6 +34,7 @@ export default function InfoCard({
     "hover:bg-highlightBackground": hoverable,
     "py-2": padding === "md",
     "py-1": padding === "sm",
+    "py-0": padding === "none",
     "border border-highlightText": addBorder
   });
 

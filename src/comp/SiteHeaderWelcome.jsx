@@ -14,7 +14,7 @@ export default function SiteHeaderWelcome({ apiLoading, dispatchLogin }) {
 
   return (
     <header className="flex flex-col px-16 py-4 border-b md:justify-between md:flex-row bg-primaryBackground border-primaryBorder">
-      <div className="flex items-center justify-center mb-8">
+      <div className="flex items-center">
         <img src={Logo} alt="PlayNow's logo" className="w-12 h-12" />
         <span className="ml-2 text-3xl font-bold text-primaryText">
           Popitalk
