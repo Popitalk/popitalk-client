@@ -14,7 +14,6 @@ import CircleCheckBox from "../comp/CircleCheckbox";
 import AnonymousSidebar from "../comp/AnonymousSidebar";
 import Tag from "../comp/Tag";
 import VideoPlayer from "../comp/VideoPlayer";
-import RecommendedChannels from "../comp/Channel/RecommendedChannels";
 import RecommendedVideos from "../comp/RecommendedVideos";
 import DefaultLayout from "../comp/DefaultLayout";
 import VideoChannelHeader from "../comp/VideoChannelHeader";
@@ -555,10 +554,6 @@ const list = [
     channels: testChannels
   }
 ];
-
-export function RecommendedChannelsSection() {
-  return <RecommendedChannels list={list} />;
-}
 
 const videoList = [
   {
