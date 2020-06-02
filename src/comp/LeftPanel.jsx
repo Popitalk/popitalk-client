@@ -9,19 +9,13 @@ export default function LeftPanel({
   selected,
   handleSelect,
   selectedPage,
+  handleCollapse,
+  isCollapsed,
   updateSelectedPage
 }) {
-  const [isCollapsed, setIsCollapsed] = useState(false);
-  const handleCollapse = () => {
-    setIsCollapsed(!isCollapsed);
-  };
   return (
     <Fragment>
-      <div
-        className={`
-          ${isCollapsed ? "md:hidden" : ""}
-          hidden w-full md:w-auto md:block`}
-      >
+      <div className={`${isCollapsed ? "hidden" : ""} w-full md:w-auto`}>
         {selectedPage === "channels" ? (
           <ChannelsPanel
             channels={channels}
@@ -45,9 +39,7 @@ export default function LeftPanel({
         )}
       </div>
       <div
-        className={`my-12 md:my-0 block ${
-          isCollapsed ? "md:block" : "md:hidden"
-        }`}
+        className={`my-12 md:my-0 block ${isCollapsed ? "md:block" : "hidden"}`}
       >
         <CollapsedPanel
           channels={channels}

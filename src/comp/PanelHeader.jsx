@@ -3,11 +3,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default function PanelHeader({ handleCollapse, updateSelectedPage }) {
   return (
-    <div className="items-center justify-around hidden w-full px-4 pl-0 mb-4 md:flex">
-      <button
-        className="p-4 flex items-center flex-col"
-        onClick={handleCollapse}
-      >
+    <div className="flex items-center justify-around w-full px-4 pl-0 mb-4">
+      <button className="p-4" onClick={handleCollapse}>
         <FontAwesomeIcon
           icon="bars"
           className="cursor-pointer text-secondaryText hover:text-highlightText"

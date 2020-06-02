@@ -10,6 +10,10 @@ export default function MainPage({ list, channelPanelProps }) {
   // for channels page and a recommended by friends list for friends page.
   const { channels, friends, selected, handleSelect } = channelPanelProps;
   const [selectedPage, setSelectedPage] = useState("channels");
+  const [isCollapsed, setIsCollapsed] = useState(false);
+  const handleCollapse = () => {
+    setIsCollapsed(!isCollapsed);
+  };
   const updateSelectedPage = page => {
     const pages = {
       channels: "channels",
@@ -34,9 +38,15 @@ export default function MainPage({ list, channelPanelProps }) {
           selected={selected}
           handleSelect={handleSelect}
           updateSelectedPage={updateSelectedPage}
+          isCollapsed={isCollapsed}
           selectedPage={selectedPage}
+          handleCollapse={handleCollapse}
         />
-        <div className={`flex-grow mt-10 mx-2 md:mx-10`}>
+        <div
+          className={`${
+            isCollapsed ? "block" : "hidden"
+          } flex-grow mt-10 mx-2 md:mx-10 md:block`}
+        >
           <RecommendedView list={list} selectedPage={selectedPage} />
         </div>
       </div>
