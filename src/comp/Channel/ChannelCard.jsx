@@ -58,7 +58,7 @@ export default function ChannelCard({
               images={[icon]}
               watching={live}
               size="sm"
-              className="mr-3 w-16 h-16"
+              className="mr-3 w-12 h-12"
             />
             <p className="text-xl font-semibold text-tertiaryText">{name}</p>
             <Button
