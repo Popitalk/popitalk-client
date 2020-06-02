@@ -8,7 +8,8 @@ export default function LeftPanel({
   friends,
   selected,
   handleSelect,
-  selectedPage
+  selectedPage,
+  updateSelectedPage
 }) {
   const [isCollapsed, setIsCollapsed] = useState(false);
   const handleCollapse = () => {
@@ -18,47 +19,44 @@ export default function LeftPanel({
     <Fragment>
       <div
         className={`
-          ${selectedPage === "channels" ? "" : "hidden"}
-          ${isCollapsed ? "md:hidden" : "md:block"}
-          w-full md:block md:w-auto`}
+          ${isCollapsed ? "md:hidden" : ""}
+          hidden w-full md:w-auto md:block`}
       >
-        <ChannelsPanel
-          channels={channels}
-          friends={friends}
-          selected={selected}
-          handleSelect={handleSelect}
-          selectedPage={selectedPage}
-          handleCollapse={handleCollapse}
-        />
-      </div>
-      <div
-        className={`
-          ${selectedPage === "friends" ? "" : "hidden"}
-          ${isCollapsed ? "md:hidden" : "md:block"}
-           w-full md:w-auto md:hidden`}
-      >
-        <FriendsPanel
-          channels={channels}
-          friends={friends}
-          selected={selected}
-          handleSelect={handleSelect}
-          selectedPage={selectedPage}
-        />
-      </div>
-      {selectedPage === "main" ? (
-        <div
-          className={`my-12 md:my-0 block ${
-            isCollapsed ? "md:block" : "md:hidden"
-          }`}
-        >
-          <CollapsedPanel
+        {selectedPage === "channels" ? (
+          <ChannelsPanel
             channels={channels}
+            friends={friends}
             selected={selected}
             handleSelect={handleSelect}
+            selectedPage={selectedPage}
+            updateSelectedPage={updateSelectedPage}
             handleCollapse={handleCollapse}
           />
-        </div>
-      ) : null}
+        ) : (
+          <FriendsPanel
+            channels={channels}
+            friends={friends}
+            selected={selected}
+            handleSelect={handleSelect}
+            updateSelectedPage={updateSelectedPage}
+            handleCollapse={handleCollapse}
+            selectedPage={selectedPage}
+          />
+        )}
+      </div>
+      <div
+        className={`my-12 md:my-0 block ${
+          isCollapsed ? "md:block" : "md:hidden"
+        }`}
+      >
+        <CollapsedPanel
+          channels={channels}
+          selected={selected}
+          handleSelect={handleSelect}
+          handleCollapse={handleCollapse}
+          updateSelectedPage={updateSelectedPage}
+        />
+      </div>
     </Fragment>
   );
 }

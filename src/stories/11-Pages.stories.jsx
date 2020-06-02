@@ -3,6 +3,7 @@ import { withKnobs } from "@storybook/addon-knobs";
 import WelcomePage from "../comp/Pages/WelcomePage";
 import ChannelMainPage from "../comp/Pages/ChannelMainPage";
 import FriendsMainPage from "../comp/Pages/FriendsMainPage";
+import MainPage from "../comp/Pages/MainPage";
 
 import {
   testChannels,
@@ -88,6 +89,21 @@ export const ChannelMainPageShow = () => {
   const [selectedChannel, setSelectedChannel] = useState(null);
   return (
     <ChannelMainPage
+      list={list}
+      channelPanelProps={{
+        channels: testChannels,
+        friends: testUsers,
+        selected: selectedChannel,
+        handleSelect: id => setSelectedChannel(id)
+      }}
+    />
+  );
+};
+
+export const MainPageShow = () => {
+  const [selectedChannel, setSelectedChannel] = useState(null);
+  return (
+    <MainPage
       list={list}
       channelPanelProps={{
         channels: testChannels,
