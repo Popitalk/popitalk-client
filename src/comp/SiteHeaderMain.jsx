@@ -19,6 +19,7 @@ export default function SiteHeaderMain({
   friendRequests,
   notifications,
   openProfileHandler,
+  openEditInformationHandler,
   acceptRequestHandler,
   rejectRequestHandler,
   clearNotificationsHandler,
@@ -61,7 +62,7 @@ export default function SiteHeaderMain({
   const accountSettingsButtons = [
     {
       text: "Edit User Information",
-      onClick: () => console.log("Open Edit User Information modal")
+      onClick: () => openEditInformationHandler()
     },
     {
       text: "Change Password",

@@ -35,8 +35,9 @@ export default function EditInformationModal({
           handleSubmit({
             firstName: values.firstName,
             lastName: values.lastName,
-            dateOfBirth: !values.dateOfBirth,
-            email: values.email
+            dateOfBirth: values.dateOfBirth.toISOString(),
+            email: values.email,
+            avatar: uploadedImage
           });
         }}
       >

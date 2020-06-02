@@ -57,7 +57,9 @@ export default function CreateNewAccountForm({ handleSubmit, loading }) {
         }) => (
           <form onSubmit={handleSubmit}>
             <div className="flex flex-col items-center w-full">
-              <p className="text-center">Create a new account</p>
+              <p className="text-center text-3xl font-bold">
+                Create a new account
+              </p>
               <p className="pb-8 text-center">
                 Get the full experience. It&apos;s FREE!
               </p>
@@ -85,7 +87,7 @@ export default function CreateNewAccountForm({ handleSubmit, loading }) {
                 className="w-full"
               />
               <EditBirthdayForm loading={loading} />
-              <p className="pt-8 text-center">
+              <p className="pt-8 text-center text-sm">
                 By clicking Sign Up, you agree to the{" "}
                 <a href="https://google.com">Terms</a> and{" "}
                 <a href="https://google.com">Policy</a>.
