@@ -8,12 +8,13 @@ function CollapsedPanel({
   selected,
   handleSelect,
   handleCollapse,
+  selectedPage,
   updateSelectedPage
 }) {
   return (
     <div className="bg-primaryBackground p-1 flex flex-col items-center w-24 h-full">
       <button
-        className="hidden p-5 w-full flex items-center flex-col md:block"
+        className="p-5 w-full flex items-center flex-col"
         onClick={handleCollapse}
       >
         <FontAwesomeIcon
@@ -22,20 +23,25 @@ function CollapsedPanel({
         />
       </button>
       <button
-        className="p-5 w-full flex items-center flex-col"
+        className={`${
+          selectedPage === "friends"
+            ? "text-highlightText"
+            : "text-secondaryButtonText"
+        } p-5 w-full flex items-center flex-col`}
         onClick={() => updateSelectedPage("friends")}
       >
-        <FontAwesomeIcon
-          icon="user-friends"
-          className="text-secondaryButtonText fa-2x"
-        />
+        <FontAwesomeIcon icon="user-friends" className="fa-2x" />
         <h3>friends</h3>
       </button>
       <button
-        className="p-5 w-full flex items-center flex-col"
+        className={`${
+          selectedPage === "channels"
+            ? "text-highlightText"
+            : "text-secondaryButtonText"
+        } p-5 w-full flex items-center flex-col`}
         onClick={() => updateSelectedPage("channels")}
       >
-        <FontAwesomeIcon icon="tv" className="text-secondaryButtonText fa-2x" />
+        <FontAwesomeIcon icon="tv" className="fa-2x" />
         <h3>channels</h3>
       </button>
       <div className="flex flex-col w-full items-center mr-3">

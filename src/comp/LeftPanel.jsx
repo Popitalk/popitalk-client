@@ -54,6 +54,7 @@ export default function LeftPanel({
           selected={selected}
           handleSelect={handleSelect}
           handleCollapse={handleCollapse}
+          selectedPage={selectedPage}
           updateSelectedPage={updateSelectedPage}
         />
       </div>
