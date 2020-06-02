@@ -7,7 +7,7 @@ function CollapsedPanel({ channels, selected, handleSelect, handleCollapse }) {
   return (
     <div className="bg-primaryBackground p-1 flex flex-col items-center w-24 h-full">
       <button
-        className="p-5 w-full flex items-center flex-col"
+        className="hidden p-5 w-full flex items-center flex-col md:block"
         onClick={handleCollapse}
       >
         <FontAwesomeIcon

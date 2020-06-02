@@ -53,14 +53,18 @@ function ChannelMainPage({ list, channelPanelProps }) {
             selectedPage={selectedPage}
           />
         </div>
-        <div className={`hidden ${isCollapsed ? "md:block" : "md:hidden"}`}>
-          <CollapsedPanel
-            channels={channels}
-            selected={selected}
-            handleSelect={handleSelect}
-            handleCollapse={handleCollapse}
-          />
-        </div>
+        {selectedPage === "main" ? (
+          <div
+            className={`my-12 block ${isCollapsed ? "md:block" : "md:hidden"}`}
+          >
+            <CollapsedPanel
+              channels={channels}
+              selected={selected}
+              handleSelect={handleSelect}
+              handleCollapse={handleCollapse}
+            />
+          </div>
+        ) : null}
       </Fragment>
     );
   };
