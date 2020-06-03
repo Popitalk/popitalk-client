@@ -16,7 +16,7 @@ export default function ForumPanel({
   comments
 }) {
   return (
-    <div className="px-32 pt-40">
+    <div className="px-32 pt-40 bg-secondaryBackground">
       <ChannelDescription
         name={name}
         icon={icon}
