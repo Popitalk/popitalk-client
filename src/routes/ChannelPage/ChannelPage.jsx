@@ -8,7 +8,8 @@ import CreateChannel from "../../components/CreateChannel";
 import ChannelMain from "../../components/ChannelMain";
 import ChatPanel from "../../components/ChatPanel";
 import FriendsPanel from "../../components/FriendsPanel";
-import Channel from "../../components/Channel";
+// import Channel from "../../components/Channel";
+import Channel from "../../containers/Channel";
 
 export default function ChannelPage() {
   const { pathname } = useLocation();

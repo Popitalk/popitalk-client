@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "../VideoStatus.css";
-import VideoChannelHeader from "../VideoChannelHeader";
+import ChannelHeader from "../ChannelHeader";
 import arrayMove from "array-move";
 import VideoSearch from "../VideoSearch";
 import ChannelListQueue from "./ChannelListQueue";
@@ -23,7 +23,7 @@ export default function ChannelQueue({
 
   return (
     <div className="flex flex-col bg-secondaryBackground">
-      <VideoChannelHeader
+      <ChannelHeader
         id={id}
         name={name}
         icon={icon}

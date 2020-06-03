@@ -16,8 +16,9 @@ import Tag from "../comp/Tag";
 import VideoPlayer from "../comp/VideoPlayer";
 import RecommendedVideos from "../comp/RecommendedVideos";
 import DefaultLayout from "../comp/DefaultLayout";
-import VideoChannelHeader from "../comp/VideoChannelHeader";
+import ChannelHeader from "../comp/ChannelHeader";
 import CollapsedPanel from "../comp/CollapsedPanel";
+
 import {
   testChannels,
   testRooms,
@@ -94,7 +95,7 @@ export const DefaultLayoutTest = () => {
           />
         </div>
         <div className="w-6/12">
-          <VideoChannelHeader />
+          <ChannelHeader />
         </div>
         <div className="w-3/12"></div>
       </div>
