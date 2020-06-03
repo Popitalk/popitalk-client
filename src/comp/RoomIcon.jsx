@@ -104,7 +104,7 @@ export default function RoomIcon({
       {self && (
         <p
           className="font-semibold text-xs absolute bottom-0
-         bg-gradient-br-button text-primaryButtonText rounded flex items-center justify-center p-px px-1 select-none"
+         bg-gradient-br-button text-primaryButtonText rounded-pill flex items-center justify-center p-1 px-1 select-none"
         >
           My room
         </p>

@@ -1,14 +1,6 @@
 const defaultThumbnail = "https://i.imgur.com/xCGu56D.jpg";
 
-export const testImages = [
-  "https://source.unsplash.com/128x128/?1,cat",
-  "https://source.unsplash.com/128x128/?2,cat",
-  "https://source.unsplash.com/128x128/?3,cat",
-  "https://source.unsplash.com/128x128/?4,cat",
-  "https://source.unsplash.com/128x128/?6,cat",
-  "https://source.unsplash.com/128x128/?7,cat",
-  "https://source.unsplash.com/128x128/?8,cat"
-];
+export const testImages = ["https://source.unsplash.com/128x128/?1,random"];
 
 export const testQueue = [
   {
