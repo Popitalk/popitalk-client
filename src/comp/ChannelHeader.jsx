@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import RoomIcon from "./RoomIcon";
 
-export default function VideoChannelHeader({
+export default function ChannelHeader({
   id,
   name,
   icon,

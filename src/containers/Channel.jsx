@@ -11,7 +11,7 @@ import {
   testVideos,
   testResult
 } from "../stories/seed-arrays";
-import VideoChannelHeader from "../comp/VideoChannelHeader";
+import ChannelHeader from "../comp/ChannelHeader";
 
 export default function Channel() {
   const { channelId } = useParams();
@@ -51,7 +51,7 @@ export default function Channel() {
     //   id={channelId}
     // />
     <div className="flex flex-col w-full bg-secondaryBackground">
-      <VideoChannelHeader
+      <ChannelHeader
         id={channelId}
         name={channel.name}
         icon={defaultIcon}

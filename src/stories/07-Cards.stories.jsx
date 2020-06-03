@@ -6,7 +6,7 @@ import SuggestionCard from "../comp/SuggestionCard";
 import VideoPanelCard from "../comp/VideoPanelCard";
 
 import QueueSection from "../comp/QueueSection";
-import VideoChannelHeader from "../comp/VideoChannelHeader";
+import ChannelHeader from "../comp/ChannelHeader";
 import VideoSection from "../comp/VideoSection";
 import ChannelDescription from "../comp/Channel/ChannelDescription";
 import NewChannelPost from "../comp/Channel/NewChannelPost";
@@ -147,16 +147,16 @@ export const QueueSectionShow = () => {
   );
 };
 
-export const VideoChannelHeaderShow = () => {
+export const ChannelHeaderShow = () => {
   return (
     <>
-      <VideoChannelHeader
+      <ChannelHeader
         id={123}
         name="Channel #1"
         icon="https://i.imgur.com/xCGu56D.jpg"
         videoStatus="paused"
       />
-      <VideoChannelHeader
+      <ChannelHeader
         id={123}
         name="Channel #1"
         icon="https://i.imgur.com/xCGu56D.jpg"
