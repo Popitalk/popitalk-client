@@ -33,7 +33,6 @@ module.exports = {
     fontFamily: {
       sans: [
         '"Noto Sans"',
-        "system-ui",
         "-apple-system",
         "BlinkMacSystemFont",
         '"Segoe UI"',
@@ -69,11 +68,10 @@ module.exports = {
       liveBackground: "#DE0000",
 
       /** TEXTS */
-      primaryText: "#000000",
+      primaryText: "#323232",
       secondaryText: "#A5A5A5",
       tertiaryText: "#FFFFFF",
       liveText: "#FFFFFF",
-      yyy: "#ABC",
       highlightText: "#1DA4FE",
       linkText: "#1DA4FE",
       errorText: "#FF4040",
@@ -128,6 +126,7 @@ module.exports = {
       },
       borderRadius: {
         xl: "15px",
+        lg: "12px",
         pill: "9999px",
         circle: "50%"
       },
