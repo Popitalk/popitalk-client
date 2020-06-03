@@ -126,8 +126,8 @@ module.exports = {
       },
       borderRadius: {
         xl: "15px",
-        lg: "12px",
-        pill: "9999px",
+        lg: "13px",
+        pill: "10px",
         circle: "50%"
       },
       gap: {
