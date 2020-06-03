@@ -120,6 +120,9 @@ module.exports = {
       invert: "invert(1)"
     },
     extend: {
+      spacing: {
+        "84": "21rem"
+      },
       borderWidth: {
         thin: "thin"
       },
@@ -153,10 +156,13 @@ module.exports = {
         "32": "8rem"
       },
       gridTemplateColumns: {
-        chat: "2.5rem 1fr 5rem;"
+        chat: "2.5rem 1fr 5rem;",
+        services: "repeat(5, 40px);"
       },
       padding: {
-        "2px": "2px"
+        "2px": "2px",
+        "16/9": "56.25%",
+        "5/4": "80%"
       }
     }
   },
@@ -166,10 +172,12 @@ module.exports = {
     backgroundColor: ["responsive", "hover", "group-hover", "disabled"],
     color: ["responsive", "hover"],
     cursor: ["responsive", "hover", "disabled"],
+    display: ["responsive", "group-hover"],
     opacity: ["responsive", "hover", "focus", "active", "group-hover"],
     visibility: ["responsive", "group-hover"],
     filter: ["responsive", "hover", "active", "group-hover"],
-    linearGradients: ["responsive", "hover", "active", "group-hover"]
+    linearGradients: ["responsive", "hover", "active", "group-hover"],
+    boxShadow: ["responsive", "hover", "focus", "group-hover"]
   },
   plugins: [
     require("tailwindcss-gradients"),

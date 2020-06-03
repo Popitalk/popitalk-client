@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { withKnobs } from "@storybook/addon-knobs";
 import styled from "styled-components";
-import Text from "../comp/Text";
 import RequestCard from "../comp/InfoCards/RequestCard";
 import AvatarDeck from "../comp/AvatarDeck";
 import RoomIcon from "../comp/RoomIcon";
@@ -15,10 +14,11 @@ import CircleCheckBox from "../comp/CircleCheckbox";
 import AnonymousSidebar from "../comp/AnonymousSidebar";
 import Tag from "../comp/Tag";
 import VideoPlayer from "../comp/VideoPlayer";
-import RecommendedChannels from "../comp/Channel/RecommendedChannels";
 import RecommendedVideos from "../comp/RecommendedVideos";
 import DefaultLayout from "../comp/DefaultLayout";
 import ChannelHeader from "../comp/ChannelHeader";
+import CollapsedPanel from "../comp/CollapsedPanel";
+
 import {
   testChannels,
   testRooms,
@@ -26,6 +26,7 @@ import {
   testUserMinimal,
   testMessages
 } from "./seed-arrays";
+
 import SiteHeaderMain from "../comp/SiteHeaderMain";
 import SiteHeaderWelcome from "../comp/SiteHeaderWelcome";
 
@@ -336,39 +337,43 @@ export const RoomIcon123 = () => {
 
 export const ChannelCard123 = () => {
   return (
-    <div className="grid grid-cols-2 p-5">
-      <ChannelCard
-        id={123}
-        name="Thelmo Society"
-        icon="https://i.imgur.com/xCGu56D.jpg"
-        avatars={[
-          "https://source.unsplash.com/128x128/?1,cat",
-          "https://source.unsplash.com/128x128/?2,cat",
-          "https://source.unsplash.com/128x128/?3,cat",
-          "https://source.unsplash.com/128x128/?4,cat"
-        ]}
-        live={false}
-        videoTitle="Video Title"
-        videoSource="youtube"
-        videoThumbnail="https://i.imgur.com/aqjzchq.jpg"
-        handleFollow={() => console.log("FOLLOW")}
-      />
-      <ChannelCard
-        id={123}
-        name="Thelmo Society"
-        icon="https://i.imgur.com/xCGu56D.jpg"
-        avatars={[
-          "https://source.unsplash.com/128x128/?1,cat",
-          "https://source.unsplash.com/128x128/?2,cat",
-          "https://source.unsplash.com/128x128/?3,cat",
-          "https://source.unsplash.com/128x128/?4,cat"
-        ]}
-        live={true}
-        videoTitle="Video Title"
-        videoSource="youtube"
-        videoThumbnail="https://i.imgur.com/aqjzchq.jpg"
-        handleFollow={() => console.log("FOLLOW")}
-      />
+    <div className="p-5 flex flex-wrap">
+      <div className="p-2 w-full sm:w-1/2 lg:w-1/3">
+        <ChannelCard
+          id={123}
+          name="Thelmo Society"
+          icon="https://i.imgur.com/xCGu56D.jpg"
+          avatars={[
+            "https://source.unsplash.com/128x128/?1,cat",
+            "https://source.unsplash.com/128x128/?2,cat",
+            "https://source.unsplash.com/128x128/?3,cat",
+            "https://source.unsplash.com/128x128/?4,cat"
+          ]}
+          live={false}
+          videoTitle="Video Title"
+          videoSource="youtube"
+          videoThumbnail="https://i.imgur.com/aqjzchq.jpg"
+          handleFollow={() => console.log("FOLLOW")}
+        />
+      </div>
+      <div className="p-2 w-full sm:w-1/2 lg:w-1/3">
+        <ChannelCard
+          id={123}
+          name="Thelmo Society"
+          icon="https://i.imgur.com/xCGu56D.jpg"
+          avatars={[
+            "https://source.unsplash.com/128x128/?1,cat",
+            "https://source.unsplash.com/128x128/?2,cat",
+            "https://source.unsplash.com/128x128/?3,cat",
+            "https://source.unsplash.com/128x128/?4,cat"
+          ]}
+          live={true}
+          videoTitle="Video Title"
+          videoSource="youtube"
+          videoThumbnail="https://i.imgur.com/aqjzchq.jpg"
+          handleFollow={() => console.log("FOLLOW")}
+        />
+      </div>
     </div>
   );
 };
@@ -551,10 +556,6 @@ const list = [
   }
 ];
 
-export function RecommendedChannelsSection() {
-  return <RecommendedChannels list={list} />;
-}
-
 const videoList = [
   {
     title: "Videos friends are watching",
@@ -572,4 +573,8 @@ const videoList = [
 
 export function RecommendedVideoSection() {
   return <RecommendedVideos list={videoList} />;
+}
+
+export function CollapsedPanelShow() {
+  return <CollapsedPanel channels={testChannels} />;
 }

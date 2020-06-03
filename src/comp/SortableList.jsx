@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { SortableContainer, SortableElement } from "react-sortable-hoc";
-import Text from "./Text";
 import VideoPanelCard from "./VideoPanelCard";
 
 // Handler Change Params ({oldIndex, newIndex)}
@@ -15,7 +14,7 @@ export default function SortableList({
   if (!items || items.length === 0) {
     return (
       <div className="h-32 w-full flex items-center justify-center">
-        <Text variant="small2">Nothing to show</Text>
+        <p className="text-sm">Nothing to show</p>
       </div>
     );
   }
@@ -33,7 +32,7 @@ export default function SortableList({
       <div
         className={
           (axis === "y" ? "flex-col" : "flex-row") +
-          " flex flex-grow overflow-auto"
+          " flex flex-grow overflow-auto py-4 items-start"
         }
       >
         {items.map((value, index) => (

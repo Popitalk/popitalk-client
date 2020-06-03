@@ -3,19 +3,22 @@ import ChannelsList from "../InfoCardLists/ChannelsList";
 import Button from "../Button";
 import SuggestionCard from "../SuggestionCard";
 import MiniFriendsList from "../MiniFriendsList";
+import PanelHeader from "../PanelHeader";
 
 export default function ChannelsPanel({
   channels,
   selected,
   friends,
-  handleSelect
+  handleSelect,
+  handleCollapse,
+  updateSelectedPage
 }) {
   return (
-    <div className="w-full px-2 py-4 my-12 md:my-0 bg-primaryBackground md:max-w-sm">
-      <div className="items-center justify-between hidden w-full px-4 mb-4 md:flex">
-        <h3 className="text-3xl font-bold btn-playing">Channels</h3>
-        <h3 className="text-2xl font-bold btn-playing">Friends</h3>
-      </div>
+    <div className="w-full px-2 py-4 my-12 md:my-0 bg-primaryBackground md:w-84">
+      <PanelHeader
+        handleCollapse={handleCollapse}
+        updateSelectedPage={updateSelectedPage}
+      />
       {/*<div className="flex items-center mb-4">*/}
       {/*  /!* <FontAwesomeIcon icon="globe-americas" className="ml-2 mr-2 text-3xl" /> *!/*/}
       {/*  <h3 className="ml-2 mr-auto text-3xl font-bold">Channels</h3>*/}

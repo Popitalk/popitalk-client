@@ -14,10 +14,17 @@ import WatchModal from "../comp/Modals/WatchModal";
 import ShareModal from "../comp/Modals/ShareModal";
 import NewRoomModal from "../comp/Modals/NewRoomModal";
 import ProfileModal from "../comp/Modals/ProfileModal";
+import DeleteMessageModal from "../comp/Modals/DeleteMessageModal";
+import BlockedUsersModal from "../comp/Modals/BlockedUsersModal";
 import InviteForm from "../comp/InviteForm";
 import { buildTagInput } from "../comp/TagInput";
 import { testImages, testUsers, testQueue, testMessages } from "./seed-arrays";
-import DeleteMessageModal from "../comp/Modals/DeleteMessageModal";
+import {
+  filterSearch,
+  onCheck,
+  handleEnter,
+  handleCancel
+} from "../helpers/functions";
 
 export default {
   title: "Modals",
@@ -26,38 +33,6 @@ export default {
 
 const handleBack = () => {
   console.log("RETURN");
-};
-
-const filterSearch = (list, field, setVisible, searchTerm) => {
-  const filteredItems = list.filter(i =>
-    i[field].toLowerCase().includes(searchTerm.toLowerCase())
-  );
-
-  setVisible(filteredItems);
-};
-
-const onCheck = (selected, setSelected, id, name) => {
-  const index = selected.findIndex(i => i.id === id);
-  if (index >= 0) {
-    setSelected(selected.filter(i => i.id !== id));
-  } else {
-    setSelected([...selected, { id: id, name: name }]);
-  }
-};
-
-const handleEnter = (selected, setSelected, visible, nameField) => {
-  setSelected([
-    ...selected,
-    ...visible
-      .filter(v => !selected.find(s => s.id === v.id))
-      .map(i => {
-        return { id: i.id, name: i[nameField] };
-      })
-  ]);
-};
-
-const handleCancel = (selected, setSelected, id) => {
-  setSelected(selected.filter(i => i.id !== id));
 };
 
 const handleSend = (selected, items) => {
@@ -400,6 +375,33 @@ export const NewRoomModalTest = () => {
         onCheck={(id, name) => onCheck(selected, setSelected, id, name)}
         handleSend={() => handleSend(selected, "friends")}
       />
+    </ModalContainer>
+  );
+};
+
+export const UnblockUsersModalTest = () => {
+  const [visible, setVisible] = useState(generatedUsers);
+
+  const unblockUsers = id => {
+    console.log(`Unblock user ${id}`);
+  };
+
+  return (
+    <ModalContainer
+      isOpen={true}
+      small={true}
+      fixedFullSize={true}
+      header={
+        <SearchHeader
+          title="Blocked Users"
+          filterSearch={searchTerm =>
+            filterSearch(generatedUsers, "username", setVisible, searchTerm)
+          }
+          buildInput={buildSearchInput}
+        />
+      }
+    >
+      <BlockedUsersModal users={visible} handleUnblock={unblockUsers} />
     </ModalContainer>
   );
 };

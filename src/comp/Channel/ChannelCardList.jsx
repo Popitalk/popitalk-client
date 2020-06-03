@@ -9,7 +9,7 @@ function ChannelCardList({ header, channelList }) {
   return (
     <div className="mx-2">
       <p className="text-base font-bold py-4">{header}</p>
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="flex overflow-auto">
         {channelList.map(channel => (
           <ChannelCard cardWidthClass="w-auto" key={channel.id} {...channel} />
         ))}

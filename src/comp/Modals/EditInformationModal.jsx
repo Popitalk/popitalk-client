@@ -6,7 +6,6 @@ import {
   getUserInformationSchema
 } from "../../helpers/functions";
 import Button from "../Button";
-import Text from "../Text";
 import ImageUpload from "../ImageUpload";
 import EditInformationForm from "../EditInformationForm";
 import EditBirthdayForm from "../EditBirthdayForm";
@@ -36,8 +35,9 @@ export default function EditInformationModal({
           handleSubmit({
             firstName: values.firstName,
             lastName: values.lastName,
-            dateOfBirth: !values.dateOfBirth,
-            email: values.email
+            dateOfBirth: values.dateOfBirth.toISOString(),
+            email: values.email,
+            avatar: uploadedImage
           });
         }}
       >
@@ -46,6 +46,7 @@ export default function EditInformationModal({
             <div className="flex flex-col items-center w-full">
               <ImageUpload
                 name="avatar"
+                size="sm"
                 icon={values.avatar}
                 onUpload={e => {
                   if (e.target.files[0]) {
@@ -63,19 +64,17 @@ export default function EditInformationModal({
                 disabled={loading}
                 className=""
               />
-              <Text variant="title2" className="my-4">
-                {username}
-              </Text>
+              <p className="my-4">{username}</p>
               <EditInformationForm loading={loading} />
               <EditBirthdayForm loading={loading} />
               {informationUpdated ? (
-                <Text variant="small2" className="text-linkText pb-2 pt-8">
+                <p className="text-linkText pt-8">
                   You have successfully updated your information!
-                </Text>
+                </p>
               ) : (
                 <></>
               )}
-              <div>
+              <div className="pt-4">
                 <Button type="submit" disabled={loading || !isValid || !dirty}>
                   Confirm
                 </Button>

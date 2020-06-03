@@ -1,6 +1,5 @@
 import React from "react";
 import { FixedSizeList } from "react-window";
-import Text from "../Text";
 
 export default function InfoCardList({
   items,
@@ -11,7 +10,7 @@ export default function InfoCardList({
   if (!items || items.length === 0) {
     return (
       <div className="h-32 w-full flex items-center justify-center">
-        <Text variant="small2">Nothing to show</Text>
+        <p className="text-sm">Nothing to show</p>
       </div>
     );
   }

@@ -14,11 +14,11 @@ export default function SuggestionCard({
   activeViewers
 }) {
   return (
-    <div className="flex flex-row items-center justify-center h-56 w-full sm:max-w-sm rounded-xl hover:shadow-xl">
-      <div className="flex-grow flex flex-row justify-center h-56 w-2/4 p-3 relative">
-        <div className="absolute w-full top-0 left-0 p-3 rounded-b-xl z-20">
-          <div className="flex flex-row justify-between">
-            <div className="flex flex-row">
+    <div className="w-full rounded-xl overflow-hidden hover:shadow-xl transform hover:-translate-y-1 transition-all ease-in-out duration-200">
+      <div className="flex-grow flex justify-center h-full p-3 pb-16/9 relative">
+        <div className="absolute w-full h-full top-0 left-0 p-3 rounded-b-xl z-20">
+          <div className="flex justify-between">
+            <div className="flex">
               <RoomIcon
                 ids={[id]}
                 images={[icon]}
@@ -36,7 +36,7 @@ export default function SuggestionCard({
         <img
           src={videoThumbnail}
           alt="channel"
-          className="img absolute top-0 h-full rounded-xl z-10"
+          className="img absolute top-0 w-full h-full object-cover rounded-xl z-10"
         />
         <div className="h-full w-full absolute top-0 bg-gradient-t-channelCardOverlay z-20 rounded-xl" />
         <div className="absolute w-full bottom-0 left-0 p-3 rounded-b-xl z-20">

@@ -5,6 +5,7 @@ import Button from "./Button";
 export default function ImageUpload({
   name,
   icon,
+  size = "md",
   onUpload,
   onRemove,
   disabled,
@@ -15,9 +16,18 @@ export default function ImageUpload({
   const containerClasses = classnames("flex flex-col items-center", {
     [className]: className
   });
+
+  const imageClasses = classnames(
+    "flex flex-row justify-center items-center bg-gradient-b-upload rounded-circle h-40 w-40 relative p-1 group",
+    {
+      "h-40 w-40": size === "sm",
+      "h-56 w-56": size === "md"
+    }
+  );
+
   return (
     <div className={containerClasses}>
-      <div className="flex flex-row justify-center items-center bg-gradient-b-upload rounded-circle h-56 w-56 relative p-1 group">
+      <div className={imageClasses}>
         <input
           type="file"
           accept="image/jpeg, image/png"

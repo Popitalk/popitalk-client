@@ -1,7 +1,6 @@
 import React from "react";
 import { withKnobs, text, select } from "@storybook/addon-knobs";
 import Button from "../comp/Button";
-import Text from "../comp/Text";
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
@@ -33,7 +32,6 @@ const Container2 = styled.div`
   /* grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr; */
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
   justify-items: center;
-  justify-items: center;
   align-items: center;
   row-gap: 25px;
   /* gap: 20px; */
@@ -42,14 +40,14 @@ const Container2 = styled.div`
 export const Button321 = () => {
   return (
     <Container>
-      <Text variant="title1">XL</Text>
+      <h4 className="text-2xl">SM</h4>
 
       <Container2>
         <Button size="xl" icon="search" background="secondary" />
         <Button size="xl" icon="plus" />
       </Container2>
 
-      <Text variant="title1">LG</Text>
+      <h4 className="text-2xl">SM</h4>
 
       <Container2>
         <Button size="lg">Continue</Button>
@@ -61,7 +59,7 @@ export const Button321 = () => {
         <Button size="lg">Save</Button>
       </Container2>
 
-      <Text variant="title1">MD</Text>
+      <h4 className="text-2xl">SM</h4>
 
       <Container2>
         <Button>Create</Button>
@@ -79,7 +77,7 @@ export const Button321 = () => {
         <Button icon="search" background="secondary" />
       </Container2>
 
-      <Text variant="title1">SM</Text>
+      <h4 className="text-2xl">SM</h4>
 
       <Container2>
         <Button size="sm" shape="pill">

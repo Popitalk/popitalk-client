@@ -7,9 +7,9 @@ export default function VideoSearchBar({ className, onClick }) {
   const [value, setValue] = useState("");
 
   return (
-    <div className="bg-secondaryBackground p-2 w-1/2">
+    <div className="p-2 bg-secondaryBackground">
       <form
-        className={className ? className : "pb-2"}
+        className={className ? className : "mb-4"}
         onSubmit={e => e.preventDefault()}
       >
         <Input
@@ -20,21 +20,22 @@ export default function VideoSearchBar({ className, onClick }) {
           onChange={e => setValue(e.target.value)}
           videoSource={source}
           onClick={() => onClick(value)}
+          className="w-full md:w-2/4"
         />
       </form>
-      <div className="flex">
+      <div className="grid gap-8 grid-cols-services">
         {sources.map((img, idx) => {
           return (
             <button
               key={idx}
-              className={`flex justify-center items-center mx-1 ${
+              className={`flex justify-center items-center ${
                 source === img.source
-                  ? "bg-quaternaryBackground"
+                  ? "bg-gradient-r-button shadow-md"
                   : "bg-primaryBackground"
-              } h-10 w-10 rounded-full`}
+              } h-10 w-10 rounded-full focus:outline-none`}
               onClick={() => setSource(img.source)}
             >
-              <img src={img.icon} alt={img.source} className="h-6 w-6" />
+              <img src={img.icon} alt={img.source} className="h-6" />
             </button>
           );
         })}

@@ -18,27 +18,31 @@ export default function VideoPanelCard({
   return (
     <>
       {!title && (
-        <div className="flex flex-row flex-shrink-0 items-center justify-center h-48 w-full max-w-xs rounded-xl hover:shadow-xl bg-disabledBackground m-1">
-          <Button size="lg" icon="plus" />
+        <div className="cursor-pointer w-full flex-shrink-0 max-w-sm relative m-1 rounded-xl hover:shadow-xl transition-all ease-in-out duration-200 bg-disabledBackground">
+          <div className="pb-16/9 w-full relative">
+            <div className="flex items-center justify-center w-full h-full absolute">
+              <Button size="lg" icon="plus" />
+            </div>
+          </div>
         </div>
       )}
       {title && (
-        <div className="flex flex-row flex-shrink-0 items-center justify-center h-48 w-full max-w-xs rounded-xl hover:shadow-xl m-1">
-          <div className="flex-grow flex flex-row justify-center h-48 p-3 relative">
-            <div className="absolute w-full top-0 left-0 p-3 rounded-b-xl">
+        <div className="cursor-pointer w-full flex-shrink-0 max-w-sm m-1 group">
+          <div className="relative flex justify-center flex-grow pb-16/9 w-full rounded-xl group-hover:shadow-xl transition-all ease-in-out duration-200">
+            <div className="absolute top-0 left-0 w-full p-3 rounded-b-xl">
               <div className="flex justify-between">
                 <VideoStatus status={status} statusMessage={statusMessage} />
                 {type === "cancel" && (
                   <Button
                     icon="minus"
-                    className="z-30 btn-no-mr"
+                    className="z-30 btn-no-mr opacity-0 group-hover:opacity-100"
                     shape="pill"
                     background="cancel"
                     size="sm"
                   />
                 )}
                 {type === "add" && (
-                  <button className="btn btn-sqr z-40">
+                  <button className="z-40 btn btn-sqr opacity-0 group-hover:opacity-100">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       // width="24"
@@ -55,23 +59,24 @@ export default function VideoPanelCard({
             <img
               src={thumbnail}
               alt="video-thumbnail"
-              className="img absolute top-0 h-full rounded-xl z-10"
+              className="absolute top-0 z-10 h-full img rounded-xl"
             />
 
-            <div className="h-full w-full absolute top-0 bg-gradient-t-channelCardOverlay z-20 rounded-xl" />
-            <div className="absolute w-full bottom-0 left-0 p-3 rounded-b-xl z-20">
-              <p className="text-lg font-regular text-tertiaryText mb-1 z-30">
-                {title}
+            {/* <div className="absolute top-0 z-20 w-full h-full bg-gradient-t-channelCardOverlay rounded-xl" /> */}
+          </div>
+          <div className="w-full py-2 px-3">
+            <div className="flex items-center">
+              <p className="text-xs font-regular text-secondaryText">
+                {leftInfo}
               </p>
-              <div className="flex flex-row justify-between items-center">
-                <p className="text-xs font-regular text-tertiaryText">
-                  {leftInfo}
-                </p>
-                <p className="text-xs font-regular text-tertiaryText">
-                  {rightInfo}
-                </p>
-              </div>
+              <span className="px-1 text-secondaryText">•</span>
+              <p className="text-xs font-regular text-secondaryText">
+                {rightInfo}
+              </p>
             </div>
+            <p className="z-30 text-lg font-semibold text-primaryText">
+              {title}
+            </p>
           </div>
         </div>
       )}

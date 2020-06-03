@@ -3,7 +3,6 @@ import { Formik } from "formik";
 import * as Yup from "yup";
 import Input from "../Input";
 import Button from "../Button";
-import Text from "../Text";
 import ControlHeader from "../ControlHeader";
 
 export default function ForgotPasswordModal({
@@ -56,9 +55,9 @@ export default function ForgotPasswordModal({
               className="w-full"
             />
             {confirmEmailSent ? (
-              <Text variant="small2" className="text-linkText py-2">
+              <p className="text-linkText py-2">
                 An email has been sent to reset your password!
-              </Text>
+              </p>
             ) : (
               <></>
             )}
