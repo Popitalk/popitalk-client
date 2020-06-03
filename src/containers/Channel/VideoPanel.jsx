@@ -13,7 +13,7 @@ export default function VideoPanel({ playlist, activeFriendViewers }) {
         {...playlist[0]}
         activeFriendViewers={activeFriendViewers}
       />
-      {/* <QueueSection/> */}
+      <QueueSection queueList={playlist.slice(1)} />
     </>
   );
 }
