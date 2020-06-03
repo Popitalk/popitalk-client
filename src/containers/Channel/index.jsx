@@ -17,10 +17,12 @@ import {
   testQueue,
   testUserMinimal,
   testVideos,
-  testResult
+  testResult,
+  testUsers
 } from "../../stories/seed-arrays";
 import ChannelHeader from "../../comp/ChannelHeader";
 import VideoPanel from "./VideoPanel";
+import ForumPanel from "./ForumPanel";
 
 export default function Channel() {
   const { channelId } = useParams();
@@ -60,7 +62,7 @@ export default function Channel() {
     // <ChannelVideo
     //   id={channelId}
     // />
-    <div className="flex flex-col w-full bg-secondaryBackground">
+    <div className="flex flex-col w-full bg-secondaryBackground p-3 pr-5">
       <ChannelHeader
         id={channelId}
         name={channel.name}
@@ -75,6 +77,16 @@ export default function Channel() {
           <VideoPanel
             playlist={copyTestQueue}
             activeFriendViewers={testUserMinimal}
+            classNames="pt-1"
+          />
+          <ForumPanel
+            name={channel.name}
+            description={channel.description}
+            icon={channel.icon || defaultIcon}
+            adminList={[...testUserMinimal, ...testUserMinimal]}
+            status="playing"
+            comments={testComments}
+            posts={testPosts}
           />
         </Route>
       </Switch>
