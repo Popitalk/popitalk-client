@@ -5,7 +5,7 @@ export default {
   title: "Typography",
   decorators: [withKnobs]
 };
-export const Text123 = () => (
+export const FontStyles = () => (
   <div>
     <h4 className="text-lg font-bold text-tertiaryText bg-quaternaryBackground">
       Size
