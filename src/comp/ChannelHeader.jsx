@@ -27,31 +27,31 @@ export default function ChannelHeader({
     { name: "Setting", endpoint: "setting" }
   ];
 
-  const channel = useSelector(state => state.channels[id]);
+  // const channel = useSelector(state => state.channels[id]);
 
   const match = useRouteMatch();
-  const location = useLocation();
-  const channelRef = useRef(null);
-  const scrollRef = useRef(null);
-  // const { id: ownId } = useSelector(state => state.self);
-  const loading = useSelector(state => !state.channels[id]?.loaded);
+  // const location = useLocation();
+  // const channelRef = useRef(null);
+  // const scrollRef = useRef(null);
+  // // const { id: ownId } = useSelector(state => state.self);
+  // const loading = useSelector(state => !state.channels[id]?.loaded);
 
-  console.log(
-    "match",
-    match,
-    "location",
-    location,
-    "channelRef",
-    channelRef,
-    "scrollRef",
-    scrollRef,
-    // "id",
-    // ownId,
-    "loading",
-    loading,
-    "channel",
-    channel
-  );
+  // console.log(
+  //   "match",
+  //   match,
+  //   "location",
+  //   location,
+  //   "channelRef",
+  //   channelRef,
+  //   "scrollRef",
+  //   scrollRef,
+  //   // "id",
+  //   // ownId,
+  //   "loading",
+  //   loading,
+  //   "channel",
+  //   channel
+  // );
   return (
     <header className="flex justify-between bg-disabledBackground my-1 mx-1">
       <div className="flex items-center">
