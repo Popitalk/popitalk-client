@@ -13,13 +13,13 @@ export default function VideoStatus({
     return (
       <>
         {status === "playing" && (
-          <button className="text-white bg-white p-2">
+          <button className="w-8 h-8 p-2 rounded-full flex justify-center items-center flex-shrink-0">
             <svg
               aria-hidden="true"
               focusable="false"
               data-prefix="fas"
               data-icon="play"
-              className="svg-inline--fa fa-play fa-w-14 h-4 w-4 text-white"
+              className="svg-inline--fa fa-play fa-w-14 h-3 w-3"
               role="img"
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 448 512"
@@ -53,13 +53,13 @@ export default function VideoStatus({
           // </Button>
         )}
         {status === "paused" && (
-          <button className="text-white p-2">
+          <button className="w-8 h-8 p-2 rounded-full flex justify-center items-center flex-shrink-0">
             <svg
               aria-hidden="true"
               focusable="false"
               data-prefix="fas"
               data-icon="pause"
-              className="svg-inline--fa fa-pause fa-w-14 h-4 w-4"
+              className="svg-inline--fa fa-pause fa-w-14 h-3 w-3"
               role="img"
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 448 512"
