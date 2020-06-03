@@ -36,7 +36,7 @@ export default function SortableList({
         }
       >
         {items.map((value, index) => (
-          <SortableItem key={`item-${value}`} index={index} value={value} />
+          <SortableItem key={`item-${value.id}`} index={index} value={value} />
         ))}
         {children}
       </div>
