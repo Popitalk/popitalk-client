@@ -69,7 +69,7 @@ export default function VideoPanelCard({
               <p className="text-xs font-regular text-secondaryText">
                 {leftInfo}
               </p>
-              <span className="px-1 text-secondaryText">•</span>
+              <span className="px-1 mb-1 text-secondaryText">&middot;</span>
               <p className="text-xs font-regular text-secondaryText">
                 {rightInfo}
               </p>

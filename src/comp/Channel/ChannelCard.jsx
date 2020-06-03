@@ -25,16 +25,17 @@ export default function ChannelCard({
         />
         <div className="absolute w-full z-20">
           <div className="flex justify-between px-4 py-1">
-            <div className="flex items-center">
+            <div className="flex items-center pr-4">
               <VideoStatus status={live ? "playing" : "paused"} />
-              <p className="text-sm font-regular text-tertiaryText w-full max-w-xs clamp-2 mb-1 ml-3">
+              <p className="text-sm font-regular flex-shrink-1 text-tertiaryText w-full max-w-2xs clamp-2 mb-1 ml-3">
+                Lorem ipsum lorem blah blah blah and more random text as a title
                 {videoTitle}
               </p>
             </div>
             <AvatarDeck
               avatars={avatars}
               size="md"
-              className="img w-auto h-8"
+              className="img w-auto h-8 flex-shrink-0"
               threshold={3}
             />
           </div>
@@ -60,7 +61,11 @@ export default function ChannelCard({
               size="sm"
               className="mr-3 w-12 h-12"
             />
-            <p className="text-xl font-semibold text-tertiaryText">{name}</p>
+            <div className="pr-4 flex-shrink-1">
+              <p className="text-xl font-semibold text-tertiaryText clamp-2">
+                {name}
+              </p>
+            </div>
             <Button
               size="sm"
               shape="pill"
