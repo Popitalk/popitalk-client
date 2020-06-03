@@ -23,12 +23,12 @@ export default function VideoSearchBar({ className, onClick }) {
           className="w-full md:w-2/4"
         />
       </form>
-      <div className="grid gap-8 grid-cols-services">
+      <div className="flex flex-wrap grid-cols-services">
         {sources.map((img, idx) => {
           return (
             <button
               key={idx}
-              className={`flex justify-center items-center ${
+              className={`flex justify-center m-2 items-center ${
                 source === img.source
                   ? "bg-gradient-r-button shadow-md"
                   : "bg-primaryBackground"
