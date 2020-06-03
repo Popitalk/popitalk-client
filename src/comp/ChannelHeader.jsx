@@ -16,42 +16,40 @@ export default function ChannelHeader({
   name,
   icon,
   videoStatus,
-  type = "channel",
-  select = "Video"
+  type = "channel"
 }) {
-  const [selected, setSelected] = useState(select);
   const navButtons = [
     { name: "Video", endpoint: "video" },
     { name: "Queue", endpoint: "queue" },
     { name: "Channel", endpoint: "channel" },
-    { name: "Setting", endpoint: "setting" }
+    { name: "Settings", endpoint: "settings" }
   ];
 
   // const channel = useSelector(state => state.channels[id]);
 
   const match = useRouteMatch();
-  // const location = useLocation();
+  const location = useLocation();
   // const channelRef = useRef(null);
   // const scrollRef = useRef(null);
-  // // const { id: ownId } = useSelector(state => state.self);
+  // const { id: ownId } = useSelector(state => state.self);
   // const loading = useSelector(state => !state.channels[id]?.loaded);
 
-  // console.log(
-  //   "match",
-  //   match,
-  //   "location",
-  //   location,
-  //   "channelRef",
-  //   channelRef,
-  //   "scrollRef",
-  //   scrollRef,
-  //   // "id",
-  //   // ownId,
-  //   "loading",
-  //   loading,
-  //   "channel",
-  //   channel
-  // );
+  console.log(
+    "match",
+    match,
+    "location",
+    location
+    // "channelRef",
+    // channelRef,
+    // "scrollRef",
+    // scrollRef,
+    // // "id",
+    // // ownId,
+    // "loading",
+    // loading,
+    // "channel",
+    // channel
+  );
   return (
     <header className="flex justify-between bg-disabledBackground my-1 mx-1">
       <div className="flex items-center">
@@ -69,20 +67,22 @@ export default function ChannelHeader({
       {type === "channel" && (
         <nav className="flex flex-wrap justify-center">
           {navButtons.map((button, idx) => {
-            let className = "mx-1 my-1 font-bold focus:outline-none";
-            if (selected == button.name) {
+            let className =
+              "mx-1 my-1 font-bold no-underline focus:outline-none";
+            if (
+              location.pathname.startsWith(`${match.url}/${button.endpoint}`)
+            ) {
               className = `${className} rainbow-text`;
             } else {
               className = `${className} text-secondaryText`;
             }
             return (
-              <Link to={`${match.url}/${button.endpoint}`} key={idx}>
-                <button
-                  className={className}
-                  onClick={() => setSelected(button.name)}
-                >
-                  {button.name}
-                </button>
+              <Link
+                to={`${match.url}/${button.endpoint}`}
+                className={className}
+                key={idx}
+              >
+                {button.name}
               </Link>
             );
           })}

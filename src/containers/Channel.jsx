@@ -54,7 +54,7 @@ export default function Channel() {
       <ChannelHeader
         id={channelId}
         name={channel.name}
-        icon={defaultIcon}
+        icon={channel.icon || defaultIcon}
         videoStatus={
           activeVideo && activeVideo.status ? activeVideo.status : ""
         }
