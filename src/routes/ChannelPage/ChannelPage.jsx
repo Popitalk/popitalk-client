@@ -9,7 +9,7 @@ import ChannelMain from "../../components/ChannelMain";
 import ChatPanel from "../../components/ChatPanel";
 import FriendsPanel from "../../components/FriendsPanel";
 // import Channel from "../../components/Channel";
-import Channel from "../../containers/Channel";
+import Channel from "../../containers/Channel/index";
 
 export default function ChannelPage() {
   const { pathname } = useLocation();

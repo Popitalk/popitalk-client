@@ -1,8 +1,16 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useParams } from "react-router-dom";
-import { getChannel } from "../redux/actions";
-import ChannelVideo from "../comp/Channel/ChannelVideo";
+import {
+  Link,
+  Switch,
+  Route,
+  useRouteMatch,
+  useLocation,
+  useHistory,
+  useParams
+} from "react-router-dom";
+import { getChannel } from "../../redux/actions";
+
 import {
   testComments,
   testPosts,
@@ -10,21 +18,23 @@ import {
   testUserMinimal,
   testVideos,
   testResult
-} from "../stories/seed-arrays";
-import ChannelHeader from "../comp/ChannelHeader";
+} from "../../stories/seed-arrays";
+import ChannelHeader from "../../comp/ChannelHeader";
+import VideoPanel from "./VideoPanel";
 
 export default function Channel() {
   const { channelId } = useParams();
   const channel = useSelector(state => state.channels[channelId]);
   const { defaultIcon, defaultAvatar } = useSelector(state => state.general);
   const dispatch = useDispatch();
+  const match = useRouteMatch();
+
   console.log("channelid", channelId);
   console.log("channel", channel);
 
   const copyTestQueue = [...testQueue];
-  const activeVideo = copyTestQueue.shift();
+  const activeVideo = copyTestQueue[0];
   activeVideo.status = "playing";
-  activeVideo.activeFriendViewers = testUserMinimal;
 
   const trendingResults = testResult;
   const searchResults = testResult.slice(0, 3);
@@ -59,6 +69,15 @@ export default function Channel() {
           activeVideo && activeVideo.status ? activeVideo.status : ""
         }
       />
+
+      <Switch>
+        <Route exact path={[`${match.path}/video`, `${match.path}/channel`]}>
+          <VideoPanel
+            playlist={copyTestQueue}
+            activeFriendViewers={testUserMinimal}
+          />
+        </Route>
+      </Switch>
       {/* <VideoSection {...activeVideo} />
       <h2 className="text-2xl pt-4 px-3">Up Next</h2>
       <QueueSection queueList={queueList} handlerChange={handlerChange} />
