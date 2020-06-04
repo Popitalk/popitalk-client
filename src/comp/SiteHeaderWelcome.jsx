@@ -13,7 +13,7 @@ export default function SiteHeaderWelcome({ apiLoading, dispatchLogin }) {
   };
 
   return (
-    <header className="flex flex-col px-16 py-4 border-b md:justify-between md:flex-row bg-primaryBackground border-primaryBorder">
+    <header className="flex flex-col px-4 py-4 border-b md:px-16 sm:justify-between sm:flex-row bg-primaryBackground border-primaryBorder">
       <div className="flex items-center">
         <img src={Logo} alt="PlayNow's logo" className="w-12 h-12" />
         <span className="ml-2 text-3xl font-bold text-primaryText">
@@ -22,7 +22,7 @@ export default function SiteHeaderWelcome({ apiLoading, dispatchLogin }) {
       </div>
       <nav>
         <form>
-          <ul className="flex flex-col md:space-x-2 md:flex-row">
+          <ul className="flex flex-col sm:space-x-2 sm:flex-row">
             <li className="flex flex-col">
               <label className="mb-1 text-sm font-bold" htmlFor="user">
                 Username or email
@@ -62,7 +62,7 @@ export default function SiteHeaderWelcome({ apiLoading, dispatchLogin }) {
               />
               <small className="text-secondaryText">Forgot password?</small>
             </li>
-            <li className="flex self-end md:self-center">
+            <li className="flex self-end sm:self-center">
               <Button
                 size="sm"
                 className="h-8 mt-1"
