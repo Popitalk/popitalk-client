@@ -36,8 +36,8 @@ export default function ChannelPage() {
           </Route>
           <Route path="/channels/:channelId">
             <Channel />
-            {/* <ChannelMain />
-            <ChatPanel /> */}
+            {/* <ChannelMain /> */}
+            {/* <ChatPanel /> */}
           </Route>
         </Switch>
       </div>
