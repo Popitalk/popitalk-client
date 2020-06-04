@@ -33,6 +33,7 @@ module.exports = {
     fontFamily: {
       sans: [
         '"Noto Sans"',
+        "-system-ui",
         "-apple-system",
         "BlinkMacSystemFont",
         '"Segoe UI"',
