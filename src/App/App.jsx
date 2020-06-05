@@ -37,6 +37,7 @@ export default function App() {
   const validatedSession = useSelector(state => state.general.validatedSession);
   const loggedIn = useSelector(state => state.general.loggedIn);
   const wsConnected = useSelector(state => state.general.wsConnected);
+  const isCollapsed = useSelector(state => state.ui.isCollapsed);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -71,7 +72,9 @@ export default function App() {
     <CreateNewAccountContainer component={AnonymousSidebar} />
   );
 
-  const searchClasses = "flex-grow w-full bg-secondaryBackground";
+  const searchClasses = `${
+    isCollapsed ? "block" : "hidden"
+  } flex-grow bg-secondaryBackground mt-10 mx-2 md:mx-10 md:block`;
 
   return (
     <section className="App--container">

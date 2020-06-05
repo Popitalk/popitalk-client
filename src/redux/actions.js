@@ -718,3 +718,9 @@ export const openDeleteAccountModal = createAction("modal/open", () => ({
 export const openRoomExistsModal = createAction("modal/open", () => ({
   payload: { component: MODAL_ROOM_EXISTS }
 }));
+
+/* -------------------------------------------------------------------------- */
+/*                                    UI                                      */
+/* -------------------------------------------------------------------------- */
+
+export const toggleLeftPanel = createAction("ui/toggleLeftPanel");
