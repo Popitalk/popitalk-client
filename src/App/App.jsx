@@ -74,7 +74,7 @@ export default function App() {
 
   const searchClasses = `${
     isCollapsed ? "block" : "hidden"
-  } flex-grow bg-secondaryBackground mt-10 mx-2 md:mx-10 md:block`;
+  } flex-grow mt-10 mx-2 md:mx-10 md:block`;
 
   return (
     <section className="App--container">
@@ -84,7 +84,7 @@ export default function App() {
         <Route exact path="/welcome">
           <CreateNewAccountContainer component={WelcomePage} />
         </Route>
-        <div className="flex">
+        <div className="flex bg-secondaryBackground ">
           {leftPanel}
           <Route exact path="/create">
             <div className="flex justify-center p-5 bg-secondaryBackground w-full">

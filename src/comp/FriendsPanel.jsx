@@ -11,6 +11,7 @@ export default function FriendsPanel({
   roomsResults,
   updateSelectedPage,
   handleCollapse,
+  selectedPage,
   ...rest
 }) {
   const [search, setSearch] = useState("");
@@ -20,6 +21,7 @@ export default function FriendsPanel({
       <PanelHeader
         handleCollapse={handleCollapse}
         updateSelectedPage={updateSelectedPage}
+        selectedPage={selectedPage}
       />
       <Input
         variant="user"
