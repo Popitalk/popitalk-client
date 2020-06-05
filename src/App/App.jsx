@@ -11,7 +11,7 @@ import { validateSession } from "../redux/actions";
 import "../styles/app.css";
 import "./App.css";
 import "../helpers/initIcons";
-import LeftPanel from "../comp/LeftPanel";
+import LeftPanel from "../containers/LeftPanel";
 import RecommendedView from "../comp/RecommendedView";
 import ChannelVideo from "../comp/Channel/ChannelVideo";
 import ChannelQueue from "../comp/Channel/ChannelQueue";
@@ -66,7 +66,7 @@ export default function App() {
   );
 
   const leftPanel = loggedIn ? (
-    <LeftPanel channels={testChannels} friends={testUsers} />
+    <LeftPanel />
   ) : (
     <CreateNewAccountContainer component={AnonymousSidebar} />
   );
