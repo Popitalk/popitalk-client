@@ -29,7 +29,7 @@ export default function ChannelVideo({
   };
 
   return (
-    <div className="flex flex-col bg-secondaryBackground">
+    <div className="flex flex-col bg-secondaryBackground w-full">
       <ChannelHeader
         id={id}
         name={name}
