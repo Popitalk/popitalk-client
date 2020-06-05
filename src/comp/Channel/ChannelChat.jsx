@@ -7,6 +7,8 @@ import AvatarIcon from "../InfoCards/AvatarIcon";
 import ChannelPost from "./ChannelPost";
 import ChannelComment from "./ChannelComment";
 import NewChannelComment from "./NewChannelComment";
+import { formatDistanceToNow } from "date-fns";
+
 // {
 //   "channelId": "98f40347-7ec5-49ab-ae0d-0255663f9ea1",
 //   "posts": [
@@ -68,7 +70,9 @@ export default function ChannelChat({ id, posts, comments }) {
                 key={idx}
                 name={post.author.username}
                 avatar={post.author.avatar}
-                timeFromPost={post.createdAt}
+                timeFromPost={formatDistanceToNow(new Date(post.createdAt), {
+                  addSuffix: true
+                })}
                 text={post.content}
                 liked={post.liked}
                 comments={postComments}
