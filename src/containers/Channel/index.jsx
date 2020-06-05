@@ -9,7 +9,12 @@ import {
   useHistory,
   useParams
 } from "react-router-dom";
-import { getChannel, setPostDraft, addPost } from "../../redux/actions";
+import {
+  getChannel,
+  setPostDraft,
+  addPost,
+  addComment
+} from "../../redux/actions";
 
 import {
   testComments,
@@ -67,6 +72,16 @@ export default function Channel() {
     }
   };
 
+  const saveComment = (text, postId) => {
+    if (text && text.length > 0) {
+      dispatch(
+        addComment({
+          postId,
+          content: text
+        })
+      );
+    }
+  };
   useEffect(() => {
     if (channel && !channel?.loaded) {
       dispatch(getChannel(channelId));
@@ -115,6 +130,7 @@ export default function Channel() {
             posts={posts}
             saveDraft={saveDraft}
             savePost={savePost}
+            saveComment={saveComment}
             draft={draft}
           />
         </Route>

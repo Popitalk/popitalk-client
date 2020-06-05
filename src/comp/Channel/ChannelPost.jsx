@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import Button from "../Button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "../VideoStatus.css";
@@ -16,10 +16,12 @@ export default function ChannelPost({
   timeFromPost,
   text,
   comments,
-  liked
+  liked,
+  saveComment
 }) {
   const [showNewComment, setShowNewComment] = useState(false);
   const [showComments, setShowComments] = useState(false);
+  // const commentRef = useRef();
 
   const handleComment = () => {
     setShowNewComment(!showNewComment);
@@ -79,7 +81,9 @@ export default function ChannelPost({
               return <ChannelComment key={idx} {...comment} />;
             }
           })}
-          {showNewComment && <NewChannelComment />}
+          {showNewComment && (
+            <NewChannelComment postId={id} saveComment={saveComment} />
+          )}
         </div>
       )}
     </>

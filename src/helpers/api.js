@@ -98,7 +98,7 @@ export const deletePost = postId => {
   return axios.delete(`/api/posts/${postId}`);
 };
 export const addComment = commentInfo => {
-  return axios.post("/api/comments/", commentInfo);
+  return axios.post("/api/comments", commentInfo);
 };
 export const deleteComment = commentId => {
   return axios.delete(`/api/comments/${commentId}`);

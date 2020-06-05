@@ -16,6 +16,7 @@ export default function ForumPanel({
   comments,
   saveDraft,
   savePost,
+  saveComment,
   draft
 }) {
   return (
@@ -28,7 +29,11 @@ export default function ForumPanel({
         status={status}
       />
       <NewChannelPost saveDraft={saveDraft} savePost={savePost} draft={draft} />
-      <ChannelChat comments={comments} posts={posts} />
+      <ChannelChat
+        comments={comments}
+        posts={posts}
+        saveComment={saveComment}
+      />
     </div>
   );
 }
