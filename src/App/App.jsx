@@ -144,7 +144,7 @@ export default function App() {
           <Route path="/rooms/:roomId/video">
             <ChannelVideo
               id={123}
-              name="Channel #1"
+              name="RoomOwner"
               icon="https://i.imgur.com/xCGu56D.jpg"
               activeFriendViewers={testUserMinimal}
               activeVideo={{
@@ -153,10 +153,9 @@ export default function App() {
                 activeFriendViewers: testUserMinimal
               }}
               queue={testQueue}
-              adminList={testUserMinimal}
-              description="Test"
-              comments={testComments}
-              posts={testPosts}
+              type="room"
+              trendingResults={testResult}
+              searchResults={testResult}
             />
             {chatPanel}
           </Route>
@@ -176,7 +175,6 @@ export default function App() {
         </div>
         <Redirect to="/channels" />
       </Switch>
-      <Footer />
     </section>
   );
 }
