@@ -1,4 +1,4 @@
-img {
+.welcome-image {
   width: 650px;
 }
 
@@ -6,45 +6,29 @@ img {
   .account-form {
     padding: 1rem;
   }
-  p {
+  .welcome-page-bod {
+    padding: 0 !important;
+  }
+  .account-form-par {
     margin: 0;
     padding: 0.1rem !important;
   }
-  input {
+  .account-form input {
     padding: 0 !important;
   }
-  img {
-    height: auto;
-  }
-}
-
-@media screen and (max-height: 980px) and (min-width: 640px) and (orientation: portrait) {
-  .account-form {
-    padding: 1rem;
-  }
-  p {
-    margin: 0;
-    padding: 0.1rem !important;
-  }
-  input {
-    padding: 0 !important;
-  }
-  img {
+  .welcome-image {
     height: auto;
   }
 }
 
 @media screen and (orientation: landscape) and (max-height: 830px) {
-  img {
+  .welcome-image {
     width: 30rem;
   }
 }
 
-@media screen and (orientation: landscape) and (max-height: 630px) {
+@media screen and (orientation: landscape) and (max-height: 610px) {
   .header-body-container {
     height: 100% !important;
-  }
-  section {
-    padding: 2rem 0 !important;
   }
 }
