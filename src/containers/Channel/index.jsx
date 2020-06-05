@@ -32,6 +32,11 @@ export default function Channel() {
   const posts = useSelector(state => state.posts[channelId]);
   const comments = useSelector(state => state.comments);
 
+  // posts.map((post) => {
+  //   if (!post.author.avatar) {
+  //     post.author.avatar = defaultAvatar;
+  //   }
+  // })
   console.log("posts", posts);
   console.log("comments", comments);
   // console.log("draft", draft);
@@ -106,8 +111,8 @@ export default function Channel() {
             icon={channel.icon || defaultIcon}
             adminList={[...testUserMinimal, ...testUserMinimal]}
             status="playing"
-            comments={testComments}
-            posts={testPosts}
+            comments={comments}
+            posts={posts}
             saveDraft={saveDraft}
             savePost={savePost}
             draft={draft}
