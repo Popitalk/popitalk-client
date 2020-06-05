@@ -12,12 +12,14 @@ import "../styles/app.css";
 import "./App.css";
 import "../helpers/initIcons";
 import LeftPanel from "../comp/LeftPanel";
-import RecommendedChannels from "../comp/RecommendedView";
+import RecommendedView from "../comp/RecommendedView";
 import ChannelVideo from "../comp/Channel/ChannelVideo";
 import ChannelQueue from "../comp/Channel/ChannelQueue";
 import ChannelSettingsPanel from "../comp/Channel/ChannelSettingsPanel";
 import ChatPanel from "../comp/Chat/ChatPanel";
+import ChannelForm from "../comp/Channel/ChannelForm";
 import AnonymousSidebar from "../comp/AnonymousSidebar";
+import Footer from "../comp/Footer";
 import {
   testComments,
   testPosts,
@@ -26,7 +28,9 @@ import {
   testMessages,
   testResult,
   testChannels,
-  testUsers
+  testUsers,
+  channelsList,
+  friendsList
 } from "../stories/seed-arrays";
 
 export default function App() {
@@ -67,6 +71,8 @@ export default function App() {
     <AnonymousSidebar />
   );
 
+  const searchClasses = "flex-grow w-full bg-secondaryBackground";
+
   return (
     <section className="App--container">
       <ModalManager />
@@ -77,6 +83,19 @@ export default function App() {
         </Route>
         <div className="flex">
           {leftPanel}
+          <Route path="/create">
+            <div className="flex justify-center p-5 bg-secondaryBackground w-full">
+              <ChannelForm
+                initial={{
+                  name: "",
+                  description: "",
+                  private: false,
+                  icon: null,
+                  category: ""
+                }}
+              />
+            </div>
+          </Route>
           <Route path="/channels/:channelId/video">
             <ChannelVideo
               id={123}
@@ -141,14 +160,23 @@ export default function App() {
             />
             {chatPanel}
           </Route>
-          <Route exact path="/">
-            <RecommendedChannels />
+          <Route exact path="/channels">
+            <div className={searchClasses}>
+              <RecommendedView list={channelsList} selectedPage="channels" />
+            </div>
+          </Route>
+          <Route exact path="/friends">
+            <div className={searchClasses}>
+              <RecommendedView list={friendsList} selectedPage="friends" />
+            </div>
           </Route>
           <Route path="/users/:userId">
             <UserPage />
           </Route>
         </div>
+        <Redirect to="/channels" />
       </Switch>
+      <Footer />
     </section>
   );
 }

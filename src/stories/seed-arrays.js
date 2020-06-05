@@ -547,3 +547,37 @@ export const testChannels = [
     numOnline: 88
   }
 ];
+
+export const channelsList = [
+  {
+    title: "Following Channels",
+    channels: testChannels
+  },
+  {
+    title: "Recommended Channels",
+    channels: testChannels
+  },
+  {
+    title: "Channels Friends are following",
+    channels: testChannels
+  },
+  {
+    title: "Trending Channels right now",
+    channels: testChannels
+  }
+];
+
+export const friendsList = [
+  {
+    title: "Videos friends are watching",
+    channels: testQueue
+  },
+  {
+    title: "Recommended",
+    channels: testQueue
+  },
+  {
+    title: "Trending right now",
+    channels: testQueue
+  }
+];
