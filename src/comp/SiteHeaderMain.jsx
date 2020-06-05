@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Link } from "react-router-dom";
 import Logo from "../assets/logo.png";
 import Transition from "./Transition";
 import DropDownMenu from "./DropDowns/DropDownMenu";
@@ -101,7 +102,9 @@ export default function SiteHeaderMain({
     <header className="relative flex flex-col px-4 bg-primaryBackground">
       {!mobileMenu && (
         <div className="flex items-center justify-between">
-          <img src={Logo} alt="PlayNow's logo" className="w-12 h-12" />
+          <Link to="/channels">
+            <img src={Logo} alt="PlayNow's logo" className="w-12 h-12" />
+          </Link>
           <ul className="items-center hidden space-x-8 md:flex">
             <li>
               <div

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import Logo from "../assets/logo.png";
 import Button from "./Button";
 
@@ -15,7 +16,9 @@ export default function SiteHeaderWelcome({ apiLoading, dispatchLogin }) {
   return (
     <header className="flex flex-col px-4 py-4 border-b md:px-16 sm:justify-between sm:flex-row bg-primaryBackground border-primaryBorder">
       <div className="flex items-center">
-        <img src={Logo} alt="PlayNow's logo" className="w-12 h-12" />
+        <Link to="/welcome">
+          <img src={Logo} alt="PlayNow's logo" className="w-12 h-12" />
+        </Link>
         <span className="ml-2 text-3xl font-bold text-primaryText">
           Popitalk
         </span>

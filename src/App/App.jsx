@@ -19,7 +19,7 @@ import ChannelSettingsPanel from "../comp/Channel/ChannelSettingsPanel";
 import ChatPanel from "../comp/Chat/ChatPanel";
 import ChannelForm from "../comp/Channel/ChannelForm";
 import AnonymousSidebar from "../comp/AnonymousSidebar";
-import Footer from "../comp/Footer";
+import CreateNewAccountContainer from "../containers/CreateNewAccountContainer";
 import {
   testComments,
   testPosts,
@@ -68,7 +68,7 @@ export default function App() {
   const leftPanel = loggedIn ? (
     <LeftPanel channels={testChannels} friends={testUsers} />
   ) : (
-    <AnonymousSidebar />
+    <CreateNewAccountContainer component={AnonymousSidebar} />
   );
 
   const searchClasses = "flex-grow w-full bg-secondaryBackground";
@@ -79,11 +79,11 @@ export default function App() {
       <Header />
       <Switch>
         <Route exact path="/welcome">
-          <WelcomePage />
+          <CreateNewAccountContainer component={WelcomePage} />
         </Route>
         <div className="flex">
           {leftPanel}
-          <Route path="/create">
+          <Route exact path="/create">
             <div className="flex justify-center p-5 bg-secondaryBackground w-full">
               <ChannelForm
                 initial={{
@@ -96,7 +96,7 @@ export default function App() {
               />
             </div>
           </Route>
-          <Route path="/channels/:channelId/video">
+          <Route exact path="/channels/:channelId/video">
             <ChannelVideo
               id={123}
               name="Channel #1"
@@ -115,7 +115,7 @@ export default function App() {
             />
             {chatPanel}
           </Route>
-          <Route path="/channels/:channelId/queue">
+          <Route exact path="/channels/:channelId/queue">
             <ChannelQueue
               id={123}
               name="Channel #1"
@@ -127,7 +127,7 @@ export default function App() {
             />
             {chatPanel}
           </Route>
-          <Route path="/channels/:channelId/settings">
+          <Route exact path="/channels/:channelId/settings">
             <ChannelSettingsPanel
               followers={testUsers}
               admins={testUsers}
@@ -141,7 +141,7 @@ export default function App() {
               }}
             />
           </Route>
-          <Route path="/rooms/:roomId/video">
+          <Route exact path="/rooms/:roomId/video">
             <ChannelVideo
               id={123}
               name="RoomOwner"
@@ -169,7 +169,7 @@ export default function App() {
               <RecommendedView list={friendsList} selectedPage="friends" />
             </div>
           </Route>
-          <Route path="/users/:userId">
+          <Route exact path="/users/:userId">
             <UserPage />
           </Route>
         </div>
