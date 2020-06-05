@@ -36,7 +36,6 @@ img {
 
 @media screen and (orientation: landscape) and (max-height: 830px) {
   img {
-    height: 30rem;
     width: 30rem;
   }
 }
