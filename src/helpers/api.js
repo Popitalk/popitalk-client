@@ -92,7 +92,7 @@ export const addMessage = messageInfo => {
   return axios.post("/api/messages", messageInfo);
 };
 export const addPost = postInfo => {
-  return axios.post("/api/posts/", postInfo);
+  return axios.post("/api/posts", postInfo);
 };
 export const deletePost = postId => {
   return axios.delete(`/api/posts/${postId}`);

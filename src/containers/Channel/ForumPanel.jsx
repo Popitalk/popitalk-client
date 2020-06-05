@@ -13,7 +13,10 @@ export default function ForumPanel({
   adminList,
   status,
   posts,
-  comments
+  comments,
+  saveDraft,
+  savePost,
+  draft
 }) {
   return (
     <div className="px-32 pt-40 bg-secondaryBackground">
@@ -24,7 +27,7 @@ export default function ForumPanel({
         adminList={adminList}
         status={status}
       />
-      <NewChannelPost />
+      <NewChannelPost saveDraft={saveDraft} savePost={savePost} draft={draft} />
       <ChannelChat comments={comments} posts={posts} />
     </div>
   );

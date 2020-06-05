@@ -9,7 +9,7 @@ import {
   useHistory,
   useParams
 } from "react-router-dom";
-import { getChannel } from "../../redux/actions";
+import { getChannel, setPostDraft, addPost } from "../../redux/actions";
 
 import {
   testComments,
@@ -28,6 +28,13 @@ export default function Channel() {
   const { channelId } = useParams();
   const channel = useSelector(state => state.channels[channelId]);
   const { defaultIcon, defaultAvatar } = useSelector(state => state.general);
+  const draft = useSelector(state => state.postDrafts[channelId]);
+  const posts = useSelector(state => state.posts[channelId]);
+  const comments = useSelector(state => state.comments);
+
+  console.log("posts", posts);
+  console.log("comments", comments);
+  // console.log("draft", draft);
   const dispatch = useDispatch();
   const match = useRouteMatch();
 
@@ -40,6 +47,20 @@ export default function Channel() {
 
   const trendingResults = testResult;
   const searchResults = testResult.slice(0, 3);
+
+  const saveDraft = text => {
+    dispatch(setPostDraft({ channelId, draft: text }));
+  };
+  const savePost = text => {
+    if (text && text.length > 0) {
+      dispatch(
+        addPost({
+          channelId,
+          content: text
+        })
+      );
+    }
+  };
 
   useEffect(() => {
     if (channel && !channel?.loaded) {
@@ -87,6 +108,9 @@ export default function Channel() {
             status="playing"
             comments={testComments}
             posts={testPosts}
+            saveDraft={saveDraft}
+            savePost={savePost}
+            draft={draft}
           />
         </Route>
       </Switch>
