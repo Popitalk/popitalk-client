@@ -50,7 +50,13 @@ import { formatDistanceToNow } from "date-fns";
 //     }
 //   ]
 // }
-export default function ChannelChat({ id, posts, comments, saveComment }) {
+export default function ChannelChat({
+  id,
+  posts,
+  comments,
+  saveComment,
+  defaultAvatar
+}) {
   return (
     <div className="flex flex-col">
       {posts &&
@@ -66,8 +72,8 @@ export default function ChannelChat({ id, posts, comments, saveComment }) {
           // const postComments = copyComments.filter((comment) => {
           //   return comment.postId === post.id
           // })
-          const postComments = [];
-          console.log("postComments");
+          const postComments = comments[post.id];
+          console.log("postComments", postComments);
 
           return (
             <>
@@ -75,7 +81,7 @@ export default function ChannelChat({ id, posts, comments, saveComment }) {
                 key={idx}
                 id={post.id}
                 name={post.author.username}
-                avatar={post.author.avatar}
+                avatar={post.author.avatar || defaultAvatar}
                 timeFromPost={formatDistanceToNow(new Date(post.createdAt), {
                   addSuffix: true
                 })}
@@ -83,6 +89,7 @@ export default function ChannelChat({ id, posts, comments, saveComment }) {
                 liked={post.liked}
                 comments={postComments}
                 saveComment={saveComment}
+                defaultAvatar={defaultAvatar}
               />
             </>
           );

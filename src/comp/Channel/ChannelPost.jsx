@@ -8,6 +8,7 @@ import ChannelComment from "./ChannelComment";
 import NewChannelComment from "./NewChannelComment";
 import classnames from "classnames";
 import ToggleIcon from "../ToggleIcon";
+import { formatDistanceToNow } from "date-fns";
 
 export default function ChannelPost({
   id,
@@ -17,7 +18,8 @@ export default function ChannelPost({
   text,
   comments,
   liked,
-  saveComment
+  saveComment,
+  defaultAvatar
 }) {
   const [showNewComment, setShowNewComment] = useState(false);
   const [showComments, setShowComments] = useState(false);
@@ -75,10 +77,36 @@ export default function ChannelPost({
           )}
           {comments.map((comment, idx) => {
             if (!showComments && idx === comments.length - 1) {
-              return <ChannelComment key={idx} {...comment} />;
+              return (
+                <ChannelComment
+                  key={idx}
+                  name={comment.author.username}
+                  avatar={comment.author.avatar || defaultAvatar}
+                  timeFromPost={formatDistanceToNow(
+                    new Date(comment.createdAt),
+                    {
+                      addSuffix: true
+                    }
+                  )}
+                  text={comment.content}
+                />
+              );
             }
             if (showComments) {
-              return <ChannelComment key={idx} {...comment} />;
+              return (
+                <ChannelComment
+                  key={idx}
+                  name={comment.author.username}
+                  avatar={comment.author.avatar || defaultAvatar}
+                  timeFromPost={formatDistanceToNow(
+                    new Date(comment.createdAt),
+                    {
+                      addSuffix: true
+                    }
+                  )}
+                  text={comment.content}
+                />
+              );
             }
           })}
           {showNewComment && (

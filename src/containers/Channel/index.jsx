@@ -144,6 +144,7 @@ export default function Channel({ tab }) {
             savePost={savePost}
             saveComment={saveComment}
             draft={draft}
+            defaultAvatar={defaultAvatar}
           />
         </>
       )}
