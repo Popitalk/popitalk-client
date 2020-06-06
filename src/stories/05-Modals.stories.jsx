@@ -18,7 +18,14 @@ import DeleteMessageModal from "../comp/Modals/DeleteMessageModal";
 import BlockedUsersModal from "../comp/Modals/BlockedUsersModal";
 import InviteForm from "../comp/InviteForm";
 import { buildTagInput } from "../comp/TagInput";
-import { testImages, testUsers, testQueue, testMessages } from "./seed-arrays";
+import {
+  testUsers,
+  testQueue,
+  testMessages,
+  generateTestUsers,
+  generateImage,
+  generateName
+} from "./seed-arrays";
 import {
   filterSearch,
   onCheck,
@@ -53,32 +60,6 @@ const unfriendHandler = id => {
 
 const blockHandler = id => {
   console.log(`Blocked ${id}`);
-};
-
-let generateName = () => {
-  const consonants = "bcdfghjklmnprstvwxz";
-  const vowels = "aeiouy";
-
-  let nameLength = Math.round(Math.random() * 5) + 5;
-  let name = "";
-
-  for (let i = 0; i < nameLength; i++) {
-    const sampleCons = i % 2 === 0;
-    const sampleLength = sampleCons ? consonants.length : vowels.length;
-    const sample = Math.floor(Math.random() * sampleLength);
-
-    name += sampleCons ? consonants[sample] : vowels[sample];
-
-    if (i === 0) {
-      name = name.toUpperCase();
-    }
-  }
-
-  return name;
-};
-
-let generateImage = () => {
-  return testImages[Math.floor(Math.random() * testImages.length)];
 };
 
 const generateTestRooms = () => {
@@ -116,23 +97,6 @@ const generateTestRooms = () => {
   }
 
   return testRooms;
-};
-
-const generateTestUsers = () => {
-  const numUsers = 100;
-  let testUsers = [];
-
-  for (let i = 0; i < numUsers; i++) {
-    testUsers.push({
-      id: i + 1,
-      username: generateName(),
-      firstName: generateName(),
-      lastName: generateName(),
-      avatar: generateImage()
-    });
-  }
-
-  return testUsers;
 };
 
 const generatedRooms = generateTestRooms();

@@ -3,7 +3,12 @@ import PopupMenu from "../PopupMenu";
 import ImageInfoCard from "../InfoCards/ImageInfoCard";
 import InfoCardList from "./InfoCardList";
 
-export default function ManageUsersList({ users, handleProfile, options }) {
+export default function ManageUsersList({
+  users,
+  handleProfile,
+  options,
+  ...rest
+}) {
   const itemRenderer = a => {
     const control = a.owner ? (
       <p className="text-secondaryText ml-auto">Owner</p>
@@ -23,5 +28,5 @@ export default function ManageUsersList({ users, handleProfile, options }) {
     );
   };
 
-  return <InfoCardList items={users} itemRenderer={itemRenderer} />;
+  return <InfoCardList items={users} itemRenderer={itemRenderer} {...rest} />;
 }

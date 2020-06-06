@@ -30,7 +30,8 @@ import {
   testChannels,
   testUsers,
   channelsList,
-  friendsList
+  friendsList,
+  generateTestUsers
 } from "../stories/seed-arrays";
 
 export default function App() {
@@ -59,6 +60,8 @@ export default function App() {
   //     </section>
   //   );
 
+  const generatedUsers = generateTestUsers();
+
   const chatPanel = (
     <div className="w-dropdown">
       <ChatPanel messages={testMessages} />
@@ -71,110 +74,125 @@ export default function App() {
     <CreateNewAccountContainer component={AnonymousSidebar} />
   );
 
-  const searchClasses = "flex-grow w-full bg-secondaryBackground";
+  const searchClasses = "w-full bg-secondaryBackground overflow-auto";
+  const pageClasses = "w-full overflow-auto";
 
   return (
-    <section className="App--container">
+    <>
       <ModalManager />
-      <Header />
-      <Switch>
-        <Route exact path="/welcome">
-          <CreateNewAccountContainer component={WelcomePage} />
-        </Route>
-        <div className="flex">
-          {leftPanel}
-          <Route exact path="/create">
-            <div className="flex justify-center p-5 bg-secondaryBackground w-full">
-              <ChannelForm
-                initial={{
-                  name: "",
-                  description: "",
-                  private: false,
-                  icon: null,
-                  category: ""
-                }}
-              />
-            </div>
-          </Route>
-          <Route exact path="/channels/:channelId/video">
-            <ChannelVideo
-              id={123}
-              name="Channel #1"
-              icon="https://i.imgur.com/xCGu56D.jpg"
-              activeFriendViewers={testUserMinimal}
-              activeVideo={{
-                ...testQueue[0],
-                status: "playing",
-                activeFriendViewers: testUserMinimal
-              }}
-              queue={testQueue}
-              adminList={testUserMinimal}
-              description="Test"
-              comments={testComments}
-              posts={testPosts}
-            />
-            {chatPanel}
-          </Route>
-          <Route exact path="/channels/:channelId/queue">
-            <ChannelQueue
-              id={123}
-              name="Channel #1"
-              icon="https://i.imgur.com/xCGu56D.jpg"
-              trendingResults={testResult}
-              searchResults={testResult}
-              activeVideo={testQueue[0]}
-              queue={testQueue}
-            />
-            {chatPanel}
-          </Route>
-          <Route exact path="/channels/:channelId/settings">
-            <ChannelSettingsPanel
-              followers={testUsers}
-              admins={testUsers}
-              bannedUsers={testUsers}
-              initialChannelForm={{
-                name: "",
-                description: "",
-                private: false,
-                icon: null,
-                category: ""
-              }}
-            />
-          </Route>
-          <Route exact path="/rooms/:roomId/video">
-            <ChannelVideo
-              id={123}
-              name="RoomOwner"
-              icon="https://i.imgur.com/xCGu56D.jpg"
-              activeFriendViewers={testUserMinimal}
-              activeVideo={{
-                ...testQueue[0],
-                status: "playing",
-                activeFriendViewers: testUserMinimal
-              }}
-              queue={testQueue}
-              type="room"
-              trendingResults={testResult}
-              searchResults={testResult}
-            />
-            {chatPanel}
-          </Route>
-          <Route exact path="/channels">
-            <div className={searchClasses}>
-              <RecommendedView list={channelsList} selectedPage="channels" />
-            </div>
-          </Route>
-          <Route exact path="/friends">
-            <div className={searchClasses}>
-              <RecommendedView list={friendsList} selectedPage="friends" />
-            </div>
-          </Route>
-          <Route exact path="/users/:userId">
-            <UserPage />
-          </Route>
+      <div className="h-screen flex flex-col">
+        <div className="h-auto">
+          <Header />
         </div>
-        <Redirect to="/channels" />
-      </Switch>
-    </section>
+        <Switch>
+          <Route exact path="/welcome">
+            <div className="h-full overflow-auto">
+              <CreateNewAccountContainer component={WelcomePage} />
+            </div>
+          </Route>
+          <div className="flex flex-row h-full overflow-auto">
+            <div className="flex-shrink-0 overflow-auto">{leftPanel}</div>
+            <Route exact path="/create">
+              <div className="flex justify-center p-5 bg-secondaryBackground w-full overflow-auto">
+                <ChannelForm
+                  initial={{
+                    name: "",
+                    description: "",
+                    private: false,
+                    icon: null,
+                    category: ""
+                  }}
+                />
+              </div>
+            </Route>
+            <Route exact path="/channels/:channelId/video">
+              <div className={pageClasses}>
+                <ChannelVideo
+                  id={123}
+                  name="Channel #1"
+                  icon="https://i.imgur.com/xCGu56D.jpg"
+                  activeFriendViewers={testUserMinimal}
+                  activeVideo={{
+                    ...testQueue[0],
+                    status: "playing",
+                    activeFriendViewers: testUserMinimal
+                  }}
+                  queue={testQueue}
+                  adminList={testUserMinimal}
+                  description="Test"
+                  comments={testComments}
+                  posts={testPosts}
+                />
+              </div>
+              {chatPanel}
+            </Route>
+            <Route exact path="/channels/:channelId/queue">
+              <div className={pageClasses}>
+                <ChannelQueue
+                  id={123}
+                  name="Channel #1"
+                  icon="https://i.imgur.com/xCGu56D.jpg"
+                  trendingResults={testResult}
+                  searchResults={testResult}
+                  activeVideo={testQueue[0]}
+                  queue={testQueue}
+                />
+              </div>
+              {chatPanel}
+            </Route>
+            <Route exact path="/channels/:channelId/settings">
+              <div className={`flex ${pageClasses}`}>
+                <ChannelSettingsPanel
+                  followers={generatedUsers}
+                  admins={generatedUsers}
+                  bannedUsers={generatedUsers}
+                  initialChannelForm={{
+                    name: "",
+                    description: "",
+                    private: false,
+                    icon: null,
+                    category: ""
+                  }}
+                />
+              </div>
+            </Route>
+            <Route exact path="/rooms/:roomId/video">
+              <div className={pageClasses}>
+                <ChannelVideo
+                  id={123}
+                  name="RoomOwner"
+                  icon="https://i.imgur.com/xCGu56D.jpg"
+                  activeFriendViewers={testUserMinimal}
+                  activeVideo={{
+                    ...testQueue[0],
+                    status: "playing",
+                    activeFriendViewers: testUserMinimal
+                  }}
+                  queue={testQueue}
+                  type="room"
+                  trendingResults={testResult}
+                  searchResults={testResult}
+                />
+              </div>
+              {chatPanel}
+            </Route>
+            <Route exact path="/channels">
+              <div className={searchClasses}>
+                <RecommendedView list={channelsList} selectedPage="channels" />
+              </div>
+            </Route>
+            <Route exact path="/friends">
+              <div className={searchClasses}>
+                <RecommendedView list={friendsList} selectedPage="friends" />
+              </div>
+            </Route>
+            <Route exact path="/users/:userId">
+              <UserPage />
+            </Route>
+          </div>
+          <Redirect to="/channels" />
+        </Switch>
+      </div>
+    </>
   );
 }

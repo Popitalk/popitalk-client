@@ -442,13 +442,15 @@ export const ChannelChatPanel = () => {
   };
 
   return (
-    <ChatPanel
-      messages={testMessages}
-      typerIDs={typers.map(t => t.id)}
-      typerAvatars={typers.map(t => t.avatar)}
-      handleResend={handleResend}
-      handleDelete={handleDelete}
-    />
+    <div className="h-screen">
+      <ChatPanel
+        messages={testMessages}
+        typerIDs={typers.map(t => t.id)}
+        typerAvatars={typers.map(t => t.avatar)}
+        handleResend={handleResend}
+        handleDelete={handleDelete}
+      />
+    </div>
   );
 };
 
