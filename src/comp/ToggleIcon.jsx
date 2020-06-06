@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import Button from "./Button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import classnames from "classnames";
 
@@ -11,17 +10,14 @@ export default function ToggleIcon({
   status,
   toggleStatus
 }) {
-  const [toggle, setToggle] = useState(status);
-
   const handleToggle = () => {
-    // setToggle(!toggle);
     toggleStatus(status);
     console.log("toggled");
   };
 
   const colorChange = classnames({
-    [colors.default]: !toggle,
-    [colors.toggle]: toggle
+    [colors.default]: !status,
+    [colors.toggle]: status
   });
   return (
     <button
