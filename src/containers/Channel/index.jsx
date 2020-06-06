@@ -33,7 +33,7 @@ import ChannelSettingsPanel from "../../comp/Channel/ChannelSettingsPanel";
 import ChannelQueue from "../../comp/Channel/ChannelQueue";
 import ChatPanel from "../../comp/Chat/ChatPanel";
 
-export default function Channel() {
+export default function Channel({ tab }) {
   const { channelId } = useParams();
   const channel = useSelector(state => state.channels[channelId]);
   const { defaultIcon, defaultAvatar } = useSelector(state => state.general);
@@ -54,7 +54,7 @@ export default function Channel() {
   console.log("channel", channel);
   console.log("posts", posts);
   console.log("comments", comments);
-
+  console.log("tab", tab);
   const copyTestQueue = [...testQueue];
   const activeVideo = copyTestQueue[0];
   activeVideo.status = "playing";
@@ -123,8 +123,10 @@ export default function Channel() {
         }
       />
 
-      <Switch>
-        <Route exact path={[`${match.path}/video`, `${match.path}/channel`]}>
+      {/* <Switch>
+        <Route exact path={[`${match.path}/video`, `${match.path}/channel`]}> */}
+      {tab === "video" && (
+        <>
           <VideoPanel
             playlist={copyTestQueue}
             activeFriendViewers={testUserMinimal}
@@ -143,18 +145,47 @@ export default function Channel() {
             saveComment={saveComment}
             draft={draft}
           />
-        </Route>
+        </>
+      )}
+
+      {tab === "queue" && (
+        <ChannelQueue
+          name={channel.name}
+          icon={channel.icon || defaultIcon}
+          trendingResults={testResult}
+          searchResults={testResult}
+          activeVideo={testQueue[0]}
+          queue={testQueue}
+        />
+      )}
+      {tab === "settings" && (
+        <ChannelSettingsPanel
+          followers={testUsers}
+          admins={testUsers}
+          bannedUsers={testUsers}
+          initialChannelForm={{
+            name: "",
+            description: "",
+            private: false,
+            icon: null,
+            category: ""
+          }}
+        />
+      )}
+      {/* </Route>
         <Route exact path="/channels/:channelId/queue">
-          <ChannelQueue
-            id={123}
-            name="Channel #1"
-            icon="https://i.imgur.com/xCGu56D.jpg"
-            trendingResults={testResult}
-            searchResults={testResult}
-            activeVideo={testQueue[0]}
-            queue={testQueue}
-          />
-          {chatPanel}
+          <div className="flex">
+            <ChannelQueue
+              id={123}
+              name="Channel #1"
+              icon="https://i.imgur.com/xCGu56D.jpg"
+              trendingResults={testResult}
+              searchResults={testResult}
+              activeVideo={testQueue[0]}
+              queue={testQueue}
+            />
+            {chatPanel}
+          </div>
         </Route>
         <Route exact path="/channels/:channelId/settings">
           <ChannelSettingsPanel
@@ -170,7 +201,8 @@ export default function Channel() {
             }}
           />
         </Route>
-      </Switch>
+      </Switch> */}
+
       {/* <VideoSection {...activeVideo} />
       <h2 className="text-2xl pt-4 px-3">Up Next</h2>
       <QueueSection queueList={queueList} handlerChange={handlerChange} />

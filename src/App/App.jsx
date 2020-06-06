@@ -100,39 +100,23 @@ export default function App() {
               />
             </div>
           </Route>
-          <Route path="/channels/:channelId">
-            <Channel />
-          </Route>
-          {/* <Route exact path="/channels/:channelId/video">
-            <Channel />
+          <Route
+            exact
+            path={[
+              `/channels/:channelId/video`,
+              `/channels/:channelId/channel`
+            ]}
+          >
+            <Channel tab="video" />
             {chatPanel}
           </Route>
           <Route exact path="/channels/:channelId/queue">
-            <ChannelQueue
-              id={123}
-              name="Channel #1"
-              icon="https://i.imgur.com/xCGu56D.jpg"
-              trendingResults={testResult}
-              searchResults={testResult}
-              activeVideo={testQueue[0]}
-              queue={testQueue}
-            />
+            <Channel tab="queue" />
             {chatPanel}
-          </Route> */}
-          {/* <Route exact path="/channels/:channelId/settings">
-            <ChannelSettingsPanel
-              followers={testUsers}
-              admins={testUsers}
-              bannedUsers={testUsers}
-              initialChannelForm={{
-                name: "",
-                description: "",
-                private: false,
-                icon: null,
-                category: ""
-              }}
-            />
-          </Route> */}
+          </Route>
+          <Route exact path="/channels/:channelId/settings">
+            <Channel tab="settings" />
+          </Route>
           <Route exact path="/rooms/:roomId/video">
             <ChannelVideo
               id={123}

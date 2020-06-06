@@ -70,7 +70,7 @@ export default function ChannelHeader({
             let className =
               "mx-1 my-1 font-bold no-underline focus:outline-none";
             if (
-              location.pathname.startsWith(`${match.url}/${button.endpoint}`)
+              location.pathname.startsWith(`/channels/${id}/${button.endpoint}`)
             ) {
               className = `${className} rainbow-text`;
             } else {
@@ -78,7 +78,7 @@ export default function ChannelHeader({
             }
             return (
               <Link
-                to={`${match.url}/${button.endpoint}`}
+                to={`/channels/${id}/${button.endpoint}`}
                 className={className}
                 key={idx}
               >
