@@ -8,12 +8,15 @@ export default function ToggleIcon({
   colors,
   className,
   children,
-  status
+  status,
+  toggleStatus
 }) {
   const [toggle, setToggle] = useState(status);
 
   const handleToggle = () => {
-    setToggle(!toggle);
+    // setToggle(!toggle);
+    toggleStatus(status);
+    console.log("toggled");
   };
 
   const colorChange = classnames({
@@ -27,7 +30,7 @@ export default function ToggleIcon({
       }`}
       onClick={handleToggle}
     >
-      {!toggle ? (
+      {!status ? (
         <FontAwesomeIcon icon={icons.default} />
       ) : (
         <FontAwesomeIcon icon={icons.toggle} />

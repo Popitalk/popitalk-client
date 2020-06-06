@@ -13,7 +13,11 @@ import {
   getChannel,
   setPostDraft,
   addPost,
-  addComment
+  addComment,
+  unlikePost,
+  likePost,
+  unlikeComment,
+  likeComment
 } from "../../redux/actions";
 
 import {
@@ -92,6 +96,25 @@ export default function Channel({ tab }) {
       );
     }
   };
+
+  const toggleLike = (id, type, liked) => {
+    if (type === "post") {
+      if (liked) {
+        dispatch(unlikePost({ postId: id }));
+      } else {
+        dispatch(likePost({ postId: id }));
+      }
+    }
+
+    if (type === "comment") {
+      if (liked) {
+        dispatch(unlikeComment({ commentId: id }));
+      } else {
+        dispatch(likeComment({ commentId: id }));
+      }
+    }
+  };
+
   useEffect(() => {
     if (channel && !channel?.loaded) {
       dispatch(getChannel(channelId));
@@ -145,6 +168,7 @@ export default function Channel({ tab }) {
             saveComment={saveComment}
             draft={draft}
             defaultAvatar={defaultAvatar}
+            toggleLike={toggleLike}
           />
         </>
       )}

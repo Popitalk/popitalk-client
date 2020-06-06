@@ -55,7 +55,8 @@ export default function ChannelChat({
   posts,
   comments,
   saveComment,
-  defaultAvatar
+  defaultAvatar,
+  toggleLike
 }) {
   return (
     <div className="flex flex-col">
@@ -90,6 +91,7 @@ export default function ChannelChat({
                 comments={postComments}
                 saveComment={saveComment}
                 defaultAvatar={defaultAvatar}
+                toggleLike={toggleLike}
               />
             </>
           );

@@ -18,7 +18,8 @@ export default function ForumPanel({
   savePost,
   saveComment,
   draft,
-  defaultAvatar
+  defaultAvatar,
+  toggleLike
 }) {
   return (
     <div className="px-32 pt-40 bg-secondaryBackground">
@@ -35,6 +36,7 @@ export default function ForumPanel({
         posts={posts}
         saveComment={saveComment}
         defaultAvatar={defaultAvatar}
+        toggleLike={toggleLike}
       />
     </div>
   );
