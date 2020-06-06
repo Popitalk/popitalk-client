@@ -23,10 +23,10 @@ export default function ChannelPost({
 }) {
   const [showNewComment, setShowNewComment] = useState(false);
   const [showComments, setShowComments] = useState(false);
-  // const commentRef = useRef();
 
   const handleComment = () => {
     setShowNewComment(!showNewComment);
+    console.log("clicked comment", showNewComment);
   };
 
   return (
@@ -57,63 +57,56 @@ export default function ChannelPost({
           </button>
         </footer>
       </div>
-      {comments && (
-        <div className="ml-6">
-          {!showComments && comments.length > 1 && (
-            <button
-              className="text-secondaryText text-sm"
-              onClick={() => setShowComments(!showComments)}
-            >
-              View more comments
-            </button>
-          )}
-          {showComments && comments.length > 1 && (
-            <button
-              className="text-secondaryText text-sm"
-              onClick={() => setShowComments(!showComments)}
-            >
-              Hide comments
-            </button>
-          )}
-          {comments.map((comment, idx) => {
-            if (!showComments && idx === comments.length - 1) {
-              return (
-                <ChannelComment
-                  key={idx}
-                  name={comment.author.username}
-                  avatar={comment.author.avatar || defaultAvatar}
-                  timeFromPost={formatDistanceToNow(
-                    new Date(comment.createdAt),
-                    {
-                      addSuffix: true
-                    }
-                  )}
-                  text={comment.content}
-                />
-              );
-            }
-            if (showComments) {
-              return (
-                <ChannelComment
-                  key={idx}
-                  name={comment.author.username}
-                  avatar={comment.author.avatar || defaultAvatar}
-                  timeFromPost={formatDistanceToNow(
-                    new Date(comment.createdAt),
-                    {
-                      addSuffix: true
-                    }
-                  )}
-                  text={comment.content}
-                />
-              );
-            }
-          })}
-          {showNewComment && (
-            <NewChannelComment postId={id} saveComment={saveComment} />
-          )}
-        </div>
-      )}
+      <div className="ml-6">
+        {!showComments && comments?.length > 1 && (
+          <button
+            className="text-secondaryText text-sm"
+            onClick={() => setShowComments(!showComments)}
+          >
+            View more comments
+          </button>
+        )}
+        {showComments && comments?.length > 1 && (
+          <button
+            className="text-secondaryText text-sm"
+            onClick={() => setShowComments(!showComments)}
+          >
+            Hide comments
+          </button>
+        )}
+
+        {comments?.map((comment, idx) => {
+          if (!showComments && idx === comments.length - 1) {
+            return (
+              <ChannelComment
+                key={idx}
+                name={comment.author.username}
+                avatar={comment.author.avatar || defaultAvatar}
+                timeFromPost={formatDistanceToNow(new Date(comment.createdAt), {
+                  addSuffix: true
+                })}
+                text={comment.content}
+              />
+            );
+          }
+          if (showComments) {
+            return (
+              <ChannelComment
+                key={idx}
+                name={comment.author.username}
+                avatar={comment.author.avatar || defaultAvatar}
+                timeFromPost={formatDistanceToNow(new Date(comment.createdAt), {
+                  addSuffix: true
+                })}
+                text={comment.content}
+              />
+            );
+          }
+        })}
+        {showNewComment && (
+          <NewChannelComment postId={id} saveComment={saveComment} />
+        )}
+      </div>
     </>
   );
 }
