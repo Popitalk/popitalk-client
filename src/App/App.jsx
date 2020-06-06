@@ -30,7 +30,8 @@ import {
   testChannels,
   testUsers,
   channelsList,
-  friendsList
+  friendsList,
+  generateTestUsers
 } from "../stories/seed-arrays";
 import Channel from "../containers/Channel/index";
 
@@ -61,6 +62,8 @@ export default function App() {
   //     </section>
   //   );
 
+  const generatedUsers = generateTestUsers();
+
   const chatPanel = (
     <div className="w-dropdown">
       <ChatPanel messages={testMessages} />
@@ -73,84 +76,100 @@ export default function App() {
     <CreateNewAccountContainer component={AnonymousSidebar} />
   );
 
-  const searchClasses = `${
-    isCollapsed ? "block" : "hidden"
-  } flex-grow mt-10 mx-2 md:mx-10 md:block`;
+  const searchClasses = "w-full bg-secondaryBackground overflow-auto";
+  const pageClasses = "w-full overflow-auto";
+  // const searchClasses = `${
+  //   isCollapsed ? "block" : "hidden"
+  // } flex-grow mt-10 mx-2 md:mx-10 md:block overflow-auto bg-secondaryBackground w-full`;
 
   return (
-    <section className="App--container">
+    <>
       <ModalManager />
-      <Header />
-      <Switch>
-        <Route exact path="/welcome">
-          <CreateNewAccountContainer component={WelcomePage} />
-        </Route>
-        <div className="flex bg-secondaryBackground ">
-          {leftPanel}
-          <Route exact path="/create">
-            <div className="flex justify-center p-5 bg-secondaryBackground w-full">
-              <ChannelForm
-                initial={{
-                  name: "",
-                  description: "",
-                  private: false,
-                  icon: null,
-                  category: ""
-                }}
-              />
-            </div>
-          </Route>
-          <Route
-            exact
-            path={[
-              `/channels/:channelId/video`,
-              `/channels/:channelId/channel`
-            ]}
-          >
-            <Channel tab="video" />
-            {chatPanel}
-          </Route>
-          <Route exact path="/channels/:channelId/queue">
-            <Channel tab="queue" />
-            {chatPanel}
-          </Route>
-          <Route exact path="/channels/:channelId/settings">
-            <Channel tab="settings" />
-          </Route>
-          <Route exact path="/rooms/:roomId/video">
-            <ChannelVideo
-              id={123}
-              name="RoomOwner"
-              icon="https://i.imgur.com/xCGu56D.jpg"
-              activeFriendViewers={testUserMinimal}
-              activeVideo={{
-                ...testQueue[0],
-                status: "playing",
-                activeFriendViewers: testUserMinimal
-              }}
-              queue={testQueue}
-              type="room"
-              trendingResults={testResult}
-              searchResults={testResult}
-            />
-            {chatPanel}
-          </Route>
-          <Route exact path="/channels">
-            <div className={searchClasses}>
-              <RecommendedView list={channelsList} selectedPage="channels" />
-            </div>
-          </Route>
-          <Route exact path="/friends">
-            <div className={searchClasses}>
-              <RecommendedView list={friendsList} selectedPage="friends" />
-            </div>
-          </Route>
-          <Route exact path="/users/:userId">
-            <UserPage />
-          </Route>
+      <div className="h-screen flex flex-col">
+        <div className="h-auto">
+          <Header />
         </div>
-        <Redirect to="/channels" />
-      </Switch>
-    </section>
+        <Switch>
+          <Route exact path="/welcome">
+            <div className="h-full overflow-auto">
+              <CreateNewAccountContainer component={WelcomePage} />
+            </div>
+          </Route>
+          <div className="flex flex-row h-full overflow-auto">
+            <div className="flex-shrink-0 overflow-auto">{leftPanel}</div>
+            <Route exact path="/create">
+              <div className="flex justify-center p-5 bg-secondaryBackground w-full overflow-auto">
+                <ChannelForm
+                  initial={{
+                    name: "",
+                    description: "",
+                    private: false,
+                    icon: null,
+                    category: ""
+                  }}
+                />
+              </div>
+            </Route>
+            <Route
+              exact
+              path={[
+                `/channels/:channelId/video`,
+                `/channels/:channelId/channel`
+              ]}
+            >
+              <div className={pageClasses}>
+                <Channel tab="video" />
+              </div>
+              {chatPanel}
+            </Route>
+            <Route exact path="/channels/:channelId/queue">
+              <div className={pageClasses}>
+                <Channel tab="queue" />
+              </div>
+              {chatPanel}
+            </Route>
+            <Route exact path="/channels/:channelId/settings">
+              <div className={`flex ${pageClasses}`}>
+                <Channel tab="settings" />
+              </div>
+            </Route>
+            <Route exact path="/rooms/:roomId/video">
+              <div className={pageClasses}>
+                <ChannelVideo
+                  id={123}
+                  name="RoomOwner"
+                  icon="https://i.imgur.com/xCGu56D.jpg"
+                  activeFriendViewers={testUserMinimal}
+                  activeVideo={{
+                    ...testQueue[0],
+                    status: "playing",
+                    activeFriendViewers: testUserMinimal
+                  }}
+                  queue={testQueue}
+                  type="room"
+                  trendingResults={testResult}
+                  searchResults={testResult}
+                />
+              </div>
+              {chatPanel}
+            </Route>
+            <Route exact path="/channels">
+              <div className={searchClasses}>
+                <RecommendedView list={channelsList} selectedPage="channels" />
+              </div>
+            </Route>
+            <Route exact path="/friends">
+              <div className={searchClasses}>
+                <RecommendedView list={friendsList} selectedPage="friends" />
+              </div>
+            </Route>
+            <Route exact path="/users/:userId">
+              <UserPage />
+            </Route>
+          </div>
+          <Redirect to="/channels" />
+        </Switch>
+      </div>
+    </>
   );
 }

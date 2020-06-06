@@ -581,3 +581,46 @@ export const friendsList = [
     channels: testQueue
   }
 ];
+
+export const generateName = () => {
+  const consonants = "bcdfghjklmnprstvwxz";
+  const vowels = "aeiouy";
+
+  let nameLength = Math.round(Math.random() * 5) + 5;
+  let name = "";
+
+  for (let i = 0; i < nameLength; i++) {
+    const sampleCons = i % 2 === 0;
+    const sampleLength = sampleCons ? consonants.length : vowels.length;
+    const sample = Math.floor(Math.random() * sampleLength);
+
+    name += sampleCons ? consonants[sample] : vowels[sample];
+
+    if (i === 0) {
+      name = name.toUpperCase();
+    }
+  }
+
+  return name;
+};
+
+export const generateImage = () => {
+  return testImages[Math.floor(Math.random() * testImages.length)];
+};
+
+export const generateTestUsers = () => {
+  const numUsers = 100;
+  let testUsers = [];
+
+  for (let i = 0; i < numUsers; i++) {
+    testUsers.push({
+      id: i + 1,
+      username: generateName(),
+      firstName: generateName(),
+      lastName: generateName(),
+      avatar: generateImage()
+    });
+  }
+
+  return testUsers;
+};

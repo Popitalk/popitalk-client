@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import ManageUsersList from "./InfoCardLists/ManageUsersList";
+import StretchList from "./InfoCardLists/StretchList";
 import Input from "./Input";
 
 export default function ManageUsers({
@@ -15,21 +16,24 @@ export default function ManageUsers({
 
   return (
     <div className="flex flex-col w-full">
-      <h3 className="font-bold mb-3">
-        {category} - {filteredUsers.length} users
-      </h3>
-      <Input
-        variant="filter"
-        size="lg"
-        shape="pill"
-        value={input}
-        placeholder="Search"
-        onChange={e => setInput(e.target.value)}
-        className="mb-8"
-      />
+      <div className="h-auto">
+        <h3 className="font-bold mb-3">
+          {category} - {filteredUsers.length} users
+        </h3>
+        <Input
+          variant="filter"
+          size="lg"
+          shape="pill"
+          value={input}
+          placeholder="Search"
+          onChange={e => setInput(e.target.value)}
+          className="mb-8"
+        />
+      </div>
       {filteredUsers.length !== 0 ? (
-        <div className="flex-grow">
-          <ManageUsersList
+        <div className="flex flex-col items-stretch w-full h-full overflow-auto">
+          <StretchList
+            list={ManageUsersList}
             users={filteredUsers}
             options={options}
             handleProfile={handleProfile}
