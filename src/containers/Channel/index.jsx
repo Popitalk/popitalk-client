@@ -23,11 +23,15 @@ import {
   testUserMinimal,
   testVideos,
   testResult,
-  testUsers
+  testUsers,
+  testMessages
 } from "../../stories/seed-arrays";
 import ChannelHeader from "../../comp/ChannelHeader";
 import VideoPanel from "./VideoPanel";
 import ForumPanel from "./ForumPanel";
+import ChannelSettingsPanel from "../../comp/Channel/ChannelSettingsPanel";
+import ChannelQueue from "../../comp/Channel/ChannelQueue";
+import ChatPanel from "../../comp/Chat/ChatPanel";
 
 export default function Channel() {
   const { channelId } = useParams();
@@ -42,14 +46,14 @@ export default function Channel() {
   //     post.author.avatar = defaultAvatar;
   //   }
   // })
-  console.log("posts", posts);
-  console.log("comments", comments);
   // console.log("draft", draft);
   const dispatch = useDispatch();
   const match = useRouteMatch();
 
   console.log("channelid", channelId);
   console.log("channel", channel);
+  console.log("posts", posts);
+  console.log("comments", comments);
 
   const copyTestQueue = [...testQueue];
   const activeVideo = copyTestQueue[0];
@@ -57,6 +61,12 @@ export default function Channel() {
 
   const trendingResults = testResult;
   const searchResults = testResult.slice(0, 3);
+
+  const chatPanel = (
+    <div className="w-dropdown">
+      <ChatPanel messages={testMessages} />
+    </div>
+  );
 
   const saveDraft = text => {
     dispatch(setPostDraft({ channelId, draft: text }));
@@ -132,6 +142,32 @@ export default function Channel() {
             savePost={savePost}
             saveComment={saveComment}
             draft={draft}
+          />
+        </Route>
+        <Route exact path="/channels/:channelId/queue">
+          <ChannelQueue
+            id={123}
+            name="Channel #1"
+            icon="https://i.imgur.com/xCGu56D.jpg"
+            trendingResults={testResult}
+            searchResults={testResult}
+            activeVideo={testQueue[0]}
+            queue={testQueue}
+          />
+          {chatPanel}
+        </Route>
+        <Route exact path="/channels/:channelId/settings">
+          <ChannelSettingsPanel
+            followers={testUsers}
+            admins={testUsers}
+            bannedUsers={testUsers}
+            initialChannelForm={{
+              name: "",
+              description: "",
+              private: false,
+              icon: null,
+              category: ""
+            }}
           />
         </Route>
       </Switch>

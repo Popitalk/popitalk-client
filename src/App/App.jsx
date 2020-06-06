@@ -32,6 +32,7 @@ import {
   channelsList,
   friendsList
 } from "../stories/seed-arrays";
+import Channel from "../containers/Channel/index";
 
 export default function App() {
   const validatedSession = useSelector(state => state.general.validatedSession);
@@ -99,23 +100,11 @@ export default function App() {
               />
             </div>
           </Route>
-          <Route exact path="/channels/:channelId/video">
-            <ChannelVideo
-              id={123}
-              name="Channel #1"
-              icon="https://i.imgur.com/xCGu56D.jpg"
-              activeFriendViewers={testUserMinimal}
-              activeVideo={{
-                ...testQueue[0],
-                status: "playing",
-                activeFriendViewers: testUserMinimal
-              }}
-              queue={testQueue}
-              adminList={testUserMinimal}
-              description="Test"
-              comments={testComments}
-              posts={testPosts}
-            />
+          <Route path="/channels/:channelId">
+            <Channel />
+          </Route>
+          {/* <Route exact path="/channels/:channelId/video">
+            <Channel />
             {chatPanel}
           </Route>
           <Route exact path="/channels/:channelId/queue">
@@ -129,8 +118,8 @@ export default function App() {
               queue={testQueue}
             />
             {chatPanel}
-          </Route>
-          <Route exact path="/channels/:channelId/settings">
+          </Route> */}
+          {/* <Route exact path="/channels/:channelId/settings">
             <ChannelSettingsPanel
               followers={testUsers}
               admins={testUsers}
@@ -143,7 +132,7 @@ export default function App() {
                 category: ""
               }}
             />
-          </Route>
+          </Route> */}
           <Route exact path="/rooms/:roomId/video">
             <ChannelVideo
               id={123}

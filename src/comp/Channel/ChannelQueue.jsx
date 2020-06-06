@@ -23,16 +23,6 @@ export default function ChannelQueue({
 
   return (
     <div className="flex flex-col bg-secondaryBackground">
-      <ChannelHeader
-        id={id}
-        name={name}
-        icon={icon}
-        videoStatus={
-          activeVideo && activeVideo.status ? activeVideo.status : ""
-        }
-        type={type}
-        select="Queue"
-      />
       <div className="p-2">
         <div className="mt-3">
           <h2 className="px-3 text-2xl">Queue Videos</h2>
