@@ -16,6 +16,7 @@ export default function NewChannelComment({
   const handleSubmit = e => {
     e.preventDefault();
     saveComment(value, postId);
+    setValue("");
     console.log("submit");
   };
 
