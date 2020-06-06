@@ -82,12 +82,16 @@ export default function ChannelPost({
             return (
               <ChannelComment
                 key={idx}
+                id={comment.id}
                 name={comment.author.username}
                 avatar={comment.author.avatar || defaultAvatar}
                 timeFromPost={formatDistanceToNow(new Date(comment.createdAt), {
                   addSuffix: true
                 })}
                 text={comment.content}
+                toggleLike={toggleLike}
+                liked={comment.liked}
+                likes={comment.likeCount}
               />
             );
           }
@@ -95,12 +99,16 @@ export default function ChannelPost({
             return (
               <ChannelComment
                 key={idx}
+                id={comment.id}
                 name={comment.author.username}
                 avatar={comment.author.avatar || defaultAvatar}
                 timeFromPost={formatDistanceToNow(new Date(comment.createdAt), {
                   addSuffix: true
                 })}
                 text={comment.content}
+                toggleLike={toggleLike}
+                liked={comment.liked}
+                likes={comment.likeCount}
               />
             );
           }
