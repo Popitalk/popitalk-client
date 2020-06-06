@@ -11,7 +11,7 @@ import { validateSession } from "../redux/actions";
 import "../styles/app.css";
 import "./App.css";
 import "../helpers/initIcons";
-import LeftPanel from "../comp/LeftPanel";
+import LeftPanel from "../containers/LeftPanel";
 import RecommendedView from "../comp/RecommendedView";
 import ChannelVideo from "../comp/Channel/ChannelVideo";
 import ChannelQueue from "../comp/Channel/ChannelQueue";
@@ -38,6 +38,7 @@ export default function App() {
   const validatedSession = useSelector(state => state.general.validatedSession);
   const loggedIn = useSelector(state => state.general.loggedIn);
   const wsConnected = useSelector(state => state.general.wsConnected);
+  const isCollapsed = useSelector(state => state.ui.isCollapsed);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -69,13 +70,16 @@ export default function App() {
   );
 
   const leftPanel = loggedIn ? (
-    <LeftPanel channels={testChannels} friends={testUsers} />
+    <LeftPanel />
   ) : (
     <CreateNewAccountContainer component={AnonymousSidebar} />
   );
 
   const searchClasses = "w-full bg-secondaryBackground overflow-auto";
   const pageClasses = "w-full overflow-auto";
+  // const searchClasses = `${
+  //   isCollapsed ? "block" : "hidden"
+  // } flex-grow mt-10 mx-2 md:mx-10 md:block overflow-auto bg-secondaryBackground w-full`;
 
   return (
     <>

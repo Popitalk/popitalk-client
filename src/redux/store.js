@@ -18,6 +18,7 @@ import userSearchReducer from "./reducers/userSearch";
 import inviteReducer from "./reducers/invite";
 import relationshipsReducer from "./reducers/relationships";
 import userProfileReducer from "./reducers/userProfile";
+import uiReducer from "./reducers/ui";
 import localstorageMiddleware from "./middleware/localstorageMiddleware";
 import routingMiddleware from "./middleware/routingMiddleware";
 import modalMiddleware from "./middleware/modalMiddleware";
@@ -39,7 +40,8 @@ const reducer = combineReducers({
   modal: modalReducer,
   userSearch: userSearchReducer,
   invite: inviteReducer,
-  userProfile: userProfileReducer
+  userProfile: userProfileReducer,
+  ui: uiReducer
 });
 
 const middleware = [

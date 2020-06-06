@@ -1,4 +1,4 @@
-import React, { useState, Fragment } from "react";
+import React, { Fragment } from "react";
 import FriendsPanel from "./FriendsPanel";
 import CollapsedPanel from "./CollapsedPanel";
 import ChannelsPanel from "./Channel/ChannelsPanel";

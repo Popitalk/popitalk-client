@@ -10,9 +10,9 @@ function WelcomePage() {
     <>
       <div className="header-body-container md:h-screen flex flex-col">
         <SiteHeaderWelcome />
-        <section className="h-full z-10 relative shadow-account rounded-b-xl bg-primaryBackground flex items-center flex-col sm:pt-12 md:flex-row md:justify-around lg:justify-around xl:px-24">
-          <div className="flex justify-center w-2/3 md:h-auto md:w-auto md:mx-5">
-            <img src={Welcome} alt="Welcome" />
+        <section className="h-full z-10 relative shadow-account rounded-b-xl bg-primaryBackground flex items-center flex-col sm:pt-12 md:flex-row md:justify-around lg:justify-around xl:px-24 welcome-page-bod">
+          <div className="flex justify-center w-2/3 md:h-auto md:w-1/3 md:mx-5 lg:w-auto">
+            <img src={Welcome} alt="Welcome" className="welcome-image" />
           </div>
           <div className="account-form px-4 py-8 md:border md:rounded-lg md:border-primaryBorder md:shadow-account md:mx-5">
             <CreateNewAccountForm />
