@@ -5,46 +5,11 @@ import MainPage from "../comp/Pages/MainPage";
 
 import {
   testChannels,
-  testRooms,
   testUsers,
-  testUserMinimal,
-  testMessages
+  channelsList,
+  friendsList
 } from "./seed-arrays";
 import ChannelQueuePage from "../comp/Pages/ChannelQueuePage";
-
-const list = [
-  {
-    title: "Following Channels",
-    channels: testChannels
-  },
-  {
-    title: "Recommended Channels",
-    channels: testChannels
-  },
-  {
-    title: "Channels Friends are following",
-    channels: testChannels
-  },
-  {
-    title: "Trending Channels right now",
-    channels: testChannels
-  }
-];
-
-const friendsList = [
-  {
-    title: "Videos friends are watching",
-    channels: testChannels
-  },
-  {
-    title: "Recommended",
-    channels: testChannels
-  },
-  {
-    title: "Trending right now",
-    channels: testChannels
-  }
-];
 
 export default {
   title: "Pages",
@@ -74,7 +39,7 @@ export const MainPageShow = () => {
   const [selectedChannel, setSelectedChannel] = useState(null);
   return (
     <MainPage
-      list={list}
+      list={channelsList}
       channelPanelProps={{
         channels: testChannels,
         friends: testUsers,

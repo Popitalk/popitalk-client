@@ -22,7 +22,6 @@ const Container = styled.div`
   /* align-items: center; */
   /* row-gap: 25px; */
   padding: 20px;
-  background-color: #fff;
   & > *:not(:last-child) {
     margin-bottom: 20px;
   }
@@ -37,31 +36,19 @@ const Container2 = styled.div`
   /* gap: 20px; */
 `;
 
-export const Button321 = () => {
+export const ButtonStyles = () => {
   return (
     <Container>
-      <h4 className="text-2xl">SM</h4>
-
+      <h4 className="text-2xl text-secondaryText">Regular</h4>
+      <br></br>
       <Container2>
-        <Button size="xl" icon="search" background="secondary" />
-        <Button size="xl" icon="plus" />
-      </Container2>
-
-      <h4 className="text-2xl">SM</h4>
-
-      <Container2>
-        <Button size="lg">Continue</Button>
-        <Button size="lg">Try Demo</Button>
-        <Button size="lg">Add to Queue</Button>
-        <Button size="lg">Create</Button>
-        <Button size="lg">Confirm</Button>
-        <Button size="lg">Create New</Button>
-        <Button size="lg">Save</Button>
-      </Container2>
-
-      <h4 className="text-2xl">SM</h4>
-
-      <Container2>
+        <Button>Continue</Button>
+        <Button>Try Demo</Button>
+        <Button>Add to Queue</Button>
+        <Button>Create</Button>
+        <Button>Confirm</Button>
+        <Button>Create New</Button>
+        <Button>Save</Button>
         <Button>Create</Button>
         <Button leftIcon="plus">New Room</Button>
         <Button background="cancel">Remove</Button>
@@ -70,15 +57,21 @@ export const Button321 = () => {
           Added
         </Button>
         <Button background="cancel">Delete</Button>
+      </Container2>
+      <br></br>
+      <h4 className="text-2xl text-secondaryText">Round</h4>
+      <br></br>
+      <Container2>
         <Button icon="user-plus" />
         <Button icon="plus" />
         <Button icon="paper-plane" />
         <Button icon="share" />
         <Button icon="search" background="secondary" />
+        <Button icon="times" background="cancel" />
       </Container2>
-
-      <h4 className="text-2xl">SM</h4>
-
+      <br></br>
+      <h4 className="text-2xl text-secondaryText">Pill</h4>
+      <br></br>
       <Container2>
         <Button size="sm" shape="pill">
           Log In
@@ -104,8 +97,6 @@ export const Button321 = () => {
         <Button size="sm" shape="pill" disabled={true}>
           Accepted
         </Button>
-        <Button size="sm" icon="search" background="secondary" />
-        <Button size="sm" icon="times" background="cancel" />
       </Container2>
     </Container>
   );

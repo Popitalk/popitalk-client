@@ -11,13 +11,15 @@ export default function ChannelsPanel({
   friends,
   handleSelect,
   handleCollapse,
-  updateSelectedPage
+  updateSelectedPage,
+  selectedPage
 }) {
   return (
     <div className="w-full px-2 py-4 my-12 md:my-0 bg-primaryBackground md:w-84">
       <PanelHeader
         handleCollapse={handleCollapse}
         updateSelectedPage={updateSelectedPage}
+        selectedPage={selectedPage}
       />
       {/*<div className="flex items-center mb-4">*/}
       {/*  /!* <FontAwesomeIcon icon="globe-americas" className="ml-2 mr-2 text-3xl" /> *!/*/}

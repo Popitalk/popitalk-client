@@ -1,14 +1,6 @@
 const defaultThumbnail = "https://i.imgur.com/xCGu56D.jpg";
 
-export const testImages = [
-  "https://source.unsplash.com/128x128/?1,cat",
-  "https://source.unsplash.com/128x128/?2,cat",
-  "https://source.unsplash.com/128x128/?3,cat",
-  "https://source.unsplash.com/128x128/?4,cat",
-  "https://source.unsplash.com/128x128/?6,cat",
-  "https://source.unsplash.com/128x128/?7,cat",
-  "https://source.unsplash.com/128x128/?8,cat"
-];
+export const testImages = ["https://source.unsplash.com/128x128/?1,random"];
 
 export const testQueue = [
   {
@@ -553,5 +545,39 @@ export const testChannels = [
     ],
     videoThumbnail: defaultThumbnail,
     numOnline: 88
+  }
+];
+
+export const channelsList = [
+  {
+    title: "Following Channels",
+    channels: testChannels
+  },
+  {
+    title: "Recommended Channels",
+    channels: testChannels
+  },
+  {
+    title: "Channels Friends are following",
+    channels: testChannels
+  },
+  {
+    title: "Trending Channels right now",
+    channels: testChannels
+  }
+];
+
+export const friendsList = [
+  {
+    title: "Videos friends are watching",
+    channels: testQueue
+  },
+  {
+    title: "Recommended",
+    channels: testQueue
+  },
+  {
+    title: "Trending right now",
+    channels: testQueue
   }
 ];

@@ -24,7 +24,8 @@ import {
   testRooms,
   testUsers,
   testUserMinimal,
-  testMessages
+  testMessages,
+  testImages
 } from "./seed-arrays";
 
 import SiteHeaderMain from "../comp/SiteHeaderMain";
@@ -203,134 +204,52 @@ export const AvatarDeck123 = () => {
     </Container>
   );
 };
-export const RoomIcon123 = () => {
+export const ProfileIcons = () => {
   return (
-    <div className="grid grid-cols-4 gap-4 p-5">
-      <RoomIcon
-        size="sm"
-        online={true}
-        images={["https://source.unsplash.com/128x128/?1,dog"]}
-      />
-      <RoomIcon
-        size="md"
-        online={true}
-        images={["https://source.unsplash.com/128x128/?1,dog"]}
-      />
-      <RoomIcon
-        size="lg"
-        online={true}
-        images={["https://source.unsplash.com/128x128/?1,dog"]}
-      />
-      <RoomIcon
-        size="xl"
-        online={true}
-        images={["https://source.unsplash.com/128x128/?1,dog"]}
-      />
-      <RoomIcon
-        size="sm"
-        watching={true}
-        images={["https://source.unsplash.com/128x128/?1,dog"]}
-      />
-      <RoomIcon
-        size="md"
-        watching={true}
-        images={["https://source.unsplash.com/128x128/?1,dog"]}
-      />
-      <RoomIcon
-        size="lg"
-        watching={true}
-        online={true}
-        images={["https://source.unsplash.com/128x128/?1,dog"]}
-      />
-      <RoomIcon
-        size="xl"
-        watching={true}
-        images={["https://source.unsplash.com/128x128/?1,dog"]}
-      />
-      <RoomIcon
-        size="xl"
-        images={[
-          "https://source.unsplash.com/128x128/?1,dog",
-          "https://source.unsplash.com/128x128/?2,dog"
-        ]}
-      />
-      <RoomIcon
-        size="xl"
-        images={[
-          "https://source.unsplash.com/128x128/?1,dog",
-          "https://source.unsplash.com/128x128/?2,dog",
-          "https://source.unsplash.com/128x128/?3,dog"
-        ]}
-      />
-      <RoomIcon
-        size="xl"
-        images={[
-          "https://source.unsplash.com/128x128/?1,dog",
-          "https://source.unsplash.com/128x128/?2,dog",
-          "https://source.unsplash.com/128x128/?3,dog",
-          "https://source.unsplash.com/128x128/?4,dog"
-        ]}
-      />
-      <RoomIcon
-        size="xl"
-        images={["https://source.unsplash.com/128x128/?1,dog"]}
-        self={true}
-      />
-      <RoomIcon
-        size="xl"
-        watching={true}
-        images={[
-          "https://source.unsplash.com/128x128/?1,dog",
-          "https://source.unsplash.com/128x128/?2,dog"
-        ]}
-      />
-      <RoomIcon
-        size="xl"
-        watching={true}
-        images={[
-          "https://source.unsplash.com/128x128/?1,dog",
-          "https://source.unsplash.com/128x128/?2,dog",
-          "https://source.unsplash.com/128x128/?3,dog"
-        ]}
-      />
-      <RoomIcon
-        size="xl"
-        watching={true}
-        images={[
-          "https://source.unsplash.com/128x128/?1,dog",
-          "https://source.unsplash.com/128x128/?2,dog",
-          "https://source.unsplash.com/128x128/?3,dog",
-          "https://source.unsplash.com/128x128/?4,dog"
-        ]}
-      />
-      <RoomIcon
-        size="lg"
-        watching={true}
-        images={[
-          "https://source.unsplash.com/128x128/?1,dog",
-          "https://source.unsplash.com/128x128/?2,dog",
-          "https://source.unsplash.com/128x128/?3,dog",
-          "https://source.unsplash.com/128x128/?4,dog"
-        ]}
-      />
-      <RoomIcon
-        size="xl"
-        notifications={2}
-        online={true}
-        images={["https://source.unsplash.com/128x128/?1,dog"]}
-      />
-      <RoomIcon
-        size="xl"
-        notifications={12}
-        online={true}
-        images={["https://source.unsplash.com/128x128/?1,dog"]}
-      />
-      <RoomIcon
-        size="xl"
-        notifications={120}
-        online={true}
-        images={["https://source.unsplash.com/128x128/?1,dog"]}
-      />
+    <div>
+      <h4 className="text-sm text-secondaryText">All In One</h4>
+      <div className="grid grid-cols-4 gap-4 p-5">
+        <RoomIcon size="lg" images={testImages} />
+        <RoomIcon
+          size="lg"
+          watching={true}
+          online={true}
+          notifications={120}
+          images={testImages}
+        />
+      </div>
+      <h4 className="text-sm text-secondaryText">Icon Size</h4>
+      <div className="grid grid-cols-4 gap-4 p-5">
+        <RoomIcon size="sm" images={testImages} />
+        <RoomIcon size="md" images={testImages} />
+        <RoomIcon size="lg" images={testImages} />
+        <RoomIcon size="xl" images={testImages} />
+      </div>
+      <h4 className="text-sm text-secondaryText">Watching Status</h4>
+      <div className="grid grid-cols-4 gap-4 p-5">
+        <RoomIcon size="lg" watching={true} images={testImages} />
+      </div>
+      <h4 className="text-sm text-secondaryText">Online Status</h4>
+      <div className="grid grid-cols-4 gap-4 p-5">
+        <RoomIcon size="lg" online={true} images={testImages} />
+      </div>
+      <h4 className="text-sm text-secondaryText">Number of people in a room</h4>
+      <div className="grid grid-cols-4 gap-4 p-5">
+        <RoomIcon size="xl" images={testImages} self={true} />
+        <RoomIcon size="xl" images={testImages} />
+        <RoomIcon size="xl" images={[testImages, testImages]} />
+        <RoomIcon size="xl" images={[testImages, testImages, testImages]} />
+        <RoomIcon
+          size="xl"
+          images={[testImages, testImages, testImages, testImages]}
+        />
+      </div>
+      <h4 className="text-sm text-secondaryText">Notifications</h4>
+      <div className="grid grid-cols-4 gap-4 p-5">
+        <RoomIcon size="xl" notifications={2} images={testImages} />
+        <RoomIcon size="xl" notifications={12} images={testImages} />
+        <RoomIcon size="xl" notifications={120} images={testImages} />
+      </div>
     </div>
   );
 };
