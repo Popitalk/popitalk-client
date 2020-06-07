@@ -15,18 +15,12 @@ export default function ChannelsPanel({
   selectedPage
 }) {
   return (
-    <div className="w-full px-2 pt-2 my-12 md:my-0 bg-primaryBackground md:w-84">
+    <div className="w-full px-2 pt-2 bg-primaryBackground md:w-84">
       <PanelHeader
         handleCollapse={handleCollapse}
         updateSelectedPage={updateSelectedPage}
         selectedPage={selectedPage}
       />
-      {/*<div className="flex items-center mb-4">*/}
-      {/*  /!* <FontAwesomeIcon icon="globe-americas" className="ml-2 mr-2 text-3xl" /> *!/*/}
-      {/*  <h3 className="ml-2 mr-auto text-3xl font-bold">Channels</h3>*/}
-      {/*  */}
-      {/*  /!* <Button size="md">Create</Button> *!/*/}
-      {/*</div>*/}
       <MiniFriendsList friends={friends} />
       <div className="flex flex-row items-center">
         <div className="grid w-full grid-cols-1 sm:grid-cols-2 md:grid-cols-1 sm:mt-4">
