@@ -12,7 +12,7 @@ function CollapsedPanel({
   updateSelectedPage
 }) {
   return (
-    <div className="bg-primaryBackground px-2 flex flex-col items-center w-20 h-full">
+    <div className="bg-primaryBackground px-2 flex flex-col items-center w-20 h-screen">
       <button
         className="py-8 w-full flex items-center flex-col"
         onClick={handleCollapse}
