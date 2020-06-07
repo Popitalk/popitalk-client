@@ -30,9 +30,9 @@ export default function CreateNewAccountForm({ handleSubmit, loading }) {
           ...getUserInformationSchema(),
           ...getSetPasswordSchema(),
           username: Yup.string()
-            .min(8, "Username is too short.")
-            .max(32, "Username is too long.")
-            .required("Username is required.")
+            .min(6, "Minimum 6 characters*")
+            .max(32, "Maximum 32 characters*")
+            .required("Required*")
         })}
         onSubmit={values => {
           handleSubmit({
@@ -57,8 +57,10 @@ export default function CreateNewAccountForm({ handleSubmit, loading }) {
         }) => (
           <form onSubmit={handleSubmit}>
             <div className="flex flex-col items-center w-full">
-              <p className="text-center">Create a new account</p>
-              <p className="pb-8 text-center">
+              <p className="text-center text-3xl font-bold">
+                Create a new account
+              </p>
+              <p className="pb-8 text-center account-form-par">
                 Get the full experience. It&apos;s FREE!
               </p>
               <EditInformationForm loading={loading} />
@@ -85,7 +87,7 @@ export default function CreateNewAccountForm({ handleSubmit, loading }) {
                 className="w-full"
               />
               <EditBirthdayForm loading={loading} />
-              <p className="pt-8 text-center">
+              <p className="pt-8 text-center text-sm account-form-par">
                 By clicking Sign Up, you agree to the{" "}
                 <a href="https://google.com">Terms</a> and{" "}
                 <a href="https://google.com">Policy</a>.

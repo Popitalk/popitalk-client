@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "../VideoStatus.css";
-import VideoChannelHeader from "../VideoChannelHeader";
+import ChannelHeader from "../ChannelHeader";
 import arrayMove from "array-move";
 import VideoSearch from "../VideoSearch";
 import ChannelListQueue from "./ChannelListQueue";
@@ -23,16 +23,6 @@ export default function ChannelQueue({
 
   return (
     <div className="flex flex-col bg-secondaryBackground">
-      <VideoChannelHeader
-        id={id}
-        name={name}
-        icon={icon}
-        videoStatus={
-          activeVideo && activeVideo.status ? activeVideo.status : ""
-        }
-        type={type}
-        select="Queue"
-      />
       <div className="p-2">
         <div className="mt-3">
           <h2 className="px-3 text-2xl">Queue Videos</h2>

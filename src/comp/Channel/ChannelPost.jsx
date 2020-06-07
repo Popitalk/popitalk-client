@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import Button from "../Button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "../VideoStatus.css";
@@ -8,6 +8,7 @@ import ChannelComment from "./ChannelComment";
 import NewChannelComment from "./NewChannelComment";
 import classnames from "classnames";
 import ToggleIcon from "../ToggleIcon";
+import { formatDistanceToNow } from "date-fns";
 
 export default function ChannelPost({
   id,
@@ -16,13 +17,17 @@ export default function ChannelPost({
   timeFromPost,
   text,
   comments,
-  liked
+  liked,
+  saveComment,
+  defaultAvatar,
+  toggleLike
 }) {
   const [showNewComment, setShowNewComment] = useState(false);
   const [showComments, setShowComments] = useState(false);
 
   const handleComment = () => {
     setShowNewComment(!showNewComment);
+    console.log("clicked comment", showNewComment);
   };
 
   return (
@@ -44,6 +49,7 @@ export default function ChannelPost({
               toggle: "text-notificationsColor"
             }}
             status={liked}
+            toggleStatus={stat => toggleLike(id, "post", stat)}
           >
             Like
           </ToggleIcon>
@@ -53,35 +59,64 @@ export default function ChannelPost({
           </button>
         </footer>
       </div>
-      {comments && (
-        <div className="ml-6">
-          {!showComments && comments.length > 1 && (
-            <button
-              className="text-secondaryText text-sm"
-              onClick={() => setShowComments(!showComments)}
-            >
-              View more comments
-            </button>
-          )}
-          {showComments && comments.length > 1 && (
-            <button
-              className="text-secondaryText text-sm"
-              onClick={() => setShowComments(!showComments)}
-            >
-              Hide comments
-            </button>
-          )}
-          {comments.map((comment, idx) => {
-            if (!showComments && idx === comments.length - 1) {
-              return <ChannelComment key={idx} {...comment} />;
-            }
-            if (showComments) {
-              return <ChannelComment key={idx} {...comment} />;
-            }
-          })}
-          {showNewComment && <NewChannelComment />}
-        </div>
-      )}
+      <div className="ml-6">
+        {!showComments && comments?.length > 1 && (
+          <button
+            className="text-secondaryText text-sm"
+            onClick={() => setShowComments(!showComments)}
+          >
+            View more comments
+          </button>
+        )}
+        {showComments && comments?.length > 1 && (
+          <button
+            className="text-secondaryText text-sm"
+            onClick={() => setShowComments(!showComments)}
+          >
+            Hide comments
+          </button>
+        )}
+
+        {comments?.map((comment, idx) => {
+          if (!showComments && idx === comments.length - 1) {
+            return (
+              <ChannelComment
+                key={idx}
+                id={comment.id}
+                name={comment.author.username}
+                avatar={comment.author.avatar || defaultAvatar}
+                timeFromPost={formatDistanceToNow(new Date(comment.createdAt), {
+                  addSuffix: true
+                })}
+                text={comment.content}
+                toggleLike={toggleLike}
+                liked={comment.liked}
+                likes={comment.likeCount}
+              />
+            );
+          }
+          if (showComments) {
+            return (
+              <ChannelComment
+                key={idx}
+                id={comment.id}
+                name={comment.author.username}
+                avatar={comment.author.avatar || defaultAvatar}
+                timeFromPost={formatDistanceToNow(new Date(comment.createdAt), {
+                  addSuffix: true
+                })}
+                text={comment.content}
+                toggleLike={toggleLike}
+                liked={comment.liked}
+                likes={comment.likeCount}
+              />
+            );
+          }
+        })}
+        {showNewComment && (
+          <NewChannelComment postId={id} saveComment={saveComment} />
+        )}
+      </div>
     </>
   );
 }

@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default function ChatMessage({ message, handleResend, handleDelete }) {
   return (
-    <div className="flex flex-col my-6">
+    <div className="flex flex-col my-4">
       <div className="flex items-center space-x-2 text-xs">
         <img
           className="w-10 h-10 rounded-full"

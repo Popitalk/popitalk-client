@@ -92,13 +92,13 @@ export const addMessage = messageInfo => {
   return axios.post("/api/messages", messageInfo);
 };
 export const addPost = postInfo => {
-  return axios.post("/api/posts/", postInfo);
+  return axios.post("/api/posts", postInfo);
 };
 export const deletePost = postId => {
   return axios.delete(`/api/posts/${postId}`);
 };
 export const addComment = commentInfo => {
-  return axios.post("/api/comments/", commentInfo);
+  return axios.post("/api/comments", commentInfo);
 };
 export const deleteComment = commentId => {
   return axios.delete(`/api/comments/${commentId}`);
@@ -148,16 +148,16 @@ export const getComments = ({ postId, limit }) => {
 
 export const addLike = ({ postId, commentId }) => {
   if (postId) {
-    return axios.post("/api/likes", { postId });
+    return axios.post(`/api/posts/${postId}/likes`, { postId });
   } else if (commentId) {
-    return axios.post("/api/likes", { commentId });
+    return axios.post(`/api/comments/${commentId}/likes`, { commentId });
   }
 };
 
 export const deleteLike = ({ postId, commentId }) => {
   if (postId) {
-    return axios.delete(`/api/likes/?postId=${postId}`);
+    return axios.delete(`/api/posts/${postId}/likes`);
   } else if (commentId) {
-    return axios.delete(`/api/likes/?commentId=${commentId}`);
+    return axios.delete(`/api/comments/${commentId}/likes`);
   }
 };

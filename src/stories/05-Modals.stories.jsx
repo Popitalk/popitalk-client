@@ -14,10 +14,24 @@ import WatchModal from "../comp/Modals/WatchModal";
 import ShareModal from "../comp/Modals/ShareModal";
 import NewRoomModal from "../comp/Modals/NewRoomModal";
 import ProfileModal from "../comp/Modals/ProfileModal";
+import DeleteMessageModal from "../comp/Modals/DeleteMessageModal";
+import BlockedUsersModal from "../comp/Modals/BlockedUsersModal";
 import InviteForm from "../comp/InviteForm";
 import { buildTagInput } from "../comp/TagInput";
-import { testImages, testUsers, testQueue, testMessages } from "./seed-arrays";
-import DeleteMessageModal from "../comp/Modals/DeleteMessageModal";
+import {
+  testUsers,
+  testQueue,
+  testMessages,
+  generateTestUsers,
+  generateImage,
+  generateName
+} from "./seed-arrays";
+import {
+  filterSearch,
+  onCheck,
+  handleEnter,
+  handleCancel
+} from "../helpers/functions";
 
 export default {
   title: "Modals",
@@ -26,38 +40,6 @@ export default {
 
 const handleBack = () => {
   console.log("RETURN");
-};
-
-const filterSearch = (list, field, setVisible, searchTerm) => {
-  const filteredItems = list.filter(i =>
-    i[field].toLowerCase().includes(searchTerm.toLowerCase())
-  );
-
-  setVisible(filteredItems);
-};
-
-const onCheck = (selected, setSelected, id, name) => {
-  const index = selected.findIndex(i => i.id === id);
-  if (index >= 0) {
-    setSelected(selected.filter(i => i.id !== id));
-  } else {
-    setSelected([...selected, { id: id, name: name }]);
-  }
-};
-
-const handleEnter = (selected, setSelected, visible, nameField) => {
-  setSelected([
-    ...selected,
-    ...visible
-      .filter(v => !selected.find(s => s.id === v.id))
-      .map(i => {
-        return { id: i.id, name: i[nameField] };
-      })
-  ]);
-};
-
-const handleCancel = (selected, setSelected, id) => {
-  setSelected(selected.filter(i => i.id !== id));
 };
 
 const handleSend = (selected, items) => {
@@ -78,32 +60,6 @@ const unfriendHandler = id => {
 
 const blockHandler = id => {
   console.log(`Blocked ${id}`);
-};
-
-let generateName = () => {
-  const consonants = "bcdfghjklmnprstvwxz";
-  const vowels = "aeiouy";
-
-  let nameLength = Math.round(Math.random() * 5) + 5;
-  let name = "";
-
-  for (let i = 0; i < nameLength; i++) {
-    const sampleCons = i % 2 === 0;
-    const sampleLength = sampleCons ? consonants.length : vowels.length;
-    const sample = Math.floor(Math.random() * sampleLength);
-
-    name += sampleCons ? consonants[sample] : vowels[sample];
-
-    if (i === 0) {
-      name = name.toUpperCase();
-    }
-  }
-
-  return name;
-};
-
-let generateImage = () => {
-  return testImages[Math.floor(Math.random() * testImages.length)];
 };
 
 const generateTestRooms = () => {
@@ -141,23 +97,6 @@ const generateTestRooms = () => {
   }
 
   return testRooms;
-};
-
-const generateTestUsers = () => {
-  const numUsers = 100;
-  let testUsers = [];
-
-  for (let i = 0; i < numUsers; i++) {
-    testUsers.push({
-      id: i + 1,
-      username: generateName(),
-      firstName: generateName(),
-      lastName: generateName(),
-      avatar: generateImage()
-    });
-  }
-
-  return testUsers;
 };
 
 const generatedRooms = generateTestRooms();
@@ -400,6 +339,33 @@ export const NewRoomModalTest = () => {
         onCheck={(id, name) => onCheck(selected, setSelected, id, name)}
         handleSend={() => handleSend(selected, "friends")}
       />
+    </ModalContainer>
+  );
+};
+
+export const UnblockUsersModalTest = () => {
+  const [visible, setVisible] = useState(generatedUsers);
+
+  const unblockUsers = id => {
+    console.log(`Unblock user ${id}`);
+  };
+
+  return (
+    <ModalContainer
+      isOpen={true}
+      small={true}
+      fixedFullSize={true}
+      header={
+        <SearchHeader
+          title="Blocked Users"
+          filterSearch={searchTerm =>
+            filterSearch(generatedUsers, "username", setVisible, searchTerm)
+          }
+          buildInput={buildSearchInput}
+        />
+      }
+    >
+      <BlockedUsersModal users={visible} handleUnblock={unblockUsers} />
     </ModalContainer>
   );
 };

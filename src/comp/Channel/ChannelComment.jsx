@@ -10,7 +10,7 @@ export default function ChannelPost({
   text,
   liked,
   likes,
-  setLikes
+  toggleLike
 }) {
   return (
     <div className="flex flex-row bg-secondaryBackground p-1">
@@ -37,6 +37,7 @@ export default function ChannelPost({
           }}
           className={{ icon: "text-lg" }}
           status={liked}
+          toggleStatus={stat => toggleLike(id, "comment", stat)}
         />
         <span className="text-sm font-bold pl-1">{likes ? likes : ""}</span>
       </aside>

@@ -33,7 +33,7 @@ module.exports = {
     fontFamily: {
       sans: [
         '"Noto Sans"',
-        "system-ui",
+        "-system-ui",
         "-apple-system",
         "BlinkMacSystemFont",
         '"Segoe UI"',
@@ -69,11 +69,10 @@ module.exports = {
       liveBackground: "#DE0000",
 
       /** TEXTS */
-      primaryText: "#000000",
+      primaryText: "#323232",
       secondaryText: "#A5A5A5",
       tertiaryText: "#FFFFFF",
       liveText: "#FFFFFF",
-      yyy: "#ABC",
       highlightText: "#1DA4FE",
       linkText: "#1DA4FE",
       errorText: "#FF4040",
@@ -120,12 +119,16 @@ module.exports = {
       invert: "invert(1)"
     },
     extend: {
+      spacing: {
+        "84": "21rem"
+      },
       borderWidth: {
         thin: "thin"
       },
       borderRadius: {
         xl: "15px",
-        pill: "9999px",
+        lg: "13px",
+        pill: "10px",
         circle: "50%"
       },
       gap: {
@@ -169,10 +172,12 @@ module.exports = {
     backgroundColor: ["responsive", "hover", "group-hover", "disabled"],
     color: ["responsive", "hover"],
     cursor: ["responsive", "hover", "disabled"],
+    display: ["responsive", "group-hover"],
     opacity: ["responsive", "hover", "focus", "active", "group-hover"],
     visibility: ["responsive", "group-hover"],
     filter: ["responsive", "hover", "active", "group-hover"],
-    linearGradients: ["responsive", "hover", "active", "group-hover"]
+    linearGradients: ["responsive", "hover", "active", "group-hover"],
+    boxShadow: ["responsive", "hover", "focus", "group-hover"]
   },
   plugins: [
     require("tailwindcss-gradients"),

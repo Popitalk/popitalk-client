@@ -8,7 +8,8 @@ import CreateChannel from "../../components/CreateChannel";
 import ChannelMain from "../../components/ChannelMain";
 import ChatPanel from "../../components/ChatPanel";
 import FriendsPanel from "../../components/FriendsPanel";
-import Channel from "../../components/Channel";
+// import Channel from "../../components/Channel";
+import Channel from "../../containers/Channel/index";
 
 export default function ChannelPage() {
   const { pathname } = useLocation();
@@ -35,8 +36,8 @@ export default function ChannelPage() {
           </Route>
           <Route path="/channels/:channelId">
             <Channel />
-            {/* <ChannelMain />
-            <ChatPanel /> */}
+            {/* <ChannelMain /> */}
+            {/* <ChatPanel /> */}
           </Route>
         </Switch>
       </div>

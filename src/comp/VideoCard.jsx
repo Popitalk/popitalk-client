@@ -15,44 +15,26 @@ export default function VideoCard({
   const leftInfo = `${views}`;
   const rightInfo = `${timeFromUpload}`;
   return (
-    <div className="flex flex-row items-center justify-center w-full rounded-xl overflow-hidden hover:shadow-xl transform hover:-translate-y-1 transition-all ease-in-out duration-200">
-      <div className="group flex-grow flex flex-row justify-center items-center pb-16/9 h-full relative">
+    <div className="cursor-pointer w-full group">
+      <div className="group flex-grow flex flex-row justify-center rounded-xl overflow-hidden items-center pb-16/9 w-full relative group-hover:shadow-xl transition-all ease-in-out duration-200">
         <img
           src={thumbnail}
           alt="video-thumbnail"
-          className="img absolute top-0 w-full object-contain z-10"
+          className="img absolute top-0 w-full h-full object-cover z-10"
         />
-
-        <div className="h-full w-full absolute top-0 bg-gradient-t-channelCardOverlay z-20 rounded-xl" />
-        <div className="absolute w-full bottom-0 left-0 p-3 rounded-b-xl z-20">
-          <p className="text-lg font-regular text-tertiaryText mb-1 z-30">
-            {title}
-          </p>
-          <div className="flex flex-row justify-between items-center">
-            <p className="text-xs font-regular text-tertiaryText">{leftInfo}</p>
-            <p className="text-xs font-regular text-tertiaryText">
-              {rightInfo}
-            </p>
-          </div>
+        <div className="absolute top-0 right-0 p-4 z-40 opacity-0 group-hover:opacity-100">
+          <Button size="sm" icon="share" shape="square" className="px-0 py-4" />
         </div>
-        <div className="absolute bottom-0 mb-4 z-40 opacity-0 group-hover:opacity-100">
-          <Button
-            size="lg"
-            shape="pill"
-            className="py-10 mr-2 w-32 text-center"
-            onClick={handleWatch}
-          >
-            Watch
-          </Button>
-          <Button
-            size="lg"
-            shape="pill"
-            className="py-10 ml-2 w-32 text-center"
-            onClick={handleShare}
-          >
-            Share
-          </Button>
+      </div>
+      <div className="w-full px-3 py-2 rounded-b-xl z-20 text-secondaryText">
+        <div className="flex items-center">
+          <p className="text-xs font-regular">{leftInfo}</p>
+          <span className="mx-1">•</span>
+          <p className="text-xs font-regular">{rightInfo}</p>
         </div>
+        <p className="text-lg font-semibold text-primaryText mb-1 z-30">
+          {title}
+        </p>
       </div>
     </div>
   );

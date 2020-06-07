@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Link } from "react-router-dom";
 import Logo from "../assets/logo.png";
 import Transition from "./Transition";
 import DropDownMenu from "./DropDowns/DropDownMenu";
@@ -19,6 +20,9 @@ export default function SiteHeaderMain({
   friendRequests,
   notifications,
   openProfileHandler,
+  openBlockedUsersHandler,
+  openEditInformationHandler,
+  openChangePasswordHandler,
   acceptRequestHandler,
   rejectRequestHandler,
   clearNotificationsHandler,
@@ -42,6 +46,21 @@ export default function SiteHeaderMain({
     setDropdownList(dropdownList.slice(0, -1));
   };
 
+  const openBlockedUsersModal = () => {
+    setDropdownList([]);
+    openBlockedUsersHandler();
+  };
+
+  const openEditInformationModal = () => {
+    setDropdownList([]);
+    openEditInformationHandler();
+  };
+
+  const openChangePasswordModal = () => {
+    setDropdownList([]);
+    openChangePasswordHandler();
+  };
+
   const settingsButtons = [
     {
       text: "Account Settings",
@@ -49,7 +68,7 @@ export default function SiteHeaderMain({
     },
     {
       text: "Block Users",
-      onClick: () => console.log("Open block users modal")
+      onClick: openBlockedUsersModal
     },
     {
       text: "Log Out",
@@ -61,17 +80,17 @@ export default function SiteHeaderMain({
   const accountSettingsButtons = [
     {
       text: "Edit User Information",
-      onClick: () => console.log("Open Edit User Information modal")
+      onClick: openEditInformationModal
     },
     {
       text: "Change Password",
-      onClick: () => console.log("Open Change Password modal")
-    },
+      onClick: openChangePasswordModal
+    } /*,
     {
       text: "Delete Account",
       onClick: () => setDropdownList([...dropdownList, DELETE_ACCOUNT]),
       danger: true
-    }
+    }*/
   ];
 
   const settingsDropdown =
@@ -80,11 +99,13 @@ export default function SiteHeaderMain({
   const dropdownClasses = "absolute right-0 mt-2 z-10";
 
   return (
-    <header className="relative flex flex-col px-4 bg-primaryBackground">
+    <header className="relative flex flex-col px-6 bg-primaryBackground">
       {!mobileMenu && (
         <div className="flex items-center justify-between">
-          <img src={Logo} alt="PlayNow's logo" className="w-12 h-12" />
-          <ul className="items-center hidden space-x-8 md:flex">
+          <Link to="/channels">
+            <img src={Logo} alt="PlayNow's logo" className="w-10 h-10" />
+          </Link>
+          <ul className="items-center hidden space-x-10 md:flex">
             <li>
               <div
                 className="flex items-center p-2 transition-colors duration-150 cursor-pointer rounded-xl hover:bg-highlightBackground"
@@ -93,7 +114,7 @@ export default function SiteHeaderMain({
               >
                 <span className="font-bold">{username}</span>
                 <img
-                  className="w-8 h-8 ml-4 rounded-full"
+                  className="w-8 h-8 ml-2 rounded-full"
                   src={avatar}
                   alt={`${username}'s avatar`}
                 />
@@ -105,6 +126,7 @@ export default function SiteHeaderMain({
                   icon="user-plus"
                   className="cursor-pointer text-secondaryText hover:text-highlightText"
                   roll="button"
+                  size="lg"
                   onClick={() => setShowRequests(!showRequests)}
                 />
                 {showRequests ? (
@@ -131,10 +153,11 @@ export default function SiteHeaderMain({
                       : "text-secondaryText"
                   } hover:text-highlightText`}
                   roll="button"
+                  size="lg"
                   onClick={() => setShowNotifications(!showNotifications)}
                 />
                 {hasNotification && (
-                  <div className="absolute top-0 z-10 p-1 ml-2 border-2 rounded-full border-primaryBackground bg-errorText"></div>
+                  <div className="absolute top-0 z-10 p-1 ml-3 border-2 rounded-full border-primaryBackground bg-errorText"></div>
                 )}
                 {showNotifications ? (
                   <div className={dropdownClasses}>
@@ -155,6 +178,7 @@ export default function SiteHeaderMain({
                   icon="cog"
                   className="cursor-pointer text-secondaryText hover:text-highlightText"
                   roll="button"
+                  size="lg"
                   onClick={toggleSettings}
                 />
                 {settingsDropdown === SETTINGS ? (
@@ -184,6 +208,7 @@ export default function SiteHeaderMain({
             <li>
               <FontAwesomeIcon
                 icon="info-circle"
+                size="lg"
                 className="cursor-pointer text-secondaryText hover:text-highlightText"
               />
             </li>

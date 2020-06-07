@@ -1,14 +1,6 @@
 const defaultThumbnail = "https://i.imgur.com/xCGu56D.jpg";
 
-export const testImages = [
-  "https://source.unsplash.com/128x128/?1,cat",
-  "https://source.unsplash.com/128x128/?2,cat",
-  "https://source.unsplash.com/128x128/?3,cat",
-  "https://source.unsplash.com/128x128/?4,cat",
-  "https://source.unsplash.com/128x128/?6,cat",
-  "https://source.unsplash.com/128x128/?7,cat",
-  "https://source.unsplash.com/128x128/?8,cat"
-];
+export const testImages = ["https://source.unsplash.com/128x128/?1,random"];
 
 export const testQueue = [
   {
@@ -555,3 +547,80 @@ export const testChannels = [
     numOnline: 88
   }
 ];
+
+export const channelsList = [
+  {
+    title: "Following Channels",
+    channels: testChannels
+  },
+  {
+    title: "Recommended Channels",
+    channels: testChannels
+  },
+  {
+    title: "Channels Friends are following",
+    channels: testChannels
+  },
+  {
+    title: "Trending Channels right now",
+    channels: testChannels
+  }
+];
+
+export const friendsList = [
+  {
+    title: "Videos friends are watching",
+    channels: testQueue
+  },
+  {
+    title: "Recommended",
+    channels: testQueue
+  },
+  {
+    title: "Trending right now",
+    channels: testQueue
+  }
+];
+
+export const generateName = () => {
+  const consonants = "bcdfghjklmnprstvwxz";
+  const vowels = "aeiouy";
+
+  let nameLength = Math.round(Math.random() * 5) + 5;
+  let name = "";
+
+  for (let i = 0; i < nameLength; i++) {
+    const sampleCons = i % 2 === 0;
+    const sampleLength = sampleCons ? consonants.length : vowels.length;
+    const sample = Math.floor(Math.random() * sampleLength);
+
+    name += sampleCons ? consonants[sample] : vowels[sample];
+
+    if (i === 0) {
+      name = name.toUpperCase();
+    }
+  }
+
+  return name;
+};
+
+export const generateImage = () => {
+  return testImages[Math.floor(Math.random() * testImages.length)];
+};
+
+export const generateTestUsers = () => {
+  const numUsers = 100;
+  let testUsers = [];
+
+  for (let i = 0; i < numUsers; i++) {
+    testUsers.push({
+      id: i + 1,
+      username: generateName(),
+      firstName: generateName(),
+      lastName: generateName(),
+      avatar: generateImage()
+    });
+  }
+
+  return testUsers;
+};

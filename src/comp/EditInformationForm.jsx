@@ -5,7 +5,7 @@ import { connect } from "formik";
 function EditInformationForm({ loading, formik }) {
   return (
     <>
-      <div className="w-full md:flex">
+      <div className="w-full sm:flex">
         <div className="w-full pr-0 flex-1 md:flex-1 md:pr-2">
           <Input
             header="First Name"
