@@ -29,7 +29,7 @@ module.exports = {
       md: "900px",
       lg: "1250px",
       xl: "1280px",
-      2xl: "1400px"
+      xxl: "1400px"
     },
     fontFamily: {
       sans: [

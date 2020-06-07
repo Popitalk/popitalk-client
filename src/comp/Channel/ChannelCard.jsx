@@ -16,7 +16,7 @@ export default function ChannelCard({
   handleFollow
 }) {
   return (
-    <div className="cursor-pointer w-full lg:w-1/2 xl:w-1/3 2xl:w-1/4 flex-shrink-0 rounded-xl group md:py-2 px-2">
+    <div className="cursor-pointer w-full lg:w-1/2 xl:w-1/3 xxl:w-1/4 flex-shrink-0 rounded-xl group md:py-2 px-2">
       <div className="flex-grow flex flex-row justify-center w-full pb-5/4 p-3 relative rounded-xl group-hover:shadow-xl transition-all ease-in-out duration-200">
         <img
           src={videoThumbnail}
