@@ -16,7 +16,9 @@ export default function LeftPanel({
   return (
     <Fragment>
       <div
-        className={`${isCollapsed ? "hidden" : ""} w-full md:w-auto shadow-md`}
+        className={`${
+          isCollapsed ? "hidden" : ""
+        } w-full md:w-auto shadow-md h-screen overflow-scroll pt-12`}
       >
         {selectedPage === "channels" ? (
           <ChannelsPanel

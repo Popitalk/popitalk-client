@@ -28,7 +28,7 @@ export default function MainPage({ list, channelPanelProps }) {
 
   return (
     <Fragment>
-      <div className="fixed z-40 w-full md:relative">
+      <div className="fixed z-40 w-full">
         <SiteHeaderMain />
       </div>
       <div className="flex">
@@ -45,7 +45,7 @@ export default function MainPage({ list, channelPanelProps }) {
         <div
           className={`${
             isCollapsed ? "block" : "hidden"
-          } flex-grow p-2 md:block`}
+          } flex-grow p-2 md:block h-screen py-16 overflow-scroll`}
         >
           <RecommendedView list={list} selectedPage={selectedPage} />
         </div>
