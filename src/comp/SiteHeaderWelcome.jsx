@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Logo from "../assets/logo.png";
 import Button from "./Button";
+import history from "../history";
 
 export default function SiteHeaderWelcome({ apiLoading, dispatchLogin }) {
   const [username, setUsername] = useState("");
@@ -11,6 +12,7 @@ export default function SiteHeaderWelcome({ apiLoading, dispatchLogin }) {
     dispatchLogin(username, password);
     setUsername("");
     setPassword("");
+    history.push("channels");
   };
 
   return (
