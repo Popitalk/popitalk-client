@@ -45,7 +45,7 @@ export default function MainPage({ list, channelPanelProps }) {
         <div
           className={`${
             isCollapsed ? "block" : "hidden"
-          } flex-grow mt-10 mx-2 md:mx-10 md:block`}
+          } flex-grow p-2 md:block`}
         >
           <RecommendedView list={list} selectedPage={selectedPage} />
         </div>

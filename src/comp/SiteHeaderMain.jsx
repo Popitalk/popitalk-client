@@ -99,7 +99,7 @@ export default function SiteHeaderMain({
   const dropdownClasses = "absolute right-0 mt-2 z-10";
 
   return (
-    <header className="relative flex flex-col px-6 bg-primaryBackground">
+    <header className="relative flex flex-col px-6 bg-primaryBackground shadow-md">
       {!mobileMenu && (
         <div className="flex items-center justify-between">
           <Link to="/channels">

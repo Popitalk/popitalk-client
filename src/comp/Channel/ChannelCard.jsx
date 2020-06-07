@@ -16,7 +16,7 @@ export default function ChannelCard({
   handleFollow
 }) {
   return (
-    <div className="cursor-pointer w-full max-w-md flex-shrink-0 rounded-xl hover:shadow-xl transition-all ease-in-out duration-200 md:my-4 mx-4">
+    <div className="cursor-pointer w-full max-w-sm flex-shrink-0 rounded-xl hover:shadow-xl transition-all ease-in-out duration-200 md:my-4 mx-4">
       <div className="flex-grow flex flex-row justify-center w-full pb-5/4 p-3 relative">
         <img
           src={videoThumbnail}
@@ -28,7 +28,6 @@ export default function ChannelCard({
             <div className="flex items-center pr-4">
               <VideoStatus status={live ? "playing" : "paused"} />
               <p className="text-sm font-regular flex-shrink-1 text-tertiaryText w-full max-w-2xs clamp-2 mb-1 ml-3">
-                Lorem ipsum lorem blah blah blah and more random text as a title
                 {videoTitle}
               </p>
             </div>
