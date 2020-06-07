@@ -79,7 +79,7 @@ export default function ChannelsPanel({
               activeViewers="2,000"
             />
           </div>
-          <div className="flex justify-center py-2">
+          <div className="flex justify-center py-16 px-2">
             <SuggestionCard
               id={123}
               name="Thelmo Society"

@@ -19,7 +19,7 @@ export default function PanelHeader({
           className={`${
             selectedPage === "channels"
               ? "text-2xl font-semibold btn-playing p-1 px-2"
-              : "text-secondaryText font-medium text-2xl hover:bg-highlightBackground p-1 px-2 rounded-xl"
+              : "text-secondaryText font-medium text-2xl duration-150 hover:bg-highlightBackground p-1 px-2 rounded-xl"
           } `}
         >
           Channels
@@ -30,7 +30,7 @@ export default function PanelHeader({
           className={`${
             selectedPage === "friends"
               ? "text-2xl font-semibold btn-playing p-1 px-2"
-              : "text-secondaryText font-medium text-2xl hover:bg-highlightBackground p-1 px-2 rounded-xl"
+              : "text-secondaryText font-medium text-2xl duration-150 hover:bg-highlightBackground p-1 px-2 rounded-xl"
           } `}
         >
           Friends
