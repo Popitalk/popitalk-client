@@ -149,7 +149,7 @@ export default function SiteHeaderMain({
                   icon="bell"
                   className={`cursor-pointer ${
                     hasNotification
-                      ? "text-highlightText"
+                      ? "text-secondaryText"
                       : "text-secondaryText"
                   } hover:text-highlightText`}
                   roll="button"
