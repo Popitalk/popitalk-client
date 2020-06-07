@@ -15,7 +15,7 @@ export default function ChannelsPanel({
   selectedPage
 }) {
   return (
-    <div className="w-full px-2 py-4 my-12 md:my-0 bg-primaryBackground md:w-84">
+    <div className="w-full px-2 pt-2 my-12 md:my-0 bg-primaryBackground md:w-84">
       <PanelHeader
         handleCollapse={handleCollapse}
         updateSelectedPage={updateSelectedPage}
@@ -29,10 +29,10 @@ export default function ChannelsPanel({
       {/*</div>*/}
       <MiniFriendsList friends={friends} />
       <div className="flex flex-row items-center">
-        <div className="grid w-full grid-cols-1 sm:grid-cols-2 md:grid-cols-1 sm:mt-5">
+        <div className="grid w-full grid-cols-1 sm:grid-cols-2 md:grid-cols-1 sm:mt-4">
           <div>
             <div className="flex items-center">
-              <h4 className="mt-4 mb-2 ml-2 mr-3 text-lg font-semibold text-secondaryText">
+              <h4 className="my-4 mx-2 text-md font-semibold text-secondaryText">
                 Your channels
               </h4>
               <Button
@@ -42,33 +42,32 @@ export default function ChannelsPanel({
                 onClick=""
               />
             </div>
-
             <ChannelsList
               channels={channels}
               selected={selected}
               handleSelect={handleSelect}
-              className="ml-2"
+              className=""
             />
           </div>
           <div>
-            <h4 className="mt-4 mb-2 ml-2 text-lg font-semibold text-secondaryText">
+            <h4 className="my-4 mx-2 text-md font-semibold text-secondaryText">
               Following
             </h4>
             <ChannelsList
               channels={channels}
               selected={selected}
               handleSelect={handleSelect}
-              className="ml-2"
+              className=""
             />
           </div>
         </div>
       </div>
       <div className="sm:mt-10">
-        <h4 className="mt-4 mb-2 ml-2 text-lg font-semibold text-secondaryText">
+        <h4 className="my-4 mx-2 text-md font-semibold text-secondaryText">
           Suggested
         </h4>
         <div className="grid grid-cols-1 sm:grid-cols-2 sm:gap-2 md:grid-cols-1">
-          <div className="flex justify-center py-2">
+          <div className="flex justify-center py-2 px-2">
             <SuggestionCard
               id={123}
               name="Thelmo Society"

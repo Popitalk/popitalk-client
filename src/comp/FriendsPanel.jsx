@@ -17,7 +17,7 @@ export default function FriendsPanel({
   const [search, setSearch] = useState("");
 
   return (
-    <div className="w-full px-2 py-4 my-12 md:my-0 bg-primaryBackground md:w-84">
+    <div className="w-full px-2 pt-2 my-12 md:my-0 bg-primaryBackground md:w-84">
       <PanelHeader
         handleCollapse={handleCollapse}
         updateSelectedPage={updateSelectedPage}
@@ -25,21 +25,21 @@ export default function FriendsPanel({
       />
       <Input
         variant="user"
-        size="lg"
+        size="sm"
         value={search}
-        placeholder="Search friends"
+        placeholder="Search with username"
         onChange={e => setSearch(e.target.value)}
       />
-      <div className="px-4 py-2 rounded-md shadow-md border-top-none">
-        <div className="flex justify-between pt-1 pl-1 space-x-1">
+      <div className="px-2 rounded-lg shadow-2xl">
+        <div className="flex justify-between p-1 space-x-1">
           <div>
-            <span className="text-xs font-light">Searching:</span>
-            <span className="text-xs font-light">{search}</span>
+            <span className="text-xs">Results for </span>
+            <span className="text-xs font-bold">{search}</span>
           </div>
           <div>
             <span
               role="button"
-              className="text-xs font-medium no-underline cursor-pointer text-highlightText"
+              className="text-xs font-semibold no-underline cursor-pointer text-highlightText"
               onClick={() => setSearch("")}
             >
               Clear

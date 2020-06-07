@@ -9,8 +9,10 @@ export default function InfoCardList({
 }) {
   if (!items || items.length === 0) {
     return (
-      <div className="h-32 w-full flex items-center justify-center">
-        <p className="text-sm">Nothing to show</p>
+      <div className="h-lg w-full flex items-center justify-center">
+        <p className="text-sm text-secondaryText font-medium">
+          Nothing to show
+        </p>
       </div>
     );
   }
