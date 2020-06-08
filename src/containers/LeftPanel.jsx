@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import LeftPanel from "../comp/LeftPanel";
 import { useSelector, useDispatch } from "react-redux";
 import {
@@ -8,15 +8,28 @@ import {
 } from "../redux/actions";
 import { Switch, Route } from "react-router";
 import history from "../history";
+import { getUser } from "../helpers/api";
 
 export default function LeftPanelContainer() {
   const [selectedChannel, setSelectedChannel] = useState(null);
   const [selectedPage, setSelectedPage] = useState("channels");
+  const [friends, setFriends] = useState([]);
   const channels = useSelector(state => state.channels);
-  const friends = useSelector(state => state.relationships.friends);
+  const friendIds = useSelector(state => state.relationships.friends);
   const isCollapsed = useSelector(state => state.ui.isCollapsed);
   // const activeTab = useSelector(state => state.ui.leftPanelActiveTab);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    async function getFriends() {
+      const friends = await friendIds.map(async friend => {
+        const { data } = await getUser(friend);
+        return data;
+      });
+      setFriends(await Promise.all(friends));
+    }
+    getFriends();
+  }, [friendIds]);
 
   // const setToChannelsTab = () => {
   //   dispatch(setLeftPanelActiveTabChannels());
