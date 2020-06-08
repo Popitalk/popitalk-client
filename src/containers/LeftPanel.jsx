@@ -1,7 +1,11 @@
 import React, { useState } from "react";
 import LeftPanel from "../comp/LeftPanel";
 import { useSelector, useDispatch } from "react-redux";
-import { toggleLeftPanel } from "../redux/actions";
+import {
+  toggleLeftPanel
+  // setLeftPanelActiveTabChannels,
+  // setLeftPanelActiveTabFriends
+} from "../redux/actions";
 import { Switch, Route } from "react-router";
 import history from "../history";
 
@@ -11,7 +15,16 @@ export default function LeftPanelContainer() {
   const channels = useSelector(state => state.channels);
   const friends = useSelector(state => state.relationships.friends);
   const isCollapsed = useSelector(state => state.ui.isCollapsed);
+  // const activeTab = useSelector(state => state.ui.leftPanelActiveTab);
   const dispatch = useDispatch();
+
+  // const setToChannelsTab = () => {
+  //   dispatch(setLeftPanelActiveTabChannels());
+  // };
+
+  // const setToFriendsTab = () => {
+  //   dispatch(setLeftPanelActiveTabFriends());
+  // };
 
   const updateSelectedPageAndMain = page => {
     const pages = {
@@ -63,7 +76,6 @@ export default function LeftPanelContainer() {
           handleCollapse={() => dispatch(toggleLeftPanel())}
         />
       </Route>
-      <Route exact path="/profile"></Route>
       <Route>
         <LeftPanel
           channels={channels}
