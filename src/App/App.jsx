@@ -129,9 +129,7 @@ export default function App() {
               {chatPanel}
             </Route>
             <Route exact path="/channels/:channelId/settings">
-              <div className={`flex ${pageClasses}`}>
-                <Channel tab="settings" />
-              </div>
+              <Channel tab="settings" />
             </Route>
             <Route exact path="/rooms/:roomId/video">
               <div className={pageClasses}>
