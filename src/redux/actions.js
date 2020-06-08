@@ -724,3 +724,9 @@ export const openRoomExistsModal = createAction("modal/open", () => ({
 /* -------------------------------------------------------------------------- */
 
 export const toggleLeftPanel = createAction("ui/toggleLeftPanel");
+export const setLeftPanelActiveTabChannels = createAction(
+  "ui/setLeftPanelActiveTabChannels"
+);
+export const setLeftPanelActiveTabFriends = createAction(
+  "ui/setLeftPanelActiveTabFriends"
+);

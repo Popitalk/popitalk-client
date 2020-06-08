@@ -15,7 +15,11 @@ export default function LeftPanel({
 }) {
   return (
     <Fragment>
-      <div className={`${isCollapsed ? "hidden" : ""} w-full md:w-auto`}>
+      <div
+        className={`${
+          isCollapsed ? "hidden" : ""
+        } w-full md:w-auto shadow-md h-full`}
+      >
         {selectedPage === "channels" ? (
           <ChannelsPanel
             channels={channels}

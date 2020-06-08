@@ -27,7 +27,6 @@ export default function ManageUsers({
           value={input}
           placeholder="Search"
           onChange={e => setInput(e.target.value)}
-          className="mb-8"
         />
       </div>
       {filteredUsers.length !== 0 ? (

@@ -223,7 +223,7 @@ export default function ChannelForm({ initial, handleSubmit, loading }) {
             disabled={loading || !isValid || !dirty}
             loading={loading}
             handleReset={() => resetForm()}
-            className="mt-auto w-full"
+            className="mt-auto w-full mb-12"
           />
         </form>
       )}

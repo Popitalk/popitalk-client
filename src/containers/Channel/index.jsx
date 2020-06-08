@@ -28,7 +28,8 @@ import {
   testVideos,
   testResult,
   testUsers,
-  testMessages
+  testMessages,
+  generateTestUsers
 } from "../../stories/seed-arrays";
 import ChannelHeader from "../../comp/ChannelHeader";
 import VideoPanel from "./VideoPanel";
@@ -65,6 +66,7 @@ export default function Channel({ tab }) {
 
   const trendingResults = testResult;
   const searchResults = testResult.slice(0, 3);
+  const generatedUsers = generateTestUsers();
 
   const chatPanel = (
     <div className="w-dropdown">
@@ -185,9 +187,9 @@ export default function Channel({ tab }) {
       )}
       {tab === "settings" && (
         <ChannelSettingsPanel
-          followers={testUsers}
-          admins={testUsers}
-          bannedUsers={testUsers}
+          followers={generatedUsers}
+          admins={generatedUsers}
+          bannedUsers={generatedUsers}
           initialChannelForm={{
             name: "",
             description: "",
