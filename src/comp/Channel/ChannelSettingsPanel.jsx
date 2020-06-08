@@ -50,11 +50,13 @@ export default function ChannelSettingsPanel({
   let paneContent = <></>;
   if (selected === 0) {
     paneContent = (
-      <ChannelForm
-        initial={initialChannelForm}
-        handleSubmit={handleChannelFormSubmit}
-        loading={channelFormLoading}
-      />
+      <div className="w-full overflow-auto flex justify-center">
+        <ChannelForm
+          initial={initialChannelForm}
+          handleSubmit={handleChannelFormSubmit}
+          loading={channelFormLoading}
+        />
+      </div>
     );
   } else if (selected === 1) {
     const options = [
@@ -96,7 +98,7 @@ export default function ChannelSettingsPanel({
   }
 
   return (
-    <div className="h-full w-full py-8 bg-secondaryBackground flex items-center md:px-4 md:flex-row md:items-stretch">
+    <div className="h-full w-full py-8 bg-secondaryBackground flex items-center md:px-4 md:flex-row md:items-stretch overflow-auto">
       <div className="flex-none">
         <ChannelSettingsSidebar
           buttons={buttons}
