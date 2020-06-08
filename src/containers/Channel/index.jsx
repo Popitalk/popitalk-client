@@ -47,16 +47,11 @@ export default function Channel({ tab, type = "channel" }) {
   const posts = useSelector(state => state.posts[channelId]);
   const comments = useSelector(state => state.comments);
 
-  console.log("channel/room", channel);
-  // posts.map((post) => {
-  //   if (!post.author.avatar) {
-  //     post.author.avatar = defaultAvatar;
-  //   }
-  // })
-  // console.log("draft", draft);
+  const channels = useSelector(state => state.channels);
   const dispatch = useDispatch();
   const match = useRouteMatch();
 
+  console.log("channels", channels);
   console.log("channelid", channelId);
   console.log("channel", channel);
   console.log("posts", posts);
