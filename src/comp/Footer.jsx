@@ -52,7 +52,7 @@ function Footer() {
           </ul>
         </div>
       </div>
-      <div className="flex justify-end mt-8">
+      <div className="flex justify-end text-sm mt-8">
         <p>© 2020 Popitalk, Inc. All rights reserved.</p>
       </div>
     </footer>

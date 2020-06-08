@@ -8,10 +8,9 @@ function ChannelCardList({ header, channelList }) {
   // based on that as well. Eg. panelOpen?"md:grid-cols-2":""
   return (
     <div className="mx-2">
-      <p className="text-base font-bold py-4">{header}</p>
-      <div className="flex overflow-auto">
+      <div className="flex flex-wrap w-full">
         {channelList.map(channel => (
-          <ChannelCard cardWidthClass="w-auto" key={channel.id} {...channel} />
+          <ChannelCard key={channel.id} {...channel} />
         ))}
       </div>
     </div>

@@ -15,7 +15,11 @@ export default function LeftPanel({
 }) {
   return (
     <Fragment>
-      <div className={`${isCollapsed ? "hidden" : ""} w-full md:w-auto`}>
+      <div
+        className={`${
+          isCollapsed ? "hidden" : ""
+        } w-full md:w-auto shadow-md h-screen overflow-scroll`}
+      >
         {selectedPage === "channels" ? (
           <ChannelsPanel
             channels={channels}
@@ -38,9 +42,7 @@ export default function LeftPanel({
           />
         )}
       </div>
-      <div
-        className={`my-12 md:my-0 block ${isCollapsed ? "md:block" : "hidden"}`}
-      >
+      <div className={`block ${isCollapsed ? "md:block" : "hidden"}`}>
         <CollapsedPanel
           channels={channels}
           selected={selected}

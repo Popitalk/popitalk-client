@@ -16,19 +16,18 @@ export default function ChannelCard({
   handleFollow
 }) {
   return (
-    <div className="cursor-pointer w-full max-w-md flex-shrink-0 rounded-xl hover:shadow-xl transition-all ease-in-out duration-200 md:my-4 mx-4">
-      <div className="flex-grow flex flex-row justify-center w-full pb-5/4 p-3 relative">
+    <div className="cursor-pointer w-full lg:w-1/2 xl:w-1/3 xxl:w-1/4 flex-shrink-0 rounded-xl group md:py-2 px-2">
+      <div className="flex-grow flex flex-row justify-center w-full pb-5/4 p-3 relative rounded-xl group-hover:shadow-xl transition-all ease-in-out duration-200">
         <img
           src={videoThumbnail}
           alt="channel"
-          className="img absolute top-0 h-full rounded-xl"
+          className="img absolute top-0 h-full rounded-xl group-hover:opacity-75 transition-all ease-in-out duration-200"
         />
         <div className="absolute w-full z-20">
           <div className="flex justify-between px-4 py-1">
             <div className="flex items-center pr-4">
               <VideoStatus status={live ? "playing" : "paused"} />
               <p className="text-sm font-regular flex-shrink-1 text-tertiaryText w-full max-w-2xs clamp-2 mb-1 ml-3">
-                Lorem ipsum lorem blah blah blah and more random text as a title
                 {videoTitle}
               </p>
             </div>
@@ -62,7 +61,7 @@ export default function ChannelCard({
               className="mr-3 w-12 h-12"
             />
             <div className="pr-4 flex-shrink-1">
-              <p className="text-xl font-semibold text-tertiaryText clamp-2">
+              <p className="text-md font-semibold text-tertiaryText clamp-2">
                 {name}
               </p>
             </div>

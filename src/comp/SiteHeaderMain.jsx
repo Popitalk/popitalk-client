@@ -99,13 +99,13 @@ export default function SiteHeaderMain({
   const dropdownClasses = "absolute right-0 mt-2 z-10";
 
   return (
-    <header className="relative flex flex-col px-4 bg-primaryBackground">
+    <header className="relative flex flex-col px-6 bg-primaryBackground">
       {!mobileMenu && (
         <div className="flex items-center justify-between">
           <Link to="/channels">
-            <img src={Logo} alt="PlayNow's logo" className="w-12 h-12" />
+            <img src={Logo} alt="PlayNow's logo" className="w-10 h-10" />
           </Link>
-          <ul className="items-center hidden space-x-8 md:flex">
+          <ul className="items-center hidden space-x-10 md:flex">
             <li>
               <div
                 className="flex items-center p-2 transition-colors duration-150 cursor-pointer rounded-xl hover:bg-highlightBackground"
@@ -114,7 +114,7 @@ export default function SiteHeaderMain({
               >
                 <span className="font-bold">{username}</span>
                 <img
-                  className="w-8 h-8 ml-4 rounded-full"
+                  className="w-8 h-8 ml-2 rounded-full"
                   src={avatar}
                   alt={`${username}'s avatar`}
                 />
@@ -126,6 +126,7 @@ export default function SiteHeaderMain({
                   icon="user-plus"
                   className="cursor-pointer text-secondaryText hover:text-highlightText"
                   roll="button"
+                  size="lg"
                   onClick={() => setShowRequests(!showRequests)}
                 />
                 {showRequests ? (
@@ -148,14 +149,15 @@ export default function SiteHeaderMain({
                   icon="bell"
                   className={`cursor-pointer ${
                     hasNotification
-                      ? "text-highlightText"
+                      ? "text-secondaryText"
                       : "text-secondaryText"
                   } hover:text-highlightText`}
                   roll="button"
+                  size="lg"
                   onClick={() => setShowNotifications(!showNotifications)}
                 />
                 {hasNotification && (
-                  <div className="absolute top-0 z-10 p-1 ml-2 border-2 rounded-full border-primaryBackground bg-errorText"></div>
+                  <div className="absolute top-0 z-10 p-1 ml-3 border-2 rounded-full border-primaryBackground bg-errorText"></div>
                 )}
                 {showNotifications ? (
                   <div className={dropdownClasses}>
@@ -176,6 +178,7 @@ export default function SiteHeaderMain({
                   icon="cog"
                   className="cursor-pointer text-secondaryText hover:text-highlightText"
                   roll="button"
+                  size="lg"
                   onClick={toggleSettings}
                 />
                 {settingsDropdown === SETTINGS ? (
@@ -205,6 +208,7 @@ export default function SiteHeaderMain({
             <li>
               <FontAwesomeIcon
                 icon="info-circle"
+                size="lg"
                 className="cursor-pointer text-secondaryText hover:text-highlightText"
               />
             </li>

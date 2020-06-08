@@ -148,16 +148,16 @@ export const getComments = ({ postId, limit }) => {
 
 export const addLike = ({ postId, commentId }) => {
   if (postId) {
-    return axios.post("/api/likes", { postId });
+    return axios.post(`/api/posts/${postId}/likes`, { postId });
   } else if (commentId) {
-    return axios.post("/api/likes", { commentId });
+    return axios.post(`/api/comments/${commentId}/likes`, { commentId });
   }
 };
 
 export const deleteLike = ({ postId, commentId }) => {
   if (postId) {
-    return axios.delete(`/api/likes/?postId=${postId}`);
+    return axios.delete(`/api/posts/${postId}/likes`);
   } else if (commentId) {
-    return axios.delete(`/api/likes/?commentId=${commentId}`);
+    return axios.delete(`/api/comments/${commentId}/likes`);
   }
 };

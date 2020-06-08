@@ -33,6 +33,8 @@ import {
   friendOfflineWs
 } from "../actions";
 
+import { WS_EVENTS } from "../../helpers/constants";
+
 const wsUrl =
   process.env.NODE_ENV !== "production"
     ? "ws://localhost:5000/ws"
@@ -95,14 +97,14 @@ const websocketMiddleware = () => store => next => action => {
       const messagePayload = parsedMessage.payload;
 
       const commandHandler = {
-        WS_HELLO() {
+        [WS_EVENTS.HELLO]() {
           store.dispatch(wsConnect(Number(messagePayload.heartbeatInterval)));
           heartbeat();
         },
-        WS_PING() {
+        [WS_EVENTS.PING]() {
           heartbeat();
         },
-        WS_ADD_MESSAGE() {
+        [WS_EVENTS.CHANNEL.ADD_MESSAGE]() {
           let addMessage = true;
 
           let messagesState = store.getState().messages;
@@ -145,86 +147,86 @@ const websocketMiddleware = () => store => next => action => {
             );
           }
         },
-        WS_DELETE_MESSAGE() {
+        [WS_EVENTS.CHANNEL.DELETE_MESSAGE]() {
           store.dispatch(deleteMessageWs(messagePayload));
         },
-        WS_ADD_POST() {
+        [WS_EVENTS.CHANNEL.ADD_POST]() {
           store.dispatch(addPostWs(messagePayload));
         },
-        WS_DELETE_POST() {
+        [WS_EVENTS.CHANNEL.DELETE_POST]() {
           store.dispatch(deletePostWs(messagePayload));
         },
-        WS_ADD_POST_LIKE() {
+        [WS_EVENTS.CHANNEL.ADD_POST_LIKE]() {
           const { id: ownId } = store.getState().self;
           store.dispatch(likePostWs({ ownId, ...messagePayload }));
         },
-        WS_DELETE_POST_LIKE() {
+        [WS_EVENTS.CHANNEL.DELETE_POST_LIKE]() {
           const { id: ownId } = store.getState().self;
           store.dispatch(unlikePostWs({ ownId, ...messagePayload }));
         },
-        WS_ADD_COMMENT() {
+        [WS_EVENTS.CHANNEL.ADD_COMMENT]() {
           const { id: ownId } = store.getState().self;
           store.dispatch(incrementCommentCountWs({ ownId, ...messagePayload }));
         },
-        WS_DELETE_COMMENT() {
+        [WS_EVENTS.CHANNEL.DELETE_COMMENT_LIKE]() {
           const { id: ownId } = store.getState().self;
           store.dispatch(decrementCommentCountWs({ ownId, ...messagePayload }));
         },
-        WS_ADD_MEMBER() {
+        [WS_EVENTS.CHANNEL.ADD_MEMBER]() {
           store.dispatch(addMemberWs(messagePayload));
         },
-        WS_ADD_MEMBERS() {
+        [WS_EVENTS.CHANNEL.ADD_MEMBERS]() {
           store.dispatch(addMembersWs(messagePayload));
         },
-        WS_DELETE_MEMBER() {
+        [WS_EVENTS.CHANNEL.DELETE_MEMBER]() {
           store.dispatch(deleteMemberWs(messagePayload));
         },
-        WS_ADD_ADMIN() {
+        [WS_EVENTS.CHANNEL.ADD_ADMIN]() {
           store.dispatch(addAdminWs(messagePayload));
         },
-        WS_DELETE_ADMIN() {
+        [WS_EVENTS.CHANNEL.DELETE_ADMIN]() {
           store.dispatch(deleteAdminWs(messagePayload));
         },
-        WS_ADD_BAN() {
+        [WS_EVENTS.CHANNEL.ADD_BAN]() {
           store.dispatch(addBanWs(messagePayload));
         },
-        WS_DELETE_BAN() {
+        [WS_EVENTS.CHANNEL.DELETE_BAN]() {
           store.dispatch(deleteBanWs(messagePayload));
         },
-        WS_DELETE_SENT_FRIEND_REQUEST() {
+        [WS_EVENTS.USER.DELETE_SENT_FRIEND_REQUEST]() {
           store.dispatch(deleteSentFriendRequestWs(messagePayload));
         },
-        WS_ADD_RECEIVED_FRIEND_REQUEST() {
+        [WS_EVENTS.USER.ADD_RECEIVED_FRIEND_REQUEST]() {
           store.dispatch(addReceivedFriendRequestWs(messagePayload));
         },
-        WS_DELETE_RECEIVED_FRIEND_REQUEST() {
+        [WS_EVENTS.USER.DELETE_RECEIVED_FRIEND_REQUEST]() {
           store.dispatch(deleteReceivedFriendRequestWs(messagePayload));
         },
-        WS_ADD_FRIEND() {
+        [WS_EVENTS.USER.ADD_FRIEND]() {
           store.dispatch(addFriendWs(messagePayload));
         },
-        WS_DELETE_FRIEND() {
+        [WS_EVENTS.USER.DELETE_FRIEND]() {
           store.dispatch(deleteFriendWs(messagePayload));
         },
-        WS_ADD_BLOCKER() {
+        [WS_EVENTS.USER.ADD_BLOCKER]() {
           store.dispatch(addBlockerWs(messagePayload));
         },
-        WS_DELETE_BLOCKER() {
+        [WS_EVENTS.USER.DELETE_BLOCKER]() {
           store.dispatch(deleteBlockerWs(messagePayload));
         },
-        WS_DELETE_CHANNEL() {
+        [WS_EVENTS.CHANNEL.DELETE_CHANNEL]() {
           store.dispatch(deleteChannelWs(messagePayload));
         },
-        WS_ADD_CHANNEL() {
+        [WS_EVENTS.USER.ADD_CHANNEL]() {
           store.dispatch(addChannelWs(messagePayload));
         },
-        WS_UPDATE_CHANNEL() {
+        [WS_EVENTS.CHANNEL.UPDATE_CHANNEL]() {
           store.dispatch(updateChannelWs(messagePayload));
         },
-        WS_FRIEND_ONLINE() {
+        [WS_EVENTS.CHANNEL.SET_FRIEND_ONLINE]() {
           store.dispatch(friendOnlineWs(messagePayload));
         },
-        WS_FRIEND_OFFLINE() {
+        [WS_EVENTS.CHANNEL.SET_FRIEND_OFFLINE]() {
           store.dispatch(friendOfflineWs(messagePayload));
         }
       };

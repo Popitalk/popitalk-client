@@ -10,7 +10,7 @@ export default function ChannelsList({ channels, selected, handleSelect }) {
         ids={[channel.id]}
         images={[channel.icon]}
         watching={channel.watching}
-        size="lg"
+        size="md"
       />
     );
 

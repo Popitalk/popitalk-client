@@ -30,9 +30,9 @@ export default function CreateNewAccountForm({ handleSubmit, loading }) {
           ...getUserInformationSchema(),
           ...getSetPasswordSchema(),
           username: Yup.string()
-            .min(8, "Username is too short.")
-            .max(32, "Username is too long.")
-            .required("Username is required.")
+            .min(6, "Minimum 6 characters*")
+            .max(32, "Maximum 32 characters*")
+            .required("Required*")
         })}
         onSubmit={values => {
           handleSubmit({

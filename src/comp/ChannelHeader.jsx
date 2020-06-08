@@ -58,17 +58,17 @@ export default function ChannelHeader({
           images={[icon]}
           watching={videoStatus === "playing" ? true : false}
           size="md"
-          className=""
+          className="mx-2"
         />
-        <p className="text-sm font-regular text-primaryText py-1 px-1">
+        <p className="text-sm font-medium text-primaryText p-2">
           {type === "channel" ? name : `Private Room with ${name}`}
         </p>
       </div>
       {type === "channel" && (
-        <nav className="flex flex-wrap justify-center">
+        <nav className="flex flex-wrap justify-center m-2">
           {navButtons.map((button, idx) => {
             let className =
-              "mx-1 my-1 font-bold no-underline focus:outline-none";
+              "mx-2 my-1 font-semibold no-underline focus:outline-none";
             if (
               location.pathname.startsWith(`/channels/${id}/${button.endpoint}`)
             ) {

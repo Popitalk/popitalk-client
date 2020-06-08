@@ -76,16 +76,15 @@ export default function App() {
     <CreateNewAccountContainer component={AnonymousSidebar} />
   );
 
-  const searchClasses = "w-full bg-secondaryBackground overflow-auto";
   const pageClasses = "w-full overflow-auto";
-  // const searchClasses = `${
-  //   isCollapsed ? "block" : "hidden"
-  // } flex-grow mt-10 mx-2 md:mx-10 md:block overflow-auto bg-secondaryBackground w-full`;
+  const searchClasses = `${
+    isCollapsed ? "block" : "hidden"
+  } flex-grow mt-10 mx-2 md:block overflow-auto w-full`;
 
   return (
     <>
       <ModalManager />
-      <div className="h-screen flex flex-col">
+      <div className="h-screen flex flex-col bg-secondaryBackground">
         <div className="h-auto">
           <Header />
         </div>
@@ -96,7 +95,9 @@ export default function App() {
             </div>
           </Route>
           <div className="flex flex-row h-full overflow-auto">
-            <div className="flex-shrink-0 overflow-auto">{leftPanel}</div>
+            <div className="flex-grow md:overflow-auto md:flex-shrink-0">
+              {leftPanel}
+            </div>
             <Route exact path="/create">
               <div className="flex justify-center p-5 bg-secondaryBackground w-full overflow-auto">
                 <ChannelForm
