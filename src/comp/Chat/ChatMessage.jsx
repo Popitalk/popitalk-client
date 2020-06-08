@@ -3,10 +3,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default function ChatMessage({ message, handleResend, handleDelete }) {
   return (
-    <div className="flex flex-col my-4">
+    <div className="flex flex-col my-2">
       <div className="flex items-center space-x-2 text-xs">
         <img
-          className="w-10 h-10 rounded-full"
+          className="w-8 h-8 rounded-full"
           src={message.avatar}
           alt="Avatar"
         />
@@ -15,11 +15,11 @@ export default function ChatMessage({ message, handleResend, handleDelete }) {
           {message.date.toLocaleString()}
         </span>
       </div>
-      <div className="grid my-3 grid-cols-chat">
+      <div className="grid mt-2 mb-4 grid-cols-chat">
         <span className="flex justify-center">
           <span
             className={`w-1 rounded-lg ${
-              message.me ? "bg-highlightText" : "bg-tertiaryBackground"
+              message.me ? "bg-highlightText" : "bg-secondaryBackground"
             }`}
           ></span>
         </span>

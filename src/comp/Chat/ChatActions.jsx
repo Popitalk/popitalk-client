@@ -12,8 +12,8 @@ function ChatActions() {
 
   return (
     <>
-      <div className="flex items-center space-x-2 md:space-x-4">
-        <button className="w-10 h-10 p-2 text-center rounded-full bg-secondaryBackground focus:outline-none">
+      <div className="flex items-center pt-1 space-x-1 md:space-x-2">
+        <button className="w-10 h-10 p-2 text-center rounded-full bg-secondaryBackground hover:bg-highlightBackground focus:outline-none">
           <FontAwesomeIcon
             icon={["far", "smile"]}
             className="cursor-pointer text-highlightText"
@@ -21,9 +21,9 @@ function ChatActions() {
           />
         </button>
         <textarea
-          className="w-full h-10 p-2 overflow-hidden rounded-lg resize-none bg-secondaryBackground focus:outline-none text-secondaryText"
+          className="w-full h-10 p-2 pl-4 overflow-hidden rounded-lg resize-none bg-secondaryBackground focus:outline-none text-secondaryText text-sm"
           placeholder="Type a message..."
-          maxLength="120"
+          maxLength="240"
           ref={textareaRef}
           onChange={handleChange}
         />
@@ -34,7 +34,9 @@ function ChatActions() {
             size="lg"
           />
         </div>
-        <span className="font-bold text-highlightText">Send</span>
+        <button className="font-bold text-highlightText pr-2 text-sm focus:outline-none">
+          Send
+        </button>
       </div>
       {/** ADD EMOJI PICKER BELOW */}
     </>

@@ -108,7 +108,7 @@ export default function SiteHeaderMain({
           <ul className="items-center hidden space-x-10 md:flex">
             <li>
               <div
-                className="flex items-center p-2 transition-colors duration-150 cursor-pointer rounded-xl hover:bg-highlightBackground"
+                className="flex items-center p-2 transition-colors duration-50 cursor-pointer rounded-xl hover:bg-highlightBackground"
                 role="button"
                 onClick={() => openProfileHandler(userID)}
               >
@@ -248,7 +248,7 @@ export default function SiteHeaderMain({
                 />
               </div>
               <div className="grid row-gap-8">
-                <button className="flex items-center p-3 -m-3 space-x-3 no-underline transition duration-150 ease-in-out rounded-md hover:bg-gray-50">
+                <button className="flex items-center p-3 -m-3 space-x-3 no-underline transition duration-50 ease-in-out rounded-md hover:bg-gray-50">
                   <img
                     className="w-8 h-8 rounded-full"
                     src="https://randomuser.me/api/portraits/men/75.jpg"
@@ -260,7 +260,7 @@ export default function SiteHeaderMain({
                 </button>
                 <button
                   href="#"
-                  className="flex items-center p-3 -m-3 space-x-3 no-underline transition duration-150 ease-in-out rounded-md hover:bg-gray-50"
+                  className="flex items-center p-3 -m-3 space-x-3 no-underline transition duration-50 ease-in-out rounded-md hover:bg-gray-50"
                 >
                   <FontAwesomeIcon
                     icon="user-plus"
@@ -270,7 +270,7 @@ export default function SiteHeaderMain({
                     Add user
                   </div>
                 </button>
-                <button className="flex items-center p-3 -m-3 space-x-3 no-underline transition duration-150 ease-in-out rounded-md hover:bg-gray-50">
+                <button className="flex items-center p-3 -m-3 space-x-3 no-underline transition duration-50 ease-in-out rounded-md hover:bg-gray-50">
                   <div className="relative">
                     <FontAwesomeIcon
                       icon={["far", "bell"]}
@@ -288,7 +288,7 @@ export default function SiteHeaderMain({
                     Notifications
                   </div>
                 </button>
-                <button className="flex items-center p-3 -m-3 space-x-3 no-underline transition duration-150 ease-in-out rounded-md hover:bg-gray-50">
+                <button className="flex items-center p-3 -m-3 space-x-3 no-underline transition duration-50 ease-in-out rounded-md hover:bg-gray-50">
                   <FontAwesomeIcon
                     icon="cog"
                     className="cursor-pointer text-secondaryText hover:text-highlightText"
@@ -297,7 +297,7 @@ export default function SiteHeaderMain({
                     Settings
                   </div>
                 </button>
-                <button className="flex items-center p-3 -m-3 space-x-3 no-underline transition duration-150 ease-in-out rounded-md hover:bg-gray-50">
+                <button className="flex items-center p-3 -m-3 space-x-3 no-underline transition duration-50 ease-in-out rounded-md hover:bg-gray-50">
                   <FontAwesomeIcon
                     icon="info-circle"
                     className="cursor-pointer text-secondaryText hover:text-highlightText"

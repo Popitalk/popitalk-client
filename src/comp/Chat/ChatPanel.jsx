@@ -6,7 +6,7 @@ import ChatActions from "./ChatActions";
 
 function ChatPanel({ typerAvatars, typerIDs, ...props }) {
   return (
-    <section className="w-dropdown h-full p-2 bg-primaryBackground flex flex-col">
+    <section className="w-dropdown h-full p-2 bg-primaryBackground flex flex-col md:w-84">
       <div className="h-auto">
         <ChatHeader />
       </div>

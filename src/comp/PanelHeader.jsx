@@ -11,7 +11,7 @@ export default function PanelHeader({
       <button className="p-4" onClick={handleCollapse}>
         <FontAwesomeIcon
           icon="bars"
-          className="cursor-pointer text-secondaryText hover:text-highlightText"
+          className="cursor-pointer text-secondaryText hover:text-highlightText duration-50"
         />
       </button>
       <button onClick={() => updateSelectedPage("channels")}>
@@ -19,7 +19,7 @@ export default function PanelHeader({
           className={`${
             selectedPage === "channels"
               ? "text-2xl font-semibold btn-playing p-1 px-2"
-              : "text-secondaryText font-semibold text-2xl duration-150 hover:text-highlightText p-1 px-2 rounded-xl"
+              : "text-secondaryText font-semibold text-2xl duration-50 hover:text-highlightText p-1 px-2 rounded-xl"
           } `}
         >
           Channels
@@ -30,7 +30,7 @@ export default function PanelHeader({
           className={`${
             selectedPage === "friends"
               ? "text-2xl font-semibold btn-playing p-1 px-2"
-              : "text-secondaryText font-semibold text-2xl duration-150 hover:text-highlightText p-1 px-2 rounded-xl"
+              : "text-secondaryText font-semibold text-2xl duration-50 hover:text-highlightText p-1 px-2 rounded-xl"
           } `}
         >
           Friends
