@@ -37,6 +37,7 @@ import ForumPanel from "./ForumPanel";
 import ChannelSettingsPanel from "../../comp/Channel/ChannelSettingsPanel";
 import ChannelQueue from "../../comp/Channel/ChannelQueue";
 import ChatPanel from "../../comp/Chat/ChatPanel";
+import VideoSearch from "../../comp/VideoSearch";
 
 export default function Channel({ tab, type = "channel" }) {
   const { channelId, roomId } = useParams();
@@ -147,6 +148,7 @@ export default function Channel({ tab, type = "channel" }) {
         videoStatus={
           activeVideo && activeVideo.status ? activeVideo.status : ""
         }
+        type={type}
       />
 
       {/* <Switch>
@@ -158,21 +160,33 @@ export default function Channel({ tab, type = "channel" }) {
             activeFriendViewers={testUserMinimal}
             classNames="pt-1"
           />
-          <ForumPanel
-            name={channel.name}
-            description={channel.description}
-            icon={channel.icon || defaultIcon}
-            adminList={[...testUserMinimal, ...testUserMinimal]}
-            status="playing"
-            comments={comments}
-            posts={posts}
-            saveDraft={saveDraft}
-            savePost={savePost}
-            saveComment={saveComment}
-            draft={draft}
-            defaultAvatar={defaultAvatar}
-            toggleLike={toggleLike}
-          />
+          {type === "channel" && (
+            <ForumPanel
+              name={channel.name}
+              description={channel.description}
+              icon={channel.icon || defaultIcon}
+              adminList={[...testUserMinimal, ...testUserMinimal]}
+              status="playing"
+              comments={comments}
+              posts={posts}
+              saveDraft={saveDraft}
+              savePost={savePost}
+              saveComment={saveComment}
+              draft={draft}
+              defaultAvatar={defaultAvatar}
+              toggleLike={toggleLike}
+            />
+          )}
+          {type === "room" && (
+            <div>
+              <h2 className="text-2xl mt-20 px-3">Find More Videos</h2>
+              <VideoSearch
+                trendingResults={testResult}
+                searchResults={testResult.slice(0, 4)}
+                threshold={3}
+              />
+            </div>
+          )}
         </>
       )}
 

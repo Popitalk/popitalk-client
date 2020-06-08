@@ -135,21 +135,6 @@ export default function App() {
             <Route exact path="/rooms/:roomId/video">
               <div className={pageClasses}>
                 <Channel tab="video" type="room" />
-                {/* <ChannelVideo
-                  id={123}
-                  name="RoomOwner"
-                  icon="https://i.imgur.com/xCGu56D.jpg"
-                  activeFriendViewers={testUserMinimal}
-                  activeVideo={{
-                    ...testQueue[0],
-                    status: "playing",
-                    activeFriendViewers: testUserMinimal
-                  }}
-                  queue={testQueue}
-                  type="room"
-                  trendingResults={testResult}
-                  searchResults={testResult}
-                /> */}
               </div>
               {chatPanel}
             </Route>
