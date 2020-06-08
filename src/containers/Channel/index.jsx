@@ -38,14 +38,15 @@ import ChannelSettingsPanel from "../../comp/Channel/ChannelSettingsPanel";
 import ChannelQueue from "../../comp/Channel/ChannelQueue";
 import ChatPanel from "../../comp/Chat/ChatPanel";
 
-export default function Channel({ tab }) {
-  const { channelId } = useParams();
-  const channel = useSelector(state => state.channels[channelId]);
+export default function Channel({ tab, type = "channel" }) {
+  const { channelId, roomId } = useParams();
+  const channel = useSelector(state => state.channels[channelId || roomId]);
   const { defaultIcon, defaultAvatar } = useSelector(state => state.general);
   const draft = useSelector(state => state.postDrafts[channelId]);
   const posts = useSelector(state => state.posts[channelId]);
   const comments = useSelector(state => state.comments);
 
+  console.log("channel/room", channel);
   // posts.map((post) => {
   //   if (!post.author.avatar) {
   //     post.author.avatar = defaultAvatar;

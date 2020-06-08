@@ -134,7 +134,8 @@ export default function App() {
             </Route>
             <Route exact path="/rooms/:roomId/video">
               <div className={pageClasses}>
-                <ChannelVideo
+                <Channel tab="video" type="room" />
+                {/* <ChannelVideo
                   id={123}
                   name="RoomOwner"
                   icon="https://i.imgur.com/xCGu56D.jpg"
@@ -148,7 +149,7 @@ export default function App() {
                   type="room"
                   trendingResults={testResult}
                   searchResults={testResult}
-                />
+                /> */}
               </div>
               {chatPanel}
             </Route>
