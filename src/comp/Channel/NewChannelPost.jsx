@@ -30,6 +30,7 @@ export default function NewChannelPost({
   const handleSubmit = e => {
     e.preventDefault();
     savePost(draft?.trim());
+    saveDraft("");
     console.log("submit", draft?.trim());
   };
   const handleEmot = e => {
