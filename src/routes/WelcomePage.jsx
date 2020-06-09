@@ -6,8 +6,8 @@ import Welcome from "../assets/welcome.png";
 
 function WelcomePage(props) {
   return (
-    <div className="relative">
-      <section className="z-10 relative shadow-account rounded-b-xl bg-primaryBackground flex items-center py-10 flex-col sm:flex-row sm:justify-around sm:py-24 md:py-32 lg:justify-around xl:px-24">
+    <div>
+      <section className="relative shadow-account rounded-b-xl bg-primaryBackground flex items-center py-10 flex-col sm:flex-row sm:justify-around sm:py-24 md:py-32 lg:justify-around xl:px-24">
         <div className="flex justify-center w-2/3 sm:w-1/3 md:h-full md:w-auto md:mx-5">
           <img src={Welcome} alt="Welcome" />
         </div>

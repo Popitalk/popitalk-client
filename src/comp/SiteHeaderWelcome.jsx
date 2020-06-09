@@ -2,9 +2,12 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Logo from "../assets/logo.png";
 import Button from "./Button";
-import history from "../history";
 
-export default function SiteHeaderWelcome({ apiLoading, dispatchLogin }) {
+export default function SiteHeaderWelcome({
+  apiLoading,
+  apiError,
+  dispatchLogin
+}) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
@@ -12,7 +15,6 @@ export default function SiteHeaderWelcome({ apiLoading, dispatchLogin }) {
     dispatchLogin(username, password);
     setUsername("");
     setPassword("");
-    history.push("channels");
   };
 
   return (
@@ -28,6 +30,13 @@ export default function SiteHeaderWelcome({ apiLoading, dispatchLogin }) {
       <nav>
         <form>
           <ul className="flex flex-col sm:space-x-2 sm:flex-row">
+            {apiError ? (
+              <li className="self-center">
+                <small className="text-errorText">{`${apiError}. Please try again.`}</small>
+              </li>
+            ) : (
+              <></>
+            )}
             <li className="flex flex-col">
               <label className="mb-1 text-sm font-bold" htmlFor="user">
                 Username or email
@@ -73,7 +82,11 @@ export default function SiteHeaderWelcome({ apiLoading, dispatchLogin }) {
                 className="h-8 mt-1"
                 shape="regular"
                 onClick={handleLogin}
-                disabled={apiLoading}
+                disabled={
+                  apiLoading ||
+                  password.trim().length === 0 ||
+                  username.trim().length === 0
+                }
               >
                 Log In
               </Button>

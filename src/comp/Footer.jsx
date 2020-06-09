@@ -2,7 +2,7 @@ import React from "react";
 
 function Footer() {
   return (
-    <footer className="absolute inset-x-0 px-4 py-8 -mt-4 bg-gradient-r-primary text-tertiaryText sm:px-16">
+    <footer className="w-full px-4 py-8 -mt-4 bg-gradient-r-primary text-tertiaryText sm:px-16">
       <div className="grid grid-cols-2 row-gap-5 sm:flex sm:justify-start sm:space-x-16 sm:ml-10 sm:mt-5">
         <div className="space-y-2 text-center">
           <span className="mb-4 text-lg font-bold">Company</span>

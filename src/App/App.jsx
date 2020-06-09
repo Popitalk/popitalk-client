@@ -90,13 +90,9 @@ export default function App() {
         </div>
         <Switch>
           <Route exact path="/welcome">
-            {loggedIn ? (
-              <Redirect to="/channels" />
-            ) : (
-              <div className="h-full overflow-auto">
-                <CreateNewAccountContainer component={WelcomePage} />
-              </div>
-            )}
+            <div className="h-full overflow-auto">
+              <CreateNewAccountContainer component={WelcomePage} />
+            </div>
           </Route>
           <div className="flex flex-row h-full overflow-auto">
             <div className="flex-grow md:overflow-auto md:flex-shrink-0">

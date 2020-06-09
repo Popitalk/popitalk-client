@@ -96,7 +96,7 @@ export default function SiteHeaderMain({
   const settingsDropdown =
     dropdownList.length > 0 ? dropdownList[dropdownList.length - 1] : 0;
 
-  const dropdownClasses = "absolute right-0 mt-2 z-10";
+  const dropdownClasses = "absolute right-0 mt-2 z-30";
 
   return (
     <header className="relative flex flex-col px-6 bg-primaryBackground">

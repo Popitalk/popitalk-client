@@ -24,7 +24,7 @@ export default function ChannelCard({
           className="img absolute top-0 h-full rounded-xl group-hover:opacity-75 transition-all ease-in-out duration-200"
         />
         <div className="absolute w-full z-20">
-          <div className="flex justify-between px-4 py-1">
+          <div className="flex relative justify-between px-4 py-1 z-10">
             <div className="flex items-center pr-4">
               <VideoStatus status={live ? "playing" : "paused"} />
               <p className="text-sm font-regular flex-shrink-1 text-tertiaryText w-full max-w-2xs clamp-2 mb-1 ml-3">

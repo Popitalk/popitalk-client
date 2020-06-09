@@ -55,7 +55,7 @@ export default function Input({
 
   const inputClasses = classnames(
     getInputClasses(shape, error),
-    "relative bottom-0 py-2 pl-5 pr-4 rounded-full",
+    "relative bottom-0 py-2 pl-5 pr-4 rounded-lg",
     textClasses,
     {
       "border-errorText": error,

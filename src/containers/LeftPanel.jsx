@@ -16,6 +16,7 @@ export default function LeftPanelContainer() {
   const [friends, setFriends] = useState([]);
   const channels = useSelector(state => state.channels);
   const friendIds = useSelector(state => state.relationships.friends);
+  const { defaultAvatar } = useSelector(state => state.general);
   const isCollapsed = useSelector(state => state.ui.isCollapsed);
   // const activeTab = useSelector(state => state.ui.leftPanelActiveTab);
   const dispatch = useDispatch();
@@ -24,12 +25,13 @@ export default function LeftPanelContainer() {
     async function getFriends() {
       const friends = await friendIds.map(async friend => {
         const { data } = await getUser(friend);
+        data.avatar = data.avatar || defaultAvatar;
         return data;
       });
       setFriends(await Promise.all(friends));
     }
     getFriends();
-  }, [friendIds]);
+  }, [friendIds, defaultAvatar]);
 
   // const setToChannelsTab = () => {
   //   dispatch(setLeftPanelActiveTabChannels());
