@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/no-noninteractive-tabindex */
-import React, { useCallback } from "react";
+import React, { useCallback, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 import {
   login,
   logout,
@@ -20,11 +21,19 @@ export default function HeaderContainer() {
   const { id, username, avatar } = useSelector(state => state.self);
   const { defaultAvatar } = useSelector(state => state.general);
   const { receivedFriendRequests } = useSelector(state => state.relationships);
-  const apiLoading = useSelector(state => state.api.loginApi.loading);
+  const loginApi = useSelector(state => state.api.loginApi);
+  const history = useHistory();
+
   const dispatch = useDispatch();
   const deleteAccountDispatcher = useCallback(() => dispatch(deleteAccount()), [
     dispatch
   ]);
+
+  useEffect(() => {
+    if (loginApi.status === "success") {
+      history.push("/channels");
+    }
+  }, [history, loginApi]);
 
   if (loggedIn) {
     return (
@@ -43,7 +52,10 @@ export default function HeaderContainer() {
         rejectRequestHandler={id => dispatch(rejectFriendRequest(id))}
         clearNotificationsHandler={() => console.log("clear notifications")}
         deleteAccountHandler={deleteAccountDispatcher}
-        logoutHandler={() => dispatch(logout())}
+        logoutHandler={() => {
+          dispatch(logout());
+          history.push("/welcome");
+        }}
       />
     );
   } else {
@@ -57,7 +69,11 @@ export default function HeaderContainer() {
     };
 
     return (
-      <SiteHeaderWelcome apiLoading={apiLoading} dispatchLogin={handleLogin} />
+      <SiteHeaderWelcome
+        apiLoading={loginApi.loading}
+        apiError={loginApi.status === "error" ? loginApi.error : false}
+        dispatchLogin={handleLogin}
+      />
     );
   }
 }
