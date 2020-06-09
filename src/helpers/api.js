@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export const register = registerInfo => {
-  return axios.post("api/users/", registerInfo);
+  return axios.post("api/users", registerInfo);
 };
 
 export const login = loginInfo => {

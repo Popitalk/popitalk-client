@@ -22,6 +22,7 @@ export default function CreateNewAccountForm({ handleSubmit, loading }) {
           lastName: "",
           dateOfBirth: initialDoB,
           email: "",
+          username: "",
           ...getInitialDatePickerValues(initialDoB),
           password: ""
         }}
@@ -35,11 +36,13 @@ export default function CreateNewAccountForm({ handleSubmit, loading }) {
             .required("Required*")
         })}
         onSubmit={values => {
+          const dateOfBirth = values.dateOfBirth.toISOString().substring(0, 10);
           handleSubmit({
             firstName: values.firstName,
             lastName: values.lastName,
-            dateOfBirth: !values.dateOfBirth,
+            dateOfBirth,
             email: values.email,
+            username: values.username,
             password: values.password,
             confirmPassword: values.confirmPassword
           });
