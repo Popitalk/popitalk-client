@@ -159,10 +159,14 @@ export default function Channel({ tab, type = "channel" }) {
         behavior: "smooth"
       });
     } else if (tab === "channel") {
-      scrollRef.current.scrollTo({
-        top: channelRef.current.offsetTop + 6,
-        behavior: "smooth"
-      });
+      setTimeout(() => {
+        scrollRef.current.scrollTo({
+          top: channelRef.current.offsetTop + 6,
+          // top: 500,
+          behavior: "smooth"
+        });
+        console.log("finished delay 500ms");
+      }, 500);
       console.log("scrollRef", scrollRef);
       console.log("channelRef", channelRef);
       console.log("scroll to channel");
@@ -195,24 +199,22 @@ export default function Channel({ tab, type = "channel" }) {
             classNames="pt-1"
           />
           {type === "channel" && (
-            <div ref={channelRef}>
-              <ForumPanel
-                // ref={channelRef}
-                name={channel.name}
-                description={channel.description}
-                icon={channel.icon || defaultIcon}
-                adminList={[...testUserMinimal, ...testUserMinimal]}
-                status="playing"
-                comments={comments}
-                posts={posts}
-                saveDraft={saveDraft}
-                savePost={savePost}
-                saveComment={saveComment}
-                draft={draft}
-                defaultAvatar={defaultAvatar}
-                toggleLike={toggleLike}
-              />
-            </div>
+            <ForumPanel
+              ref={channelRef}
+              name={channel.name}
+              description={channel.description}
+              icon={channel.icon || defaultIcon}
+              adminList={[...testUserMinimal, ...testUserMinimal]}
+              status="playing"
+              comments={comments}
+              posts={posts}
+              saveDraft={saveDraft}
+              savePost={savePost}
+              saveComment={saveComment}
+              draft={draft}
+              defaultAvatar={defaultAvatar}
+              toggleLike={toggleLike}
+            />
           )}
           {type === "room" && (
             <div>

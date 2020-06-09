@@ -6,23 +6,26 @@ import ChannelDescription from "../../comp/Channel/ChannelDescription";
 import ChannelChat from "../../comp/Channel/ChannelChat";
 import NewChannelPost from "../../comp/Channel/NewChannelPost";
 
-const ForumPanel = ({
-  name,
-  icon,
-  description,
-  adminList,
-  status,
-  posts,
-  comments,
-  saveDraft,
-  savePost,
-  saveComment,
-  draft,
-  defaultAvatar,
-  toggleLike
-}) => {
+const ForumPanel = (
+  {
+    name,
+    icon,
+    description,
+    adminList,
+    status,
+    posts,
+    comments,
+    saveDraft,
+    savePost,
+    saveComment,
+    draft,
+    defaultAvatar,
+    toggleLike
+  },
+  ref
+) => {
   return (
-    <div className="px-32 pt-40 bg-secondaryBackground">
+    <div ref={ref} className="px-32 pt-40 bg-secondaryBackground">
       <ChannelDescription
         name={name}
         icon={icon}
