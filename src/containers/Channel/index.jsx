@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import sortBy from "lodash/sortBy";
 
@@ -38,7 +38,6 @@ import VideoPanel from "./VideoPanel";
 import ForumPanel from "./ForumPanel";
 import ChannelSettingsPanel from "../../comp/Channel/ChannelSettingsPanel";
 import ChannelQueue from "../../comp/Channel/ChannelQueue";
-import ChatPanel from "../../comp/Chat/ChatPanel";
 import VideoSearch from "../../comp/VideoSearch";
 
 export default function Channel({ tab, type = "channel" }) {
@@ -57,6 +56,9 @@ export default function Channel({ tab, type = "channel" }) {
   const channels = useSelector(state => state.channels);
   const dispatch = useDispatch();
   const match = useRouteMatch();
+
+  const channelRef = useRef(null);
+  const scrollRef = useRef(null);
 
   console.log("channels", channels);
   console.log("channelid", channelId);
@@ -150,13 +152,31 @@ export default function Channel({ tab, type = "channel" }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [channelId]);
 
-  let privateAndNotMember = true;
+  useEffect(() => {
+    if (tab === "video") {
+      scrollRef.current.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+    } else if (tab === "channel") {
+      scrollRef.current.scrollTo({
+        top: channelRef.current.offsetTop + 6,
+        behavior: "smooth"
+      });
+      console.log("scrollRef", scrollRef);
+      console.log("channelRef", channelRef);
+      console.log("scroll to channel");
+    } else if (tab === "settings" || tab === "queue") {
+      scrollRef.current.scrollTo({ top: 0 });
+    }
+    console.log("in use effect");
+  }, [tab]);
 
-  if (channel) {
-    privateAndNotMember = !channel.public && !channel.isMember;
-  }
   return (
-    <div className="flex flex-col w-full bg-secondaryBackground p-3 pr-5">
+    <div
+      ref={scrollRef}
+      className="flex flex-col w-full bg-secondaryBackground p-3 pr-5"
+    >
       <ChannelHeader
         id={channelId || roomId}
         name={pickRoomName(channel, users, ownId)}
@@ -167,7 +187,7 @@ export default function Channel({ tab, type = "channel" }) {
         type={type}
       />
 
-      {tab === "video" && (
+      {(tab === "video" || tab === "channel") && (
         <>
           <VideoPanel
             playlist={copyTestQueue}
@@ -175,21 +195,24 @@ export default function Channel({ tab, type = "channel" }) {
             classNames="pt-1"
           />
           {type === "channel" && (
-            <ForumPanel
-              name={channel.name}
-              description={channel.description}
-              icon={channel.icon || defaultIcon}
-              adminList={[...testUserMinimal, ...testUserMinimal]}
-              status="playing"
-              comments={comments}
-              posts={posts}
-              saveDraft={saveDraft}
-              savePost={savePost}
-              saveComment={saveComment}
-              draft={draft}
-              defaultAvatar={defaultAvatar}
-              toggleLike={toggleLike}
-            />
+            <div ref={channelRef}>
+              <ForumPanel
+                // ref={channelRef}
+                name={channel.name}
+                description={channel.description}
+                icon={channel.icon || defaultIcon}
+                adminList={[...testUserMinimal, ...testUserMinimal]}
+                status="playing"
+                comments={comments}
+                posts={posts}
+                saveDraft={saveDraft}
+                savePost={savePost}
+                saveComment={saveComment}
+                draft={draft}
+                defaultAvatar={defaultAvatar}
+                toggleLike={toggleLike}
+              />
+            </div>
           )}
           {type === "room" && (
             <div>

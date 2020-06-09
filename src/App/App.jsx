@@ -115,18 +115,19 @@ export default function App() {
                 />
               </div>
             </Route>
-            <Route
-              exact
-              path={[
-                `/channels/:channelId/video`,
-                `/channels/:channelId/channel`
-              ]}
-            >
+            <Route exact path="/channels/:channelId/video">
               <div className={pageClasses}>
                 <Channel tab="video" />
               </div>
               {chatPanel}
             </Route>
+            <Route exact path="/channels/:channelId/channel">
+              <div className={pageClasses}>
+                <Channel tab="channel" />
+              </div>
+              {chatPanel}
+            </Route>
+
             <Route exact path="/channels/:channelId/queue">
               <div className={pageClasses}>
                 <Channel tab="queue" />

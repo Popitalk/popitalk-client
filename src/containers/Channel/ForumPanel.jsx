@@ -6,7 +6,7 @@ import ChannelDescription from "../../comp/Channel/ChannelDescription";
 import ChannelChat from "../../comp/Channel/ChannelChat";
 import NewChannelPost from "../../comp/Channel/NewChannelPost";
 
-export default function ForumPanel({
+const ForumPanel = ({
   name,
   icon,
   description,
@@ -20,7 +20,7 @@ export default function ForumPanel({
   draft,
   defaultAvatar,
   toggleLike
-}) {
+}) => {
   return (
     <div className="px-32 pt-40 bg-secondaryBackground">
       <ChannelDescription
@@ -40,4 +40,6 @@ export default function ForumPanel({
       />
     </div>
   );
-}
+};
+
+export default React.forwardRef(ForumPanel);
