@@ -146,7 +146,7 @@ module.exports = {
         account: "0px 32px 40px 5px rgba(0,0,0,0.25)"
       },
       width: {
-        dropdown: "26rem"
+        dropdown: "24rem"
       },
       height: {
         chatBox: "27rem",
