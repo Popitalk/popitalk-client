@@ -14,7 +14,7 @@ import "../helpers/initIcons";
 import LeftPanel from "../containers/LeftPanel";
 import RecommendedView from "../comp/RecommendedView";
 import ChatPanel from "../containers/ChatPanel";
-import AnonymousSidebar from "../comp/AnonymousSidebar";
+import AnonymousSidebar from "../comp/LeftPanels/AnonymousSidebar";
 import CreateNewAccountContainer from "../containers/CreateNewAccountContainer";
 import CreateChannelContainer from "../containers/CreateChannelContainer";
 import { channelsList, friendsList } from "../stories/seed-arrays";

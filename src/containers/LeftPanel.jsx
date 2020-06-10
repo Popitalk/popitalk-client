@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import LeftPanel from "../comp/LeftPanel";
+import LeftPanel from "../comp/LeftPanels/LeftPanel";
 import { useSelector, useDispatch } from "react-redux";
 import {
   toggleLeftPanel
