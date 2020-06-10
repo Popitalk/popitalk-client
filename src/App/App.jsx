@@ -13,15 +13,11 @@ import "./App.css";
 import "../helpers/initIcons";
 import LeftPanel from "../containers/LeftPanel";
 import RecommendedView from "../comp/RecommendedView";
-import ChatPanel from "../comp/Chat/ChatPanel";
+import ChatPanel from "../containers/ChatPanel";
 import AnonymousSidebar from "../comp/AnonymousSidebar";
 import CreateNewAccountContainer from "../containers/CreateNewAccountContainer";
 import CreateChannelContainer from "../containers/CreateChannelContainer";
-import {
-  testMessages,
-  channelsList,
-  friendsList
-} from "../stories/seed-arrays";
+import { channelsList, friendsList } from "../stories/seed-arrays";
 import Channel from "../containers/Channel/index";
 
 export default function App() {
@@ -53,7 +49,7 @@ export default function App() {
 
   const chatPanel = (
     <div className="w-dropdown">
-      <ChatPanel messages={testMessages} />
+      <ChatPanel />
     </div>
   );
 

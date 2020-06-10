@@ -4,16 +4,17 @@ import ChatMessage from "./ChatMessage";
 function ChatMessages({ messages, handleResend, handleDelete }) {
   return (
     <>
-      {messages.map((message, i) => {
-        return (
-          <ChatMessage
-            key={i}
-            message={message}
-            handleResend={handleResend}
-            handleDelete={handleDelete}
-          />
-        );
-      })}
+      {messages &&
+        messages.map((message, i) => {
+          return (
+            <ChatMessage
+              key={i}
+              message={message}
+              handleResend={handleResend}
+              handleDelete={handleDelete}
+            />
+          );
+        })}
     </>
   );
 }
