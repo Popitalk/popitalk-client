@@ -11,7 +11,7 @@ import {
   getInitialDatePickerValues
 } from "../helpers/functions";
 
-export default function CreateNewAccountForm({ handleSubmit, loading }) {
+export default function CreateNewAccountForm({ handleSubmit, error, loading }) {
   const initialDoB = new Date();
 
   return (
@@ -43,8 +43,7 @@ export default function CreateNewAccountForm({ handleSubmit, loading }) {
             dateOfBirth,
             email: values.email,
             username: values.username,
-            password: values.password,
-            confirmPassword: values.confirmPassword
+            password: values.password
           });
         }}
       >
@@ -100,6 +99,11 @@ export default function CreateNewAccountForm({ handleSubmit, loading }) {
                   Sign Up
                 </Button>
               </div>
+              {error ? (
+                <p className="text-errorText text-sm pt-4">{error}</p>
+              ) : (
+                <></>
+              )}
             </div>
           </form>
         )}
