@@ -34,22 +34,22 @@ export default function ChannelHeader({
   // const { id: ownId } = useSelector(state => state.self);
   // const loading = useSelector(state => !state.channels[id]?.loaded);
 
-  console.log(
-    "match",
-    match,
-    "location",
-    location
-    // "channelRef",
-    // channelRef,
-    // "scrollRef",
-    // scrollRef,
-    // // "id",
-    // // ownId,
-    // "loading",
-    // loading,
-    // "channel",
-    // channel
-  );
+  // console.log(
+  //   "match",
+  //   match,
+  //   "location",
+  //   location
+  //   // "channelRef",
+  //   // channelRef,
+  //   // "scrollRef",
+  //   // scrollRef,
+  //   // // "id",
+  //   // // ownId,
+  //   // "loading",
+  //   // loading,
+  //   // "channel",
+  //   // channel
+  // );
   return (
     <header className="flex justify-between bg-disabledBackground">
       <div className="flex items-center">

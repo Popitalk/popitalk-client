@@ -60,12 +60,12 @@ export default function Channel({ tab, type = "channel" }) {
   const channelRef = useRef(null);
   const scrollRef = useRef(null);
 
-  console.log("channels", channels);
-  console.log("channelid", channelId);
-  console.log("channel", channel);
-  console.log("posts", posts);
-  console.log("comments", comments);
-  console.log("tab", tab);
+  // console.log("channels", channels);
+  // console.log("channelid", channelId);
+  // console.log("channel", channel);
+  // console.log("posts", posts);
+  // console.log("comments", comments);
+  // console.log("tab", tab);
   const copyTestQueue = [...testQueue];
   const activeVideo = copyTestQueue[0];
   activeVideo.status = "playing";
@@ -152,34 +152,35 @@ export default function Channel({ tab, type = "channel" }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [channelId]);
 
+  const loading = useSelector(state => !state.channels[channelId]?.loaded);
+
   useEffect(() => {
+    if (loading) return;
     if (tab === "video") {
       scrollRef.current.scrollTo({
         top: 0,
         behavior: "smooth"
       });
+      console.log("in useEffect for video");
     } else if (tab === "channel") {
-      setTimeout(() => {
-        scrollRef.current.scrollTo({
-          top: channelRef.current.offsetTop + 6,
-          // top: 500,
-          behavior: "smooth"
-        });
-        console.log("finished delay 500ms");
-      }, 500);
+      scrollRef.current.scrollTo({
+        top: channelRef.current.offsetTop + 6,
+        behavior: "smooth"
+      });
+      console.log("channelRef offsetTop", channelRef.current.offsetTop);
       console.log("scrollRef", scrollRef);
       console.log("channelRef", channelRef);
-      console.log("scroll to channel");
+      console.log("in useEffect for channel");
     } else if (tab === "settings" || tab === "queue") {
       scrollRef.current.scrollTo({ top: 0 });
+      console.log("in useEffect for settings");
     }
-    console.log("in use effect");
-  }, [tab]);
+  }, [tab, loading]);
 
   return (
     <div
       ref={scrollRef}
-      className="flex flex-col w-full bg-secondaryBackground p-3 pr-5"
+      className="flex flex-col w-full bg-secondaryBackground p-3 pr-5 overflow-y-scroll"
     >
       <ChannelHeader
         id={channelId || roomId}
