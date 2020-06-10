@@ -62,19 +62,7 @@ export default function ChannelChat({
     <div className="flex flex-col">
       {posts &&
         posts.map((post, idx) => {
-          // const postComments = post.comments.map(commentId => {
-          //   const comment = comments.filter(comment => {
-          //     return commentId == comment.id;
-          //   });
-          //   return comment[0];
-          // });
-          console.log("comments in channel chat", comments, "postid", post.id);
-          // const postComments = comments[post.id]; //CHECK: not sure why this works
-          // const postComments = copyComments.filter((comment) => {
-          //   return comment.postId === post.id
-          // })
           const postComments = comments[post.id];
-          console.log("postComments", postComments);
 
           return (
             <>
