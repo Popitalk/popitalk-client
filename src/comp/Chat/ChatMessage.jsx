@@ -3,7 +3,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useSelector } from "react-redux";
 
 export default function ChatMessage({ message, handleResend, handleDelete }) {
-  console.log(message);
   const me = useSelector(state => state.self.username);
   const defaultAvatar = useSelector(state => state.general.defaultAvatar);
   return (
