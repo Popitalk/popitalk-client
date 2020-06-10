@@ -1,6 +1,6 @@
 import React from "react";
 import Button from "../Button";
-import QueueSection from "../QueueSection";
+import ChannelCardList from "../Channel/ChannelCardList";
 import PopupMenu from "../PopupMenu";
 
 export default function ProfileModal({
@@ -25,12 +25,6 @@ export default function ProfileModal({
     options.unshift({ name: "Unfriend", handler: unfriendHandler });
   }
 
-  //TODO: Delete this
-  const handlerChange = ({ oldIndex, newIndex }) => {
-    console.log("test");
-  };
-
-  //TODO: Replace QueueSection with static list of videos when component exists
   return (
     <div className="p-4 overflow-auto">
       {options ? (
@@ -76,7 +70,7 @@ export default function ProfileModal({
           : `Videos You and ${user.username} Watched`}
       </div>
       <div className="flex">
-        <QueueSection queueList={recentVideos} handlerChange={handlerChange} />
+        <ChannelCardList channelList={recentVideos} />
       </div>
       <div className="text-md font-bold pb-2 pt-8">
         {myProfile
@@ -84,10 +78,7 @@ export default function ProfileModal({
           : `Channels You and ${user.username} Follow`}
       </div>
       <div className="flex">
-        <QueueSection
-          queueList={followedChannels}
-          handlerChange={handlerChange}
-        />
+        <ChannelCardList channelList={followedChannels} />
       </div>
     </div>
   );

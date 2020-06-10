@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import ChannelCard from "./ChannelCard.jsx";
 
-function ChannelCardList({ header, channelList }) {
+function ChannelCardList({ channelList }) {
   // TODO: Use Redux to get "panelOpen" variable
   // from ChannelsPanel.jsx and set amount of videos shown
   // based on that as well. Eg. panelOpen?"md:grid-cols-2":""

@@ -5,18 +5,21 @@ import ProfileModal from "./ProfileModalContainer";
 import EditUserSettingsContainer from "./EditUserSettingsContainer";
 import ChangePasswordContainer from "./ChangePasswordContainer";
 import BlockedUsersContainer from "./BlockedUsersContainer";
+import InviteFriendsContainer from "./InviteFriendsContainer";
 import {
   MODAL_PROFILE,
   MODAL_EDIT_USER_SETTINGS,
   MODAL_CHANGE_PASSWORD,
-  MODAL_BLOCKED_USERS
+  MODAL_BLOCKED_USERS,
+  MODAL_INVITE
 } from "../../helpers/constants";
 
 const ModalComponents = {
   [MODAL_PROFILE]: ProfileModal,
   [MODAL_EDIT_USER_SETTINGS]: EditUserSettingsContainer,
   [MODAL_CHANGE_PASSWORD]: ChangePasswordContainer,
-  [MODAL_BLOCKED_USERS]: BlockedUsersContainer
+  [MODAL_BLOCKED_USERS]: BlockedUsersContainer,
+  [MODAL_INVITE]: InviteFriendsContainer
 };
 
 export default function ModalManager() {

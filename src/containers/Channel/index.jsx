@@ -193,11 +193,7 @@ export default function Channel({ tab, type = "channel" }) {
 
       {(tab === "video" || tab === "channel") && (
         <>
-          <VideoPanel
-            playlist={copyTestQueue}
-            activeFriendViewers={testUserMinimal}
-            classNames="pt-1"
-          />
+          <VideoPanel playlist={copyTestQueue} classNames="pt-1" />
           {type === "channel" && (
             <ForumPanel
               ref={channelRef}
