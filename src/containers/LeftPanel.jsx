@@ -63,8 +63,8 @@ export default function LeftPanelContainer() {
 
   const updateSelectedPageAndMain = page => {
     const pages = {
-      channels: "channels",
-      friends: "friends"
+      channels: "/channels",
+      friends: "/friends"
     };
     if (pages[page]) {
       history.push(pages[page]);
@@ -94,7 +94,7 @@ export default function LeftPanelContainer() {
           friends={friends}
           selected={selectedChannel}
           handleSelect={id => setSelectedChannel(id)}
-          handleCreateChannel={() => history.push("create")}
+          handleCreateChannel={() => history.push("/create")}
           updateSelectedPage={updateSelectedPageAndMain}
           isCollapsed={isCollapsed}
           selectedPage="channels"
@@ -108,7 +108,7 @@ export default function LeftPanelContainer() {
           friends={friends}
           selected={selectedChannel}
           handleSelect={id => setSelectedChannel(id)}
-          handleCreateChannel={() => history.push("create")}
+          handleCreateChannel={() => history.push("/create")}
           updateSelectedPage={updateSelectedPageAndMain}
           isCollapsed={isCollapsed}
           selectedPage="friends"
@@ -122,7 +122,7 @@ export default function LeftPanelContainer() {
           friends={friends}
           selected={selectedChannel}
           handleSelect={id => setSelectedChannel(id)}
-          handleCreateChannel={() => history.push("create")}
+          handleCreateChannel={() => history.push("/create")}
           updateSelectedPage={updateSelectedPanelPage}
           isCollapsed={isCollapsed}
           selectedPage={selectedPage}
