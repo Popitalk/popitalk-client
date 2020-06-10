@@ -148,9 +148,7 @@ export const handleCancel = (selected, setSelected, id) => {
 export const mapIdsToUsers = (userIds, users, defaultAvatar) => {
   return userIds.map(userId => ({
     id: userId,
-    firstName: users[userId].firstName,
-    lastName: users[userId].lastName,
-    username: users[userId].username,
+    ...users[userId],
     avatar: users[userId].avatar || defaultAvatar
   }));
 };

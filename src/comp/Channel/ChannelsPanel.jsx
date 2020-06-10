@@ -6,11 +6,13 @@ import MiniFriendsList from "../MiniFriendsList";
 import PanelHeader from "../PanelHeader";
 
 export default function ChannelsPanel({
-  channels,
+  yourChannels,
+  followingChannels,
   selected,
   friends,
   handleSelect,
   handleCollapse,
+  handleCreateChannel,
   updateSelectedPage,
   selectedPage
 }) {
@@ -33,11 +35,11 @@ export default function ChannelsPanel({
                 size="sm"
                 icon="plus"
                 background="primaryButton"
-                onClick=""
+                onClick={handleCreateChannel}
               />
             </div>
             <ChannelsList
-              channels={channels}
+              channels={yourChannels}
               selected={selected}
               handleSelect={handleSelect}
               className=""
@@ -48,7 +50,7 @@ export default function ChannelsPanel({
               Following
             </h4>
             <ChannelsList
-              channels={channels}
+              channels={followingChannels}
               selected={selected}
               handleSelect={handleSelect}
               className=""

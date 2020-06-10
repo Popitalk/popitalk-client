@@ -19,6 +19,26 @@ export default function LeftPanelContainer() {
   const { defaultAvatar } = useSelector(state => state.general);
   const isCollapsed = useSelector(state => state.ui.isCollapsed);
   // const activeTab = useSelector(state => state.ui.leftPanelActiveTab);
+
+  let yourChannels = [];
+  let followingChannels = [];
+
+  const { defaultIcon } = useSelector(state => state.general);
+  const { id: ownId, channelIds } = useSelector(state => state.self);
+  channelIds
+    .map(channelId => ({
+      id: channelId,
+      ...channels[channelId],
+      icon: channels[channelId].icon || defaultIcon
+    }))
+    .forEach(channel => {
+      if (channel.ownerId === ownId) {
+        yourChannels.push(channel);
+      } else {
+        followingChannels.push(channel);
+      }
+    });
+
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -69,10 +89,12 @@ export default function LeftPanelContainer() {
     <Switch>
       <Route exact path="/channels">
         <LeftPanel
-          channels={channels}
+          yourChannels={yourChannels}
+          followingChannels={followingChannels}
           friends={friends}
           selected={selectedChannel}
           handleSelect={id => setSelectedChannel(id)}
+          handleCreateChannel={() => history.push("create")}
           updateSelectedPage={updateSelectedPageAndMain}
           isCollapsed={isCollapsed}
           selectedPage="channels"
@@ -81,10 +103,12 @@ export default function LeftPanelContainer() {
       </Route>
       <Route exact path="/friends">
         <LeftPanel
-          channels={channels}
+          yourChannels={yourChannels}
+          followingChannels={followingChannels}
           friends={friends}
           selected={selectedChannel}
           handleSelect={id => setSelectedChannel(id)}
+          handleCreateChannel={() => history.push("create")}
           updateSelectedPage={updateSelectedPageAndMain}
           isCollapsed={isCollapsed}
           selectedPage="friends"
@@ -93,10 +117,12 @@ export default function LeftPanelContainer() {
       </Route>
       <Route>
         <LeftPanel
-          channels={channels}
+          yourChannels={yourChannels}
+          followingChannels={followingChannels}
           friends={friends}
           selected={selectedChannel}
           handleSelect={id => setSelectedChannel(id)}
+          handleCreateChannel={() => history.push("create")}
           updateSelectedPage={updateSelectedPanelPage}
           isCollapsed={isCollapsed}
           selectedPage={selectedPage}

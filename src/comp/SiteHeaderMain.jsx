@@ -206,11 +206,13 @@ export default function SiteHeaderMain({
               </div>
             </li>
             <li>
-              <FontAwesomeIcon
-                icon="info-circle"
-                size="lg"
-                className="cursor-pointer text-secondaryText hover:text-highlightText"
-              />
+              <a href="https://about.popitalk.com/">
+                <FontAwesomeIcon
+                  icon="info-circle"
+                  size="lg"
+                  className="cursor-pointer text-secondaryText hover:text-highlightText"
+                />
+              </a>
             </li>
           </ul>
 
