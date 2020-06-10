@@ -22,7 +22,7 @@ export default function ModalManager({
   });
 
   const contentClasses = classnames(
-    "h-75vh flex flex-col items-stretch overflow-hidden",
+    "h-100vh flex flex-col items-stretch overflow-hidden",
     {
       "h-modalFull": fixedFullSize,
       "rounded-xl": !header,
