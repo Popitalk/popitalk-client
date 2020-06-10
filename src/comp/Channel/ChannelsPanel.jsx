@@ -17,7 +17,7 @@ export default function ChannelsPanel({
   selectedPage
 }) {
   return (
-    <div className="w-full px-2 pt-2 bg-primaryBackground md:w-84">
+    <div className="w-full px-2 bg-primaryBackground md:w-84">
       <PanelHeader
         handleCollapse={handleCollapse}
         updateSelectedPage={updateSelectedPage}
