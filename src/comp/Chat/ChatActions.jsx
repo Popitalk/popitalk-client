@@ -1,13 +1,15 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-function ChatActions() {
+function ChatActions({ handleSendMessage }) {
+  const [messageContent, setMessageContent] = useState();
   const textareaRef = useRef();
 
   const handleChange = e => {
     e.target.style.height = "2.5rem";
     e.target.style.height = `${Math.min(e.target.scrollHeight + 2, 168)}px`;
     //dispatch(setChatDraft({ channelId, draft: e.target.value }));
+    setMessageContent(e.target.value);
   };
 
   return (
@@ -23,6 +25,7 @@ function ChatActions() {
         <textarea
           className="w-full h-10 p-2 pl-4 overflow-hidden rounded-lg resize-none bg-secondaryBackground focus:outline-none text-secondaryText text-sm"
           placeholder="Type a message..."
+          value={messageContent}
           maxLength="240"
           ref={textareaRef}
           onChange={handleChange}
@@ -34,7 +37,13 @@ function ChatActions() {
             size="lg"
           />
         </div>
-        <button className="font-bold text-highlightText pr-2 text-sm focus:outline-none">
+        <button
+          onClick={() => {
+            handleSendMessage(messageContent);
+            setMessageContent("");
+          }}
+          className="font-bold text-highlightText pr-2 text-sm focus:outline-none"
+        >
           Send
         </button>
       </div>
