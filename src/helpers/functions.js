@@ -33,7 +33,10 @@ export function getUserInformationSchema() {
       .max(32, "Last name is too long.")
       .required("Last name is required."),
     dateOfBirth: Yup.date()
-      .max(thirteenYearsAgo, "You can't use Playnow if you are younger than 13")
+      .max(
+        thirteenYearsAgo,
+        "You can't use Popitalk if you are younger than 13."
+      )
       .required(),
     email: Yup.string()
       .email("Email is invalid.")

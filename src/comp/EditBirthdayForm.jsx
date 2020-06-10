@@ -7,6 +7,22 @@ import { getDatePickerValues } from "../helpers/functions";
 function EditBirthdayForm({ loading, formik }) {
   const datePicker = getDatePickerValues();
 
+  const handleBlur = e => {
+    formik.handleBlur(e);
+
+    formik.values.dateOfBirth.setDate(formik.values.day);
+    formik.values.dateOfBirth.setMonth(formik.values.month - 1);
+    formik.values.dateOfBirth.setFullYear(
+      datePicker.years[formik.values.year - 1].label
+    );
+
+    formik.setFieldValue("dateOfBirth", formik.values.dateOfBirth);
+
+    formik.setFieldTouched("day", true, false);
+    formik.setFieldTouched("month", true, false);
+    formik.setFieldTouched("year", true, false);
+  };
+
   return (
     <>
       <div className="w-full">
@@ -30,7 +46,7 @@ function EditBirthdayForm({ loading, formik }) {
             isMulti={false}
             isClearable={false}
             isSearchable={false}
-            onBlur={formik.handleBlur}
+            onBlur={handleBlur}
             disabled={loading}
             value={formik.values.day}
             onChange={v => {
@@ -38,6 +54,8 @@ function EditBirthdayForm({ loading, formik }) {
               formik.values.dateOfBirth.setDate(v.value);
               formik.setFieldValue("dateOfBirth", formik.values.dateOfBirth);
               formik.setFieldTouched("day", true, false);
+              formik.setFieldTouched("month", true, false);
+              formik.setFieldTouched("year", true, false);
             }}
             className="w-25 p-0"
           />
@@ -50,14 +68,16 @@ function EditBirthdayForm({ loading, formik }) {
             isMulti={false}
             isClearable={false}
             isSearchable={false}
-            onBlur={formik.handleBlur}
+            onBlur={handleBlur}
             disabled={loading}
             value={formik.values.month}
             onChange={v => {
               formik.values.month = v.value;
               formik.values.dateOfBirth.setMonth(v.value);
               formik.setFieldValue("dateOfBirth", formik.values.dateOfBirth);
+              formik.setFieldTouched("day", true, false);
               formik.setFieldTouched("month", true, false);
+              formik.setFieldTouched("year", true, false);
             }}
             className="w-25 p-0"
           />
@@ -70,13 +90,15 @@ function EditBirthdayForm({ loading, formik }) {
             isMulti={false}
             isClearable={false}
             isSearchable={false}
-            onBlur={formik.handleBlur}
+            onBlur={handleBlur}
             disabled={loading}
             value={formik.values.year}
             onChange={v => {
               formik.values.year = v.value;
               formik.values.dateOfBirth.setFullYear(v.label);
               formik.setFieldValue("dateOfBirth", formik.values.dateOfBirth);
+              formik.setFieldTouched("day", true, false);
+              formik.setFieldTouched("month", true, false);
               formik.setFieldTouched("year", true, false);
             }}
             className="w-25 p-0"
