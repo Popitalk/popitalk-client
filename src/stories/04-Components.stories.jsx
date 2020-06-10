@@ -5,23 +5,16 @@ import RequestCard from "../comp/InfoCards/RequestCard";
 import AvatarDeck from "../comp/AvatarDeck";
 import RoomIcon from "../comp/RoomIcon";
 import ChannelCard from "../comp/Channel/ChannelCard";
-import ChannelsPanel from "../comp/Channel/ChannelsPanel";
-import FriendsPanel from "../comp/FriendsPanel";
 import PopupMenu from "../comp/PopupMenu";
 import ManageUsers from "../comp/ManageUsers";
 import ChatPanel from "../comp/Chat/ChatPanel";
 import CircleCheckBox from "../comp/CircleCheckbox";
-import AnonymousSidebar from "../comp/AnonymousSidebar";
 import Tag from "../comp/Tag";
 import VideoPlayer from "../comp/VideoPlayer";
 import RecommendedVideos from "../comp/RecommendedVideos";
-import DefaultLayout from "../comp/DefaultLayout";
-import ChannelHeader from "../comp/ChannelHeader";
-import CollapsedPanel from "../comp/CollapsedPanel";
 
 import {
   testChannels,
-  testRooms,
   testUsers,
   testUserMinimal,
   testMessages,
@@ -82,28 +75,6 @@ const Container = styled.div`
 //   } */
 // `;
 
-export const DefaultLayoutTest = () => {
-  const { selectedChannel, setSelectedChannel } = useState(null);
-  return (
-    <DefaultLayout>
-      <div className="flex">
-        <div className="w-3/12">
-          <ChannelsPanel
-            channels={testChannels}
-            friends={testUsers}
-            selected={selectedChannel}
-            handleSelect={id => setSelectedChannel(id)}
-          />
-        </div>
-        <div className="w-6/12">
-          <ChannelHeader />
-        </div>
-        <div className="w-3/12"></div>
-      </div>
-    </DefaultLayout>
-  );
-};
-
 export const CircleCheckBoxTest = () => {
   const [checked, setChecked] = useState(true);
 
@@ -120,16 +91,6 @@ export const TagTest = () => {
   };
 
   return <Tag id={1} name="Testing" handleCancel={handleCancel} />;
-};
-
-export const AnonymousSidebarTest = () => {
-  const handleSubmit = data => {
-    console.log(data);
-  };
-
-  return (
-    <AnonymousSidebar link="https://popitalk.com" handleSubmit={handleSubmit} />
-  );
 };
 
 export const RequestCard123 = () => {
@@ -297,52 +258,6 @@ export const ChannelCard123 = () => {
   );
 };
 
-export const ChannelsPanel123 = () => {
-  const [selectedChannel, setSelectedChannel] = useState(null);
-
-  return (
-    <div className="p-5 bg-secondaryBackground">
-      <ChannelsPanel
-        channels={testChannels}
-        friends={testUsers}
-        selected={selectedChannel}
-        handleSelect={id => setSelectedChannel(id)}
-      />
-    </div>
-  );
-};
-
-export const FriendsPanel123 = () => {
-  const [selectedChannel, setSelectedChannel] = useState(null);
-
-  const handleProfile = () => {
-    console.log("PROFILE");
-  };
-
-  const handleAccept = () => {
-    console.log("ACCEPT");
-  };
-
-  const handleReject = () => {
-    console.log("REJECT");
-  };
-
-  return (
-    <div className="p-5 bg-secondaryBackground">
-      <FriendsPanel
-        roomsResults={testRooms}
-        channels={testChannels}
-        selected={selectedChannel}
-        handleSelect={id => setSelectedChannel(id)}
-        userSearchResults={testUsers}
-        handleAccept={handleAccept}
-        handleReject={handleReject}
-        handleProfile={handleProfile}
-      />
-    </div>
-  );
-};
-
 export const PopupMenu123 = () => {
   // const [selectedRoom, setSelectedRoom] = useState(null);
 
@@ -429,6 +344,7 @@ export const SiteHeadersShow = () => {
     </>
   );
 };
+
 export const ChannelChatPanel = () => {
   const typers = testUserMinimal;
 
@@ -494,8 +410,4 @@ const videoList = [
 
 export function RecommendedVideoSection() {
   return <RecommendedVideos list={videoList} />;
-}
-
-export function CollapsedPanelShow() {
-  return <CollapsedPanel channels={testChannels} />;
 }

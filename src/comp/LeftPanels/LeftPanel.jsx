@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
 import FriendsPanel from "./FriendsPanel";
 import CollapsedPanel from "./CollapsedPanel";
-import ChannelsPanel from "./Channel/ChannelsPanel";
+import ChannelsPanel from "./ChannelsPanel";
 
 export default function LeftPanel({
   yourChannels,

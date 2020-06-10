@@ -3,7 +3,7 @@ import ChannelsList from "../InfoCardLists/ChannelsList";
 import Button from "../Button";
 import SuggestionCard from "../SuggestionCard";
 import MiniFriendsList from "../MiniFriendsList";
-import PanelHeader from "../PanelHeader";
+import PanelHeader from "./PanelHeader";
 
 export default function ChannelsPanel({
   yourChannels,

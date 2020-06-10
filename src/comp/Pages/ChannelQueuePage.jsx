@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import ChannelPage from "../ChannelPage";
-import ChannelsPanel from "../Channel/ChannelsPanel";
+import ChannelsPanel from "../LeftPanels/ChannelsPanel";
 import ChannelQueue from "../Channel/ChannelQueue";
 
 import TabNavMobile from "../TabNavMobile";

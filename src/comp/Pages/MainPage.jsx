@@ -2,7 +2,7 @@ import React, { Fragment, useState } from "react";
 
 import SiteHeaderMain from "../SiteHeaderMain";
 import TabNavMobile from "../TabNavMobile";
-import LeftPanel from "../LeftPanel";
+import LeftPanel from "../LeftPanels/LeftPanel";
 import RecommendedView from "../RecommendedView";
 
 export default function MainPage({ list, channelPanelProps }) {
@@ -33,7 +33,8 @@ export default function MainPage({ list, channelPanelProps }) {
       </div>
       <div className="flex">
         <LeftPanel
-          channels={channels}
+          yourChannels={channels}
+          followingChannels={channels}
           friends={friends}
           selected={selected}
           handleSelect={handleSelect}

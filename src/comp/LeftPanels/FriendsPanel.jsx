@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import Button from "./Button";
-import FriendUsersList from "./InfoCardLists/FriendUsersList";
-import StretchList from "./InfoCardLists/StretchList";
-import Input from "./Input";
-import RoomsList from "./InfoCardLists/RoomsList";
+import Button from "../Button";
+import FriendUsersList from "../InfoCardLists/FriendUsersList";
+import StretchList from "../InfoCardLists/StretchList";
+import Input from "../Input";
+import RoomsList from "../InfoCardLists/RoomsList";
 import PanelHeader from "./PanelHeader";
 
 export default function FriendsPanel({
