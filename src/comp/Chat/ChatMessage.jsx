@@ -46,7 +46,7 @@ export default function ChatMessage({
             {handleResend ? (
               <button
                 className="focus:outline-none flex items-center py-2"
-                onClick={() => handleResend(message)}
+                onClick={() => handleResend(message.content)}
               >
                 <FontAwesomeIcon
                   size="xs"
