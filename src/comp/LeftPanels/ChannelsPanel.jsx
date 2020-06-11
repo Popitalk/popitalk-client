@@ -3,19 +3,21 @@ import ChannelsList from "../InfoCardLists/ChannelsList";
 import Button from "../Button";
 import SuggestionCard from "../SuggestionCard";
 import MiniFriendsList from "../MiniFriendsList";
-import PanelHeader from "../PanelHeader";
+import PanelHeader from "./PanelHeader";
 
 export default function ChannelsPanel({
-  channels,
+  yourChannels,
+  followingChannels,
   selected,
   friends,
   handleSelect,
   handleCollapse,
+  handleCreateChannel,
   updateSelectedPage,
   selectedPage
 }) {
   return (
-    <div className="w-full px-2 pt-2 bg-primaryBackground md:w-84">
+    <div className="w-full px-2 bg-primaryBackground md:w-84">
       <PanelHeader
         handleCollapse={handleCollapse}
         updateSelectedPage={updateSelectedPage}
@@ -33,11 +35,11 @@ export default function ChannelsPanel({
                 size="sm"
                 icon="plus"
                 background="primaryButton"
-                onClick=""
+                onClick={handleCreateChannel}
               />
             </div>
             <ChannelsList
-              channels={channels}
+              channels={yourChannels}
               selected={selected}
               handleSelect={handleSelect}
               className=""
@@ -48,7 +50,7 @@ export default function ChannelsPanel({
               Following
             </h4>
             <ChannelsList
-              channels={channels}
+              channels={followingChannels}
               selected={selected}
               handleSelect={handleSelect}
               className=""

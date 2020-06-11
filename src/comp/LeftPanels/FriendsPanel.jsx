@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import Button from "./Button";
-import FriendUsersList from "./InfoCardLists/FriendUsersList";
-import StretchList from "./InfoCardLists/StretchList";
-import Input from "./Input";
-import RoomsList from "./InfoCardLists/RoomsList";
+import Button from "../Button";
+import FriendUsersList from "../InfoCardLists/FriendUsersList";
+import StretchList from "../InfoCardLists/StretchList";
+import Input from "../Input";
+import RoomsList from "../InfoCardLists/RoomsList";
 import PanelHeader from "./PanelHeader";
 
 export default function FriendsPanel({
@@ -17,7 +17,7 @@ export default function FriendsPanel({
   const [search, setSearch] = useState("");
 
   return (
-    <div className="w-full h-full px-2 pt-2 bg-primaryBackground md:w-84">
+    <div className="w-full h-full px-2 bg-primaryBackground md:w-84">
       <PanelHeader
         handleCollapse={handleCollapse}
         updateSelectedPage={updateSelectedPage}

@@ -4,7 +4,7 @@ import ChatHeader from "./ChatHeader";
 import ChatMessages from "./ChatMessages";
 import ChatActions from "./ChatActions";
 
-function ChatPanel({ typerAvatars, typerIDs, ...props }) {
+function ChatPanel({ typerAvatars, handleSendMessage, typerIDs, ...props }) {
   return (
     <section className="w-dropdown h-full p-2 bg-primaryBackground flex flex-col md:w-84">
       <div className="h-auto">
@@ -22,7 +22,7 @@ function ChatPanel({ typerAvatars, typerIDs, ...props }) {
         ) : (
           <></>
         )}
-        <ChatActions />
+        <ChatActions handleSendMessage={handleSendMessage} />
       </div>
     </section>
   );

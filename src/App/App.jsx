@@ -13,26 +13,11 @@ import "./App.css";
 import "../helpers/initIcons";
 import LeftPanel from "../containers/LeftPanel";
 import RecommendedView from "../comp/RecommendedView";
-import ChannelVideo from "../comp/Channel/ChannelVideo";
-import ChannelQueue from "../comp/Channel/ChannelQueue";
-import ChannelSettingsPanel from "../comp/Channel/ChannelSettingsPanel";
-import ChatPanel from "../comp/Chat/ChatPanel";
-import ChannelForm from "../comp/Channel/ChannelForm";
-import AnonymousSidebar from "../comp/AnonymousSidebar";
+import ChatPanel from "../containers/ChatPanel";
+import AnonymousSidebar from "../comp/LeftPanels/AnonymousSidebar";
 import CreateNewAccountContainer from "../containers/CreateNewAccountContainer";
-import {
-  testComments,
-  testPosts,
-  testQueue,
-  testUserMinimal,
-  testMessages,
-  testResult,
-  testChannels,
-  testUsers,
-  channelsList,
-  friendsList,
-  generateTestUsers
-} from "../stories/seed-arrays";
+import CreateChannelContainer from "../containers/CreateChannelContainer";
+import { channelsList, friendsList } from "../stories/seed-arrays";
 import Channel from "../containers/Channel/index";
 
 export default function App() {
@@ -62,11 +47,9 @@ export default function App() {
   //     </section>
   //   );
 
-  const generatedUsers = generateTestUsers();
-
   const chatPanel = (
     <div className="w-dropdown">
-      <ChatPanel messages={testMessages} />
+      <ChatPanel />
     </div>
   );
 
@@ -100,15 +83,7 @@ export default function App() {
             </div>
             <Route exact path="/create">
               <div className="flex justify-center p-5 bg-secondaryBackground w-full overflow-auto">
-                <ChannelForm
-                  initial={{
-                    name: "",
-                    description: "",
-                    private: false,
-                    icon: null,
-                    category: ""
-                  }}
-                />
+                <CreateChannelContainer />
               </div>
             </Route>
             <Route exact path="/channels/:channelId/video">

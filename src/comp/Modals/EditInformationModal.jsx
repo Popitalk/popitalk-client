@@ -20,7 +20,7 @@ export default function EditInformationModal({
   const [uploadedImage, setUploadedImage] = useState(undefined);
 
   return (
-    <div className="p-4 overflow-auto">
+    <div className="p-12 overflow-auto">
       <Formik
         initialValues={{
           ...initial,
@@ -64,7 +64,7 @@ export default function EditInformationModal({
                 disabled={loading}
                 className=""
               />
-              <p className="my-4">{username}</p>
+              <p className="mb-12 text-2xl font-bold">{username}</p>
               <EditInformationForm loading={loading} />
               <EditBirthdayForm loading={loading} />
               {informationUpdated ? (
@@ -74,7 +74,7 @@ export default function EditInformationModal({
               ) : (
                 <></>
               )}
-              <div className="pt-4">
+              <div className="pt-12">
                 <Button type="submit" disabled={loading || !isValid || !dirty}>
                   Confirm
                 </Button>

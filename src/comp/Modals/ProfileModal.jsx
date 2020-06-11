@@ -1,6 +1,6 @@
 import React from "react";
 import Button from "../Button";
-import QueueSection from "../QueueSection";
+import ChannelCardList from "../Channel/ChannelCardList";
 import PopupMenu from "../PopupMenu";
 
 export default function ProfileModal({
@@ -25,14 +25,8 @@ export default function ProfileModal({
     options.unshift({ name: "Unfriend", handler: unfriendHandler });
   }
 
-  //TODO: Delete this
-  const handlerChange = ({ oldIndex, newIndex }) => {
-    console.log("test");
-  };
-
-  //TODO: Replace QueueSection with static list of videos when component exists
   return (
-    <div className="p-4 overflow-auto">
+    <div className="p-8 overflow-auto">
       {options ? (
         <div className="flex justify-end">
           <PopupMenu id={user.id} options={options} />
@@ -40,7 +34,7 @@ export default function ProfileModal({
       ) : (
         <></>
       )}
-      <div className="flex justify-center items-center space-x-2">
+      <div className="flex justify-center items-center space-x-6 py-4">
         <img
           className="img w-32 h-32 rounded-circle"
           src={user.avatar}
@@ -48,7 +42,7 @@ export default function ProfileModal({
         />
         <div>
           <div className="text-4xl font-semibold">{user.username}</div>
-          <div className="text-md font-semibold">
+          <div className="text-md font-regular">
             {`${user.firstName} ${user.lastName}`}
           </div>
         </div>
@@ -65,29 +59,26 @@ export default function ProfileModal({
           <></>
         )}
       </div>
-      <div className="flex justify-center space-x-2 py-8">
-        <div className="text-sm">{`${following} Following`}</div>
-        <div className="text-sm">{`${followers} Followers`}</div>
-        <div className="text-sm">{`${friends} Friends`}</div>
+      <div className="flex justify-center space-x-8 pt-4 pb-12">
+        <div className="text-md font-semibold">{`${following} Following`}</div>
+        <div className="text-md font-semibold">{`${followers} Followers`}</div>
+        <div className="text-md font-semibold">{`${friends} Friends`}</div>
       </div>
-      <div className="text-md font-bold pb-2">
+      <div className="text-md font-bold pb-4">
         {myProfile
           ? "Videos You Watched"
           : `Videos You and ${user.username} Watched`}
       </div>
       <div className="flex">
-        <QueueSection queueList={recentVideos} handlerChange={handlerChange} />
+        <ChannelCardList channelList={recentVideos} />
       </div>
-      <div className="text-md font-bold pb-2 pt-8">
+      <div className="text-md font-bold pb-4 pt-8">
         {myProfile
           ? "Channels You Follow"
           : `Channels You and ${user.username} Follow`}
       </div>
       <div className="flex">
-        <QueueSection
-          queueList={followedChannels}
-          handlerChange={handlerChange}
-        />
+        <ChannelCardList channelList={followedChannels} />
       </div>
     </div>
   );

@@ -4,23 +4,17 @@ import ModalContainer from "../../comp/Modals/ModalContainer";
 import BlockedUsersModal from "../../comp/Modals/BlockedUsersModal";
 import SearchHeader, { buildSearchInput } from "../../comp/SearchHeader";
 import { unblockUser } from "../../redux/actions";
-import { filterSearch } from "../../helpers/functions";
+import { filterSearch, mapIdsToUsers } from "../../helpers/functions";
 
 export default function BlockedUsersContainer({ handleModalClose }) {
-  const dispatch = useDispatch();
   const { blocked } = useSelector(state => state.relationships);
   const { defaultAvatar } = useSelector(state => state.general);
   const users = useSelector(state => state.users);
-
-  const blockedMap = blocked.map(userId => ({
-    id: userId,
-    firstName: users[userId].firstName,
-    lastName: users[userId].lastName,
-    username: users[userId].username,
-    avatar: users[userId].avatar || defaultAvatar
-  }));
+  const blockedMap = mapIdsToUsers(blocked, users, defaultAvatar);
 
   const [visible, setVisible] = useState(blockedMap);
+
+  const dispatch = useDispatch();
 
   return (
     <ModalContainer

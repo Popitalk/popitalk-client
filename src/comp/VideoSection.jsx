@@ -11,7 +11,9 @@ export default function VideoSection({
   title,
   sourceChannelName,
   activeFriendViewers,
-  status
+  status,
+  inviteUsers,
+  openProfile
 }) {
   return (
     <div className="flex flex-col">
@@ -32,6 +34,7 @@ export default function VideoSection({
                 key={idx}
                 username={friend.name}
                 avatar={friend.avatar}
+                imageClick={() => openProfile(friend.id)}
                 className="img h-8 w-8 rounded-circle mx-px"
               />
             );
@@ -40,6 +43,7 @@ export default function VideoSection({
             icon="user-plus"
             size="sm"
             style={{ transform: "scaleX(-1)" }}
+            onClick={inviteUsers}
             className="mx-px mr-2"
           />
         </section>

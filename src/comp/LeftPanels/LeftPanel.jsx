@@ -1,18 +1,22 @@
 import React, { Fragment } from "react";
 import FriendsPanel from "./FriendsPanel";
 import CollapsedPanel from "./CollapsedPanel";
-import ChannelsPanel from "./Channel/ChannelsPanel";
+import ChannelsPanel from "./ChannelsPanel";
 
 export default function LeftPanel({
-  channels,
+  yourChannels,
+  followingChannels,
   friends,
   selected,
   handleSelect,
   selectedPage,
   handleCollapse,
+  handleCreateChannel,
   isCollapsed,
   updateSelectedPage
 }) {
+  const channels = [...yourChannels, ...followingChannels];
+
   return (
     <Fragment>
       <div
@@ -22,18 +26,19 @@ export default function LeftPanel({
       >
         {selectedPage === "channels" ? (
           <ChannelsPanel
-            channels={channels}
+            yourChannels={yourChannels}
+            followingChannels={followingChannels}
             friends={friends}
             selected={selected}
             handleSelect={handleSelect}
+            handleCreateChannel={handleCreateChannel}
             selectedPage={selectedPage}
             updateSelectedPage={updateSelectedPage}
             handleCollapse={handleCollapse}
           />
         ) : (
           <FriendsPanel
-            channels={channels}
-            friends={friends}
+            userSearchResults={friends}
             selected={selected}
             handleSelect={handleSelect}
             updateSelectedPage={updateSelectedPage}

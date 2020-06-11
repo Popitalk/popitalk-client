@@ -49,6 +49,7 @@
     "customize-cra-react-refresh": "^1.0.1",
     "date-fns": "^2.13.0",
     "emoji-mart": "^3.0.0",
+    "emoji-picker-react": "^3.2.1",
     "formik": "^2.1.4",
     "history": "^4.10.1",
     "husky": "^4.2.5",

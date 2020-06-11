@@ -1,7 +1,7 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import PropTypes from "prop-types";
-import ChannelsList from "./InfoCardLists/ChannelsList";
+import ChannelsList from "../InfoCardLists/ChannelsList";
 
 function CollapsedPanel({
   channels,
@@ -14,7 +14,7 @@ function CollapsedPanel({
   return (
     <div className="bg-primaryBackground px-2 flex flex-col items-center w-20 h-full">
       <button
-        className="py-8 w-full flex items-center flex-col"
+        className="py-5 w-full flex items-center flex-col"
         onClick={handleCollapse}
       >
         <FontAwesomeIcon

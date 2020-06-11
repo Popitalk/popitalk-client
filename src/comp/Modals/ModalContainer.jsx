@@ -5,7 +5,7 @@ import "./ModalContainer.css";
 
 Modal.setAppElement("#root");
 
-export default function ModalManager({
+export default function ModalContainer({
   isOpen,
   small,
   fixedFullSize,

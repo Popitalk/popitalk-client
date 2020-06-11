@@ -26,6 +26,7 @@ export default function NewRoomModal({ users, selected, onCheck, handleSend }) {
       <Button
         onClick={() => handleSend(selected)}
         className="absolute bottom-0 self-center mb-4"
+        disabled={selected.length === 0}
       >
         Send
       </Button>

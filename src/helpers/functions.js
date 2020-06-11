@@ -144,3 +144,11 @@ export const handleEnter = (selected, setSelected, visible, nameField) => {
 export const handleCancel = (selected, setSelected, id) => {
   setSelected(selected.filter(i => i.id !== id));
 };
+
+export const mapIdsToUsers = (userIds, users, defaultAvatar) => {
+  return userIds.map(userId => ({
+    id: userId,
+    ...users[userId],
+    avatar: users[userId].avatar || defaultAvatar
+  }));
+};

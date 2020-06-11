@@ -52,7 +52,7 @@ const tagsToCategory = tags => {
   }, "");
 };
 
-export default function ChannelForm({ initial, handleSubmit, loading }) {
+export default function ChannelForm({ initial, handleSubmit, loading, error }) {
   const [uploadedImage, setUploadedImage] = useState(undefined);
   const [tags, setTags] = useState(categoryToTags(initial.category));
 
@@ -106,7 +106,6 @@ export default function ChannelForm({ initial, handleSubmit, loading }) {
       })}
       onSubmit={values => {
         handleSubmit({
-          // channelId,
           name: values.name,
           description: values.description,
           public: !values.private,
@@ -218,6 +217,11 @@ export default function ChannelForm({ initial, handleSubmit, loading }) {
               </div>
             </div>
           </div>
+          {error ? (
+            <p className="text-errorText text-sm pt-4">{error}</p>
+          ) : (
+            <></>
+          )}
           <ChannelFormSubmit
             type="update"
             disabled={loading || !isValid || !dirty}

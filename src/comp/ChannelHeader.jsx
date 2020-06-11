@@ -51,7 +51,7 @@ export default function ChannelHeader({
   //   // channel
   // );
   return (
-    <header className="flex justify-between bg-disabledBackground">
+    <header className="flex justify-between bg-secondaryBackground">
       <div className="flex items-center">
         <RoomIcon
           ids={[id]}
