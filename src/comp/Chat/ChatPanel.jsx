@@ -4,14 +4,24 @@ import ChatHeader from "./ChatHeader";
 import ChatMessages from "./ChatMessages";
 import ChatActions from "./ChatActions";
 
-function ChatPanel({ typerAvatars, handleSendMessage, typerIDs, ...props }) {
+function ChatPanel({
+  typerAvatars,
+  handleSendMessage,
+  handleDelete,
+  typerIDs,
+  ...props
+}) {
   return (
     <section className="w-dropdown h-full p-2 bg-primaryBackground flex flex-col md:w-84">
       <div className="h-auto">
         <ChatHeader />
       </div>
       <div className="overflow-auto">
-        <ChatMessages {...props} />
+        <ChatMessages
+          handleResend={handleSendMessage}
+          handleDelete={handleDelete}
+          {...props}
+        />
       </div>
       <div className="h-auto">
         {typerAvatars && typerAvatars.length > 0 ? (

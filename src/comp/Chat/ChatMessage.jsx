@@ -1,13 +1,18 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-export default function ChatMessage({ message, handleResend, handleDelete }) {
+export default function ChatMessage({
+  message,
+  handleResend,
+  handleDelete,
+  defaultAvatar
+}) {
   return (
     <div className="flex flex-col my-2">
       <div className="flex items-center space-x-2 text-xs">
         <img
           className="w-8 h-8 rounded-full"
-          src={message.author.avatar}
+          src={message.author.avatar || defaultAvatar}
           alt={message.author.username}
         />
         <span className="font-bold">{message.author.username}</span>

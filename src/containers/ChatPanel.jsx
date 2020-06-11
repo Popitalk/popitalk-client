@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import ChatPanel from "../comp/Chat/ChatPanel";
-import { getMessages, addMessage } from "../redux/actions";
+import { getMessages, addMessage, deleteMessage } from "../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { withRouter } from "react-router-dom";
 
@@ -16,6 +16,7 @@ function ChatPanelContainer(props) {
   }, [channelId, dispatch]);
   const messages = useSelector(state => state.messages[channelId]);
   const me = useSelector(state => state.self.username);
+  const defaultAvatar = useSelector(state => state.general.defaultAvatar);
   const handleSendMessage = text => {
     dispatch(
       addMessage({
@@ -24,11 +25,16 @@ function ChatPanelContainer(props) {
       })
     );
   };
+  const handleDelete = id => {
+    dispatch(deleteMessage(id));
+  };
   return (
     <ChatPanel
       me={me}
+      defaultAvatar={defaultAvatar}
       messages={messages}
       handleSendMessage={handleSendMessage}
+      handleDelete={handleDelete}
     />
   );
 }
