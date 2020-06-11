@@ -65,23 +65,21 @@ export default function ChannelChat({
           const postComments = comments[post.id];
 
           return (
-            <>
-              <ChannelPost
-                key={idx}
-                id={post.id}
-                name={post.author.username}
-                avatar={post.author.avatar || defaultAvatar}
-                timeFromPost={formatDistanceToNow(new Date(post.createdAt), {
-                  addSuffix: true
-                })}
-                text={post.content}
-                liked={post.liked}
-                comments={postComments}
-                saveComment={saveComment}
-                defaultAvatar={defaultAvatar}
-                toggleLike={toggleLike}
-              />
-            </>
+            <ChannelPost
+              key={idx}
+              id={post.id}
+              name={post.author.username}
+              avatar={post.author.avatar || defaultAvatar}
+              timeFromPost={formatDistanceToNow(new Date(post.createdAt), {
+                addSuffix: true
+              })}
+              text={post.content}
+              liked={post.liked}
+              comments={postComments}
+              saveComment={saveComment}
+              defaultAvatar={defaultAvatar}
+              toggleLike={toggleLike}
+            />
           );
         })}
       {(!posts || (posts && posts.length === 0)) && (
