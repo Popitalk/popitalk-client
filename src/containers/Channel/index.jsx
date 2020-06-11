@@ -180,7 +180,7 @@ export default function Channel({ tab, type = "channel" }) {
   return (
     <div
       ref={scrollRef}
-      className="flex flex-col w-full bg-secondaryBackground p-3 pr-5 overflow-y-scroll"
+      className="flex flex-col w-full bg-secondaryBackground p-3 pr-5 overflow-auto"
     >
       <ChannelHeader
         id={channelId || roomId}
