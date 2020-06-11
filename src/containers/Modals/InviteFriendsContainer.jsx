@@ -21,7 +21,7 @@ export default function InviteFriendsContainer({ handleModalClose }) {
   const channels = useSelector(state => state.channels);
 
   let friendsMap = mapIdsToUsers(
-    friends.filter(f => !channels[channelId].members.includes(f)),
+    friends.filter(f => !channels[channelId].members?.includes(f)),
     users,
     defaultAvatar
   );
