@@ -1,16 +1,13 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useSelector } from "react-redux";
 
 export default function ChatMessage({ message, handleResend, handleDelete }) {
-  const me = useSelector(state => state.self.username);
-  const defaultAvatar = useSelector(state => state.general.defaultAvatar);
   return (
     <div className="flex flex-col my-2">
       <div className="flex items-center space-x-2 text-xs">
         <img
           className="w-8 h-8 rounded-full"
-          src={message.author.avatar || defaultAvatar}
+          src={message.author.avatar}
           alt={message.author.username}
         />
         <span className="font-bold">{message.author.username}</span>
@@ -22,7 +19,7 @@ export default function ChatMessage({ message, handleResend, handleDelete }) {
         <span className="flex justify-center">
           <span
             className={`w-1 rounded-lg ${
-              message.author.username === me
+              message.author.username === message.me
                 ? "bg-highlightText"
                 : "bg-secondaryBackground"
             }`}
@@ -38,7 +35,8 @@ export default function ChatMessage({ message, handleResend, handleDelete }) {
             />
           )}
         </span>
-        {message.me && (handleResend || handleDelete) ? (
+        {message.author.username === message.me &&
+        (handleResend || handleDelete) ? (
           <div className="px-2 space-x-2 rounded-full bg-gradient-br-cancel flex flex-row justify-center">
             {handleResend ? (
               <button
