@@ -15,7 +15,7 @@ function ChatPanelContainer(props) {
     );
   }, [channelId, dispatch]);
   const messages = useSelector(state => state.messages[channelId]);
-  console.log(messages);
+  const me = useSelector(state => state.self.username);
   const handleSendMessage = text => {
     dispatch(
       addMessage({
@@ -25,7 +25,11 @@ function ChatPanelContainer(props) {
     );
   };
   return (
-    <ChatPanel messages={messages} handleSendMessage={handleSendMessage} />
+    <ChatPanel
+      me={me}
+      messages={messages}
+      handleSendMessage={handleSendMessage}
+    />
   );
 }
 
