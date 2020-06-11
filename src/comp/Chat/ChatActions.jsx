@@ -13,8 +13,8 @@ function ChatActions({ handleSendMessage }) {
   const textareaRef = useRef();
 
   useEffect(() => {
-    setMessageContent(messageContent + chosenEmoji);
-  }, [chosenEmoji, messageContent]);
+    setMessageContent(messageContent => messageContent + chosenEmoji);
+  }, [chosenEmoji]);
 
   const handleChange = e => {
     e.target.style.height = "2.5rem";
