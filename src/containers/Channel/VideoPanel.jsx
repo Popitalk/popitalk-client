@@ -21,7 +21,9 @@ export default function VideoPanel({ playlist, classNames }) {
   const viewerIds = useSelector(state => state.channels[channelId].members);
   const { defaultAvatar } = useSelector(state => state.general);
   const users = useSelector(state => state.users);
-  const viewers = mapIdsToUsers(viewerIds, users, defaultAvatar);
+  const viewers = viewerIds
+    ? mapIdsToUsers(viewerIds, users, defaultAvatar)
+    : [];
 
   const dispatch = useDispatch();
 

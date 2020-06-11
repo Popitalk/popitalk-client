@@ -1,17 +1,20 @@
 import React, { useState, useEffect } from "react";
-import LeftPanel from "../comp/LeftPanels/LeftPanel";
 import { useSelector, useDispatch } from "react-redux";
+import { useRouteMatch } from "react-router-dom";
+import { Switch, Route } from "react-router";
+import LeftPanel from "../comp/LeftPanels/LeftPanel";
 import {
   toggleLeftPanel
   // setLeftPanelActiveTabChannels,
   // setLeftPanelActiveTabFriends
 } from "../redux/actions";
-import { Switch, Route } from "react-router";
 import history from "../history";
 import { getUser } from "../helpers/api";
 
 export default function LeftPanelContainer() {
-  const [selectedChannel, setSelectedChannel] = useState(null);
+  let match = useRouteMatch("/channels/:channelId");
+  const selectedChannel = match?.params.channelId ? match.params.channelId : 0;
+
   const [selectedPage, setSelectedPage] = useState("channels");
   const [friends, setFriends] = useState([]);
   const channels = useSelector(state => state.channels);
@@ -39,6 +42,7 @@ export default function LeftPanelContainer() {
       }
     });
 
+  console.log(yourChannels);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -85,6 +89,10 @@ export default function LeftPanelContainer() {
     }
   };
 
+  const handleSelectChannel = id => {
+    history.push(`/channels/${id}/video`);
+  };
+
   return (
     <Switch>
       <Route exact path="/channels">
@@ -93,7 +101,7 @@ export default function LeftPanelContainer() {
           followingChannels={followingChannels}
           friends={friends}
           selected={selectedChannel}
-          handleSelect={id => setSelectedChannel(id)}
+          handleSelect={handleSelectChannel}
           handleCreateChannel={() => history.push("/create")}
           updateSelectedPage={updateSelectedPageAndMain}
           isCollapsed={isCollapsed}
@@ -107,7 +115,7 @@ export default function LeftPanelContainer() {
           followingChannels={followingChannels}
           friends={friends}
           selected={selectedChannel}
-          handleSelect={id => setSelectedChannel(id)}
+          handleSelect={handleSelectChannel}
           handleCreateChannel={() => history.push("/create")}
           updateSelectedPage={updateSelectedPageAndMain}
           isCollapsed={isCollapsed}
@@ -121,7 +129,7 @@ export default function LeftPanelContainer() {
           followingChannels={followingChannels}
           friends={friends}
           selected={selectedChannel}
-          handleSelect={id => setSelectedChannel(id)}
+          handleSelect={handleSelectChannel}
           handleCreateChannel={() => history.push("/create")}
           updateSelectedPage={updateSelectedPanelPage}
           isCollapsed={isCollapsed}
