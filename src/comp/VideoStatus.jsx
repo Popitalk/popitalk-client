@@ -21,7 +21,7 @@ export default function VideoStatus({
           <Button
             size={size}
             shape={shape}
-            className="btn-paused shadow-md z-20"
+            className="btn-paused shadow-md z-10"
           >
             Paused
           </Button>
@@ -30,7 +30,7 @@ export default function VideoStatus({
           <Button
             size={size}
             shape={shape}
-            className="btn-paused shadow-md z-20"
+            className="btn-paused shadow-md z-10"
           >
             {statusMessage}
           </Button>

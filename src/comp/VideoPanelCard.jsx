@@ -35,14 +35,14 @@ export default function VideoPanelCard({
                 {type === "cancel" && (
                   <Button
                     icon="minus"
-                    className="z-30 btn-no-mr opacity-0 group-hover:opacity-100"
+                    className="z-10 btn-no-mr opacity-0 group-hover:opacity-100"
                     shape="pill"
                     background="cancel"
                     size="sm"
                   />
                 )}
                 {type === "add" && (
-                  <button className="z-40 btn btn-sqr opacity-0 group-hover:opacity-100">
+                  <button className="z-10 btn btn-sqr opacity-0 group-hover:opacity-100">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       // width="24"
@@ -59,7 +59,7 @@ export default function VideoPanelCard({
             <img
               src={thumbnail}
               alt="video-thumbnail"
-              className="absolute top-0 z-10 h-full img rounded-xl"
+              className="absolute top-0 h-full img rounded-xl"
             />
 
             {/* <div className="absolute top-0 z-20 w-full h-full bg-gradient-t-channelCardOverlay rounded-xl" /> */}
