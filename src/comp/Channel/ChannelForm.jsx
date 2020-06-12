@@ -109,8 +109,8 @@ export default function ChannelForm({ initial, handleSubmit, loading, error }) {
           name: values.name,
           description: values.description,
           public: !values.private,
-          icon: uploadedImage,
-          category: values.category
+          icon: uploadedImage
+          // category: values.category
         });
       }}
     >

@@ -20,6 +20,7 @@ export const updateUser = updateInfo => {
   return axios.put("/api/users/", updateInfo);
 };
 export const updateChannel = (channelId, updateInfo) => {
+  console.log("updateInfo updateChannel", updateInfo);
   return axios.put(`/api/channels/${channelId}`, updateInfo);
 };
 
