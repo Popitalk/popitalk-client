@@ -7,6 +7,7 @@ import DropDownMenu from "./DropDowns/DropDownMenu";
 import DeleteAccountDropDown from "./DropDowns/DeleteAccountDropDown";
 import FriendRequests from "./DropDowns/FriendRequests";
 import Notifications from "./DropDowns/Notifications";
+import DropDownControls from "./DropDowns/DropDownControls";
 
 const SETTINGS = 1;
 const ACCOUNT_SETTINGS = 2;
@@ -31,8 +32,6 @@ export default function SiteHeaderMain({
 }) {
   const [mobileMenu, setMobileMenu] = useState(false);
   const [dropdownList, setDropdownList] = useState([]);
-  const [showNotifications, setShowNotifications] = useState(false);
-  const [showRequests, setShowRequests] = useState(false);
 
   const toggleSettings = () => {
     if (dropdownList.length > 0) {
@@ -96,8 +95,6 @@ export default function SiteHeaderMain({
   const settingsDropdown =
     dropdownList.length > 0 ? dropdownList[dropdownList.length - 1] : 0;
 
-  const dropdownClasses = "absolute right-0 mt-2 z-30";
-
   return (
     <header className="relative flex flex-col px-6 bg-primaryBackground">
       {!mobileMenu && (
@@ -121,89 +118,52 @@ export default function SiteHeaderMain({
               </div>
             </li>
             <li>
-              <div className="relative">
-                <FontAwesomeIcon
-                  icon="user-plus"
-                  className="cursor-pointer text-secondaryText hover:text-highlightText"
-                  roll="button"
-                  size="lg"
-                  onClick={() => setShowRequests(!showRequests)}
+              <DropDownControls icon="user-plus">
+                <FriendRequests
+                  friendRequests={friendRequests}
+                  handleProfile={openProfileHandler}
+                  handleAccept={acceptRequestHandler}
+                  handleReject={rejectRequestHandler}
                 />
-                {showRequests ? (
-                  <div className={dropdownClasses}>
-                    <FriendRequests
-                      friendRequests={friendRequests}
-                      handleProfile={openProfileHandler}
-                      handleAccept={acceptRequestHandler}
-                      handleReject={rejectRequestHandler}
-                    />
-                  </div>
-                ) : (
-                  <></>
-                )}
-              </div>
+              </DropDownControls>
             </li>
             <li>
               <div className="relative">
-                <FontAwesomeIcon
-                  icon="bell"
-                  className={`cursor-pointer ${
-                    hasNotification
-                      ? "text-secondaryText"
-                      : "text-secondaryText"
-                  } hover:text-highlightText`}
-                  roll="button"
-                  size="lg"
-                  onClick={() => setShowNotifications(!showNotifications)}
-                />
+                <DropDownControls icon="bell">
+                  <Notifications
+                    notifications={notifications}
+                    handleProfile={openProfileHandler}
+                    handleClear={clearNotificationsHandler}
+                  />
+                </DropDownControls>
                 {hasNotification && (
                   <div className="absolute top-0 z-10 p-1 ml-3 border-2 rounded-full border-primaryBackground bg-errorText"></div>
                 )}
-                {showNotifications ? (
-                  <div className={dropdownClasses}>
-                    <Notifications
-                      notifications={notifications}
-                      handleProfile={openProfileHandler}
-                      handleClear={clearNotificationsHandler}
-                    />
-                  </div>
-                ) : (
-                  <></>
-                )}
               </div>
             </li>
             <li>
-              <div className="relative">
-                <FontAwesomeIcon
-                  icon="cog"
-                  className="cursor-pointer text-secondaryText hover:text-highlightText"
-                  roll="button"
-                  size="lg"
-                  onClick={toggleSettings}
-                />
+              <DropDownControls
+                icon="cog"
+                onClick={toggleSettings}
+                onClose={() => setDropdownList([])}
+              >
                 {settingsDropdown === SETTINGS ? (
-                  <div className={dropdownClasses}>
-                    <DropDownMenu title="Settings" buttons={settingsButtons} />
-                  </div>
+                  <DropDownMenu title="Settings" buttons={settingsButtons} />
                 ) : settingsDropdown === ACCOUNT_SETTINGS ? (
-                  <div className={dropdownClasses}>
-                    <DropDownMenu
-                      title="Account Settings"
-                      buttons={accountSettingsButtons}
-                      handleBack={popDropdown}
-                    />
-                  </div>
+                  <DropDownMenu
+                    title="Account Settings"
+                    buttons={accountSettingsButtons}
+                    handleBack={popDropdown}
+                  />
                 ) : settingsDropdown === DELETE_ACCOUNT ? (
-                  <div className={dropdownClasses}>
-                    <DeleteAccountDropDown
-                      handleDelete={deleteAccountHandler}
-                      handleBack={popDropdown}
-                    />
-                  </div>
+                  <DeleteAccountDropDown
+                    handleDelete={deleteAccountHandler}
+                    handleBack={popDropdown}
+                  />
                 ) : (
                   <></>
                 )}
-              </div>
+              </DropDownControls>
             </li>
             <li>
               <a href="https://about.popitalk.com/">

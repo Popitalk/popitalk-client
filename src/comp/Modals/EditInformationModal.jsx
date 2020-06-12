@@ -15,7 +15,8 @@ export default function EditInformationModal({
   initial,
   handleSubmit,
   loading,
-  informationUpdated
+  informationUpdated,
+  error
 }) {
   const [uploadedImage, setUploadedImage] = useState(undefined);
 
@@ -66,15 +67,16 @@ export default function EditInformationModal({
               />
               <p className="mb-12 text-2xl font-bold">{username}</p>
               <EditInformationForm loading={loading} />
-              <EditBirthdayForm loading={loading} />
-              {informationUpdated ? (
-                <p className="text-linkText pt-8">
+              <div className="w-full pb-8">
+                <EditBirthdayForm loading={loading} />
+              </div>
+              {informationUpdated && (
+                <p className="text-linkText text-sm">
                   You have successfully updated your information!
                 </p>
-              ) : (
-                <></>
               )}
-              <div className="pt-12">
+              {error && <p className="text-errorText text-sm">{error}</p>}
+              <div className="pt-4">
                 <Button type="submit" disabled={loading || !isValid || !dirty}>
                   Confirm
                 </Button>
