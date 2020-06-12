@@ -13,8 +13,8 @@ export default function VideoMinimalQueueCard({
   return (
     <>
       {!title && (
-        <div className="px-4 rounded-lg py-2 my-2 w-full justify-center flex items-center flex-row bg-secondaryBackground cursor-move">
-          <p className={"text-center mr-2"} color={"secondaryText"}>
+        <div className="px-4 rounded-lg py-2 my-1 w-full justify-center flex items-center flex-row bg-tertiaryBackground cursor-pointer">
+          <p className={"text-center mr-2 text-secondaryText text-sm"}>
             Search and add videos to the queue below.
           </p>
           <Button size="sm" icon="plus" />
@@ -23,7 +23,7 @@ export default function VideoMinimalQueueCard({
       {title && (
         <div className="px-4 rounded-lg py-2 my-1 w-full flex items-center flex-row bg-primaryBackground cursor-move">
           <div className={"flex w-64 justify-between items-center mr-4"}>
-            <div className={"mx-2"}>
+            <div className={"mx-0"}>
               <FontAwesomeIcon icon={"bars"} color={"gray"} />
             </div>
             <div className={"mr-2"}>

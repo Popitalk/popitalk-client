@@ -9,7 +9,7 @@ export default function VideoSearchBar({ className, onClick }) {
   return (
     <div className="p-2 bg-secondaryBackground">
       <form
-        className={className ? className : "mb-4"}
+        className={className ? className : "mb-1"}
         onSubmit={e => e.preventDefault()}
       >
         <Input
@@ -20,7 +20,7 @@ export default function VideoSearchBar({ className, onClick }) {
           onChange={e => setValue(e.target.value)}
           videoSource={source}
           onClick={() => onClick(value)}
-          className="w-full md:w-2/4"
+          className="w-full md:w-3/4"
         />
       </form>
       <div className="flex flex-wrap grid-cols-services">
@@ -28,7 +28,7 @@ export default function VideoSearchBar({ className, onClick }) {
           return (
             <button
               key={idx}
-              className={`flex justify-center m-2 items-center ${
+              className={`flex justify-center m-1 items-center ${
                 source === img.source
                   ? "bg-gradient-r-button shadow-md"
                   : "bg-primaryBackground"
