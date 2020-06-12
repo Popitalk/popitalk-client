@@ -98,14 +98,16 @@ export default function ChannelSettingsPanel({
   }
 
   return (
-    <div className="h-full w-full py-8 bg-secondaryBackground flex items-center md:px-4 md:flex-row md:items-stretch overflow-auto">
-      <div className="flex-none">
+    <div className="h-full w-full px-2 pt-1 bg-secondaryBackground flex items-center md:flex-row md:items-stretch overflow-auto">
+      <div className="flex-none p-4">
         <ChannelSettingsSidebar
           buttons={buttons}
           handleDeleteChannel={handleDeleteChannel}
         />
       </div>
-      <div className="flex w-full justify-center px-10">{paneContent}</div>
+      <div className="flex w-full justify-center px-20 text-primaryText">
+        {paneContent}
+      </div>
     </div>
   );
 }

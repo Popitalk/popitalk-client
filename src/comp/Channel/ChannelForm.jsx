@@ -127,7 +127,7 @@ export default function ChannelForm({ initial, handleSubmit, loading, error }) {
         resetForm
       }) => (
         <form
-          className="flex flex-col md:w-3/4 lg:w-1/2"
+          className="flex flex-col md:w-3/4 lg:w-3/4"
           onSubmit={handleSubmit}
         >
           <div className="flex flex-col justify-center mb-12 w-full">
@@ -227,7 +227,7 @@ export default function ChannelForm({ initial, handleSubmit, loading, error }) {
             disabled={loading || !isValid || !dirty}
             loading={loading}
             handleReset={() => resetForm()}
-            className="mt-auto w-full mb-12"
+            className="mt-auto w-full mb-8"
           />
         </form>
       )}
