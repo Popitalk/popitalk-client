@@ -25,7 +25,7 @@ export default function ChannelsPanel({
       />
       <MiniFriendsList friends={friends} />
       <div className="flex flex-row items-center">
-        <div className="grid w-full grid-cols-1 sm:grid-cols-2 md:grid-cols-1 sm:mt-4">
+        <div className="grid w-full grid-cols-1 sm:grid-cols-1 md:grid-cols-1 sm:mt-4">
           <div>
             <div className="flex items-center">
               <h4 className="my-4 mx-2 text-md font-semibold text-secondaryText">

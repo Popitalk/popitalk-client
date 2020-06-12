@@ -4,13 +4,13 @@ import { FixedSizeList } from "react-window";
 export default function InfoCardList({
   items,
   itemRenderer,
-  height = 300,
+  height = 1000,
   itemSize = 64
 }) {
   if (!items || items.length === 0) {
     return (
       <div className="h-32 w-full flex items-center justify-center">
-        <p className="text-sm text-secondaryText font-medium">
+        <p className="text-xs text-secondaryText font-medium">
           Nothing to show
         </p>
       </div>
@@ -21,7 +21,7 @@ export default function InfoCardList({
     const i = items[index];
 
     return (
-      <div className="px-1" style={style}>
+      <div className="px-0" style={style}>
         {itemRenderer(i)}
       </div>
     );
