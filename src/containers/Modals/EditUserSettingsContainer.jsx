@@ -34,7 +34,7 @@ export default function EditUserSettingsModal({ handleModalClose }) {
           avatar: avatar
         }}
         handleSubmit={values => dispatch(updateUser({ ...values }))}
-        informationUpdated={updateUserApi.status === "Success"}
+        informationUpdated={updateUserApi.status === "success"}
         loading={updateUserApi.loading}
         error={updateUserApi.status === "error" ? updateUserApi.error : false}
       />

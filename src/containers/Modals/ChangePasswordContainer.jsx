@@ -6,12 +6,7 @@ import ChangePasswordModal from "../../comp/Modals/ChangePasswordModal";
 import ContainerHeader from "../../comp/ContainerHeader";
 
 export default function ChangePasswordContainer({ handleModalClose }) {
-  const api = useSelector(state => state.api);
-  const apiLoading = api.updateUser ? api.updateUser.loading : false;
-  const apiSuccess = api.updateUser
-    ? api.updateUser.status === "Success"
-    : false;
-
+  const updateUserApi = useSelector(state => state.api.userUpdateApi);
   const dispatch = useDispatch();
 
   return (
@@ -22,8 +17,9 @@ export default function ChangePasswordContainer({ handleModalClose }) {
       header={<ContainerHeader title="Change Password" />}
     >
       <ChangePasswordModal
-        passwordUpdated={apiSuccess}
-        loading={apiLoading}
+        passwordUpdated={updateUserApi.status === "success"}
+        loading={updateUserApi.loading}
+        error={updateUserApi.status === "error" ? updateUserApi.error : false}
         handleSubmit={values => dispatch(updateUser(values))}
       />
     </ModalContainer>
