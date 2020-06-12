@@ -7,7 +7,7 @@ export default function MiniFriendsList({ friends }) {
     <div className="w-full overflow-auto px-2">
       <div className="flex flex-wrap flex-grow justify-between md:flex-no-wrap">
         {friends.map(item => (
-          <div key={item.id} className="flex-shrink-0">
+          <div key={item.id} className="flex-shrink-0 px-2px">
             <AvatarIcon avatar={item.avatar} username={item.username} />
           </div>
         ))}

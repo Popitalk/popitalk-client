@@ -83,7 +83,9 @@ export default function ChannelChat({
           );
         })}
       {(!posts || (posts && posts.length === 0)) && (
-        <p className="text-secondaryText text-center">Nothing to Show</p>
+        <p className="text-secondaryText text-center text-sm py-32">
+          There are no posts yet
+        </p>
       )}
     </div>
   );
