@@ -51,16 +51,16 @@ export default function ChannelHeader({
   //   // channel
   // );
   return (
-    <header className="flex justify-between bg-secondaryBackground">
+    <header className="flex justify-between bg-secondaryBackground p-1">
       <div className="flex items-center">
         <RoomIcon
           ids={[id]}
           images={[icon]}
-          watching={videoStatus === "playing" ? true : false}
-          size="md"
+          // watching={videoStatus === "playing" ? true : false}
+          size="sm"
           className="mx-2"
         />
-        <p className="text-sm font-medium text-primaryText p-2">
+        <p className="text-md font-medium text-primaryText p-2">
           {type === "channel" ? name : `Private Room with ${name}`}
         </p>
       </div>
@@ -68,7 +68,7 @@ export default function ChannelHeader({
         <nav className="flex flex-wrap justify-center m-2">
           {navButtons.map((button, idx) => {
             let className =
-              "mx-2 my-1 font-semibold no-underline focus:outline-none";
+              "mx-2 font-semibold no-underline focus:outline-none";
             if (
               location.pathname.startsWith(`/channels/${id}/${button.endpoint}`)
             ) {
