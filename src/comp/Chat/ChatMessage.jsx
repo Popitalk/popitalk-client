@@ -42,7 +42,7 @@ export default function ChatMessage({
         </span>
         {message.author.username === message.me &&
         (handleResend || handleDelete) ? (
-          <div className="w-3/5 px-0 space-x-2 rounded-full bg-gradient-br-cancel flex flex-row justify-center">
+          <div className="w-3/5 h-6 px-0 space-x-2 rounded-full bg-gradient-br-cancel flex flex-row justify-center">
             {handleResend ? (
               <button
                 className="focus:outline-none flex items-center py-1"
