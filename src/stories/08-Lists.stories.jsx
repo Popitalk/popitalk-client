@@ -4,12 +4,14 @@ import FriendUsersList from "../comp/InfoCardLists/FriendUsersList";
 import ChannelsList from "../comp/InfoCardLists/ChannelsList";
 import RoomsList from "../comp/InfoCardLists/RoomsList";
 import ManageUsersList from "../comp/InfoCardLists/ManageUsersList";
-import { testChannels, testRooms, testUsers } from "./seed-arrays";
+import { testChannels, generateTestRooms, testUsers } from "./seed-arrays";
 
 export default {
   title: "Lists",
   decorators: [withKnobs]
 };
+
+const testRooms = generateTestRooms();
 
 export const UserSearchResultsTest = () => {
   const handleProfile = () => {

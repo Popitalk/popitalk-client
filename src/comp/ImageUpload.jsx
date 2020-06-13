@@ -18,10 +18,10 @@ export default function ImageUpload({
   });
 
   const imageClasses = classnames(
-    "flex flex-row justify-center items-center bg-gradient-b-upload rounded-circle h-40 w-40 relative p-1 group",
+    "flex flex-row justify-center items-center bg-gradient-b-upload rounded-circle h-34 w-34 relative p-1 group",
     {
-      "h-40 w-40": size === "sm",
-      "h-56 w-56": size === "md"
+      "h-36 w-36": size === "sm",
+      "h-48 w-48": size === "md"
     }
   );
 

@@ -5,7 +5,7 @@ import RoomInfoCard from "../InfoCards/RoomInfoCard";
 export const getTimeFromMessage = room => {
   return (
     <div className="ml-auto self-start">
-      <p className="text-sm text-secondaryText">{room.messageSent}</p>
+      <p className="text-sm text-secondaryText">{room.lastMessageAt}</p>
     </div>
   );
 };
@@ -32,7 +32,7 @@ export default function RoomsList({
     <InfoCardList
       items={rooms}
       itemRenderer={itemRenderer}
-      itemSize={72}
+      itemSize={70}
       {...rest}
     />
   );

@@ -30,7 +30,7 @@ function ChatActions({ handleSendMessage }) {
 
   return (
     <>
-      <div className="flex items-center pt-1 space-x-1 md:space-x-2">
+      <div className="flex items-center pt-1 space-x-1 md:space-x-2 mx-2">
         <button
           onClick={() => setEmojiIsOpen(!emojiIsOpen)}
           className="w-10 h-10 p-2 text-center rounded-full bg-secondaryBackground hover:bg-highlightBackground focus:outline-none"

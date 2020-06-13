@@ -17,15 +17,21 @@ export default function VideoSection({
 }) {
   return (
     <div className="flex flex-col">
-      <div className="h-64 bg-black">
+      <div className="h-84 bg-black">
         <p className="">Video Container for Video Player</p>
       </div>
-      <div className="flex flex-row justify-between bg-secondaryBackground pt-2">
-        <section className="mx-2">
+      <div className="flex flex-row justify-between bg-secondaryBackground pt-4">
+        <section className="mx-4">
           {/* <p className="text-xs mx-1 text-base rainbow-text font-semibold">Playing</p> */}
-          {status ? <VideoStatus status={status} type="text" /> : <p></p>}
-          <p className="text-4xl mx-1">{title}</p>
-          <p className="text-sm -mt-2 mx-1">{sourceChannelName}</p>
+          {status ? (
+            <VideoStatus status={status} type="text" size="" string />
+          ) : (
+            <p></p>
+          )}
+          <p className="text-2xl mx-1 text-primaryText">{title}</p>
+          <p className="text-sm -mt-1 mx-1 text-primaryText">
+            {sourceChannelName}
+          </p>
         </section>
         <section className="flex flex-row items-top">
           {activeFriendViewers.map((friend, idx) => {
@@ -44,7 +50,7 @@ export default function VideoSection({
             size="sm"
             style={{ transform: "scaleX(-1)" }}
             onClick={inviteUsers}
-            className="mx-px mr-2"
+            className="mx-px mr-4"
           />
         </section>
       </div>

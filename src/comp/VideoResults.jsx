@@ -15,7 +15,7 @@ export default function VideoResults({ results, threshold = 24 }) {
   };
 
   return (
-    <div className="flex flex-col justify-center bg-secondaryBackground p-2">
+    <div className="flex flex-col justify-center bg-secondaryBackground p-4">
       <div className="flex flex-wrap justify-start">
         {results.map((result, idx) => {
           if (idx <= currThreshold - 1) {
@@ -32,7 +32,7 @@ export default function VideoResults({ results, threshold = 24 }) {
           Show more
         </button>
       )}
-      {results.length == 0 && (
+      {results.length === 0 && (
         <p className="text-secondaryText text-sm text-center">
           No results found
         </p>

@@ -7,7 +7,7 @@ import Input from "./Input.jsx";
 function RecommendedChannels({ list, selectedPage }) {
   const [search, setSearch] = React.useState("");
   return (
-    <div className="mt-5 mx-auto w-full max-w-screen-xl">
+    <div className="mt-10 mx-auto w-full max-w-screen-xl">
       <div className="w-auto mx-2 sm:mx-auto m-auto bg-white sm:w-2/3">
         <Input
           variant="channel"
@@ -17,7 +17,7 @@ function RecommendedChannels({ list, selectedPage }) {
           onChange={e => setSearch(e.target.value)}
         />
       </div>
-      <div className="mt-8">
+      <div className="mt-10">
         {list.map(item => {
           if (selectedPage === "channels") {
             return (

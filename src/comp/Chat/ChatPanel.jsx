@@ -12,11 +12,11 @@ function ChatPanel({
   ...props
 }) {
   return (
-    <section className="w-dropdown h-full p-2 bg-primaryBackground flex flex-col md:w-84">
+    <section className="w-dropdown h-full py-2 bg-primaryBackground flex flex-col md:w-84">
       <div className="h-auto">
         <ChatHeader />
       </div>
-      <div className="overflow-auto">
+      <div className="overflow-auto h-full mt-1">
         <ChatMessages
           handleResend={handleSendMessage}
           handleDelete={handleDelete}

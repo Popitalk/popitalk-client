@@ -32,16 +32,22 @@ export default function ChannelPost({
 
   return (
     <>
-      <div className="flex flex-col rounded-lg shadow px-8 py-3 bg-primaryBackground my-2">
+      <div className="flex flex-col rounded-lg shadow px-8 py-4 bg-primaryBackground mt-8">
         <header className="flex">
-          <AvatarIcon avatar={avatar} username={name} />
-          <div className="flex flex-col pl-3">
+          <AvatarIcon
+            avatar={avatar}
+            username={name}
+            className="img w-10 h-10 rounded-circle"
+          />
+          <div className="flex flex-col pl-2">
             <span>{name}</span>
-            <span className="text-secondaryText text-sm">{timeFromPost}</span>
+            <span className="text-secondaryText text-xs pt-0">
+              {timeFromPost}
+            </span>
           </div>
         </header>
-        <p className="text-sm py-3">{text}</p>
-        <footer className="flex text-secondaryText text-2xl">
+        <p className="text-primaryText text-lg pt-6 pb-8 px-2">{text}</p>
+        <footer className="flex text-secondaryText text-xl">
           <ToggleIcon
             icons={{ default: ["far", "heart"], toggle: ["fa", "heart"] }}
             colors={{
@@ -55,14 +61,14 @@ export default function ChannelPost({
           </ToggleIcon>
           <button className="flex align-middle ml-12" onClick={handleComment}>
             <FontAwesomeIcon icon={["far", "comment"]} />
-            <span className="text-sm font-bold ml-1">Comment</span>
+            <span className="text-sm font-bold ml-2">Comment</span>
           </button>
         </footer>
       </div>
-      <div className="ml-6">
+      <div className="ml-6 mt-2">
         {!showComments && comments?.length > 1 && (
           <button
-            className="text-secondaryText text-sm"
+            className="text-secondaryText text-xs mb-2"
             onClick={() => setShowComments(!showComments)}
           >
             View more comments
@@ -70,7 +76,7 @@ export default function ChannelPost({
         )}
         {showComments && comments?.length > 1 && (
           <button
-            className="text-secondaryText text-sm"
+            className="text-secondaryText text-xs mb-2"
             onClick={() => setShowComments(!showComments)}
           >
             Hide comments

@@ -62,7 +62,7 @@ export default function App() {
   const pageClasses = "w-full overflow-auto";
   const searchClasses = `${
     isCollapsed ? "block" : "hidden"
-  } flex-grow mt-10 mx-2 md:block overflow-auto w-full`;
+  } flex-grow md:block overflow-auto w-full`;
 
   return (
     <>

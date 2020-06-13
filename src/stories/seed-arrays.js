@@ -1,6 +1,15 @@
 const defaultThumbnail = "https://i.imgur.com/xCGu56D.jpg";
 
-export const testImages = ["https://source.unsplash.com/128x128/?1,random"];
+export const testImages = [
+  "https://source.unsplash.com/128x128/?1,random",
+  "https://source.unsplash.com/128x128/?1,cat",
+  "https://source.unsplash.com/128x128/?2,cat",
+  "https://source.unsplash.com/128x128/?3,cat",
+  "https://source.unsplash.com/128x128/?4,cat",
+  "https://source.unsplash.com/128x128/?6,cat",
+  "https://source.unsplash.com/128x128/?7,cat",
+  "https://source.unsplash.com/128x128/?8,cat"
+];
 
 export const testQueue = [
   {
@@ -439,62 +448,6 @@ export const testMessages = [
   }
 ];
 
-export const testRooms = [
-  {
-    id: 1,
-    name: "Andrew",
-    self: true,
-    online: false,
-    watching: false,
-    notifications: null,
-    message: null,
-    images: ["https://source.unsplash.com/128x128/?1,cat"],
-    messageSent: "1m"
-  },
-  {
-    id: 2,
-    name: "Alex",
-    self: false,
-    online: false,
-    watching: false,
-    notifications: 23,
-    message: null,
-    images: ["https://source.unsplash.com/128x128/?2,cat"],
-    messageSent: "2m"
-  },
-  {
-    id: 3,
-    name: "John, Paul, Andrew, Jer...",
-    self: false,
-    online: false,
-    watching: false,
-    notifications: null,
-    message: "You: ABCD",
-    images: [
-      "https://source.unsplash.com/128x128/?1,cat",
-      "https://source.unsplash.com/128x128/?2,cat",
-      "https://source.unsplash.com/128x128/?3,cat",
-      "https://source.unsplash.com/128x128/?4,cat"
-    ],
-    messageSent: "Today"
-  },
-  {
-    id: 4,
-    name: "Rick, Tom, Stewart",
-    self: false,
-    online: false,
-    watching: true,
-    notifications: 2,
-    message: "Tom: xyzxyz",
-    images: [
-      "https://source.unsplash.com/128x128/?6,cat",
-      "https://source.unsplash.com/128x128/?7,cat",
-      "https://source.unsplash.com/128x128/?8,cat"
-    ],
-    messageSent: "1/5/2019"
-  }
-];
-
 export const testChannels = [
   {
     id: 1,
@@ -623,4 +576,39 @@ export const generateTestUsers = () => {
   }
 
   return testUsers;
+};
+
+export const generateTestRooms = () => {
+  const numRooms = 100;
+  let testRooms = [];
+
+  const watching = Math.round(Math.random() * numRooms);
+
+  for (let i = 0; i < numRooms; i++) {
+    const numMembers = i === 0 ? 1 : Math.round(Math.random() * 6) + 1;
+
+    let members = [];
+    for (let j = 0; j < numMembers; j++) {
+      members.push({
+        id: j + 1,
+        avatar: generateImage(),
+        username: generateName()
+      });
+    }
+
+    testRooms.push({
+      id: i + 1,
+      members: members,
+      type:
+        i === 0 ? "self" : Math.round(Math.random()) === 1 ? "friend" : "group",
+      online: Math.round(Math.random()) === 1,
+      watching: watching === i,
+      notifications:
+        Math.round(Math.random()) === 0 ? null : Math.round(Math.random() * 50),
+      lastMessageContent: `This is message ${i + 1}`,
+      lastMessageAt: `${Math.round(Math.random() * 58) + 1}m`
+    });
+  }
+
+  return testRooms;
 };

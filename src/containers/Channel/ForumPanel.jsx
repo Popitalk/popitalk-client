@@ -25,7 +25,7 @@ const ForumPanel = (
   ref
 ) => {
   return (
-    <div ref={ref} className="px-32 pt-40 bg-secondaryBackground">
+    <div ref={ref} className="p-24 px-32 bg-secondaryBackground">
       <ChannelDescription
         name={name}
         icon={icon}

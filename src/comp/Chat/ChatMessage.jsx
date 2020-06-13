@@ -8,8 +8,8 @@ export default function ChatMessage({
   defaultAvatar
 }) {
   return (
-    <div className="flex flex-col my-2">
-      <div className="flex items-center space-x-2 text-xs">
+    <div className="flex flex-col mt-2 mx-2">
+      <div className="flex items-center space-x-2 text-xs ml-1">
         <img
           className="w-8 h-8 rounded-full"
           src={message.author.avatar || defaultAvatar}
@@ -42,10 +42,10 @@ export default function ChatMessage({
         </span>
         {message.author.username === message.me &&
         (handleResend || handleDelete) ? (
-          <div className="px-2 space-x-2 rounded-full bg-gradient-br-cancel flex flex-row justify-center">
+          <div className="w-3/5 h-6 px-0 space-x-2 rounded-full bg-gradient-br-cancel flex flex-row justify-center">
             {handleResend ? (
               <button
-                className="focus:outline-none flex items-center py-2"
+                className="focus:outline-none flex items-center py-1"
                 onClick={() => handleResend(message.content)}
               >
                 <FontAwesomeIcon
@@ -59,11 +59,11 @@ export default function ChatMessage({
             )}
             {handleDelete ? (
               <button
-                className="focus:outline-none flex items-center py-2"
+                className="focus:outline-none flex items-center py-1"
                 onClick={() => handleDelete(message.id)}
               >
                 <FontAwesomeIcon
-                  size="xs"
+                  size="sm"
                   icon="times"
                   className="text-tertiaryText"
                 />

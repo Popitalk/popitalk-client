@@ -5,7 +5,6 @@ import ChannelForm from "../comp/Channel/ChannelForm";
 
 export default function CreateChannelContainer() {
   const dispatch = useDispatch();
-  const createChannel = values => dispatch(addChannel(values));
   const addChannelApi = useSelector(state => state.api.channel);
 
   return (
@@ -17,7 +16,7 @@ export default function CreateChannelContainer() {
         icon: null,
         category: ""
       }}
-      handleSubmit={createChannel}
+      handleSubmit={values => dispatch(addChannel(values))}
       loading={addChannelApi.loading}
       error={addChannelApi.status === "error" ? addChannelApi.error : false}
     />

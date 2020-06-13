@@ -13,7 +13,7 @@ export default function ChannelPost({
   toggleLike
 }) {
   return (
-    <div className="flex flex-row bg-secondaryBackground p-1">
+    <div className="flex flex-row bg-secondaryBackground p-2">
       <aside className="flex-shrink-0 pr-2">
         <AvatarIcon
           avatar={avatar}
@@ -26,7 +26,7 @@ export default function ChannelPost({
           <span className="font-bold text-sm pr-1">{name} </span>
           <span className="text-sm">{text}</span>
         </main>
-        <span className="text-xs pt-1 text-secondaryText">{timeFromPost}</span>
+        <span className="text-xs text-secondaryText">{timeFromPost}</span>
       </article>
       <aside className="flex items-baseline flex-shrink-0 text-secondaryText">
         <ToggleIcon

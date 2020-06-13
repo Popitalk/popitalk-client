@@ -17,7 +17,7 @@ export const logout = () => {
 };
 
 export const updateUser = updateInfo => {
-  return axios.put("/api/users/", updateInfo);
+  return axios.put("/api/users", updateInfo);
 };
 export const updateChannel = (channelId, updateInfo) => {
   console.log("updateInfo updateChannel", updateInfo);

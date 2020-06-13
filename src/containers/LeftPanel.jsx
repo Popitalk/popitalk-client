@@ -1,33 +1,37 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useRouteMatch } from "react-router-dom";
 import { Switch, Route } from "react-router";
+import sortBy from "lodash/sortBy";
 import LeftPanel from "../comp/LeftPanels/LeftPanel";
 import {
-  toggleLeftPanel
+  toggleLeftPanel,
+  searchUsers
   // setLeftPanelActiveTabChannels,
   // setLeftPanelActiveTabFriends
 } from "../redux/actions";
 import history from "../history";
-import { getUser } from "../helpers/api";
+import { mapIdsToUsers } from "../helpers/functions";
 
 export default function LeftPanelContainer() {
   let match = useRouteMatch("/channels/:channelId");
   const selectedChannel = match?.params.channelId ? match.params.channelId : 0;
 
   const [selectedPage, setSelectedPage] = useState("channels");
-  const [friends, setFriends] = useState([]);
   const channels = useSelector(state => state.channels);
+  const users = useSelector(state => state.users);
+  const foundUsers = useSelector(state => state.userSearch);
   const friendIds = useSelector(state => state.relationships.friends);
   const { defaultAvatar } = useSelector(state => state.general);
+  const { defaultIcon } = useSelector(state => state.general);
+  const { id: ownId, channelIds, roomIds } = useSelector(state => state.self);
   const isCollapsed = useSelector(state => state.ui.isCollapsed);
   // const activeTab = useSelector(state => state.ui.leftPanelActiveTab);
 
+  const friends = mapIdsToUsers(friendIds, users, defaultAvatar);
+
   let yourChannels = [];
   let followingChannels = [];
-
-  const { defaultIcon } = useSelector(state => state.general);
-  const { id: ownId, channelIds } = useSelector(state => state.self);
   channelIds
     .map(channelId => ({
       id: channelId,
@@ -42,20 +46,31 @@ export default function LeftPanelContainer() {
       }
     });
 
-  console.log(yourChannels);
-  const dispatch = useDispatch();
+  const rooms = sortBy(
+    roomIds.map(roomId => {
+      const members = mapIdsToUsers(
+        channels[roomId].members,
+        users,
+        defaultAvatar
+      ).filter(m =>
+        channels[roomId].members.length === 1 ? true : m.id !== ownId
+      );
 
-  useEffect(() => {
-    async function getFriends() {
-      const friends = await friendIds.map(async friend => {
-        const { data } = await getUser(friend);
-        data.avatar = data.avatar || defaultAvatar;
-        return data;
-      });
-      setFriends(await Promise.all(friends));
-    }
-    getFriends();
-  }, [friendIds, defaultAvatar]);
+      return {
+        id: roomId,
+        ...channels[roomId],
+        members: members
+      };
+    }),
+    room => new Date(room.lastMessageAt)
+  );
+
+  const foundUsersMap = foundUsers.map(u => ({
+    ...u,
+    avatar: u.avatar || defaultAvatar
+  }));
+
+  const dispatch = useDispatch();
 
   // const setToChannelsTab = () => {
   //   dispatch(setLeftPanelActiveTabChannels());
@@ -99,6 +114,9 @@ export default function LeftPanelContainer() {
         <LeftPanel
           yourChannels={yourChannels}
           followingChannels={followingChannels}
+          userSearchResults={foundUsersMap}
+          handleSearch={username => dispatch(searchUsers(username))}
+          roomsResults={rooms}
           friends={friends}
           selected={selectedChannel}
           handleSelect={handleSelectChannel}
@@ -113,6 +131,9 @@ export default function LeftPanelContainer() {
         <LeftPanel
           yourChannels={yourChannels}
           followingChannels={followingChannels}
+          userSearchResults={foundUsersMap}
+          handleSearch={username => dispatch(searchUsers(username))}
+          roomsResults={rooms}
           friends={friends}
           selected={selectedChannel}
           handleSelect={handleSelectChannel}
@@ -127,6 +148,9 @@ export default function LeftPanelContainer() {
         <LeftPanel
           yourChannels={yourChannels}
           followingChannels={followingChannels}
+          userSearchResults={foundUsersMap}
+          handleSearch={username => dispatch(searchUsers(username))}
+          roomsResults={rooms}
           friends={friends}
           selected={selectedChannel}
           handleSelect={handleSelectChannel}

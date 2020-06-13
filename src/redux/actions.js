@@ -120,7 +120,8 @@ export const updateUser = createAsyncThunk(
       if (updateInfo.avatar === null) {
         formData.append("removeAvatar", true);
       } else if (updateInfo.avatar && updateInfo.avatar !== avatar) {
-        formData.append("avatar", updateInfo.avatar);
+        const blob = await fetch(updateInfo.avatar).then(r => r.blob());
+        formData.append("avatar", blob);
       }
 
       const response = await api.updateUser(formData);
@@ -287,7 +288,8 @@ export const updateChannel = createAsyncThunk(
       if (updateInfo.icon === null) {
         formData.append("removeIcon", true);
       } else if (updateInfo.icon && updateInfo.icon !== channel.icon) {
-        formData.append("icon", updateInfo.icon);
+        const blob = await fetch(updateInfo.icon).then(r => r.blob());
+        formData.append("icon", blob);
       }
       const response = await api.updateChannel(channelId, formData);
       return response.data;
@@ -590,9 +592,14 @@ export const searchUsers = createAsyncThunk(
     const { blocked, blockers } = getState().relationships;
     const blocks = [...blocked, ...blockers];
 
-    const response = await api.searchUsers(username);
-
-    return { users: response.data.filter(user => !blocks.includes(user.id)) };
+    if (username.trim().length > 0) {
+      const response = await api.searchUsers(username);
+      return {
+        users: response.data.filter(user => !blocks.includes(user.id))
+      };
+    } else {
+      return { users: [] };
+    }
   }
 );
 

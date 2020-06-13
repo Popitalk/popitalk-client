@@ -52,7 +52,7 @@ export default function InfoCard({
             <p className={subtitleClasses}>{subtitle}</p>
           </>
         ) : (
-          <p className="text-md text-primaryText truncate">{title}</p>
+          <p className="text-sm text-primaryText truncate">{title}</p>
         )}
       </div>
       {controls ? controls : <></>}

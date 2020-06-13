@@ -29,16 +29,25 @@ export default function SortableList({
 
   const SortableList = SortableContainer(({ items }) => {
     return (
-      <div
-        className={
-          (axis === "y" ? "flex-col" : "flex-row") +
-          " flex flex-grow overflow-auto py-4 items-start"
-        }
-      >
-        {items.map((value, index) => (
-          <SortableItem key={`item-${value.id}`} index={index} value={value} />
-        ))}
-        {children}
+      <div>
+        <p className="pt-6 pb-2 px-4 text-lg text-bold text-primaryText">
+          Up Next
+        </p>
+        <div
+          className={
+            (axis === "y" ? "flex-col" : "flex-row") +
+            " flex flex-grow overflow-auto px-4 items-start"
+          }
+        >
+          {items.map((value, index) => (
+            <SortableItem
+              key={`item-${value.id}`}
+              index={index}
+              value={value}
+            />
+          ))}
+          {children}
+        </div>
       </div>
     );
   });

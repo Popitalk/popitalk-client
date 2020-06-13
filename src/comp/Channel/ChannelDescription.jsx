@@ -16,7 +16,7 @@ export default function ChannelDescription({
   status
 }) {
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col mb-8">
       <div className="flex flex-row justify-center align-middle bg-secondaryBackground p-4">
         <AvatarIcon
           username={name}
@@ -26,9 +26,9 @@ export default function ChannelDescription({
         <section className="mx-8">
           {/* <p className="text-xs mx-1">NOW PLAYING</p> */}
           {status && <VideoStatus status={status} type="text" />}
-          <p className="text-4xl mx-1 font-bold">{name}</p>
-          <p className="text-xs mx-1">{description}</p>
-          <div className="flex flex-row items-center mt-2">
+          <p className="text-3xl mx-1 font-bold">{name}</p>
+          <p className="text-sm my-2 mx-1">{description}</p>
+          <div className="flex flex-row items-center mt-4">
             <p className="text-xs mx-1"> ADMIN </p>
             {adminList.map((admin, idx) => {
               if (idx < threshold) {
@@ -37,7 +37,7 @@ export default function ChannelDescription({
                     key={idx}
                     username={admin.name}
                     avatar={admin.avatar}
-                    className="img h-8 w-8 rounded-circle mx-px"
+                    className="img h-6 w-6 rounded-circle mx-px"
                     limit={3}
                   />
                 );
