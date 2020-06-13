@@ -592,9 +592,14 @@ export const searchUsers = createAsyncThunk(
     const { blocked, blockers } = getState().relationships;
     const blocks = [...blocked, ...blockers];
 
-    const response = await api.searchUsers(username);
-
-    return { users: response.data.filter(user => !blocks.includes(user.id)) };
+    if (username.trim().length > 0) {
+      const response = await api.searchUsers(username);
+      return {
+        users: response.data.filter(user => !blocks.includes(user.id))
+      };
+    } else {
+      return { users: [] };
+    }
   }
 );
 

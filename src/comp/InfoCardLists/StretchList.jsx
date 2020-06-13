@@ -31,6 +31,16 @@ class StretchList extends Component {
     window.removeEventListener("resize", this.resize);
   }
 
+  componentDidUpdate(prevProps) {
+    if (prevProps.forceRefresh !== this.props.forceRefresh) {
+      this.setState({
+        height: 0
+      });
+    } else {
+      this.resize();
+    }
+  }
+
   render() {
     const { list, ...rest } = this.props;
     const List = list;

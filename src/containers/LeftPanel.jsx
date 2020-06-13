@@ -5,7 +5,8 @@ import { Switch, Route } from "react-router";
 import sortBy from "lodash/sortBy";
 import LeftPanel from "../comp/LeftPanels/LeftPanel";
 import {
-  toggleLeftPanel
+  toggleLeftPanel,
+  searchUsers
   // setLeftPanelActiveTabChannels,
   // setLeftPanelActiveTabFriends
 } from "../redux/actions";
@@ -19,8 +20,11 @@ export default function LeftPanelContainer() {
   const [selectedPage, setSelectedPage] = useState("channels");
   const channels = useSelector(state => state.channels);
   const users = useSelector(state => state.users);
+  const foundUsers = useSelector(state => state.userSearch);
   const friendIds = useSelector(state => state.relationships.friends);
   const { defaultAvatar } = useSelector(state => state.general);
+  const { defaultIcon } = useSelector(state => state.general);
+  const { id: ownId, channelIds, roomIds } = useSelector(state => state.self);
   const isCollapsed = useSelector(state => state.ui.isCollapsed);
   // const activeTab = useSelector(state => state.ui.leftPanelActiveTab);
 
@@ -28,9 +32,6 @@ export default function LeftPanelContainer() {
 
   let yourChannels = [];
   let followingChannels = [];
-
-  const { defaultIcon } = useSelector(state => state.general);
-  const { id: ownId, channelIds, roomIds } = useSelector(state => state.self);
   channelIds
     .map(channelId => ({
       id: channelId,
@@ -63,6 +64,11 @@ export default function LeftPanelContainer() {
     }),
     room => new Date(room.lastMessageAt)
   );
+
+  const foundUsersMap = foundUsers.map(u => ({
+    ...u,
+    avatar: u.avatar || defaultAvatar
+  }));
 
   const dispatch = useDispatch();
 
@@ -108,7 +114,8 @@ export default function LeftPanelContainer() {
         <LeftPanel
           yourChannels={yourChannels}
           followingChannels={followingChannels}
-          userSearchResults={friends}
+          userSearchResults={foundUsersMap}
+          handleSearch={username => dispatch(searchUsers(username))}
           roomsResults={rooms}
           friends={friends}
           selected={selectedChannel}
@@ -124,7 +131,8 @@ export default function LeftPanelContainer() {
         <LeftPanel
           yourChannels={yourChannels}
           followingChannels={followingChannels}
-          userSearchResults={friends}
+          userSearchResults={foundUsersMap}
+          handleSearch={username => dispatch(searchUsers(username))}
           roomsResults={rooms}
           friends={friends}
           selected={selectedChannel}
@@ -140,7 +148,8 @@ export default function LeftPanelContainer() {
         <LeftPanel
           yourChannels={yourChannels}
           followingChannels={followingChannels}
-          userSearchResults={friends}
+          userSearchResults={foundUsersMap}
+          handleSearch={username => dispatch(searchUsers(username))}
           roomsResults={rooms}
           friends={friends}
           selected={selectedChannel}

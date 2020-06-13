@@ -7,6 +7,7 @@ export default function LeftPanel({
   yourChannels,
   followingChannels,
   userSearchResults,
+  handleSearch,
   roomsResults,
   friends,
   selected,
@@ -41,7 +42,8 @@ export default function LeftPanel({
         ) : (
           <FriendsPanel
             userSearchResults={userSearchResults}
-            roomsResults={roomsResults}
+            handleSearch={handleSearch}
+            initialRooms={roomsResults}
             selected={selected}
             handleSelect={handleSelect}
             updateSelectedPage={updateSelectedPage}

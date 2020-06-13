@@ -129,6 +129,7 @@ export default function Input({
               size="sm"
               background="secondary"
               className="absolute right-0 mr-2"
+              onClick={onClick}
             />
           </>
         )}
