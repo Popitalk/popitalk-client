@@ -32,7 +32,7 @@ export default function RoomsList({
     <InfoCardList
       items={rooms}
       itemRenderer={itemRenderer}
-      itemSize={72}
+      itemSize={70}
       {...rest}
     />
   );

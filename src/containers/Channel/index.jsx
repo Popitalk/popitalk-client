@@ -39,6 +39,7 @@ import ForumPanel from "./ForumPanel";
 import ChannelSettingsPanel from "../../comp/Channel/ChannelSettingsPanel";
 import ChannelQueue from "../../comp/Channel/ChannelQueue";
 import VideoSearch from "../../comp/VideoSearch";
+import { updateChannel } from "../../helpers/api";
 
 export default function Channel({ tab, type = "channel" }) {
   const { channelId, roomId } = useParams();
@@ -62,7 +63,7 @@ export default function Channel({ tab, type = "channel" }) {
 
   // console.log("channels", channels);
   // console.log("channelid", channelId);
-  // console.log("channel", channel);
+  console.log("channel", channel);
   // console.log("posts", posts);
   // console.log("comments", comments);
   // console.log("tab", tab);
@@ -138,6 +139,11 @@ export default function Channel({ tab, type = "channel" }) {
         dispatch(likeComment({ commentId: id }));
       }
     }
+  };
+
+  const handleChannelFormSubmit = (values, channelId) => {
+    dispatch(updateChannel(channelId, values));
+    console.log("form submit values", values);
   };
 
   useEffect(() => {
@@ -247,6 +253,10 @@ export default function Channel({ tab, type = "channel" }) {
             icon: null,
             category: ""
           }}
+          handleChannelFormSubmit={values =>
+            handleChannelFormSubmit(values, channelId)
+          }
+          loading={loading}
         />
       )}
     </div>

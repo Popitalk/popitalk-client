@@ -29,7 +29,7 @@ export default function Notifications({
         <Button
           size="sm"
           onClick={handleClear}
-          className="absolute top-0 right-0 mt-1 mr-2"
+          className="absolute top-0 right-0 mt-1 mr-4"
         >
           Clear
         </Button>

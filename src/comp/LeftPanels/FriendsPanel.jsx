@@ -46,24 +46,26 @@ export default function FriendsPanel({
   };
 
   return (
-    <div className="w-full h-full flex flex-col px-2 bg-primaryBackground space-y-4 md:w-84">
+    <div className="w-full h-full flex flex-col bg-primaryBackground space-y-2 md:w-84">
       <div className="h-auto">
         <PanelHeader
           handleCollapse={handleCollapse}
           updateSelectedPage={updateSelectedPage}
           selectedPage={selectedPage}
         />
-        <Input
-          variant="user"
-          size="sm"
-          value={search}
-          placeholder="Search with username"
-          onChange={e => setSearch(e.target.value)}
-          onClick={() => syncSearch(search)}
-        />
+        <div className="mt-2 mx-4">
+          <Input
+            variant="user"
+            size="sm"
+            value={search}
+            placeholder="Search with username"
+            onChange={e => setSearch(e.target.value)}
+            onClick={() => syncSearch(search)}
+          />
+        </div>
         {open && (
-          <div className="px-2 rounded-lg shadow-2xl">
-            <div className="flex justify-between p-1 space-x-1">
+          <div className="rounded-lg bg-secondaryBackground shadow-inner mx-2 mt-2">
+            <div className="flex justify-between px-3 py-1 space-x-1">
               <div>
                 <span className="text-xs">Results for </span>
                 <span className="text-xs font-bold">{search}</span>
@@ -74,7 +76,7 @@ export default function FriendsPanel({
                   className="text-xs font-semibold no-underline cursor-pointer text-highlightText"
                   onClick={() => syncSearch("")}
                 >
-                  Clear
+                  Close
                 </span>
               </div>
             </div>
@@ -90,9 +92,8 @@ export default function FriendsPanel({
           </div>
         )}
       </div>
-
-      <div className="flex-grow px-2 rounded-lg bg-primaryBackground shadow-2xl">
-        <div className="flex w-full h-full">
+      <div className="flex-grow bg-primaryBackground">
+        <div className="flex w-full h-full px-2">
           <StretchList
             list={RoomsList}
             rooms={rooms}
@@ -102,8 +103,12 @@ export default function FriendsPanel({
           />
         </div>
       </div>
-      <div className="h-auto">
-        <Button size="md" leftIcon="plus" className="float-right">
+      <div className="relative h-auto">
+        <Button
+          size="md"
+          leftIcon="plus"
+          className="absolute bottom-0 right-0 mr-4 mb-6 shadow-xl"
+        >
           New Room
         </Button>
       </div>
