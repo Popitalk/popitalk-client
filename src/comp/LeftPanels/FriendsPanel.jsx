@@ -46,7 +46,7 @@ export default function FriendsPanel({
   };
 
   return (
-    <div className="w-full h-full flex flex-col px-2 bg-primaryBackground space-y-4 md:w-84">
+    <div className="w-full h-full flex flex-col bg-primaryBackground space-y-4 md:w-84">
       <div className="h-auto">
         <PanelHeader
           handleCollapse={handleCollapse}
@@ -91,7 +91,7 @@ export default function FriendsPanel({
         )}
       </div>
 
-      <div className="flex-grow px-2 rounded-lg bg-primaryBackground shadow-2xl">
+      <div className="flex-grow bg-primaryBackground">
         <div className="flex w-full h-full">
           <StretchList
             list={RoomsList}
