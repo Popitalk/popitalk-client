@@ -53,7 +53,7 @@ export default function FriendsPanel({
           updateSelectedPage={updateSelectedPage}
           selectedPage={selectedPage}
         />
-        <div className="mt-2">
+        <div className="mt-2 mx-4">
           <Input
             variant="user"
             size="sm"
@@ -93,7 +93,7 @@ export default function FriendsPanel({
         )}
       </div>
       <div className="flex-grow bg-primaryBackground">
-        <div className="flex w-full h-full">
+        <div className="flex w-full h-full px-2">
           <StretchList
             list={RoomsList}
             rooms={rooms}

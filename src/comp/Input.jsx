@@ -92,7 +92,7 @@ export default function Input({
         size={size}
         bold={variant !== "video"}
       />
-      <div className="flex flex-row items-center relative px-4">
+      <div className="flex flex-row items-center relative">
         {(variant === "filter" || variant === "filterModal") && (
           <FontAwesomeIcon icon="search" className={iconClasses} />
         )}
@@ -128,7 +128,7 @@ export default function Input({
               icon="search"
               size="sm"
               background="secondary"
-              className="absolute right-0 mr-6"
+              className="absolute right-0 mr-2"
               onClick={onClick}
             />
           </>
