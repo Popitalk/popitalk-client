@@ -17,7 +17,7 @@ export default function VideoSection({
 }) {
   return (
     <div className="flex flex-col">
-      <div className="h-64 bg-black">
+      <div className="h-84 bg-black">
         <p className="">Video Container for Video Player</p>
       </div>
       <div className="flex flex-row justify-between bg-secondaryBackground pt-4">

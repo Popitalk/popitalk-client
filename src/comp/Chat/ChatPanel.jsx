@@ -16,7 +16,7 @@ function ChatPanel({
       <div className="h-auto">
         <ChatHeader />
       </div>
-      <div className="overflow-auto">
+      <div className="overflow-auto h-full">
         <ChatMessages
           handleResend={handleSendMessage}
           handleDelete={handleDelete}
