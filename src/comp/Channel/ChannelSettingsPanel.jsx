@@ -12,6 +12,7 @@ export default function ChannelSettingsPanel({
   initialChannelForm,
   handleChannelFormSubmit,
   channelFormLoading,
+  channelFormError,
   addAdminHandler,
   removeAdminHandler,
   kickUserHandler,
@@ -54,7 +55,9 @@ export default function ChannelSettingsPanel({
         <ChannelForm
           initial={initialChannelForm}
           handleSubmit={handleChannelFormSubmit}
+          type="update"
           loading={channelFormLoading}
+          error={channelFormError}
         />
       </div>
     );
