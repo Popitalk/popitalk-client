@@ -8,7 +8,7 @@ export default function ChatMessage({
   defaultAvatar
 }) {
   return (
-    <div className="flex flex-col my-0">
+    <div className="flex flex-col mt-2 mx-2">
       <div className="flex items-center space-x-2 text-xs ml-1">
         <img
           className="w-8 h-8 rounded-full"
