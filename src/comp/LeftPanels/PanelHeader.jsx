@@ -7,7 +7,7 @@ export default function PanelHeader({
   selectedPage
 }) {
   return (
-    <div className="flex items-center justify-around w-full px-0 mb-2">
+    <div className="flex sticky top-0 bg-primaryBackground items-center justify-around w-full px-0 z-20">
       <button className="p-4" onClick={handleCollapse}>
         <FontAwesomeIcon
           icon="bars"
@@ -18,8 +18,8 @@ export default function PanelHeader({
         <h3
           className={`${
             selectedPage === "channels"
-              ? "text-2xl font-semibold btn-playing p-1 px-2"
-              : "text-secondaryText font-semibold text-2xl duration-50 hover:text-highlightText p-1 px-2 rounded-xl"
+              ? "text-2xl font-semibold btn-playing px-2 p-1 rounded-full shadow-inner"
+              : "text-secondaryText font-semibold text-2xl duration-50 hover:bg-secondaryBackground rounded-xl px-2 p-1"
           } `}
         >
           Channels
@@ -29,8 +29,8 @@ export default function PanelHeader({
         <h3
           className={`${
             selectedPage === "friends"
-              ? "text-2xl font-semibold btn-playing p-1 px-2"
-              : "text-secondaryText font-semibold text-2xl duration-50 hover:text-highlightText p-1 px-2 rounded-xl"
+              ? "text-2xl font-semibold btn-playing px-2 p-1 rounded-full shadow-inner"
+              : "text-secondaryText font-semibold text-2xl duration-50 hover:bg-secondaryBackground rounded-xl px-2 p-1"
           } `}
         >
           Friends

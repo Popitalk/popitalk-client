@@ -128,7 +128,7 @@ export default function Input({
               icon="search"
               size="sm"
               background="secondary"
-              className="absolute right-0 mr-2"
+              className="absolute right-0 mr-6"
               onClick={onClick}
             />
           </>
