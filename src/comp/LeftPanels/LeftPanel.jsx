@@ -6,6 +6,8 @@ import ChannelsPanel from "./ChannelsPanel";
 export default function LeftPanel({
   yourChannels,
   followingChannels,
+  userSearchResults,
+  roomsResults,
   friends,
   selected,
   handleSelect,
@@ -38,7 +40,8 @@ export default function LeftPanel({
           />
         ) : (
           <FriendsPanel
-            userSearchResults={friends}
+            userSearchResults={userSearchResults}
+            roomsResults={roomsResults}
             selected={selected}
             handleSelect={handleSelect}
             updateSelectedPage={updateSelectedPage}

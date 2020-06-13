@@ -7,12 +7,14 @@ import CollapsedPanel from "../comp/LeftPanels/CollapsedPanel";
 import DefaultLayout from "../comp/DefaultLayout";
 import ChannelHeader from "../comp/ChannelHeader";
 
-import { testChannels, testRooms, testUsers } from "./seed-arrays";
+import { testChannels, generateTestRooms, testUsers } from "./seed-arrays";
 
 export default {
   title: "LeftPanels",
   decorators: [withKnobs]
 };
+
+const testRooms = generateTestRooms();
 
 export const DefaultLayoutTest = () => {
   const { selectedChannel, setSelectedChannel } = useState(null);
@@ -77,7 +79,7 @@ export const FriendsPanelTest = () => {
   };
 
   return (
-    <div className="p-5 bg-secondaryBackground">
+    <div className="p-5 bg-secondaryBackground h-screen">
       <FriendsPanel
         roomsResults={testRooms}
         channels={testChannels}

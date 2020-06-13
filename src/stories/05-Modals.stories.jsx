@@ -23,8 +23,7 @@ import {
   testQueue,
   testMessages,
   generateTestUsers,
-  generateImage,
-  generateName
+  generateTestRooms
 } from "./seed-arrays";
 import {
   filterSearch,
@@ -60,43 +59,6 @@ const unfriendHandler = id => {
 
 const blockHandler = id => {
   console.log(`Blocked ${id}`);
-};
-
-const generateTestRooms = () => {
-  const numRooms = 100;
-  let testRooms = [];
-
-  const watching = Math.round(Math.random() * numRooms);
-
-  for (let i = 0; i < numRooms; i++) {
-    const numImages = Math.round(Math.random() * 3) + 1;
-
-    let names = "";
-    let images = [];
-    for (let j = 0; j < numImages; j++) {
-      images.push(generateImage());
-
-      names += generateName();
-      if (j !== numImages - 1) {
-        names += ",";
-      }
-    }
-
-    testRooms.push({
-      id: i + 1,
-      name: names,
-      self: Math.round(Math.random()) === 1,
-      online: Math.round(Math.random()) === 1,
-      watching: watching === i,
-      notifications:
-        Math.round(Math.random()) === 0 ? null : Math.round(Math.random() * 50),
-      message: `This is message ${i + 1}`,
-      images: images,
-      messageSent: `${Math.round(Math.random() * 58) + 1}m`
-    });
-  }
-
-  return testRooms;
 };
 
 const generatedRooms = generateTestRooms();

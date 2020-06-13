@@ -9,10 +9,13 @@ export default function RoomInfoCard({
   handleSelect,
   addBorder
 }) {
+  const images = room.members.map(m => m.avatar);
+  const name = room.members.map(m => m.username).join();
+
   const roomIcon = (
     <RoomIcon
-      images={room.images}
-      self={room.self}
+      images={images}
+      self={room.type === "self"}
       online={room.online}
       watching={room.watching}
       notifications={room.notifications}
@@ -24,8 +27,8 @@ export default function RoomInfoCard({
     <InfoCard
       avatar={roomIcon}
       controls={controls}
-      title={room.name}
-      subtitle={room.message}
+      title={name}
+      subtitle={room.lastMessageContent}
       subtitleColor={room.notifications ? "black" : "gray"}
       boldFont={room.notifications}
       addBorder={addBorder}

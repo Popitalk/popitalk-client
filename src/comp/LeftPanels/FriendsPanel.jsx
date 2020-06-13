@@ -12,56 +12,73 @@ export default function FriendsPanel({
   updateSelectedPage,
   handleCollapse,
   selectedPage,
-  ...rest
+  handleAccept,
+  handleReject,
+  handleProfile,
+  selectedRoom,
+  handleSelectRoom
 }) {
   const [search, setSearch] = useState("");
 
   return (
-    <div className="w-full h-full px-2 bg-primaryBackground md:w-84">
-      <PanelHeader
-        handleCollapse={handleCollapse}
-        updateSelectedPage={updateSelectedPage}
-        selectedPage={selectedPage}
-      />
-      <Input
-        variant="user"
-        size="sm"
-        value={search}
-        placeholder="Search with username"
-        onChange={e => setSearch(e.target.value)}
-      />
-      <div className="px-2 rounded-lg shadow-2xl">
-        <div className="flex justify-between p-1 space-x-1">
-          <div>
-            <span className="text-xs">Results for </span>
-            <span className="text-xs font-bold">{search}</span>
+    <div className="w-full h-full flex flex-col px-2 bg-primaryBackground md:w-84">
+      <div className="h-auto">
+        <PanelHeader
+          handleCollapse={handleCollapse}
+          updateSelectedPage={updateSelectedPage}
+          selectedPage={selectedPage}
+        />
+        <Input
+          variant="user"
+          size="sm"
+          value={search}
+          placeholder="Search with username"
+          onChange={e => setSearch(e.target.value)}
+        />
+        <div className="px-2 rounded-lg shadow-2xl">
+          <div className="flex justify-between p-1 space-x-1">
+            <div>
+              <span className="text-xs">Results for </span>
+              <span className="text-xs font-bold">{search}</span>
+            </div>
+            <div>
+              <span
+                role="button"
+                className="text-xs font-semibold no-underline cursor-pointer text-highlightText"
+                onClick={() => setSearch("")}
+              >
+                Clear
+              </span>
+            </div>
           </div>
-          <div>
-            <span
-              role="button"
-              className="text-xs font-semibold no-underline cursor-pointer text-highlightText"
-              onClick={() => setSearch("")}
-            >
-              Clear
-            </span>
+          <div className="flex w-full h-64">
+            <StretchList
+              list={FriendUsersList}
+              users={userSearchResults}
+              handleAccept={handleAccept}
+              handleReject={handleReject}
+              handleProfile={handleProfile}
+            />
           </div>
-        </div>
-        <div className="flex w-full h-64">
-          <StretchList
-            list={FriendUsersList}
-            users={userSearchResults}
-            {...rest}
-          />
         </div>
       </div>
 
-      <div className="my-4">
-        <RoomsList rooms={roomsResults} />
+      <div className="my-4 flex-grow px-2 rounded-lg bg-primaryBackground shadow-2xl">
+        <div className="flex w-full h-full">
+          <StretchList
+            list={RoomsList}
+            rooms={roomsResults}
+            selected={selectedRoom}
+            handleSelect={handleSelectRoom}
+          />
+        </div>
       </div>
-      <Button size="md" leftIcon="plus" className="float-right">
-        New Room
-      </Button>
-      <div className="clearfix" />
+      <div className="h-auto">
+        <Button size="md" leftIcon="plus" className="float-right">
+          New Room
+        </Button>
+        <div className="clearfix" />
+      </div>
     </div>
   );
 }
