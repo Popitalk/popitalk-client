@@ -19,7 +19,8 @@ import {
   unlikePost,
   likePost,
   unlikeComment,
-  likeComment
+  likeComment,
+  updateChannel
 } from "../../redux/actions";
 
 import {
@@ -39,7 +40,7 @@ import ForumPanel from "./ForumPanel";
 import ChannelSettingsPanel from "../../comp/Channel/ChannelSettingsPanel";
 import ChannelQueue from "../../comp/Channel/ChannelQueue";
 import VideoSearch from "../../comp/VideoSearch";
-import { updateChannel } from "../../helpers/api";
+// import { updateChannel } from "../../helpers/api";
 import { mapIdsToUsers } from "../../helpers/functions";
 
 export default function Channel({ tab, type = "channel" }) {
@@ -185,85 +186,81 @@ export default function Channel({ tab, type = "channel" }) {
   }, [tab, loading]);
 
   return (
-    <>
-      {!loading && (
-        <div
-          ref={scrollRef}
-          className="flex flex-col w-full bg-secondaryBackground overflow-auto"
-        >
-          <ChannelHeader
-            id={channelId || roomId}
-            name={pickRoomName(channel, users, ownId)}
-            icon={channel.icon || defaultIcon}
-            videoStatus={
-              activeVideo && activeVideo.status ? activeVideo.status : ""
-            }
-            type={type}
-          />
-          {(tab === "video" || tab === "channel") && (
-            <>
-              <VideoPanel playlist={copyTestQueue} classNames="pt-0" />
-              {type === "channel" && (
-                <ForumPanel
-                  ref={channelRef}
-                  name={channel.name}
-                  description={channel.description}
-                  icon={channel.icon || defaultIcon}
-                  adminList={[...testUserMinimal, ...testUserMinimal]}
-                  status="playing"
-                  comments={comments}
-                  posts={posts}
-                  saveDraft={saveDraft}
-                  savePost={savePost}
-                  saveComment={saveComment}
-                  draft={draft}
-                  defaultAvatar={defaultAvatar}
-                  toggleLike={toggleLike}
-                />
-              )}
-              {type === "room" && (
-                <div>
-                  <h2 className="text-2xl mt-20 px-3">Find More Videos</h2>
-                  <VideoSearch
-                    trendingResults={trendingResults}
-                    searchResults={searchResults}
-                    threshold={3}
-                  />
-                </div>
-              )}
-            </>
-          )}
-
-          {tab === "queue" && (
-            <ChannelQueue
+    <div
+      ref={scrollRef}
+      className="flex flex-col w-full bg-secondaryBackground overflow-auto"
+    >
+      <ChannelHeader
+        id={channelId || roomId}
+        name={pickRoomName(channel, users, ownId)}
+        icon={channel.icon || defaultIcon}
+        videoStatus={
+          activeVideo && activeVideo.status ? activeVideo.status : ""
+        }
+        type={type}
+      />
+      {(tab === "video" || tab === "channel") && (
+        <>
+          <VideoPanel playlist={copyTestQueue} classNames="pt-0" />
+          {type === "channel" && (
+            <ForumPanel
+              ref={channelRef}
               name={channel.name}
+              description={channel.description}
               icon={channel.icon || defaultIcon}
-              trendingResults={testResult}
-              searchResults={testResult}
-              activeVideo={testQueue[0]}
-              queue={testQueue}
+              adminList={[...testUserMinimal, ...testUserMinimal]}
+              status="playing"
+              comments={comments}
+              posts={posts}
+              saveDraft={saveDraft}
+              savePost={savePost}
+              saveComment={saveComment}
+              draft={draft}
+              defaultAvatar={defaultAvatar}
+              toggleLike={toggleLike}
             />
           )}
-          {tab === "settings" && (
-            <ChannelSettingsPanel
-              followers={mapIdsToUsers(channel.members, users, defaultAvatar)}
-              admins={mapIdsToUsers(channel.admins, users, defaultAvatar)}
-              bannedUsers={mapIdsToUsers(channel.banned, users, defaultAvatar)}
-              initialChannelForm={{
-                name: "",
-                description: "",
-                private: false,
-                icon: null,
-                category: ""
-              }}
-              handleChannelFormSubmit={values =>
-                handleChannelFormSubmit(values, channelId)
-              }
-              loading={loading}
-            />
+          {type === "room" && (
+            <div>
+              <h2 className="text-2xl mt-20 px-3">Find More Videos</h2>
+              <VideoSearch
+                trendingResults={trendingResults}
+                searchResults={searchResults}
+                threshold={3}
+              />
+            </div>
           )}
-        </div>
+        </>
       )}
-    </>
+
+      {tab === "queue" && (
+        <ChannelQueue
+          name={channel.name}
+          icon={channel.icon || defaultIcon}
+          trendingResults={testResult}
+          searchResults={testResult}
+          activeVideo={testQueue[0]}
+          queue={testQueue}
+        />
+      )}
+      {tab === "settings" && !loading && (
+        <ChannelSettingsPanel
+          followers={mapIdsToUsers(channel.members, users, defaultAvatar)}
+          admins={mapIdsToUsers(channel.admins, users, defaultAvatar)}
+          bannedUsers={mapIdsToUsers(channel.banned, users, defaultAvatar)}
+          initialChannelForm={{
+            name: "",
+            description: "",
+            private: false,
+            icon: null,
+            category: ""
+          }}
+          handleChannelFormSubmit={values =>
+            handleChannelFormSubmit(values, channelId)
+          }
+          loading={loading}
+        />
+      )}
+    </div>
   );
 }
