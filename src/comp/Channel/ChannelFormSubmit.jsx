@@ -5,7 +5,6 @@ import Button from "../Button";
 export default function ChannelFormSubmit({
   type = "create",
   disabled,
-  loading,
   handleReset,
   className
 }) {
@@ -34,7 +33,7 @@ export default function ChannelFormSubmit({
             Reset
           </Button>
         )}
-        <Button size="md" type="submit" shape="pill" loading={loading}>
+        <Button size="md" type="submit" shape="pill" disabled={disabled}>
           {type === "create" ? "Create" : "Save"}
         </Button>
       </div>

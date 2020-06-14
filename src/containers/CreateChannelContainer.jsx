@@ -16,6 +16,7 @@ export default function CreateChannelContainer() {
         icon: null,
         category: ""
       }}
+      type="create"
       handleSubmit={values => dispatch(addChannel(values))}
       loading={addChannelApi.loading}
       error={addChannelApi.status === "error" ? addChannelApi.error : false}
