@@ -18,7 +18,7 @@ export default function SiteHeaderWelcome({
   };
 
   return (
-    <header className="top-0 w-screen flex flex-col px-4 py-2 border-b md:px-16 sm:justify-between sm:flex-row bg-primaryBackground border-primaryBorder z-20">
+    <header className="fixed top-0 w-screen flex flex-col px-4 py-2 border-b md:px-16 sm:justify-between sm:flex-row bg-primaryBackground border-primaryBorder z-20">
       <div className="flex items-center">
         <Link to="/welcome">
           <img src={Logo} alt="PlayNow's logo" className="w-12 h-12" />

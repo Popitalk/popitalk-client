@@ -121,7 +121,8 @@ module.exports = {
     },
     extend: {
       spacing: {
-        "84": "21rem"
+        "84": "21rem",
+        "102": "28rem"
       },
       borderWidth: {
         thin: "thin"
