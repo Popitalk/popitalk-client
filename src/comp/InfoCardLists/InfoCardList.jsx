@@ -4,7 +4,7 @@ import { FixedSizeList } from "react-window";
 export default function InfoCardList({
   items,
   itemRenderer,
-  height = 1000,
+  height = 100000,
   itemSize = 64,
   fullHeight
 }) {
