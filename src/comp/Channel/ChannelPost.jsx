@@ -46,7 +46,9 @@ export default function ChannelPost({
             </span>
           </div>
         </header>
-        <p className="text-primaryText text-lg pt-6 pb-8 px-2">{text}</p>
+        <p className="text-primaryText text-lg pt-6 pb-8 px-2 break-words">
+          {text}
+        </p>
         <footer className="flex text-secondaryText text-xl">
           <ToggleIcon
             icons={{ default: ["far", "heart"], toggle: ["fa", "heart"] }}
