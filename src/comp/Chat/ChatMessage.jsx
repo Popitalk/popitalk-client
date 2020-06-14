@@ -21,7 +21,7 @@ export default function ChatMessage({
       message.author.id === previousMessage.author.id)
   ) {
     return (
-      <div className="flex flex-col mt-2 mx-2">
+      <div className="flex flex-col mt-6 mx-2">
         <div className="flex items-center space-x-2 text-xs ml-1">
           <img
             className="w-8 h-8 rounded-full"
@@ -55,10 +55,10 @@ export default function ChatMessage({
           </span>
           {message.author.username === message.me &&
           (handleResend || handleDelete) ? (
-            <div className="w-3/5 h-6 px-0 space-x-2 rounded-full bg-gradient-br-cancel flex flex-row justify-center">
+            <div className="w-10 h-4 px-0 space-x-2 rounded-full bg-gradient-br-cancel flex flex-row justify-center">
               {handleResend ? (
                 <button
-                  className="focus:outline-none flex items-center py-1"
+                  className="focus:outline-none flex items-center"
                   onClick={() => handleResend(message.content)}
                 >
                   <FontAwesomeIcon
@@ -72,7 +72,7 @@ export default function ChatMessage({
               )}
               {handleDelete ? (
                 <button
-                  className="focus:outline-none flex items-center py-1"
+                  className="focus:outline-none flex items-center"
                   onClick={() => handleDelete(message.id)}
                 >
                   <FontAwesomeIcon
@@ -127,10 +127,10 @@ export default function ChatMessage({
           </span>
           {message.author.username === message.me &&
           (handleResend || handleDelete) ? (
-            <div className="w-3/5 h-6 px-0 space-x-2 rounded-full bg-gradient-br-cancel flex flex-row justify-center">
+            <div className="w-10 h-4 px-0 space-x-2 rounded-full bg-gradient-br-cancel flex flex-row justify-center">
               {handleResend ? (
                 <button
-                  className="focus:outline-none flex items-center py-1"
+                  className="focus:outline-none flex items-center"
                   onClick={() => handleResend(message.content)}
                 >
                   <FontAwesomeIcon
@@ -144,7 +144,7 @@ export default function ChatMessage({
               )}
               {handleDelete ? (
                 <button
-                  className="focus:outline-none flex items-center py-1"
+                  className="focus:outline-none flex items-center"
                   onClick={() => handleDelete(message.id)}
                 >
                   <FontAwesomeIcon
