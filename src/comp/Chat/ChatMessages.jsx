@@ -8,7 +8,20 @@ function ChatMessages({ messages, me, ...props }) {
       <>
         {tempMessages.map((message, i) => {
           message.me = me;
-          return <ChatMessage key={i} message={message} {...props} />;
+          // Passes the previous message in a list to compare creation times
+          // for message fusing functionality.
+          let previousMessage = null;
+          if (tempMessages[i - 1]) {
+            previousMessage = tempMessages[i - 1];
+          }
+          return (
+            <ChatMessage
+              key={i}
+              previousMessage={previousMessage}
+              message={message}
+              {...props}
+            />
+          );
         })}
       </>
     );
