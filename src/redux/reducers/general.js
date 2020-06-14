@@ -7,14 +7,14 @@ import {
   wsConnect,
   wsDisconnect
 } from "../actions";
+import channelDefault from "../../assets/default/channel-default.png";
 
 const initialState = {
   loggedIn: false,
   validatedSession: false,
   siteVersion: "1.1.4",
   defaultAvatar: "https://i.imgur.com/h1SSoyk.png",
-  defaultIcon:
-    "https://drive.google.com/uc?export=download&id=1tzGYQfjbhDGAdmj6ztVIpH2jDkONmvhx",
+  defaultIcon: channelDefault,
   groupRoomMemberLimit: 8,
   wsConnected: false,
   heartbeatInterval: null

@@ -58,7 +58,7 @@ export default function ChannelsPanel({
           </div>
         </div>
       </div>
-      <div className="sm:mt-10">
+      {/* <div className="sm:mt-10">
         <h4 className="my-4 mx-2 text-md font-semibold text-secondaryText">
           Suggested
         </h4>
@@ -88,7 +88,7 @@ export default function ChannelsPanel({
             />
           </div>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }
