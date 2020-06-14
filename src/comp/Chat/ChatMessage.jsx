@@ -1,5 +1,6 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import dateFormatter from "../../util/dateFormatter";
 
 export default function ChatMessage({
   message,
@@ -17,7 +18,7 @@ export default function ChatMessage({
         />
         <span className="font-bold">{message.author.username}</span>
         <span className="text-secondaryText">
-          {message.createdAt.toLocaleString()}
+          {dateFormatter(new Date(message.createdAt))}
         </span>
       </div>
       <div className="grid mt-2 mb-4 grid-cols-chat">
