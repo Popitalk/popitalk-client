@@ -13,7 +13,8 @@ const initialState = {
   validatedSession: false,
   siteVersion: "1.1.4",
   defaultAvatar: "https://i.imgur.com/h1SSoyk.png",
-  defaultIcon: "https://i.imgur.com/XoUrZls.png",
+  defaultIcon:
+    "https://drive.google.com/uc?export=download&id=1tzGYQfjbhDGAdmj6ztVIpH2jDkONmvhx",
   groupRoomMemberLimit: 8,
   wsConnected: false,
   heartbeatInterval: null
