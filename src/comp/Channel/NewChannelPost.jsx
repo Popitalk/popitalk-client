@@ -31,17 +31,19 @@ export default function NewChannelPost({
     e.preventDefault();
     savePost(draft?.trim());
     saveDraft("");
+    textareaRef.current.style.height = "40px";
     console.log("submit", draft?.trim());
   };
   const handleEmot = e => {
     setPickerOpen(!pickerOpen);
   };
   const handleChange = e => {
-    e.target.style.height = "2rem";
+    e.target.style.height = "40px";
     e.target.style.height = `${Math.min(e.target.scrollHeight + 2, 168)}px`;
-    // setPost(e.target.value)
     saveDraft(e.target.value);
+    console.log("save draft", e.target.value, draft);
   };
+
   return (
     <>
       <form
@@ -92,6 +94,7 @@ export default function NewChannelPost({
             autoFocus
             emojiTooltip={true}
             onSelect={e => {
+              console.log("info draft and symbol", draft, e.native);
               saveDraft(`${draft} ${e.native}`);
               // setPost((old) => `${old} ${e.native}`);
               setPickerOpen(false);
