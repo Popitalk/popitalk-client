@@ -8,8 +8,8 @@ function WelcomePage(props) {
   return (
     <div className="w-screen h-screen">
       <div className="h-32 w-screen bg-primaryBackground"></div>
-      <section className="rounded-b-xl bg-primaryBackground flex flex-col items-center -mt-24 sm:flex-row sm:justify-around lg:justify-around xl:px-20">
-        <div className="relative pb-screen flex items-center justify-center md:w-1/2 h-full sm:w-0">
+      <section className="rounded-b-xl bg-primaryBackground flex flex-col items-center -mt-24 sm:flex-row sm:justify-around lg:justify-around xl:p-40">
+        <div className="relative flex items-center justify-center md:w-1/2 h-full sm:w-0">
           <img
             src={Welcome}
             alt="Welcome"
