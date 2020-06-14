@@ -20,8 +20,17 @@ function ChatPanelContainer(props) {
   const handleSendMessage = text => {
     dispatch(
       addMessage({
+        id: "",
+        userId: "",
         channelId,
-        content: text
+        content: text,
+        upload: null,
+        createdAt: Date.now(),
+        author: {
+          id: "",
+          username: me,
+          avatar: null
+        }
       })
     );
   };

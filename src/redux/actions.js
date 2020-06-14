@@ -420,7 +420,11 @@ export const getLatestMessages = createAsyncThunk(
 export const addMessage = createAsyncThunk(
   "messages/addMessage",
   async (message, { getState }) => {
-    const response = await api.addMessage(message);
+    const infoObject = {
+      channelId: message.channelId,
+      content: message.content
+    };
+    const response = await api.addMessage(infoObject);
     const payload = response.data;
     const { capacity } = getState().channels[payload.channelId].chatSettings;
     return { ...payload, capacity };

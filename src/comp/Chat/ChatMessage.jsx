@@ -43,7 +43,11 @@ export default function ChatMessage({
               }`}
             ></span>
           </span>
-          <span className="w-full text-sm text-justify text-primaryText">
+          <span
+            className={`w-full text-sm text-justify ${
+              message.pending ? "text-secondaryText" : "text-primaryText"
+            }`}
+          >
             {message.content}
             {message.upload && (
               <img
@@ -56,7 +60,7 @@ export default function ChatMessage({
           {message.author.username === message.me &&
           (handleResend || handleDelete) ? (
             <div className="w-10 h-4 px-0 space-x-2 rounded-full bg-gradient-br-cancel flex flex-row justify-center">
-              {handleResend ? (
+              {handleResend && message.pending ? (
                 <button
                   className="focus:outline-none flex items-center"
                   onClick={() => handleResend(message.content)}
@@ -70,7 +74,7 @@ export default function ChatMessage({
               ) : (
                 <></>
               )}
-              {handleDelete ? (
+              {handleDelete && !message.pending ? (
                 <button
                   className="focus:outline-none flex items-center"
                   onClick={() => handleDelete(message.id)}
@@ -115,7 +119,11 @@ export default function ChatMessage({
               }`}
             ></span>
           </span>
-          <span className="w-full text-sm text-justify text-primaryText">
+          <span
+            className={`w-full text-sm text-justify ${
+              message.pending ? "text-secondaryText" : "text-primaryText"
+            }`}
+          >
             {message.content}
             {message.upload && (
               <img
@@ -128,7 +136,7 @@ export default function ChatMessage({
           {message.author.username === message.me &&
           (handleResend || handleDelete) ? (
             <div className="w-10 h-4 px-0 space-x-2 rounded-full bg-gradient-br-cancel flex flex-row justify-center">
-              {handleResend ? (
+              {handleResend && message.pending ? (
                 <button
                   className="focus:outline-none flex items-center"
                   onClick={() => handleResend(message.content)}
@@ -142,7 +150,7 @@ export default function ChatMessage({
               ) : (
                 <></>
               )}
-              {handleDelete ? (
+              {handleDelete && !message.pending ? (
                 <button
                   className="focus:outline-none flex items-center"
                   onClick={() => handleDelete(message.id)}

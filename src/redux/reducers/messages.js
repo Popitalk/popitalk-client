@@ -56,7 +56,7 @@ const R_addMessages = (state, { payload }) => {
 };
 const R_addMessage = (state, { payload }) => {
   const { capacity, ...message } = payload;
-
+  state[payload.channelId].pop();
   if (!state[payload.channelId]) {
     state[payload.channelId] = [message];
   } else if (state[payload.channelId].length < 250) {
@@ -65,6 +65,25 @@ const R_addMessage = (state, { payload }) => {
     if (capacity === 50) {
       state[payload.channelId] = state[payload.channelId].slice(-50);
     }
+  }
+};
+const R_addPendingMessage = (state, { meta }) => {
+  const tempMessage = {
+    pending: true,
+    id: "",
+    userId: "",
+    channelId: meta.arg.channelId,
+    content: meta.arg.content,
+    upload: null,
+    createdAt: Date.now(),
+    author: {
+      id: "",
+      username: meta.arg.author.username,
+      avatar: null
+    }
+  };
+  if (state[meta.arg.channelId].length < 250) {
+    state[meta.arg.channelId].push(tempMessage);
   }
 };
 const R_deleteMessage = (state, { payload }) => {
@@ -95,6 +114,7 @@ export default createReducer(initialState, {
   [addFriendWs]: R_messagesInit,
   [getMessages.fulfilled]: R_addMessages,
   [addMessage.fulfilled]: R_addMessage,
+  [addMessage.pending]: R_addPendingMessage,
   [addMessageWs]: R_addMessage,
   [getLatestMessages.fulfilled]: R_replaceMessages,
   [deleteMessage.fulfilled]: R_deleteMessage,
