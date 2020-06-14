@@ -94,7 +94,11 @@ export default function CreateNewAccountForm({ handleSubmit, error, loading }) {
                 <a href="https://medium.com/popitalk/end-user-license-agreement-and-terms-of-service-dc8a25c0f5d2?source=friends_link&sk=2150df3f6e097d60599c30a5d3e8942a">
                   Terms
                 </a>{" "}
-                and <a href="https://google.com">Policy</a>.
+                and{" "}
+                <a href="https://medium.com/popitalk/privacy-policy-ab89684edca6?source=friends_link&sk=555c056e49c784af16481f96f8dcbfe3">
+                  Policy
+                </a>
+                .
               </p>
               <div className="mt-4">
                 <Button type="submit" disabled={loading || !isValid || !dirty}>
