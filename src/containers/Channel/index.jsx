@@ -144,7 +144,7 @@ export default function Channel({ tab, type = "channel" }) {
   };
 
   const handleChannelFormSubmit = (values, channelId) => {
-    dispatch(updateChannel(channelId, values));
+    dispatch(updateChannel({ channelId, ...values }));
     console.log("form submit values", values);
   };
 
