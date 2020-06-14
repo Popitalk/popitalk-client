@@ -24,15 +24,9 @@ import {
 } from "../../redux/actions";
 
 import {
-  testComments,
-  testPosts,
   testQueue,
   testUserMinimal,
-  testVideos,
-  testResult,
-  testUsers,
-  testMessages,
-  generateTestUsers
+  testResult
 } from "../../stories/seed-arrays";
 import ChannelHeader from "../../comp/ChannelHeader";
 import VideoPanel from "./VideoPanel";
@@ -40,13 +34,13 @@ import ForumPanel from "./ForumPanel";
 import ChannelSettingsPanel from "../../comp/Channel/ChannelSettingsPanel";
 import ChannelQueue from "../../comp/Channel/ChannelQueue";
 import VideoSearch from "../../comp/VideoSearch";
-// import { updateChannel } from "../../helpers/api";
 import { mapIdsToUsers } from "../../helpers/functions";
 
 export default function Channel({ tab, type = "channel" }) {
   const { channelId, roomId } = useParams();
   const channel = useSelector(state => state.channels[channelId || roomId]);
   const { defaultIcon, defaultAvatar } = useSelector(state => state.general);
+  const updateChannelApi = useSelector(state => state.api.channel);
   const draft = useSelector(state => state.postDrafts[channelId]);
   const posts = useSelector(state => state.posts[channelId]);
   const { id: ownId, username: ownUsername, avatar: ownAvatar } = useSelector(
@@ -75,7 +69,6 @@ export default function Channel({ tab, type = "channel" }) {
 
   const trendingResults = testResult;
   const searchResults = testResult.slice(0, 3);
-  const generatedUsers = generateTestUsers();
 
   const pickRoomName = (room, users, ownId) => {
     let roomName = "";
@@ -249,16 +242,17 @@ export default function Channel({ tab, type = "channel" }) {
           admins={mapIdsToUsers(channel.admins, users, defaultAvatar)}
           bannedUsers={mapIdsToUsers(channel.banned, users, defaultAvatar)}
           initialChannelForm={{
-            name: "",
-            description: "",
-            private: false,
-            icon: null,
+            ...channel,
+            private: !channel.public,
             category: ""
           }}
           handleChannelFormSubmit={values =>
             handleChannelFormSubmit(values, channelId)
           }
-          loading={loading}
+          channelFormLoading={updateChannelApi.loading}
+          channelFormError={
+            updateChannelApi.status === "error" ? updateChannelApi.error : false
+          }
         />
       )}
     </div>

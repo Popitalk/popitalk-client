@@ -5,7 +5,8 @@ export default function InfoCardList({
   items,
   itemRenderer,
   height = 1000,
-  itemSize = 64
+  itemSize = 64,
+  fullHeight
 }) {
   if (!items || items.length === 0) {
     return (
@@ -31,8 +32,8 @@ export default function InfoCardList({
   const spacing = 4;
   const finalSize = itemSize + spacing;
 
-  if (items.length * finalSize < height) {
-    finalHeight = items.length * finalSize;
+  if (items.length * finalSize < height || fullHeight) {
+    finalHeight = items.length * finalSize + spacing * 2;
   }
 
   return (

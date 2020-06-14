@@ -92,16 +92,13 @@ export default function FriendsPanel({
           </div>
         )}
       </div>
-      <div className="flex-grow bg-primaryBackground">
-        <div className="flex w-full h-full px-2">
-          <StretchList
-            list={RoomsList}
-            rooms={rooms}
-            selected={selectedRoom}
-            handleSelect={handleSelectRoom}
-            forceRefresh={refresh}
-          />
-        </div>
+      <div className="bg-primaryBackground">
+        <RoomsList
+          rooms={rooms}
+          selected={selectedRoom}
+          handleSelect={handleSelectRoom}
+          fullHeigth={true}
+        />
       </div>
       <div className="relative h-auto">
         <Button
