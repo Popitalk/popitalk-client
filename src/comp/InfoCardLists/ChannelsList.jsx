@@ -3,7 +3,12 @@ import RoomIcon from "../RoomIcon";
 import InfoCard from "../InfoCards/InfoCard";
 import InfoCardList from "./InfoCardList";
 
-export default function ChannelsList({ channels, selected, handleSelect }) {
+export default function ChannelsList({
+  channels,
+  selected,
+  handleSelect,
+  ...rest
+}) {
   const itemRenderer = channel => {
     const roomIcon = (
       <RoomIcon
@@ -26,5 +31,7 @@ export default function ChannelsList({ channels, selected, handleSelect }) {
     );
   };
 
-  return <InfoCardList items={channels} itemRenderer={itemRenderer} />;
+  return (
+    <InfoCardList items={channels} itemRenderer={itemRenderer} {...rest} />
+  );
 }
