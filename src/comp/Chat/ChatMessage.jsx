@@ -12,14 +12,29 @@ export default function ChatMessage({
   const [isClicked, setIsClicked] = useState(false);
   // Variable that controls the interval between messages fusing
   const messageFuseTime = 30000;
-  // If a message is the first one, or messageFuseTime is less than the time that passed
-  // between previous or current massage, a different message is rendered.
-  if (
-    !previousMessage ||
-    (new Date(message.createdAt) - new Date(previousMessage.createdAt) >
-      messageFuseTime &&
-      message.author.id === previousMessage.author.id)
-  ) {
+  const conditions = {
+    // Checks if a message is the first one, or messageFuseTime is
+    //less than the time that passed between previous or current massage.
+    unfusedMessage:
+      !previousMessage ||
+      (new Date(message.createdAt) - new Date(previousMessage.createdAt) >
+        messageFuseTime &&
+        message.author.id === previousMessage.author.id),
+    // Checks if you are the author of the message,
+    // if handleresend and delete methods are defined
+    // if message type is other than accepted.
+    displayButton:
+      message.author.username === message.me &&
+      (handleResend || handleDelete) &&
+      (message?.type === void undefined ||
+        message?.type?.toLowerCase() === "rejected"),
+    // Check if message is of type 'rejected'
+    messageAccepted: message?.type === void undefined,
+    messageRejected: message?.type?.toLowerCase() === "rejected",
+    messagePending: message?.type?.toLowerCase() === "pending"
+  };
+
+  if (conditions.unfusedMessage) {
     return (
       <div className="flex flex-col mt-6 mx-2">
         <div className="flex items-center space-x-2 text-xs ml-1">
@@ -63,14 +78,11 @@ export default function ChatMessage({
               />
             )}
           </span>
-          {message.author.username === message.me &&
-          (handleResend || handleDelete) &&
-          (message?.type === void undefined ||
-            message?.type?.toLowerCase() === "rejected") ? (
+          {conditions.displayButton ? (
             <div className="w-10 h-4 px-0 space-x-2 rounded-full bg-gradient-br-cancel flex flex-row justify-center self-center mx-2">
               {
                 // New feature, optional chaining. https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Optional_chaining
-                handleResend && message?.type?.toLowerCase() === "rejected" ? (
+                handleResend && conditions.messageRejected ? (
                   <button
                     className="focus:outline-none flex items-center"
                     onClick={() => handleResend(message.content)}
@@ -86,8 +98,7 @@ export default function ChatMessage({
                 )
               }
               {handleDelete &&
-              (message?.type === void undefined ||
-                message?.type?.toLowerCase() === "rejected") ? (
+              (conditions.messageRejected || conditions.messageAccepted) ? (
                 <button
                   className="focus:outline-none flex items-center"
                   onClick={() =>
@@ -104,9 +115,7 @@ export default function ChatMessage({
                 <></>
               )}
             </div>
-          ) : (
-            <div></div>
-          )}
+          ) : null}
         </div>
       </div>
     );
@@ -138,8 +147,7 @@ export default function ChatMessage({
             className={
               //Break-all, because if we break by word, chat panel layout is broken by input withouth spaces.
               `w-full break-all text-sm text-justify p-2px ${
-                message?.type?.toLowerCase() === "pending" ||
-                message?.type?.toLowerCase() === "rejected"
+                conditions.messagePending || conditions.messageRejected
                   ? "text-secondaryText"
                   : "text-primaryText"
               }`
@@ -154,12 +162,9 @@ export default function ChatMessage({
               />
             )}
           </span>
-          {message.author.username === message.me &&
-          (handleResend || handleDelete) &&
-          (message?.type === void undefined ||
-            message?.type?.toLowerCase() === "rejected") ? (
+          {conditions.displayButton ? (
             <div className="w-10 h-4 px-0 space-x-2 rounded-full bg-gradient-br-cancel flex flex-row justify-center self-center mx-2">
-              {handleResend && message?.type?.toLowerCase() === "rejected" ? (
+              {handleResend && conditions.messageRejected ? (
                 <button
                   className="focus:outline-none flex items-center"
                   onClick={() => handleResend(message.content)}
@@ -174,8 +179,7 @@ export default function ChatMessage({
                 <></>
               )}
               {handleDelete &&
-              (message?.type === void undefined ||
-                message?.type?.toLowerCase() === "rejected") ? (
+              (conditions.messageRejected || conditions.messageAccepted) ? (
                 <button
                   className="focus:outline-none flex items-center"
                   onClick={() =>
@@ -192,9 +196,7 @@ export default function ChatMessage({
                 <></>
               )}
             </div>
-          ) : (
-            <div></div>
-          )}
+          ) : null}
         </div>
       </div>
     );
