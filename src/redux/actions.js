@@ -194,9 +194,8 @@ export const deleteFriend = createAsyncThunk(
 export const blockUser = createAsyncThunk(
   "relationships/blockUser",
   async userId => {
-    const response = await api.updateUserRelationships({
-      userId,
-      type: "block"
+    const response = await api.blockUser({
+      blockedId: userId
     });
     return response.data;
   }
@@ -204,10 +203,7 @@ export const blockUser = createAsyncThunk(
 export const unblockUser = createAsyncThunk(
   "relationships/unblockUser",
   async userId => {
-    const response = await api.updateUserRelationships({
-      userId,
-      type: "unblock"
-    });
+    const response = await api.unblockUser(userId);
     return response.data;
   }
 );
