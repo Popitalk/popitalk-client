@@ -24,8 +24,8 @@ export default function ChannelCard({
           className="img absolute top-0 h-full rounded-xl group-hover:opacity-75 transition-all ease-in-out duration-200"
         />
         <div className="absolute w-full z-20">
-          <div className="flex relative justify-between px-4 py-1 z-10">
-            <div className="flex items-center pr-4">
+          <div className="flex relative justify-between px-3 z-10">
+            <div className="flex items-center pr-2">
               <VideoStatus status={live ? "playing" : "paused"} />
               <p className="text-sm font-regular flex-shrink-1 text-tertiaryText w-full max-w-2xs clamp-2 mb-1 ml-3">
                 {videoTitle}
@@ -52,7 +52,7 @@ export default function ChannelCard({
         <div className="h-full w-full absolute top-0 bg-gradient-t-channelCardOverlay rounded-xl" />
         <div className="h-full w-full absolute top-0 bg-gradient-t-channelCardOverlay transform rotate-180 rounded-xl" />
         <div className="absolute w-full bottom-0 left-0 p-3 rounded-b-xl">
-          <div className="flex flex-row items-center px-1">
+          <div className="flex flex-row items-center">
             <RoomIcon
               ids={[id]}
               images={[icon]}
