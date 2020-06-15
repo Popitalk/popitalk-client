@@ -69,7 +69,27 @@ const R_addMessage = (state, { payload }) => {
 };
 const R_addPendingMessage = (state, { meta }) => {
   const tempMessage = {
-    pending: true,
+    type: "pending",
+    id: "",
+    userId: "",
+    channelId: meta.arg.channelId,
+    content: meta.arg.content,
+    upload: null,
+    createdAt: Date.now(),
+    author: {
+      id: "",
+      username: meta.arg.author.username,
+      avatar: null
+    }
+  };
+  if (state[meta.arg.channelId].length < 250) {
+    state[meta.arg.channelId].push(tempMessage);
+  }
+};
+const R_addRejectedMessage = (state, { meta }) => {
+  state[meta.arg.channelId].pop();
+  const tempMessage = {
+    type: "rejected",
     id: "",
     userId: "",
     channelId: meta.arg.channelId,
@@ -87,10 +107,12 @@ const R_addPendingMessage = (state, { meta }) => {
   }
 };
 const R_deleteMessage = (state, { payload }) => {
-  if (state[payload.channelId]) {
+  if (state[payload.channelId] && payload.type === void undefined) {
     state[payload.channelId] = state[payload.channelId].filter(
       message => message.id !== payload.id
     );
+  } else if (payload.channelId) {
+    state[payload.channelId].pop();
   }
 };
 
@@ -115,6 +137,7 @@ export default createReducer(initialState, {
   [getMessages.fulfilled]: R_addMessages,
   [addMessage.fulfilled]: R_addMessage,
   [addMessage.pending]: R_addPendingMessage,
+  [addMessage.rejected]: R_addRejectedMessage,
   [addMessageWs]: R_addMessage,
   [getLatestMessages.fulfilled]: R_replaceMessages,
   [deleteMessage.fulfilled]: R_deleteMessage,

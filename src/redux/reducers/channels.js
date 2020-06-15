@@ -152,9 +152,11 @@ const R_updateLastMessageUpdateLatest = (state, { payload }) => {
 };
 
 const R_deletedMessageUpdate = (state, { payload }) => {
-  state[payload.channelId].firstMessageId = payload.firstMessageId;
-  state[payload.channelId].lastMessageId = payload.lastMessageId;
-  state[payload.channelId].lastMessageAt = payload.lastMessageAt;
+  if (payload.type === void undefined && payload.id === false) {
+    state[payload.channelId].firstMessageId = payload.firstMessageId;
+    state[payload.channelId].lastMessageId = payload.lastMessageId;
+    state[payload.channelId].lastMessageAt = payload.lastMessageAt;
+  }
 };
 
 const R_deletedPostUpdate = (state, { payload }) => {

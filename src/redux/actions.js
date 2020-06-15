@@ -434,9 +434,13 @@ export const addMessageWs = createAction("messages/addMessage/ws");
 
 export const deleteMessage = createAsyncThunk(
   "messages/deleteMessage",
-  async id => {
-    const response = await api.deleteMessage(id);
-    return response.data;
+  async ({ type, id, channelId }) => {
+    if (type === void undefined) {
+      const response = await api.deleteMessage(id);
+      return response.data;
+    } else {
+      return { type, id, channelId };
+    }
   }
 );
 export const deleteMessageWs = createAction("messages/deleteMessage/ws");

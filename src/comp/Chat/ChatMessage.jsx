@@ -47,7 +47,10 @@ export default function ChatMessage({
             className={
               //Break-all, because if we break by word, chat panel layout is broken by input withouth spaces.
               `w-full break-all text-sm text-justify py-2px ${
-                message.pending ? "text-secondaryText" : "text-primaryText"
+                message?.type?.toLowerCase() === "pending" ||
+                message?.type?.toLowerCase() === "rejected"
+                  ? "text-secondaryText"
+                  : "text-primaryText"
               }`
             }
           >
@@ -61,26 +64,35 @@ export default function ChatMessage({
             )}
           </span>
           {message.author.username === message.me &&
-          (handleResend || handleDelete) ? (
+          (handleResend || handleDelete) &&
+          (message?.type === void undefined ||
+            message?.type?.toLowerCase() === "rejected") ? (
             <div className="w-10 h-4 px-0 space-x-2 rounded-full bg-gradient-br-cancel flex flex-row justify-center self-center mx-2">
-              {handleResend && message.pending ? (
+              {
+                // New feature, optional chaining. https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Optional_chaining
+                handleResend && message?.type?.toLowerCase() === "rejected" ? (
+                  <button
+                    className="focus:outline-none flex items-center"
+                    onClick={() => handleResend(message.content)}
+                  >
+                    <FontAwesomeIcon
+                      size="xs"
+                      icon="redo-alt"
+                      className="text-tertiaryText"
+                    />
+                  </button>
+                ) : (
+                  <></>
+                )
+              }
+              {handleDelete &&
+              (message?.type === void undefined ||
+                message?.type?.toLowerCase() === "rejected") ? (
                 <button
                   className="focus:outline-none flex items-center"
-                  onClick={() => handleResend(message.content)}
-                >
-                  <FontAwesomeIcon
-                    size="xs"
-                    icon="redo-alt"
-                    className="text-tertiaryText"
-                  />
-                </button>
-              ) : (
-                <></>
-              )}
-              {handleDelete && !message.pending ? (
-                <button
-                  className="focus:outline-none flex items-center"
-                  onClick={() => handleDelete(message.id)}
+                  onClick={() =>
+                    handleDelete({ type: message?.type, id: message.id })
+                  }
                 >
                   <FontAwesomeIcon
                     size="sm"
@@ -126,7 +138,10 @@ export default function ChatMessage({
             className={
               //Break-all, because if we break by word, chat panel layout is broken by input withouth spaces.
               `w-full break-all text-sm text-justify p-2px ${
-                message.pending ? "text-secondaryText" : "text-primaryText"
+                message?.type?.toLowerCase() === "pending" ||
+                message?.type?.toLowerCase() === "rejected"
+                  ? "text-secondaryText"
+                  : "text-primaryText"
               }`
             }
           >
@@ -140,9 +155,11 @@ export default function ChatMessage({
             )}
           </span>
           {message.author.username === message.me &&
-          (handleResend || handleDelete) ? (
+          (handleResend || handleDelete) &&
+          (message?.type === void undefined ||
+            message?.type?.toLowerCase() === "rejected") ? (
             <div className="w-10 h-4 px-0 space-x-2 rounded-full bg-gradient-br-cancel flex flex-row justify-center self-center mx-2">
-              {handleResend && message.pending ? (
+              {handleResend && message?.type?.toLowerCase() === "rejected" ? (
                 <button
                   className="focus:outline-none flex items-center"
                   onClick={() => handleResend(message.content)}
@@ -156,10 +173,14 @@ export default function ChatMessage({
               ) : (
                 <></>
               )}
-              {handleDelete && !message.pending ? (
+              {handleDelete &&
+              (message?.type === void undefined ||
+                message?.type?.toLowerCase() === "rejected") ? (
                 <button
                   className="focus:outline-none flex items-center"
-                  onClick={() => handleDelete(message.id)}
+                  onClick={() =>
+                    handleDelete({ type: message?.type, id: message.id })
+                  }
                 >
                   <FontAwesomeIcon
                     size="sm"

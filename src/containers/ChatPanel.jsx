@@ -34,8 +34,8 @@ function ChatPanelContainer(props) {
       })
     );
   };
-  const handleDelete = id => {
-    dispatch(deleteMessage(id));
+  const handleDelete = ({ type, id }) => {
+    dispatch(deleteMessage({ type, id, channelId }));
   };
   return (
     <ChatPanel
