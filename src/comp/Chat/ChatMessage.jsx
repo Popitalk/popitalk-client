@@ -33,7 +33,7 @@ export default function ChatMessage({
             {dateFormatter(new Date(message.createdAt))}
           </span>
         </div>
-        <div className="grid mt-2 grid-cols-chat">
+        <div className="grid mt-2 grid-cols-chat bg:primaryBackground hover:bg-secondaryBackground rounded-xl cursor-pointer">
           <span className="flex justify-center">
             <span
               className={`w-1 rounded-t-lg ${
@@ -44,7 +44,7 @@ export default function ChatMessage({
             ></span>
           </span>
           <span
-            className={`w-full text-sm text-justify ${
+            className={`w-full text-sm text-justify py-2px ${
               message.pending ? "text-secondaryText" : "text-primaryText"
             }`}
           >
@@ -100,10 +100,10 @@ export default function ChatMessage({
       <div
         role="button"
         onClick={() => setIsClicked(!isClicked)}
-        className="flex flex-col mx-2"
+        className="flex flex-col mx-2 bg-primaryBackground hover:bg-secondaryBackground rounded-xl"
       >
         {isClicked ? (
-          <div className="flex items-center space-x-2 text-xs ml-1">
+          <div className="flex items-center space-x-2 text-xs ml-3 p-1">
             <span className="text-secondaryText">
               {dateFormatter(new Date(message.createdAt))}
             </span>
@@ -120,7 +120,7 @@ export default function ChatMessage({
             ></span>
           </span>
           <span
-            className={`w-full text-sm text-justify ${
+            className={`w-full text-sm text-justify p-2px ${
               message.pending ? "text-secondaryText" : "text-primaryText"
             }`}
           >
