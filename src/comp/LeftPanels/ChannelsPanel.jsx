@@ -42,7 +42,7 @@ export default function ChannelsPanel({
               channels={yourChannels}
               selected={selected}
               handleSelect={handleSelect}
-              className=""
+              fullHeight={true}
             />
           </div>
           <div>
@@ -53,7 +53,7 @@ export default function ChannelsPanel({
               channels={followingChannels}
               selected={selected}
               handleSelect={handleSelect}
-              className=""
+              fullHeight={true}
             />
           </div>
         </div>
