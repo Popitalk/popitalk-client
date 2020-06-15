@@ -33,10 +33,10 @@ export default function ChatMessage({
             {dateFormatter(new Date(message.createdAt))}
           </span>
         </div>
-        <div className="grid mt-2 grid-cols-chat bg:primaryBackground hover:bg-secondaryBackground rounded-xl cursor-pointer">
+        <div className="flex mt-2 flex-around bg:primaryBackground hover:bg-secondaryBackground rounded-xl cursor-pointer">
           <span className="flex justify-center">
             <span
-              className={`w-1 rounded-t-lg ${
+              className={`w-1 rounded-t-lg mx-5 ${
                 message.author.username === message.me
                   ? "bg-highlightText"
                   : "bg-secondaryBackground"
@@ -44,9 +44,12 @@ export default function ChatMessage({
             ></span>
           </span>
           <span
-            className={`w-full text-sm text-justify py-2px ${
-              message.pending ? "text-secondaryText" : "text-primaryText"
-            }`}
+            className={
+              //Break-all, because if we break by word, chat panel layout is broken by input withouth spaces.
+              `w-full break-all text-sm text-justify py-2px ${
+                message.pending ? "text-secondaryText" : "text-primaryText"
+              }`
+            }
           >
             {message.content}
             {message.upload && (
@@ -59,7 +62,7 @@ export default function ChatMessage({
           </span>
           {message.author.username === message.me &&
           (handleResend || handleDelete) ? (
-            <div className="w-10 h-4 px-0 space-x-2 rounded-full bg-gradient-br-cancel flex flex-row justify-center">
+            <div className="w-10 h-4 px-0 space-x-2 rounded-full bg-gradient-br-cancel flex flex-row justify-center self-center mx-2">
               {handleResend && message.pending ? (
                 <button
                   className="focus:outline-none flex items-center"
@@ -109,10 +112,10 @@ export default function ChatMessage({
             </span>
           </div>
         ) : null}
-        <div className="grid grid-cols-chat">
+        <div className="flex flex-around">
           <span className="flex justify-center">
             <span
-              className={`w-1 ${
+              className={`w-1 mx-5 ${
                 message.author.username === message.me
                   ? "bg-highlightText"
                   : "bg-secondaryBackground"
@@ -120,9 +123,12 @@ export default function ChatMessage({
             ></span>
           </span>
           <span
-            className={`w-full text-sm text-justify p-2px ${
-              message.pending ? "text-secondaryText" : "text-primaryText"
-            }`}
+            className={
+              //Break-all, because if we break by word, chat panel layout is broken by input withouth spaces.
+              `w-full break-all text-sm text-justify p-2px ${
+                message.pending ? "text-secondaryText" : "text-primaryText"
+              }`
+            }
           >
             {message.content}
             {message.upload && (
@@ -135,7 +141,7 @@ export default function ChatMessage({
           </span>
           {message.author.username === message.me &&
           (handleResend || handleDelete) ? (
-            <div className="w-10 h-4 px-0 space-x-2 rounded-full bg-gradient-br-cancel flex flex-row justify-center">
+            <div className="w-10 h-4 px-0 space-x-2 rounded-full bg-gradient-br-cancel flex flex-row justify-center self-center mx-2">
               {handleResend && message.pending ? (
                 <button
                   className="focus:outline-none flex items-center"
