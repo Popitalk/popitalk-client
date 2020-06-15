@@ -96,7 +96,7 @@ export default function FriendsPanel({
             rooms={rooms}
             selected={selectedRoom}
             handleSelect={handleSelectRoom}
-            fullHeigth={true}
+            fullHeight={true}
           />
         </div>
         <Button
