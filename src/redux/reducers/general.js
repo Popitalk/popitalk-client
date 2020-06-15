@@ -8,12 +8,13 @@ import {
   wsDisconnect
 } from "../actions";
 import channelDefault from "../../assets/default/channel-default.png";
+import userDefault from "../../assets/default/user-default.png";
 
 const initialState = {
   loggedIn: false,
   validatedSession: false,
   siteVersion: "1.1.4",
-  defaultAvatar: "https://i.imgur.com/h1SSoyk.png",
+  defaultAvatar: userDefault,
   defaultIcon: channelDefault,
   groupRoomMemberLimit: 8,
   wsConnected: false,

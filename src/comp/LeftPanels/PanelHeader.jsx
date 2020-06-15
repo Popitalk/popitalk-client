@@ -8,7 +8,7 @@ export default function PanelHeader({
 }) {
   return (
     <div className="flex sticky top-0 bg-primaryBackground items-center justify-around w-full px-0 z-20">
-      <button className="p-4" onClick={handleCollapse}>
+      <button className="p-4 ml-2" onClick={handleCollapse}>
         <FontAwesomeIcon
           icon="bars"
           className="cursor-pointer text-secondaryText hover:text-highlightText duration-50"

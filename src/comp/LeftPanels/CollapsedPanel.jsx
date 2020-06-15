@@ -49,6 +49,7 @@ function CollapsedPanel({
           channels={channels}
           selected={selected}
           handleSelect={handleSelect}
+          fullHeight={true}
         />
       </div>
     </div>
