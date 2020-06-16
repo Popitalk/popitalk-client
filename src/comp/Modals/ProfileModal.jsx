@@ -1,12 +1,10 @@
 import React from "react";
-import Button from "../Button";
 import ChannelCardList from "../Channel/ChannelCardList";
 import PopupMenu from "../PopupMenu";
+import FriendRequestButtons from "../FriendRequestButtons";
 
 export default function ProfileModal({
   user,
-  showAddFriend,
-  myProfile,
   following,
   followers,
   friends,
@@ -15,13 +13,15 @@ export default function ProfileModal({
   friendHandler,
   unfriendHandler,
   blockHandler,
-  unblockHandler
+  variant // self, friend, stranger, sentRequest, receivedRequest
 }) {
+  const myProfile = variant === "self";
+
   let options = null;
   if (!myProfile) {
     options = [{ name: "Block", handler: blockHandler }];
   }
-  if (!showAddFriend && !myProfile) {
+  if (variant === "friend") {
     options.unshift({ name: "Unfriend", handler: unfriendHandler });
   }
 
@@ -46,18 +46,11 @@ export default function ProfileModal({
             {`${user.firstName} ${user.lastName}`}
           </div>
         </div>
-        {showAddFriend && !myProfile ? (
-          <Button
-            onClick={() => friendHandler(user.id)}
-            size="sm"
-            leftIcon="user-plus"
-            className="mb-4"
-          >
-            Add Friend
-          </Button>
-        ) : (
-          <></>
-        )}
+        <FriendRequestButtons
+          variant={variant}
+          handleAccept={() => friendHandler(user.id)}
+          handleReject={() => unfriendHandler(user.id)}
+        />
       </div>
       <div className="flex justify-center space-x-8 pt-4 pb-12">
         <div className="text-md font-semibold">{`${following} Following`}</div>
