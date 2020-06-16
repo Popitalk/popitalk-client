@@ -46,7 +46,7 @@ export default function FriendsPanel({
   };
 
   return (
-    <div className="w-full h-fill flex flex-col bg-primaryBackground xl:w-84 lg:w-84 md:w-84 sm:w-84">
+    <div className="w-full h-full flex flex-col bg-primaryBackground xl:w-84 lg:w-84 md:w-84 sm:w-84">
       <PanelHeader
         handleCollapse={handleCollapse}
         updateSelectedPage={updateSelectedPage}
@@ -90,7 +90,7 @@ export default function FriendsPanel({
           </div>
         </div>
       )}
-      <div className="bg-primaryBackground h-full px-2 pt-2">
+      <div className="bg-primaryBackground px-2 pt-2">
         <RoomsList
           rooms={rooms}
           selected={selectedRoom}

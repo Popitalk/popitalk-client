@@ -18,7 +18,7 @@ export default function ChannelsPanel({
   selectedPage
 }) {
   return (
-    <div className="w-full h-fill bg-primaryBackground w-84 xl:w-84 lg:w-84 md:w-84 sm:w-84">
+    <div className="w-full h-full bg-primaryBackground w-84 xl:w-84 lg:w-84 md:w-84 sm:w-84">
       <PanelHeader
         handleCollapse={handleCollapse}
         updateSelectedPage={updateSelectedPage}
@@ -29,39 +29,33 @@ export default function ChannelsPanel({
         handleSelectRoom={handleSelectRoom}
         handleFindFriends={() => updateSelectedPage("friends")}
       />
-      <div className="flex flex-row items-center">
-        <div className="grid px-2 w-full grid-cols-1 sm:grid-cols-1 md:grid-cols-1 sm:mt-4">
-          <div>
-            <div className="flex items-center">
-              <h4 className="my-4 mx-2 text-md font-semibold text-secondaryText">
-                Your channels
-              </h4>
-              <Button
-                size="sm"
-                icon="plus"
-                background="primaryButton"
-                onClick={handleCreateChannel}
-              />
-            </div>
-            <ChannelsList
-              channels={yourChannels}
-              selected={selectedChannel}
-              handleSelect={handleSelectChannel}
-              fullHeight={true}
-            />
-          </div>
-          <div>
-            <h4 className="my-4 mx-2 text-md font-semibold text-secondaryText">
-              Following
-            </h4>
-            <ChannelsList
-              channels={followingChannels}
-              selected={selectedChannel}
-              handleSelect={handleSelectChannel}
-              fullHeight={true}
-            />
-          </div>
+      <div className="flex flex-col items-start px-2 bg-primaryBackground sm:mt-4">
+        <div className="flex items-center">
+          <h4 className="my-4 mx-2 text-md font-semibold text-secondaryText">
+            Your channels
+          </h4>
+          <Button
+            size="sm"
+            icon="plus"
+            background="primaryButton"
+            onClick={handleCreateChannel}
+          />
         </div>
+        <ChannelsList
+          channels={yourChannels}
+          selected={selectedChannel}
+          handleSelect={handleSelectChannel}
+          fullHeight={true}
+        />
+        <h4 className="my-4 mx-2 text-md font-semibold text-secondaryText">
+          Following
+        </h4>
+        <ChannelsList
+          channels={followingChannels}
+          selected={selectedChannel}
+          handleSelect={handleSelectChannel}
+          fullHeight={true}
+        />
       </div>
       {/* <div className="sm:mt-10">
         <h4 className="my-4 mx-2 text-md font-semibold text-secondaryText">
