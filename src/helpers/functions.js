@@ -1,5 +1,11 @@
 import classnames from "classnames";
 import * as Yup from "yup";
+import {
+  sendFriendRequest,
+  acceptFriendRequest,
+  rejectFriendRequest,
+  cancelFriendRequest
+} from "../redux/actions";
 
 export function getTextClass(size) {
   return classnames({
@@ -151,4 +157,36 @@ export const mapIdsToUsers = (userIds, users, defaultAvatar) => {
     ...users[userId],
     avatar: users[userId].avatar || defaultAvatar
   }));
+};
+
+export const setRelationshipHandlers = (
+  u,
+  relationships,
+  dispatch,
+  defaultAvatar,
+  myId
+) => {
+  let acceptHandler = () => dispatch(sendFriendRequest(u.id));
+  let rejectHandler = () => dispatch(rejectFriendRequest(u.id));
+  let variant = "stranger";
+
+  if (relationships.friends.includes(u.id)) {
+    variant = "friend";
+  } else if (relationships.sentFriendRequests.includes(u.id)) {
+    variant = "sentRequest";
+    rejectHandler = () => dispatch(cancelFriendRequest(u.id));
+  } else if (relationships.receivedFriendRequests.includes(u.id)) {
+    variant = "receivedRequest";
+    acceptHandler = () => dispatch(acceptFriendRequest(u.id));
+  } else if (myId === u.id) {
+    variant = "self";
+  }
+
+  return {
+    ...u,
+    variant: variant,
+    handleAccept: acceptHandler,
+    handleReject: rejectHandler,
+    avatar: u.avatar || defaultAvatar
+  };
 };

@@ -13,8 +13,6 @@ export default function FriendsPanel({
   updateSelectedPage,
   handleCollapse,
   selectedPage,
-  handleAccept,
-  handleReject,
   handleProfile,
   selectedRoom,
   handleSelectRoom
@@ -83,8 +81,6 @@ export default function FriendsPanel({
             <StretchList
               list={FriendUsersList}
               users={userSearchResults}
-              handleAccept={handleAccept}
-              handleReject={handleReject}
               handleProfile={handleProfile}
             />
           </div>

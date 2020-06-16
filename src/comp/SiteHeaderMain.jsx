@@ -66,7 +66,7 @@ export default function SiteHeaderMain({
       onClick: () => setDropdownList([...dropdownList, ACCOUNT_SETTINGS])
     },
     {
-      text: "Block Users",
+      text: "Blocked Users",
       onClick: openBlockedUsersModal
     },
     {

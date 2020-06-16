@@ -1,33 +1,36 @@
 import React from "react";
 import Button from "./Button";
 
-export default function FriendRequestButtons({
-  variant, // self, friend, stranger, receivedRequest, sentRequest
-  handleAccept,
-  handleReject
-}) {
-  const addUserDisabled = variant === "sentRequest";
+export default function FriendRequestButtons({ user }) {
+  // variants: self, friend, stranger, receivedRequest, sentRequest
+  const sentRequest = user.variant === "sentRequest";
   const addButton =
-    variant === "friend" || variant === "self" ? (
+    user.variant === "friend" || user.variant === "self" ? (
       <></>
     ) : (
       <Button
         size="md"
-        icon={addUserDisabled ? "user-check" : "user-plus"}
-        disabled={addUserDisabled}
+        icon={sentRequest ? "user-check" : "user-plus"}
+        disabled={sentRequest}
         className="cursor-pointer bg-primaryBackground ml-auto"
-        onClick={handleAccept}
+        onClick={e => {
+          e.stopPropagation();
+          user.handleAccept();
+        }}
       />
     );
 
   const rejectButton =
-    variant === "receivedRequest" || variant === "sentRequest" ? (
+    user.variant === "receivedRequest" || sentRequest ? (
       <Button
         size="sm"
         icon="times"
         background="cancel"
         className="ml-2"
-        onClick={handleReject}
+        onClick={e => {
+          e.stopPropagation();
+          user.handleReject();
+        }}
       />
     ) : (
       <></>

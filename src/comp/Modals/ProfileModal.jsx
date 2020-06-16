@@ -10,11 +10,12 @@ export default function ProfileModal({
   friends,
   recentVideos,
   followedChannels,
-  friendHandler,
   unfriendHandler,
-  blockHandler,
-  variant // self, friend, stranger, sentRequest, receivedRequest
+  blockHandler
 }) {
+  // variants: self, friend, stranger, sentRequest, receivedRequest
+  const variant = user.variant;
+
   const myProfile = variant === "self";
 
   let options = null;
@@ -46,11 +47,7 @@ export default function ProfileModal({
             {`${user.firstName} ${user.lastName}`}
           </div>
         </div>
-        <FriendRequestButtons
-          variant={variant}
-          handleAccept={() => friendHandler(user.id)}
-          handleReject={() => unfriendHandler(user.id)}
-        />
+        <FriendRequestButtons user={user} />
       </div>
       <div className="flex justify-center space-x-8 pt-4 pb-12">
         <div className="text-md font-semibold">{`${following} Following`}</div>

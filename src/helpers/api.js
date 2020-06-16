@@ -28,12 +28,12 @@ export const updateUserRelationships = updateInfo => {
   return axios.put("/api/users/relationships", updateInfo);
 };
 
-export const blockUser = blockInfo => {
-  return axios.post("/api/users/blocks", blockInfo);
+export const blockUser = blockedId => {
+  return axios.post("/api/users/blocks", { blockedId });
 };
 
 export const unblockUser = blockedId => {
-  return axios.delete("/api/users/blocks", { blockedId });
+  return axios.delete(`/api/users/blocks/${blockedId}`);
 };
 
 export const deleteAccount = () => {

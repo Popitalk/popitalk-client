@@ -10,7 +10,7 @@ import {
   openProfileModal
 } from "../redux/actions";
 import history from "../history";
-import { mapIdsToUsers } from "../helpers/functions";
+import { mapIdsToUsers, setRelationshipHandlers } from "../helpers/functions";
 
 export default function LeftPanelContainer() {
   let match = useRouteMatch("/channels/:channelId");
@@ -24,15 +24,14 @@ export default function LeftPanelContainer() {
   const [selectedPage, setSelectedPage] = useState("channels");
   const channels = useSelector(state => state.channels);
   const users = useSelector(state => state.users);
+  const relationships = useSelector(state => state.relationships);
   const foundUsers = useSelector(state => state.userSearch);
-  const friendIds = useSelector(state => state.relationships.friends);
   const { defaultAvatar } = useSelector(state => state.general);
   const { defaultIcon } = useSelector(state => state.general);
   const { id: ownId, channelIds, roomIds } = useSelector(state => state.self);
   const isCollapsed = useSelector(state => state.ui.isCollapsed);
-  // const activeTab = useSelector(state => state.ui.leftPanelActiveTab);
 
-  const friends = mapIdsToUsers(friendIds, users, defaultAvatar);
+  const dispatch = useDispatch();
 
   let yourChannels = [];
   let followingChannels = [];
@@ -69,20 +68,15 @@ export default function LeftPanelContainer() {
     room => new Date(room.lastMessageAt)
   );
 
-  const foundUsersMap = foundUsers.map(u => ({
-    ...u,
-    avatar: u.avatar || defaultAvatar
-  }));
-
-  const dispatch = useDispatch();
-
-  // const setToChannelsTab = () => {
-  //   dispatch(setLeftPanelActiveTabChannels());
-  // };
-
-  // const setToFriendsTab = () => {
-  //   dispatch(setLeftPanelActiveTabFriends());
-  // };
+  const foundUsersMap = foundUsers.map(u => {
+    return setRelationshipHandlers(
+      u,
+      relationships,
+      dispatch,
+      defaultAvatar,
+      ownId
+    );
+  });
 
   const updateSelectedPageAndMain = page => {
     const pages = {

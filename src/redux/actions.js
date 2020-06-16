@@ -194,9 +194,7 @@ export const deleteFriend = createAsyncThunk(
 export const blockUser = createAsyncThunk(
   "relationships/blockUser",
   async userId => {
-    const response = await api.blockUser({
-      blockedId: userId
-    });
+    const response = await api.blockUser(userId);
     return response.data;
   }
 );

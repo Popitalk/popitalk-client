@@ -3,14 +3,13 @@ import { useSelector, useDispatch } from "react-redux";
 import {
   getUserInfoModal,
   deleteFriend,
-  sendFriendRequest,
   cancelFriendRequest,
-  acceptFriendRequest,
   rejectFriendRequest,
   blockUser
 } from "../../redux/actions";
 import ModalContainer from "../../comp/Modals/ModalContainer";
 import ProfileModal from "../../comp/Modals/ProfileModal";
+import { setRelationshipHandlers } from "../../helpers/functions";
 
 export default function ProfileModalContainer({ handleModalClose }) {
   const { userId } = useSelector(state => state.modal);
@@ -30,55 +29,50 @@ export default function ProfileModalContainer({ handleModalClose }) {
     dispatch(getUserInfoModal(userId));
   }, [dispatch, userId]);
 
-  let unfriendHandler = () => dispatch(deleteFriend(userId));
-  let friendHandler = () => dispatch(sendFriendRequest(userId));
-  let blockHandler = () => dispatch(blockUser(userId));
-  let variant = "stranger";
+  let user = {
+    id: id,
+    firstName: firstName,
+    lastName: lastName,
+    username: username,
+    avatar: avatar || defaultAvatar
+  };
+  user = setRelationshipHandlers(
+    user,
+    relationships,
+    dispatch,
+    defaultAvatar,
+    myId
+  );
 
-  if (relationships.friends.includes(userId)) {
-    variant = "friend";
+  let blockHandler = () => dispatch(blockUser(userId));
+  if (user.variant === "friend") {
     blockHandler = () => {
-      dispatch(unfriendHandler(userId));
+      dispatch(deleteFriend(userId));
       dispatch(blockUser(userId));
     };
-  } else if (relationships.sentFriendRequests.includes(userId)) {
-    variant = "sentRequest";
-    unfriendHandler = () => dispatch(cancelFriendRequest(userId));
+  } else if (user.variant === "sentRequest") {
     blockHandler = () => {
       dispatch(cancelFriendRequest(userId));
       dispatch(blockUser(userId));
     };
-  } else if (relationships.receivedFriendRequests.includes(userId)) {
-    variant = "receivedRequest";
-    friendHandler = () => dispatch(acceptFriendRequest(userId));
-    unfriendHandler = () => dispatch(rejectFriendRequest(userId));
+  } else if (user.variant === "receivedRequest") {
     blockHandler = () => {
       dispatch(rejectFriendRequest(userId));
       dispatch(blockUser(userId));
     };
-  } else if (myId === userId) {
-    variant = "self";
   }
 
   return (
     <ModalContainer isOpen={true} handleModalClose={handleModalClose}>
       <ProfileModal
-        user={{
-          id: id,
-          firstName: firstName,
-          lastName: lastName,
-          username: username,
-          avatar: avatar || defaultAvatar
-        }}
+        user={user}
         following={6}
         followers={22}
         friends={12}
         recentVideos={[]}
         followedChannels={[]}
-        unfriendHandler={unfriendHandler}
-        friendHandler={friendHandler}
+        unfriendHandler={() => dispatch(deleteFriend(userId))}
         blockHandler={blockHandler}
-        variant={variant}
       />
     </ModalContainer>
   );

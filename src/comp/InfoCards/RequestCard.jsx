@@ -2,19 +2,8 @@ import React from "react";
 import ImageInfoCard from "./ImageInfoCard";
 import FriendRequestButtons from "../FriendRequestButtons";
 
-export default function RequestCard({
-  user,
-  handleAccept,
-  handleReject,
-  handleProfile
-}) {
-  const buttons = (
-    <FriendRequestButtons
-      variant={user.variant}
-      handleAccept={() => handleAccept(user.id)}
-      handleReject={() => handleReject(user.id)}
-    />
-  );
+export default function RequestCard({ user, handleProfile }) {
+  const buttons = <FriendRequestButtons user={user} />;
 
   return (
     <ImageInfoCard
