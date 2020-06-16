@@ -46,7 +46,7 @@ export default function FriendsPanel({
   };
 
   return (
-    <div className="w-full h-full flex flex-col bg-primaryBackground xl:w-84 lg:w-84 md:w-84 sm:w-84">
+    <div className="w-full h-fill flex flex-col bg-primaryBackground xl:w-84 lg:w-84 md:w-84 sm:w-84">
       <PanelHeader
         handleCollapse={handleCollapse}
         updateSelectedPage={updateSelectedPage}
