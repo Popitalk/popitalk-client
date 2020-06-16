@@ -33,7 +33,7 @@ export default function RoomInfoCard({
       boldFont={room.notifications}
       addBorder={addBorder}
       backgroundColor={selected === room.id ? "highlight" : "white"}
-      padding="sm"
+      padding="xs"
       cardClick={handleSelect ? () => handleSelect(room.id) : null}
     />
   );

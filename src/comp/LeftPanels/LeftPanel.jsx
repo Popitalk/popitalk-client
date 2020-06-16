@@ -9,12 +9,13 @@ export default function LeftPanel({
   userSearchResults,
   handleSearch,
   roomsResults,
-  friends,
   selected,
-  handleSelect,
+  handleSelectChannel,
+  handleSelectRoom,
   selectedPage,
   handleCollapse,
   handleCreateChannel,
+  handleProfile,
   isCollapsed,
   updateSelectedPage
 }) {
@@ -31,9 +32,10 @@ export default function LeftPanel({
           <ChannelsPanel
             yourChannels={yourChannels}
             followingChannels={followingChannels}
-            friends={friends}
-            selected={selected}
-            handleSelect={handleSelect}
+            friends={roomsResults}
+            selectedChannel={selected}
+            handleSelectChannel={handleSelectChannel}
+            handleSelectRoom={handleSelectRoom}
             handleCreateChannel={handleCreateChannel}
             selectedPage={selectedPage}
             updateSelectedPage={updateSelectedPage}
@@ -44,10 +46,11 @@ export default function LeftPanel({
             userSearchResults={userSearchResults}
             handleSearch={handleSearch}
             initialRooms={roomsResults}
-            selected={selected}
-            handleSelect={handleSelect}
+            selectedRoom={selected}
+            handleSelectRoom={handleSelectRoom}
             updateSelectedPage={updateSelectedPage}
             handleCollapse={handleCollapse}
+            handleProfile={handleProfile}
             selectedPage={selectedPage}
           />
         )}
@@ -56,7 +59,7 @@ export default function LeftPanel({
         <CollapsedPanel
           channels={channels}
           selected={selected}
-          handleSelect={handleSelect}
+          handleSelect={handleSelectChannel}
           handleCollapse={handleCollapse}
           selectedPage={selectedPage}
           updateSelectedPage={updateSelectedPage}

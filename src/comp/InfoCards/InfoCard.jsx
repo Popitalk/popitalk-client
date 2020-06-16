@@ -27,7 +27,7 @@ export default function InfoCard({
     "text-xs": subtitleSize === "xs"
   });
 
-  const boxClasses = classnames("flex items-center rounded-lg px-2 py-2", {
+  const boxClasses = classnames("flex items-center rounded-lg px-2", {
     "bg-primaryBackground": backgroundColor === "white",
     "bg-secondaryBackground": backgroundColor === "gray",
     "bg-highlightBackground": backgroundColor === "highlight",

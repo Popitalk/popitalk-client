@@ -17,10 +17,10 @@ export default function VideoPanel({ playlist, classNames }) {
     setQueueList(arrayMove(queueList, oldIndex, newIndex));
   };
 
-  const { channelId } = useParams();
-  console.log("channelId from video panel", channelId);
-  const viewerIds =
-    useSelector(state => state.channels[channelId].members) || [];
+  const { channelId, roomId } = useParams();
+  const finalId = channelId || roomId;
+  console.log("channelId from video panel", finalId);
+  const viewerIds = useSelector(state => state.channels[finalId].members) || [];
   console.log(
     "channelsInfo",
     useSelector(state => state.channels)
@@ -39,7 +39,7 @@ export default function VideoPanel({ playlist, classNames }) {
       <VideoSection
         {...playlist[0]}
         activeFriendViewers={viewers}
-        inviteUsers={() => dispatch(openInviteModal(channelId))}
+        inviteUsers={() => dispatch(openInviteModal(finalId))}
         openProfile={id => dispatch(openProfileModal(id))}
       />
       <QueueSection queueList={queueList} handlerChange={handlerChange} />

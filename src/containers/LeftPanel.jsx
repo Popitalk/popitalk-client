@@ -6,16 +6,20 @@ import sortBy from "lodash/sortBy";
 import LeftPanel from "../comp/LeftPanels/LeftPanel";
 import {
   toggleLeftPanel,
-  searchUsers
-  // setLeftPanelActiveTabChannels,
-  // setLeftPanelActiveTabFriends
+  searchUsers,
+  openProfileModal
 } from "../redux/actions";
 import history from "../history";
 import { mapIdsToUsers } from "../helpers/functions";
 
 export default function LeftPanelContainer() {
   let match = useRouteMatch("/channels/:channelId");
-  const selectedChannel = match?.params.channelId ? match.params.channelId : 0;
+  let selectedChannel = match?.params.channelId ? match.params.channelId : 0;
+
+  match = useRouteMatch("/rooms/:roomId");
+  if (selectedChannel === 0) {
+    selectedChannel = match?.params.roomId ? match.params.roomId : 0;
+  }
 
   const [selectedPage, setSelectedPage] = useState("channels");
   const channels = useSelector(state => state.channels);
@@ -104,9 +108,9 @@ export default function LeftPanelContainer() {
     }
   };
 
-  const handleSelectChannel = id => {
-    history.push(`/channels/${id}/video`);
-  };
+  const handleSelectChannel = id => history.push(`/channels/${id}/video`);
+  const handleSelectRoom = id => history.push(`/rooms/${id}/video`);
+  const handleOpenProfile = id => dispatch(openProfileModal(id));
 
   return (
     <Switch>
@@ -117,10 +121,11 @@ export default function LeftPanelContainer() {
           userSearchResults={foundUsersMap}
           handleSearch={username => dispatch(searchUsers(username))}
           roomsResults={rooms}
-          friends={friends}
           selected={selectedChannel}
-          handleSelect={handleSelectChannel}
+          handleSelectChannel={handleSelectChannel}
+          handleSelectRoom={handleSelectRoom}
           handleCreateChannel={() => history.push("/create")}
+          handleProfile={handleOpenProfile}
           updateSelectedPage={updateSelectedPageAndMain}
           isCollapsed={isCollapsed}
           selectedPage="channels"
@@ -134,10 +139,11 @@ export default function LeftPanelContainer() {
           userSearchResults={foundUsersMap}
           handleSearch={username => dispatch(searchUsers(username))}
           roomsResults={rooms}
-          friends={friends}
           selected={selectedChannel}
-          handleSelect={handleSelectChannel}
+          handleSelectChannel={handleSelectChannel}
+          handleSelectRoom={handleSelectRoom}
           handleCreateChannel={() => history.push("/create")}
+          handleProfile={handleOpenProfile}
           updateSelectedPage={updateSelectedPageAndMain}
           isCollapsed={isCollapsed}
           selectedPage="friends"
@@ -151,10 +157,11 @@ export default function LeftPanelContainer() {
           userSearchResults={foundUsersMap}
           handleSearch={username => dispatch(searchUsers(username))}
           roomsResults={rooms}
-          friends={friends}
           selected={selectedChannel}
-          handleSelect={handleSelectChannel}
+          handleSelectChannel={handleSelectChannel}
+          handleSelectRoom={handleSelectRoom}
           handleCreateChannel={() => history.push("/create")}
+          handleProfile={handleOpenProfile}
           updateSelectedPage={updateSelectedPanelPage}
           isCollapsed={isCollapsed}
           selectedPage={selectedPage}

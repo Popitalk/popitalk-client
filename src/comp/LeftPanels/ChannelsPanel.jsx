@@ -8,22 +8,27 @@ import PanelHeader from "./PanelHeader";
 export default function ChannelsPanel({
   yourChannels,
   followingChannels,
-  selected,
+  selectedChannel,
   friends,
-  handleSelect,
+  handleSelectChannel,
+  handleSelectRoom,
   handleCollapse,
   handleCreateChannel,
   updateSelectedPage,
   selectedPage
 }) {
   return (
-    <div className="w-full bg-primaryBackground w-84 xl:w-84 lg:w-84 md:w-84 sm:w-84">
+    <div className="w-full h-full bg-primaryBackground w-84 xl:w-84 lg:w-84 md:w-84 sm:w-84">
       <PanelHeader
         handleCollapse={handleCollapse}
         updateSelectedPage={updateSelectedPage}
         selectedPage={selectedPage}
       />
-      <MiniFriendsList friends={friends} />
+      <MiniFriendsList
+        friends={friends}
+        handleSelectRoom={handleSelectRoom}
+        handleFindFriends={() => updateSelectedPage("friends")}
+      />
       <div className="flex flex-row items-center">
         <div className="grid px-2 w-full grid-cols-1 sm:grid-cols-1 md:grid-cols-1 sm:mt-4">
           <div>
@@ -40,8 +45,8 @@ export default function ChannelsPanel({
             </div>
             <ChannelsList
               channels={yourChannels}
-              selected={selected}
-              handleSelect={handleSelect}
+              selected={selectedChannel}
+              handleSelect={handleSelectChannel}
               fullHeight={true}
             />
           </div>
@@ -51,8 +56,8 @@ export default function ChannelsPanel({
             </h4>
             <ChannelsList
               channels={followingChannels}
-              selected={selected}
-              handleSelect={handleSelect}
+              selected={selectedChannel}
+              handleSelect={handleSelectChannel}
               fullHeight={true}
             />
           </div>
