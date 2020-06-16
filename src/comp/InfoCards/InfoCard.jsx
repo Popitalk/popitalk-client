@@ -27,7 +27,7 @@ export default function InfoCard({
     "text-xs": subtitleSize === "xs"
   });
 
-  const boxClasses = classnames("flex items-center rounded-lg px-2", {
+  const boxClasses = classnames("flex items-center rounded-lg px-2 py-1", {
     "bg-primaryBackground": backgroundColor === "white",
     "bg-secondaryBackground": backgroundColor === "gray",
     "bg-highlightBackground": backgroundColor === "highlight",
@@ -45,7 +45,7 @@ export default function InfoCard({
       onClick={cardClick ? e => cardClick(e) : null}
     >
       {avatar}
-      <div className="flex flex-col mx-2 truncate">
+      <div className="flex flex-col mx-2 my-2 truncate">
         {title && subtitle ? (
           <>
             <p className={titleClasses}>{title}</p>
