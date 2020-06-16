@@ -30,7 +30,7 @@ export default function SortableList({
   const SortableList = SortableContainer(({ items }) => {
     return (
       <div>
-        <p className="pt-6 pb-2 px-4 text-lg text-bold text-primaryText">
+        <p className="pt-6 pb-2 px-5 text-lg text-bold text-primaryText">
           Up Next
         </p>
         <div

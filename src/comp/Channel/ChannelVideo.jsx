@@ -40,7 +40,7 @@ export default function ChannelVideo({
         type={type}
       />
       <VideoSection {...activeVideo} />
-      <h2 className="text-2xl pt-4 px-3">Up Next</h2>
+      <h2 className="text-2xl pt-4 px-4">Up Next</h2>
       <QueueSection queueList={queueList} handlerChange={handlerChange} />
       {type === "channel" && (
         <div className="mx-32 mt-40">
@@ -63,7 +63,7 @@ export default function ChannelVideo({
       )}
       {type === "room" && (
         <div>
-          <h2 className="text-2xl mt-20 px-3">Find More Videos</h2>
+          <h2 className="text-2xl mt-20 px-4">Find More Videos</h2>
           <VideoSearch
             trendingResults={trendingResults}
             searchResults={searchResults}

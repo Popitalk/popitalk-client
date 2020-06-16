@@ -74,7 +74,7 @@ export default function VideoPanelCard({
                 {rightInfo}
               </p>
             </div>
-            <p className="z-30 text-lg font-semibold text-primaryText">
+            <p className="z-30 text-md font-semibold text-primaryText">
               {title}
             </p>
           </div>

@@ -7,7 +7,7 @@ export default function VideoSearchBar({ className, onClick }) {
   const [value, setValue] = useState("");
 
   return (
-    <div className="p-2 bg-secondaryBackground">
+    <div className="p-2 bg-secondaryBackground px-4">
       <form
         className={className ? className : "mb-1"}
         onSubmit={e => e.preventDefault()}
@@ -23,12 +23,12 @@ export default function VideoSearchBar({ className, onClick }) {
           className="w-full md:w-3/4"
         />
       </form>
-      <div className="flex flex-wrap grid-cols-services">
+      <div className="flex flex-wrap mt-2 grid-cols-services">
         {sources.map((img, idx) => {
           return (
             <button
               key={idx}
-              className={`flex justify-center m-1 items-center ${
+              className={`flex justify-center mr-2 items-center ${
                 source === img.source
                   ? "bg-gradient-r-button shadow-md"
                   : "bg-primaryBackground"

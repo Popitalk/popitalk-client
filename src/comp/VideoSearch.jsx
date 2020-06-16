@@ -18,7 +18,7 @@ export default function VideoSearch({
   return (
     <div className="flex flex-col bg-secondaryBackground">
       <VideoSearchBar onClick={handleClick} />
-      <div className="pt-4 px-3">
+      <div className="pt-4 px-4">
         <span className="text-md rainbow-text font-bold">
           {searchTerm
             ? `Results for ${searchTerm}`

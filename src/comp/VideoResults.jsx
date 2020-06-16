@@ -16,7 +16,7 @@ export default function VideoResults({ results, threshold = 24 }) {
 
   return (
     <div className="flex flex-col justify-center bg-secondaryBackground p-4">
-      <div className="flex flex-wrap justify-start">
+      <div className="flex flex-wrap justify-center">
         {results.map((result, idx) => {
           if (idx <= currThreshold - 1) {
             return <VideoPanelCard key={idx} {...result} />;
@@ -25,12 +25,14 @@ export default function VideoResults({ results, threshold = 24 }) {
       </div>
 
       {currThreshold < results.length && (
-        <button
-          className="text-secondaryText text-sm focus:outline-none"
-          onClick={handleClick}
-        >
-          Show more
-        </button>
+        <div className="flex justify-center py-4">
+          <button
+            className="text-tertiaryText text-sm focus:outline-none bg-gradient-r-button p-2 rounded-xl"
+            onClick={handleClick}
+          >
+            Show more
+          </button>
+        </div>
       )}
       {results.length === 0 && (
         <p className="text-secondaryText text-sm text-center">
