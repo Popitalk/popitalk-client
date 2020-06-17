@@ -21,7 +21,7 @@ export default function VideoPanelCard({
         <div className="cursor-pointer w-full flex-shrink-0 max-w-2xs relative m-1 rounded-xl hover:shadow-xl transition-all ease-in-out duration-100 bg-disabledBackground">
           <div className="pb-16/9 w-full relative">
             <div className="flex items-center justify-center w-full h-full absolute">
-              <Button size="md" icon="plus" />
+              <Button size="md" icon="plus" shape="pill" />
             </div>
           </div>
         </div>
@@ -35,8 +35,8 @@ export default function VideoPanelCard({
                 {type === "cancel" && (
                   <Button
                     icon="minus"
-                    className="z-10 btn-no-mr opacity-0 group-hover:opacity-100"
-                    shape="pill"
+                    className="z-10 btn btn-no-mr opacity-0 group-hover:opacity-100"
+                    shape="rounded"
                     background="cancel"
                     size="sm"
                   />
@@ -48,6 +48,7 @@ export default function VideoPanelCard({
                       // width="24"
                       // height="24"
                       viewBox="0 0 24 24"
+                      shape="pill"
                       fill="white"
                     >
                       <path d="M14 10H2v2h12v-2zm0-4H2v2h12V6zm4 8v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zM2 16h8v-2H2v2z" />
@@ -67,16 +68,10 @@ export default function VideoPanelCard({
           <div className="w-full py-1 px-2">
             <div className="flex items-center">
               <p className="text-xs font-regular text-secondaryText">
-                {leftInfo}
-              </p>
-              <span className="px-1 mb-0 text-secondaryText">&middot;</span>
-              <p className="text-xs font-regular text-secondaryText">
-                {rightInfo}
+                {leftInfo} &middot; {rightInfo}
               </p>
             </div>
-            <p className="z-30 text-md font-semibold text-primaryText">
-              {title}
-            </p>
+            <p className="text-md font-semibold text-primaryText">{title}</p>
           </div>
         </div>
       )}
