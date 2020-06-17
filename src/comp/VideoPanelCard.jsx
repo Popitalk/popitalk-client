@@ -21,7 +21,7 @@ export default function VideoPanelCard({
         <div className="cursor-pointer w-full flex-shrink-0 max-w-2xs relative m-1 rounded-xl hover:shadow-xl transition-all ease-in-out duration-100 bg-disabledBackground">
           <div className="pb-16/9 w-full relative">
             <div className="flex items-center justify-center w-full h-full absolute">
-              <Button size="md" icon="plus" shape="pill" />
+              <Button size="md" icon="plus" />
             </div>
           </div>
         </div>
