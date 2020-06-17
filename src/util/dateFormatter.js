@@ -44,7 +44,7 @@ const dateFormatter = (date, min = false) => {
     if (min) {
       return "Today";
     } else {
-      return `Today at ${formatHours(date.getHours())}:${formatMinutes(
+      return `Today ${formatHours(date.getHours())}:${formatMinutes(
         date.getMinutes()
       )} ${date.getHours() < 12 ? "AM" : "PM"}`;
     }
@@ -53,7 +53,7 @@ const dateFormatter = (date, min = false) => {
     if (min) {
       return "Yesterday";
     } else {
-      return `Yesterday at ${formatHours(date.getHours())}:${formatMinutes(
+      return `Yesterday ${formatHours(date.getHours())}:${formatMinutes(
         date.getMinutes()
       )} ${date.getHours() < 12 ? "AM" : "PM"}`;
     }
@@ -62,7 +62,7 @@ const dateFormatter = (date, min = false) => {
     if (min) {
       return `Last ${daysOfWeek[date.getDay()]}`;
     } else {
-      return `Last ${daysOfWeek[date.getDay()]} at ${formatHours(
+      return `Last ${daysOfWeek[date.getDay()]} ${formatHours(
         date.getHours()
       )}:${formatMinutes(date.getMinutes())} ${
         date.getHours() < 12 ? "AM" : "PM"
