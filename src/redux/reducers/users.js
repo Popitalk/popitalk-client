@@ -30,7 +30,13 @@ const R_addUsers = (state, { payload }) => {
 };
 
 const R_addUser = (state, { payload }) => {
-  state[payload.userId] = payload.user;
+  const user = payload.user;
+  state[payload.userId] = {
+    firstName: user.firstName,
+    lastName: user.lastName,
+    username: user.username,
+    avatar: user.avatar
+  };
 };
 
 const R_resetState = () => initialState;

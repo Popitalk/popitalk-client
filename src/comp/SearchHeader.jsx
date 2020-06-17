@@ -41,8 +41,11 @@ class SearchHeader extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if (this.state.input !== prevState.input) {
-      this.props.filterSearch(this.state.input);
+    if (
+      this.state.input !== prevState.input ||
+      this.props.items.length !== prevProps.items.length
+    ) {
+      this.props.filterSearch(this.state.input, this.props.items);
     }
   }
 

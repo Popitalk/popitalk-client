@@ -29,22 +29,22 @@ export default function ProfileModalContainer({ handleModalClose }) {
     dispatch(getUserInfoModal(userId));
   }, [dispatch, userId]);
 
-  let user = {
+  let plainUser = {
     id: id,
     firstName: firstName,
     lastName: lastName,
     username: username,
-    avatar: avatar || defaultAvatar
+    avatar: avatar
   };
-  user = setRelationshipHandlers(
-    user,
+  const user = setRelationshipHandlers(
+    plainUser,
     relationships,
     dispatch,
     defaultAvatar,
     myId
   );
 
-  let blockHandler = () => dispatch(blockUser(userId));
+  let blockHandler = () => dispatch(blockUser(plainUser));
   if (user.variant === "friend") {
     blockHandler = () => {
       dispatch(deleteFriend(userId));

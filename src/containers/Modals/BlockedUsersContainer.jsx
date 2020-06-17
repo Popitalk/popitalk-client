@@ -25,9 +25,10 @@ export default function BlockedUsersContainer({ handleModalClose }) {
       header={
         <SearchHeader
           title="Blocked Users"
-          filterSearch={searchTerm =>
-            filterSearch(blockedMap, "username", setVisible, searchTerm)
+          filterSearch={(searchTerm, items) =>
+            filterSearch(items, "username", setVisible, searchTerm)
           }
+          items={blockedMap}
           buildInput={buildSearchInput}
         />
       }
