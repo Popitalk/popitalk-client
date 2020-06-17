@@ -12,7 +12,7 @@ export default function InfoCard({
   backgroundColor = "transparent",
   hoverable,
   addBorder,
-  padding = "xs",
+  padding = "none",
   cardClick
 }) {
   const titleClasses = classnames("text-md text-primaryText truncate pb-1", {
