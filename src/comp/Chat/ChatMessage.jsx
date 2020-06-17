@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import dateFormatter from "../../util/dateFormatter";
+import moment from "moment";
 
 export default function ChatMessage({
   message,
@@ -45,7 +45,7 @@ export default function ChatMessage({
           />
           <span className="font-bold">{message.author.username}</span>
           <span className="text-secondaryText">
-            {dateFormatter(new Date(message.createdAt))}
+            {moment(message.createdAt).fromNow()}
           </span>
         </div>
         <div className="flex mt-2 flex-around bg:primaryBackground hover:bg-secondaryBackground rounded-xl cursor-pointer">
@@ -129,7 +129,7 @@ export default function ChatMessage({
         {isClicked ? (
           <div className="flex items-center space-x-2 text-xs ml-3 p-1">
             <span className="text-secondaryText">
-              {dateFormatter(new Date(message.createdAt))}
+              {moment(message.createdAt).calendar()}
             </span>
           </div>
         ) : null}

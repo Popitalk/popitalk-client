@@ -1,7 +1,7 @@
 import React from "react";
 import RoomIcon from "../RoomIcon";
 import InfoCard from "../InfoCards/InfoCard";
-import dateFormatter from "../../util/dateFormatter";
+import moment from "moment";
 
 export default function RoomInfoCard({
   room,
@@ -13,9 +13,7 @@ export default function RoomInfoCard({
   const images = room.members.map(m => m.avatar);
   const name = room.members.map(m => m.username).join();
   const subtitleAndDate =
-    room.lastMessageContent +
-    " · " +
-    dateFormatter(new Date(room.lastMessageAt));
+    room.lastMessageContent + " · " + moment(room.lastMessageAt).fromNow();
 
   const roomIcon = (
     <RoomIcon

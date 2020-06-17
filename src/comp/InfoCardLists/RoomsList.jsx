@@ -2,7 +2,7 @@ import React from "react";
 import InfoCardList from "./InfoCardList";
 import RoomInfoCard from "../InfoCards/RoomInfoCard";
 
-//--I commented these below while merging timestamp onto subtitle. The edits were made in RoomsInfoCard.jsx-- ANDREW
+//--I commented these below while merging timestamp onto subtitle. The edits were made in RoomInfoCard.jsx-- ANDREW
 
 // import dateFormatter from "../../util/dateFormatter";
 
