@@ -16,7 +16,7 @@ export default function VideoResults({ results, threshold = 24 }) {
 
   return (
     <div className="flex flex-col justify-center bg-secondaryBackground p-4">
-      <div className="flex flex-wrap justify-center">
+      <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 row-gap-8">
         {results.map((result, idx) => {
           if (idx <= currThreshold - 1) {
             return <VideoPanelCard key={idx} {...result} />;

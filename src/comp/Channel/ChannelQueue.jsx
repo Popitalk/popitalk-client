@@ -37,7 +37,7 @@ export default function ChannelQueue({
           <VideoSearch
             trendingResults={trendingResults}
             searchResults={searchResults}
-            threshold={3}
+            threshold={12}
           />
         </div>
       </div>
