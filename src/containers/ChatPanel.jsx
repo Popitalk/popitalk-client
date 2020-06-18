@@ -20,13 +20,18 @@ function ChatPanelContainer(props) {
   const dispatch = useDispatch();
   const isScrolling = useScrolling(containerRef);
   useEffect(() => {
-    if (messages && messageLoading === "success") {
-      setOldestMessage(messages[0]);
-      if (oldestMessage === messages[0]) {
-        setAllMessagesLoaded(true);
-      }
+    setScrolledToTop(true);
+    if (messages && oldestMessage === messages[0]) {
+      setAllMessagesLoaded(true);
+    } else {
+      setAllMessagesLoaded(false);
     }
-  }, [messages, messageLoading, oldestMessage]);
+  }, [messages, oldestMessage]);
+  useEffect(() => {
+    if (messages && messageLoading === "success" && userHasScrolled) {
+      setOldestMessage(messages[0]);
+    }
+  }, [messages, messageLoading, oldestMessage, userHasScrolled]);
   useEffect(() => {
     if (isScrolling) {
       setUserHasScrolled(true);
@@ -37,6 +42,7 @@ function ChatPanelContainer(props) {
       (messageLoading === "initial" || messageLoading === "success") &&
       !userHasScrolled
     ) {
+      console.log(userHasScrolled);
       if (messages) {
         containerRef.current.scrollTo(0, containerRef.current.scrollHeight);
       }
@@ -47,8 +53,7 @@ function ChatPanelContainer(props) {
     containerRef.current.focus();
   }, [containerRef]);
   useEffect(() => {
-    if (y < 20 && messageLoading === "success") {
-      setScrolledToTop(true);
+    if (y < 20 && messageLoading === "success" && userHasScrolled) {
       if (!allMessagesLoaded) {
         dispatch(
           getMessages({
@@ -61,7 +66,15 @@ function ChatPanelContainer(props) {
     if (y > 20) {
       setScrolledToTop(false);
     }
-  }, [allMessagesLoaded, channelId, dispatch, messageLoading, messages, y]);
+  }, [
+    allMessagesLoaded,
+    channelId,
+    dispatch,
+    messageLoading,
+    messages,
+    userHasScrolled,
+    y
+  ]);
   useEffect(() => {
     dispatch(
       getMessages({
