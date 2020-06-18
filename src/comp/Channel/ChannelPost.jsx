@@ -20,7 +20,9 @@ export default function ChannelPost({
   liked,
   saveComment,
   defaultAvatar,
-  toggleLike
+  toggleLike,
+  likeCount,
+  commentCount
 }) {
   const [showNewComment, setShowNewComment] = useState(false);
   const [showComments, setShowComments] = useState(false);
@@ -29,7 +31,7 @@ export default function ChannelPost({
     setShowNewComment(!showNewComment);
     console.log("clicked comment", showNewComment);
   };
-
+  console.log("comments in channelPost", comments, comments?.length);
   return (
     <>
       <div className="flex flex-col rounded-lg shadow px-8 py-4 bg-primaryBackground mt-8">
@@ -46,9 +48,17 @@ export default function ChannelPost({
             </span>
           </div>
         </header>
-        <p className="text-primaryText text-lg pt-6 pb-8 px-2 break-words">
+        <p className="text-primaryText text-lg pt-6 pb-5 px-2 break-words">
           {text}
         </p>
+        <section className="flex justify-start text-xs pb-3 text-secondaryText">
+          <span className="pr-3">
+            {likeCount} {likeCount > 1 ? "likes" : "like"}
+          </span>
+          <span>
+            {commentCount} {commentCount > 1 ? "comments" : "comment"}
+          </span>
+        </section>
         <footer className="flex text-secondaryText text-xl">
           <ToggleIcon
             icons={{ default: ["far", "heart"], toggle: ["fa", "heart"] }}

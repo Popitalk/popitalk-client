@@ -79,6 +79,8 @@ export default function ChannelChat({
               saveComment={saveComment}
               defaultAvatar={defaultAvatar}
               toggleLike={toggleLike}
+              likeCount={post.likeCount}
+              commentCount={post.commentCount}
             />
           );
         })}
