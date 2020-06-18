@@ -26,6 +26,7 @@ export default function ChannelPost({
 }) {
   const [showNewComment, setShowNewComment] = useState(false);
   const [showComments, setShowComments] = useState(false);
+  const showNumComment = 2;
 
   const handleComment = () => {
     setShowNewComment(!showNewComment);
@@ -78,7 +79,7 @@ export default function ChannelPost({
         </footer>
       </div>
       <div className="ml-6 mt-2">
-        {!showComments && comments?.length > 1 && (
+        {!showComments && comments?.length > showNumComment && (
           <button
             className="text-secondaryText text-xs mb-2"
             onClick={() => setShowComments(!showComments)}
@@ -86,7 +87,7 @@ export default function ChannelPost({
             View more comments
           </button>
         )}
-        {showComments && comments?.length > 1 && (
+        {showComments && comments?.length > showNumComment && (
           <button
             className="text-secondaryText text-xs mb-2"
             onClick={() => setShowComments(!showComments)}
@@ -96,7 +97,7 @@ export default function ChannelPost({
         )}
 
         {comments?.map((comment, idx) => {
-          if (!showComments && idx >= comments.length - 2) {
+          if (!showComments && idx >= comments.length - showNumComment) {
             return (
               <ChannelComment
                 key={idx}
