@@ -23,7 +23,9 @@ function ChatPanel({
         {scrolledToTop ? (
           <Spinner />
         ) : (
-          <h1>You`&apos;`re viewing the oldest messages</h1>
+          <h1 className="flex text-secondaryText text-xs justify-center mt-56 mb-12">
+            This is the start of the chat!
+          </h1>
         )}
         <ChatMessages
           handleResend={handleSendMessage}

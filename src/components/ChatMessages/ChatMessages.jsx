@@ -57,7 +57,7 @@ const OldMessagesAlert = ({ onClick }) => (
     role="button"
     onClick={onClick}
   >
-    <p>You&apos;re Viewing Older Messages</p>
+    <p> This is the start of the chat!</p>
     <p>Jump To Present ▼</p>
   </div>
 );
