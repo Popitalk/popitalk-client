@@ -32,6 +32,7 @@ function ChatPanel({
           handleDelete={handleDelete}
           {...props}
         />
+        <div className="h-8"></div>
       </div>
       <div className="h-auto">
         {typerAvatars && typerAvatars.length > 0 ? (
