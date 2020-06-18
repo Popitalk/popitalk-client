@@ -53,9 +53,15 @@ const R_addMessages = (state, { payload }) => {
       state[payload.channelId] = state[payload.channelId].slice(0, 100);
     }
   }
+  if (payload.messages.length === 0) {
+    state.allReceived = true;
+  } else {
+    state.allReceived = false;
+  }
 };
 const R_addMessage = (state, { payload }) => {
   const { capacity, ...message } = payload;
+  state.allReceived = false;
   state[payload.channelId].pop();
   if (!state[payload.channelId]) {
     state[payload.channelId] = [message];
