@@ -5,9 +5,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { useScroll } from "react-use";
 import useUserTouchedScrollbar from "./hooks/useUserTouchedScrollbar";
+import useScrollDivOnLoad from "./hooks/useScrollDivOnLoad";
+import useScrolledToTop from "./hooks/useScrolledToTop";
 
 function ChatPanelContainer(props) {
-  const [scrolledToTop, setScrolledToTop] = useState(true);
   const channelId = props.match.params.roomId || props.match.params.channelId;
   const messageLoading = useSelector(state => state.api.messages.status);
   const messages = useSelector(state => state.messages[channelId]);
@@ -18,24 +19,18 @@ function ChatPanelContainer(props) {
   const { y } = useScroll(containerRef);
   const dispatch = useDispatch();
   const userHasScrolled = useUserTouchedScrollbar(containerRef, messageLoading);
+  const scrolledToTop = useScrolledToTop(
+    channelId,
+    messageLoading,
+    messages,
+    userHasScrolled,
+    y
+  );
 
+  useScrollDivOnLoad(containerRef, messageLoading, messages, userHasScrolled);
+  // Get messages when scrolled to top
   useEffect(() => {
-    if (
-      (messageLoading === "initial" || messageLoading === "success") &&
-      !userHasScrolled
-    ) {
-      if (messages) {
-        containerRef.current.scrollTo(0, containerRef.current.scrollHeight);
-      }
-    }
-  }, [containerRef, messageLoading, messages, userHasScrolled]);
-  useEffect(() => {
-    containerRef.current.scrollTo(0, containerRef.current.scrollTop);
-    containerRef.current.focus();
-  }, [containerRef]);
-  useEffect(() => {
-    if (y < 20 && messageLoading === "success" && userHasScrolled) {
-      setScrolledToTop(true);
+    if (scrolledToTop && !allMessagesReceived) {
       dispatch(
         getMessages({
           channelId,
@@ -43,10 +38,16 @@ function ChatPanelContainer(props) {
         })
       );
     }
-    if (y > 20) {
-      setScrolledToTop(false);
-    }
-  }, [channelId, dispatch, messageLoading, messages, userHasScrolled, y]);
+  }, [
+    channelId,
+    dispatch,
+    y,
+    scrolledToTop,
+    messageLoading,
+    allMessagesReceived,
+    messages
+  ]);
+  // Get messages on load and on channel change.
   useEffect(() => {
     dispatch(
       getMessages({
