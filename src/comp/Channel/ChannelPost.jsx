@@ -96,7 +96,7 @@ export default function ChannelPost({
         )}
 
         {comments?.map((comment, idx) => {
-          if (!showComments && idx === comments.length - 1) {
+          if (!showComments && idx >= comments.length - 2) {
             return (
               <ChannelComment
                 key={idx}
