@@ -59,7 +59,7 @@ export default function NewChannelPost({
         <textarea
           type="text"
           placeholder="Post something..."
-          className="rounded-lg pl-3 p-2 w-full shadow"
+          className="rounded-lg pl-3 p-2 w-full shadow resize-none overflow-hidden"
           rows={1}
           maxLength={2000}
           value={draft}

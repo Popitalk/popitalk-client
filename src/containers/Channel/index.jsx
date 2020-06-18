@@ -60,8 +60,8 @@ export default function Channel({ tab, type = "channel" }) {
   // console.log("channels", channels);
   // console.log("channelid", channelId);
   console.log("channel", channel);
-  // console.log("posts", posts);
-  // console.log("comments", comments);
+  console.log("posts", posts);
+  console.log("comments", comments);
   // console.log("tab", tab);
   const copyTestQueue = [...testQueue];
   const activeVideo = copyTestQueue[0];
