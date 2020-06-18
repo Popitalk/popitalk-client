@@ -97,7 +97,7 @@ export default function FriendsPanel({
       <Button
         size="md"
         leftIcon="plus"
-        className="fixed bottom-0 left-0 ml-44 mb-4"
+        className="fixed bottom-0 left-0 ml-44 mb-4 opacity-50 hover:opacity-100"
       >
         New Room
       </Button>
