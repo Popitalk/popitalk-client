@@ -3,12 +3,15 @@ import AvatarDeck from "../AvatarDeck";
 import ChatHeader from "./ChatHeader";
 import ChatMessages from "./ChatMessages";
 import ChatActions from "./ChatActions";
+import Spinner from "../Spinner";
 
 function ChatPanel({
   typerAvatars,
   handleSendMessage,
   handleDelete,
   typerIDs,
+  containerRef,
+  scrolledToTop,
   ...props
 }) {
   return (
@@ -16,7 +19,12 @@ function ChatPanel({
       <div className="h-auto">
         <ChatHeader />
       </div>
-      <div className="overflow-auto h-full mt-1">
+      <div ref={containerRef} className="overflow-auto h-full mt-1">
+        {scrolledToTop ? (
+          <Spinner />
+        ) : (
+          <h1>You`&apos;`re viewing the oldest messages</h1>
+        )}
         <ChatMessages
           handleResend={handleSendMessage}
           handleDelete={handleDelete}
