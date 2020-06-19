@@ -26,12 +26,15 @@ export default function LeftPanelContainer() {
   const users = useSelector(state => state.users);
   const relationships = useSelector(state => state.relationships);
   const foundUsers = useSelector(state => state.userSearch);
+  const userSearchStatus = useSelector(state => state.api.userSearchApi.status);
   const { defaultAvatar } = useSelector(state => state.general);
   const { defaultIcon } = useSelector(state => state.general);
   const { id: ownId, channelIds, roomIds } = useSelector(state => state.self);
   const isCollapsed = useSelector(state => state.ui.isCollapsed);
 
   const dispatch = useDispatch();
+
+  const blocks = relationships.blockers.length + relationships.blocked.length;
 
   let yourChannels = [];
   let followingChannels = [];
@@ -113,6 +116,8 @@ export default function LeftPanelContainer() {
           yourChannels={yourChannels}
           followingChannels={followingChannels}
           userSearchResults={foundUsersMap}
+          userSearchStatus={userSearchStatus}
+          blocks={blocks}
           handleSearch={username => dispatch(searchUsers(username))}
           roomsResults={rooms}
           selected={selectedChannel}
@@ -131,6 +136,8 @@ export default function LeftPanelContainer() {
           yourChannels={yourChannels}
           followingChannels={followingChannels}
           userSearchResults={foundUsersMap}
+          userSearchStatus={userSearchStatus}
+          blocks={blocks}
           handleSearch={username => dispatch(searchUsers(username))}
           roomsResults={rooms}
           selected={selectedChannel}
@@ -149,6 +156,8 @@ export default function LeftPanelContainer() {
           yourChannels={yourChannels}
           followingChannels={followingChannels}
           userSearchResults={foundUsersMap}
+          userSearchStatus={userSearchStatus}
+          blocks={blocks}
           handleSearch={username => dispatch(searchUsers(username))}
           roomsResults={rooms}
           selected={selectedChannel}

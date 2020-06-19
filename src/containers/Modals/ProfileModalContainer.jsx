@@ -3,9 +3,8 @@ import { useSelector, useDispatch } from "react-redux";
 import {
   getUserInfoModal,
   deleteFriend,
-  cancelFriendRequest,
-  rejectFriendRequest,
-  blockUser
+  blockUser,
+  unblockUser
 } from "../../redux/actions";
 import ModalContainer from "../../comp/Modals/ModalContainer";
 import ProfileModal from "../../comp/Modals/ProfileModal";
@@ -44,23 +43,10 @@ export default function ProfileModalContainer({ handleModalClose }) {
     myId
   );
 
-  let blockHandler = () => dispatch(blockUser(plainUser));
-  if (user.variant === "friend") {
-    blockHandler = () => {
-      dispatch(deleteFriend(userId));
-      dispatch(blockUser(userId));
-    };
-  } else if (user.variant === "sentRequest") {
-    blockHandler = () => {
-      dispatch(cancelFriendRequest(userId));
-      dispatch(blockUser(userId));
-    };
-  } else if (user.variant === "receivedRequest") {
-    blockHandler = () => {
-      dispatch(rejectFriendRequest(userId));
-      dispatch(blockUser(userId));
-    };
-  }
+  let blockHandler =
+    user.variant === "blocked"
+      ? () => dispatch(unblockUser(userId))
+      : () => dispatch(blockUser(plainUser));
 
   return (
     <ModalContainer isOpen={true} handleModalClose={handleModalClose}>

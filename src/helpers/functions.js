@@ -178,6 +178,11 @@ export const setRelationshipHandlers = (
   } else if (relationships.receivedFriendRequests.includes(u.id)) {
     variant = "receivedRequest";
     acceptHandler = () => dispatch(acceptFriendRequest(u.id));
+  } else if (
+    relationships.blocked.includes(u.id) ||
+    relationships.blockers.includes(u.id)
+  ) {
+    variant = "blocked";
   } else if (myId === u.id) {
     variant = "self";
   }

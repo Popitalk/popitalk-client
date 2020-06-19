@@ -18,7 +18,7 @@ import RoomInfoCard from "../InfoCards/RoomInfoCard";
 
 export default function RoomsList({
   rooms,
-  // getControls = getTimeFromMessage,
+  getControls,
   selected,
   handleSelect,
   ...rest
@@ -27,7 +27,7 @@ export default function RoomsList({
     return (
       <RoomInfoCard
         room={room}
-        // controls={getControls(room)}
+        controls={getControls ? getControls(room) : null}
         selected={selected}
         handleSelect={handleSelect}
       />

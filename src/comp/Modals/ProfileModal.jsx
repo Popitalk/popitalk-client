@@ -13,14 +13,19 @@ export default function ProfileModal({
   unfriendHandler,
   blockHandler
 }) {
-  // variants: self, friend, stranger, sentRequest, receivedRequest
+  // variants: self, friend, stranger, sentRequest, receivedRequest, blocked
   const variant = user.variant;
 
   const myProfile = variant === "self";
 
   let options = null;
   if (!myProfile) {
-    options = [{ name: "Block", handler: blockHandler }];
+    options = [
+      {
+        name: variant === "blocked" ? "Unblock" : "Block",
+        handler: blockHandler
+      }
+    ];
   }
   if (variant === "friend") {
     options.unshift({ name: "Unfriend", handler: unfriendHandler });

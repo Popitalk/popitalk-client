@@ -2,7 +2,11 @@ import React from "react";
 import Button from "./Button";
 
 export default function FriendRequestButtons({ user }) {
-  // variants: self, friend, stranger, receivedRequest, sentRequest
+  // variants: self, friend, stranger, receivedRequest, sentRequest, blocked
+  if (user.variant === "blocked") {
+    return <></>;
+  }
+
   const sentRequest = user.variant === "sentRequest";
   const addButton =
     user.variant === "friend" || user.variant === "self" ? (

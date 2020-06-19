@@ -7,6 +7,8 @@ export default function LeftPanel({
   yourChannels,
   followingChannels,
   userSearchResults,
+  userSearchStatus,
+  blocks,
   handleSearch,
   roomsResults,
   selected,
@@ -44,6 +46,8 @@ export default function LeftPanel({
         ) : (
           <FriendsPanel
             userSearchResults={userSearchResults}
+            userSearchStatus={userSearchStatus}
+            blocks={blocks}
             handleSearch={handleSearch}
             initialRooms={roomsResults}
             selectedRoom={selected}
