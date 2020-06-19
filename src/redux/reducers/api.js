@@ -82,6 +82,10 @@ const initialState = Object.values(idsOfActions)
   .reduce((obj, item) => ({ ...obj, ...item }));
 
 export default (state = initialState, { type, meta, error }) => {
+  if (type === "api/clearError") {
+    return { ...state, userUpdateApi: { status: "initial" } };
+  }
+
   if (!meta) return state;
 
   const actionId = idsOfActions[formatType(type)];

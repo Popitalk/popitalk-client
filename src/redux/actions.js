@@ -738,3 +738,4 @@ export const setLeftPanelActiveTabChannels = createAction(
 export const setLeftPanelActiveTabFriends = createAction(
   "ui/setLeftPanelActiveTabFriends"
 );
+export const clearError = createAction("api/clearError");
