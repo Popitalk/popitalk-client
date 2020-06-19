@@ -25,7 +25,7 @@ function ChatActions({ handleSendMessage }) {
 
   const onEmojiClick = (event, emojiObject) => {
     setChosenEmoji(emojiObject.emoji);
-    setEmojiIsOpen(false);
+    setEmojiIsOpen(true);
   };
 
   return (
@@ -42,20 +42,21 @@ function ChatActions({ handleSendMessage }) {
           />
         </button>
         {emojiIsOpen ? (
-          <div className="absolute bottom-0">
-            {" "}
+          <div className="absolute bottom-0 mb-16">
+            {""}
             <Picker onEmojiClick={onEmojiClick}></Picker>
           </div>
         ) : null}
         <textarea
-          className="w-full h-10 p-2 pl-4 overflow-hidden rounded-lg resize-none bg-secondaryBackground focus:outline-none text-secondaryText text-sm"
+          className="w-full h-10 p-2 pl-4 overflow-hidden rounded-lg resize-none bg-secondaryBackground focus:outline-none text-primaryText text-sm"
           placeholder="Type a message..."
           value={messageContent}
           maxLength="240"
           ref={textareaRef}
           onChange={handleChange}
         />
-        <div className="w-10 h-10 p-2 text-center rounded-full bg-secondaryBackground">
+        {/* REPLACE IMAGE PICKER -> GIF PICKER */}
+        <div className="w-10 h-10 p-2 text-center rounded-full bg-secondaryBackground hover:bg-highlightBackground">
           <FontAwesomeIcon
             icon={["far", "images"]}
             className="cursor-pointer text-highlightText"
