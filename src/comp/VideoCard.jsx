@@ -16,7 +16,7 @@ export default function VideoCard({
   const rightInfo = `${timeFromUpload}`;
   return (
     <div className="cursor-pointer w-full group">
-      <div className="group flex-grow flex flex-row justify-center rounded-xl overflow-hidden items-center pb-16/9 w-full relative group-hover:shadow-xl transition-all ease-in-out duration-100">
+      <div className="group flex-grow flex flex-row justify-center rounded-lg overflow-hidden items-center pb-16/9 w-full relative group-hover:shadow-xl transition-all ease-in-out duration-100">
         <img
           src={thumbnail}
           alt="video-thumbnail"

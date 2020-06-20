@@ -14,12 +14,15 @@ export default function Button({
   disabled,
   children,
   className,
+  selectedColor,
   ...props
 }) {
+  if (selectedColor) background = selectedColor;
   const backgrounds = {
     primary: "bg-gradient-br-button",
     secondary: "bg-gradient-br-search",
-    cancel: "bg-gradient-br-cancel"
+    cancel: "bg-gradient-br-cancel",
+    bgColor: "bg-gradient-br-bgColor"
   };
 
   // console.log("before shape", shape);
@@ -29,7 +32,8 @@ export default function Button({
   const shapes = {
     regular: "rounded-lg",
     pill: "rounded-pill",
-    circle: "rounded-circle"
+    circle: "rounded-circle",
+    chip: "rounded-full"
   };
 
   const buttonClasses = classnames({
@@ -37,6 +41,7 @@ export default function Button({
     [`btn-${size}`]: true,
     [backgrounds[background]]: true,
     [shapes[shape]]: true,
+    "text-primaryText": background === "bgColor",
     "btn-icon": icon && !shape,
     "btn-text": variant === "text",
     [className]: className
