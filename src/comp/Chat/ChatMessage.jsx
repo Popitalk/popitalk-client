@@ -49,7 +49,7 @@ export default function ChatMessage({
           <MessageAuthorUsername username={message.author.username} />
           <MessageCreatedTime createdAt={message.createdAt} />
         </div>
-        <div className="flex mt-2 flex-around bg:primaryBackground hover:bg-secondaryBackground rounded-xl cursor-pointer chat-options-button-parent">
+        <div className="flex mt-2 flex-around bg:primaryBackground hover:bg-secondaryBackground rounded-md cursor-pointer chat-options-button-parent">
           <span className="flex justify-center">
             <MessageHighlightSpan
               me={message.me}
@@ -71,7 +71,7 @@ export default function ChatMessage({
       <div
         role="button"
         onClick={() => setIsClicked(!isClicked)}
-        className="flex flex-col mx-2 bg-primaryBackground hover:bg-secondaryBackground rounded-xl"
+        className="flex flex-col mx-2 bg-primaryBackground hover:bg-secondaryBackground rounded-md"
       >
         {isClicked ? (
           <div className="flex items-center space-x-2 text-xs ml-3 p-1">

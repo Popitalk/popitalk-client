@@ -14,7 +14,7 @@ export default function ChatOptionsButton({
       <Fragment>
         {conditions.displayButton ? (
           <button
-            className="opacity-0 chat-options-button w-10 px-0 space-x-2 rounded-full self-center mx-2"
+            className="opacity-0 chat-options-button w-8 px-0 space-x-2 self-center mx-1 focus:outline-none"
             onClick={() => {
               setOptionsClosed(false);
               setTimeout(() => setOptionsClosed(true), 3000);
