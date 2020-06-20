@@ -49,7 +49,7 @@ export default function ChatMessage({
           <MessageAuthorUsername username={message.author.username} />
           <MessageCreatedTime createdAt={message.createdAt} />
         </div>
-        <div className="flex mt-2 flex-around bg:primaryBackground hover:bg-secondaryBackground rounded-xl cursor-pointer">
+        <div className="flex mt-2 flex-around bg:primaryBackground hover:bg-secondaryBackground rounded-xl cursor-pointer chat-options-button-parent">
           <span className="flex justify-center">
             <MessageHighlightSpan
               me={message.me}
@@ -78,7 +78,7 @@ export default function ChatMessage({
             <MessageCreatedTime createdAt={message.createdAt} />
           </div>
         ) : null}
-        <div className="flex flex-around">
+        <div className="flex flex-around chat-options-button-parent">
           <span className="flex justify-center">
             <MessageHighlightSpan
               me={message.me}
