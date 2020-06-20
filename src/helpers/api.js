@@ -95,6 +95,22 @@ export const updateMember = updateInfo => {
   return axios.put("/api/members/", updateInfo);
 };
 
+export const makeAdmin = (channelId, userId) => {
+  return axios.post(`/api/members/${channelId}/admins`, { userId });
+};
+
+export const deleteAdmin = (channelId, userId) => {
+  return axios.delete(`/api/members/${channelId}/admins/${userId}`);
+};
+
+export const addBan = (channelId, bannedId) => {
+  return axios.post(`/api/members/${channelId}/bans`, { bannedId });
+};
+
+export const deleteBan = (channelId, bannedId) => {
+  return axios.delete(`/api/members/${channelId}/bans/${bannedId}`);
+};
+
 export const followChannel = channelId => {
   return axios.post("/api/members/", { channelId });
 };

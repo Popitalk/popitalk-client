@@ -4,14 +4,17 @@ import StretchList from "./InfoCardLists/StretchList";
 import Input from "./Input";
 
 export default function ManageUsers({
+  ownerId,
   category,
   users,
   options,
   handleProfile
 }) {
   const [input, setInput] = useState("");
-  const filteredUsers = users.filter(user =>
-    user.username.toLowerCase().includes(input.toLowerCase())
+  const filteredUsers = users.filter(
+    user =>
+      user.username.toLowerCase().includes(input.toLowerCase()) &&
+      user.id !== ownerId
   );
 
   return (

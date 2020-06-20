@@ -20,7 +20,11 @@ import {
   likePost,
   unlikeComment,
   likeComment,
-  updateChannel
+  updateChannel,
+  makeAdmin,
+  deleteAdmin,
+  addBan,
+  deleteBan
 } from "../../redux/actions";
 
 import {
@@ -141,6 +145,22 @@ export default function Channel({ tab, type = "channel" }) {
     console.log("form submit values", values);
   };
 
+  const addAdminHandler = userId => {
+    dispatch(makeAdmin({ channelId, userId }));
+  };
+
+  const removeAdminHandler = userId => {
+    dispatch(deleteAdmin({ channelId, userId }));
+  };
+
+  const addBanHandler = bannedId => {
+    dispatch(addBan({ channelId, bannedId }));
+  };
+
+  const removeBanHandler = bannedId => {
+    dispatch(deleteBan({ channelId, bannedId }));
+  };
+
   useEffect(() => {
     if (channel && !channel?.loaded) {
       dispatch(getChannel(channelId));
@@ -238,6 +258,7 @@ export default function Channel({ tab, type = "channel" }) {
       )}
       {tab === "settings" && !loading && (
         <ChannelSettingsPanel
+          ownerId={channel.ownerId || channel.owner_id}
           followers={mapIdsToUsers(channel.members, users, defaultAvatar)}
           admins={mapIdsToUsers(channel.admins, users, defaultAvatar)}
           bannedUsers={mapIdsToUsers(channel.banned, users, defaultAvatar)}
@@ -253,6 +274,10 @@ export default function Channel({ tab, type = "channel" }) {
           channelFormError={
             updateChannelApi.status === "error" ? updateChannelApi.error : false
           }
+          addAdminHandler={addAdminHandler}
+          removeAdminHandler={removeAdminHandler}
+          addBanHandler={addBanHandler}
+          removeBanHandler={removeBanHandler}
         />
       )}
     </div>
