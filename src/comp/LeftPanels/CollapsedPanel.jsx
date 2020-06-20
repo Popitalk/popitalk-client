@@ -14,7 +14,7 @@ function CollapsedPanel({
   return (
     <div className="bg-primaryBackground px-2 flex flex-col items-center w-20 h-full">
       <button
-        className="py-5 w-full flex items-center flex-col"
+        className="py-5 w-full flex items-center flex-col focus:outline-none"
         onClick={handleCollapse}
       >
         <FontAwesomeIcon
@@ -27,7 +27,7 @@ function CollapsedPanel({
           selectedPage === "friends"
             ? "text-highlightText"
             : "text-secondaryButtonText"
-        } py-4 w-full flex items-center flex-col hover:text-highlightText duration-100 rounded-xl`}
+        } py-4 w-full flex items-center flex-col hover:text-highlightText duration-100 rounded-xl focus:outline-none`}
         onClick={() => updateSelectedPage("friends")}
       >
         <FontAwesomeIcon icon="user-friends" className="fa-1x" />
@@ -38,7 +38,7 @@ function CollapsedPanel({
           selectedPage === "channels"
             ? "text-highlightText"
             : "text-secondaryButtonText"
-        } py-4 w-full flex items-center flex-col hover:text-highlightText duration-100 rounded-xl`}
+        } py-4 w-full flex items-center flex-col hover:text-highlightText duration-100 rounded-xl focus:outline-none`}
         onClick={() => updateSelectedPage("channels")}
       >
         <FontAwesomeIcon icon="tv" className="fa-1x" />

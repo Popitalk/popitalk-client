@@ -8,13 +8,16 @@ export default function PanelHeader({
 }) {
   return (
     <div className="flex sticky top-0 bg-primaryBackground items-center justify-around w-full px-0 z-20">
-      <button className="p-4 ml-2" onClick={handleCollapse}>
+      <button className="p-4 ml-2 focus:outline-none" onClick={handleCollapse}>
         <FontAwesomeIcon
           icon="bars"
           className="cursor-pointer text-secondaryText hover:text-highlightText duration-50"
         />
       </button>
-      <button onClick={() => updateSelectedPage("channels")}>
+      <button
+        onClick={() => updateSelectedPage("channels")}
+        className="focus:outline-none"
+      >
         <h3
           className={`${
             selectedPage === "channels"
@@ -25,7 +28,10 @@ export default function PanelHeader({
           Channels
         </h3>
       </button>
-      <button onClick={() => updateSelectedPage("friends")}>
+      <button
+        onClick={() => updateSelectedPage("friends")}
+        className="focus:outline-none"
+      >
         <h3
           className={`${
             selectedPage === "friends"

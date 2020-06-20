@@ -25,7 +25,7 @@ export default function MiniFriendsList({
           <Button
             icon="user-plus"
             size="lg"
-            background="search"
+            background="secondary"
             onClick={handleFindFriends}
           />
         </div>
