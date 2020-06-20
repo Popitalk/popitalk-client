@@ -65,7 +65,7 @@ export default function EditInformationModal({
                 disabled={loading}
                 className=""
               />
-              <p className="mb-12 text-2xl font-bold">{username}</p>
+              <p className="mb-12 mt-2 text-2xl font-bold">{username}</p>
               <EditInformationForm loading={loading} />
               <div className="w-full pb-8">
                 <EditBirthdayForm loading={loading} />
