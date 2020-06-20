@@ -14,7 +14,7 @@ export default function ModalContainer({
   header,
   children
 }) {
-  const modalClasses = classnames("rounded-xl shadow-xl", {
+  const modalClasses = classnames("rounded-xl shadow-xl outline-none", {
     "bg-primaryBackground": background === "white",
     "bg-secondaryBackground": background === "gray",
     "w-full sm:w-dropdown": small,
@@ -22,7 +22,7 @@ export default function ModalContainer({
   });
 
   const contentClasses = classnames(
-    "h-75vh flex flex-col items-stretch overflow-hidden",
+    "h-auto flex flex-col items-stretch overflow-hidden",
     {
       "h-modalFull": fixedFullSize,
       "rounded-xl": !header,
