@@ -316,28 +316,62 @@ export const addAdmin = createAsyncThunk(
 );
 export const addAdminWs = createAction("channels/addAdmin/ws");
 
+/* ----------------------------- MEMBERS --------------------------------- */
+
+export const makeAdmin = createAsyncThunk(
+  "members/makeAdmin",
+  async ({ channelId, userId }) => {
+    const response = await api.makeAdmin(channelId, userId);
+    return response.data;
+  }
+);
+
 export const deleteAdmin = createAsyncThunk(
+  "members/deleteAdmin",
+  async ({ channelId, userId }) => {
+    const response = await api.deleteAdmin(channelId, userId);
+    return response.data;
+  }
+);
+
+export const addBan = createAsyncThunk(
+  "members/addBan",
+  async ({ channelId, bannedId }) => {
+    const response = await api.addBan(channelId, bannedId);
+    return response.data;
+  }
+);
+
+export const deleteBan = createAsyncThunk(
+  "members/deleteBan",
+  async ({ channelId, bannedId }) => {
+    const response = await api.deleteBan(channelId, bannedId);
+    return response.data;
+  }
+);
+
+/*export const deleteAdmin = createAsyncThunk(
   "channels/deleteAdmin",
   async updateInfo => {
     const response = await api.updateMember({ ...updateInfo, type: "unadmin" });
     return response.data;
   }
-);
+);*/
 export const deleteAdminWs = createAction("channels/deleteAdmin/ws");
 
-export const addBan = createAsyncThunk("channels/addBan", async updateInfo => {
+/*export const addBan = createAsyncThunk("channels/addBan", async updateInfo => {
   const response = await api.updateMember({ ...updateInfo, type: "ban" });
   return response.data;
-});
+});*/
 export const addBanWs = createAction("channels/addBan/ws");
 
-export const deleteBan = createAsyncThunk(
+/*export const deleteBan = createAsyncThunk(
   "channels/deleteBan",
   async updateInfo => {
     const response = await api.updateMember({ ...updateInfo, type: "unban" });
     return response.data;
   }
-);
+);*/
 export const deleteBanWs = createAction("channels/deleteBan/ws");
 
 export const addMemberWs = createAction("channels/addMember/ws");

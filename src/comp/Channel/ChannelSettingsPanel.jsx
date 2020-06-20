@@ -4,6 +4,7 @@ import ChannelForm from "./ChannelForm";
 import ManageUsers from "../ManageUsers";
 
 export default function ChannelSettingsPanel({
+  ownerId,
   followers,
   admins,
   bannedUsers,
@@ -71,6 +72,7 @@ export default function ChannelSettingsPanel({
     paneContent = (
       <ManageUsers
         category="Followers"
+        ownerId={ownerId}
         users={followers}
         options={options}
         handleProfile={handleProfile}
@@ -82,6 +84,7 @@ export default function ChannelSettingsPanel({
     paneContent = (
       <ManageUsers
         category="Admins"
+        ownerId={ownerId}
         users={admins}
         options={options}
         handleProfile={handleProfile}
@@ -93,6 +96,7 @@ export default function ChannelSettingsPanel({
     paneContent = (
       <ManageUsers
         category="Banned"
+        ownerId={ownerId}
         users={bannedUsers}
         options={options}
         handleProfile={handleProfile}

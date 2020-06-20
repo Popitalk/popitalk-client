@@ -45,7 +45,7 @@ export default function LeftPanelContainer() {
       icon: channels[channelId].icon || defaultIcon
     }))
     .forEach(channel => {
-      if (channel.ownerId === ownId) {
+      if (channel.ownerId === ownId || channel.owner_id === ownId) {
         yourChannels.push(channel);
       } else {
         followingChannels.push(channel);
