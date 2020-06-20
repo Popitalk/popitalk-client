@@ -1,6 +1,10 @@
 import React, { useState } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import moment from "moment";
+import ChatOptionsButton from "./ChatOptionsButton";
+import MessageAuthorAvatar from "./MessageAuthorAvatar";
+import MessageAuthorUsername from "./MessageAuthorUsername";
+import MessageCreatedTime from "./MessageCreatedTime";
+import MessageHighlightSpan from "./MessageHighlightSpan";
+import MessageContent from "./MessageContent";
 
 export default function ChatMessage({
   message,
@@ -38,84 +42,27 @@ export default function ChatMessage({
     return (
       <div className="flex flex-col mt-6 mx-2">
         <div className="flex items-center space-x-2 text-xs ml-1">
-          <img
-            className="w-8 h-8 rounded-full"
-            src={message.author.avatar || defaultAvatar}
-            alt={message.author.username}
+          <MessageAuthorAvatar
+            message={message}
+            defaultAvatar={defaultAvatar}
           />
-          <span className="font-bold">{message.author.username}</span>
-          <span className="text-secondaryText">
-            {moment(message.createdAt).fromNow()}
-          </span>
+          <MessageAuthorUsername username={message.author.username} />
+          <MessageCreatedTime createdAt={message.createdAt} />
         </div>
         <div className="flex mt-2 flex-around bg:primaryBackground hover:bg-secondaryBackground rounded-xl cursor-pointer">
           <span className="flex justify-center">
-            <span
-              className={`w-1 rounded-t-lg mx-5 ${
-                message.author.username === message.me
-                  ? "bg-highlightText"
-                  : "bg-secondaryBackground"
-              }`}
-            ></span>
+            <MessageHighlightSpan
+              me={message.me}
+              username={message.author.username}
+            />
           </span>
-          <span
-            className={
-              //Break-all, because if we break by word, chat panel layout is broken by input withouth spaces.
-              `w-full break-all text-sm text-justify py-2px ${
-                message?.type?.toLowerCase() === "pending" ||
-                message?.type?.toLowerCase() === "rejected"
-                  ? "text-secondaryText"
-                  : "text-primaryText"
-              }`
-            }
-          >
-            {message.content}
-            {message.upload && (
-              <img
-                src={message.upload}
-                alt="Message"
-                className="mt-2 rounded-lg"
-              />
-            )}
-          </span>
-          {conditions.displayButton ? (
-            <div className="w-10 h-4 px-0 space-x-2 rounded-full bg-gradient-br-cancel flex flex-row justify-center self-center mx-2">
-              {
-                // New feature, optional chaining. https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Optional_chaining
-                handleResend && conditions.messageRejected ? (
-                  <button
-                    className="focus:outline-none flex items-center"
-                    onClick={() => handleResend(message.content)}
-                  >
-                    <FontAwesomeIcon
-                      size="xs"
-                      icon="redo-alt"
-                      className="text-tertiaryText"
-                    />
-                  </button>
-                ) : (
-                  <></>
-                )
-              }
-              {handleDelete &&
-              (conditions.messageRejected || conditions.messageAccepted) ? (
-                <button
-                  className="focus:outline-none flex items-center"
-                  onClick={() =>
-                    handleDelete({ type: message?.type, id: message.id })
-                  }
-                >
-                  <FontAwesomeIcon
-                    size="sm"
-                    icon="times"
-                    className="text-tertiaryText"
-                  />
-                </button>
-              ) : (
-                <></>
-              )}
-            </div>
-          ) : null}
+          <MessageContent message={message} />
+          <ChatOptionsButton
+            handleDelete={handleDelete}
+            handleResend={handleResend}
+            conditions={conditions}
+            message={message}
+          />
         </div>
       </div>
     );
@@ -128,75 +75,23 @@ export default function ChatMessage({
       >
         {isClicked ? (
           <div className="flex items-center space-x-2 text-xs ml-3 p-1">
-            <span className="text-secondaryText">
-              {moment(message.createdAt).calendar()}
-            </span>
+            <MessageCreatedTime createdAt={message.createdAt} />
           </div>
         ) : null}
         <div className="flex flex-around">
           <span className="flex justify-center">
-            <span
-              className={`w-1 mx-5 ${
-                message.author.username === message.me
-                  ? "bg-highlightText"
-                  : "bg-secondaryBackground"
-              }`}
-            ></span>
+            <MessageHighlightSpan
+              me={message.me}
+              username={message.author.username}
+            />
           </span>
-          <span
-            className={
-              //Break-all, because if we break by word, chat panel layout is broken by input withouth spaces.
-              `w-full break-all text-sm text-justify p-2px ${
-                conditions.messagePending || conditions.messageRejected
-                  ? "text-secondaryText"
-                  : "text-primaryText"
-              }`
-            }
-          >
-            {message.content}
-            {message.upload && (
-              <img
-                src={message.upload}
-                alt="Message"
-                className="mt-2 rounded-lg"
-              />
-            )}
-          </span>
-          {conditions.displayButton ? (
-            <div className="w-10 h-4 px-0 space-x-2 rounded-full bg-gradient-br-cancel flex flex-row justify-center self-center mx-2">
-              {handleResend && conditions.messageRejected ? (
-                <button
-                  className="focus:outline-none flex items-center"
-                  onClick={() => handleResend(message.content)}
-                >
-                  <FontAwesomeIcon
-                    size="xs"
-                    icon="redo-alt"
-                    className="text-tertiaryText"
-                  />
-                </button>
-              ) : (
-                <></>
-              )}
-              {handleDelete &&
-              (conditions.messageRejected || conditions.messageAccepted) ? (
-                <button
-                  className="focus:outline-none flex items-center"
-                  onClick={() =>
-                    handleDelete({ type: message?.type, id: message.id })
-                  }
-                >
-                  <FontAwesomeIcon
-                    size="sm"
-                    icon="times"
-                    className="text-tertiaryText"
-                  />
-                </button>
-              ) : (
-                <></>
-              )}
-            </div>
-          ) : null}
+          <MessageContent message={message} />
+          <ChatOptionsButton
+            handleDelete={handleDelete}
+            handleResend={handleResend}
+            conditions={conditions}
+            message={message}
+          />
         </div>
       </div>
     );
