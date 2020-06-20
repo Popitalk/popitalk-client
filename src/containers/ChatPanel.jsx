@@ -56,21 +56,25 @@ function ChatPanelContainer(props) {
     );
   }, [channelId, dispatch]);
   const handleSendMessage = text => {
-    dispatch(
-      addMessage({
-        id: "",
-        userId: "",
-        channelId,
-        content: text,
-        upload: null,
-        createdAt: Date.now(),
-        author: {
+    if (text) {
+      dispatch(
+        addMessage({
           id: "",
-          username: me,
-          avatar: null
-        }
-      })
-    );
+          userId: "",
+          channelId,
+          content: text,
+          upload: null,
+          createdAt: Date.now(),
+          author: {
+            id: "",
+            username: me,
+            avatar: null
+          }
+        })
+      );
+    } else {
+      console.log("No empty messages.");
+    }
   };
   const handleDelete = ({ type, id }) => {
     dispatch(deleteMessage({ type, id, channelId }));
