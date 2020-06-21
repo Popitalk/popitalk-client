@@ -9,6 +9,7 @@ import Button from "../Button";
 import ImageUpload from "../ImageUpload";
 import EditInformationForm from "../EditInformationForm";
 import EditBirthdayForm from "../EditBirthdayForm";
+import _ from "lodash";
 
 export default function EditInformationModal({
   username,
@@ -42,7 +43,7 @@ export default function EditInformationModal({
           });
         }}
       >
-        {({ handleSubmit, values, isValid, dirty, setFieldValue }) => (
+        {({ handleSubmit, values, isValid, setFieldValue, dirty, touched }) => (
           <form onSubmit={handleSubmit}>
             <div className="flex flex-col items-center w-full">
               <ImageUpload
@@ -77,7 +78,12 @@ export default function EditInformationModal({
               )}
               {error && <p className="text-errorText text-sm">{error}</p>}
               <div className="pt-4">
-                <Button type="submit" disabled={loading || !isValid || !dirty}>
+                <Button
+                  type="submit"
+                  disabled={
+                    loading || !isValid || (_.isEmpty(touched) && !dirty)
+                  }
+                >
                   Confirm
                 </Button>
               </div>
