@@ -10,6 +10,7 @@ import classnames from "classnames";
 import ToggleIcon from "../ToggleIcon";
 import { formatDistanceToNow } from "date-fns";
 import useOnClickOutside from "use-onclickoutside";
+import PopupMenu from "../PopupMenu";
 
 export default function ChannelPost({
   id,
@@ -23,7 +24,9 @@ export default function ChannelPost({
   defaultAvatar,
   toggleLike,
   likeCount,
-  commentCount
+  commentCount,
+  ownId,
+  authorId
 }) {
   const [showNewComment, setShowNewComment] = useState(false);
   const [showComments, setShowComments] = useState(false);
@@ -42,6 +45,7 @@ export default function ChannelPost({
     }
   });
   console.log("comments in channelPost", comments, comments?.length);
+  console.log("ownId", ownId, "authorId", authorId);
   return (
     <>
       <div className="flex flex-col rounded-lg shadow pl-8 pr-4 py-4 bg-primaryBackground mt-8">
@@ -59,7 +63,11 @@ export default function ChannelPost({
               </span>
             </div>
           </header>
-          <button
+          <PopupMenu
+            options={[{ name: "Delete", handler: () => console.log("delete") }]}
+            disabled={ownId !== authorId}
+          />
+          {/* <button
             className="flex items-start text-secondaryText"
             onClick={() => {
               setShowMenu(!showMenu);
@@ -70,11 +78,12 @@ export default function ChannelPost({
           {showMenu && (
             <span
               ref={menuRef}
-              className="absolute top-0 right-0 mr-3 rounded-md shadow hover:shadow-md bg-primaryBackground"
+              className="absolute top-0 right-0 mt-5 rounded-md shadow hover:shadow-md bg-primaryBackground"
             >
               <button className="p-2">Delete</button>
             </span>
-          )}
+ 
+          )} */}
         </div>
         <p className="text-primaryText text-lg pt-6 pb-5 px-2 break-words">
           {text}

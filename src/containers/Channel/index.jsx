@@ -231,6 +231,7 @@ export default function Channel({ tab, type = "channel" }) {
               draft={draft}
               defaultAvatar={defaultAvatar}
               toggleLike={toggleLike}
+              ownId={ownId}
             />
           )}
           {type === "room" && (

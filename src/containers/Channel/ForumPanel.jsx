@@ -20,7 +20,8 @@ const ForumPanel = (
     saveComment,
     draft,
     defaultAvatar,
-    toggleLike
+    toggleLike,
+    ownId
   },
   ref
 ) => {
@@ -40,6 +41,7 @@ const ForumPanel = (
         saveComment={saveComment}
         defaultAvatar={defaultAvatar}
         toggleLike={toggleLike}
+        ownId={ownId}
       />
     </div>
   );
