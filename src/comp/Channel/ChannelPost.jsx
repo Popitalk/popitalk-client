@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import Button from "../Button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "../VideoStatus.css";
@@ -45,8 +45,14 @@ export default function ChannelPost({
       setShowMenu(false);
     }
   });
-  console.log("comments in channelPost", comments, comments?.length);
-  console.log("ownId", ownId, "authorId", authorId);
+
+  useEffect(() => {
+    if (showComments) {
+      setShowComments(true);
+    }
+  }, [showComments]);
+  // console.log("comments in channelPost", comments, comments?.length);
+  // console.log("ownId", ownId, "authorId", authorId);
   return (
     <>
       <div className="flex flex-col rounded-lg shadow pl-8 pr-4 py-4 bg-primaryBackground mt-8">
