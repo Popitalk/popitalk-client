@@ -9,6 +9,7 @@ import NewChannelComment from "./NewChannelComment";
 import classnames from "classnames";
 import ToggleIcon from "../ToggleIcon";
 import { formatDistanceToNow } from "date-fns";
+import useOnClickOutside from "use-onclickoutside";
 
 export default function ChannelPost({
   id,
@@ -26,17 +27,25 @@ export default function ChannelPost({
 }) {
   const [showNewComment, setShowNewComment] = useState(false);
   const [showComments, setShowComments] = useState(false);
+  const [showMenu, setShowMenu] = useState(false);
   const showNumComment = 2;
+  const menuRef = useRef(null);
 
   const handleComment = () => {
     setShowNewComment(!showNewComment);
     console.log("clicked comment", showNewComment);
   };
+
+  useOnClickOutside(menuRef, () => {
+    if (showMenu) {
+      setShowMenu(false);
+    }
+  });
   console.log("comments in channelPost", comments, comments?.length);
   return (
     <>
       <div className="flex flex-col rounded-lg shadow pl-8 pr-4 py-4 bg-primaryBackground mt-8">
-        <div className="flex justify-between">
+        <div className="flex justify-between relative">
           <header className="flex">
             <AvatarIcon
               avatar={avatar}
@@ -50,9 +59,22 @@ export default function ChannelPost({
               </span>
             </div>
           </header>
-          <button className="flex items-start text-secondaryText">
+          <button
+            className="flex items-start text-secondaryText"
+            onClick={() => {
+              setShowMenu(!showMenu);
+            }}
+          >
             <FontAwesomeIcon icon={"ellipsis-v"} />
           </button>
+          {showMenu && (
+            <span
+              ref={menuRef}
+              className="absolute top-0 right-0 mr-3 rounded-md shadow hover:shadow-md bg-primaryBackground"
+            >
+              <button className="p-2">Delete</button>
+            </span>
+          )}
         </div>
         <p className="text-primaryText text-lg pt-6 pb-5 px-2 break-words">
           {text}
