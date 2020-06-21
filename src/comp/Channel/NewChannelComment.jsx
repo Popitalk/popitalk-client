@@ -22,6 +22,13 @@ export default function NewChannelComment({
       console.log("submit");
     }
   };
+  const handleSend = e => {
+    // submit on Enter and not when shift+Enter
+    e.preventDefault();
+    saveComment(value, postId);
+    setValue("");
+    console.log("submit");
+  };
 
   const handleChange = e => {
     e.target.style.height = "2.4rem";
@@ -29,7 +36,10 @@ export default function NewChannelComment({
     setValue(e.target.value);
   };
   return (
-    <form className="flex flex-row justify-center bg-secondaryBackground content-center py-2">
+    <form
+      onSubmit={handleSend}
+      className="flex flex-row justify-center bg-secondaryBackground content-center py-2"
+    >
       <textarea
         type="text"
         placeholder="Add a comment"
