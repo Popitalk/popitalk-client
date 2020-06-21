@@ -7,14 +7,16 @@ export default function ManageUsersList({
   users,
   handleProfile,
   options,
+  ownerId,
   ...rest
 }) {
   const itemRenderer = a => {
-    const control = a.owner ? (
-      <p className="text-secondaryText ml-auto">Owner</p>
-    ) : (
-      <PopupMenu id={a.id} options={options} className="ml-auto" />
-    );
+    const control =
+      a.id === ownerId ? (
+        <p className="text-secondaryText ml-auto">Owner</p>
+      ) : (
+        <PopupMenu id={a.id} options={options} className="ml-auto" />
+      );
 
     return (
       <ImageInfoCard
