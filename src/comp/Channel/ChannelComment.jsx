@@ -2,7 +2,7 @@ import React from "react";
 import AvatarIcon from "../InfoCards/AvatarIcon";
 import ToggleIcon from "../ToggleIcon";
 
-export default function ChannelPost({
+export default function ChannelComment({
   id,
   name,
   avatar,
@@ -24,7 +24,13 @@ export default function ChannelPost({
       <article className="flex-shrink flex flex-col mr-2 w-full">
         <main>
           <span className="font-bold text-sm pr-1">{name} </span>
-          <span className="text-sm">{text}</span>
+          <span
+            className={`text-sm ${
+              text.split(" ").length > 1 ? "break-words" : "break-all"
+            }`}
+          >
+            {text}
+          </span>
         </main>
         <span className="text-xs text-secondaryText">{timeFromPost}</span>
       </article>
