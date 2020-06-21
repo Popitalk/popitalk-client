@@ -24,7 +24,8 @@ import {
   makeAdmin,
   deleteAdmin,
   addBan,
-  deleteBan
+  deleteBan,
+  deletePost
 } from "../../redux/actions";
 
 import {
@@ -161,6 +162,9 @@ export default function Channel({ tab, type = "channel" }) {
     dispatch(deleteBan({ channelId, bannedId }));
   };
 
+  const removePost = postId => {
+    dispatch(deletePost({ postId }));
+  };
   useEffect(() => {
     if (channel && !channel?.loaded) {
       dispatch(getChannel(channelId));
@@ -227,6 +231,7 @@ export default function Channel({ tab, type = "channel" }) {
               posts={posts}
               saveDraft={saveDraft}
               savePost={savePost}
+              removePost={removePost}
               saveComment={saveComment}
               draft={draft}
               defaultAvatar={defaultAvatar}

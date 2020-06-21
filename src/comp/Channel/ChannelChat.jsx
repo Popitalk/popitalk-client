@@ -57,7 +57,8 @@ export default function ChannelChat({
   saveComment,
   defaultAvatar,
   toggleLike,
-  ownId
+  ownId,
+  removePost
 }) {
   return (
     <div className="flex flex-col">
@@ -84,6 +85,7 @@ export default function ChannelChat({
               commentCount={post.commentCount}
               authorId={post.author.id}
               ownId={ownId}
+              removePost={removePost}
             />
           );
         })}

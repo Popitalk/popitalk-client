@@ -17,6 +17,7 @@ const ForumPanel = (
     comments,
     saveDraft,
     savePost,
+    removePost,
     saveComment,
     draft,
     defaultAvatar,
@@ -42,6 +43,7 @@ const ForumPanel = (
         defaultAvatar={defaultAvatar}
         toggleLike={toggleLike}
         ownId={ownId}
+        removePost={removePost}
       />
     </div>
   );

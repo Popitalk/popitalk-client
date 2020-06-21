@@ -26,7 +26,8 @@ export default function ChannelPost({
   likeCount,
   commentCount,
   ownId,
-  authorId
+  authorId,
+  removePost
 }) {
   const [showNewComment, setShowNewComment] = useState(false);
   const [showComments, setShowComments] = useState(false);
@@ -64,7 +65,7 @@ export default function ChannelPost({
             </div>
           </header>
           <PopupMenu
-            options={[{ name: "Delete", handler: () => console.log("delete") }]}
+            options={[{ name: "Delete", handler: () => removePost(id) }]}
             disabled={ownId !== authorId}
           />
           {/* <button
