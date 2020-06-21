@@ -50,8 +50,8 @@ function RecommendedChannels({ list, selectedPage }) {
           className="uppercase mr-3 shadow-xs hover:shadow-none focus:shadow-none bg-secondaryBackground"
           shape="chip"
           background="bgColor"
-          selectedColor={chipSelected === "recommended" && "secondary"}
-          onClick={() => onChipClick("recommended")}
+          selectedColor={chipSelected === "discover" && "secondary"}
+          onClick={() => onChipClick("discover")}
         >
           discover
         </Button>
@@ -60,34 +60,28 @@ function RecommendedChannels({ list, selectedPage }) {
           className="uppercase shadow-xs hover:shadow-none focus:shadow-none bg-secondaryBackground"
           shape="chip"
           background="bgColor"
-          selectedColor={chipSelected === "hot" && "cancel"}
-          onClick={() => onChipClick("hot")}
+          selectedColor={chipSelected === "trending" && "cancel"}
+          onClick={() => onChipClick("trending")}
         >
           trending
         </Button>
       </div>
       <div className="mt-2">
-        {list.map(item => {
-          if (selectedPage === "channels") {
-            return (
-              <ChannelCardList
-                key={item.id}
-                channelList={item.channels}
-                header={item.title}
-                isCollapsed={isCollapsed}
-              />
-            );
-          } else if (selectedPage === "friends") {
-            return (
-              <VideoCardList
-                key={item.id}
-                videoList={item.channels}
-                header={item.title}
-                isCollapsed={isCollapsed}
-              />
-            );
-          }
-        })}
+        {selectedPage === "channels" ? (
+          <ChannelCardList
+            channelList={list}
+            isCollapsed={isCollapsed}
+            chipSelected={chipSelected}
+          />
+        ) : (
+          selectedPage === "friends" && (
+            <VideoCardList
+              videoList={list}
+              isCollapsed={isCollapsed}
+              chipSelected={chipSelected}
+            />
+          )
+        )}
       </div>
     </div>
   );

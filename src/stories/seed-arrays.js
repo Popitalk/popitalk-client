@@ -61,6 +61,140 @@ export const testQueue = [
     status: "queued",
     statusMessage: "In 50min",
     sourceChannelName: "sourceChannel"
+  },
+  {
+    id: 6,
+    title: "Video 6",
+    views: "1.1M views",
+    timeFromUpload: "4 months ago",
+    thumbnail: "https://i.imgur.com/aqjzchq.jpg",
+    status: "queued",
+    statusMessage: "In 50min",
+    sourceChannelName: "sourceChannel"
+  }
+];
+export const testQueue2 = [
+  {
+    id: 7,
+    title: "Video 1",
+    views: "20k views",
+    timeFromUpload: "2 months ago",
+    thumbnail: "https://i.imgur.com/aqjzchq.jpg",
+    status: "queued",
+    statusMessage: "In 10min",
+    sourceChannelName: "sourceChannel"
+  },
+  {
+    id: 8,
+    title: "Video 2",
+    views: "1M views",
+    timeFromUpload: "1 week ago",
+    thumbnail: "https://i.imgur.com/aqjzchq.jpg",
+    status: "queued",
+    statusMessage: "In 14min",
+    sourceChannelName: "sourceChannel"
+  },
+  {
+    id: 9,
+    title: "Video 3",
+    views: "200k views",
+    timeFromUpload: "1 months ago",
+    thumbnail: "https://i.imgur.com/aqjzchq.jpg",
+    status: "queued",
+    statusMessage: "In 18min",
+    sourceChannelName: "sourceChannel"
+  },
+  {
+    id: 10,
+    title: "Video 4",
+    views: "1.2M views",
+    timeFromUpload: "3 months ago",
+    thumbnail: "https://i.imgur.com/aqjzchq.jpg",
+    status: "queued",
+    statusMessage: "In 25min",
+    sourceChannelName: "sourceChannel"
+  },
+  {
+    id: 11,
+    title: "Video 5",
+    views: "1.2M views",
+    timeFromUpload: "3 months ago",
+    thumbnail: "https://i.imgur.com/aqjzchq.jpg",
+    status: "queued",
+    statusMessage: "In 50min",
+    sourceChannelName: "sourceChannel"
+  },
+  {
+    id: 12,
+    title: "Video 6",
+    views: "1.1M views",
+    timeFromUpload: "4 months ago",
+    thumbnail: "https://i.imgur.com/aqjzchq.jpg",
+    status: "queued",
+    statusMessage: "In 50min",
+    sourceChannelName: "sourceChannel"
+  }
+];
+export const testQueue3 = [
+  {
+    id: 13,
+    title: "Video 1",
+    views: "20k views",
+    timeFromUpload: "2 months ago",
+    thumbnail: "https://i.imgur.com/aqjzchq.jpg",
+    status: "queued",
+    statusMessage: "In 10min",
+    sourceChannelName: "sourceChannel"
+  },
+  {
+    id: 14,
+    title: "Video 2",
+    views: "1M views",
+    timeFromUpload: "1 week ago",
+    thumbnail: "https://i.imgur.com/aqjzchq.jpg",
+    status: "queued",
+    statusMessage: "In 14min",
+    sourceChannelName: "sourceChannel"
+  },
+  {
+    id: 15,
+    title: "Video 3",
+    views: "200k views",
+    timeFromUpload: "1 months ago",
+    thumbnail: "https://i.imgur.com/aqjzchq.jpg",
+    status: "queued",
+    statusMessage: "In 18min",
+    sourceChannelName: "sourceChannel"
+  },
+  {
+    id: 16,
+    title: "Video 4",
+    views: "1.2M views",
+    timeFromUpload: "3 months ago",
+    thumbnail: "https://i.imgur.com/aqjzchq.jpg",
+    status: "queued",
+    statusMessage: "In 25min",
+    sourceChannelName: "sourceChannel"
+  },
+  {
+    id: 17,
+    title: "Video 5",
+    views: "1.2M views",
+    timeFromUpload: "3 months ago",
+    thumbnail: "https://i.imgur.com/aqjzchq.jpg",
+    status: "queued",
+    statusMessage: "In 50min",
+    sourceChannelName: "sourceChannel"
+  },
+  {
+    id: 18,
+    title: "Video 6",
+    views: "1.1M views",
+    timeFromUpload: "4 months ago",
+    thumbnail: "https://i.imgur.com/aqjzchq.jpg",
+    status: "queued",
+    statusMessage: "In 50min",
+    sourceChannelName: "sourceChannel"
   }
 ];
 
@@ -448,7 +582,7 @@ export const testMessages = [
   }
 ];
 
-export const testChannels = [
+export const testChannels1 = [
   {
     id: 1,
     name: "League of Legends",
@@ -500,38 +634,138 @@ export const testChannels = [
     numOnline: 88
   }
 ];
+export const testChannels2 = [
+  {
+    id: 5,
+    name: "League of Legends",
+    icon: "https://source.unsplash.com/128x128/?1,dog",
+    watching: false,
+    avatars: [
+      "https://source.unsplash.com/128x128/?1,cat",
+      "https://source.unsplash.com/128x128/?2,cat",
+      "https://source.unsplash.com/128x128/?3,cat",
+      "https://source.unsplash.com/128x128/?4,cat"
+    ],
+    videoThumbnail: defaultThumbnail,
+    numOnline: 9001
+  },
+  {
+    id: 6,
+    name: "League of Legends",
+    icon: "https://source.unsplash.com/128x128/?1,dog",
+    watching: true,
+    avatars: [
+      "https://source.unsplash.com/128x128/?1,cat",
+      "https://source.unsplash.com/128x128/?2,cat",
+      "https://source.unsplash.com/128x128/?3,cat",
+      "https://source.unsplash.com/128x128/?4,cat"
+    ],
+    videoThumbnail: defaultThumbnail,
+    numOnline: 20999
+  },
+  {
+    id: 7,
+    name: "League of Legends",
+    icon: "https://source.unsplash.com/128x128/?1,dog",
+    watching: false,
+    videoThumbnail: defaultThumbnail,
+    numOnline: 24
+  },
+  {
+    id: 8,
+    name: "League of Legends",
+    icon: "https://source.unsplash.com/128x128/?1,dog",
+    watching: true,
+    avatars: [
+      "https://source.unsplash.com/128x128/?1,cat",
+      "https://source.unsplash.com/128x128/?2,cat",
+      "https://source.unsplash.com/128x128/?3,cat",
+      "https://source.unsplash.com/128x128/?4,cat"
+    ],
+    videoThumbnail: defaultThumbnail,
+    numOnline: 88
+  }
+];
+export const testChannels3 = [
+  {
+    id: 9,
+    name: "League of Legends",
+    icon: "https://source.unsplash.com/128x128/?1,dog",
+    watching: false,
+    avatars: [
+      "https://source.unsplash.com/128x128/?1,cat",
+      "https://source.unsplash.com/128x128/?2,cat",
+      "https://source.unsplash.com/128x128/?3,cat",
+      "https://source.unsplash.com/128x128/?4,cat"
+    ],
+    videoThumbnail: defaultThumbnail,
+    numOnline: 9001
+  },
+  {
+    id: 10,
+    name: "League of Legends",
+    icon: "https://source.unsplash.com/128x128/?1,dog",
+    watching: true,
+    avatars: [
+      "https://source.unsplash.com/128x128/?1,cat",
+      "https://source.unsplash.com/128x128/?2,cat",
+      "https://source.unsplash.com/128x128/?3,cat",
+      "https://source.unsplash.com/128x128/?4,cat"
+    ],
+    videoThumbnail: defaultThumbnail,
+    numOnline: 20999
+  },
+  {
+    id: 11,
+    name: "League of Legends",
+    icon: "https://source.unsplash.com/128x128/?1,dog",
+    watching: false,
+    videoThumbnail: defaultThumbnail,
+    numOnline: 24
+  },
+  {
+    id: 12,
+    name: "League of Legends",
+    icon: "https://source.unsplash.com/128x128/?1,dog",
+    watching: true,
+    avatars: [
+      "https://source.unsplash.com/128x128/?1,cat",
+      "https://source.unsplash.com/128x128/?2,cat",
+      "https://source.unsplash.com/128x128/?3,cat",
+      "https://source.unsplash.com/128x128/?4,cat"
+    ],
+    videoThumbnail: defaultThumbnail,
+    numOnline: 88
+  }
+];
 
 export const channelsList = [
   {
-    title: "Following Channels",
-    channels: testChannels
+    title: "following",
+    channels: testChannels1
   },
   {
-    title: "Recommended Channels",
-    channels: testChannels
+    title: "discover",
+    channels: testChannels2
   },
   {
-    title: "Channels Friends are following",
-    channels: testChannels
-  },
-  {
-    title: "Trending Channels right now",
-    channels: testChannels
+    title: "trending",
+    channels: testChannels3
   }
 ];
 
 export const friendsList = [
   {
-    title: "Videos friends are watching",
+    title: "following",
     channels: testQueue
   },
   {
-    title: "Recommended",
-    channels: testQueue
+    title: "discover",
+    channels: testQueue2
   },
   {
-    title: "Trending right now",
-    channels: testQueue
+    title: "trending",
+    channels: testQueue3
   }
 ];
 

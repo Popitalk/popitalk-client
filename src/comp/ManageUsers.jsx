@@ -11,10 +11,8 @@ export default function ManageUsers({
   handleProfile
 }) {
   const [input, setInput] = useState("");
-  const filteredUsers = users.filter(
-    user =>
-      user.username.toLowerCase().includes(input.toLowerCase()) &&
-      user.id !== ownerId
+  const filteredUsers = users.filter(user =>
+    user.username.toLowerCase().includes(input.toLowerCase())
   );
 
   return (
@@ -35,6 +33,7 @@ export default function ManageUsers({
       {filteredUsers.length !== 0 ? (
         <div className="flex flex-col items-stretch w-full h-full overflow-auto">
           <StretchList
+            ownerId={ownerId}
             list={ManageUsersList}
             users={filteredUsers}
             options={options}
