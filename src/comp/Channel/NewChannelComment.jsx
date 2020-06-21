@@ -14,10 +14,13 @@ export default function NewChannelComment({
   const [value, setValue] = useState("");
 
   const handleSubmit = e => {
-    e.preventDefault();
-    saveComment(value, postId);
-    setValue("");
-    console.log("submit");
+    // submit on Enter and not when shift+Enter
+    if (e.keyCode === 13 && !e.shiftKey) {
+      e.preventDefault();
+      saveComment(value, postId);
+      setValue("");
+      console.log("submit");
+    }
   };
 
   const handleChange = e => {
@@ -26,10 +29,7 @@ export default function NewChannelComment({
     setValue(e.target.value);
   };
   return (
-    <form
-      onSubmit={handleSubmit}
-      className="flex flex-row justify-center bg-secondaryBackground content-center py-2"
-    >
+    <form className="flex flex-row justify-center bg-secondaryBackground content-center py-2">
       <textarea
         type="text"
         placeholder="Add a comment"
@@ -38,6 +38,7 @@ export default function NewChannelComment({
         value={value}
         maxLength={120}
         onChange={handleChange}
+        onKeyDown={handleSubmit}
         autoFocus
       />
       <input
