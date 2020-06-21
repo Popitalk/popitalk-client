@@ -35,20 +35,25 @@ export default function ChannelPost({
   console.log("comments in channelPost", comments, comments?.length);
   return (
     <>
-      <div className="flex flex-col rounded-lg shadow px-8 py-4 bg-primaryBackground mt-8">
-        <header className="flex">
-          <AvatarIcon
-            avatar={avatar}
-            username={name}
-            className="img w-10 h-10 rounded-circle"
-          />
-          <div className="flex flex-col pl-2">
-            <span>{name}</span>
-            <span className="text-secondaryText text-xs pt-0">
-              {timeFromPost}
-            </span>
-          </div>
-        </header>
+      <div className="flex flex-col rounded-lg shadow pl-8 pr-4 py-4 bg-primaryBackground mt-8">
+        <div className="flex justify-between">
+          <header className="flex">
+            <AvatarIcon
+              avatar={avatar}
+              username={name}
+              className="img w-10 h-10 rounded-circle"
+            />
+            <div className="flex flex-col pl-2">
+              <span>{name}</span>
+              <span className="text-secondaryText text-xs pt-0">
+                {timeFromPost}
+              </span>
+            </div>
+          </header>
+          <button className="flex items-start text-secondaryText">
+            <FontAwesomeIcon icon={"ellipsis-v"} />
+          </button>
+        </div>
         <p className="text-primaryText text-lg pt-6 pb-5 px-2 break-words">
           {text}
         </p>
