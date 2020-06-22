@@ -22,7 +22,10 @@ const ForumPanel = (
     draft,
     defaultAvatar,
     toggleLike,
-    ownId
+    ownId,
+    handleFollow,
+    isMember,
+    handleUnfollow
   },
   ref
 ) => {
@@ -34,6 +37,9 @@ const ForumPanel = (
         description={description}
         adminList={adminList}
         status={status}
+        handleFollow={handleFollow}
+        isMember={isMember}
+        handleUnfollow={handleUnfollow}
       />
       <NewChannelPost saveDraft={saveDraft} savePost={savePost} draft={draft} />
       <ChannelChat

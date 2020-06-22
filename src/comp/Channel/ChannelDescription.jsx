@@ -13,7 +13,10 @@ export default function ChannelDescription({
   description,
   adminList,
   threshold = 4,
-  status
+  status,
+  handleFollow,
+  isMember,
+  handleUnfollow
 }) {
   return (
     <div className="flex flex-col mb-8">
@@ -25,7 +28,29 @@ export default function ChannelDescription({
         />
         <section className="mx-8">
           {/* <p className="text-xs mx-1">NOW PLAYING</p> */}
-          {status && <VideoStatus status={status} type="text" />}
+          <div className="flex">
+            {status && <VideoStatus status={status} type="text" />}
+            {isMember ? (
+              <Button
+                size="sm"
+                shape="pill"
+                className="ml-auto"
+                background="bgColor"
+                onClick={handleUnfollow}
+              >
+                Unfollow
+              </Button>
+            ) : (
+              <Button
+                size="sm"
+                shape="pill"
+                className="ml-auto"
+                onClick={handleFollow}
+              >
+                Follow
+              </Button>
+            )}
+          </div>
           <p className="text-3xl mx-1 font-bold">{name}</p>
           <p className="text-sm my-2 mx-1">{description}</p>
           <div className="flex flex-row items-center mt-4">
