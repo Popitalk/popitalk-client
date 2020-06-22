@@ -25,7 +25,9 @@ import {
   deleteAdmin,
   addBan,
   deleteBan,
-  deletePost
+  deletePost,
+  followChannel,
+  unfollowChannel
 } from "../../redux/actions";
 
 import {
@@ -44,6 +46,10 @@ import { mapIdsToUsers } from "../../helpers/functions";
 export default function Channel({ tab, type = "channel" }) {
   const { channelId, roomId } = useParams();
   const channel = useSelector(state => state.channels[channelId || roomId]);
+  const dispatch = useDispatch();
+  if (!channel) {
+    dispatch(getChannel(channelId));
+  }
   const { defaultIcon, defaultAvatar } = useSelector(state => state.general);
   const updateChannelApi = useSelector(state => state.api.channel);
   const draft = useSelector(state => state.postDrafts[channelId]);
@@ -55,15 +61,9 @@ export default function Channel({ tab, type = "channel" }) {
 
   const comments = useSelector(state => state.comments);
 
-  const channels = useSelector(state => state.channels);
-  const dispatch = useDispatch();
-  const match = useRouteMatch();
-
   const channelRef = useRef(null);
   const scrollRef = useRef(null);
 
-  // console.log("channels", channels);
-  // console.log("channelid", channelId);
   console.log("channel", channel);
   console.log("posts", posts);
   console.log("comments", comments);
@@ -74,6 +74,10 @@ export default function Channel({ tab, type = "channel" }) {
 
   const trendingResults = testResult;
   const searchResults = testResult.slice(0, 3);
+  const isMember =
+    channel && channel.members
+      ? !!channel.members.filter(memberId => memberId === ownId).length
+      : null;
 
   const pickRoomName = (room, users, ownId) => {
     let roomName = "";
@@ -165,6 +169,15 @@ export default function Channel({ tab, type = "channel" }) {
   const removePost = postId => {
     dispatch(deletePost({ postId }));
   };
+
+  const handleFollow = channelId => {
+    dispatch(followChannel(channelId));
+  };
+
+  const handleUnfollow = channelId => {
+    dispatch(unfollowChannel(channelId));
+  };
+
   useEffect(() => {
     if (channel && !channel?.loaded) {
       dispatch(getChannel(channelId));
@@ -202,6 +215,7 @@ export default function Channel({ tab, type = "channel" }) {
     }
   }, [tab, loading]);
 
+  if (loading) return <></>;
   return (
     <div
       ref={scrollRef}
@@ -237,6 +251,9 @@ export default function Channel({ tab, type = "channel" }) {
               defaultAvatar={defaultAvatar}
               toggleLike={toggleLike}
               ownId={ownId}
+              handleFollow={() => handleFollow(channelId)}
+              isMember={isMember}
+              handleUnfollow={() => handleUnfollow(channelId)}
             />
           )}
           {type === "room" && (

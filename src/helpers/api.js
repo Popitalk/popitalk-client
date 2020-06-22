@@ -112,7 +112,7 @@ export const deleteBan = (channelId, bannedId) => {
 };
 
 export const followChannel = channelId => {
-  return axios.post("/api/members/", { channelId });
+  return axios.post(`/api/members/${channelId}`);
 };
 
 export const unfollowChannel = channelId => {
