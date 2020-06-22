@@ -11,14 +11,25 @@ function ChatActions({ handleSendMessage }) {
   const [emojiIsOpen, setEmojiIsOpen] = useState(false);
   const [chosenEmoji, setChosenEmoji] = useState("");
   const textareaRef = useRef();
+  const sendButton = useRef();
+
+  useEffect(() => {
+    textareaRef.current.addEventListener("keyup", event => {
+      // Number 13 is the "Enter" key on the keyboard
+      if (event.keyCode === 13) {
+        // Trigger the button element with a click
+        sendButton.current.click();
+      }
+    });
+    // Event listener is removed. Can be tested with getEventListeners(domElement) in developer tools console
+    return textareaRef.current.removeEventListener("keyup", event => {});
+  }, [textareaRef, sendButton]);
 
   useEffect(() => {
     setMessageContent(messageContent => messageContent + chosenEmoji);
   }, [chosenEmoji]);
 
   const handleChange = e => {
-    e.target.style.height = "2.5rem";
-    e.target.style.height = `${Math.min(e.target.scrollHeight + 2, 168)}px`;
     //dispatch(setChatDraft({ channelId, draft: e.target.value }));
     setMessageContent(e.target.value);
   };
@@ -68,6 +79,7 @@ function ChatActions({ handleSendMessage }) {
             handleSendMessage(messageContent);
             setMessageContent("");
           }}
+          ref={sendButton}
           className="font-bold text-highlightText pr-2 text-sm focus:outline-none"
         >
           Send
