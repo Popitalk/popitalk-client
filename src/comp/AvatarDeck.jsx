@@ -39,7 +39,7 @@ export default function AvatarDeck({
             const totalLeft = avatars.length - threshold;
             return (
               <button
-                className={`${avatarClasses} bg-disabledBackground text-xs self-start`}
+                className={`${avatarClasses} bg-disabledBackground text-xs self-start focus:outline-none`}
               >{`+${totalLeft}`}</button>
             );
           }

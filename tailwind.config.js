@@ -103,7 +103,7 @@ module.exports = {
       bgColor: "#F5F5F5",
       search: ["#98E4FA 0%", "#00C3FF 100%"],
       cancel: ["#FC6D5A 0%", "#FA3535 100%"],
-      channelCardOverlay: ["#000 0%", "transparent 40%"],
+      channelCardOverlay: ["#151515 0%", "transparent 30%"],
       upload: ["#03f5ff 0%", "#f500ff 100%"],
       player: [
         "rgba(0, 0, 0, 0.8) 0%",

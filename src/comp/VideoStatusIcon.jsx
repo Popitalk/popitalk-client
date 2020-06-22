@@ -53,7 +53,7 @@ export default function VideoStatus({
           // </Button>
         )}
         {status === "paused" && (
-          <button className="w-8 h-8 p-2 rounded-full flex justify-center items-center flex-shrink-0 bg-primaryBackground">
+          <button className="w-8 h-8 p-2 rounded-full flex justify-center items-center flex-shrink-0 bg-primaryBackground focus:outline-none">
             <svg
               aria-hidden="true"
               focusable="false"
