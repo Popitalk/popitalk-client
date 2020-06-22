@@ -21,8 +21,9 @@ export default function ModalContainer({
     "w-full md:w-3/4 lg:w-1/2": !small
   });
 
+  // h-75vh to support all screen heights
   const contentClasses = classnames(
-    "h-auto flex flex-col items-stretch overflow-hidden",
+    "h-75vh flex flex-col items-stretch overflow-hidden",
     {
       "h-modalFull": fixedFullSize,
       "rounded-xl": !header,
