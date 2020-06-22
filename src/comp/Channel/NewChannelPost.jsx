@@ -51,7 +51,7 @@ export default function NewChannelPost({
         className={`flex flex-row justify-center bg-secondaryBackground content-center py-2 ${className}`}
       >
         <button
-          className="text-highlightText text-2xl mx-4"
+          className="text-highlightText text-2xl mx-4 focus:outline-none"
           onClick={handleEmot}
         >
           <FontAwesomeIcon icon={["far", "smile"]} />
@@ -59,7 +59,7 @@ export default function NewChannelPost({
         <textarea
           type="text"
           placeholder="Post something..."
-          className="rounded-lg pl-3 p-2 w-full shadow resize-none overflow-hidden"
+          className="rounded-lg pl-3 p-2 w-full shadow resize-none overflow-hidden focus:outline-none"
           rows={1}
           maxLength={2000}
           value={draft}
@@ -67,7 +67,7 @@ export default function NewChannelPost({
           ref={textareaRef}
         />
         <button
-          className="text-highlightText text-2xl ml-4"
+          className="text-highlightText text-2xl ml-4 focus:outline-none"
           onClick={handleUploadImg}
         >
           <FontAwesomeIcon icon={["fa", "image"]} />
@@ -75,7 +75,7 @@ export default function NewChannelPost({
         <input
           type="submit"
           value="Send"
-          className="mx-4 bg-transparent text-highlightText font-bold"
+          className="mx-4 bg-transparent text-highlightText font-bold cursor-pointer focus:outline-none"
         />
       </form>
       {pickerOpen && (

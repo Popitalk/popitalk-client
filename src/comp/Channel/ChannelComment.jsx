@@ -41,7 +41,7 @@ export default function ChannelComment({
             default: "text-secondaryText",
             toggle: "text-notificationsColor"
           }}
-          className={{ icon: "text-lg" }}
+          className={{ icon: "text-lg focus:outline-none" }}
           status={liked}
           toggleStatus={stat => toggleLike(id, "comment", stat)}
         />

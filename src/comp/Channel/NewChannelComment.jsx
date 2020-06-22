@@ -43,7 +43,7 @@ export default function NewChannelComment({
       <textarea
         type="text"
         placeholder="Add a comment"
-        className="rounded-lg mx-2 w-full px-6 py-2 h-10 shadow text-sm resize-none overflow-hidden"
+        className="rounded-lg mx-2 w-full px-6 py-2 h-10 shadow text-sm resize-none overflow-hidden focus:outline-none"
         row={1}
         value={value}
         maxLength={120}
@@ -54,7 +54,7 @@ export default function NewChannelComment({
       <input
         type="submit"
         value="Post"
-        className="mx-2 bg-transparent text-highlightText font-bold mr-3"
+        className="mx-2 bg-transparent text-highlightText font-bold mr-3 cursor-pointer outline-none"
       />
     </form>
   );

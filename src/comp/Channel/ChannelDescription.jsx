@@ -46,7 +46,7 @@ export default function ChannelDescription({
                 return (
                   <button
                     key={idx}
-                    className={`img h-8 w-8 rounded-circle mx-px bg-primaryBackground text-xs shadow-md`}
+                    className={`img h-8 w-8 rounded-circle mx-px bg-primaryBackground text-xs shadow-md focus:outline-none`}
                   >{`+${totalLeft}`}</button>
                 );
               }
