@@ -14,15 +14,17 @@ function ChatActions({ handleSendMessage }) {
   const sendButton = useRef();
 
   useEffect(() => {
-    textareaRef.current.addEventListener("keyup", event => {
+    // Must be keydown, with keyup the event is not prevented and pressing ENTER adds a new line char.
+    textareaRef.current.addEventListener("keydown", event => {
       // Number 13 is the "Enter" key on the keyboard
-      if (event.keyCode === 13) {
+      if ((event.keyCode === 13 || event.keyCode === 10) && !event.shiftKey) {
+        event.preventDefault();
         // Trigger the button element with a click
         sendButton.current.click();
       }
     });
     // Event listener is removed. Can be tested with getEventListeners(domElement) in developer tools console
-    return textareaRef.current.removeEventListener("keyup", event => {});
+    return textareaRef.current.removeEventListener("keydown", event => {});
   }, [textareaRef, sendButton]);
 
   useEffect(() => {
@@ -30,6 +32,8 @@ function ChatActions({ handleSendMessage }) {
   }, [chosenEmoji]);
 
   const handleChange = e => {
+    e.target.style.height = "2.5rem";
+    e.target.style.height = `${Math.min(e.target.scrollHeight + 2, 168)}px`;
     //dispatch(setChatDraft({ channelId, draft: e.target.value }));
     setMessageContent(e.target.value);
   };
