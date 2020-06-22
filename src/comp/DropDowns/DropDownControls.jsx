@@ -1,19 +1,20 @@
-import React, { useState, useRef } from "react";
-import useOnClickOutside from "use-onclickoutside";
+import React, { useState, useRef, useCallback } from "react";
+import { useOnClickOutside } from "../../helpers/functions";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default function DropDownControls({ children, onClose, onClick, icon }) {
   const [open, setOpen] = useState(false);
   const ref = useRef();
-
-  useOnClickOutside(ref, () => {
+  const handler = useCallback(() => {
     if (open) {
       setOpen(false);
       if (onClose) {
         onClose();
       }
     }
-  });
+  }, [onClose, open]);
+
+  useOnClickOutside(ref, handler);
 
   return (
     <div className="relative">
