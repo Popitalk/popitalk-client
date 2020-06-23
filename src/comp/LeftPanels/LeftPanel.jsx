@@ -19,7 +19,8 @@ export default function LeftPanel({
   handleCreateChannel,
   handleProfile,
   isCollapsed,
-  updateSelectedPage
+  updateSelectedPage,
+  handleCreateRoom
 }) {
   const channels = [...yourChannels, ...followingChannels];
 
@@ -56,6 +57,7 @@ export default function LeftPanel({
             handleCollapse={handleCollapse}
             handleProfile={handleProfile}
             selectedPage={selectedPage}
+            handleCreateRoom={handleCreateRoom}
           />
         )}
       </div>

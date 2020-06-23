@@ -59,6 +59,12 @@ class FriendsPanel extends Component {
   }
 
   componentDidUpdate(prevProps) {
+    if (this.props.initialRooms !== prevProps.initialRooms) {
+      this.setState({
+        rooms: this.props.initialRooms
+      });
+    }
+
     if (prevProps.blocks !== this.props.blocks) {
       this.syncSearch(this.state.search);
     } else if (
@@ -127,6 +133,10 @@ class FriendsPanel extends Component {
           size="md"
           leftIcon="plus"
           className="fixed bottom-0 left-0 ml-44 mb-4 opacity-50 hover:opacity-100"
+          onClick={() => {
+            this.props.handleCreateRoom();
+            // this.props.updateSelectedPage("friends");
+          }}
         >
           New Room
         </Button>

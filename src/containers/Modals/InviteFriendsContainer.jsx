@@ -4,7 +4,7 @@ import ModalContainer from "../../comp/Modals/ModalContainer";
 import NewRoomModal from "../../comp/Modals/NewRoomModal";
 import SearchHeader from "../../comp/SearchHeader";
 import { buildTagInput } from "../../comp/TagInput";
-import { inviteFriends } from "../../redux/actions";
+import { createRoom, inviteFriends } from "../../redux/actions";
 import {
   filterSearch,
   handleCancel,
@@ -14,6 +14,7 @@ import {
 } from "../../helpers/functions";
 
 export default function InviteFriendsContainer({ handleModalClose }) {
+  const { isCreatingNewRoom } = useSelector(state => state.modal);
   const { channelId } = useSelector(state => state.modal);
   const { friends } = useSelector(state => state.relationships);
   const { defaultAvatar } = useSelector(state => state.general);
@@ -21,7 +22,9 @@ export default function InviteFriendsContainer({ handleModalClose }) {
   const channels = useSelector(state => state.channels);
 
   let friendsMap = mapIdsToUsers(
-    friends.filter(f => !channels[channelId].members?.includes(f)),
+    isCreatingNewRoom
+      ? friends
+      : friends.filter(f => !channels[channelId].members?.includes(f)),
     users,
     defaultAvatar
   );
@@ -34,6 +37,10 @@ export default function InviteFriendsContainer({ handleModalClose }) {
   const dispatch = useDispatch();
   const handleInviteFriends = () => {
     dispatch(inviteFriends({ channelId, selected }));
+  };
+  const handleCreateRoom = () => {
+    const userIds = selected.map(obj => obj.id);
+    dispatch(createRoom(userIds));
   };
 
   return (
@@ -62,7 +69,8 @@ export default function InviteFriendsContainer({ handleModalClose }) {
         users={visible}
         selected={selected}
         onCheck={(id, name) => onCheck(selected, setSelected, id, name)}
-        handleSend={handleInviteFriends}
+        handleSend={isCreatingNewRoom ? handleCreateRoom : handleInviteFriends}
+        isCreatingNewRoom={isCreatingNewRoom}
       />
     </ModalContainer>
   );

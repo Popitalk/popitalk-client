@@ -7,7 +7,8 @@ import LeftPanel from "../comp/LeftPanels/LeftPanel";
 import {
   toggleLeftPanel,
   searchUsers,
-  openProfileModal
+  openProfileModal,
+  openInviteModal
 } from "../redux/actions";
 import history from "../history";
 import { mapIdsToUsers, setRelationshipHandlers } from "../helpers/functions";
@@ -110,6 +111,7 @@ export default function LeftPanelContainer() {
   const handleSelectChannel = id => history.push(`/channels/${id}/video`);
   const handleSelectRoom = id => history.push(`/rooms/${id}/video`);
   const handleOpenProfile = id => dispatch(openProfileModal(id));
+  const handleCreateRoom = id => dispatch(openInviteModal(id, true));
 
   return (
     <Switch>
@@ -131,6 +133,7 @@ export default function LeftPanelContainer() {
           isCollapsed={isCollapsed}
           selectedPage="channels"
           handleCollapse={() => dispatch(toggleLeftPanel())}
+          handleCreateRoom={() => handleCreateRoom(selectedChannel)}
         />
       </Route>
       <Route exact path="/friends">
@@ -151,6 +154,7 @@ export default function LeftPanelContainer() {
           isCollapsed={isCollapsed}
           selectedPage="friends"
           handleCollapse={() => dispatch(toggleLeftPanel())}
+          handleCreateRoom={() => handleCreateRoom(selectedChannel)}
         />
       </Route>
       <Route>
@@ -171,6 +175,7 @@ export default function LeftPanelContainer() {
           isCollapsed={isCollapsed}
           selectedPage={selectedPage}
           handleCollapse={() => dispatch(toggleLeftPanel())}
+          handleCreateRoom={() => handleCreateRoom(selectedChannel)}
         />
       </Route>
     </Switch>

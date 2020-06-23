@@ -94,7 +94,7 @@ export const inviteFriends = (channelId, userIds) => {
 // ROOMS
 
 export const createRoom = userIds => {
-  return axios.post("/api/channels/room", { userIds });
+  return axios.post("/api/channels/rooms", { userIds });
 };
 
 export const updateRoom = (roomId, updateInfo) => {

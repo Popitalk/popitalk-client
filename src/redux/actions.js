@@ -697,9 +697,12 @@ export const closeModalFinal = createAction("modal/closeModalFinal");
 export const openCreateNewAccountModal = createAction("modal/open", () => ({
   payload: { component: MODAL_CREATE_NEW_ACCOUNT }
 }));
-export const openInviteModal = createAction("modal/open", channelId => ({
-  payload: { component: MODAL_INVITE, channelId }
-}));
+export const openInviteModal = createAction(
+  "modal/open",
+  (channelId, isCreatingNewRoom) => ({
+    payload: { component: MODAL_INVITE, channelId, isCreatingNewRoom }
+  })
+);
 export const openCreateRoomModal = createAction("modal/open", () => ({
   payload: { component: MODAL_CREATE_ROOM }
 }));

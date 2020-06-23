@@ -16,7 +16,8 @@ const initialState = {
   closing: false,
   channelId: null,
   userId: null,
-  messageId: null
+  messageId: null,
+  isCreatingNewRoom: null
 };
 
 const R_openModal = (state, { payload }) => {
@@ -24,6 +25,7 @@ const R_openModal = (state, { payload }) => {
   state.channelId = payload.channelId || null;
   state.userId = payload.userId || null;
   state.messageId = payload.messageId || null;
+  state.isCreatingNewRoom = payload.isCreatingNewRoom || null;
   state.closing = false;
 };
 
@@ -46,6 +48,6 @@ export default createReducer(initialState, {
   [logout.fulfilled]: R_closeAllModals,
   [deleteAccount.fulfilled]: R_closeAllModals,
   [deleteChannel.fulfilled]: R_closeAllModals,
-  [createRoom.fulfilled]: R_closeAllModals,
+  [createRoom.fulfilled]: R_closeModal,
   [inviteFriends.fulfilled]: R_closeAllModals
 });

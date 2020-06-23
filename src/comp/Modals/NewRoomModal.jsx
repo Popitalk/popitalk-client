@@ -4,7 +4,13 @@ import CircleCheckBox from "../CircleCheckbox";
 import Button from "../Button";
 import StretchList from "../InfoCardLists/StretchList";
 
-export default function NewRoomModal({ users, selected, onCheck, handleSend }) {
+export default function NewRoomModal({
+  users,
+  selected,
+  onCheck,
+  handleSend,
+  isCreatingNewRoom
+}) {
   const getControls = user => {
     return (
       <div className="ml-auto">
@@ -26,7 +32,9 @@ export default function NewRoomModal({ users, selected, onCheck, handleSend }) {
       <Button
         onClick={() => handleSend(selected)}
         className="absolute bottom-0 self-center mb-4"
-        disabled={selected.length === 0}
+        disabled={
+          isCreatingNewRoom ? selected.length < 2 : selected.length === 0
+        }
       >
         Send
       </Button>

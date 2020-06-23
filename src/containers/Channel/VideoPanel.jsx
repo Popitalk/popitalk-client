@@ -39,7 +39,7 @@ export default function VideoPanel({ playlist, classNames }) {
       <VideoSection
         {...playlist[0]}
         activeFriendViewers={viewers}
-        inviteUsers={() => dispatch(openInviteModal(finalId))}
+        inviteUsers={() => dispatch(openInviteModal(finalId, false))}
         openProfile={id => dispatch(openProfileModal(id))}
       />
       <QueueSection queueList={queueList} handlerChange={handlerChange} />
