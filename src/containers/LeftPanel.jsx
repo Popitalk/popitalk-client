@@ -21,7 +21,9 @@ export default function LeftPanelContainer() {
     selectedChannel = match?.params.roomId ? match.params.roomId : 0;
   }
 
-  const [selectedPage, setSelectedPage] = useState("channels");
+  const [selectedPage, setSelectedPage] = useState(
+    match.params.roomId ? "friends" : "channels"
+  );
   const channels = useSelector(state => state.channels);
   const users = useSelector(state => state.users);
   const relationships = useSelector(state => state.relationships);

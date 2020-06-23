@@ -12,8 +12,9 @@ export default function RoomInfoCard({
 }) {
   const images = room.members.map(m => m.avatar);
   const name = room.members.map(m => m.username).join();
-  const subtitleAndDate =
-    room.lastMessageContent + " · " + moment(room.lastMessageAt).fromNow();
+  const subtitleAndDate = room.lastMessageContent
+    ? room.lastMessageContent + " · " + moment(room.lastMessageAt).fromNow()
+    : null;
 
   const roomIcon = (
     <RoomIcon

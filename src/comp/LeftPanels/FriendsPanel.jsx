@@ -28,7 +28,7 @@ class FriendsPanel extends Component {
         pendingDBCall: true
       });
     } else {
-      this.searchUsers();
+      this.searchUsers(search);
     }
 
     if (!this.state.open && search.length > 0) {
@@ -51,11 +51,11 @@ class FriendsPanel extends Component {
     });
   }
 
-  searchUsers() {
+  searchUsers(username) {
     this.setState({
       pendingDBCall: false
     });
-    this.props.handleSearch(this.state.search);
+    this.props.handleSearch(username);
   }
 
   componentDidUpdate(prevProps) {

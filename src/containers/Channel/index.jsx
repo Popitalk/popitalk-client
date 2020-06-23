@@ -44,7 +44,8 @@ import VideoSearch from "../../comp/VideoSearch";
 import { mapIdsToUsers } from "../../helpers/functions";
 
 export default function Channel({ tab, type = "channel" }) {
-  const { channelId, roomId } = useParams();
+  let { channelId, roomId } = useParams();
+  channelId = channelId || roomId;
   const channel = useSelector(state => state.channels[channelId || roomId]);
   const dispatch = useDispatch();
   if (!channel) {
