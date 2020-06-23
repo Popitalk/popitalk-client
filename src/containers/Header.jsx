@@ -9,10 +9,9 @@ import {
   openProfileModal,
   openEditUserSettingsModal,
   openChangePasswordModal,
-  acceptFriendRequest,
-  rejectFriendRequest,
   openBlockedUsersModal
 } from "../redux/actions";
+import { mapIdsToUsers, setRelationshipHandlers } from "../helpers/functions";
 import SiteHeaderMain from "../comp/SiteHeaderMain";
 import SiteHeaderWelcome from "../comp/SiteHeaderWelcome";
 
@@ -20,7 +19,8 @@ export default function HeaderContainer() {
   const { loggedIn } = useSelector(state => state.general);
   const { id, username, avatar } = useSelector(state => state.self);
   const { defaultAvatar } = useSelector(state => state.general);
-  const { receivedFriendRequests } = useSelector(state => state.relationships);
+  const relationships = useSelector(state => state.relationships);
+  const users = useSelector(state => state.users);
   const loginApi = useSelector(state => state.api.loginApi);
   const history = useHistory();
 
@@ -35,6 +35,23 @@ export default function HeaderContainer() {
     }
   }, [history, loginApi]);
 
+  const friendRequests = mapIdsToUsers(
+    [
+      ...relationships.receivedFriendRequests,
+      ...relationships.sentFriendRequests
+    ],
+    users,
+    defaultAvatar
+  ).map(u => {
+    return setRelationshipHandlers(
+      u,
+      relationships,
+      dispatch,
+      defaultAvatar,
+      id
+    );
+  });
+
   if (loggedIn) {
     return (
       <SiteHeaderMain
@@ -42,14 +59,12 @@ export default function HeaderContainer() {
         userID={id}
         username={username}
         avatar={avatar || defaultAvatar}
-        friendRequests={receivedFriendRequests}
+        friendRequests={friendRequests}
         notifications={[]}
         openProfileHandler={id => dispatch(openProfileModal(id))}
         openBlockedUsersHandler={() => dispatch(openBlockedUsersModal())}
         openEditInformationHandler={() => dispatch(openEditUserSettingsModal())}
         openChangePasswordHandler={() => dispatch(openChangePasswordModal())}
-        acceptRequestHandler={id => dispatch(acceptFriendRequest(id))}
-        rejectRequestHandler={id => dispatch(rejectFriendRequest(id))}
         clearNotificationsHandler={() => console.log("clear notifications")}
         deleteAccountHandler={deleteAccountDispatcher}
         logoutHandler={() => {

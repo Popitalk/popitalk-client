@@ -7,5 +7,12 @@ export default function FriendUsersList({ users, handleProfile, ...rest }) {
     return <RequestCard user={u} handleProfile={handleProfile} />;
   };
 
-  return <InfoCardList items={users} itemRenderer={itemRenderer} {...rest} />;
+  return (
+    <InfoCardList
+      items={users}
+      itemRenderer={itemRenderer}
+      itemSize={68}
+      {...rest}
+    />
+  );
 }

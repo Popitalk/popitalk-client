@@ -24,8 +24,8 @@ export const updateUser = updateInfo => {
   return axios.put("/api/users", updateInfo);
 };
 
-export const updateUserRelationships = updateInfo => {
-  return axios.put("/api/users/relationships", updateInfo);
+export const deleteAccount = () => {
+  return axios.delete("/api/users/");
 };
 
 export const blockUser = blockedId => {
@@ -36,8 +36,24 @@ export const unblockUser = blockedId => {
   return axios.delete(`/api/users/blocks/${blockedId}`);
 };
 
-export const deleteAccount = () => {
-  return axios.delete("/api/users/");
+export const sendFriendRequest = requesteeId => {
+  return axios.post("/api/users/friendRequests", { requesteeId });
+};
+
+export const cancelFriendRequest = requesteeId => {
+  return axios.delete(`/api/users/friendRequests/${requesteeId}/cancel`);
+};
+
+export const rejectFriendRequest = requesterId => {
+  return axios.delete(`/api/users/friendRequests/${requesterId}/reject`);
+};
+
+export const acceptFriendRequest = requesterId => {
+  return axios.post("/api/users/friends", { requesterId });
+};
+
+export const unfriendUser = friendId => {
+  return axios.delete(`/api/users/friends/${friendId}`);
 };
 
 // USERS

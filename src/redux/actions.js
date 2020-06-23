@@ -143,50 +143,35 @@ export const updateUser = createAsyncThunk(
 export const sendFriendRequest = createAsyncThunk(
   "relationships/sendFriendRequest",
   async userId => {
-    const response = await api.updateUserRelationships({
-      userId,
-      type: "friend"
-    });
+    const response = await api.sendFriendRequest(userId);
     return response.data;
   }
 );
 export const cancelFriendRequest = createAsyncThunk(
   "relationships/cancelFriendRequest",
   async userId => {
-    const response = await api.updateUserRelationships({
-      userId,
-      type: "unfriend"
-    });
+    const response = await api.cancelFriendRequest(userId);
     return response.data;
   }
 );
 export const acceptFriendRequest = createAsyncThunk(
   "relationships/acceptFriendRequest",
   async userId => {
-    const response = await api.updateUserRelationships({
-      userId,
-      type: "friend"
-    });
+    const response = await api.acceptFriendRequest(userId);
     return response.data;
   }
 );
 export const rejectFriendRequest = createAsyncThunk(
   "relationships/rejectFriendRequest",
   async userId => {
-    const response = await api.updateUserRelationships({
-      userId,
-      type: "unfriend"
-    });
+    const response = await api.rejectFriendRequest(userId);
     return response.data;
   }
 );
 export const deleteFriend = createAsyncThunk(
   "relationships/deleteFriend",
   async userId => {
-    const response = await api.updateUserRelationships({
-      userId,
-      type: "unfriend"
-    });
+    const response = await api.unfriendUser(userId);
     return response.data;
   }
 );

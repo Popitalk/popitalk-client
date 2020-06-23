@@ -24,8 +24,6 @@ export default function SiteHeaderMain({
   openBlockedUsersHandler,
   openEditInformationHandler,
   openChangePasswordHandler,
-  acceptRequestHandler,
-  rejectRequestHandler,
   clearNotificationsHandler,
   deleteAccountHandler,
   logoutHandler
@@ -122,8 +120,6 @@ export default function SiteHeaderMain({
                 <FriendRequests
                   friendRequests={friendRequests}
                   handleProfile={openProfileHandler}
-                  handleAccept={acceptRequestHandler}
-                  handleReject={rejectRequestHandler}
                 />
               </DropDownControls>
             </li>
