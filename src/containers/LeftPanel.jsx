@@ -22,7 +22,7 @@ export default function LeftPanelContainer() {
   }
 
   const [selectedPage, setSelectedPage] = useState(
-    match.params.roomId ? "friends" : "channels"
+    match?.params.roomId ? "friends" : "channels"
   );
   const channels = useSelector(state => state.channels);
   const users = useSelector(state => state.users);
