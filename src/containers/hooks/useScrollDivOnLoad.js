@@ -12,7 +12,7 @@ export default function useScrollDivOnLoad(
       !userHasScrolled
     ) {
       if (messages) {
-        containerRef.current.scrollTo(0, containerRef.current.scrollHeight);
+        containerRef.current.lastChild.scrollIntoView();
       }
     }
   }, [containerRef, messageLoading, messages, userHasScrolled]);

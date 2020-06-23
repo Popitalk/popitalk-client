@@ -4,11 +4,12 @@ import { getMessages, addMessage, deleteMessage } from "../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { useScroll } from "react-use";
-import useUserTouchedScrollbar from "./hooks/useUserTouchedScrollbar";
 import useScrollDivOnLoad from "./hooks/useScrollDivOnLoad";
 import useScrolledToTop from "./hooks/useScrolledToTop";
 
 function ChatPanelContainer(props) {
+  const [previousY, setPreviousY] = useState(0);
+  const [userHasScrolled, setUserHasScrolled] = useState(false);
   const channelId = props.match.params.roomId || props.match.params.channelId;
   const messageLoading = useSelector(state => state.api.messages.status);
   const messages = useSelector(state => state.messages[channelId]);
@@ -18,7 +19,6 @@ function ChatPanelContainer(props) {
   const containerRef = useRef(null);
   const { y } = useScroll(containerRef);
   const dispatch = useDispatch();
-  const userHasScrolled = useUserTouchedScrollbar(containerRef, messageLoading);
   const scrolledToTop = useScrolledToTop(
     channelId,
     messageLoading,
@@ -26,9 +26,18 @@ function ChatPanelContainer(props) {
     userHasScrolled,
     y
   );
-
+  useEffect(() => {
+    setUserHasScrolled(false);
+    setPreviousY(0);
+  }, [channelId]);
   useScrollDivOnLoad(containerRef, messageLoading, messages, userHasScrolled);
   // Get messages when scrolled to top
+  useEffect(() => {
+    if (y < previousY) {
+      setUserHasScrolled(true);
+    }
+    setPreviousY(y);
+  }, [previousY, y]);
   useEffect(() => {
     if (scrolledToTop && !allMessagesReceived) {
       dispatch(
@@ -75,6 +84,7 @@ function ChatPanelContainer(props) {
     } else {
       console.log("No empty messages.");
     }
+    containerRef.current.lastChild.scrollIntoView();
   };
   const handleDelete = ({ type, id }) => {
     dispatch(deleteMessage({ type, id, channelId }));

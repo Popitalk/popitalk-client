@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 
-export default function useUserTouchedScrollbar(
+export default function useUserScrolledToTop(
   channelId,
   messageLoading,
   messages,
