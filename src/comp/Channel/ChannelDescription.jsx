@@ -34,7 +34,7 @@ export default function ChannelDescription({
               <Button
                 size="sm"
                 shape="pill"
-                className="ml-auto"
+                className="ml-auto bg-disabledBackground"
                 background="bgColor"
                 onClick={handleUnfollow}
               >

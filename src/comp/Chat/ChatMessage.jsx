@@ -40,7 +40,7 @@ export default function ChatMessage({
 
   if (conditions.unfusedMessage) {
     return (
-      <div className="flex flex-col mt-6 mx-2">
+      <div className="flex flex-col mt-4 mx-2">
         <div className="flex items-center space-x-2 text-xs ml-1">
           <MessageAuthorAvatar
             message={message}
@@ -49,7 +49,7 @@ export default function ChatMessage({
           <MessageAuthorUsername username={message.author.username} />
           <MessageCreatedTime createdAt={message.createdAt} />
         </div>
-        <div className="flex mt-2 flex-around bg:primaryBackground hover:bg-secondaryBackground rounded-md cursor-pointer chat-options-button-parent">
+        <div className="flex mt-1 flex-around bg:primaryBackground hover:bg-secondaryBackground rounded-md cursor-pointer chat-options-button-parent">
           <span className="flex justify-center">
             <MessageHighlightSpan
               me={message.me}

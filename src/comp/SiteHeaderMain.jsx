@@ -109,7 +109,7 @@ export default function SiteHeaderMain({
               >
                 <span className="font-bold">{username}</span>
                 <img
-                  className="w-8 h-8 ml-2 rounded-full"
+                  className="w-8 h-8 ml-2 rounded-full object-cover"
                   src={avatar}
                   alt={`${username}'s avatar`}
                 />
