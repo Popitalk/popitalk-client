@@ -72,7 +72,7 @@ export default function LeftPanelContainer() {
       };
     }),
     room => new Date(room.lastMessageAt)
-  );
+  ).reverse();
 
   const foundUsersMap = foundUsers.map(u => {
     return setRelationshipHandlers(

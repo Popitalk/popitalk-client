@@ -73,7 +73,7 @@ class FriendsPanel extends Component {
     ) {
       // The db has finished its latest search
       // Call it again with the updated search
-      this.searchUsers();
+      this.searchUsers(this.state.search);
     }
   }
 

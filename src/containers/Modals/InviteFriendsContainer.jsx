@@ -52,8 +52,8 @@ export default function InviteFriendsContainer({ handleModalClose }) {
       header={
         <SearchHeader
           title="Select Friends to Invite"
-          filterSearch={searchTerm =>
-            filterSearch(friendsMap, nameField, setVisible, searchTerm)
+          filterSearch={(searchTerm, items) =>
+            filterSearch(items, nameField, setVisible, searchTerm)
           }
           buildInput={buildTagInput(selected, id =>
             handleCancel(selected, setSelected, id)
@@ -61,7 +61,7 @@ export default function InviteFriendsContainer({ handleModalClose }) {
           handleEnter={() =>
             handleEnter(selected, setSelected, visible, nameField)
           }
-          items={selected}
+          items={friendsMap}
         />
       }
     >

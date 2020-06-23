@@ -111,6 +111,10 @@ export const updateMember = updateInfo => {
   return axios.put("/api/members/", updateInfo);
 };
 
+export const addRoomMembers = (channelId, userIds) => {
+  return axios.post(`/api/members/${channelId}/room`, { userIds });
+};
+
 export const makeAdmin = (channelId, userId) => {
   return axios.post(`/api/members/${channelId}/admins`, { userId });
 };
