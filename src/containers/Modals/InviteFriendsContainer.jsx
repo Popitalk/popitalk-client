@@ -12,6 +12,7 @@ import {
   onCheck,
   mapIdsToUsers
 } from "../../helpers/functions";
+import sortBy from "lodash/sortBy";
 
 export default function InviteFriendsContainer({ handleModalClose }) {
   const { isCreatingNewRoom } = useSelector(state => state.modal);
@@ -20,6 +21,25 @@ export default function InviteFriendsContainer({ handleModalClose }) {
   const { defaultAvatar } = useSelector(state => state.general);
   const users = useSelector(state => state.users);
   const channels = useSelector(state => state.channels);
+  const { roomIds, ownId } = useSelector(state => state.self);
+  const rooms = sortBy(
+    roomIds.map(roomId => {
+      const members = mapIdsToUsers(
+        channels[roomId].members,
+        users,
+        defaultAvatar
+      ).filter(m =>
+        channels[roomId].members.length === 1 ? true : m.id !== ownId
+      );
+
+      return {
+        id: roomId,
+        ...channels[roomId],
+        members: members
+      };
+    }),
+    room => new Date(room.lastMessageAt)
+  );
 
   let friendsMap = mapIdsToUsers(
     isCreatingNewRoom
@@ -31,6 +51,7 @@ export default function InviteFriendsContainer({ handleModalClose }) {
 
   const [visible, setVisible] = useState(friendsMap);
   const [selected, setSelected] = useState([]);
+  const [roomAlreadyExists, setRoomAlreadyExists] = useState(false);
 
   const nameField = "username";
 
@@ -68,9 +89,28 @@ export default function InviteFriendsContainer({ handleModalClose }) {
       <NewRoomModal
         users={visible}
         selected={selected}
-        onCheck={(id, name) => onCheck(selected, setSelected, id, name)}
+        onCheck={(id, name) => {
+          const newSelected = onCheck(selected, setSelected, id, name);
+          if (isCreatingNewRoom) {
+            let roomExists = false;
+            if (newSelected.length >= 2) {
+              roomExists = rooms.reduce((roomAlreadyExists, room) => {
+                if (!roomAlreadyExists) {
+                  return (
+                    newSelected.every(s =>
+                      room.members.some(m => m.id === s.id)
+                    ) && newSelected.length === room.members.length - 1
+                  );
+                }
+                return roomAlreadyExists;
+              }, false);
+            }
+            setRoomAlreadyExists(roomExists);
+          }
+        }}
         handleSend={isCreatingNewRoom ? handleCreateRoom : handleInviteFriends}
         isCreatingNewRoom={isCreatingNewRoom}
+        roomAlreadyExists={roomAlreadyExists}
       />
     </ModalContainer>
   );
