@@ -104,11 +104,6 @@ const websocketMiddleware = () => store => next => action => {
       const messagePayload = parsedMessage.payload;
 
       console.log("MESSAGE TYPE", messageType);
-      // If commandHandler.[computedPropertyMessageType] is defined, then this function is executed.
-      // The functions are defined in commandHandler.
-      if (commandHandler[messageType]) {
-        commandHandler[messageType]();
-      }
       // These functions are executed by messages received from the server.
       const commandHandler = {
         [WS_EVENTS.HELLO]() {
@@ -148,7 +143,10 @@ const websocketMiddleware = () => store => next => action => {
               messagePayload.channelId
             ].chatSettings;
             store.dispatch(
-              addMessageWs({ ...messagePayload.message, capacity })
+              addMessageWs({
+                ...messagePayload.message,
+                capacity
+              })
             );
           } else {
             store.dispatch(
@@ -172,19 +170,39 @@ const websocketMiddleware = () => store => next => action => {
         },
         [WS_EVENTS.CHANNEL.ADD_POST_LIKE]() {
           const { id: ownId } = store.getState().self;
-          store.dispatch(likePostWs({ ownId, ...messagePayload }));
+          store.dispatch(
+            likePostWs({
+              ownId,
+              ...messagePayload
+            })
+          );
         },
         [WS_EVENTS.CHANNEL.DELETE_POST_LIKE]() {
           const { id: ownId } = store.getState().self;
-          store.dispatch(unlikePostWs({ ownId, ...messagePayload }));
+          store.dispatch(
+            unlikePostWs({
+              ownId,
+              ...messagePayload
+            })
+          );
         },
         [WS_EVENTS.CHANNEL.ADD_COMMENT]() {
           const { id: ownId } = store.getState().self;
-          store.dispatch(incrementCommentCountWs({ ownId, ...messagePayload }));
+          store.dispatch(
+            incrementCommentCountWs({
+              ownId,
+              ...messagePayload
+            })
+          );
         },
         [WS_EVENTS.CHANNEL.DELETE_COMMENT_LIKE]() {
           const { id: ownId } = store.getState().self;
-          store.dispatch(decrementCommentCountWs({ ownId, ...messagePayload }));
+          store.dispatch(
+            decrementCommentCountWs({
+              ownId,
+              ...messagePayload
+            })
+          );
         },
         [WS_EVENTS.CHANNEL.ADD_MEMBER]() {
           store.dispatch(addMemberWs(messagePayload));
@@ -244,6 +262,11 @@ const websocketMiddleware = () => store => next => action => {
           store.dispatch(friendOfflineWs(messagePayload));
         }
       };
+      // If commandHandler.[computedPropertyMessageType] is defined, then this function is executed.
+      // The functions are defined in commandHandler.
+      if (commandHandler[messageType]) {
+        commandHandler[messageType]();
+      }
     };
   } else if (
     actionType === logout.fulfilled.toString() &&
