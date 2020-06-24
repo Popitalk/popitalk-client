@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useRouteMatch } from "react-router-dom";
 import { Switch, Route } from "react-router";
-import sortBy from "lodash/sortBy";
 import LeftPanel from "../comp/LeftPanels/LeftPanel";
 import {
   toggleLeftPanel,
@@ -12,6 +11,7 @@ import {
 } from "../redux/actions";
 import history from "../history";
 import { mapIdsToUsers, setRelationshipHandlers } from "../helpers/functions";
+import { orderBy } from "lodash";
 
 export default function LeftPanelContainer() {
   let match = useRouteMatch("/channels/:channelId");
@@ -55,7 +55,7 @@ export default function LeftPanelContainer() {
       }
     });
 
-  const rooms = sortBy(
+  const rooms = orderBy(
     roomIds.map(roomId => {
       const members = mapIdsToUsers(
         channels[roomId].members,
@@ -68,10 +68,11 @@ export default function LeftPanelContainer() {
       return {
         id: roomId,
         ...channels[roomId],
-        members: members
+        members
       };
     }),
-    room => new Date(room.lastMessageAt)
+    room => new Date(room.lastMessageAt),
+    ["desc"]
   );
 
   const foundUsersMap = foundUsers.map(u => {

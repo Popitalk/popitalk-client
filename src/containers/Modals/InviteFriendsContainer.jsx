@@ -40,7 +40,7 @@ export default function InviteFriendsContainer({ handleModalClose }) {
       return {
         id: roomId,
         ...channels[roomId],
-        members: members
+        members
       };
     }),
     room => new Date(room.lastMessageAt)
@@ -66,7 +66,7 @@ export default function InviteFriendsContainer({ handleModalClose }) {
   };
   const handleCreateRoom = () => {
     const userIds = selected.map(obj => obj.id);
-    let roomObj;
+    let roomObj = null;
     const roomExists = rooms.some(room => {
       const memberIds = room.members.map(obj => obj.id);
       const roomExists = _.isEmpty(_.xor(userIds, memberIds));
