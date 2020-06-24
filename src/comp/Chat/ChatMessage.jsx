@@ -13,9 +13,6 @@ export default function ChatMessage({
   handleDelete,
   defaultAvatar
 }) {
-  console.log(message?.author?.id === previousMessage?.author?.id, {
-    message
-  });
   const [isClicked, setIsClicked] = useState(false);
   // Variable that controls the interval between messages fusing
   const messageFuseTime = 30000;
