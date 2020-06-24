@@ -20,7 +20,9 @@ export default function LeftPanel({
   handleProfile,
   isCollapsed,
   updateSelectedPage,
-  handleCreateRoom
+  handleCreateRoom,
+  friendsSearchFocus,
+  setFriendsSearchFocus
 }) {
   const channels = [...yourChannels, ...followingChannels];
 
@@ -43,6 +45,7 @@ export default function LeftPanel({
             selectedPage={selectedPage}
             updateSelectedPage={updateSelectedPage}
             handleCollapse={handleCollapse}
+            setFriendsSearchFocus={setFriendsSearchFocus}
           />
         ) : (
           <FriendsPanel
@@ -58,6 +61,8 @@ export default function LeftPanel({
             handleProfile={handleProfile}
             selectedPage={selectedPage}
             handleCreateRoom={handleCreateRoom}
+            friendsSearchFocus={friendsSearchFocus}
+            setFriendsSearchFocus={setFriendsSearchFocus}
           />
         )}
       </div>

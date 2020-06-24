@@ -6,7 +6,7 @@ import {
   rejectFriendRequest,
   cancelFriendRequest
 } from "../redux/actions";
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 
 export function getTextClass(size) {
   return classnames({
@@ -225,4 +225,13 @@ export const useOnClickOutside = (ref, handler) => {
     // ... passing it into this hook.
     [ref, handler]
   );
+};
+
+export const utilizeFocus = () => {
+  const ref = React.createRef();
+  const setFocus = () => {
+    ref.current && ref.current.focus();
+  };
+
+  return { setFocus, ref };
 };
