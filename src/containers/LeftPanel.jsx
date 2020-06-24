@@ -25,6 +25,7 @@ export default function LeftPanelContainer() {
   const [selectedPage, setSelectedPage] = useState(
     match?.params.roomId ? "friends" : "channels"
   );
+  const [friendsSearchFocus, setFriendsSearchFocus] = useState(false);
   const channels = useSelector(state => state.channels);
   const users = useSelector(state => state.users);
   const relationships = useSelector(state => state.relationships);
@@ -91,6 +92,9 @@ export default function LeftPanelContainer() {
       friends: "/friends"
     };
     if (pages[page]) {
+      if (friendsSearchFocus) {
+        setFriendsSearchFocus(false);
+      }
       history.push(pages[page]);
     } else {
       console.log("no such page exists.");
@@ -135,6 +139,7 @@ export default function LeftPanelContainer() {
           selectedPage="channels"
           handleCollapse={() => dispatch(toggleLeftPanel())}
           handleCreateRoom={() => handleCreateRoom(selectedChannel)}
+          setFriendsSearchFocus={setFriendsSearchFocus}
         />
       </Route>
       <Route exact path="/friends">
@@ -156,6 +161,8 @@ export default function LeftPanelContainer() {
           selectedPage="friends"
           handleCollapse={() => dispatch(toggleLeftPanel())}
           handleCreateRoom={() => handleCreateRoom(selectedChannel)}
+          friendsSearchFocus={friendsSearchFocus}
+          setFriendsSearchFocus={setFriendsSearchFocus}
         />
       </Route>
       <Route>

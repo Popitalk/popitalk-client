@@ -1,10 +1,11 @@
-import React, { useState, Component } from "react";
+import React, { Component } from "react";
 import Button from "../Button";
 import FriendUsersList from "../InfoCardLists/FriendUsersList";
 import StretchList from "../InfoCardLists/StretchList";
 import Input from "../Input";
 import RoomsList from "../InfoCardLists/RoomsList";
 import PanelHeader from "./PanelHeader";
+import { utilizeFocus } from "../../helpers/functions";
 
 class FriendsPanel extends Component {
   constructor(props) {
@@ -17,6 +18,8 @@ class FriendsPanel extends Component {
       refresh: 0,
       pendingDBCall: false
     };
+
+    this.searchFieldRef = utilizeFocus();
   }
 
   syncSearch(search) {
@@ -59,6 +62,10 @@ class FriendsPanel extends Component {
   }
 
   componentDidUpdate(prevProps) {
+    if (this.props.friendsSearchFocus) {
+      this.props.setFriendsSearchFocus(false);
+    }
+
     if (this.props.initialRooms !== prevProps.initialRooms) {
       this.setState({
         rooms: this.props.initialRooms
@@ -74,6 +81,12 @@ class FriendsPanel extends Component {
       // The db has finished its latest search
       // Call it again with the updated search
       this.searchUsers();
+    }
+  }
+
+  componentDidMount() {
+    if (this.props.friendsSearchFocus) {
+      this.searchFieldRef.setFocus();
     }
   }
 
@@ -93,6 +106,7 @@ class FriendsPanel extends Component {
             placeholder="Search with username"
             onChange={e => this.syncSearch(e.target.value)}
             onClick={() => this.syncSearch(this.state.search)}
+            forwardedRef={this.searchFieldRef.ref}
           />
         </div>
         {this.state.open && (
@@ -133,10 +147,7 @@ class FriendsPanel extends Component {
           size="md"
           leftIcon="plus"
           className="fixed bottom-0 left-0 ml-44 mb-4 opacity-50 hover:opacity-100"
-          onClick={() => {
-            this.props.handleCreateRoom();
-            // this.props.updateSelectedPage("friends");
-          }}
+          onClick={() => this.props.handleCreateRoom()}
         >
           New Room
         </Button>
