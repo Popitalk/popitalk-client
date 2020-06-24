@@ -87,12 +87,6 @@ export const deleteChannel = channelId => {
   return axios.delete(`/api/channels/${channelId}`);
 };
 
-export const inviteFriends = (channelId, userIds) => {
-  return axios.post("/api/channels/roomInvite", { channelId, userIds });
-};
-
-// ROOMS
-
 export const createRoom = userIds => {
   return axios.post("/api/channels/rooms", { userIds });
 };
@@ -133,6 +127,10 @@ export const followChannel = channelId => {
 
 export const unfollowChannel = channelId => {
   return axios.delete(`/api/members/${channelId}`);
+};
+
+export const addRoomMembers = (channelId, userIds) => {
+  return axios.post(`/api/members/${channelId}/room`, { userIds });
 };
 
 // VIDEOS

@@ -6,9 +6,9 @@ import {
   logout,
   deleteAccount,
   createRoom,
-  inviteFriends,
   deleteMessage,
-  deleteChannel
+  deleteChannel,
+  addRoomMembers
 } from "../actions";
 
 const initialState = {
@@ -53,5 +53,5 @@ export default createReducer(initialState, {
   [deleteAccount.fulfilled]: R_closeAllModals,
   [deleteChannel.fulfilled]: R_closeAllModals,
   [createRoom.fulfilled]: R_closeModal,
-  [inviteFriends.fulfilled]: R_closeAllModals
+  [addRoomMembers.fulfilled]: R_closeModal
 });

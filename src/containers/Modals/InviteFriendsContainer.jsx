@@ -6,7 +6,7 @@ import SearchHeader from "../../comp/SearchHeader";
 import { buildTagInput } from "../../comp/TagInput";
 import {
   createRoom,
-  inviteFriends,
+  addRoomMembers,
   openRoomExistsModal
 } from "../../redux/actions";
 import {
@@ -56,13 +56,13 @@ export default function InviteFriendsContainer({ handleModalClose }) {
 
   const [visible, setVisible] = useState(friendsMap);
   const [selected, setSelected] = useState([]);
-  const [roomAlreadyExists, setRoomAlreadyExists] = useState(false);
 
   const nameField = "username";
 
   const dispatch = useDispatch();
   const handleInviteFriends = () => {
-    dispatch(inviteFriends({ channelId, selected }));
+    const selectedFriends = selected.map(obj => obj.id);
+    dispatch(addRoomMembers({ channelId, selectedFriends }));
   };
   const handleCreateRoom = () => {
     const userIds = selected.map(obj => obj.id);

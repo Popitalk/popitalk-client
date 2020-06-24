@@ -335,28 +335,19 @@ export const deleteBan = createAsyncThunk(
   }
 );
 
-/*export const deleteAdmin = createAsyncThunk(
-  "channels/deleteAdmin",
-  async updateInfo => {
-    const response = await api.updateMember({ ...updateInfo, type: "unadmin" });
+export const addRoomMembers = createAsyncThunk(
+  "members/addRoomMembers",
+  async inviteInfo => {
+    const { channelId, selectedFriends } = inviteInfo;
+    const response = await api.addRoomMembers(channelId, selectedFriends);
     return response.data;
   }
-);*/
+);
+
 export const deleteAdminWs = createAction("channels/deleteAdmin/ws");
 
-/*export const addBan = createAsyncThunk("channels/addBan", async updateInfo => {
-  const response = await api.updateMember({ ...updateInfo, type: "ban" });
-  return response.data;
-});*/
 export const addBanWs = createAction("channels/addBan/ws");
 
-/*export const deleteBan = createAsyncThunk(
-  "channels/deleteBan",
-  async updateInfo => {
-    const response = await api.updateMember({ ...updateInfo, type: "unban" });
-    return response.data;
-  }
-);*/
 export const deleteBanWs = createAction("channels/deleteBan/ws");
 
 export const addMemberWs = createAction("channels/addMember/ws");
@@ -596,14 +587,6 @@ export const createRoom = createAsyncThunk(
   }
 );
 
-export const inviteFriends = createAsyncThunk(
-  "invite/inviteFriends",
-  async inviteInfo => {
-    const { channelId, selectedFriends } = inviteInfo;
-    const response = await api.inviteFriends(channelId, selectedFriends);
-    return response.data;
-  }
-);
 /* -------------------------------------------------------------------------- */
 /*                                 USERSEARCH                                 */
 /* -------------------------------------------------------------------------- */
