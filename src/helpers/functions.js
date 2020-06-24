@@ -130,11 +130,14 @@ export const filterSearch = (list, field, setVisible, searchTerm) => {
 
 export const onCheck = (selected, setSelected, id, name) => {
   const index = selected.findIndex(i => i.id === id);
+  let newSelected;
   if (index >= 0) {
-    setSelected(selected.filter(i => i.id !== id));
+    newSelected = selected.filter(i => i.id !== id);
   } else {
-    setSelected([...selected, { id: id, name: name }]);
+    newSelected = [...selected, { id: id, name: name }];
   }
+  setSelected(newSelected);
+  return newSelected;
 };
 
 export const handleEnter = (selected, setSelected, visible, nameField) => {
