@@ -745,9 +745,12 @@ export const openAccountSettingsModal = createAction("modal/open", () => ({
 export const openDeleteAccountModal = createAction("modal/open", () => ({
   payload: { component: MODAL_DELETE_ACCOUNT }
 }));
-export const openRoomExistsModal = createAction("modal/open", () => ({
-  payload: { component: MODAL_ROOM_EXISTS }
-}));
+export const openRoomExistsModal = createAction(
+  "modal/open",
+  (room, selectedIds) => ({
+    payload: { component: MODAL_ROOM_EXISTS, room, selectedIds }
+  })
+);
 
 /* -------------------------------------------------------------------------- */
 /*                                    UI                                      */

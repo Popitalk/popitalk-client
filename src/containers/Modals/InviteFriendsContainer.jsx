@@ -1,18 +1,23 @@
 import React, { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import ModalContainer from "../../comp/Modals/ModalContainer";
 import NewRoomModal from "../../comp/Modals/NewRoomModal";
 import SearchHeader from "../../comp/SearchHeader";
 import { buildTagInput } from "../../comp/TagInput";
-import { createRoom, inviteFriends } from "../../redux/actions";
+import {
+  createRoom,
+  inviteFriends,
+  openRoomExistsModal
+} from "../../redux/actions";
 import {
   filterSearch,
   handleCancel,
   handleEnter,
-  onCheck,
-  mapIdsToUsers
+  mapIdsToUsers,
+  onCheck
 } from "../../helpers/functions";
 import sortBy from "lodash/sortBy";
+import _ from "lodash";
 
 export default function InviteFriendsContainer({ handleModalClose }) {
   const { isCreatingNewRoom } = useSelector(state => state.modal);
@@ -21,7 +26,7 @@ export default function InviteFriendsContainer({ handleModalClose }) {
   const { defaultAvatar } = useSelector(state => state.general);
   const users = useSelector(state => state.users);
   const channels = useSelector(state => state.channels);
-  const { roomIds, ownId } = useSelector(state => state.self);
+  const { roomIds, id: ownId } = useSelector(state => state.self);
   const rooms = sortBy(
     roomIds.map(roomId => {
       const members = mapIdsToUsers(
@@ -61,7 +66,19 @@ export default function InviteFriendsContainer({ handleModalClose }) {
   };
   const handleCreateRoom = () => {
     const userIds = selected.map(obj => obj.id);
-    dispatch(createRoom(userIds));
+    let roomObj;
+    const roomExists = rooms.some(room => {
+      const memberIds = room.members.map(obj => obj.id);
+      const roomExists = _.isEmpty(_.xor(userIds, memberIds));
+      if (roomExists) roomObj = room;
+      return _.isEmpty(_.xor(userIds, memberIds));
+    });
+
+    if (roomExists) {
+      dispatch(openRoomExistsModal(roomObj, userIds));
+    } else {
+      dispatch(createRoom(userIds));
+    }
   };
 
   return (
@@ -89,28 +106,9 @@ export default function InviteFriendsContainer({ handleModalClose }) {
       <NewRoomModal
         users={visible}
         selected={selected}
-        onCheck={(id, name) => {
-          const newSelected = onCheck(selected, setSelected, id, name);
-          if (isCreatingNewRoom) {
-            let roomExists = false;
-            if (newSelected.length >= 2) {
-              roomExists = rooms.reduce((roomAlreadyExists, room) => {
-                if (!roomAlreadyExists) {
-                  return (
-                    newSelected.every(s =>
-                      room.members.some(m => m.id === s.id)
-                    ) && newSelected.length === room.members.length - 1
-                  );
-                }
-                return roomAlreadyExists;
-              }, false);
-            }
-            setRoomAlreadyExists(roomExists);
-          }
-        }}
+        onCheck={(id, name) => onCheck(selected, setSelected, id, name)}
         handleSend={isCreatingNewRoom ? handleCreateRoom : handleInviteFriends}
         isCreatingNewRoom={isCreatingNewRoom}
-        roomAlreadyExists={roomAlreadyExists}
       />
     </ModalContainer>
   );
