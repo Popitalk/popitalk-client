@@ -44,12 +44,11 @@ import {
   acceptFriendRequest,
   setInitialScroll,
   addFriendWs,
-  inviteFriends,
   searchVideos,
   friendOnlineWs,
-  friendOfflineWs
+  friendOfflineWs,
+  addRoomMembers
 } from "../actions";
-// import { inviteFriends } from "../../helpers/api";
 
 const initialState = {};
 
@@ -178,7 +177,7 @@ const R_addMember = (state, { payload }) => {
 };
 
 const R_addMembers = (state, { payload }) => {
-  state[payload.channelId].members.push(...payload.userIds);
+  state[payload.channel.id].members = payload.channel.members;
 };
 
 const R_deleteMember = (state, { payload }) => {
@@ -284,7 +283,7 @@ export default createReducer(initialState, {
   [deleteFriendWs]: R_deleteChannel,
   [blockUser.fulfilled]: R_deleteChannel,
   [addBlockerWs]: R_deleteChannel,
-  [inviteFriends.fulfilled]: R_addMembers,
+  [addRoomMembers.fulfilled]: R_addMembers,
   [addMembersWs]: R_addMembers,
   [followChannel.fulfilled]: R_addMember,
   [addMemberWs]: R_addMember,

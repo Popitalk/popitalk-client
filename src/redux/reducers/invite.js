@@ -4,7 +4,7 @@ import {
   addInviteFriend,
   removeInviteFriend,
   createRoom,
-  inviteFriends,
+  addRoomMembers,
   logout,
   deleteAccount
 } from "../actions";
@@ -27,7 +27,7 @@ export default createReducer(initialState, {
     state.selectedFriends = state.selectedFriends.filter(id => id !== payload);
   },
   [createRoom.fulfilled]: R_resetState,
-  [inviteFriends.fulfilled]: R_resetState,
+  [addRoomMembers.fulfilled]: R_resetState,
   [logout.fulfilled]: R_resetState,
   [deleteAccount.fulfilled]: R_resetState
 });

@@ -9,8 +9,7 @@ export default function NewRoomModal({
   selected,
   onCheck,
   handleSend,
-  isCreatingNewRoom,
-  roomAlreadyExists
+  isCreatingNewRoom
 }) {
   const getControls = user => {
     return (
@@ -30,18 +29,11 @@ export default function NewRoomModal({
         users={users}
         getControls={getControls}
       />
-      {roomAlreadyExists && (
-        <p className="text-errorText text-sm mb-16 py-2 pt-4 text-center">
-          This rooms already exists!
-        </p>
-      )}
       <Button
         onClick={() => handleSend(selected)}
         className="absolute bottom-0 self-center mb-4"
         disabled={
-          isCreatingNewRoom
-            ? selected.length < 2 || roomAlreadyExists
-            : selected.length === 0
+          isCreatingNewRoom ? selected.length < 2 : selected.length === 0
         }
       >
         Send
