@@ -15,7 +15,8 @@ export default function ChannelsPanel({
   handleCollapse,
   handleCreateChannel,
   updateSelectedPage,
-  selectedPage
+  selectedPage,
+  setFriendsSearchFocus
 }) {
   return (
     <div className="w-full h-full bg-primaryBackground w-84 xl:w-84 lg:w-84 md:w-84 sm:w-84">
@@ -27,7 +28,10 @@ export default function ChannelsPanel({
       <MiniFriendsList
         friends={friends}
         handleSelectRoom={handleSelectRoom}
-        handleFindFriends={() => updateSelectedPage("friends")}
+        handleFindFriends={() => {
+          setFriendsSearchFocus(true);
+          updateSelectedPage("friends");
+        }}
       />
       <div className="flex flex-col items-start px-2 bg-primaryBackground sm:mt-4">
         <div className="flex items-center">

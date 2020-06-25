@@ -1,17 +1,23 @@
 import React, { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import ModalContainer from "../../comp/Modals/ModalContainer";
 import NewRoomModal from "../../comp/Modals/NewRoomModal";
 import SearchHeader from "../../comp/SearchHeader";
 import { buildTagInput } from "../../comp/TagInput";
-import { createRoom, inviteFriends } from "../../redux/actions";
+import {
+  createRoom,
+  addRoomMembers,
+  openRoomExistsModal
+} from "../../redux/actions";
 import {
   filterSearch,
   handleCancel,
   handleEnter,
-  onCheck,
-  mapIdsToUsers
+  mapIdsToUsers,
+  onCheck
 } from "../../helpers/functions";
+import sortBy from "lodash/sortBy";
+import _ from "lodash";
 
 export default function InviteFriendsContainer({ handleModalClose }) {
   const { isCreatingNewRoom } = useSelector(state => state.modal);
@@ -20,6 +26,25 @@ export default function InviteFriendsContainer({ handleModalClose }) {
   const { defaultAvatar } = useSelector(state => state.general);
   const users = useSelector(state => state.users);
   const channels = useSelector(state => state.channels);
+  const { roomIds, id: ownId } = useSelector(state => state.self);
+  const rooms = sortBy(
+    roomIds.map(roomId => {
+      const members = mapIdsToUsers(
+        channels[roomId].members,
+        users,
+        defaultAvatar
+      ).filter(m =>
+        channels[roomId].members.length === 1 ? true : m.id !== ownId
+      );
+
+      return {
+        id: roomId,
+        ...channels[roomId],
+        members
+      };
+    }),
+    room => new Date(room.lastMessageAt)
+  );
 
   let friendsMap = mapIdsToUsers(
     isCreatingNewRoom
@@ -36,11 +61,24 @@ export default function InviteFriendsContainer({ handleModalClose }) {
 
   const dispatch = useDispatch();
   const handleInviteFriends = () => {
-    dispatch(inviteFriends({ channelId, selected }));
+    const selectedFriends = selected.map(obj => obj.id);
+    dispatch(addRoomMembers({ channelId, selectedFriends }));
   };
   const handleCreateRoom = () => {
     const userIds = selected.map(obj => obj.id);
-    dispatch(createRoom(userIds));
+    let roomObj = null;
+    const roomExists = rooms.some(room => {
+      const memberIds = room.members.map(obj => obj.id);
+      const roomExists = _.isEmpty(_.xor(userIds, memberIds));
+      if (roomExists) roomObj = room;
+      return _.isEmpty(_.xor(userIds, memberIds));
+    });
+
+    if (roomExists) {
+      dispatch(openRoomExistsModal(roomObj, userIds));
+    } else {
+      dispatch(createRoom(userIds));
+    }
   };
 
   return (

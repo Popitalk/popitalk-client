@@ -1,6 +1,6 @@
 import {
   createRoom,
-  inviteFriends,
+  addRoomMembers,
   deleteChannel,
   closeAllModals
 } from "../actions";

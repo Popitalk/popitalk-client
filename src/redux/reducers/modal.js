@@ -6,9 +6,9 @@ import {
   logout,
   deleteAccount,
   createRoom,
-  inviteFriends,
   deleteMessage,
-  deleteChannel
+  deleteChannel,
+  addRoomMembers
 } from "../actions";
 
 const initialState = {
@@ -17,7 +17,9 @@ const initialState = {
   channelId: null,
   userId: null,
   messageId: null,
-  isCreatingNewRoom: null
+  isCreatingNewRoom: null,
+  room: null,
+  selectedIds: null
 };
 
 const R_openModal = (state, { payload }) => {
@@ -26,6 +28,8 @@ const R_openModal = (state, { payload }) => {
   state.userId = payload.userId || null;
   state.messageId = payload.messageId || null;
   state.isCreatingNewRoom = payload.isCreatingNewRoom || null;
+  state.room = payload.room || null;
+  state.selectedIds = payload.selectedIds || null;
   state.closing = false;
 };
 
@@ -49,5 +53,5 @@ export default createReducer(initialState, {
   [deleteAccount.fulfilled]: R_closeAllModals,
   [deleteChannel.fulfilled]: R_closeAllModals,
   [createRoom.fulfilled]: R_closeModal,
-  [inviteFriends.fulfilled]: R_closeAllModals
+  [addRoomMembers.fulfilled]: R_closeModal
 });

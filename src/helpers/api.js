@@ -87,12 +87,6 @@ export const deleteChannel = channelId => {
   return axios.delete(`/api/channels/${channelId}`);
 };
 
-export const inviteFriends = (channelId, userIds) => {
-  return axios.post("/api/channels/roomInvite", { channelId, userIds });
-};
-
-// ROOMS
-
 export const createRoom = userIds => {
   return axios.post("/api/channels/rooms", { userIds });
 };

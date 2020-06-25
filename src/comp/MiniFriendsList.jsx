@@ -7,7 +7,7 @@ export default function MiniFriendsList({
   handleSelectRoom,
   handleFindFriends
 }) {
-  const finalFriends = friends.filter(f => f.type === "friend").slice(0, 5);
+  const finalFriends = friends.slice(0, 5);
 
   return (
     <div className="w-full overflow-auto px-4 pt-2">

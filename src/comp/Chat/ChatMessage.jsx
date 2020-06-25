@@ -18,12 +18,12 @@ export default function ChatMessage({
   const messageFuseTime = 30000;
   const conditions = {
     // Checks if a message is the first one, or messageFuseTime is
-    //less than the time that passed between previous or current massage.
+    //less than the time that passed between previous or current massage, or if the author is different.
     unfusedMessage:
       !previousMessage ||
-      (new Date(message.createdAt) - new Date(previousMessage.createdAt) >
-        messageFuseTime &&
-        message.author.id === previousMessage.author.id),
+      new Date(message.createdAt) - new Date(previousMessage.createdAt) >
+        messageFuseTime ||
+      message.author.id !== previousMessage.author.id,
     // Checks if you are the author of the message,
     // if handleresend and delete methods are defined
     // if message type is other than accepted.

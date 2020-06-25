@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useRouteMatch } from "react-router-dom";
 import { Switch, Route } from "react-router";
-import sortBy from "lodash/sortBy";
 import LeftPanel from "../comp/LeftPanels/LeftPanel";
 import {
   toggleLeftPanel,
@@ -12,6 +11,7 @@ import {
 } from "../redux/actions";
 import history from "../history";
 import { mapIdsToUsers, setRelationshipHandlers } from "../helpers/functions";
+import { orderBy } from "lodash";
 
 export default function LeftPanelContainer() {
   let match = useRouteMatch("/channels/:channelId");
@@ -25,6 +25,7 @@ export default function LeftPanelContainer() {
   const [selectedPage, setSelectedPage] = useState(
     match?.params.roomId ? "friends" : "channels"
   );
+  const [friendsSearchFocus, setFriendsSearchFocus] = useState(false);
   const channels = useSelector(state => state.channels);
   const users = useSelector(state => state.users);
   const relationships = useSelector(state => state.relationships);
@@ -55,7 +56,7 @@ export default function LeftPanelContainer() {
       }
     });
 
-  const rooms = sortBy(
+  const rooms = orderBy(
     roomIds.map(roomId => {
       const members = mapIdsToUsers(
         channels[roomId].members,
@@ -68,11 +69,12 @@ export default function LeftPanelContainer() {
       return {
         id: roomId,
         ...channels[roomId],
-        members: members
+        members
       };
     }),
-    room => new Date(room.lastMessageAt)
-  ).reverse();
+    room => new Date(room.lastMessageAt),
+    ["desc"]
+  );
 
   const foundUsersMap = foundUsers.map(u => {
     return setRelationshipHandlers(
@@ -90,6 +92,9 @@ export default function LeftPanelContainer() {
       friends: "/friends"
     };
     if (pages[page]) {
+      if (friendsSearchFocus) {
+        setFriendsSearchFocus(false);
+      }
       history.push(pages[page]);
     } else {
       console.log("no such page exists.");
@@ -134,6 +139,7 @@ export default function LeftPanelContainer() {
           selectedPage="channels"
           handleCollapse={() => dispatch(toggleLeftPanel())}
           handleCreateRoom={() => handleCreateRoom(selectedChannel)}
+          setFriendsSearchFocus={setFriendsSearchFocus}
         />
       </Route>
       <Route exact path="/friends">
@@ -155,6 +161,8 @@ export default function LeftPanelContainer() {
           selectedPage="friends"
           handleCollapse={() => dispatch(toggleLeftPanel())}
           handleCreateRoom={() => handleCreateRoom(selectedChannel)}
+          friendsSearchFocus={friendsSearchFocus}
+          setFriendsSearchFocus={setFriendsSearchFocus}
         />
       </Route>
       <Route>

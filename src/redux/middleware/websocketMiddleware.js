@@ -42,12 +42,16 @@ const wsUrl =
 
 let socket;
 let interval;
+// Timeout for heartbeat(), if it runs out, the socket is closed.
+// Runs out if does not receive validateSession.fulfilled action in heartbeatInterval
 let timeout;
 
 const websocketMiddleware = () => store => next => action => {
   next(action);
   const actionType = action.type;
-
+  // If there's a validateSession action which is fullfilled,
+  // then a new webscoket is created, that connect to URL defined above
+  // and if websocket is not already connected, so that 2 websockets wouldnt be opened.
   if (
     (actionType === validateSession.fulfilled.toString() ||
       actionType === login.fulfilled.toString()) &&
@@ -56,20 +60,20 @@ const websocketMiddleware = () => store => next => action => {
     const wsTicket = action.payload.wsTicket;
     socket = new WebSocket(wsUrl, wsTicket);
     console.log(action);
-
+    // An event listener to be called when the connection is opened.
     socket.onopen = () => {
       console.log("OPENED");
     };
-
+    // An event listener to be called when a message is received from the server.
     socket.onmessage = ({ data: message }) => {
       console.log("MESSAGE", message);
     };
 
     const heartbeat = () => {
       clearTimeout(timeout);
-
+      // Enqueues data to be transmitted.
       socket.send(JSON.stringify({ type: "WS_PONG" }));
-
+      // Refreshes timeout
       timeout = setTimeout(() => {
         socket.close();
       }, store.getState().general.heartbeatInterval + 1000);
@@ -78,24 +82,29 @@ const websocketMiddleware = () => store => next => action => {
     socket.onopen = () => {
       clearInterval(interval);
     };
-
+    // An event listener to be called when the connection is closed.
     socket.onclose = () => {
+      // clears timeout for disconnecting, because the socket is closed.
       clearTimeout(timeout);
-
+      // sets state as disconnected.
       store.dispatch(wsDisconnect());
-
+      // If socket has to reconnect, an interval for the session validations is set which tries to reconnect/validate session again.
       if (!socket.dontReconnect) {
         interval = setInterval(() => {
+          // Calls api.validateSession(), if it's fullfiled, sets validatedSession Redux state to true
           store.dispatch(validateSession());
         }, 10000);
       }
     };
-
+    // When a message is received from the server
     socket.onmessage = ({ data: message }) => {
+      // It is parsed to JSON
       const parsedMessage = JSON.parse(message);
       const messageType = parsedMessage.type;
       const messagePayload = parsedMessage.payload;
 
+      console.log("MESSAGE TYPE", messageType);
+      // These functions are executed by messages received from the server.
       const commandHandler = {
         [WS_EVENTS.HELLO]() {
           store.dispatch(wsConnect(Number(messagePayload.heartbeatInterval)));
@@ -134,7 +143,10 @@ const websocketMiddleware = () => store => next => action => {
               messagePayload.channelId
             ].chatSettings;
             store.dispatch(
-              addMessageWs({ ...messagePayload.message, capacity })
+              addMessageWs({
+                ...messagePayload.message,
+                capacity
+              })
             );
           } else {
             store.dispatch(
@@ -158,19 +170,39 @@ const websocketMiddleware = () => store => next => action => {
         },
         [WS_EVENTS.CHANNEL.ADD_POST_LIKE]() {
           const { id: ownId } = store.getState().self;
-          store.dispatch(likePostWs({ ownId, ...messagePayload }));
+          store.dispatch(
+            likePostWs({
+              ownId,
+              ...messagePayload
+            })
+          );
         },
         [WS_EVENTS.CHANNEL.DELETE_POST_LIKE]() {
           const { id: ownId } = store.getState().self;
-          store.dispatch(unlikePostWs({ ownId, ...messagePayload }));
+          store.dispatch(
+            unlikePostWs({
+              ownId,
+              ...messagePayload
+            })
+          );
         },
         [WS_EVENTS.CHANNEL.ADD_COMMENT]() {
           const { id: ownId } = store.getState().self;
-          store.dispatch(incrementCommentCountWs({ ownId, ...messagePayload }));
+          store.dispatch(
+            incrementCommentCountWs({
+              ownId,
+              ...messagePayload
+            })
+          );
         },
         [WS_EVENTS.CHANNEL.DELETE_COMMENT_LIKE]() {
           const { id: ownId } = store.getState().self;
-          store.dispatch(decrementCommentCountWs({ ownId, ...messagePayload }));
+          store.dispatch(
+            decrementCommentCountWs({
+              ownId,
+              ...messagePayload
+            })
+          );
         },
         [WS_EVENTS.CHANNEL.ADD_MEMBER]() {
           store.dispatch(addMemberWs(messagePayload));
@@ -230,9 +262,8 @@ const websocketMiddleware = () => store => next => action => {
           store.dispatch(friendOfflineWs(messagePayload));
         }
       };
-
-      console.log("MESSAGE TYPE", messageType);
-
+      // If commandHandler.[computedPropertyMessageType] is defined, then this function is executed.
+      // The functions are defined in commandHandler.
       if (commandHandler[messageType]) {
         commandHandler[messageType]();
       }
@@ -242,6 +273,9 @@ const websocketMiddleware = () => store => next => action => {
     store.getState().general.wsConnected &&
     socket
   ) {
+    // If user logs out, a dontRecconect prop is set to true so
+    // that the interval which tries to validate the session
+    // does not try to reconnect.
     console.log("LOGOUT SOCKET");
     socket.dontReconnect = true;
     socket.close();
