@@ -42,6 +42,7 @@ function ChatActions(props) {
             }
           })
         );
+        dispatch(setChatDraft({ channelId, draft: "" }));
       }
     }
   };
@@ -66,6 +67,7 @@ function ChatActions(props) {
           }
         })
       );
+      dispatch(setChatDraft({ channelId, draft: "" }));
     }
   };
 

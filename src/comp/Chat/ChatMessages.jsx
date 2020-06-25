@@ -1,6 +1,5 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-to-interactive-role */
 import React, { useEffect, useRef } from "react";
-import classNames from "classnames";
 import { useSelector, useDispatch } from "react-redux";
 import {
   useScroll,
@@ -16,14 +15,16 @@ import {
   setInitialScroll
 } from "../../redux/actions";
 import messagesFormatter2 from "../../util/messagesFormatter2";
-import PopupMenu from "../PopupMenu";
+
 import AvatarDeck from "../AvatarDeck";
-import InfiniteScroller from "../../components/InfiniteScroller";
+import InfiniteScroller from "./InfiniteScroller";
 import MessageAuthorAvatar from "./MessageAuthorAvatar";
 import MessageCreatedTime from "./MessageCreatedTime";
 import MessageAuthorUsername from "./MessageAuthorUsername";
 import MessageContent from "./MessageContent";
 import MessageHighlightSpan from "./MessageHighlightSpan";
+import ChatOptionsButton2 from "./ChatOptionsButton2";
+import DateMessage from "./DateMessage";
 
 const seenUsers = [
   "https://i.imgur.com/aqjzchq.jpg",
@@ -31,13 +32,13 @@ const seenUsers = [
 ];
 
 const Spinner = () => (
-  <div className="ChatMessages--spinner">
+  <div className="w-full bg-secondaryBackground">
     <div className="ChatMessages--spinner--circle" />
   </div>
 );
 
 const Spinner2 = () => (
-  <div className="ChatMessages--spinner2">
+  <div className="w-full bg-secondaryBackground">
     <div className="ChatMessages--spinner2--circle" />
   </div>
 );
@@ -61,7 +62,6 @@ const selectFormattedMessages = createSelector(
 );
 
 export default function ChatMessages({ channelId, channelMessages }) {
-  const currentUserUsername = useSelector(state => state.self.username);
   const containerRef = useRef(null);
   const { y } = useScroll(containerRef);
   const oldScrollTop = useRef(null);
@@ -73,7 +73,6 @@ export default function ChatMessages({ channelId, channelMessages }) {
   const messages = useSelector(state =>
     selectFormattedMessages(state, channelId)
   );
-  console.log(messages);
   const apiLoading = useSelector(state => state.api.messages.loading);
   const apiError = useSelector(state => state.api.messages.error);
   const deletedMessageApiLoading = useSelector(
@@ -177,12 +176,11 @@ export default function ChatMessages({ channelId, channelMessages }) {
   const hasMoreBottom =
     channel?.lastMessageId &&
     channel.lastMessageId !== channelMessages[channelMessages.length - 1].id;
-
   return (
     // <div className="ChatMessages--container" ref={scrollRef}>
     <>
       <InfiniteScroller
-        className="ChatMessages--container"
+        className="overflow-auto h-full mt-1"
         ref={containerRef}
         onTopView={onTopView}
         hasMoreTop={hasMoreTop}
@@ -194,40 +192,13 @@ export default function ChatMessages({ channelId, channelMessages }) {
         loader={Spinner}
       >
         {messages.map(message => {
-          if (message.type === "date")
-            return (
-              <div
-                className="ChatMessages--date flex justify-center items-center m-2"
-                key={message.id}
-              >
-                <h4 className="bg-tertiaryBackground rounded-lg px-5 py-2 text-highlightText">
-                  {message.date}
-                </h4>
-              </div>
-            );
+          if (message.type === "date") return <DateMessage message={message} />;
           else if (
             message.type === "firstMessage" ||
             message.type === "firstLastMessage"
           ) {
-            const classes1 = classNames({
-              "ChatMessages--firstMessage":
-                message.type === "firstMessage" ||
-                message.type === "firstLastMessage",
-              "ChatMessages--lastMessage":
-                message.type === "lastMessage" ||
-                message.type === "firstLastMessage",
-              "ChatMessages--myMessage": message.userId === ownId
-            });
-            const classes2 = classNames({
-              "ChatMessages--message flex": true,
-              "ChatMessages--lastMessage":
-                message.type === "lastMessage" ||
-                message.type === "firstLastMessage",
-              "ChatMessages--myMessage": message.userId === ownId
-            });
-
             return (
-              <div className={classes1} key={message.id}>
+              <div key={message.id}>
                 <div className="flex items-center space-x-2 text-xs ml-1">
                   <MessageAuthorAvatar
                     defaultAvatar={defaultAvatar}
@@ -236,40 +207,16 @@ export default function ChatMessages({ channelId, channelMessages }) {
                   <MessageAuthorUsername username={message.username} />
                   <MessageCreatedTime createdAt={message.createdAt} />
                 </div>
-                <div className={classes2}>
-                  <MessageHighlightSpan
-                    currentUserUsername={currentUserUsername}
-                    username={message.username}
-                  />
+                <div className="flex">
+                  <MessageHighlightSpan ownId={ownId} userId={message.userId} />
                   <MessageContent message={message} />
-                  {/* <div className="ChatMessages--messageContent">
-                    {message.upload && (
-                      <img
-                        src={message.upload}
-                        alt={message.upload}
-                        className="ChatMessages--userImage"
-                        role="button"
-                        // onClick={openImageModalDispatcher}
-                      />
-                    )}
-                    {message.content && <p>{message.content}</p>}
-                  </div> */}
-                  {
-                    //TODO: Bring this back
-                  }
-                  {/* {(message.userId === ownId ||
-                    (channel?.type === "channel" &&
-                      channel.admins?.includes(ownId))) &&
-                    (deletedMessageId === message.id &&
-                    deletedMessageApiLoading ? (
-                      <Spinner2 />
-                    ) : (
-                      <PopupMenu
-                        type="message"
-                        messageId={message.id}
-                        disabled={deletedMessageApiLoading}
-                      />
-                    ))} */}
+                  <ChatOptionsButton2
+                    ownId={ownId}
+                    message={message}
+                    deletedMessageId={deletedMessageId}
+                    deletedMessageApiLoading={deletedMessageApiLoading}
+                    Spinner2={Spinner2}
+                  />
                 </div>
               </div>
             );
@@ -277,40 +224,26 @@ export default function ChatMessages({ channelId, channelMessages }) {
             message.type === "message" ||
             message.type === "lastMessage"
           ) {
-            const classes = classNames({
-              "ChatMessages--message flex": true,
-              "ChatMessages--lastMessage": message.type === "lastMessage",
-              "ChatMessages--myMessage": message.userId === ownId
-            });
             return (
-              <div className={classes} key={message.id}>
-                <MessageHighlightSpan
-                  currentUserUsername={currentUserUsername}
-                  username={message.username}
-                />
+              <div className="flex" key={message.id}>
+                <MessageHighlightSpan ownId={ownId} userId={message.userId} />
                 <MessageContent message={message} />
-                {(message.userId === ownId ||
-                  (channel?.type === "channel" &&
-                    channel.admins?.includes(ownId))) &&
-                  (deletedMessageId === message.id &&
-                  deletedMessageApiLoading ? (
-                    <Spinner2 />
-                  ) : (
-                    <PopupMenu
-                      type="message"
-                      messageId={message.id}
-                      disabled={deletedMessageApiLoading}
-                    />
-                  ))}
+                <ChatOptionsButton2
+                  ownId={ownId}
+                  message={message}
+                  deletedMessageId={deletedMessageId}
+                  deletedMessageApiLoading={deletedMessageApiLoading}
+                  Spinner2={Spinner2}
+                />
               </div>
             );
           }
         })}
-        {!hasMoreBottom && (
+        {/* {!hasMoreBottom && (
           <div className="ChatMessages--seen">
             <AvatarDeck size="small" avatars={seenUsers} />
           </div>
-        )}
+        )} */}
       </InfiniteScroller>
       {hasMoreBottom && <OldMessagesAlert onClick={handleJumpToPresent} />}
     </>

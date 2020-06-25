@@ -1,15 +1,10 @@
 import React from "react";
 
-export default function MessageHighlightSpan({
-  currentUserUsername,
-  username
-}) {
+export default function MessageHighlightSpan({ ownId, userId }) {
   return (
     <span
       className={`w-1 mx-5 ${
-        username === currentUserUsername
-          ? "bg-highlightText"
-          : "bg-secondaryBackground"
+        userId === ownId ? "bg-highlightText" : "bg-secondaryBackground"
       }`}
     ></span>
   );

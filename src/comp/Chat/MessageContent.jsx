@@ -1,7 +1,6 @@
 import React from "react";
 
 export default function MessageContent({ message }) {
-  console.log(message);
   return (
     <span
       className={
