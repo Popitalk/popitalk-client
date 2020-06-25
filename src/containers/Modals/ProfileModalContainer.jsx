@@ -23,6 +23,7 @@ export default function ProfileModalContainer({ handleModalClose }) {
     usernameModal: username,
     avatarModal: avatar
   } = useSelector(state => state.userProfile);
+  const { defaultAvatar } = useSelector(state => state.general);
   const relationships = useSelector(state => state.relationships);
   const updateUserApi = useSelector(state => state.api.userUpdateApi);
 
@@ -43,7 +44,7 @@ export default function ProfileModalContainer({ handleModalClose }) {
     plainUser,
     relationships,
     dispatch,
-    null,
+    id !== myId ? defaultAvatar : null,
     myId
   );
 

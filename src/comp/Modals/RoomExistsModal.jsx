@@ -6,8 +6,7 @@ import { getTimeFromMessage } from "../InfoCardLists/RoomsList";
 export default function RoomExistsModal({
   room,
   openRoomHandler,
-  createNewHandler,
-  subtitle
+  createNewHandler
 }) {
   return (
     <div className="flex flex-col items-center p-4">
@@ -16,9 +15,7 @@ export default function RoomExistsModal({
       <div className="w-full py-4">
         <RoomInfoCard
           room={room}
-          controls={getTimeFromMessage(room)}
           handleSelect={openRoomHandler}
-          subtitle={subtitle}
           addBorder={true}
         />
       </div>

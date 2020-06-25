@@ -135,17 +135,7 @@ export const RoomExistsModalTest = () => {
     console.log(`Open Room ${id}`);
   };
 
-  const room = {
-    id: 1,
-    name: "Andrew",
-    self: true,
-    online: false,
-    watching: false,
-    notifications: null,
-    message: "You: ABCD",
-    images: ["https://source.unsplash.com/128x128/?1,cat"],
-    messageSent: "1m"
-  };
+  const room = generateTestRooms(1, true)[0];
 
   return (
     <ModalContainer isOpen={true} background="gray" small={true}>

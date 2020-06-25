@@ -795,6 +795,20 @@ export const generateImage = () => {
   return testImages[Math.floor(Math.random() * testImages.length)];
 };
 
+export const generateTime = () => {
+  let date = new Date();
+  const day = Math.round(Math.random() * 29) + 1;
+  const month = Math.round(Math.random() * 5) + 1;
+  date.setFullYear(2020, month, day);
+
+  const hour = Math.round(Math.random() * 24);
+  const min = Math.round(Math.random() * 60);
+  const sec = Math.round(Math.random() * 60);
+  date.setHours(hour, min, sec);
+
+  return date;
+};
+
 export const generateTestUsers = () => {
   const numUsers = 100;
   let testUsers = [];
@@ -812,14 +826,14 @@ export const generateTestUsers = () => {
   return testUsers;
 };
 
-export const generateTestRooms = () => {
-  const numRooms = 100;
+export const generateTestRooms = (numRooms = 100, skipMe = false) => {
   let testRooms = [];
 
   const watching = Math.round(Math.random() * numRooms);
 
   for (let i = 0; i < numRooms; i++) {
-    const numMembers = i === 0 ? 1 : Math.round(Math.random() * 6) + 1;
+    const numMembers =
+      i === 0 && !skipMe ? 1 : Math.round(Math.random() * 6) + 1;
 
     let members = [];
     for (let j = 0; j < numMembers; j++) {
@@ -840,7 +854,7 @@ export const generateTestRooms = () => {
       notifications:
         Math.round(Math.random()) === 0 ? null : Math.round(Math.random() * 50),
       lastMessageContent: `This is message ${i + 1}`,
-      lastMessageAt: `${Math.round(Math.random() * 58) + 1}m`
+      lastMessageAt: generateTime().toDateString()
     });
   }
 
