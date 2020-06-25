@@ -535,53 +535,6 @@ export const testComments = [
   }
 ];
 
-export const testMessages = [
-  {
-    id: 1,
-    name: "André Gama",
-    date: new Date(),
-    avatar: "https://i.imgur.com/xCGu56D.jpg",
-    message:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque temporibus soluta molestias error est cumque debitis eum harum fuga, quaerat provident enim a consequatur perferendis laudantium illo ipsam corrupti earum?",
-    image: ""
-  },
-  {
-    id: 2,
-    name: "André Gama",
-    date: new Date(),
-    message: "testees",
-    avatar: "https://i.imgur.com/xCGu56D.jpg",
-    image: "https://itpetblog.com.br/wp-content/uploads/2019/07/grumpy-cat.jpg"
-  },
-  {
-    id: 3,
-    name: "André Gama",
-    date: new Date(),
-    message: "testees",
-    avatar: "https://i.imgur.com/xCGu56D.jpg",
-    image: "https://itpetblog.com.br/wp-content/uploads/2019/07/grumpy-cat.jpg",
-    me: true
-  },
-  {
-    id: 4,
-    name: "André Gama",
-    date: new Date(),
-    message: "testees",
-    avatar: "https://i.imgur.com/xCGu56D.jpg",
-    image: "https://itpetblog.com.br/wp-content/uploads/2019/07/grumpy-cat.jpg",
-    me: true
-  },
-  {
-    id: 5,
-    name: "André Gama",
-    date: new Date(),
-    message: "testees",
-    avatar: "https://i.imgur.com/xCGu56D.jpg",
-    image: "https://itpetblog.com.br/wp-content/uploads/2019/07/grumpy-cat.jpg",
-    me: true
-  }
-];
-
 export const testChannels1 = [
   {
     id: 1,
@@ -809,8 +762,18 @@ export const generateTime = () => {
   return date;
 };
 
-export const generateTestUsers = () => {
-  const numUsers = 100;
+export const generateMessage = () => {
+  const numWords = Math.round(Math.random() * 50) + 1;
+
+  let message = "";
+  for (let i = 0; i < numWords; i++) {
+    message = `${message} ${generateName().toLowerCase()}`;
+  }
+
+  return message;
+};
+
+export const generateTestUsers = (numUsers = 100) => {
   let testUsers = [];
 
   for (let i = 0; i < numUsers; i++) {
@@ -824,6 +787,31 @@ export const generateTestUsers = () => {
   }
 
   return testUsers;
+};
+
+export const generateTestMessages = (numMessages = 100) => {
+  let testMessages = [];
+
+  for (let i = 0; i < numMessages; i++) {
+    const testUser = generateTestUsers(1)[0];
+
+    testMessages.push({
+      author: {
+        avatar: testUser.avatar,
+        id: testUser.id,
+        username: testUser.username
+      },
+      channelId: 1,
+      content: generateMessage(),
+      createdAt: generateTime(),
+      id: i + 1,
+      me: testUser.username,
+      upload: null,
+      userid: testUser.id
+    });
+  }
+
+  return testMessages;
 };
 
 export const generateTestRooms = (numRooms = 100, skipMe = false) => {
@@ -853,7 +841,7 @@ export const generateTestRooms = (numRooms = 100, skipMe = false) => {
       watching: watching === i,
       notifications:
         Math.round(Math.random()) === 0 ? null : Math.round(Math.random() * 50),
-      lastMessageContent: `This is message ${i + 1}`,
+      lastMessageContent: generateMessage(),
       lastMessageAt: generateTime().toDateString()
     });
   }

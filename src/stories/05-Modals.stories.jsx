@@ -21,9 +21,9 @@ import { buildTagInput } from "../comp/TagInput";
 import {
   testUsers,
   testQueue,
-  testMessages,
   generateTestUsers,
-  generateTestRooms
+  generateTestRooms,
+  generateTestMessages
 } from "./seed-arrays";
 import {
   filterSearch,
@@ -63,6 +63,7 @@ const blockHandler = id => {
 
 const generatedRooms = generateTestRooms();
 const generatedUsers = generateTestUsers();
+const testMessages = generateTestMessages();
 
 export const CreateNewAccountModalTest = () => {
   return (

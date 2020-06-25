@@ -14,11 +14,13 @@ import VideoPlayer from "../comp/VideoPlayer";
 import RecommendedVideos from "../comp/RecommendedVideos";
 
 import {
-  testChannels,
+  testChannels1,
+  testChannels2,
+  testChannels3,
   testUsers,
   testUserMinimal,
-  testMessages,
-  testImages
+  testImages,
+  generateTestMessages
 } from "./seed-arrays";
 
 import SiteHeaderMain from "../comp/SiteHeaderMain";
@@ -74,6 +76,8 @@ const Container = styled.div`
 //     margin-bottom: 20px;
 //   } */
 // `;
+
+const testMessages = generateTestMessages();
 
 export const CircleCheckBoxTest = () => {
   const [checked, setChecked] = useState(true);
@@ -374,37 +378,18 @@ export const VideoPlayerShow = () => {
   return <VideoPlayer />;
 };
 
-const list = [
-  {
-    title: "Following Channels",
-    channels: testChannels
-  },
-  {
-    title: "Recommended Channels",
-    channels: testChannels
-  },
-  {
-    title: "Channels Friends are following",
-    channels: testChannels
-  },
-  {
-    title: "Trending Channels right now",
-    channels: testChannels
-  }
-];
-
 const videoList = [
   {
     title: "Videos friends are watching",
-    channels: testChannels
+    channels: testChannels1
   },
   {
     title: "Recommended",
-    channels: testChannels
+    channels: testChannels2
   },
   {
     title: "Trending right now",
-    channels: testChannels
+    channels: testChannels3
   }
 ];
 

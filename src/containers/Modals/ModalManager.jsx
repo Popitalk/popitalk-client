@@ -7,13 +7,15 @@ import ChangePasswordContainer from "./ChangePasswordContainer";
 import BlockedUsersContainer from "./BlockedUsersContainer";
 import InviteFriendsContainer from "./InviteFriendsContainer";
 import RoomExistsContainer from "./RoomExistsContainer";
+import DeleteMessageContainer from "./DeleteMessageContainer";
 import {
   MODAL_PROFILE,
   MODAL_EDIT_USER_SETTINGS,
   MODAL_CHANGE_PASSWORD,
   MODAL_BLOCKED_USERS,
   MODAL_INVITE,
-  MODAL_ROOM_EXISTS
+  MODAL_ROOM_EXISTS,
+  MODAL_DELETE_MESSAGE
 } from "../../helpers/constants";
 
 const ModalComponents = {
@@ -22,7 +24,8 @@ const ModalComponents = {
   [MODAL_CHANGE_PASSWORD]: ChangePasswordContainer,
   [MODAL_BLOCKED_USERS]: BlockedUsersContainer,
   [MODAL_INVITE]: InviteFriendsContainer,
-  [MODAL_ROOM_EXISTS]: RoomExistsContainer
+  [MODAL_ROOM_EXISTS]: RoomExistsContainer,
+  [MODAL_DELETE_MESSAGE]: DeleteMessageContainer
 };
 
 export default function ModalManager() {
