@@ -67,9 +67,6 @@ export default function ProfileModal({
             alt={`${user.username}'s avatar`}
           />
         )}
-        {updateUserApi.error && (
-          <p className="text-errorText text-sm">{updateUserApi.error}</p>
-        )}
         <div>
           <div className="text-4xl font-semibold">{user.username}</div>
           <div className="text-md font-regular">
@@ -78,6 +75,11 @@ export default function ProfileModal({
         </div>
         <FriendRequestButtons user={user} />
       </div>
+      {updateUserApi.error && (
+        <div className="flex justify-center">
+          <p className="text-errorText text-sm">{updateUserApi.error}</p>
+        </div>
+      )}
       <div className="flex justify-center space-x-8 pt-4 pb-12">
         <div className="text-md font-semibold">{`${following} Following`}</div>
         <div className="text-md font-semibold">{`${followers} Followers`}</div>

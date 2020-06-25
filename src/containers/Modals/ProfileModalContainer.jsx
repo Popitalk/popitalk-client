@@ -5,7 +5,8 @@ import {
   deleteFriend,
   blockUser,
   unblockUser,
-  updateUser
+  updateUser,
+  clearError
 } from "../../redux/actions";
 import ModalContainer from "../../comp/Modals/ModalContainer";
 import ProfileModal from "../../comp/Modals/ProfileModal";
@@ -51,8 +52,13 @@ export default function ProfileModalContainer({ handleModalClose }) {
       ? () => dispatch(unblockUser(userId))
       : () => dispatch(blockUser(plainUser));
 
+  const closeModalAndClearError = () => {
+    handleModalClose();
+    dispatch(clearError());
+  };
+
   return (
-    <ModalContainer isOpen={true} handleModalClose={handleModalClose}>
+    <ModalContainer isOpen={true} handleModalClose={closeModalAndClearError}>
       <ProfileModal
         user={user}
         following={6}
