@@ -14,6 +14,15 @@ import { mapIdsToUsers, setRelationshipHandlers } from "../helpers/functions";
 import { orderBy } from "lodash";
 
 export default function LeftPanelContainer() {
+  let initialSelectedPage;
+  const matchChannels = useRouteMatch("/channels");
+  const matchFriends = useRouteMatch("/friends");
+  if (matchChannels?.isExact) {
+    initialSelectedPage = "channels";
+  } else if (matchFriends?.isExact) {
+    initialSelectedPage = "friends";
+  }
+
   let match = useRouteMatch("/channels/:channelId");
   let selectedChannel = match?.params.channelId ? match.params.channelId : 0;
 
@@ -22,9 +31,11 @@ export default function LeftPanelContainer() {
     selectedChannel = match?.params.roomId ? match.params.roomId : 0;
   }
 
-  const [selectedPage, setSelectedPage] = useState(
-    match?.params.roomId ? "friends" : "channels"
-  );
+  const initState =
+    initialSelectedPage || (match?.params.roomId ? "friends" : "channels");
+  const [selectedPage, setSelectedPage] = useState(initState);
+  if (selectedPage !== initState) setSelectedPage(initState);
+
   const [friendsSearchFocus, setFriendsSearchFocus] = useState(false);
   const channels = useSelector(state => state.channels);
   const users = useSelector(state => state.users);
@@ -101,18 +112,6 @@ export default function LeftPanelContainer() {
     }
   };
 
-  const updateSelectedPanelPage = page => {
-    const pages = {
-      channels: "channels",
-      friends: "friends"
-    };
-    if (pages[page]) {
-      setSelectedPage(pages[page]);
-    } else {
-      console.log("no such page exists.");
-    }
-  };
-
   const handleSelectChannel = id => history.push(`/channels/${id}/video`);
   const handleSelectRoom = id => history.push(`/rooms/${id}/video`);
   const handleOpenProfile = id => dispatch(openProfileModal(id));
@@ -179,11 +178,12 @@ export default function LeftPanelContainer() {
           handleSelectRoom={handleSelectRoom}
           handleCreateChannel={() => history.push("/create")}
           handleProfile={handleOpenProfile}
-          updateSelectedPage={updateSelectedPanelPage}
+          updateSelectedPage={updateSelectedPageAndMain}
           isCollapsed={isCollapsed}
           selectedPage={selectedPage}
           handleCollapse={() => dispatch(toggleLeftPanel())}
           handleCreateRoom={() => handleCreateRoom(selectedChannel)}
+          setFriendsSearchFocus={setFriendsSearchFocus}
         />
       </Route>
     </Switch>
