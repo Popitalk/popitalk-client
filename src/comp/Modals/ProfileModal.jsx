@@ -2,6 +2,7 @@ import React from "react";
 import ChannelCardList from "../Channel/ChannelCardList";
 import PopupMenu from "../PopupMenu";
 import FriendRequestButtons from "../FriendRequestButtons";
+import ImageUpload from "../ImageUpload";
 
 export default function ProfileModal({
   user,
@@ -11,7 +12,9 @@ export default function ProfileModal({
   recentVideos,
   followedChannels,
   unfriendHandler,
-  blockHandler
+  blockHandler,
+  updateAvatar,
+  updateUserApi
 }) {
   // variants: self, friend, stranger, sentRequest, receivedRequest, blocked
   const variant = user.variant;
@@ -41,11 +44,32 @@ export default function ProfileModal({
         <></>
       )}
       <div className="flex justify-center items-center space-x-6 py-4">
-        <img
-          className="img w-32 h-32 rounded-circle"
-          src={user.avatar}
-          alt={`${user.username}'s avatar`}
-        />
+        {myProfile ? (
+          <ImageUpload
+            name="avatar"
+            size="sm"
+            icon={user.avatar}
+            onUpload={e => {
+              if (e.target.files[0]) {
+                updateAvatar(URL.createObjectURL(e.target.files[0]));
+              }
+            }}
+            onRemove={() => {
+              updateAvatar(null);
+            }}
+            disabled={updateUserApi.loading}
+            className=""
+          />
+        ) : (
+          <img
+            className="img w-32 h-32 rounded-circle"
+            src={user.avatar}
+            alt={`${user.username}'s avatar`}
+          />
+        )}
+        {updateUserApi.error && (
+          <p className="text-errorText text-sm">{updateUserApi.error}</p>
+        )}
         <div>
           <div className="text-4xl font-semibold">{user.username}</div>
           <div className="text-md font-regular">

@@ -14,7 +14,8 @@ import {
   addReceivedFriendRequestWs,
   blockUser,
   addAdminWs,
-  addChannelWs
+  addChannelWs,
+  updateUser
 } from "../actions";
 
 const initialState = {};
@@ -40,6 +41,13 @@ const R_addUser = (state, { payload }) => {
   };
 };
 
+const R_updateUser = (state, { payload }) => {
+  state[payload.id] = {
+    ...state[payload.id],
+    ...payload
+  };
+};
+
 const R_resetState = () => initialState;
 
 export default createReducer(initialState, {
@@ -57,5 +65,6 @@ export default createReducer(initialState, {
   [addAdminWs]: R_addUsers,
   [blockUser.fulfilled]: R_addUser,
   [logout.fulfilled]: R_resetState,
-  [deleteAccount.fulfilled]: R_resetState
+  [deleteAccount.fulfilled]: R_resetState,
+  [updateUser.fulfilled]: R_updateUser
 });
