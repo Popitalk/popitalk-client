@@ -19,9 +19,11 @@ import messagesFormatter2 from "../../util/messagesFormatter2";
 import PopupMenu from "../PopupMenu";
 import AvatarDeck from "../AvatarDeck";
 import InfiniteScroller from "../../components/InfiniteScroller";
-import "../../components/ChatPanel/ChatPanel.css";
 import MessageAuthorAvatar from "./MessageAuthorAvatar";
 import MessageCreatedTime from "./MessageCreatedTime";
+import MessageAuthorUsername from "./MessageAuthorUsername";
+import MessageContent from "./MessageContent";
+import MessageHighlightSpan from "./MessageHighlightSpan";
 
 const seenUsers = [
   "https://i.imgur.com/aqjzchq.jpg",
@@ -59,6 +61,7 @@ const selectFormattedMessages = createSelector(
 );
 
 export default function ChatMessages({ channelId, channelMessages }) {
+  const currentUserUsername = useSelector(state => state.self.username);
   const containerRef = useRef(null);
   const { y } = useScroll(containerRef);
   const oldScrollTop = useRef(null);
@@ -193,8 +196,13 @@ export default function ChatMessages({ channelId, channelMessages }) {
         {messages.map(message => {
           if (message.type === "date")
             return (
-              <div className="ChatMessages--date" key={message.id}>
-                <h4>{message.date}</h4>
+              <div
+                className="ChatMessages--date flex justify-center items-center m-2"
+                key={message.id}
+              >
+                <h4 className="bg-tertiaryBackground rounded-lg px-5 py-2 text-highlightText">
+                  {message.date}
+                </h4>
               </div>
             );
           else if (
@@ -211,7 +219,7 @@ export default function ChatMessages({ channelId, channelMessages }) {
               "ChatMessages--myMessage": message.userId === ownId
             });
             const classes2 = classNames({
-              "ChatMessages--message": true,
+              "ChatMessages--message flex": true,
               "ChatMessages--lastMessage":
                 message.type === "lastMessage" ||
                 message.type === "firstLastMessage",
@@ -220,19 +228,21 @@ export default function ChatMessages({ channelId, channelMessages }) {
 
             return (
               <div className={classes1} key={message.id}>
-                <div>
+                <div className="flex items-center space-x-2 text-xs ml-1">
                   <MessageAuthorAvatar
                     defaultAvatar={defaultAvatar}
                     message={message}
                   />
-                  <div className="ChatMessages--nameAndDate">
-                    <p>{message.username}</p>
-                    <MessageCreatedTime createdAt={message.createdAt} />
-                  </div>
+                  <MessageAuthorUsername username={message.username} />
+                  <MessageCreatedTime createdAt={message.createdAt} />
                 </div>
                 <div className={classes2}>
-                  <div className="ChatMessages--edge" />
-                  <div className="ChatMessages--messageContent">
+                  <MessageHighlightSpan
+                    currentUserUsername={currentUserUsername}
+                    username={message.username}
+                  />
+                  <MessageContent message={message} />
+                  {/* <div className="ChatMessages--messageContent">
                     {message.upload && (
                       <img
                         src={message.upload}
@@ -243,8 +253,11 @@ export default function ChatMessages({ channelId, channelMessages }) {
                       />
                     )}
                     {message.content && <p>{message.content}</p>}
-                  </div>
-                  {(message.userId === ownId ||
+                  </div> */}
+                  {
+                    //TODO: Bring this back
+                  }
+                  {/* {(message.userId === ownId ||
                     (channel?.type === "channel" &&
                       channel.admins?.includes(ownId))) &&
                     (deletedMessageId === message.id &&
@@ -256,7 +269,7 @@ export default function ChatMessages({ channelId, channelMessages }) {
                         messageId={message.id}
                         disabled={deletedMessageApiLoading}
                       />
-                    ))}
+                    ))} */}
                 </div>
               </div>
             );
@@ -265,25 +278,17 @@ export default function ChatMessages({ channelId, channelMessages }) {
             message.type === "lastMessage"
           ) {
             const classes = classNames({
-              "ChatMessages--message": true,
+              "ChatMessages--message flex": true,
               "ChatMessages--lastMessage": message.type === "lastMessage",
               "ChatMessages--myMessage": message.userId === ownId
             });
             return (
               <div className={classes} key={message.id}>
-                <div className="ChatMessages--edge" />
-                <div className="ChatMessages--messageContent">
-                  {message.upload && (
-                    <img
-                      src={message.upload}
-                      alt={message.upload}
-                      className="ChatMessages--userImage"
-                      role="button"
-                      // onClick={openImageModalDispatcher}
-                    />
-                  )}
-                  {message.content && <p>{message.content}</p>}
-                </div>
+                <MessageHighlightSpan
+                  currentUserUsername={currentUserUsername}
+                  username={message.username}
+                />
+                <MessageContent message={message} />
                 {(message.userId === ownId ||
                   (channel?.type === "channel" &&
                     channel.admins?.includes(ownId))) &&
