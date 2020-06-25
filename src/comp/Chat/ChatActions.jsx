@@ -1,41 +1,78 @@
 import React, { useRef, useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Picker from "emoji-picker-react";
+import { useSelector, useDispatch } from "react-redux";
+import { setChatDraft, addMessage } from "../../redux/actions";
+import { withRouter } from "react-router-dom";
 
 // TODO: Currently all emojis are pull from public CDN, which is slow and might even be unreliable,
 // Maybe in the future the emojis should be hosted by us?
 // Github issue which explains the implementation https://github.com/ealush/emoji-picker-react/issues/157
 
-function ChatActions({ handleSendMessage }) {
-  const [messageContent, setMessageContent] = useState("");
+function ChatActions(props) {
+  const channelId = props.match.params.roomId || props.match.params.channelId;
+  const dispatch = useDispatch();
   const [emojiIsOpen, setEmojiIsOpen] = useState(false);
   const [chosenEmoji, setChosenEmoji] = useState("");
   const textareaRef = useRef();
   const sendButton = useRef();
+  const draft = useSelector(state => state.chatDrafts[channelId]);
+  const currentUserUsername = useSelector(state => state.self.username);
 
-  useEffect(() => {
-    // Must be keydown, with keyup the event is not prevented and pressing ENTER adds a new line char.
-    textareaRef.current.addEventListener("keydown", event => {
-      // Number 13 is the "Enter" key on the keyboard
-      if ((event.keyCode === 13 || event.keyCode === 10) && !event.shiftKey) {
-        event.preventDefault();
-        // Trigger the button element with a click
-        sendButton.current.click();
+  const handleSubmit = e => {
+    if (e.keyCode === 13 && !e.shiftKey) {
+      e.preventDefault();
+      e.target.style.height = "52px";
+
+      const text = draft?.trim();
+
+      if (text && text.length > 0) {
+        dispatch(
+          addMessage({
+            id: "",
+            userId: "",
+            channelId,
+            content: text,
+            upload: null,
+            createdAt: Date.now(),
+            author: {
+              id: "",
+              username: currentUserUsername,
+              avatar: null
+            }
+          })
+        );
       }
-    });
-    // Event listener is removed. Can be tested with getEventListeners(domElement) in developer tools console
-    return textareaRef.current.removeEventListener("keydown", event => {});
-  }, [textareaRef, sendButton]);
+    }
+  };
 
-  useEffect(() => {
-    setMessageContent(messageContent => messageContent + chosenEmoji);
-  }, [chosenEmoji]);
+  const handleSend = () => {
+    textareaRef.current.style.height = "52px";
+    const text = draft?.trim();
+
+    if (text && text.length > 0) {
+      dispatch(
+        addMessage({
+          id: "",
+          userId: "",
+          channelId,
+          content: text,
+          upload: null,
+          createdAt: Date.now(),
+          author: {
+            id: "",
+            username: currentUserUsername,
+            avatar: null
+          }
+        })
+      );
+    }
+  };
 
   const handleChange = e => {
-    e.target.style.height = "2.5rem";
+    e.target.style.height = "52px";
     e.target.style.height = `${Math.min(e.target.scrollHeight + 2, 168)}px`;
-    //dispatch(setChatDraft({ channelId, draft: e.target.value }));
-    setMessageContent(e.target.value);
+    dispatch(setChatDraft({ channelId, draft: e.target.value }));
   };
 
   const onEmojiClick = (event, emojiObject) => {
@@ -65,8 +102,9 @@ function ChatActions({ handleSendMessage }) {
         <textarea
           className="w-full h-10 p-2 pl-4 overflow-hidden rounded-lg resize-none bg-secondaryBackground focus:outline-none text-primaryText text-sm"
           placeholder="Type a message..."
-          value={messageContent}
+          value={draft || ""}
           maxLength="240"
+          onKeyDown={handleSubmit}
           ref={textareaRef}
           onChange={handleChange}
         />
@@ -79,10 +117,7 @@ function ChatActions({ handleSendMessage }) {
           />
         </div>
         <button
-          onClick={() => {
-            handleSendMessage(messageContent);
-            setMessageContent("");
-          }}
+          onClick={handleSend}
           ref={sendButton}
           className="font-bold text-highlightText pr-2 text-sm focus:outline-none"
         >
@@ -94,4 +129,4 @@ function ChatActions({ handleSendMessage }) {
   );
 }
 
-export default ChatActions;
+export default withRouter(ChatActions);
