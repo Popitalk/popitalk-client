@@ -15,6 +15,7 @@ import {
   setInitialScroll
 } from "../../redux/actions";
 import messagesFormatter2 from "../../util/messagesFormatter2";
+import useHasMoreBottom from "../../containers/hooks/useHasMoreBottom";
 
 import AvatarDeck from "../AvatarDeck";
 import InfiniteScroller from "./InfiniteScroller";
@@ -25,23 +26,12 @@ import MessageContent from "./MessageContent";
 import MessageHighlightSpan from "./MessageHighlightSpan";
 import ChatOptionsButton2 from "./ChatOptionsButton2";
 import DateMessage from "./DateMessage";
+import Spinner from "../Spinner";
 
 const seenUsers = [
   "https://i.imgur.com/aqjzchq.jpg",
   "https://i.imgur.com/tLljw1z.jpg"
 ];
-
-const Spinner = () => (
-  <div className="w-full bg-secondaryBackground">
-    <div className="ChatMessages--spinner--circle" />
-  </div>
-);
-
-const Spinner2 = () => (
-  <div className="w-full bg-secondaryBackground">
-    <div className="ChatMessages--spinner2--circle" />
-  </div>
-);
 
 const OldMessagesAlert = ({ onClick }) => (
   <div
@@ -62,13 +52,14 @@ const selectFormattedMessages = createSelector(
 );
 
 export default function ChatMessages({ channelId, channelMessages }) {
-  const containerRef = useRef(null);
+  const containerRef = useRef();
   const { y } = useScroll(containerRef);
-  const oldScrollTop = useRef(null);
+  const channel = useSelector(state => state.channels[channelId]);
+  const hasMoreBottom = useHasMoreBottom(channel, channelMessages);
+  const oldScrollTop = useRef();
   // const [debouncedY, setDebouncedY] = useState(null);
   const previousChannelId = usePrevious(channelId);
   const { defaultAvatar } = useSelector(state => state.general);
-  const channel = useSelector(state => state.channels[channelId]);
   const initialScroll = channel.chatSettings?.initialScroll ?? "bottom";
   const messages = useSelector(state =>
     selectFormattedMessages(state, channelId)
@@ -173,9 +164,6 @@ export default function ChatMessages({ channelId, channelMessages }) {
 
   const hasMoreTop =
     channel?.firstMessageId && channel.firstMessageId !== channelMessages[0].id;
-  const hasMoreBottom =
-    channel?.lastMessageId &&
-    channel.lastMessageId !== channelMessages[channelMessages.length - 1].id;
   return (
     // <div className="ChatMessages--container" ref={scrollRef}>
     <>
@@ -215,7 +203,7 @@ export default function ChatMessages({ channelId, channelMessages }) {
                     message={message}
                     deletedMessageId={deletedMessageId}
                     deletedMessageApiLoading={deletedMessageApiLoading}
-                    Spinner2={Spinner2}
+                    Spinner={Spinner}
                   />
                 </div>
               </div>
@@ -233,7 +221,7 @@ export default function ChatMessages({ channelId, channelMessages }) {
                   message={message}
                   deletedMessageId={deletedMessageId}
                   deletedMessageApiLoading={deletedMessageApiLoading}
-                  Spinner2={Spinner2}
+                  Spinner={Spinner}
                 />
               </div>
             );

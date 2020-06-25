@@ -18,6 +18,7 @@ function ChatActions(props) {
   const sendButton = useRef();
   const draft = useSelector(state => state.chatDrafts[channelId]);
   const currentUserUsername = useSelector(state => state.self.username);
+  const apiLoading = useSelector(state => state.api.messages.loading);
 
   const handleSubmit = e => {
     if (e.keyCode === 13 && !e.shiftKey) {
@@ -26,7 +27,7 @@ function ChatActions(props) {
 
       const text = draft?.trim();
 
-      if (text && text.length > 0) {
+      if (text && text.length > 0 && !apiLoading) {
         dispatch(
           addMessage({
             id: "",

@@ -16,7 +16,7 @@ function InfiniteScroller(
     loading = false,
     onBottomView,
     onTopView,
-    hasMoreBottom = false,
+    hasMoreBottom,
     hasMoreTop = false,
     initialScroll = "top",
     children,

@@ -7,14 +7,14 @@ export default function ChatOptionsButton2({
   ownId,
   deletedMessageApiLoading,
   deletedMessageId,
-  Spinner2
+  Spinner
 }) {
   return (
     <>
       {(message.userId === ownId ||
         (channel?.type === "channel" && channel.admins?.includes(ownId))) &&
         (deletedMessageId === message.id && deletedMessageApiLoading ? (
-          <Spinner2 />
+          <Spinner />
         ) : (
           <PopupMenu
             options={[]}
