@@ -127,8 +127,8 @@ export default function App() {
             <Route exact path="/users/:userId">
               <UserPage />
             </Route>
-            <Redirect to="/channels" />
           </div>
+          <Redirect to="/channels" />
         </Switch>
       </div>
     </>
