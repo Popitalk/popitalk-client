@@ -23,7 +23,7 @@ function ChatActions(props) {
   const handleSubmit = e => {
     if (e.keyCode === 13 && !e.shiftKey) {
       e.preventDefault();
-      e.target.style.height = "52px";
+      e.target.style.height = "36px";
 
       const text = draft?.trim();
 
@@ -49,7 +49,7 @@ function ChatActions(props) {
   };
 
   const handleSend = () => {
-    textareaRef.current.style.height = "52px";
+    textareaRef.current.style.height = "36px";
     const text = draft?.trim();
 
     if (text && text.length > 0) {
@@ -73,7 +73,7 @@ function ChatActions(props) {
   };
 
   const handleChange = e => {
-    e.target.style.height = "52px";
+    e.target.style.height = "36px";
     e.target.style.height = `${Math.min(e.target.scrollHeight + 2, 168)}px`;
     dispatch(setChatDraft({ channelId, draft: e.target.value }));
   };
