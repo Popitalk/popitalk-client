@@ -10,10 +10,13 @@ export default function MiniFriendsList({
   const finalFriends = friends.slice(0, 5);
 
   return (
-    <div className="w-full overflow-auto px-4 pt-2">
+    <div className="w-full overflow-auto px-4 pt-2 pb-2">
       <div className="flex flex-wrap flex-grow justify-between md:flex-no-wrap">
         {finalFriends.map(item => (
-          <div key={item.id} className="flex-shrink-0 px-2px">
+          <div
+            key={item.id}
+            className="flex-shrink-0 px-2px transition transform ease-in-out hover:scale-110 duration-100"
+          >
             <AvatarIcon
               avatar={item.members[0].avatar}
               username={item.members[0].username}

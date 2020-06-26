@@ -98,12 +98,16 @@ export default function SiteHeaderMain({
       {!mobileMenu && (
         <div className="flex items-center justify-between">
           <Link to="/channels">
-            <img src={Logo} alt="PlayNow's logo" className="w-10 h-10" />
+            <img
+              src={Logo}
+              alt="PlayNow's logo"
+              className="transition transform ease-in-out hover:scale-110 duration-100 w-10 h-10"
+            />
           </Link>
           <ul className="items-center hidden space-x-10 md:flex">
             <li>
               <div
-                className="flex items-center p-2 transition-colors duration-50 cursor-pointer rounded-xl hover:bg-highlightBackground"
+                className="transition transform ease-in-out hover:scale-105 duration-100 flex items-center p-2 cursor-pointer rounded-xl"
                 role="button"
                 onClick={() => openProfileHandler(userID)}
               >

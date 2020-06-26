@@ -19,7 +19,7 @@ function CollapsedPanel({
       >
         <FontAwesomeIcon
           icon="bars"
-          className="cursor-pointer text-secondaryText hover:text-highlightText duration-100 fa-1x"
+          className="cursor-pointer text-secondaryText hover:text-highlightText duration-100 fa-1x transition transform ease-in-out hover:scale-110 duration-100"
         />
       </button>
       <button
@@ -27,7 +27,7 @@ function CollapsedPanel({
           selectedPage === "friends"
             ? "text-highlightText"
             : "text-secondaryButtonText"
-        } py-4 w-full flex items-center flex-col hover:text-highlightText duration-100 rounded-xl focus:outline-none`}
+        } py-4 w-full flex items-center flex-col hover:text-highlightText duration-100 rounded-xl focus:outline-none transition transform ease-in-out hover:scale-110 duration-100`}
         onClick={() => updateSelectedPage("friends")}
       >
         <FontAwesomeIcon icon="user-friends" className="fa-1x" />
@@ -38,7 +38,7 @@ function CollapsedPanel({
           selectedPage === "channels"
             ? "text-highlightText"
             : "text-secondaryButtonText"
-        } py-4 w-full flex items-center flex-col hover:text-highlightText duration-100 rounded-xl focus:outline-none`}
+        } py-4 w-full flex items-center flex-col hover:text-highlightText duration-100 rounded-xl focus:outline-none transition transform ease-in-out hover:scale-110 duration-100`}
         onClick={() => updateSelectedPage("channels")}
       >
         <FontAwesomeIcon icon="tv" className="fa-1x" />

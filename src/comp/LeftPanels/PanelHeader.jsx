@@ -11,7 +11,7 @@ export default function PanelHeader({
       <button className="p-4 ml-2 focus:outline-none" onClick={handleCollapse}>
         <FontAwesomeIcon
           icon="bars"
-          className="cursor-pointer text-secondaryText hover:text-highlightText duration-50"
+          className="cursor-pointer text-secondaryText hover:text-highlightText transition transform ease-in-out hover:scale-110 duration-100"
         />
       </button>
       <button
@@ -22,7 +22,7 @@ export default function PanelHeader({
           className={`${
             selectedPage === "channels"
               ? "text-2xl font-semibold btn-playing px-2 p-1 rounded-full shadow-inner"
-              : "text-secondaryText font-semibold text-2xl duration-50 hover:bg-secondaryBackground rounded-xl px-2 p-1"
+              : "text-secondaryText font-semibold text-2xl hover:bg-secondaryBackground rounded-xl px-2 p-1 transition transform ease-in-out hover:scale-105 duration-100"
           } `}
         >
           Channels
@@ -36,7 +36,7 @@ export default function PanelHeader({
           className={`${
             selectedPage === "friends"
               ? "text-2xl font-semibold btn-playing px-2 p-1 rounded-full shadow-inner"
-              : "text-secondaryText font-semibold text-2xl duration-50 hover:bg-secondaryBackground rounded-xl px-2 p-1"
+              : "text-secondaryText font-semibold text-2xl hover:bg-secondaryBackground rounded-xl px-2 p-1 transition transform ease-in-out hover:scale-105 duration-100"
           } `}
         >
           Friends
