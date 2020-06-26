@@ -13,7 +13,8 @@ export default function VideoSection({
   activeFriendViewers,
   status,
   inviteUsers,
-  openProfile
+  openProfile,
+  isInvitingAllowed
 }) {
   return (
     <div className="flex flex-col">
@@ -33,7 +34,7 @@ export default function VideoSection({
             {sourceChannelName}
           </p>
         </section>
-        <section className="flex flex-row items-top">
+        <section className="flex flex-row items-top mx-px mr-4">
           {activeFriendViewers.map((friend, idx) => {
             return (
               <AvatarIcon
@@ -45,13 +46,14 @@ export default function VideoSection({
               />
             );
           })}
-          <Button
-            icon="user-plus"
-            size="sm"
-            style={{ transform: "scaleX(-1)" }}
-            onClick={inviteUsers}
-            className="mx-px mr-4"
-          />
+          {isInvitingAllowed && (
+            <Button
+              icon="user-plus"
+              size="sm"
+              style={{ transform: "scaleX(-1)" }}
+              onClick={inviteUsers}
+            />
+          )}
         </section>
       </div>
     </div>

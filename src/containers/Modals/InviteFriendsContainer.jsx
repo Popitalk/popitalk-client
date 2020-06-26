@@ -58,24 +58,41 @@ export default function InviteFriendsContainer({ handleModalClose }) {
   const [selected, setSelected] = useState([]);
 
   const nameField = "username";
+  const currentRoomMembersIds = channels[channelId].members.filter(
+    id => id !== ownId
+  );
 
   const dispatch = useDispatch();
+
   const handleInviteFriends = () => {
-    const selectedFriends = selected.map(obj => obj.id);
-    dispatch(addRoomMembers({ channelId, selectedFriends }));
+    const userIds = selected.map(obj => obj.id);
+    const roomExistsIndex = rooms.findIndex(room => {
+      const memberIds = room.members.map(obj => obj.id);
+      return _.isEmpty(
+        _.xor([...userIds, ...currentRoomMembersIds], memberIds)
+      );
+    });
+
+    if (roomExistsIndex !== -1) {
+      const room = rooms[roomExistsIndex];
+      const userIds = room.members.map(obj => obj.id);
+      dispatch(openRoomExistsModal(room, userIds));
+    } else {
+      dispatch(addRoomMembers({ channelId, userIds }));
+    }
   };
+
   const handleCreateRoom = () => {
     const userIds = selected.map(obj => obj.id);
-    let roomObj = null;
-    const roomExists = rooms.some(room => {
+    const roomExistsIndex = rooms.findIndex(room => {
       const memberIds = room.members.map(obj => obj.id);
-      const roomExists = _.isEmpty(_.xor(userIds, memberIds));
-      if (roomExists) roomObj = room;
       return _.isEmpty(_.xor(userIds, memberIds));
     });
 
-    if (roomExists) {
-      dispatch(openRoomExistsModal(roomObj, userIds));
+    if (roomExistsIndex !== -1) {
+      const room = rooms[roomExistsIndex];
+      const userIds = room.members.map(obj => obj.id);
+      dispatch(openRoomExistsModal(room, userIds));
     } else {
       dispatch(createRoom(userIds));
     }

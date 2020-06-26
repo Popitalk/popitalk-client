@@ -20,7 +20,11 @@ export default function VideoPanel({ playlist, classNames }) {
   const { channelId, roomId } = useParams();
   const finalId = channelId || roomId;
   console.log("channelId from video panel", finalId);
+
   const viewerIds = useSelector(state => state.channels[finalId].members) || [];
+  const isInvitingAllowed =
+    useSelector(state => state.channels[finalId].type) === "group";
+
   console.log(
     "channelsInfo",
     useSelector(state => state.channels)
@@ -41,6 +45,7 @@ export default function VideoPanel({ playlist, classNames }) {
         activeFriendViewers={viewers}
         inviteUsers={() => dispatch(openInviteModal(finalId, false))}
         openProfile={id => dispatch(openProfileModal(id))}
+        isInvitingAllowed={isInvitingAllowed}
       />
       <QueueSection queueList={queueList} handlerChange={handlerChange} />
     </div>
