@@ -2,12 +2,7 @@ import React from "react";
 import PopupMenu from "../PopupMenu";
 import "./ChatOptionsButton.css";
 
-export default function ChatOptionsButton2({
-  message,
-  channel,
-  ownId,
-  deletedMessageApiLoading
-}) {
+export default function ChatOptionsButton2({ message, channel, ownId }) {
   const conditions = {
     isMyMessage: message.userId === ownId,
     isAdminOfChannel:
@@ -35,7 +30,7 @@ export default function ChatOptionsButton2({
             options={options}
             type="message"
             messageId={message.id}
-            disabled={deletedMessageApiLoading}
+            disabled={false}
           />
         </div>
       ) : null}

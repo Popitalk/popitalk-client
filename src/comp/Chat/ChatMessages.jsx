@@ -9,7 +9,6 @@ import {
 } from "react-use";
 import { createSelector } from "reselect";
 import {
-  openProfileModal,
   getMessages,
   getLatestMessages,
   setInitialScroll
@@ -19,13 +18,7 @@ import useHasMoreBottom from "../../containers/hooks/useHasMoreBottom";
 
 import AvatarDeck from "../AvatarDeck";
 import InfiniteScroller from "./InfiniteScroller";
-import MessageAuthorAvatar from "./MessageAuthorAvatar";
-import MessageCreatedTime from "./MessageCreatedTime";
-import MessageAuthorUsername from "./MessageAuthorUsername";
-import MessageContent from "./MessageContent";
-import MessageHighlightSpan from "./MessageHighlightSpan";
-import ChatOptionsButton2 from "./ChatOptionsButton2";
-import DateMessage from "./DateMessage";
+import ChatMessage from "./ChatMessage";
 import Spinner from "../Spinner";
 
 const seenUsers = [
@@ -180,52 +173,14 @@ export default function ChatMessages({ channelId, channelMessages }) {
         loader={Spinner}
       >
         {messages.map(message => {
-          if (message.type === "date") return <DateMessage message={message} />;
-          else if (
-            message.type === "firstMessage" ||
-            message.type === "firstLastMessage"
-          ) {
-            return (
-              <div key={message.id}>
-                <div className="flex items-center space-x-2 text-xs ml-1">
-                  <MessageAuthorAvatar
-                    defaultAvatar={defaultAvatar}
-                    message={message}
-                  />
-                  <MessageAuthorUsername username={message.username} />
-                  <MessageCreatedTime createdAt={message.createdAt} />
-                </div>
-                <div className="flex chat-options-button-parent">
-                  <MessageHighlightSpan ownId={ownId} userId={message.userId} />
-                  <MessageContent message={message} />
-                  <ChatOptionsButton2
-                    ownId={ownId}
-                    message={message}
-                    deletedMessageId={deletedMessageId}
-                    deletedMessageApiLoading={deletedMessageApiLoading}
-                    Spinner={Spinner}
-                  />
-                </div>
-              </div>
-            );
-          } else if (
-            message.type === "message" ||
-            message.type === "lastMessage"
-          ) {
-            return (
-              <div className="flex chat-options-button-parent" key={message.id}>
-                <MessageHighlightSpan ownId={ownId} userId={message.userId} />
-                <MessageContent message={message} />
-                <ChatOptionsButton2
-                  ownId={ownId}
-                  message={message}
-                  deletedMessageId={deletedMessageId}
-                  deletedMessageApiLoading={deletedMessageApiLoading}
-                  Spinner={Spinner}
-                />
-              </div>
-            );
-          }
+          return (
+            <ChatMessage
+              key={message.id}
+              message={message}
+              defaultAvatar={defaultAvatar}
+              ownId={ownId}
+            />
+          );
         })}
         {/* {!hasMoreBottom && (
           <div className="ChatMessages--seen">
