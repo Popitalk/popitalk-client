@@ -4,8 +4,8 @@ export default function MessageAuthorAvatar({ message, defaultAvatar }) {
   return (
     <img
       className="w-8 h-8 rounded-full object-cover"
-      src={message.author.avatar || defaultAvatar}
-      alt={message.author.username}
+      src={message.avatar || defaultAvatar}
+      alt={message.username}
     />
   );
 }
