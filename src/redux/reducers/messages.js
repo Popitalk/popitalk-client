@@ -61,12 +61,13 @@ const R_addMessages = (state, { payload }) => {
 };
 const R_addMessage = (state, { payload }) => {
   const { capacity, ...message } = payload;
+  const messageWithStatus = { status: "accepted", ...message };
   state.allReceived = false;
   state[payload.channelId].pop();
   if (!state[payload.channelId]) {
-    state[payload.channelId] = [message];
+    state[payload.channelId] = [messageWithStatus];
   } else if (state[payload.channelId].length < 250) {
-    state[payload.channelId].push(message);
+    state[payload.channelId].push(messageWithStatus);
 
     if (capacity === 50) {
       state[payload.channelId] = state[payload.channelId].slice(-50);
@@ -75,7 +76,7 @@ const R_addMessage = (state, { payload }) => {
 };
 const R_addPendingMessage = (state, { meta }) => {
   const tempMessage = {
-    type: "pending",
+    status: "pending",
     id: "",
     userId: "",
     channelId: meta.arg.channelId,
@@ -95,7 +96,7 @@ const R_addPendingMessage = (state, { meta }) => {
 const R_addRejectedMessage = (state, { meta }) => {
   state[meta.arg.channelId].pop();
   const tempMessage = {
-    type: "rejected",
+    status: "rejected",
     id: "",
     userId: "",
     channelId: meta.arg.channelId,

@@ -213,7 +213,7 @@ export default function ChatMessages({ channelId, channelMessages }) {
             message.type === "lastMessage"
           ) {
             return (
-              <div className="flex" key={message.id}>
+              <div className="flex chat-options-button-parent" key={message.id}>
                 <MessageHighlightSpan ownId={ownId} userId={message.userId} />
                 <MessageContent message={message} />
                 <ChatOptionsButton2
