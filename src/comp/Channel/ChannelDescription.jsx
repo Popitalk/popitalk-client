@@ -16,7 +16,8 @@ export default function ChannelDescription({
   status,
   handleFollow,
   isMember,
-  handleUnfollow
+  handleUnfollow,
+  handleListAdmins
 }) {
   return (
     <div className="flex flex-col mb-8">
@@ -72,6 +73,7 @@ export default function ChannelDescription({
                   <button
                     key={idx}
                     className={`img h-8 w-8 rounded-circle mx-px bg-primaryBackground text-xs shadow-md focus:outline-none`}
+                    onClick={handleListAdmins}
                   >{`+${totalLeft}`}</button>
                 );
               }

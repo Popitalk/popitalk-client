@@ -27,7 +27,8 @@ import {
   deleteBan,
   deletePost,
   followChannel,
-  unfollowChannel
+  unfollowChannel,
+  openFollowersModal
 } from "../../redux/actions";
 
 import {
@@ -255,6 +256,7 @@ export default function Channel({ tab, type = "channel" }) {
               handleFollow={() => handleFollow(channelId)}
               isMember={isMember}
               handleUnfollow={() => handleUnfollow(channelId)}
+              handleListAdmins={() => dispatch(openFollowersModal(channelId))}
             />
           )}
           {type === "room" && (

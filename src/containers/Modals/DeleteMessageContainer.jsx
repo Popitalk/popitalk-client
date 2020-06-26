@@ -3,9 +3,9 @@ import ModalContainer from "../../comp/Modals/ModalContainer";
 import DeleteMessageModal from "../../comp/Modals/DeleteMessageModal";
 import { generateTestMessages } from "../../stories/seed-arrays";
 
-export default function DeleteMessageContainer({ handleModalClose }) {
-  const message = { ...generateTestMessages(1)[0] };
+const message = { ...generateTestMessages(1)[0] };
 
+export default function DeleteMessageContainer({ handleModalClose }) {
   return (
     <ModalContainer
       isOpen={true}
