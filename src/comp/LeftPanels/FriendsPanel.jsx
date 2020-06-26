@@ -92,7 +92,7 @@ class FriendsPanel extends Component {
 
   render() {
     return (
-      <div className="w-full h-full flex flex-col bg-primaryBackground xl:w-84 lg:w-84 md:w-84 sm:w-84">
+      <div className="w-full h-full flex flex-col bg-primaryBackground xl:w-84 lg:w-84 md:w-84 sm:w-84 select-none">
         <PanelHeader
           handleCollapse={this.props.handleCollapse}
           updateSelectedPage={this.props.updateSelectedPage}
@@ -146,7 +146,7 @@ class FriendsPanel extends Component {
         <Button
           size="md"
           leftIcon="plus"
-          className="fixed bottom-0 left-0 ml-44 mb-4 opacity-50 hover:opacity-100"
+          className="fixed bottom-0 left-0 ml-44 mb-4 opacity-50 hover:opacity-100 transition transform ease-in-out hover:scale-110 duration-100"
           onClick={() => this.props.handleCreateRoom()}
         >
           New Room

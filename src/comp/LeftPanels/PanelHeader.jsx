@@ -7,7 +7,7 @@ export default function PanelHeader({
   selectedPage
 }) {
   return (
-    <div className="flex sticky top-0 bg-primaryBackground items-center justify-around w-full px-0 z-20">
+    <div className="flex sticky top-0 bg-primaryBackground items-center justify-around w-full px-0 z-20 select-none">
       <button className="p-4 ml-2 focus:outline-none" onClick={handleCollapse}>
         <FontAwesomeIcon
           icon="bars"

@@ -94,7 +94,7 @@ export default function SiteHeaderMain({
     dropdownList.length > 0 ? dropdownList[dropdownList.length - 1] : 0;
 
   return (
-    <header className="relative flex flex-col px-6 bg-primaryBackground">
+    <header className="relative flex flex-col px-6 bg-primaryBackground select-none">
       {!mobileMenu && (
         <div className="flex items-center justify-between">
           <Link to="/channels">
