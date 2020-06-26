@@ -20,6 +20,17 @@ import CreateChannelContainer from "../containers/CreateChannelContainer";
 import { channelsList, friendsList } from "../stories/seed-arrays";
 import Channel from "../containers/Channel/index";
 
+const RouteWrapper = ({ leftPanel, children }) => {
+  return (
+    <div className="flex flex-row h-full overflow-auto">
+      <div className="flex-grow md:overflow-auto md:flex-shrink-0">
+        {leftPanel}
+      </div>
+      {children}
+    </div>
+  );
+};
+
 export default function App() {
   const validatedSession = useSelector(state => state.general.validatedSession);
   const loggedIn = useSelector(state => state.general.loggedIn);
@@ -59,7 +70,6 @@ export default function App() {
     <CreateNewAccountContainer component={AnonymousSidebar} />
   );
 
-  const pageClasses = "w-full overflow-auto";
   const searchClasses = `${
     isCollapsed ? "block" : "hidden"
   } flex-grow md:block overflow-auto w-full select-none`;
@@ -77,58 +87,66 @@ export default function App() {
               <CreateNewAccountContainer component={WelcomePage} />
             </div>
           </Route>
-          <div className="flex flex-row h-full overflow-auto">
-            <div className="flex-grow md:overflow-auto md:flex-shrink-0">
-              {leftPanel}
-            </div>
-            <Route exact path="/create">
+          <Route exact path="/create">
+            <RouteWrapper leftPanel={leftPanel}>
               <div className="flex justify-center p-5 bg-secondaryBackground w-full overflow-auto select-none">
                 <CreateChannelContainer />
               </div>
-            </Route>
-            <Route exact path="/channels/:channelId/video">
-              {/* <div className={pageClasses}> */}
+            </RouteWrapper>
+          </Route>
+          <Route exact path="/channels/:channelId/video">
+            <RouteWrapper leftPanel={leftPanel}>
               <Channel tab="video" />
-              {/* </div> */}
               {chatPanel}
-            </Route>
-            <Route exact path="/channels/:channelId/channel">
-              {/* <div className={pageClasses}> */}
+            </RouteWrapper>
+          </Route>
+          <Route exact path="/channels/:channelId/channel">
+            <RouteWrapper leftPanel={leftPanel}>
               <Channel tab="channel" />
-              {/* </div> */}
               {chatPanel}
-            </Route>
-
-            <Route exact path="/channels/:channelId/queue">
-              <div className={pageClasses}>
+            </RouteWrapper>
+          </Route>
+          <Route exact path="/channels/:channelId/queue">
+            <RouteWrapper leftPanel={leftPanel}>
+              <div className={searchClasses}>
                 <Channel tab="queue" />
               </div>
               {chatPanel}
-            </Route>
-            <Route exact path="/channels/:channelId/settings">
+            </RouteWrapper>
+          </Route>
+          <Route exact path="/channels/:channelId/settings">
+            <RouteWrapper leftPanel={leftPanel}>
               <Channel tab="settings" />
-            </Route>
-            <Route exact path="/rooms/:roomId/video">
-              <div className={pageClasses}>
+            </RouteWrapper>
+          </Route>
+          <Route exact path="/rooms/:roomId/video">
+            <RouteWrapper leftPanel={leftPanel}>
+              <div className={searchClasses}>
                 <Channel tab="video" type="room" />
               </div>
               {chatPanel}
-            </Route>
-            <Route exact path="/channels">
+            </RouteWrapper>
+          </Route>
+          <Route exact path="/channels">
+            <RouteWrapper leftPanel={leftPanel}>
               <div className={searchClasses}>
                 <RecommendedView list={channelsList} selectedPage="channels" />
               </div>
-            </Route>
-            <Route exact path="/friends">
+            </RouteWrapper>
+          </Route>
+          <Route exact path="/friends">
+            <RouteWrapper leftPanel={leftPanel}>
               <div className={searchClasses}>
                 <RecommendedView list={friendsList} selectedPage="friends" />
               </div>
-            </Route>
-            <Route exact path="/users/:userId">
+            </RouteWrapper>
+          </Route>
+          <Route exact path="/users/:userId">
+            <RouteWrapper leftPanel={leftPanel}>
               <UserPage />
-            </Route>
-            <Redirect to="/channels" />
-          </div>
+            </RouteWrapper>
+          </Route>
+          <Redirect to="/channels" />
         </Switch>
       </div>
     </>

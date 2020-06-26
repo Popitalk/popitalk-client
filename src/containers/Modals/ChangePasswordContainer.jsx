@@ -17,7 +17,7 @@ export default function ChangePasswordContainer({ handleModalClose }) {
   return (
     <ModalContainer
       isOpen={true}
-      small={true}
+      width="sm"
       handleModalClose={closeModalAndClearError}
       header={<ContainerHeader title="Change Password" />}
     >

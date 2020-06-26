@@ -66,7 +66,7 @@ export default function PopupMenu({
             );
             return (
               <p
-                key={option.name}
+                key={index}
                 onClick={() => optionHandler(option.handler)}
                 className={optionClasses}
                 role="button"

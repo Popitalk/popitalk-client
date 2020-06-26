@@ -105,7 +105,7 @@ export const ChangePasswordModalTest = () => {
   return (
     <ModalContainer
       isOpen={true}
-      small={true}
+      width="sm"
       header={
         <ContainerHeader title="Change Password" handleBack={handleBack} />
       }
@@ -119,7 +119,7 @@ export const ForgotPasswordModalTest = () => {
   return (
     <ModalContainer
       isOpen={true}
-      small={true}
+      width="sm"
       header={<ContainerHeader title="Forgot Password" />}
     >
       <ForgotPasswordModal confirmEmailSent={true} />
@@ -139,7 +139,7 @@ export const RoomExistsModalTest = () => {
   const room = generateTestRooms(1, true)[0];
 
   return (
-    <ModalContainer isOpen={true} background="gray" small={true}>
+    <ModalContainer isOpen={true} background="gray" width="sm">
       <RoomExistsModal
         room={room}
         openRoomHandler={openRoomHandler}
@@ -162,7 +162,7 @@ export const DeleteMessageModalTest = () => {
   message.me = true;
 
   return (
-    <ModalContainer isOpen={true} small={true}>
+    <ModalContainer isOpen={true} width="md">
       <DeleteMessageModal
         message={message}
         handleCancel={handleCancel}
@@ -174,7 +174,7 @@ export const DeleteMessageModalTest = () => {
 
 export const InviteModalTest = () => {
   return (
-    <ModalContainer isOpen={true} small={true}>
+    <ModalContainer isOpen={true} width="sm">
       <div className="p-4">
         <InviteForm link="https://popitalk.com" />
       </div>
@@ -192,7 +192,7 @@ export const WatchModalTest = () => {
   return (
     <ModalContainer
       isOpen={true}
-      fixedFullSize={true}
+      fixedFullHeight={true}
       header={
         <SearchHeader
           title="Watch"
@@ -227,7 +227,7 @@ export const ShareModalTest = () => {
   return (
     <ModalContainer
       isOpen={true}
-      fixedFullSize={true}
+      fixedFullHeight={true}
       header={
         <SearchHeader
           title="Share"
@@ -269,8 +269,8 @@ export const NewRoomModalTest = () => {
   return (
     <ModalContainer
       isOpen={true}
-      small={true}
-      fixedFullSize={true}
+      width="sm"
+      fixedFullHeight={true}
       header={
         <SearchHeader
           title="Select Friends to Invite"
@@ -306,8 +306,8 @@ export const UnblockUsersModalTest = () => {
   return (
     <ModalContainer
       isOpen={true}
-      small={true}
-      fixedFullSize={true}
+      width="sm"
+      fixedFullHeight={true}
       header={
         <SearchHeader
           title="Blocked Users"
@@ -333,8 +333,8 @@ export const FollowersModalTest = () => {
   return (
     <ModalContainer
       isOpen={true}
-      small={true}
-      fixedFullSize={true}
+      width="sm"
+      fixedFullHeight={true}
       header={
         <SearchHeader
           title="Following"

@@ -150,7 +150,7 @@ module.exports = {
       },
       width: {
         dropdown: "24rem",
-        deleteMessageModal: "36rem"
+        modal: "36rem"
       },
       height: {
         chatBox: "27rem",

@@ -15,8 +15,8 @@ export default function ListUsersContainer({ handleModalClose }) {
   return (
     <ModalContainer
       isOpen={true}
-      small={true}
-      fixedFullSize={true}
+      width="sm"
+      fixedFullHeight={true}
       handleModalClose={handleModalClose}
       header={
         <SearchHeader

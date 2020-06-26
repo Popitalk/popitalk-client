@@ -7,28 +7,26 @@ Modal.setAppElement("#root");
 
 export default function ModalContainer({
   isOpen,
-  small,
-  fixedFullSize,
+  width = "lg",
+  fixedFullHeight,
   handleModalClose,
   background = "white",
   header,
-  children,
-  modalOwnClasses
+  children
 }) {
-  const modalClasses = modalOwnClasses
-    ? modalOwnClasses
-    : classnames("rounded-xl shadow-xl outline-none", {
-        "bg-primaryBackground": background === "white",
-        "bg-secondaryBackground": background === "gray",
-        "w-full sm:w-dropdown": small,
-        "w-full md:w-3/4 lg:w-1/2": !small
-      });
+  const modalClasses = classnames("rounded-xl shadow-xl outline-none", {
+    "bg-primaryBackground": background === "white",
+    "bg-secondaryBackground": background === "gray",
+    "w-full sm:w-dropdown": width === "sm",
+    "w-full sm:w-modal": width === "md",
+    "w-full md:w-3/4 lg:w-1/2": width === "lg"
+  });
 
   // h-75vh to support all screen heights
   const contentClasses = classnames(
     "h-75vh flex flex-col items-stretch overflow-hidden",
     {
-      "h-modalFull": fixedFullSize,
+      "h-modalFull": fixedFullHeight,
       "rounded-xl": !header,
       "rounded-b-xl": header
     }

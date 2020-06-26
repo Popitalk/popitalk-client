@@ -23,7 +23,7 @@ export default function RoomExistsContainer({ handleModalClose }) {
   return (
     <ModalContainer
       isOpen={true}
-      small={true}
+      width="sm"
       handleModalClose={handleModalClose}
     >
       <RoomExistsModal
