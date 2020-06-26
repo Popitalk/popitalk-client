@@ -114,7 +114,10 @@ const R_addRejectedMessage = (state, { meta }) => {
   }
 };
 const R_deleteMessage = (state, { payload }) => {
-  if (state[payload.channelId] && payload.type === void undefined) {
+  if (
+    (state[payload.channelId] && payload.status === void undefined) ||
+    payload.status === "accepted"
+  ) {
     state[payload.channelId] = state[payload.channelId].filter(
       message => message.id !== payload.id
     );

@@ -139,7 +139,7 @@ export default function ChatMessages({ channelId, channelMessages }) {
     dispatch(
       getMessages({
         channelId: channelId,
-        beforeMessageId: channelMessages[0].id
+        beforeMessageId: channelMessages[0]?.id
       })
     );
   };
@@ -156,7 +156,8 @@ export default function ChatMessages({ channelId, channelMessages }) {
   };
 
   const hasMoreTop =
-    channel?.firstMessageId && channel.firstMessageId !== channelMessages[0].id;
+    channel?.firstMessageId &&
+    channel.firstMessageId !== channelMessages[0]?.id;
   return (
     // <div className="ChatMessages--container" ref={scrollRef}>
     <>

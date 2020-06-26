@@ -5,7 +5,7 @@ export default function useScrollDivOnLoad(channel, channelMessages) {
   useEffect(() => {
     if (
       channel?.lastMessageId &&
-      channel.lastMessageId !== channelMessages[channelMessages.length - 1].id
+      channel?.lastMessageId !== channelMessages[channelMessages.length - 1]?.id
     ) {
       setHasMoreBottom(true);
     }
