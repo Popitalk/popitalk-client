@@ -1,99 +1,56 @@
 import React, { useState } from "react";
-import ChatOptionsButton from "./ChatOptionsButton";
 import MessageAuthorAvatar from "./MessageAuthorAvatar";
-import MessageAuthorUsername from "./MessageAuthorUsername";
 import MessageCreatedTime from "./MessageCreatedTime";
-import MessageHighlightSpan from "./MessageHighlightSpan";
+import MessageAuthorUsername from "./MessageAuthorUsername";
 import MessageContent from "./MessageContent";
+import MessageHighlightSpan from "./MessageHighlightSpan";
+import ChatOptionsButton2 from "./ChatOptionsButton2";
+import DateMessage from "./DateMessage";
 
-export default function ChatMessage({
-  message,
-  previousMessage,
-  handleResend,
-  handleDelete,
-  defaultAvatar
-}) {
+export default function ChatMessage({ message, ownId, defaultAvatar }) {
   const [isClicked, setIsClicked] = useState(false);
-  // Variable that controls the interval between messages fusing
-  const messageFuseTime = 30000;
-  const conditions = {
-    // Checks if a message is the first one, or messageFuseTime is
-    //less than the time that passed between previous or current massage, or if the author is different.
-    unfusedMessage:
-      !previousMessage ||
-      new Date(message.createdAt) - new Date(previousMessage.createdAt) >
-        messageFuseTime ||
-      message.author.id !== previousMessage.author.id,
-    // Checks if you are the author of the message,
-    // if handleresend and delete methods are defined
-    // if message type is other than accepted.
-    displayButton:
-      message.author.username === message.me &&
-      (handleResend || handleDelete) &&
-      (message?.type === void undefined ||
-        message?.type?.toLowerCase() === "rejected"),
-    // Check if message is of type 'rejected'
-    messageAccepted: message?.type === void undefined,
-    messageRejected: message?.type?.toLowerCase() === "rejected",
-    messagePending: message?.type?.toLowerCase() === "pending"
-  };
-
-  if (conditions.unfusedMessage) {
+  if (message.type === "date") return <DateMessage message={message} />;
+  else if (
+    message.type === "firstMessage" ||
+    message.type === "firstLastMessage"
+  ) {
     return (
-      <div className="flex flex-col mt-4 mx-2">
+      <div key={message.id}>
         <div className="flex items-center space-x-2 text-xs ml-1">
           <MessageAuthorAvatar
-            message={message}
             defaultAvatar={defaultAvatar}
+            message={message}
           />
-          <MessageAuthorUsername username={message.author.username} />
+          <MessageAuthorUsername username={message.username} />
           <MessageCreatedTime createdAt={message.createdAt} />
         </div>
-        <div className="flex mt-1 flex-around bg:primaryBackground hover:bg-secondaryBackground rounded-md cursor-pointer chat-options-button-parent">
-          <span className="flex justify-center">
-            <MessageHighlightSpan
-              me={message.me}
-              username={message.author.username}
-            />
-          </span>
+        <div className="flex mx-2 chat-options-button-parent">
+          <MessageHighlightSpan ownId={ownId} userId={message.userId} />
           <MessageContent message={message} />
-          <ChatOptionsButton
-            handleDelete={handleDelete}
-            handleResend={handleResend}
-            conditions={conditions}
-            message={message}
-          />
+          <ChatOptionsButton2 ownId={ownId} message={message} />
         </div>
       </div>
     );
-  } else {
+  } else if (message.type === "message" || message.type === "lastMessage") {
     return (
-      <div
-        role="button"
-        onClick={() => setIsClicked(!isClicked)}
-        className="flex flex-col mx-2 bg-primaryBackground hover:bg-secondaryBackground rounded-md"
-      >
+      <React.Fragment>
         {isClicked ? (
           <div className="flex items-center space-x-2 text-xs ml-3 p-1">
             <MessageCreatedTime createdAt={message.createdAt} />
           </div>
         ) : null}
-        <div className="flex flex-around chat-options-button-parent">
-          <span className="flex justify-center">
-            <MessageHighlightSpan
-              me={message.me}
-              username={message.author.username}
-            />
-          </span>
+        <div
+          role="button"
+          onClick={() => setIsClicked(!isClicked)}
+          className="flex mx-2 bg-primaryBackground hover:bg-secondaryBackground rounded-md chat-options-button-parent"
+          key={message.id}
+        >
+          <MessageHighlightSpan ownId={ownId} userId={message.userId} />
+
           <MessageContent message={message} />
-          <ChatOptionsButton
-            handleDelete={handleDelete}
-            handleResend={handleResend}
-            conditions={conditions}
-            message={message}
-          />
+          <ChatOptionsButton2 ownId={ownId} message={message} />
         </div>
-      </div>
+      </React.Fragment>
     );
   }
 }
