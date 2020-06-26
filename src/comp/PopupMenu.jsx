@@ -20,7 +20,6 @@ export default function PopupMenu({
   });
 
   const optionHandler = handler => {
-    console.log(handler);
     handler(id);
     setOpen(false);
   };
@@ -31,7 +30,7 @@ export default function PopupMenu({
   };
 
   const containerClasses = classnames(
-    "group flex items-center justify-center w-4 relative chat-options-button opacity-0 px-3",
+    "group flex items-center justify-center w-4 relative",
     {
       [className]: className
     }
