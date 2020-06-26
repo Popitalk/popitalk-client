@@ -72,6 +72,16 @@ function ChatActions(props) {
     }
   };
 
+  useEffect(() => {
+    dispatch(
+      setChatDraft({
+        channelId,
+        draft: `${(draft ? draft : "") + chosenEmoji}`
+      })
+    );
+    setChosenEmoji("");
+  }, [channelId, chosenEmoji, dispatch, draft]);
+
   const handleChange = e => {
     e.target.style.height = "36px";
     e.target.style.height = `${Math.min(e.target.scrollHeight + 2, 168)}px`;
@@ -80,7 +90,7 @@ function ChatActions(props) {
 
   const onEmojiClick = (event, emojiObject) => {
     setChosenEmoji(emojiObject.emoji);
-    setEmojiIsOpen(true);
+    setEmojiIsOpen(false);
   };
 
   return (
