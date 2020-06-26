@@ -2,12 +2,33 @@ import React from "react";
 import PopupMenu from "../PopupMenu";
 import "./ChatOptionsButton.css";
 import { withRouter } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addMessage, deleteMessage } from "../../redux/actions";
 
 function ChatOptionsButton2({ message, channel, ownId, match }) {
   const dispatch = useDispatch();
+  const currentUserUsername = useSelector(state => state.self.username);
+  const apiLoading = useSelector(state => state.api.addMessage.loading);
   const channelId = match.params.roomId || match.params.channelId;
+  const handleSend = text => {
+    if (text && text.length > 0 && !apiLoading) {
+      dispatch(
+        addMessage({
+          id: "",
+          userId: "",
+          channelId,
+          content: text,
+          upload: null,
+          createdAt: Date.now(),
+          author: {
+            id: "",
+            username: currentUserUsername,
+            avatar: null
+          }
+        })
+      );
+    }
+  };
   const handleDelete = ({ status, id }) => {
     dispatch(deleteMessage({ status, id, channelId }));
   };
@@ -29,7 +50,7 @@ function ChatOptionsButton2({ message, channel, ownId, match }) {
     },
     conditions.messageRejected && {
       name: "Resend",
-      handler: () => console.log("Message Deleted"),
+      handler: () => handleSend(message.content),
       danger: false
     }
   ];
