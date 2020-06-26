@@ -62,7 +62,7 @@ export default function App() {
   const pageClasses = "w-full overflow-auto";
   const searchClasses = `${
     isCollapsed ? "block" : "hidden"
-  } flex-grow md:block overflow-auto w-full`;
+  } flex-grow md:block overflow-auto w-full select-none`;
 
   return (
     <>
@@ -82,7 +82,7 @@ export default function App() {
               {leftPanel}
             </div>
             <Route exact path="/create">
-              <div className="flex justify-center p-5 bg-secondaryBackground w-full overflow-auto">
+              <div className="flex justify-center p-5 bg-secondaryBackground w-full overflow-auto select-none">
                 <CreateChannelContainer />
               </div>
             </Route>
