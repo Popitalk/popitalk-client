@@ -53,5 +53,6 @@ export default createReducer(initialState, {
   [deleteAccount.fulfilled]: R_closeAllModals,
   [deleteChannel.fulfilled]: R_closeAllModals,
   [createRoom.fulfilled]: R_closeModal,
-  [addRoomMembers.fulfilled]: R_closeModal
+  [addRoomMembers.fulfilled]: R_closeModal,
+  [deleteMessage.fulfilled]: R_closeModal
 });

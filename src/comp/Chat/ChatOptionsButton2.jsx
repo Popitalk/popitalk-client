@@ -3,7 +3,7 @@ import PopupMenu from "../PopupMenu";
 import "./ChatOptionsButton.css";
 import { withRouter } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { addMessage, deleteMessage } from "../../redux/actions";
+import { addMessage, openDeleteMessageModal } from "../../redux/actions";
 
 function ChatOptionsButton2({ message, channel, ownId, match }) {
   const dispatch = useDispatch();
@@ -29,9 +29,7 @@ function ChatOptionsButton2({ message, channel, ownId, match }) {
       );
     }
   };
-  const handleDelete = ({ status, id }) => {
-    dispatch(deleteMessage({ status, id, channelId }));
-  };
+
   const conditions = {
     isMyMessage: message.userId === ownId,
     isAdminOfChannel:
@@ -45,7 +43,8 @@ function ChatOptionsButton2({ message, channel, ownId, match }) {
   const options = [
     (conditions.messageAccepted || conditions.messageRejected) && {
       name: "Delete",
-      handler: () => handleDelete({ status: message.status, id: message.id }),
+      handler: () =>
+        dispatch(openDeleteMessageModal({ channelId, messageId: message.id })),
       danger: false
     },
     conditions.messageRejected && {

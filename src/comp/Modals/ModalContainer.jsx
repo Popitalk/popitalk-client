@@ -12,14 +12,17 @@ export default function ModalContainer({
   handleModalClose,
   background = "white",
   header,
-  children
+  children,
+  modalOwnClasses
 }) {
-  const modalClasses = classnames("rounded-xl shadow-xl outline-none", {
-    "bg-primaryBackground": background === "white",
-    "bg-secondaryBackground": background === "gray",
-    "w-full sm:w-dropdown": small,
-    "w-full md:w-3/4 lg:w-1/2": !small
-  });
+  const modalClasses = modalOwnClasses
+    ? modalOwnClasses
+    : classnames("rounded-xl shadow-xl outline-none", {
+        "bg-primaryBackground": background === "white",
+        "bg-secondaryBackground": background === "gray",
+        "w-full sm:w-dropdown": small,
+        "w-full md:w-3/4 lg:w-1/2": !small
+      });
 
   // h-75vh to support all screen heights
   const contentClasses = classnames(
