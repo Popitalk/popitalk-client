@@ -195,7 +195,7 @@ export default function ChatMessages({ channelId, channelMessages }) {
                   <MessageAuthorUsername username={message.username} />
                   <MessageCreatedTime createdAt={message.createdAt} />
                 </div>
-                <div className="flex">
+                <div className="flex chat-options-button-parent">
                   <MessageHighlightSpan ownId={ownId} userId={message.userId} />
                   <MessageContent message={message} />
                   <ChatOptionsButton2
