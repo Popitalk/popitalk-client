@@ -2,11 +2,16 @@ import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import PropTypes from "prop-types";
 import ChannelsList from "../InfoCardLists/ChannelsList";
+import RoomsList from "../InfoCardLists/RoomsList";
+import AvatarIcon from "../InfoCards/AvatarIcon";
+import moment from "moment";
+import RoomIcon from "../RoomIcon";
+import InfoCard from "../InfoCards/InfoCard";
 
 function CollapsedPanel({
-  channels,
+  rooms,
   selected,
-  handleSelect,
+  handleSelectRoom,
   handleCollapse,
   selectedPage,
   updateSelectedPage
@@ -45,12 +50,32 @@ function CollapsedPanel({
         <h3 className="text-xs p-1">Channels</h3>
       </button>
       <div className="flex flex-col w-full items-center mr-0">
-        <ChannelsList
-          channels={channels}
-          selected={selected}
-          handleSelect={handleSelect}
-          fullHeight={true}
-        />
+        {rooms.map(room => {
+          const images = room.members.map(m => m.avatar);
+
+          const roomIcon = (
+            <RoomIcon
+              images={images}
+              self={room.type === "self"}
+              online={room.online}
+              watching={room.watching}
+              notifications={room.notifications}
+              size="lg"
+            />
+          );
+          return (
+            <div
+              key={room.id}
+              className={`flex-shrink-0 transition transform ease-in-out
+                hover:scale-110 duration-100 m-2 rounded-lg
+                ${selected === room.id && "bg-highlightBackground"}`}
+              onClick={() => handleSelectRoom(room.id)}
+              role="button"
+            >
+              {roomIcon}
+            </div>
+          );
+        })}
       </div>
     </div>
   );

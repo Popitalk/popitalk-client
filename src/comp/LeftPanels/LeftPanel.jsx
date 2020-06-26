@@ -68,9 +68,9 @@ export default function LeftPanel({
       </div>
       <div className={`block ${isCollapsed ? "md:block" : "hidden"} h-full`}>
         <CollapsedPanel
-          channels={channels}
+          rooms={roomsResults}
           selected={selected}
-          handleSelect={handleSelectChannel}
+          handleSelectRoom={handleSelectRoom}
           handleCollapse={handleCollapse}
           selectedPage={selectedPage}
           updateSelectedPage={updateSelectedPage}
