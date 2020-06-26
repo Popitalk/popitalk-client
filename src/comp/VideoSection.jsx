@@ -42,7 +42,7 @@ export default function VideoSection({
                 username={friend.name}
                 avatar={friend.avatar}
                 imageClick={() => openProfile(friend.id)}
-                className="img h-8 w-8 rounded-circle mx-px"
+                className="img h-8 w-8 rounded-circle mx-px transition transform ease-in-out hover:scale-110 duration-100"
               />
             );
           })}
