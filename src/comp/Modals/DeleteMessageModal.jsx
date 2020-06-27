@@ -10,28 +10,27 @@ export default function DeleteMessageModal({
   handleDelete
 }) {
   return (
-    <div className="px-8 py-4">
-      <p>Delete message</p>
-      <p>Are you sure you want to delete this message?</p>
-      <ChatMessage
-        message={message}
-        ownId={ownId}
-        defaultAvatar={defaultAvatar}
-      />
-      <div className="flex justify-end items-center">
+    <div className="px-8 py-6 space-y-2">
+      <p className="text-lg font-bold text-primaryText">Delete message</p>
+      <p className="text-sm text-secondaryText pb-4">
+        Are you sure you want to delete this message?
+      </p>
+      <div className="pointer-events-none">
+        <ChatMessage
+          message={message}
+          ownId={ownId}
+          defaultAvatar={defaultAvatar}
+        />
+      </div>
+      <div className="flex justify-end items-center pt-8">
         <span
           role="button"
-          className="text-secondaryText text-sm font-semibold pr-8"
+          className="text-secondaryText text-md pr-8"
           onClick={handleCancel}
         >
           Cancel
         </span>
-        <Button
-          background="cancel"
-          shape="pill"
-          size="sm"
-          onClick={handleDelete}
-        >
+        <Button background="cancel" size="md" onClick={handleDelete}>
           Delete
         </Button>
       </div>

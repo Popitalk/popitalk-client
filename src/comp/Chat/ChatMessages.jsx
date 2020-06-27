@@ -32,8 +32,8 @@ const OldMessagesAlert = ({ onClick }) => (
     role="button"
     onClick={onClick}
   >
-    <p> This is the start of the chat!</p>
-    <p>Jump To Present ▼</p>
+    {/* <p> This is the start of the chat!</p>
+    <p>Jump To Present ▼</p> */}
   </div>
 );
 
@@ -162,7 +162,7 @@ export default function ChatMessages({ channelId, channelMessages }) {
     // <div className="ChatMessages--container" ref={scrollRef}>
     <>
       <InfiniteScroller
-        className="overflow-auto h-full mt-1"
+        className="overflow-auto h-full mt-1 pb-4"
         ref={containerRef}
         onTopView={onTopView}
         hasMoreTop={hasMoreTop}

@@ -98,7 +98,7 @@ function ChatActions(props) {
       <div className="flex items-center pt-1 space-x-1 md:space-x-2 mx-2">
         <button
           onClick={() => setEmojiIsOpen(!emojiIsOpen)}
-          className="w-10 h-10 p-2 text-center rounded-full bg-secondaryBackground hover:bg-highlightBackground focus:outline-none"
+          className="w-10 h-10 p-2 text-center rounded-full bg-secondaryBackground hover:bg-highlightBackground focus:outline-none transition transform ease-in-out hover:scale-110 duration-100"
         >
           <FontAwesomeIcon
             icon={["far", "smile"]}
@@ -113,7 +113,7 @@ function ChatActions(props) {
           </div>
         ) : null}
         <textarea
-          className="w-full h-10 p-2 pl-4 overflow-hidden rounded-lg resize-none bg-secondaryBackground focus:outline-none text-primaryText text-sm"
+          className="w-full h-10 p-2 pl-4 overflow-hidden rounded-lg resize-none bg-secondaryBackground focus:outline-none text-primaryText text-sm transition transform ease-in-out hover:scale-105 duration-100"
           placeholder="Type a message..."
           value={draft || ""}
           maxLength="240"
@@ -122,7 +122,7 @@ function ChatActions(props) {
           onChange={handleChange}
         />
         {/* REPLACE IMAGE PICKER -> GIF PICKER */}
-        <div className="w-10 h-10 p-2 text-center rounded-full bg-secondaryBackground hover:bg-highlightBackground">
+        <div className="w-10 h-10 p-2 text-center rounded-full bg-secondaryBackground hover:bg-highlightBackground transition transform ease-in-out hover:scale-110 duration-100">
           <FontAwesomeIcon
             icon={["far", "images"]}
             className="cursor-pointer text-highlightText"
@@ -132,7 +132,7 @@ function ChatActions(props) {
         <button
           onClick={handleSend}
           ref={sendButton}
-          className="font-bold text-highlightText pr-2 text-sm focus:outline-none"
+          className="font-bold text-highlightText pr-2 text-sm focus:outline-none transition transform ease-in-out hover:scale-110 duration-100"
         >
           Send
         </button>

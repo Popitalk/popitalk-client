@@ -16,12 +16,14 @@ export default function ChatMessage({ message, ownId, defaultAvatar }) {
   ) {
     return (
       <div key={message.id}>
-        <div className="flex items-center space-x-2 text-xs ml-1">
-          <MessageAuthorAvatar
-            defaultAvatar={defaultAvatar}
-            message={message}
-          />
-          <MessageAuthorUsername username={message.username} />
+        <div className="flex items-center space-x-2 text-xs ml-2 mt-4 mb-2">
+          <div className="flex transition transform ease-in-out hover:scale-105 duration-100 items-center space-x-2 cursor-pointer select-none">
+            <MessageAuthorAvatar
+              defaultAvatar={defaultAvatar}
+              message={message}
+            />
+            <MessageAuthorUsername username={message.username} />
+          </div>
           <MessageCreatedTime createdAt={message.createdAt} />
         </div>
         <div className="flex mx-2 chat-options-button-parent">
@@ -35,7 +37,7 @@ export default function ChatMessage({ message, ownId, defaultAvatar }) {
     return (
       <React.Fragment>
         {isClicked ? (
-          <div className="flex items-center space-x-2 text-xs ml-3 p-1">
+          <div className="flex items-center space-x-2 text-xs ml-4 p-1">
             <MessageCreatedTime createdAt={message.createdAt} />
           </div>
         ) : null}

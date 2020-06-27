@@ -15,7 +15,7 @@ export default function ChatPanel({ channelId, channelMessages }) {
           This is the start of the chat!
         </h1>
       )}
-      <div className="h-8"></div>
+      <div className="h-0"></div>
       <ChatActions />
     </div>
   );
