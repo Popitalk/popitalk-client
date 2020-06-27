@@ -55,9 +55,13 @@ export default function ChannelPost({
   // console.log("ownId", ownId, "authorId", authorId);
   return (
     <>
-      <div className="flex flex-col rounded-lg shadow pl-8 pr-4 py-4 bg-primaryBackground mt-8">
+      <div
+        className="flex flex-col rounded-lg shadow px-8 py-4 bg-primaryBackground mt-8 hover:shadow-md cursor-pointer"
+        onClick={handleComment}
+        role="button"
+      >
         <div className="flex justify-between relative">
-          <header className="flex">
+          <header className="flex transition transform ease-in-out hover:scale-105 duration-100">
             <AvatarIcon
               avatar={avatar}
               username={name}
