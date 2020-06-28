@@ -17,7 +17,7 @@ import {
   MODAL_INVITE,
   MODAL_ROOM_EXISTS,
   MODAL_DELETE_MESSAGE,
-  MODAL_FOLLOWERS
+  MODAL_LIST
 } from "../../helpers/constants";
 
 const ModalComponents = {
@@ -28,7 +28,7 @@ const ModalComponents = {
   [MODAL_INVITE]: InviteFriendsContainer,
   [MODAL_ROOM_EXISTS]: RoomExistsContainer,
   [MODAL_DELETE_MESSAGE]: DeleteMessageContainer,
-  [MODAL_FOLLOWERS]: ListUsersContainer
+  [MODAL_LIST]: ListUsersContainer
 };
 
 export default function ModalManager() {

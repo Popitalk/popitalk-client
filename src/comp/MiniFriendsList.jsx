@@ -21,6 +21,7 @@ export default function MiniFriendsList({
               avatar={item.members[0].avatar}
               username={item.members[0].username}
               imageClick={() => handleSelectRoom(item.id)}
+              tooltip={item.members.map(m => m.username).join()}
             />
           </div>
         ))}

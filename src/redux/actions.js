@@ -15,6 +15,7 @@ import {
   MODAL_WATCHING,
   MODAL_MEMBERS,
   MODAL_FOLLOWERS,
+  MODAL_LIST,
   MODAL_USER_SETTINGS,
   MODAL_EDIT_USER_SETTINGS,
   MODAL_CHANGE_PASSWORD,
@@ -708,6 +709,12 @@ export const openWatchingModal = createAction("modal/open", () => ({
 export const openFollowersModal = createAction("modal/open", channelId => ({
   payload: { component: MODAL_FOLLOWERS, channelId }
 }));
+export const openListModal = createAction(
+  "modal/open",
+  (channelId, content) => ({
+    payload: { component: MODAL_LIST, channelId, content }
+  })
+);
 export const openImageModal = createAction("modal/open", () => ({
   payload: { component: MODAL_IMAGE }
 }));

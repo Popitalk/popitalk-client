@@ -1,16 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import sortBy from "lodash/sortBy";
-
-import {
-  Link,
-  Switch,
-  Route,
-  useRouteMatch,
-  useLocation,
-  useHistory,
-  useParams
-} from "react-router-dom";
+import { useParams } from "react-router-dom";
 import {
   getChannel,
   setPostDraft,
@@ -28,14 +19,9 @@ import {
   deletePost,
   followChannel,
   unfollowChannel,
-  openFollowersModal
+  openListModal
 } from "../../redux/actions";
-
-import {
-  testQueue,
-  testUserMinimal,
-  testResult
-} from "../../stories/seed-arrays";
+import { testQueue, testResult } from "../../stories/seed-arrays";
 import ChannelHeader from "../../comp/ChannelHeader";
 import VideoPanel from "./VideoPanel";
 import ForumPanel from "./ForumPanel";
@@ -60,6 +46,9 @@ export default function Channel({ tab, type = "channel" }) {
     state => state.self
   );
   const users = useSelector(state => state.users);
+
+  let adminList = useSelector(state => state.channels[channelId]?.admins);
+  if (adminList) adminList = mapIdsToUsers(adminList, users, defaultAvatar);
 
   const comments = useSelector(state => state.comments);
 
@@ -180,6 +169,10 @@ export default function Channel({ tab, type = "channel" }) {
     dispatch(unfollowChannel(channelId));
   };
 
+  const openAdminsList = channelId => {
+    dispatch(openListModal(channelId, "admins"));
+  };
+
   useEffect(() => {
     if (channel && !channel?.loaded) {
       dispatch(getChannel(channelId));
@@ -241,7 +234,7 @@ export default function Channel({ tab, type = "channel" }) {
               name={channel.name}
               description={channel.description}
               icon={channel.icon || defaultIcon}
-              adminList={[...testUserMinimal, ...testUserMinimal]}
+              adminList={adminList}
               status="playing"
               comments={comments}
               posts={posts}
@@ -256,7 +249,7 @@ export default function Channel({ tab, type = "channel" }) {
               handleFollow={() => handleFollow(channelId)}
               isMember={isMember}
               handleUnfollow={() => handleUnfollow(channelId)}
-              handleListAdmins={() => dispatch(openFollowersModal(channelId))}
+              handleListAdmins={() => openAdminsList(channelId)}
             />
           )}
           {type === "room" && (

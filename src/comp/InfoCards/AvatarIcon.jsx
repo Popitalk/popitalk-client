@@ -4,7 +4,8 @@ export default function AvatarIcon({
   avatar,
   username,
   imageClick,
-  className = ""
+  className = "",
+  tooltip
 }) {
   const handleClick = event => {
     event.stopPropagation();
@@ -19,6 +20,7 @@ export default function AvatarIcon({
       src={avatar}
       alt={`${username}'s avatar`}
       onClick={imageClick ? e => handleClick(e) : null}
+      title={tooltip}
     />
   );
 }

@@ -19,7 +19,8 @@ const initialState = {
   messageId: null,
   isCreatingNewRoom: null,
   room: null,
-  selectedIds: null
+  selectedIds: null,
+  content: null
 };
 
 const R_openModal = (state, { payload }) => {
@@ -30,6 +31,7 @@ const R_openModal = (state, { payload }) => {
   state.isCreatingNewRoom = payload.isCreatingNewRoom || null;
   state.room = payload.room || null;
   state.selectedIds = payload.selectedIds || null;
+  state.content = payload.content || null;
   state.closing = false;
 };
 
