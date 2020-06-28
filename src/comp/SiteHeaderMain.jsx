@@ -111,7 +111,7 @@ export default function SiteHeaderMain({
                 role="button"
                 onClick={() => openProfileHandler(userID)}
               >
-                <span className="font-bold">{username}</span>
+                <span className="font-bold text-primaryText">{username}</span>
                 <img
                   className="w-8 h-8 ml-2 rounded-full object-cover"
                   src={avatar}
