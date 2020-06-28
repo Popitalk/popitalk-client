@@ -4,6 +4,8 @@ import Button from "../Button";
 import SuggestionCard from "../SuggestionCard";
 import MiniFriendsList from "../MiniFriendsList";
 import PanelHeader from "./PanelHeader";
+import ReactTooltip from "react-tooltip";
+import "./Tooltip.css";
 
 export default function ChannelsPanel({
   yourChannels,
@@ -62,6 +64,7 @@ export default function ChannelsPanel({
           fullHeight={true}
         />
       </div>
+      <ReactTooltip effect="solid" place="bottom" className="tooltip" />
       {/* <div className="sm:mt-10">
         <h4 className="my-4 mx-2 text-md font-semibold text-secondaryText">
           Suggested

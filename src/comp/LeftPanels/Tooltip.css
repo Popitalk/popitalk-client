@@ -1,0 +1,25 @@
+.tooltip {
+  background-color: white !important;
+  color: black !important;
+}
+.tooltip.show {
+  opacity: 1;
+  box-shadow: 0 3px 6px #00000033;
+  border-radius: 13px;
+}
+.tooltip.place-bottom::after {
+  border-bottom-color: white !important;
+  filter: drop-shadow(0 -3px 8px #00000033);
+}
+.tooltip.place-right::after {
+  border-right-color: white !important;
+  filter: drop-shadow(3px 0 8px #00000033);
+}
+.tooltip.place-left::after {
+  border-left-color: white !important;
+  filter: drop-shadow(-3px 0 8px #00000033);
+}
+.tooltip.place-top::after {
+  border-top-color: white !important;
+  filter: drop-shadow(0px 3px 8px #00000033);
+}

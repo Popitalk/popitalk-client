@@ -20,7 +20,7 @@ export default function AvatarIcon({
       src={avatar}
       alt={`${username}'s avatar`}
       onClick={imageClick ? e => handleClick(e) : null}
-      title={tooltip}
+      data-tip={tooltip}
     />
   );
 }
