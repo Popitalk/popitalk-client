@@ -13,7 +13,8 @@ export default function ChannelQueue({
   queue,
   type = "channel",
   trendingResults = [],
-  searchResults = []
+  searchResults = [],
+  handleSearch
 }) {
   const [queueList, setQueueList] = useState(queue);
   const handlerChange = ({ oldIndex, newIndex }) => {
@@ -38,6 +39,7 @@ export default function ChannelQueue({
             trendingResults={trendingResults}
             searchResults={searchResults}
             threshold={12}
+            handleSearch={handleSearch}
           />
         </div>
       </div>

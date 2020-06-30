@@ -627,7 +627,13 @@ export const searchVideos = createAsyncThunk(
 
     console.log("RESSSS", response);
 
-    return { channelId, source, terms, page, results: response.data };
+    return {
+      channelId,
+      source,
+      terms,
+      page: response.data.nextPageToken,
+      results: response.data.results
+    };
   }
 );
 

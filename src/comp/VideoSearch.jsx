@@ -7,12 +7,14 @@ export default function VideoSearch({
   className,
   trendingResults,
   searchResults,
-  threshold
+  threshold,
+  handleSearch
 }) {
   const [searchTerm, setSearchTerm] = useState("");
 
   const handleClick = value => {
     setSearchTerm(value);
+    handleSearch(value);
   };
   return (
     <div className="flex flex-col bg-secondaryBackground">

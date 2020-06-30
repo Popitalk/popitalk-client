@@ -19,7 +19,8 @@ import {
   deletePost,
   followChannel,
   unfollowChannel,
-  openListModal
+  openListModal,
+  searchVideos
 } from "../../redux/actions";
 import { testQueue, testResult } from "../../stories/seed-arrays";
 import ChannelHeader from "../../comp/ChannelHeader";
@@ -33,7 +34,7 @@ import { mapIdsToUsers } from "../../helpers/functions";
 export default function Channel({ tab, type = "channel" }) {
   let { channelId, roomId } = useParams();
   channelId = channelId || roomId;
-  const channel = useSelector(state => state.channels[channelId || roomId]);
+  const channel = useSelector(state => state.channels[channelId]);
   const dispatch = useDispatch();
   if (!channel) {
     dispatch(getChannel(channelId));
@@ -64,7 +65,7 @@ export default function Channel({ tab, type = "channel" }) {
   activeVideo.status = "playing";
 
   const trendingResults = testResult;
-  const searchResults = testResult.slice(0, 3);
+  const searchResults = channel.videoSearch ? channel.videoSearch.results : [];
   const isMember =
     channel && channel.members
       ? !!channel.members.filter(memberId => memberId === ownId).length
@@ -173,6 +174,10 @@ export default function Channel({ tab, type = "channel" }) {
     dispatch(openListModal(channelId, "admins"));
   };
 
+  const handleSearch = terms => {
+    dispatch(searchVideos({ channelId, source: "youtube", terms }));
+  };
+
   useEffect(() => {
     if (channel && !channel?.loaded) {
       dispatch(getChannel(channelId));
@@ -259,6 +264,7 @@ export default function Channel({ tab, type = "channel" }) {
                 trendingResults={trendingResults}
                 searchResults={searchResults}
                 threshold={12}
+                handleSearch={handleSearch}
               />
             </div>
           )}
@@ -269,8 +275,9 @@ export default function Channel({ tab, type = "channel" }) {
         <ChannelQueue
           name={channel.name}
           icon={channel.icon || defaultIcon}
-          trendingResults={testResult}
-          searchResults={testResult}
+          trendingResults={trendingResults}
+          searchResults={searchResults}
+          handleSearch={handleSearch}
           activeVideo={testQueue[0]}
           queue={testQueue}
         />
