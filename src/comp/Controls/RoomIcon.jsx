@@ -1,6 +1,6 @@
 import React from "react";
 import classnames from "classnames";
-import YoutubeGradient from "../assets/youtube-gradient-logo.png";
+import YoutubeGradient from "../../assets/youtube-gradient-logo.png";
 
 const corners = [
   "rounded-tl-full",

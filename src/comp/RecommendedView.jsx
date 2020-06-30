@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import ChannelCardList from "./Channel/ChannelCardList.jsx";
 import VideoCardList from "./VideoCardList.jsx";
-import Input from "./Input.jsx";
+import Input from "./Controls/Input.jsx";
 import { useSelector } from "react-redux";
-import Button from "./Button";
+import Button from "./Controls/Button";
 
 function RecommendedChannels({ list, selectedPage }) {
   const isCollapsed = useSelector(state => state.ui.isCollapsed);

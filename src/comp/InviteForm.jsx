@@ -1,6 +1,6 @@
 import React, { createRef, forwardRef } from "react";
-import Input from "./Input";
-import Button from "./Button";
+import Input from "./Controls/Input";
+import Button from "./Controls/Button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faFacebookSquare,

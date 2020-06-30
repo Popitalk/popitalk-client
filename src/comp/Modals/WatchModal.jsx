@@ -1,6 +1,6 @@
 import React from "react";
 import VideoCard from "../VideoCard";
-import Button from "../Button";
+import Button from "../Controls/Button";
 import RoomsList from "../InfoCardLists/RoomsList";
 import StretchList from "../InfoCardLists/StretchList";
 

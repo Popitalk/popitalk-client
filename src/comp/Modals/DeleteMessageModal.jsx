@@ -1,6 +1,6 @@
 import React from "react";
 import ChatMessage from "../Chat/ChatMessage";
-import Button from "../Button";
+import Button from "../Controls/Button";
 
 export default function DeleteMessageModal({
   message,

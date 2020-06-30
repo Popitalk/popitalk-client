@@ -1,7 +1,7 @@
 import React from "react";
-import RoomIcon from "../RoomIcon";
-import AvatarDeck from "../AvatarDeck";
-import Button from "../Button";
+import RoomIcon from "../Controls/RoomIcon";
+import AvatarDeck from "../Controls/AvatarDeck";
+import Button from "../Controls/Button";
 import VideoStatus from "../VideoStatusIcon";
 
 export default function ChannelCard({

@@ -1,6 +1,6 @@
 import React from "react";
-import AvatarIcon from "../InfoCards/AvatarIcon";
-import ToggleIcon from "../ToggleIcon";
+import AvatarIcon from "../Controls/AvatarIcon";
+import ToggleIcon from "../Controls/ToggleIcon";
 
 export default function ChannelComment({
   id,

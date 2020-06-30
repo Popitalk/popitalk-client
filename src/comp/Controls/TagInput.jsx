@@ -2,7 +2,7 @@ import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Tag from "./Tag";
 import classnames from "classnames";
-import { getInputClasses } from "../helpers/functions";
+import { getInputClasses } from "../../helpers/functions";
 
 export function buildTagInput(tags, handleCancel) {
   const WrappedTagInput = (input, setInput, handleEnter) => {

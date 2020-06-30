@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Input from "./Input";
+import Input from "./Controls/Input";
 
 export function buildSearchInput(input, setInput) {
   return (

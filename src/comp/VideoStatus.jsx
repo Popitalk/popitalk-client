@@ -1,5 +1,5 @@
 import React from "react";
-import Button from "./Button";
+import Button from "./Controls/Button";
 // import "./VideoStatus.css";
 
 export default function VideoStatus({

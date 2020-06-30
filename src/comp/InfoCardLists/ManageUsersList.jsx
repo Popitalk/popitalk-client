@@ -1,5 +1,5 @@
 import React from "react";
-import PopupMenu from "../PopupMenu";
+import PopupMenu from "../Controls/PopupMenu";
 import ImageInfoCard from "../InfoCards/ImageInfoCard";
 import InfoCardList from "./InfoCardList";
 

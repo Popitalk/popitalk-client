@@ -1,6 +1,6 @@
 import React from "react";
 import classnames from "classnames";
-import { getTextClass } from "../helpers/functions";
+import { getTextClass } from "../../helpers/functions";
 
 export default function ControlHeader({ header, error, size, bold = true }) {
   const textClasses = getTextClass(size);

@@ -1,6 +1,6 @@
 import React from "react";
 import InfoCard from "./InfoCard";
-import AvatarIcon from "./AvatarIcon";
+import AvatarIcon from "../Controls/AvatarIcon";
 
 export default function ImageInfoCard({
   avatar,

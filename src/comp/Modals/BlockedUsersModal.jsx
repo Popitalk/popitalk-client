@@ -1,6 +1,6 @@
 import React from "react";
 import FollowersList from "../InfoCardLists/FollowersList";
-import Button from "../Button";
+import Button from "../Controls/Button";
 import StretchList from "../InfoCardLists/StretchList";
 
 export default function BlockedUsersModal({ users, handleUnblock }) {

@@ -1,5 +1,5 @@
 import React, { useState, useLayoutEffect, useRef } from "react";
-import RoomIcon from "./RoomIcon";
+import RoomIcon from "./Controls/RoomIcon";
 import { useSelector, useDispatch } from "react-redux";
 
 import {

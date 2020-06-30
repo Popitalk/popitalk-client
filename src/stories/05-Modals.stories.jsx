@@ -17,7 +17,7 @@ import ProfileModal from "../comp/Modals/ProfileModal";
 import DeleteMessageModal from "../comp/Modals/DeleteMessageModal";
 import BlockedUsersModal from "../comp/Modals/BlockedUsersModal";
 import InviteForm from "../comp/InviteForm";
-import { buildTagInput } from "../comp/TagInput";
+import { buildTagInput } from "../comp/Controls/TagInput";
 import {
   testUsers,
   testQueue,

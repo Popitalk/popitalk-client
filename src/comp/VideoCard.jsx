@@ -1,7 +1,5 @@
 import React from "react";
-import RoomIcon from "./RoomIcon";
-import AvatarDeck from "./AvatarDeck";
-import Button from "./Button";
+import Button from "./Controls/Button";
 
 export default function VideoCard({
   id,

@@ -1,16 +1,14 @@
 import React, { useState, useRef, useEffect } from "react";
-import Button from "../Button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "../VideoStatus.css";
-import RoomIcon from "../RoomIcon";
-import AvatarIcon from "../InfoCards/AvatarIcon";
+import AvatarIcon from "../Controls/AvatarIcon";
 import ChannelComment from "./ChannelComment";
 import NewChannelComment from "./NewChannelComment";
 import classnames from "classnames";
-import ToggleIcon from "../ToggleIcon";
+import ToggleIcon from "../Controls/ToggleIcon";
 import { formatDistanceToNow } from "date-fns";
 import useOnClickOutside from "use-onclickoutside";
-import PopupMenu from "../PopupMenu";
+import PopupMenu from "../Controls/PopupMenu";
 
 export default function ChannelPost({
   id,

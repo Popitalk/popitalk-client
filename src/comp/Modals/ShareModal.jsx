@@ -1,7 +1,7 @@
 import React, { useRef, useEffect, useState } from "react";
 import VideoCard from "../VideoCard";
-import Button from "../Button";
-import CircleCheckBox from "../CircleCheckbox";
+import Button from "../Controls/Button";
+import CircleCheckBox from "../Controls/CircleCheckbox";
 import RoomsList from "../InfoCardLists/RoomsList";
 import StretchList from "../InfoCardLists/StretchList";
 

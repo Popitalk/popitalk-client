@@ -1,5 +1,5 @@
 import React from "react";
-import PopupMenu from "../PopupMenu";
+import PopupMenu from "../Controls/PopupMenu";
 import "./ChatOptionsButton.css";
 import { withRouter } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";

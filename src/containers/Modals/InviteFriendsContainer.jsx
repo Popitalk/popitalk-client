@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import ModalContainer from "../../comp/Modals/ModalContainer";
 import NewRoomModal from "../../comp/Modals/NewRoomModal";
 import SearchHeader from "../../comp/SearchHeader";
-import { buildTagInput } from "../../comp/TagInput";
+import { buildTagInput } from "../../comp/Controls/TagInput";
 import {
   createRoom,
   addRoomMembers,

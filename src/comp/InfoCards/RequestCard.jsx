@@ -1,6 +1,6 @@
 import React from "react";
 import ImageInfoCard from "./ImageInfoCard";
-import FriendRequestButtons from "../FriendRequestButtons";
+import FriendRequestButtons from "../Controls/FriendRequestButtons";
 
 export default function RequestCard({ user, handleProfile }) {
   const buttons = <FriendRequestButtons user={user} />;

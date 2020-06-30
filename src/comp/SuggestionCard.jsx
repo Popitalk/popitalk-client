@@ -1,5 +1,5 @@
 import React from "react";
-import RoomIcon from "./RoomIcon";
+import RoomIcon from "./Controls/RoomIcon";
 import VideoStatus from "./VideoStatus";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 

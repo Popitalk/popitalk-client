@@ -5,8 +5,8 @@ import {
   getInitialDatePickerValues,
   getUserInformationSchema
 } from "../../helpers/functions";
-import Button from "../Button";
-import ImageUpload from "../ImageUpload";
+import Button from "../Controls/Button";
+import ImageUpload from "../Controls/ImageUpload";
 import EditInformationForm from "../EditInformationForm";
 import EditBirthdayForm from "../EditBirthdayForm";
 import _ from "lodash";

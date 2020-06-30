@@ -2,12 +2,12 @@ import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Formik, connect } from "formik";
 import * as Yup from "yup";
-import Input from "../Input";
-import ImageUpload from "../ImageUpload";
-import ToggleCheckbox from "../ToggleCheckbox";
+import Input from "../Controls/Input";
+import ImageUpload from "../Controls/ImageUpload";
+import ToggleCheckbox from "../Controls/ToggleCheckbox";
 import ChannelFormSubmit from "./ChannelFormSubmit";
-import TagInput from "../TagInput";
-import ControlHeader from "../ControlHeader";
+import TagInput from "../Controls/TagInput";
+import ControlHeader from "../Controls/ControlHeader";
 
 const CategoryInput = connect(
   ({ formik, loading, tags, handleCancel, handleEnter }) => {

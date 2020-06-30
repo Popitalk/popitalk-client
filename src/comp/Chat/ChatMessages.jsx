@@ -16,7 +16,6 @@ import {
 import messagesFormatter2 from "../../util/messagesFormatter2";
 import useHasMoreBottom from "../../containers/hooks/useHasMoreBottom";
 
-import AvatarDeck from "../AvatarDeck";
 import InfiniteScroller from "./InfiniteScroller";
 import ChatMessage from "./ChatMessage";
 import Spinner from "../Spinner";

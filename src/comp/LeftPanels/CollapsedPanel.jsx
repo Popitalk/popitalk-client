@@ -3,9 +3,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import PropTypes from "prop-types";
 import ChannelsList from "../InfoCardLists/ChannelsList";
 import RoomsList from "../InfoCardLists/RoomsList";
-import AvatarIcon from "../InfoCards/AvatarIcon";
 import moment from "moment";
-import RoomIcon from "../RoomIcon";
+import RoomIcon from "../Controls/RoomIcon";
 import InfoCard from "../InfoCards/InfoCard";
 
 function CollapsedPanel({

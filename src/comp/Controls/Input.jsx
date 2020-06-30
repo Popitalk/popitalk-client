@@ -1,19 +1,19 @@
 import React from "react";
 import classnames from "classnames";
 import Button from "./Button";
-import YoutubeLogo from "../assets/youtube-logo.png";
-import VimeoLogo from "../assets/vimeo-logo.png";
-import CrunchyrollLogo from "../assets/crunchyroll-logo.png";
-import TwitchLogo from "../assets/twitch-logo.png";
-import InstagramLogo from "../assets/instagram-logo.png";
-import HuluLogo from "../assets/hulu-logo.png";
-import GfycatLogo from "../assets/gfycat-logo.png";
-import FacebookLogo from "../assets/facebook-logo.png";
-import DailymotionLogo from "../assets/dailymotion-logo.png";
-import SpotifyLogo from "../assets/spotify-logo.png";
+import YoutubeLogo from "../../assets/youtube-logo.png";
+import VimeoLogo from "../../assets/vimeo-logo.png";
+import CrunchyrollLogo from "../../assets/crunchyroll-logo.png";
+import TwitchLogo from "../../assets/twitch-logo.png";
+import InstagramLogo from "../../assets/instagram-logo.png";
+import HuluLogo from "../../assets/hulu-logo.png";
+import GfycatLogo from "../../assets/gfycat-logo.png";
+import FacebookLogo from "../../assets/facebook-logo.png";
+import DailymotionLogo from "../../assets/dailymotion-logo.png";
+import SpotifyLogo from "../../assets/spotify-logo.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import ControlHeader from "./ControlHeader";
-import { getTextClass, getInputClasses } from "../helpers/functions";
+import { getTextClass, getInputClasses } from "../../helpers/functions";
 
 const sources = [
   { source: "Youtube", icon: YoutubeLogo },

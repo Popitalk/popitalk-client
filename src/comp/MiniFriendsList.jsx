@@ -1,6 +1,6 @@
 import React from "react";
-import Button from "./Button";
-import AvatarIcon from "./InfoCards/AvatarIcon";
+import Button from "./Controls/Button";
+import AvatarIcon from "./Controls/AvatarIcon";
 
 export default function MiniFriendsList({
   friends,

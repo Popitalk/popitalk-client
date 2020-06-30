@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import sources from "./videoSourceImages";
-import Input from "./Input";
+import Input from "./Controls/Input";
 
 export default function VideoSearchBar({ className, onClick }) {
   const [source, setSource] = useState("Youtube");

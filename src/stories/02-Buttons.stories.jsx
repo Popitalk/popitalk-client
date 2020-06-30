@@ -1,6 +1,6 @@
 import React from "react";
 import { withKnobs, text, select } from "@storybook/addon-knobs";
-import Button from "../comp/Button";
+import Button from "../comp/Controls/Button";
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 

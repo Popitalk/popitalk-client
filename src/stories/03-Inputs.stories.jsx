@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { withKnobs, text, select } from "@storybook/addon-knobs";
-import Input from "../comp/Input";
+import Input from "../comp/Controls/Input";
 
 export default {
   title: "Inputs",

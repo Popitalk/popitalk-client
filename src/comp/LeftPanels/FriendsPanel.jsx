@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import Button from "../Button";
+import Button from "../Controls/Button";
 import FriendUsersList from "../InfoCardLists/FriendUsersList";
 import StretchList from "../InfoCardLists/StretchList";
-import Input from "../Input";
+import Input from "../Controls/Input";
 import RoomsList from "../InfoCardLists/RoomsList";
 import PanelHeader from "./PanelHeader";
 import { utilizeFocus } from "../../helpers/functions";

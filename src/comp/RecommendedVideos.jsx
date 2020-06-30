@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import VideoCardList from "./VideoCardList.jsx";
-import Input from "./Input.jsx";
+import Input from "./Controls/Input.jsx";
 
 function RecommendedVideos({ list }) {
   const [search, setSearch] = React.useState("");

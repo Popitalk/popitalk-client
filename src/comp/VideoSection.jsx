@@ -1,9 +1,8 @@
 import React from "react";
-import Button from "./Button";
+import Button from "./Controls/Button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./VideoStatus.css";
-import RoomIcon from "./RoomIcon";
-import AvatarIcon from "./InfoCards/AvatarIcon";
+import AvatarIcon from "./Controls/AvatarIcon";
 import VideoStatus from "./VideoStatus";
 
 export default function VideoSection({

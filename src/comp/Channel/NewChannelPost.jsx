@@ -3,11 +3,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { setPostDraft, addPost } from "../../redux/actions";
 
-import Button from "../Button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "../VideoStatus.css";
-import RoomIcon from "../RoomIcon";
-import AvatarIcon from "../InfoCards/AvatarIcon";
 import "emoji-mart/css/emoji-mart.css";
 import { Picker } from "emoji-mart";
 

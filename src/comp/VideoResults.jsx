@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import sources from "./videoSourceImages";
-import Input from "./Input";
 import VideoPanelCard from "./VideoPanelCard";
 
 export default function VideoResults({ results, threshold = 24 }) {

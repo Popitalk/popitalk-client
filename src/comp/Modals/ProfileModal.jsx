@@ -1,8 +1,8 @@
 import React from "react";
 import ChannelCardList from "../Channel/ChannelCardList";
-import PopupMenu from "../PopupMenu";
-import FriendRequestButtons from "../FriendRequestButtons";
-import ImageUpload from "../ImageUpload";
+import PopupMenu from "../Controls/PopupMenu";
+import FriendRequestButtons from "../Controls/FriendRequestButtons";
+import ImageUpload from "../Controls/ImageUpload";
 
 export default function ProfileModal({
   user,

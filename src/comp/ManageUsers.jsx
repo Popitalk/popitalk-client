@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import ManageUsersList from "./InfoCardLists/ManageUsersList";
 import StretchList from "./InfoCardLists/StretchList";
-import Input from "./Input";
+import Input from "./Controls/Input";
 
 export default function ManageUsers({
   ownerId,

@@ -1,7 +1,6 @@
 import React from "react";
 import RoomInfoCard from "../InfoCards/RoomInfoCard";
-import Button from "../Button";
-import { getTimeFromMessage } from "../InfoCardLists/RoomsList";
+import Button from "../Controls/Button";
 
 export default function RoomExistsModal({
   room,

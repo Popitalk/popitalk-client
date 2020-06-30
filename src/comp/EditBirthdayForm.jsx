@@ -1,6 +1,6 @@
 import React from "react";
-import Select from "./Select";
-import ControlHeader from "./ControlHeader";
+import Select from "./Controls/Select";
+import ControlHeader from "./Controls/ControlHeader";
 import { connect } from "formik";
 import { getDatePickerValues } from "../helpers/functions";
 

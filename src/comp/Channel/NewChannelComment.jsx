@@ -1,9 +1,6 @@
 import React, { useState } from "react";
-import Button from "../Button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "../VideoStatus.css";
-import RoomIcon from "../RoomIcon";
-import AvatarIcon from "../InfoCards/AvatarIcon";
 
 export default function NewChannelComment({
   postId,
