@@ -125,11 +125,10 @@ function InfiniteScroller(
   }, [loading, threshold]);
 
   useEffect(() => {
-    if (bottomInView && !loading) {
+    if (bottomInView && !loading && hasMoreBottom) {
       handleBottomView();
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [bottomInView]);
+  }, [bottomInView, loading, hasMoreBottom, handleBottomView]);
 
   useEffect(() => {
     if (topInView && !loading) {
