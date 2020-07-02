@@ -74,7 +74,11 @@ export default function ChatMessages({ channelId, channelMessages }) {
   // );
 
   const updateClickedMessage = messageId => {
-    setClickedMessage(messageId);
+    if (clickedMessage === messageId) {
+      setClickedMessage("");
+    } else {
+      setClickedMessage(messageId);
+    }
   };
 
   const [, cancel] = useDebounce(
