@@ -5,7 +5,7 @@ export function buildSearchInput(input, setInput) {
   return (
     <Input
       variant="filter"
-      size="md"
+      size="sm"
       value={input}
       placeholder="Search"
       onChange={e => setInput(e.target.value)}
@@ -51,8 +51,8 @@ class SearchHeader extends Component {
 
   render() {
     return (
-      <div className="inset-x-0 top-0 bg-secondaryBackground rounded-t-xl flex flex-col items-center shadow-search py-2 px-4">
-        <h4 className="text-base font-bold pb-2">{this.props.title}</h4>
+      <div className="inset-x-0 top-0 bg-secondaryBackground rounded-t-xl flex flex-col items-center shadow-search py-1 px-2">
+        <h4 className="text-base font-bold py-2">{this.props.title}</h4>
         {this.props.buildInput(
           this.state.input,
           this.setInput,

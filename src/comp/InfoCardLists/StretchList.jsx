@@ -46,7 +46,7 @@ class StretchList extends Component {
     const List = list;
 
     return (
-      <div ref={this.ref} className="flex flex-grow">
+      <div ref={this.ref} className="flex flex-grow mt-px">
         <List height={this.state.height} {...rest} />
       </div>
     );

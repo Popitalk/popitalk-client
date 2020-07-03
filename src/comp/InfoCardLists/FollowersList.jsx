@@ -10,14 +10,16 @@ export default function FollowersList({
 }) {
   const itemRenderer = u => {
     return (
-      <ImageInfoCard
-        avatar={u.avatar}
-        username={u.username}
-        title={u.username}
-        subtitle={`${u.firstName} ${u.lastName}`}
-        controls={getControls ? getControls(u) : null}
-        cardClick={handleProfile ? () => handleProfile(u.id) : null}
-      />
+      <div className="px-2 mt-2">
+        <ImageInfoCard
+          avatar={u.avatar}
+          username={u.username}
+          title={u.username}
+          subtitle={`${u.firstName} ${u.lastName}`}
+          controls={getControls ? getControls(u) : null}
+          cardClick={handleProfile ? () => handleProfile(u.id) : null}
+        />
+      </div>
     );
   };
 
