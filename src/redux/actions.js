@@ -619,20 +619,31 @@ export const searchUsersWs = createAction(searchUsers.fulfilled.type);
 
 export const searchVideos = createAsyncThunk(
   "videoSearch/searchVideos",
-  async searchInfo => {
-    const { source, terms, page, channelId } = searchInfo;
-    const formattedTerms = terms.replace(/ /g, "+");
+  async (searchInfo, { getState }) => {
+    const { source, terms, channelId } = searchInfo;
+    const { page, terms: prevTerms } = getState().channels[
+      channelId
+    ].videoSearch;
 
-    const response = await api.searchVideos(source, formattedTerms, page);
+    let finalTerms = terms ? terms : prevTerms;
+    finalTerms = finalTerms.trim();
 
-    console.log("RESSSS", response);
+    let response = null;
+    if (finalTerms && finalTerms !== "") {
+      response = await api.searchVideos(
+        source,
+        finalTerms,
+        page === 1 ? null : page
+      );
+    }
 
     return {
       channelId,
       source,
-      terms,
-      page: response.data.nextPageToken,
-      results: response.data.results
+      terms: response ? finalTerms : "",
+      page: response ? response.data.nextPageToken : 1,
+      totalResults: response ? response.data.totalResults : 1,
+      results: response ? response.data.results : []
     };
   }
 );

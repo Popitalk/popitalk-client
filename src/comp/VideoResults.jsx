@@ -2,16 +2,34 @@ import React, { useState, useEffect } from "react";
 import sources from "./videoSourceImages";
 import VideoPanelCard from "./VideoPanelCard";
 
-export default function VideoResults({ results, threshold = 24 }) {
+export default function VideoResults({
+  results,
+  totalResults,
+  handleLoadMoreResults,
+  threshold = 24
+}) {
   const [currThreshold, setCurrThreshold] = useState(threshold);
 
-  const handleClick = () => {
-    setCurrThreshold(prev => {
-      console.log("prev thres", prev, results.length);
-      console.log("prev up thres", prev + threshold, results.length);
-      return prev + threshold;
-    });
+  const setNextThreshold = prev => {
+    let nextThreshold = prev + threshold;
+    if (nextThreshold > results.length) {
+      nextThreshold = results.length;
+    }
+
+    return nextThreshold;
   };
+
+  const handleClick = () => {
+    setCurrThreshold(setNextThreshold);
+  };
+
+  const handleLoad = () => {
+    setCurrThreshold(setNextThreshold);
+    handleLoadMoreResults(null);
+  };
+
+  const highestResults =
+    results.length > totalResults ? results.length : totalResults;
 
   return (
     <div className="flex flex-col justify-center bg-secondaryBackground p-4">
@@ -23,11 +41,11 @@ export default function VideoResults({ results, threshold = 24 }) {
         })}
       </div>
 
-      {currThreshold < results.length && (
+      {currThreshold < highestResults && (
         <div className="flex justify-center py-4">
           <button
             className="text-tertiaryText text-sm focus:outline-none bg-gradient-r-button p-2 rounded-xl"
-            onClick={handleClick}
+            onClick={currThreshold < results.length ? handleClick : handleLoad}
           >
             Show more
           </button>

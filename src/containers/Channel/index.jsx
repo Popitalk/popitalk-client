@@ -65,7 +65,9 @@ export default function Channel({ tab, type = "channel" }) {
   activeVideo.status = "playing";
 
   const trendingResults = testResult;
-  const searchResults = channel.videoSearch ? channel.videoSearch.results : [];
+  const searchResults = channel.videoSearch.results;
+  const totalResults = channel.videoSearch.totalResults;
+
   const isMember =
     channel && channel.members
       ? !!channel.members.filter(memberId => memberId === ownId).length
@@ -263,6 +265,7 @@ export default function Channel({ tab, type = "channel" }) {
               <VideoSearch
                 trendingResults={trendingResults}
                 searchResults={searchResults}
+                totalResults={totalResults}
                 threshold={12}
                 handleSearch={handleSearch}
               />
@@ -277,6 +280,7 @@ export default function Channel({ tab, type = "channel" }) {
           icon={channel.icon || defaultIcon}
           trendingResults={trendingResults}
           searchResults={searchResults}
+          totalResults={totalResults}
           handleSearch={handleSearch}
           activeVideo={testQueue[0]}
           queue={testQueue}

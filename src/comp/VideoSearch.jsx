@@ -7,6 +7,7 @@ export default function VideoSearch({
   className,
   trendingResults,
   searchResults,
+  totalResults,
   threshold,
   handleSearch
 }) {
@@ -27,9 +28,18 @@ export default function VideoSearch({
         </span>
       </div>
       {searchTerm.length > 0 ? (
-        <VideoResults results={searchResults} threshold={threshold} />
+        <VideoResults
+          results={searchResults}
+          totalResults={totalResults}
+          handleLoadMoreResults={handleSearch}
+          threshold={threshold}
+        />
       ) : (
-        <VideoResults results={trendingResults} threshold={threshold} />
+        <VideoResults
+          results={trendingResults}
+          totalResults={trendingResults.length}
+          threshold={threshold}
+        />
       )}
     </div>
   );

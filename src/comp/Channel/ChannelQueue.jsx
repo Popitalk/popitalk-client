@@ -14,6 +14,7 @@ export default function ChannelQueue({
   type = "channel",
   trendingResults = [],
   searchResults = [],
+  totalResults,
   handleSearch
 }) {
   const [queueList, setQueueList] = useState(queue);
@@ -38,6 +39,7 @@ export default function ChannelQueue({
           <VideoSearch
             trendingResults={trendingResults}
             searchResults={searchResults}
+            totalResults={totalResults}
             threshold={12}
             handleSearch={handleSearch}
           />

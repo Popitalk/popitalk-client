@@ -67,6 +67,7 @@ const R_initChannels = (state, { payload }) => {
           source: "youtube",
           terms: "",
           results: [],
+          totalResults: 1,
           page: 1,
           searched: false
         }
@@ -95,6 +96,7 @@ const R_addChannel = (state, { payload }) => {
       source: "youtube",
       terms: "",
       results: [],
+      totalResults: 1,
       page: 1,
       searched: false
     }
@@ -237,13 +239,21 @@ const R_updateChannelInitialScroll = (state, { payload }) => {
 };
 
 const R_updateSearchedVideos = (state, { payload }) => {
+  let results = [];
+  if (state[payload.channelId].videoSearch.terms === payload.terms) {
+    results = [
+      ...state[payload.channelId].videoSearch.results,
+      ...payload.results
+    ];
+  } else {
+    results = [...payload.results];
+  }
+
   state[payload.channelId].videoSearch = {
     source: payload.source,
     terms: payload.terms,
-    results: [
-      ...state[payload.channelId].videoSearch.results,
-      ...payload.results
-    ],
+    results: results,
+    totalResults: payload.totalResults,
     page: payload.page ? payload.page : 1,
     searched: true
   };
