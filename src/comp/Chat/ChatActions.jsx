@@ -1,13 +1,9 @@
 import React, { useRef, useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Picker from "emoji-picker-react";
+import { Picker } from "emoji-mart";
 import { useSelector, useDispatch } from "react-redux";
 import { setChatDraft, addMessage } from "../../redux/actions";
 import { withRouter } from "react-router-dom";
-
-// TODO: Currently all emojis are pull from public CDN, which is slow and might even be unreliable,
-// Maybe in the future the emojis should be hosted by us?
-// Github issue which explains the implementation https://github.com/ealush/emoji-picker-react/issues/157
 
 function ChatActions(props) {
   const channelId = props.match.params.roomId || props.match.params.channelId;
@@ -88,9 +84,11 @@ function ChatActions(props) {
     dispatch(setChatDraft({ channelId, draft: e.target.value }));
   };
 
-  const onEmojiClick = (event, emojiObject) => {
-    setChosenEmoji(emojiObject.emoji);
+  const onEmojiClick = (emojiObject, event) => {
+    console.log(emojiObject);
+    setChosenEmoji(emojiObject.native);
     setEmojiIsOpen(false);
+    textareaRef.current.focus();
   };
 
   return (
@@ -109,7 +107,23 @@ function ChatActions(props) {
         {emojiIsOpen ? (
           <div className="absolute bottom-0 mb-16">
             {""}
-            <Picker onEmojiClick={onEmojiClick}></Picker>
+            <Picker
+              perLine={8}
+              style={{ position: "absolute", bottom: "0", right: "-19rem" }}
+              emojiTooltip={true}
+              // If both disabled, then no footer is shown
+              showSkinTones={false}
+              showPreview={false}
+              // Bellow options can be used to adjust what is shown in the footer by default.
+              // emoji="eyes"
+              // title="  Popitalk"
+              // Uses the native set of emojis, so nothing needs to be downloaded. To make all our
+              // wanted emojis available on any device we should provide our own sheet, or use the one
+              // provided by emoji mart.
+              // But then they have to be downloaded.
+              native={true}
+              onClick={onEmojiClick}
+            ></Picker>
           </div>
         ) : null}
         <textarea

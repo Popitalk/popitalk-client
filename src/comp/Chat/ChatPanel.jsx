@@ -2,7 +2,6 @@ import React from "react";
 import ChatHeader from "./ChatHeader";
 import ChatMessages from "./ChatMessages";
 import ChatActions from "./ChatActions";
-import "../../components/ChatPanel/ChatPanel.css";
 
 export default function ChatPanel({
   channelId,

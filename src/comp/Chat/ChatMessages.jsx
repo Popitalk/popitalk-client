@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-to-interactive-role */
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
   useScroll,
@@ -44,6 +44,7 @@ const selectFormattedMessages = createSelector(
 );
 
 export default function ChatMessages({ channelId, channelMessages }) {
+  const [clickedMessage, setClickedMessage] = useState("");
   const containerRef = useRef();
   const { y } = useScroll(containerRef);
   const channel = useSelector(state => state.channels[channelId]);
@@ -71,6 +72,14 @@ export default function ChatMessages({ channelId, channelMessages }) {
   //   () => dispatch(openImageModal()),
   //   [dispatch]
   // );
+
+  const updateClickedMessage = messageId => {
+    if (clickedMessage === messageId) {
+      setClickedMessage("");
+    } else {
+      setClickedMessage(messageId);
+    }
+  };
 
   const [, cancel] = useDebounce(
     () => {
@@ -179,6 +188,8 @@ export default function ChatMessages({ channelId, channelMessages }) {
               message={message}
               defaultAvatar={defaultAvatar}
               ownId={ownId}
+              clickedMessage={clickedMessage}
+              updateClickedMessage={updateClickedMessage}
             />
           );
         })}

@@ -7,8 +7,13 @@ import MessageHighlightSpan from "./MessageHighlightSpan";
 import ChatOptionsButton2 from "./ChatOptionsButton2";
 import DateMessage from "./DateMessage";
 
-export default function ChatMessage({ message, ownId, defaultAvatar }) {
-  const [isClicked, setIsClicked] = useState(false);
+export default function ChatMessage({
+  message,
+  ownId,
+  defaultAvatar,
+  clickedMessage,
+  updateClickedMessage
+}) {
   if (message.type === "date") return <DateMessage message={message} />;
   else if (
     message.type === "firstMessage" ||
@@ -36,14 +41,14 @@ export default function ChatMessage({ message, ownId, defaultAvatar }) {
   } else if (message.type === "message" || message.type === "lastMessage") {
     return (
       <React.Fragment>
-        {isClicked ? (
+        {clickedMessage === message.id ? (
           <div className="flex items-center space-x-2 text-xs ml-4 p-1">
             <MessageCreatedTime createdAt={message.createdAt} />
           </div>
         ) : null}
         <div
           role="button"
-          onClick={() => setIsClicked(!isClicked)}
+          onClick={() => updateClickedMessage(message.id)}
           className="flex mx-2 bg-primaryBackground hover:bg-secondaryBackground rounded-md chat-options-button-parent"
           key={message.id}
         >
