@@ -44,8 +44,8 @@ export default function TagInput({
 
   return (
     <div className={fakeInputClasses}>
-      <div className="py-2 pl-3 pr-1 self-start">
-        <FontAwesomeIcon icon="search" className="text-secondaryText" />
+      <div className="p-2 pl-4 pr-2 self-start">
+        <FontAwesomeIcon icon="search" className="text-sm text-secondaryText" />
       </div>
       <div className="flex flex-wrap items-center content-start w-full">
         {tags.map(t => (
@@ -55,7 +55,7 @@ export default function TagInput({
         ))}
         <input
           onKeyDown={detectKeyPress}
-          className="flex flex-grow outline-none border-none py-2 px-4 text-base"
+          className="flex flex-grow outline-none border-none py-2 px-4 text-sm"
           {...rest}
         />
       </div>

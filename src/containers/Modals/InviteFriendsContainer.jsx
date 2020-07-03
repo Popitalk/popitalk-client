@@ -106,7 +106,7 @@ export default function InviteFriendsContainer({ handleModalClose }) {
       handleModalClose={handleModalClose}
       header={
         <SearchHeader
-          title="Select Friends to Invite"
+          title="Select Friends"
           filterSearch={(searchTerm, items) =>
             filterSearch(items, nameField, setVisible, searchTerm)
           }

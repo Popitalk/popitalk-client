@@ -23,7 +23,7 @@ export default function NewRoomModal({
   };
 
   return (
-    <div className="flex flex-col items-stretch w-full h-full relative">
+    <div className="flex flex-col items-stretch w-full h-full relative cursor-pointer">
       <StretchList
         list={FollowersList}
         users={users}

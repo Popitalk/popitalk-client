@@ -9,8 +9,10 @@ export default function RoomExistsModal({
 }) {
   return (
     <div className="flex flex-col items-center p-4">
-      <p>This room already exists</p>
-      <p>Click below to enter the existing room</p>
+      <p className="font-bold text-primaryText">This room already exists</p>
+      <p className="text-xs py-1 text-secondaryText">
+        Click below to enter the existing room
+      </p>
       <div className="w-full py-4">
         <RoomInfoCard
           room={room}

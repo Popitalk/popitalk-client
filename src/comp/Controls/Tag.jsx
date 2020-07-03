@@ -4,14 +4,18 @@ import { faTimes } from "@fortawesome/free-solid-svg-icons";
 
 export default function Tag({ id, name, handleCancel }) {
   return (
-    <span className="bg-secondaryBackground rounded-xl px-3 py-1 inline-flex items-center space-x-2 shadow-suggestions">
-      <span className="text-base rainbow-text font-semibold">{name}</span>
-      <span role="button" onClick={() => handleCancel(id)}>
-        <FontAwesomeIcon
-          icon={faTimes}
-          className="text-sm text-secondaryText self-center"
-        />
+    <span
+      className="bg-secondaryBackground rounded-lg px-2 py-1 inline-flex items-center space-x-2 shadow-search"
+      role="button"
+      onClick={() => handleCancel(id)}
+    >
+      <span className="text-sm rainbow-text font-semibold select-none">
+        {name}
       </span>
+      <FontAwesomeIcon
+        icon={faTimes}
+        className="text-xs text-secondaryText self-center"
+      />
     </span>
   );
 }
