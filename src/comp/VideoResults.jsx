@@ -52,7 +52,7 @@ export default function VideoResults({
         </div>
       )}
       {results.length === 0 && (
-        <p className="text-secondaryText text-sm text-center">
+        <p className="text-secondaryText text-sm text-center py-48">
           No results found
         </p>
       )}
