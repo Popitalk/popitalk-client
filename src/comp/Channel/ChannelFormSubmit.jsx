@@ -9,15 +9,15 @@ export default function ChannelFormSubmit({
   className
 }) {
   const classes = classnames(
-    "flex flex-row items-center justify-between py-2 px-6 bg-primaryBackground rounded-xl shadow-xl",
+    "flex flex-row items-center justify-center py-2 px-6 bg-secondaryBackground rounded-xl text-sm text-primaryText",
     { [className]: className }
   );
   return (
     <div className={classes}>
-      <p className="mr-2">
+      <p className="mr-8">
         {type === "create"
-          ? "Ready to make your own channel?"
-          : "Remember to save your changes"}
+          ? "Ready to create your own channel?"
+          : "Remember to save your changes."}
       </p>
       <div>
         {!disabled && type === "update" && (

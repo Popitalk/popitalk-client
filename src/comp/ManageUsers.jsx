@@ -17,14 +17,13 @@ export default function ManageUsers({
 
   return (
     <div className="flex flex-col w-full">
-      <div className="h-auto">
-        <h3 className="font-bold mb-3">
+      <div className="h-auto mb-2">
+        <h3 className="font-bold mb-2">
           {category} - {filteredUsers.length} users
         </h3>
         <Input
           variant="filter"
-          size="lg"
-          shape="pill"
+          size="md"
           value={input}
           placeholder="Search"
           onChange={e => setInput(e.target.value)}
@@ -41,7 +40,7 @@ export default function ManageUsers({
           />
         </div>
       ) : (
-        <h2 className="text-secondaryText font-semibold text-2xl flex-grow flex justify-center items-center">
+        <h2 className="text-secondaryText font-semibold text-sm flex-grow flex justify-center items-center">
           No Users Found
         </h2>
       )}

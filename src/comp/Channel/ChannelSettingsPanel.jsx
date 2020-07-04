@@ -52,7 +52,7 @@ export default function ChannelSettingsPanel({
   let paneContent = <></>;
   if (selected === 0) {
     paneContent = (
-      <div className="w-full overflow-auto flex justify-center">
+      <div className="w-full overflow-auto flex justify-center px-8 pt-12">
         <ChannelForm
           initial={initialChannelForm}
           handleSubmit={handleChannelFormSubmit}
@@ -70,37 +70,43 @@ export default function ChannelSettingsPanel({
     ];
 
     paneContent = (
-      <ManageUsers
-        category="Followers"
-        ownerId={ownerId}
-        users={followers}
-        options={options}
-        handleProfile={handleProfile}
-      />
+      <div className="w-2/3 overflow-auto flex justify-center pt-8">
+        <ManageUsers
+          category="Followers"
+          ownerId={ownerId}
+          users={followers}
+          options={options}
+          handleProfile={handleProfile}
+        />
+      </div>
     );
   } else if (selected === 2) {
     const options = [{ name: "Remove Admin", handler: removeAdminHandler }];
 
     paneContent = (
-      <ManageUsers
-        category="Admins"
-        ownerId={ownerId}
-        users={admins}
-        options={options}
-        handleProfile={handleProfile}
-      />
+      <div className="w-2/3 overflow-auto flex justify-center pt-8">
+        <ManageUsers
+          category="Admins"
+          ownerId={ownerId}
+          users={admins}
+          options={options}
+          handleProfile={handleProfile}
+        />
+      </div>
     );
   } else {
     const options = [{ name: "Remove Ban", handler: removeBanHandler }];
 
     paneContent = (
-      <ManageUsers
-        category="Banned"
-        ownerId={ownerId}
-        users={bannedUsers}
-        options={options}
-        handleProfile={handleProfile}
-      />
+      <div className="w-2/3 overflow-auto flex justify-center pt-8">
+        <ManageUsers
+          category="Banned"
+          ownerId={ownerId}
+          users={bannedUsers}
+          options={options}
+          handleProfile={handleProfile}
+        />
+      </div>
     );
   }
 
@@ -112,7 +118,7 @@ export default function ChannelSettingsPanel({
           handleDeleteChannel={handleDeleteChannel}
         />
       </div>
-      <div className="flex w-full justify-center px-20 pt-8 text-primaryText">
+      <div className="flex w-full justify-center text-primaryText">
         {paneContent}
       </div>
     </div>

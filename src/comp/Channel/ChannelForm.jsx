@@ -99,13 +99,13 @@ export default function ChannelForm({
       enableReinitialize={true}
       validationSchema={Yup.object({
         name: Yup.string()
-          .min(3, "Name is too short.")
-          .max(20, "Name is too long.")
-          .required("Name is required."),
+          .min(3, "Minimum 3 characters")
+          .max(20, "Maximum 20 characters")
+          .required("Channel name is required."),
         description: Yup.string()
-          .min(1, "Description is too short.")
-          .max(150, "Description is too long.")
-          .required("Description is required."),
+          .min(1, "Minimum 1 character.")
+          .max(150, "Maximum 150 characters.")
+          .required("Channel description is required."),
         private: Yup.boolean().required(),
         icon: Yup.mixed().notRequired(),
         category: Yup.string().notRequired()
@@ -159,7 +159,7 @@ export default function ChannelForm({
               <Input
                 variant="counter"
                 name="name"
-                header="Channel Name"
+                header="Channel Name *"
                 type="text"
                 placeholder="Name your channel"
                 maxLength={20}
@@ -169,12 +169,12 @@ export default function ChannelForm({
                 onBlur={handleBlur}
                 value={values.name}
                 error={touched.name && errors.name}
-                className="mb-5"
+                className="mb-8"
               />
               <Input
                 variant="textarea"
                 name="description"
-                header="Description"
+                header="Description *"
                 type="text"
                 placeholder="Describe your channel"
                 disabled={loading}
@@ -186,9 +186,9 @@ export default function ChannelForm({
                 className="mb-8"
               />
               <ControlHeader
-                header="Category"
+                header="Channel Category (optional)"
                 error={touched.tags && errors.category}
-                size="md"
+                size="sm"
               />
               <CategoryInput
                 loading={loading}
@@ -196,7 +196,8 @@ export default function ChannelForm({
                 handleCancel={handleCancel}
                 handleEnter={handleEnter}
               />
-              <div className="flex items-center mt-8">
+              {/* --UNCOMMENT FOR PRIVATE CHANNELS */}
+              {/* <div className="flex items-center mt-8">
                 <div className="mr-8">
                   <div className="flex items-center mb-1">
                     <FontAwesomeIcon
@@ -220,7 +221,7 @@ export default function ChannelForm({
                   error={touched.private && errors.private}
                   className="ml-auto"
                 />
-              </div>
+              </div> */}
             </div>
           </div>
           {error ? (
@@ -233,7 +234,7 @@ export default function ChannelForm({
             disabled={loading || !isValid || !dirty}
             loading={loading}
             handleReset={() => resetForm()}
-            className="mt-auto w-full mb-8"
+            className="mt-auto w-full mb-12"
           />
         </form>
       )}
