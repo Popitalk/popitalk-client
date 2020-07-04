@@ -25,7 +25,7 @@ function EditBirthdayForm({ loading, formik }) {
 
   return (
     <>
-      <div className="w-full">
+      <div className="w-full pt-2 px-2">
         <ControlHeader
           header="Birthday"
           error={
@@ -34,76 +34,70 @@ function EditBirthdayForm({ loading, formik }) {
             formik.touched.year &&
             formik.errors.dateOfBirth
           }
-          size="md"
+          size="sm"
         />
       </div>
-      <div className="flex flex-row items-center w-full sm:space-x-8 md:space-x-4 lg:space-x-2">
-        <div className="flex-1">
-          <Select
-            name="day"
-            placeholder="Day"
-            options={datePicker.days}
-            isMulti={false}
-            isClearable={false}
-            isSearchable={false}
-            onBlur={handleBlur}
-            disabled={loading}
-            value={formik.values.day}
-            onChange={v => {
-              formik.values.day = v.value;
-              formik.values.dateOfBirth.setDate(v.value);
-              formik.setFieldValue("dateOfBirth", formik.values.dateOfBirth);
-              formik.setFieldTouched("day", true, false);
-              formik.setFieldTouched("month", true, false);
-              formik.setFieldTouched("year", true, false);
-            }}
-            className="w-25 p-0"
-          />
-        </div>
-        <div className="flex-1 m-0">
-          <Select
-            name="month"
-            placeholder="Month"
-            options={datePicker.months}
-            isMulti={false}
-            isClearable={false}
-            isSearchable={false}
-            onBlur={handleBlur}
-            disabled={loading}
-            value={formik.values.month}
-            onChange={v => {
-              formik.values.month = v.value;
-              formik.values.dateOfBirth.setMonth(v.value);
-              formik.setFieldValue("dateOfBirth", formik.values.dateOfBirth);
-              formik.setFieldTouched("day", true, false);
-              formik.setFieldTouched("month", true, false);
-              formik.setFieldTouched("year", true, false);
-            }}
-            className="w-25 p-0"
-          />
-        </div>
-        <div className="flex-1 m-0">
-          <Select
-            name="year"
-            placeholder="Year"
-            options={datePicker.years}
-            isMulti={false}
-            isClearable={false}
-            isSearchable={false}
-            onBlur={handleBlur}
-            disabled={loading}
-            value={formik.values.year}
-            onChange={v => {
-              formik.values.year = v.value;
-              formik.values.dateOfBirth.setFullYear(v.label);
-              formik.setFieldValue("dateOfBirth", formik.values.dateOfBirth);
-              formik.setFieldTouched("day", true, false);
-              formik.setFieldTouched("month", true, false);
-              formik.setFieldTouched("year", true, false);
-            }}
-            className="w-25 p-0"
-          />
-        </div>
+      <div className="flex flex-row items-center w-full sm:space-x-8 md:space-x-4 lg:space-x-3 justify-center pt-2">
+        <Select
+          name="month"
+          placeholder="Month"
+          options={datePicker.months}
+          isMulti={false}
+          isClearable={false}
+          isSearchable={false}
+          onBlur={handleBlur}
+          disabled={loading}
+          value={formik.values.month}
+          onChange={v => {
+            formik.values.month = v.value;
+            formik.values.dateOfBirth.setMonth(v.value);
+            formik.setFieldValue("dateOfBirth", formik.values.dateOfBirth);
+            formik.setFieldTouched("day", true, false);
+            formik.setFieldTouched("month", true, false);
+            formik.setFieldTouched("year", true, false);
+          }}
+          className="w-32 p-0 text-sm"
+        />
+        <Select
+          name="day"
+          placeholder="Day"
+          options={datePicker.days}
+          isMulti={false}
+          isClearable={false}
+          isSearchable={false}
+          onBlur={handleBlur}
+          disabled={loading}
+          value={formik.values.day}
+          onChange={v => {
+            formik.values.day = v.value;
+            formik.values.dateOfBirth.setDate(v.value);
+            formik.setFieldValue("dateOfBirth", formik.values.dateOfBirth);
+            formik.setFieldTouched("day", true, false);
+            formik.setFieldTouched("month", true, false);
+            formik.setFieldTouched("year", true, false);
+          }}
+          className="w-24 p-0 text-sm"
+        />
+        <Select
+          name="year"
+          placeholder="Year"
+          options={datePicker.years}
+          isMulti={false}
+          isClearable={false}
+          isSearchable={false}
+          onBlur={handleBlur}
+          disabled={loading}
+          value={formik.values.year}
+          onChange={v => {
+            formik.values.year = v.value;
+            formik.values.dateOfBirth.setFullYear(v.label);
+            formik.setFieldValue("dateOfBirth", formik.values.dateOfBirth);
+            formik.setFieldTouched("day", true, false);
+            formik.setFieldTouched("month", true, false);
+            formik.setFieldTouched("year", true, false);
+          }}
+          className="w-32 p-0 text-sm"
+        />
       </div>
     </>
   );

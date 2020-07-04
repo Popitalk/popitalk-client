@@ -52,7 +52,7 @@ export default function ChannelHeader({
   // );
   return (
     <header className="flex sticky top-0 justify-between bg-secondaryBackground p-1 z-20 select-none">
-      <div className="flex items-center">
+      <div className="flex items-center transition transform ease-in-out hover:scale-105 duration-100 cursor-pointer">
         <RoomIcon
           ids={[id]}
           images={[icon]}

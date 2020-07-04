@@ -75,7 +75,7 @@ export default function CreateNewAccountForm({ handleSubmit, error, loading }) {
                 onBlur={handleBlur}
                 value={values.username}
                 error={touched.username && errors.username}
-                className="w-full"
+                className="w-full px-2"
               />
               <Input
                 header="Password"
@@ -86,10 +86,10 @@ export default function CreateNewAccountForm({ handleSubmit, error, loading }) {
                 onBlur={handleBlur}
                 value={values.password}
                 error={touched.password && errors.password}
-                className="w-full"
+                className="w-full pt-2 px-2"
               />
               <EditBirthdayForm loading={loading} />
-              <p className="pt-8 text-center text-sm account-form-par">
+              <p className="pt-8 text-center text-xs account-form-par">
                 By clicking Sign Up, you agree to the{" "}
                 <a href="https://medium.com/popitalk/end-user-license-agreement-and-terms-of-service-dc8a25c0f5d2?source=friends_link&sk=2150df3f6e097d60599c30a5d3e8942a">
                   Terms
@@ -100,7 +100,7 @@ export default function CreateNewAccountForm({ handleSubmit, error, loading }) {
                 </a>
                 .
               </p>
-              <div className="mt-4">
+              <div className="mt-4 transition transform ease-in-out hover:scale-105 duration-100">
                 <Button type="submit" disabled={loading || !isValid || !dirty}>
                   Sign Up
                 </Button>

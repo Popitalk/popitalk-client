@@ -11,7 +11,7 @@ import React, { useEffect } from "react";
 export function getTextClass(size) {
   return classnames({
     "text-sm": size === "sm",
-    "text-base": size === "md",
+    "text-md": size === "md",
     "text-lg": size === "lg"
   });
 }
@@ -32,37 +32,35 @@ export function getUserInformationSchema() {
 
   return {
     firstName: Yup.string()
-      .min(2, "First name is too short.")
-      .max(32, "First name is too long.")
-      .required("First name is required."),
+      .min(2, "Too short *")
+      .max(32, "Too long *")
+      .required("Required *"),
     lastName: Yup.string()
-      .min(2, "Last name is too short.")
-      .max(32, "Last name is too long.")
-      .required("Last name is required."),
+      .min(2, "Too short *")
+      .max(32, "Too long *")
+      .required("Required *"),
     dateOfBirth: Yup.date()
       .max(
         thirteenYearsAgo,
         "You can't use Popitalk if you are younger than 13."
       )
       .required(),
-    email: Yup.string()
-      .email("Email is invalid.")
-      .required("Email is required.")
+    email: Yup.string().email("Invalid email *").required("Required *")
   };
 }
 
 export function getSetPasswordSchema(checkOldPassword) {
   let password = Yup.string()
-    .min(6, "Password should be at least 6 characters long.")
-    .matches(/[a-z]/, "Password should have at least one lowercase letter.")
-    .matches(/[A-Z]/, "Password should have at least one uppercase letter.")
+    .min(6, "At least 6 characters needed*")
+    .matches(/[a-z]/, "At least one lowercase letter needed *")
+    .matches(/[A-Z]/, "At least one uppercase letter needed *")
     .matches(/\d+/, "Password should have at least one number.")
-    .required("Password is required.");
+    .required("Required *");
 
   if (checkOldPassword) {
     password = password.notOneOf(
       [Yup.ref("oldPassword"), null],
-      "Passwords must not match."
+      "Passwords deosn't match."
     );
   }
 

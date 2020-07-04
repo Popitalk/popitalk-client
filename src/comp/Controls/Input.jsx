@@ -42,7 +42,7 @@ export default function Input({
   value = "",
   maxLength = 200,
   error,
-  size = "md",
+  size = "sm",
   videoSource,
   interiorButton,
   forwardedRef,
@@ -58,7 +58,7 @@ export default function Input({
     "relative bottom-0 py-2 pl-5 pr-4 rounded-lg",
     textClasses,
     {
-      "border-errorText": error,
+      "border-primaryBorder": error,
       "rounded-pill px-3": shape === "pill",
       "pl-12 pr-12 rounded-lg": variant === "video",
       "pl-3 pr-12 bg-secondaryBackground": variant === "user",
