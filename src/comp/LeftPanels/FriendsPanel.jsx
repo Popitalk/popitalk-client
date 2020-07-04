@@ -110,7 +110,7 @@ class FriendsPanel extends Component {
           />
         </div>
         {this.state.open && (
-          <div className="rounded-lg bg-secondaryBackground shadow-inner mx-2 mt-2">
+          <div className="rounded-md bg-secondaryBackground shadow-inner border border-primaryBorder mx-2 mt-2">
             <div className="flex justify-between px-3 py-1 space-x-1">
               <div>
                 <span className="text-xs">Results for </span>
@@ -126,7 +126,7 @@ class FriendsPanel extends Component {
                 </span>
               </div>
             </div>
-            <div className="flex w-full h-64">
+            <div className="flex w-full h-64 rounded-lg">
               <StretchList
                 list={FriendUsersList}
                 users={this.props.userSearchResults}
@@ -135,7 +135,7 @@ class FriendsPanel extends Component {
             </div>
           </div>
         )}
-        <div className="bg-primaryBackground px-2 pt-2">
+        <div className="bg-primaryBackground px-1 pt-4">
           <RoomsList
             rooms={this.state.rooms}
             selected={this.props.selectedRoom}
@@ -146,7 +146,7 @@ class FriendsPanel extends Component {
         <Button
           size="md"
           leftIcon="plus"
-          className="fixed bottom-0 left-0 ml-44 mb-4 opacity-50 hover:opacity-100 transition transform ease-in-out hover:scale-110 duration-100"
+          className="fixed bottom-0 left-0 ml-44 mb-4 hover:opacity-100 transition transform ease-in-out hover:scale-110 duration-100 shadow-channel"
           onClick={() => this.props.handleCreateRoom()}
         >
           New Room

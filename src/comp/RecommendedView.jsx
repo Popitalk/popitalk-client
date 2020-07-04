@@ -24,7 +24,7 @@ function RecommendedChannels({ list, selectedPage }) {
       <div className="w-auto mx-2 sm:mx-auto m-auto bg-white sm:w-2/3">
         <Input
           variant="channel"
-          size="lg"
+          size="md"
           value={search}
           placeholder={
             selectedPage === "channels"
@@ -37,21 +37,23 @@ function RecommendedChannels({ list, selectedPage }) {
       <div className="flex justify-center my-4">
         <Button
           leftIcon="bell"
-          className="uppercase mr-3 shadow-xs hover:shadow-none focus:shadow-none bg-secondaryBackground"
+          className="uppercase mr-4 shadow-xs hover:shadow-none focus:shadow-none bg-secondaryBackground"
           shape="chip"
           background="bgColor"
           selectedColor={chipSelected === "following" && "primary"}
           onClick={() => onChipClick("following")}
+          size="md"
         >
           following
         </Button>
         <Button
           leftIcon="globe"
-          className="uppercase mr-3 shadow-xs hover:shadow-none focus:shadow-none bg-secondaryBackground"
+          className="uppercase mr-4 shadow-xs hover:shadow-none focus:shadow-none bg-secondaryBackground"
           shape="chip"
           background="bgColor"
           selectedColor={chipSelected === "discover" && "secondary"}
           onClick={() => onChipClick("discover")}
+          size="md"
         >
           discover
         </Button>
@@ -62,6 +64,7 @@ function RecommendedChannels({ list, selectedPage }) {
           background="bgColor"
           selectedColor={chipSelected === "trending" && "cancel"}
           onClick={() => onChipClick("trending")}
+          size="md"
         >
           trending
         </Button>
