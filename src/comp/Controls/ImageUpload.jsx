@@ -18,9 +18,9 @@ export default function ImageUpload({
   });
 
   const imageClasses = classnames(
-    "flex flex-row justify-center items-center bg-gradient-b-primary rounded-circle relative p-1 group",
+    "flex flex-row justify-center items-center bg-gradient-b-primary rounded-circle relative p-px group",
     {
-      "h-36 w-36": size === "sm",
+      "h-32 w-32": size === "sm",
       "h-48 w-48": size === "md"
     }
   );
@@ -57,9 +57,8 @@ export default function ImageUpload({
           type="button"
           onClick={onRemove}
           disabled={disabled}
-          className="mt-1 text-secondaryText"
         >
-          Remove
+          <p className="text-secondaryText text-sm font-regular">Remove</p>
         </Button>
       )}
     </div>

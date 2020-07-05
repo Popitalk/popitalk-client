@@ -43,7 +43,7 @@ export default function ProfileModal({
       ) : (
         <></>
       )}
-      <div className="flex justify-center items-center space-x-6 py-4">
+      <div className="flex justify-start items-center space-x-8 py-8 px-12">
         {myProfile ? (
           <ImageUpload
             name="avatar"
@@ -67,10 +67,17 @@ export default function ProfileModal({
             alt={`${user.username}'s avatar`}
           />
         )}
-        <div>
-          <div className="text-4xl font-semibold">{user.username}</div>
-          <div className="text-md font-regular">
+        <div className="pt-4">
+          <div className="text-2xl font-semibold text-primaryText">
+            {user.username}
+          </div>
+          <div className="text-md font-regular text-secondaryText">
             {`${user.firstName} ${user.lastName}`}
+          </div>
+          <div className="flex justify-center space-x-8 pt-4 pb-12">
+            <button className="text-sm font-semibold focus:outline-none">{`${following} Following`}</button>
+            <button className="text-sm font-semibold focus:outline-none">{`${followers} Followers`}</button>
+            <button className="text-sm font-semibold focus:outline-none">{`${friends} Friends`}</button>
           </div>
         </div>
         <FriendRequestButtons user={user} />
@@ -80,11 +87,6 @@ export default function ProfileModal({
           <p className="text-errorText text-sm">{updateUserApi.error}</p>
         </div>
       )}
-      <div className="flex justify-center space-x-8 pt-4 pb-12">
-        <div className="text-md font-semibold">{`${following} Following`}</div>
-        <div className="text-md font-semibold">{`${followers} Followers`}</div>
-        <div className="text-md font-semibold">{`${friends} Friends`}</div>
-      </div>
       <div className="text-md font-bold pb-4">
         {myProfile
           ? "Videos You Watched"
