@@ -37,7 +37,7 @@ function ChatOptionsButton2({ message, channel, ownId, match }) {
     isAdminOfChannel:
       channel?.type === "channel" && channel.admins?.includes(ownId),
     messageAccepted:
-      message?.status === void undefined ||
+      message?.status === undefined ||
       message?.status?.toLowerCase() === "accepted",
     messageRejected: message?.status?.toLowerCase() === "rejected",
     messagePending: message?.status?.toLowerCase() === "pending"

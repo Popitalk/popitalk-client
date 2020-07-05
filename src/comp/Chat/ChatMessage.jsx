@@ -28,7 +28,10 @@ export default function ChatMessage({
               defaultAvatar={defaultAvatar}
               message={message}
             />
-            <MessageAuthorUsername username={message.username} />
+            <MessageAuthorUsername
+              userId={message.userId}
+              username={message.username}
+            />
           </div>
           <MessageCreatedTime createdAt={message.createdAt} />
         </div>
