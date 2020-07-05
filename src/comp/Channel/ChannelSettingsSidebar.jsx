@@ -7,7 +7,7 @@ export default function ChannelSettingsSidebar({
   handleDeleteChannel
 }) {
   return (
-    <div className="h-full py-8 px-8 object-center bg-secondaryBackground rounded-xl shadow-2xl flex flex-col justify-between">
+    <div className="h-full py-8 px-8 object-center bg-secondaryBackground rounded-xl shadow-channel flex flex-col justify-between">
       <div>
         <ButtonsList buttons={buttons} />
       </div>

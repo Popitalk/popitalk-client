@@ -60,7 +60,7 @@ export default function ProfileModal({
             alt={`${user.username}'s avatar`}
           />
         )}
-        <div className="pt-4">
+        <div className="pt-8">
           <div className="flex flex-row">
             <p className="text-2xl font-semibold text-primaryText mr-4">
               {user.username}

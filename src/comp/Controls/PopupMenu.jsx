@@ -30,7 +30,7 @@ export default function PopupMenu({
   };
 
   const containerClasses = classnames(
-    "group flex items-center justify-center w-full relative",
+    "group flex items-center justify-end w-full relative",
     {
       [className]: className
     }
