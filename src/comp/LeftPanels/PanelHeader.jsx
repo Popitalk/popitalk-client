@@ -21,7 +21,7 @@ export default function PanelHeader({
         <h3
           className={`${
             selectedPage === "channels"
-              ? "text-2xl font-semibold btn-playing px-2 p-1 rounded-full shadow-inner"
+              ? "text-2xl font-semibold btn-playing px-2 p-1 rounded-full"
               : "text-secondaryText font-semibold text-2xl hover:bg-secondaryBackground rounded-xl px-2 p-1 transition transform ease-in-out hover:scale-105 duration-100"
           } `}
         >
@@ -35,7 +35,7 @@ export default function PanelHeader({
         <h3
           className={`${
             selectedPage === "friends"
-              ? "text-2xl font-semibold btn-playing px-2 p-1 rounded-full shadow-inner"
+              ? "text-2xl font-semibold btn-playing px-2 p-1 rounded-full"
               : "text-secondaryText font-semibold text-2xl hover:bg-secondaryBackground rounded-xl px-2 p-1 transition transform ease-in-out hover:scale-105 duration-100"
           } `}
         >

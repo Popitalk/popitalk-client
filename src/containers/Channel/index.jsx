@@ -223,15 +223,17 @@ export default function Channel({ tab, type = "channel" }) {
       ref={scrollRef}
       className="flex flex-col w-full bg-secondaryBackground overflow-auto"
     >
-      <ChannelHeader
-        id={channelId || roomId}
-        name={pickRoomName(channel, users, ownId)}
-        icon={channel.icon || defaultIcon}
-        videoStatus={
-          activeVideo && activeVideo.status ? activeVideo.status : ""
-        }
-        type={type}
-      />
+      <div>
+        <ChannelHeader
+          id={channelId || roomId}
+          name={pickRoomName(channel, users, ownId)}
+          icon={channel.icon || defaultIcon}
+          videoStatus={
+            activeVideo && activeVideo.status ? activeVideo.status : ""
+          }
+          type={type}
+        />
+      </div>
       {(tab === "video" || tab === "channel") && (
         <>
           <VideoPanel playlist={copyTestQueue} classNames="pt-0" />
