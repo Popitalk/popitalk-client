@@ -20,8 +20,8 @@ export default function ChannelHeader({
 }) {
   const navButtons = [
     { name: "Video", endpoint: "video" },
-    { name: "Queue", endpoint: "queue" },
-    { name: "Channel", endpoint: "channel" },
+    { name: "Posts", endpoint: "channel" },
+    { name: "Up Next", endpoint: "queue" },
     { name: "Settings", endpoint: "settings" }
   ];
 
@@ -51,7 +51,7 @@ export default function ChannelHeader({
   //   // channel
   // );
   return (
-    <header className="flex sticky top-0 justify-between bg-secondaryBackground p-1 z-20 select-none">
+    <header className="flex justify-between bg-secondaryBackground p-1 z-20 select-none">
       <div className="flex items-center transition transform ease-in-out hover:scale-105 duration-100 cursor-pointer">
         <RoomIcon
           ids={[id]}
@@ -68,7 +68,7 @@ export default function ChannelHeader({
         <nav className="flex flex-wrap justify-center m-2">
           {navButtons.map((button, idx) => {
             let className =
-              "mx-2 font-semibold no-underline focus:outline-none";
+              "mx-1 font-semibold no-underline focus:outline-none rounded-lg px-2 hover:text-highlightText";
             if (
               location.pathname.startsWith(`/channels/${id}/${button.endpoint}`)
             ) {

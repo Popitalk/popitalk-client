@@ -223,7 +223,7 @@ export default function Channel({ tab, type = "channel" }) {
       ref={scrollRef}
       className="flex flex-col w-full bg-secondaryBackground overflow-auto"
     >
-      <div>
+      <div className="sticky top-0 w-full z-20">
         <ChannelHeader
           id={channelId || roomId}
           name={pickRoomName(channel, users, ownId)}
