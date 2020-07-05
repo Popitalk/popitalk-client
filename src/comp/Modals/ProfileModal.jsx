@@ -35,15 +35,8 @@ export default function ProfileModal({
   }
 
   return (
-    <div className="p-8 overflow-auto">
-      {options ? (
-        <div className="flex justify-end">
-          <PopupMenu id={user.id} options={options} />
-        </div>
-      ) : (
-        <></>
-      )}
-      <div className="flex justify-start items-center space-x-8 py-8 px-12">
+    <div className="py-8 px-12 overflow-auto">
+      <div className="flex justify-center items-center space-x-8 pt-6 pb-8 px-12">
         {myProfile ? (
           <ImageUpload
             name="avatar"
@@ -68,19 +61,28 @@ export default function ProfileModal({
           />
         )}
         <div className="pt-4">
-          <div className="text-2xl font-semibold text-primaryText">
-            {user.username}
+          <div className="flex flex-row">
+            <p className="text-2xl font-semibold text-primaryText mr-4">
+              {user.username}
+            </p>
+            <FriendRequestButtons user={user} />
+            {options ? (
+              <div className="flex ml-48">
+                <PopupMenu id={user.id} options={options} />
+              </div>
+            ) : (
+              <></>
+            )}
           </div>
           <div className="text-md font-regular text-secondaryText">
             {`${user.firstName} ${user.lastName}`}
           </div>
-          <div className="flex justify-center space-x-8 pt-4 pb-12">
+          <div className="flex space-x-8 pt-4 pb-12">
             <button className="text-sm font-semibold focus:outline-none">{`${following} Following`}</button>
             <button className="text-sm font-semibold focus:outline-none">{`${followers} Followers`}</button>
             <button className="text-sm font-semibold focus:outline-none">{`${friends} Friends`}</button>
           </div>
         </div>
-        <FriendRequestButtons user={user} />
       </div>
       {updateUserApi.error && (
         <div className="flex justify-center">
