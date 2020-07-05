@@ -20,6 +20,7 @@ export default function ChatMessage({
     message.type === "firstLastMessage"
   ) {
     return (
+      // Unfused message
       <div key={message.id}>
         <div className="flex items-center space-x-2 text-xs ml-3 mt-4 mb-3">
           <div className="flex transition transform ease-in-out hover:scale-105 duration-100 items-center space-x-2 cursor-pointer select-none">
@@ -32,7 +33,11 @@ export default function ChatMessage({
           <MessageCreatedTime createdAt={message.createdAt} />
         </div>
         <div className="flex mx-2 chat-options-button-parent">
-          <MessageHighlightSpan ownId={ownId} userId={message.userId} />
+          <MessageHighlightSpan
+            status={message.status}
+            ownId={ownId}
+            userId={message.userId}
+          />
           <MessageContent message={message} />
           <ChatOptionsButton2 ownId={ownId} message={message} />
         </div>
@@ -40,6 +45,7 @@ export default function ChatMessage({
     );
   } else if (message.type === "message" || message.type === "lastMessage") {
     return (
+      // Fused Message
       <React.Fragment>
         {clickedMessage === message.id ? (
           <div className="flex items-center space-x-2 text-xs ml-4 p-1">
@@ -52,7 +58,11 @@ export default function ChatMessage({
           className="flex mx-2 bg-primaryBackground hover:bg-secondaryBackground rounded-md chat-options-button-parent"
           key={message.id}
         >
-          <MessageHighlightSpan ownId={ownId} userId={message.userId} />
+          <MessageHighlightSpan
+            status={message.status}
+            ownId={ownId}
+            userId={message.userId}
+          />
 
           <MessageContent message={message} />
           <ChatOptionsButton2 ownId={ownId} message={message} />

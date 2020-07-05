@@ -77,8 +77,8 @@ const R_addMessage = (state, { payload }) => {
 const R_addPendingMessage = (state, { meta }) => {
   const tempMessage = {
     status: "pending",
-    id: "",
-    userId: "",
+    id: meta.arg.id,
+    userId: meta.arg.userId,
     channelId: meta.arg.channelId,
     content: meta.arg.content,
     upload: null,
@@ -97,8 +97,8 @@ const R_addRejectedMessage = (state, { meta }) => {
   state[meta.arg.channelId].pop();
   const tempMessage = {
     status: "rejected",
-    id: "",
-    userId: "",
+    id: meta.arg.id,
+    userId: meta.arg.userId,
     channelId: meta.arg.channelId,
     content: meta.arg.content,
     upload: null,
@@ -114,16 +114,9 @@ const R_addRejectedMessage = (state, { meta }) => {
   }
 };
 const R_deleteMessage = (state, { payload }) => {
-  if (
-    (state[payload.channelId] && payload.status === void undefined) ||
-    payload.status === "accepted"
-  ) {
-    state[payload.channelId] = state[payload.channelId].filter(
-      message => message.id !== payload.id
-    );
-  } else if (payload.channelId) {
-    state[payload.channelId].pop();
-  }
+  state[payload.channelId] = state[payload.channelId].filter(
+    message => message.id !== payload.id
+  );
 };
 
 const R_replaceMessages = (state, { payload }) => {

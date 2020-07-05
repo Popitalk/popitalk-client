@@ -4,6 +4,7 @@ import { Picker } from "emoji-mart";
 import { useSelector, useDispatch } from "react-redux";
 import { setChatDraft, addMessage } from "../../redux/actions";
 import { withRouter } from "react-router-dom";
+import { v4 as uuidv4 } from "uuid";
 
 function ChatActions(props) {
   const channelId = props.match.params.roomId || props.match.params.channelId;
@@ -15,6 +16,7 @@ function ChatActions(props) {
   const draft = useSelector(state => state.chatDrafts[channelId]);
   const currentUserUsername = useSelector(state => state.self.username);
   const apiLoading = useSelector(state => state.api.addMessage.loading);
+  const userId = useSelector(state => state.self.id);
 
   const handleSubmit = e => {
     if (e.keyCode === 13 && !e.shiftKey) {
@@ -26,8 +28,8 @@ function ChatActions(props) {
       if (text && text.length > 0 && !apiLoading) {
         dispatch(
           addMessage({
-            id: "",
-            userId: "",
+            id: uuidv4(),
+            userId,
             channelId,
             content: text,
             upload: null,
@@ -51,8 +53,8 @@ function ChatActions(props) {
     if (text && text.length > 0 && !apiLoading) {
       dispatch(
         addMessage({
-          id: "",
-          userId: "",
+          id: uuidv4(),
+          userId,
           channelId,
           content: text,
           upload: null,
