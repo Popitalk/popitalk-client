@@ -9,9 +9,9 @@
 }
 
 .ChatMessages--spinner--circle {
-  height: 22px;
-  width: 22px;
-  border: 4px solid #009dff;
+  height: 14px;
+  width: 14px;
+  border: 2px solid #009dff;
   border-top-color: transparent;
   border-radius: 50%;
   box-sizing: content-box;

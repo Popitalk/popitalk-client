@@ -6,6 +6,8 @@ import Input from "../Controls/Input";
 import RoomsList from "../InfoCardLists/RoomsList";
 import PanelHeader from "./PanelHeader";
 import { utilizeFocus } from "../../helpers/functions";
+import SimpleBar from "simplebar-react";
+import "simplebar/dist/simplebar.min.css";
 
 class FriendsPanel extends Component {
   constructor(props) {
@@ -92,7 +94,7 @@ class FriendsPanel extends Component {
 
   render() {
     return (
-      <div className="w-full h-full flex flex-col bg-primaryBackground xl:w-84 lg:w-84 md:w-84 sm:w-84 select-none">
+      <SimpleBar className="w-full h-full flex flex-col bg-primaryBackground xl:w-84 lg:w-84 md:w-84 sm:w-84 select-none">
         <PanelHeader
           handleCollapse={this.props.handleCollapse}
           updateSelectedPage={this.props.updateSelectedPage}
@@ -151,7 +153,7 @@ class FriendsPanel extends Component {
         >
           New Room
         </Button>
-      </div>
+      </SimpleBar>
     );
   }
 }

@@ -7,3 +7,6 @@
 html {
   padding: 0;
 }
+.simplebar-scrollbar{
+  opacity: 90%;
+}

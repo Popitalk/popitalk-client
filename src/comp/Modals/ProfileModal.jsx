@@ -77,7 +77,7 @@ export default function ProfileModal({
           <div className="text-md font-regular text-secondaryText">
             {`${user.firstName} ${user.lastName}`}
           </div>
-          <div className="flex space-x-8 pt-4 pb-12">
+          <div className="flex space-x-8 pt-4 pb-12 text-primaryText">
             <button className="text-sm font-semibold focus:outline-none">{`${following} Following`}</button>
             <button className="text-sm font-semibold focus:outline-none">{`${followers} Followers`}</button>
             <button className="text-sm font-semibold focus:outline-none">{`${friends} Friends`}</button>
@@ -89,7 +89,7 @@ export default function ProfileModal({
           <p className="text-errorText text-sm">{updateUserApi.error}</p>
         </div>
       )}
-      <div className="text-md font-bold pb-4">
+      <div className="text-md font-bold pb-4 text-primaryText">
         {myProfile
           ? "Videos You Watched"
           : `Videos You and ${user.username} Watched`}
@@ -97,7 +97,7 @@ export default function ProfileModal({
       <div className="flex">
         <ChannelCardList channelList={recentVideos} />
       </div>
-      <div className="text-md font-bold pb-4 pt-8">
+      <div className="text-md font-bold pb-4 pt-8 text-primaryText">
         {myProfile
           ? "Channels You Follow"
           : `Channels You and ${user.username} Follow`}
