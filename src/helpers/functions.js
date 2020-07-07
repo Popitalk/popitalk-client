@@ -60,7 +60,7 @@ export function getSetPasswordSchema(checkOldPassword) {
   if (checkOldPassword) {
     password = password.notOneOf(
       [Yup.ref("oldPassword"), null],
-      "Passwords deosn't match."
+      "Passwords must not match."
     );
   }
 
