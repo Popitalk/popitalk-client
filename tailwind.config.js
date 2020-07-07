@@ -124,7 +124,8 @@ module.exports = {
       spacing: {
         "44": "11rem",
         "84": "21rem",
-        "102": "28rem"
+        "102": "28rem",
+        "104": "30rem"
       },
       borderWidth: {
         thin: "thin"

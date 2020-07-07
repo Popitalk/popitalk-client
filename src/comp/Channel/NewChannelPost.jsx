@@ -42,10 +42,10 @@ export default function NewChannelPost({
   };
 
   return (
-    <>
+    <div className="flex flex-col justify-center items-center">
       <form
         onSubmit={handleSubmit}
-        className={`flex flex-row justify-center bg-secondaryBackground content-center py-2 ${className}`}
+        className={`flex flex-row justify-center bg-secondaryBackground content-center py-2 sm:w-102 md:w-102 lg:w-104 max-w-xl ${className}`}
       >
         <button
           className="text-highlightText text-2xl mx-4 focus:outline-none"
@@ -72,7 +72,7 @@ export default function NewChannelPost({
         <input
           type="submit"
           value="Send"
-          className="mx-4 bg-transparent text-highlightText font-bold cursor-pointer focus:outline-none"
+          className="ml-4 mr-2 bg-transparent text-highlightText font-bold cursor-pointer focus:outline-none"
         />
       </form>
       {pickerOpen && (
@@ -101,6 +101,6 @@ export default function NewChannelPost({
           />
         </div>
       )}
-    </>
+    </div>
   );
 }
