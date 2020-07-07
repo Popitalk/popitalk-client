@@ -56,9 +56,6 @@ export default function Channel({ tab, type = "channel" }) {
   const channelRef = useRef(null);
   const scrollRef = useRef(null);
 
-  console.log("channel", channel);
-  console.log("posts", posts);
-  console.log("comments", comments);
   // console.log("tab", tab);
   const copyTestQueue = [...testQueue];
   const activeVideo = copyTestQueue[0];
@@ -141,7 +138,6 @@ export default function Channel({ tab, type = "channel" }) {
 
   const handleChannelFormSubmit = (values, channelId) => {
     dispatch(updateChannel({ channelId, ...values }));
-    console.log("form submit values", values);
   };
 
   const addAdminHandler = userId => {
@@ -180,6 +176,8 @@ export default function Channel({ tab, type = "channel" }) {
     dispatch(searchVideos({ channelId, source: "youtube", terms }));
   };
 
+  const loading = channel?.loaded ? false : true;
+
   useEffect(() => {
     if (channel && !channel?.loaded) {
       dispatch(getChannel(channelId));
@@ -190,9 +188,7 @@ export default function Channel({ tab, type = "channel" }) {
       console.log("NO CHANNEL");
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [channelId]);
-
-  const loading = useSelector(state => !state.channels[channelId]?.loaded);
+  }, [channelId, loading]);
 
   useEffect(() => {
     if (loading) return;
@@ -201,19 +197,13 @@ export default function Channel({ tab, type = "channel" }) {
         top: 0,
         behavior: "smooth"
       });
-      console.log("in useEffect for video");
     } else if (tab === "channel") {
       scrollRef.current.scrollTo({
         top: channelRef.current.offsetTop + 6,
         behavior: "smooth"
       });
-      console.log("channelRef offsetTop", channelRef.current.offsetTop);
-      console.log("scrollRef", scrollRef);
-      console.log("channelRef", channelRef);
-      console.log("in useEffect for channel");
     } else if (tab === "settings" || tab === "queue") {
       scrollRef.current.scrollTo({ top: 0 });
-      console.log("in useEffect for settings");
     }
   }, [tab, loading]);
 

@@ -19,17 +19,11 @@ export default function VideoPanel({ playlist, classNames }) {
 
   const { channelId, roomId } = useParams();
   const finalId = channelId || roomId;
-  console.log("channelId from video panel", finalId);
 
   const viewerIds = useSelector(state => state.channels[finalId].members) || [];
   const isInvitingAllowed =
     useSelector(state => state.channels[finalId].type) === "group";
 
-  console.log(
-    "channelsInfo",
-    useSelector(state => state.channels)
-  );
-  console.log("viewers", viewerIds);
   const { defaultAvatar } = useSelector(state => state.general);
   const users = useSelector(state => state.users);
   const viewers = viewerIds

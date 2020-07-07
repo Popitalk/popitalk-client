@@ -49,9 +49,7 @@ const middleware = [
   localstorageMiddleware(),
   routingMiddleware(),
   modalMiddleware(),
-  // Temp fix to channel losing state -- start
-  // websocketMiddleware(),
-  // Temp fix to channel losing state -- end
+  websocketMiddleware(),
 
   // process.env.NODE_ENV !== "production"
   //   ? websocketMiddleware("ws://localhost:4000/")
