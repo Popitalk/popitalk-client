@@ -8,7 +8,7 @@ export default function SortableList({
   itemRenderer,
   children,
   handlerChange,
-  axis = "y",
+  axis,
   height = "100%"
 }) {
   if (!items || items.length === 0) {
@@ -34,10 +34,9 @@ export default function SortableList({
           Up Next
         </p>
         <div
-          className={
-            (axis === "y" ? "flex-col" : "flex-row") +
-            " flex flex-grow overflow-auto px-4 items-start"
-          }
+          className={`flex ${
+            axis === "y" ? "flex-col" : "flex-row"
+          } flex-grow overflow-auto px-4 items-start mozilla-thin-scrollbar`}
         >
           {items.map((value, index) => (
             <SortableItem

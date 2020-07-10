@@ -19,11 +19,12 @@ import CreateNewAccountContainer from "../containers/CreateNewAccountContainer";
 import CreateChannelContainer from "../containers/CreateChannelContainer";
 import { channelsList, friendsList } from "../stories/seed-arrays";
 import Channel from "../containers/Channel/index";
+import "../comp/ScrollBars.css";
 
 const RouteWrapper = ({ leftPanel, children }) => {
   return (
     <div className="flex flex-row h-full overflow-auto">
-      <div className="flex-grow md:overflow-auto md:flex-shrink-0">
+      <div className="flex-grow md:overflow-auto md:flex-shrink-0 mozilla-thin-scrollbar">
         {leftPanel}
       </div>
       {children}
@@ -72,7 +73,7 @@ export default function App() {
 
   const searchClasses = `${
     isCollapsed ? "block" : "hidden"
-  } flex-grow md:block overflow-auto w-full select-none`;
+  } flex-grow md:block overflow-auto w-full select-none mozilla-thin-scrollbar`;
 
   return (
     <>

@@ -6,8 +6,6 @@ import MiniFriendsList from "../MiniFriendsList";
 import PanelHeader from "./PanelHeader";
 import ReactTooltip from "react-tooltip";
 import "./Tooltip.css";
-import SimpleBar from "simplebar-react";
-import "simplebar/dist/simplebar.min.css";
 
 export default function ChannelsPanel({
   yourChannels,
@@ -23,7 +21,7 @@ export default function ChannelsPanel({
   setFriendsSearchFocus
 }) {
   return (
-    <SimpleBar className="w-full h-full bg-primaryBackground w-84 xl:w-84 lg:w-84 md:w-84 sm:w-84 select-none">
+    <div className="w-full h-full bg-primaryBackground w-84 xl:w-84 lg:w-84 md:w-84 sm:w-84 select-none">
       <PanelHeader
         handleCollapse={handleCollapse}
         updateSelectedPage={updateSelectedPage}
@@ -98,6 +96,6 @@ export default function ChannelsPanel({
           </div>
         </div>
       </div> */}
-    </SimpleBar>
+    </div>
   );
 }

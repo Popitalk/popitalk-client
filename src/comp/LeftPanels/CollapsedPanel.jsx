@@ -6,8 +6,6 @@ import RoomsList from "../InfoCardLists/RoomsList";
 import moment from "moment";
 import RoomIcon from "../Controls/RoomIcon";
 import InfoCard from "../InfoCards/InfoCard";
-import SimpleBar from "simplebar-react";
-import "simplebar/dist/simplebar.min.css";
 
 function CollapsedPanel({
   rooms,
@@ -18,7 +16,7 @@ function CollapsedPanel({
   updateSelectedPage
 }) {
   return (
-    <SimpleBar className="bg-primaryBackground px-2 flex flex-col items-center w-20 h-full select-none">
+    <div className="bg-primaryBackground px-2 flex flex-col items-center w-20 h-full select-none">
       <button
         className="py-5 w-full flex items-center flex-col focus:outline-none"
         onClick={handleCollapse}
@@ -78,7 +76,7 @@ function CollapsedPanel({
           );
         })}
       </div>
-    </SimpleBar>
+    </div>
   );
 }
 

@@ -170,7 +170,7 @@ export default function ChatMessages({ channelId, channelMessages }) {
     // <div className="ChatMessages--container" ref={scrollRef}>
     <>
       <InfiniteScroller
-        className="overflow-auto h-full mt-1 pb-4"
+        className="overflow-auto h-full mt-1 pb-4 mozilla-thin-scrollbar"
         ref={containerRef}
         onTopView={onTopView}
         hasMoreTop={hasMoreTop}
