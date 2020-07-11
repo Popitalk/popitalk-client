@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import PropTypes from "prop-types";
 import ChannelsList from "../InfoCardLists/ChannelsList";
@@ -6,6 +6,8 @@ import RoomsList from "../InfoCardLists/RoomsList";
 import moment from "moment";
 import RoomIcon from "../Controls/RoomIcon";
 import InfoCard from "../InfoCards/InfoCard";
+import Button from "../Controls/Button";
+import { useSelector } from "react-redux";
 
 function CollapsedPanel({
   rooms,
@@ -17,6 +19,16 @@ function CollapsedPanel({
   selectedPage,
   updateSelectedPage
 }) {
+  const isCollapsed = useSelector(state => state.ui.isCollapsed);
+
+  const [chipSelected, setChipSelected] = useState("");
+  const onChipClick = title => {
+    if (chipSelected === title) {
+      setChipSelected("");
+    } else {
+      setChipSelected(title);
+    }
+  };
   return (
     <div className="bg-primaryBackground px-2 flex flex-col items-center w-20 h-auto select-none">
       <button
@@ -29,8 +41,19 @@ function CollapsedPanel({
         />
       </button>
       {/* CHANNELS */}
-      <div className="bg-secondaryBackground rounded-xl py-4 mb-4">
-        <button
+      <div className="bg-primaryBackground rounded-xl mb-1">
+        <Button
+          className="flex flex-col h-12 w-20 bg-primaryBackground mb-2 shadow-none "
+          shape="none"
+          background="bgColor"
+          selectedColor={chipSelected === "following" && "primary"}
+          onClick={() => onChipClick("following")}
+          size="sm"
+        >
+          Channels
+        </Button>
+        {/* CHANNEL BUTTON WITH ICON */}
+        {/* <button
           className={`${
             selectedPage === "channels"
               ? "text-highlightText"
@@ -40,7 +63,7 @@ function CollapsedPanel({
         >
           <FontAwesomeIcon icon="tv" className="fa-1x" />
           <h3 className="text-xs p-1">Channels</h3>
-        </button>
+        </button> */}
         <div className="flex flex-col w-full items-center">
           {channels.map(channel => {
             const roomIcon = (
@@ -64,17 +87,21 @@ function CollapsedPanel({
               </div>
             );
           })}
-          {/* <ChannelsList
-            channels={channels}
-            selected={selected}
-            handleSelect={handleSelect}
-            fullHeight={true}
-          /> */}
         </div>
       </div>
       {/* FRIENDS */}
-      <div className="bg-secondaryBackground rounded-xl py-4 mb-4">
-        <button
+      <div className="bg-primaryBackground rounded-xl mb-4">
+        <Button
+          className="flex flex-col h-12 w-20 mb-2 bg-primaryBackground shadow-none"
+          shape="none"
+          background="bgColor"
+          selectedColor={chipSelected === "discover" && "primary"}
+          onClick={() => onChipClick("discover")}
+          size="sm"
+        >
+          Friends
+        </Button>
+        {/* <button
           className={`${
             selectedPage === "friends"
               ? "text-highlightText"
@@ -84,7 +111,7 @@ function CollapsedPanel({
         >
           <FontAwesomeIcon icon="user-friends" className="fa-1x" />
           <h3 className="text-xs p-1">Friends</h3>
-        </button>
+        </button> */}
         <div className="flex flex-col w-full items-center">
           {rooms.map(room => {
             const images = room.members.map(m => m.avatar);

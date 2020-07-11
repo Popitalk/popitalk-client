@@ -33,7 +33,8 @@ export default function Button({
     regular: "rounded-lg",
     pill: "rounded-pill",
     circle: "rounded-circle",
-    chip: "rounded-full"
+    chip: "rounded-full",
+    none: "rounded-sm"
   };
 
   const buttonClasses = classnames({
@@ -41,7 +42,7 @@ export default function Button({
     [`btn-${size}`]: true,
     [backgrounds[background]]: true,
     [shapes[shape]]: true,
-    "text-primaryText": background === "bgColor",
+    "text-secondaryText": background === "bgColor",
     "btn-icon": icon && !shape,
     "btn-text": variant === "text",
     [className]: className
