@@ -51,8 +51,12 @@ export default function ChatMessage({
       // Fused Message
       <React.Fragment>
         {clickedMessage === message.id ? (
-          <div className="flex items-center justify-center space-x-2 text-xs py-4 select-none">
-            <div className="items-center justify-center bg-secondaryBackground px-2 py-1 rounded-md">
+          <div
+            className="flex items-center justify-center space-x-2 text-xs py-4 select-none"
+            onClick={() => updateClickedMessage(message.id)}
+            role="button"
+          >
+            <div className="items-center justify-center bg-secondaryBackground px-2 py-1 rounded-md transition transform ease-in-out hover:scale-105 duration-100">
               <MessageCreatedTime createdAt={message.createdAt} />
             </div>
           </div>
@@ -60,7 +64,7 @@ export default function ChatMessage({
         <div
           role="button"
           onClick={() => updateClickedMessage(message.id)}
-          className="flex mx-2 bg-primaryBackground hover:bg-secondaryBackground rounded-md chat-options-button-parent cursor-default"
+          className="flex mx-2 bg-primaryBackground hover:bg-secondaryBackground rounded-md chat-options-button-parent"
           key={message.id}
         >
           <MessageHighlightSpan

@@ -21,7 +21,7 @@ function ChatActions(props) {
   const handleSubmit = e => {
     if (e.keyCode === 13 && !e.shiftKey) {
       e.preventDefault();
-      e.target.style.height = "36px";
+      e.target.style.height = "38px";
 
       const text = draft?.trim();
 
@@ -47,7 +47,7 @@ function ChatActions(props) {
   };
 
   const handleSend = () => {
-    textareaRef.current.style.height = "36px";
+    textareaRef.current.style.height = "38px";
     const text = draft?.trim();
 
     if (text && text.length > 0 && !apiLoading) {
@@ -81,7 +81,7 @@ function ChatActions(props) {
   }, [channelId, chosenEmoji, dispatch, draft]);
 
   const handleChange = e => {
-    e.target.style.height = "36px";
+    e.target.style.height = "38px";
     e.target.style.height = `${Math.min(e.target.scrollHeight + 2, 168)}px`;
     dispatch(setChatDraft({ channelId, draft: e.target.value }));
   };
@@ -98,12 +98,13 @@ function ChatActions(props) {
       <div className="flex items-center pt-1 space-x-1 md:space-x-2 mx-2">
         <button
           onClick={() => setEmojiIsOpen(!emojiIsOpen)}
-          className="w-10 h-10 p-2 text-center rounded-full bg-secondaryBackground hover:bg-highlightBackground focus:outline-none transition transform ease-in-out hover:scale-110 duration-100"
+          className="w-10 h-10 p-2 text-center rounded-lg bg-secondaryBackground hover:bg-highlightBackground focus:outline-none transition transform ease-in-out hover:scale-110 duration-100"
         >
           <FontAwesomeIcon
             icon={["far", "smile"]}
-            className="cursor-pointer text-highlightText"
+            className="text-highlightText"
             size="lg"
+            role="button"
           />
         </button>
         {emojiIsOpen ? (
@@ -129,7 +130,7 @@ function ChatActions(props) {
           </div>
         ) : null}
         <textarea
-          className="w-full h-10 p-2 pl-4 overflow-hidden rounded-lg resize-none bg-secondaryBackground focus:outline-none text-primaryText text-sm transition transform ease-in-out hover:scale-105 duration-100"
+          className="w-full h-10 py-2 pl-4 overflow-hidden rounded-lg resize-none bg-secondaryBackground focus:outline-none text-primaryText text-sm transition transform ease-in-out hover:scale-105 duration-100"
           placeholder="Type a message..."
           value={draft || ""}
           maxLength="240"
@@ -138,12 +139,10 @@ function ChatActions(props) {
           onChange={handleChange}
         />
         {/* REPLACE IMAGE PICKER -> GIF PICKER */}
-        <div className="w-10 h-10 p-2 text-center rounded-full bg-secondaryBackground hover:bg-highlightBackground transition transform ease-in-out hover:scale-110 duration-100">
-          <FontAwesomeIcon
-            icon={["far", "images"]}
-            className="cursor-pointer text-highlightText"
-            size="lg"
-          />
+        <div className="w-10 h-10 p-2 rounded-lg bg-secondaryBackground hover:bg-highlightBackground transition transform ease-in-out hover:scale-110 duration-100">
+          <p className="text-highlightText font-bold" role="button">
+            GIF
+          </p>
         </div>
         <button
           onClick={handleSend}
