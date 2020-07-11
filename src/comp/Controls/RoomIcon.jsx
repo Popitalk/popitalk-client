@@ -61,7 +61,7 @@ export default function RoomIcon({
     [className]: className
   });
   const container2Classes = classnames({
-    "grid gap-px border-thin  w-full h-full rounded-full ": true,
+    "grid border-thin w-full h-full rounded-full ": true,
     "grid-cols-2": images.length !== 1,
     "border-imageBorder1": !watching,
     "border-none bg-primaryBackground p-2px": watching
