@@ -130,7 +130,7 @@ function ChatActions(props) {
           </div>
         ) : null}
         <textarea
-          className="w-full h-10 py-2 pl-4 overflow-hidden rounded-lg resize-none bg-secondaryBackground focus:outline-none text-primaryText text-sm transition transform ease-in-out hover:scale-105 duration-100"
+          className="w-full h-10 py-2 px-3 text-start overflow-hidden rounded-lg resize-none bg-secondaryBackground focus:outline-none text-primaryText text-sm transition transform ease-in-out hover:scale-105 duration-100"
           placeholder="Type a message..."
           value={draft || ""}
           maxLength="240"
@@ -138,7 +138,7 @@ function ChatActions(props) {
           ref={textareaRef}
           onChange={handleChange}
         />
-        {/* REPLACE IMAGE PICKER -> GIF PICKER */}
+        {/* GIF BUTTON*/}
         <div className="w-10 h-10 p-2 rounded-lg bg-secondaryBackground hover:bg-highlightBackground transition transform ease-in-out hover:scale-110 duration-100">
           <p className="text-highlightText font-bold" role="button">
             GIF
