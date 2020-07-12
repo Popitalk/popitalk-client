@@ -14,7 +14,7 @@ export default function VideoSearchBar({ className, onClick }) {
       >
         <Input
           variant="video"
-          size="lg"
+          size="md"
           placeholder="Search for a video to watch next"
           value={value}
           onChange={e => setValue(e.target.value)}
