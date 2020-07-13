@@ -89,15 +89,15 @@ export default function ProfileModal({
           <p className="text-errorText text-sm">{updateUserApi.error}</p>
         </div>
       )}
-      <div className="text-md font-bold pb-4 text-primaryText">
+      {/* <div className="text-md font-bold pb-4 text-primaryText">
         {myProfile
           ? "Videos You Watched"
           : `Videos You and ${user.username} Watched`}
-      </div>
+      </div> */}
       <div className="flex">
         <ChannelCardList channelList={recentVideos} />
       </div>
-      <div className="text-md font-bold pb-4 pt-8 text-primaryText">
+      <div className="text-md font-bold pb-8 text-primaryText">
         {myProfile
           ? "Channels You Follow"
           : `Channels You and ${user.username} Follow`}
