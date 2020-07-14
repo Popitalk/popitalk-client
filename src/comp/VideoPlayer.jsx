@@ -1,20 +1,13 @@
 import React, { useRef, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Transition from "./Transition";
-
-function VideoPlayer({ reference, url }) {
-  const video = useRef();
-
-  const player = reference => {
-    if (reference === "youtube") {
-    }
-  };
-
+import ReactPlayer from "react-player";
+function VideoPlayer() {
   const [isHovering, setIsHovering] = useState(false);
   return (
     <>
-      <div className="relative bg-gray-900">
-        <div
+      {/* <div className="relative bg-gray-900"> */}
+      {/* <div
           onMouseEnter={() => setIsHovering(!isHovering)}
           onMouseLeave={() => setIsHovering(!isHovering)}
           className="absolute flex flex-col justify-end w-full h-full p-4 transition-colors duration-150 hover:bg-gradient-t-player"
@@ -58,8 +51,8 @@ function VideoPlayer({ reference, url }) {
               </div>
             </>
           </Transition>
-        </div>
-        <iframe
+        </div> */}
+      {/* <iframe
           title="youtube"
           width="100%"
           height="500"
@@ -67,8 +60,12 @@ function VideoPlayer({ reference, url }) {
           frameBorder="0"
           allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
           allowFullScreen
-        ></iframe>
-      </div>
+        ></iframe> */}
+      <ReactPlayer
+        url="https://www.youtube.com/watch?v=ysz5S6PUM-U"
+        width="100%"
+      />
+      {/* </div> */}
     </>
   );
 }

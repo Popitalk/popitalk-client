@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./VideoStatus.css";
 import AvatarIcon from "./Controls/AvatarIcon";
 import VideoStatus from "./VideoStatus";
+import VideoPlayer from "./VideoPlayer";
 
 export default function VideoSection({
   id,
@@ -17,8 +18,9 @@ export default function VideoSection({
 }) {
   return (
     <div className="flex flex-col">
-      <div className="h-84 bg-black">
-        <p className="">Video Container for Video Player</p>
+      <div className="flex">
+        {/* <p className="">Video Container for Video Player</p> */}
+        <VideoPlayer></VideoPlayer>
       </div>
       <div className="flex flex-row justify-between bg-secondaryBackground pt-4">
         <section className="mx-4">
