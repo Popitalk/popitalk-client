@@ -61,11 +61,15 @@ function VideoPlayer() {
           allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
           allowFullScreen
         ></iframe> */}
-      <ReactPlayer
-        url="https://www.youtube.com/watch?v=ysz5S6PUM-U"
-        width="100%"
-        controls
-      />
+      <div className="relative pb-16/9 w-full h-full">
+        <ReactPlayer
+          url="https://www.youtube.com/watch?v=ysz5S6PUM-U"
+          width="100%"
+          height="100%"
+          controls
+          className="absolute t-0 l-0"
+        />
+      </div>
       {/* </div> */}
     </>
   );
