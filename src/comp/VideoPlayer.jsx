@@ -68,6 +68,7 @@ function VideoPlayer() {
           height="100%"
           controls
           className="absolute t-0 l-0"
+          playing="true"
         />
       </div>
       {/* </div> */}
