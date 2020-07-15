@@ -63,7 +63,7 @@ function VideoPlayer() {
         ></iframe> */}
       <div className="relative pb-16/9 w-full h-full">
         <ReactPlayer
-          url="https://www.youtube.com/watch?v=ysz5S6PUM-U"
+          url="https://www.youtube.com/watch?v=5qap5aO4i9A"
           width="100%"
           height="100%"
           controls
