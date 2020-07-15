@@ -107,7 +107,7 @@ module.exports = {
       upload: ["#03f5ff 0%", "#f500ff 100%"],
       player: [
         "rgba(0, 0, 0, 0.8) 0%",
-        "rgba(0, 0, 0, 0.1) 34.52%",
+        "rgba(0, 0, 0, 0.1) 60%",
         "rgba(0, 0, 0, 0) 100%"
       ]
     },
@@ -157,6 +157,9 @@ module.exports = {
         chatBox: "27rem",
         chatChild: "24rem",
         modalFull: "70vh"
+      },
+      scale: {
+        "200": "2"
       },
       maxHeight: {
         "32": "8rem"
