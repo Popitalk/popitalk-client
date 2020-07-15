@@ -42,6 +42,15 @@ export const validateSession = createAsyncThunk(
     return response.data;
   }
 );
+
+export const refreshSession = createAsyncThunk(
+  "general/refreshSession",
+  async () => {
+    const response = await api.refreshSession();
+    return response.data;
+  }
+);
+
 export const login = createAsyncThunk("general/login", async loginInfo => {
   try {
     const response = await api.login(loginInfo);

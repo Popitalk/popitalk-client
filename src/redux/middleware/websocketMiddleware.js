@@ -1,5 +1,6 @@
 import {
   validateSession,
+  refreshSession,
   login,
   logout,
   wsConnect,
@@ -54,7 +55,8 @@ const websocketMiddleware = () => store => next => action => {
   // and if websocket is not already connected, so that 2 websockets wouldnt be opened.
   if (
     (actionType === validateSession.fulfilled.toString() ||
-      actionType === login.fulfilled.toString()) &&
+      actionType === login.fulfilled.toString() ||
+      actionType === refreshSession.fulfilled.toString()) &&
     !store.getState().general.wsConnected
   ) {
     const wsTicket = action.payload.wsTicket;
@@ -92,7 +94,7 @@ const websocketMiddleware = () => store => next => action => {
       if (!socket.dontReconnect) {
         interval = setInterval(() => {
           // Calls api.validateSession(), if it's fullfiled, sets validatedSession Redux state to true
-          store.dispatch(validateSession());
+          store.dispatch(refreshSession());
         }, 10000);
       }
     };

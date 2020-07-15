@@ -14,6 +14,10 @@ export const validateSession = () => {
   return axios.get("/api/sessions/validate");
 };
 
+export const refreshSession = () => {
+  return axios.get("/api/sessions/refresh");
+};
+
 export const logout = () => {
   return axios.post("/api/sessions/logout");
 };
