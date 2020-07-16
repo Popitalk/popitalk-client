@@ -9,10 +9,10 @@ export default function AvatarDeck({
   threshold = 6
 }) {
   const deckClasses = classnames({
-    "flex flex-row-reverse justify-end overflow-hidden": true,
-    "children:not-first:-mr-2": size === "sm",
-    "children:not-first:-mr-3": size === "md",
-    "children:not-first:-mr-4": size === "lg",
+    "flex flex-row-reverse justify-end mr-5": true,
+    "children:-mr-2": size === "sm",
+    "children:-mr-3": size === "md",
+    "children:-mr-4": size === "lg",
     [className]: className
   });
   const avatarClasses = classnames({
@@ -25,7 +25,7 @@ export default function AvatarDeck({
   return (
     <div className={deckClasses}>
       {avatars &&
-        avatars.reverse().map((avatar, index) => {
+        avatars.map((avatar, index) => {
           if (index < threshold) {
             return (
               <img
@@ -39,7 +39,7 @@ export default function AvatarDeck({
             const totalLeft = avatars.length - threshold;
             return (
               <button
-                className={`${avatarClasses} bg-disabledBackground text-xs self-start focus:outline-none`}
+                className={`${avatarClasses} bg-disabledBackground text-xs focus:outline-none order-first z-10`}
               >{`+${totalLeft}`}</button>
             );
           }
