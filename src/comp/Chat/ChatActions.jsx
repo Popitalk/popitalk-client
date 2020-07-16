@@ -126,6 +126,7 @@ function ChatActions(props) {
               // But then they have to be downloaded.
               native={true}
               onClick={onEmojiClick}
+              exclude={["flags"]}
             ></Picker>
           </div>
         ) : null}
