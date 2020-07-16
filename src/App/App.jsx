@@ -11,6 +11,7 @@ import { validateSession } from "../redux/actions";
 import "../styles/app.css";
 import "./App.css";
 import "../helpers/initIcons";
+import withGetChannel from "../comp/withGetChannel";
 import LeftPanel from "../containers/LeftPanel";
 import RecommendedView from "../comp/RecommendedView";
 import ChatPanel from "../containers/ChatPanel";
@@ -18,7 +19,7 @@ import AnonymousSidebar from "../comp/LeftPanels/AnonymousSidebar";
 import CreateNewAccountContainer from "../containers/CreateNewAccountContainer";
 import CreateChannelContainer from "../containers/CreateChannelContainer";
 import { channelsList, friendsList } from "../stories/seed-arrays";
-import Channel from "../containers/Channel/index";
+import Channel from "../containers/Channel";
 import "../comp/ScrollBars.css";
 
 const RouteWrapper = ({ leftPanel, children }) => {
@@ -31,6 +32,8 @@ const RouteWrapper = ({ leftPanel, children }) => {
     </div>
   );
 };
+
+const ChannelRouteWrapper = withGetChannel(RouteWrapper);
 
 export default function App() {
   const validatedSession = useSelector(state => state.general.validatedSession);
@@ -96,37 +99,37 @@ export default function App() {
             </RouteWrapper>
           </Route>
           <Route exact path="/channels/:channelId/video">
-            <RouteWrapper leftPanel={leftPanel}>
+            <ChannelRouteWrapper leftPanel={leftPanel}>
               <Channel tab="video" />
               {chatPanel}
-            </RouteWrapper>
+            </ChannelRouteWrapper>
           </Route>
           <Route exact path="/channels/:channelId/channel">
-            <RouteWrapper leftPanel={leftPanel}>
+            <ChannelRouteWrapper leftPanel={leftPanel}>
               <Channel tab="channel" />
               {chatPanel}
-            </RouteWrapper>
+            </ChannelRouteWrapper>
           </Route>
           <Route exact path="/channels/:channelId/queue">
-            <RouteWrapper leftPanel={leftPanel}>
+            <ChannelRouteWrapper leftPanel={leftPanel}>
               <div className={searchClasses}>
                 <Channel tab="queue" />
               </div>
               {chatPanel}
-            </RouteWrapper>
+            </ChannelRouteWrapper>
           </Route>
           <Route exact path="/channels/:channelId/settings">
-            <RouteWrapper leftPanel={leftPanel}>
+            <ChannelRouteWrapper leftPanel={leftPanel}>
               <Channel tab="settings" />
-            </RouteWrapper>
+            </ChannelRouteWrapper>
           </Route>
           <Route exact path="/rooms/:roomId/video">
-            <RouteWrapper leftPanel={leftPanel}>
+            <ChannelRouteWrapper leftPanel={leftPanel}>
               <div className={searchClasses}>
                 <Channel tab="video" type="room" />
               </div>
               {chatPanel}
-            </RouteWrapper>
+            </ChannelRouteWrapper>
           </Route>
           <Route exact path="/channels">
             <RouteWrapper leftPanel={leftPanel}>
