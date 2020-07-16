@@ -24,7 +24,6 @@ function VideoCardList({ videoList, isCollapsed, chipSelected }) {
 }
 
 VideoCardList.propTypes = {
-  header: PropTypes.string.isRequired,
   videoList: PropTypes.array
 };
 

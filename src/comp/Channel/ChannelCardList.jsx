@@ -24,7 +24,6 @@ function ChannelCardList({ channelList, isCollapsed, chipSelected }) {
 }
 
 ChannelCardList.propTypes = {
-  header: PropTypes.string.isRequired,
   channelList: PropTypes.array
 };
 

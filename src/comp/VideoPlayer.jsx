@@ -40,14 +40,12 @@ function VideoPlayer() {
                     <FontAwesomeIcon
                       icon="play"
                       className="text-tertiaryText"
-                      size="md"
                     />
                   </button>
                   <button className="w-8 p-1 rounded-full hover:bg-playerControlsHover focus:outline-none duration-50">
                     <FontAwesomeIcon
                       icon="volume-up"
                       className="text-tertiaryText"
-                      size="md"
                     />
                   </button>
                   <span className="text-tertiaryText text-sm">0:11 / 5:04</span>
@@ -56,7 +54,6 @@ function VideoPlayer() {
                   <FontAwesomeIcon
                     icon="compress"
                     className="text-tertiaryText"
-                    size="md"
                   />
                 </button>
               </div>
