@@ -1,12 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import arrayMove from "array-move";
-import {
-  getChannel,
-  openInviteModal,
-  openProfileModal
-} from "../../redux/actions";
+import { openInviteModal, openProfileModal } from "../../redux/actions";
 import { mapIdsToUsers } from "../../helpers/functions";
 import VideoSection from "../../comp/VideoSection";
 import QueueSection from "../../comp/QueueSection";

@@ -31,11 +31,11 @@ function InfiniteScroller(
   let [oldScrollHeight, setOldScrollHeight] = useState(0);
   let [olderScrollHeight, setOlderScrollHeight] = useState(0);
 
-  let [bottomRef, bottomInView, bottomEntry] = useInView({
+  let [bottomRef, bottomInView] = useInView({
     triggerOnce: false,
     rootMargin: `${threshold * 2}px 0px`
   });
-  let [topRef, topInView, topEntry] = useInView({
+  let [topRef, topInView] = useInView({
     triggerOnce: false,
     rootMargin: `${threshold}px 0px`
   });

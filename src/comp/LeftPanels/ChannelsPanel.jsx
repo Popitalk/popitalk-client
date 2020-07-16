@@ -1,7 +1,6 @@
 import React from "react";
 import ChannelsList from "../InfoCardLists/ChannelsList";
 import Button from "../Controls/Button";
-import SuggestionCard from "../SuggestionCard";
 import MiniFriendsList from "../MiniFriendsList";
 import PanelHeader from "./PanelHeader";
 import ReactTooltip from "react-tooltip";

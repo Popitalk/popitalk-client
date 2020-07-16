@@ -1,7 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { useParams } from "react-router-dom";
-import { setPostDraft, addPost } from "../../redux/actions";
+import React, { useState, useRef } from "react";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "../VideoStatus.css";
@@ -16,13 +13,11 @@ export default function NewChannelPost({
   savePost
 }) {
   const [pickerOpen, setPickerOpen] = useState(false);
-  const [post, setPost] = useState("");
   const textareaRef = useRef();
-  const pickerRef = useRef();
 
-  const remToPixel = (rootFontSizePx = 16, rem) => {
-    return rem * rootFontSizePx;
-  };
+  // const remToPixel = (rootFontSizePx = 16, rem) => {
+  //   return rem * rootFontSizePx;
+  // };
 
   const handleSubmit = e => {
     e.preventDefault();

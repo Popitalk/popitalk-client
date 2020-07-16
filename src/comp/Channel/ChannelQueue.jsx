@@ -1,26 +1,19 @@
-import React, { useState } from "react";
+import React from "react";
 import "../VideoStatus.css";
-import ChannelHeader from "../ChannelHeader";
-import arrayMove from "array-move";
 import VideoSearch from "../VideoSearch";
 import ChannelListQueue from "./ChannelListQueue";
 
 export default function ChannelQueue({
-  id,
-  name,
-  icon,
   activeVideo,
   queue,
-  type = "channel",
   trendingResults = [],
   searchResults = [],
   totalResults,
   handleSearch
 }) {
-  const [queueList, setQueueList] = useState(queue);
-  const handlerChange = ({ oldIndex, newIndex }) => {
-    setQueueList(arrayMove(queueList, oldIndex, newIndex));
-  };
+  // const handlerChange = ({ oldIndex, newIndex }) => {
+  //   setQueueList(arrayMove(queueList, oldIndex, newIndex));
+  // };
   const playlist = [activeVideo, ...queue];
 
   return (

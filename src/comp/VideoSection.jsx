@@ -1,6 +1,5 @@
 import React from "react";
 import Button from "./Controls/Button";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./VideoStatus.css";
 import AvatarIcon from "./Controls/AvatarIcon";
 import VideoStatus from "./VideoStatus";

@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from "react";
-import sources from "./videoSourceImages";
+import React, { useState } from "react";
 import VideoPanelCard from "./VideoPanelCard";
 
 export default function VideoResults({

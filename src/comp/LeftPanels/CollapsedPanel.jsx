@@ -1,13 +1,8 @@
 import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import PropTypes from "prop-types";
-import ChannelsList from "../InfoCardLists/ChannelsList";
-import RoomsList from "../InfoCardLists/RoomsList";
-import moment from "moment";
 import RoomIcon from "../Controls/RoomIcon";
-import InfoCard from "../InfoCards/InfoCard";
 import Button from "../Controls/Button";
-import { useSelector } from "react-redux";
 import useCollapse from "react-collapsed";
 
 function CollapsedPanel({
@@ -15,10 +10,7 @@ function CollapsedPanel({
   channels,
   selected,
   handleSelectRoom,
-  handleSelect,
-  handleCollapse,
-  selectedPage,
-  updateSelectedPage
+  handleCollapse
 }) {
   const { getCollapseProps, getToggleProps } = useCollapse();
 

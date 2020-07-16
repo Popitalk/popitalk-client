@@ -1,6 +1,5 @@
-import React, { useState } from "react";
+import React from "react";
 import { SortableContainer, SortableElement } from "react-sortable-hoc";
-import VideoPanelCard from "./VideoPanelCard";
 
 // Handler Change Params ({oldIndex, newIndex)}
 export default function SortableList({
@@ -18,12 +17,6 @@ export default function SortableList({
       </div>
     );
   }
-
-  const ULStyle = {
-    height,
-    spacing: 4
-    // width: "100%"
-  };
 
   const SortableItem = SortableElement(({ value }) => itemRenderer(value));
 

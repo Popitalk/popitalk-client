@@ -4,7 +4,6 @@ import "../VideoStatus.css";
 import AvatarIcon from "../Controls/AvatarIcon";
 import ChannelComment from "./ChannelComment";
 import NewChannelComment from "./NewChannelComment";
-import classnames from "classnames";
 import ToggleIcon from "../Controls/ToggleIcon";
 import { formatDistanceToNow } from "date-fns";
 import useOnClickOutside from "use-onclickoutside";

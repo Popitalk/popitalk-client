@@ -1,7 +1,4 @@
-import React, { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { useParams } from "react-router-dom";
-import { getChannel } from "../../redux/actions";
+import React from "react";
 import ChannelDescription from "../../comp/Channel/ChannelDescription";
 import ChannelChat from "../../comp/Channel/ChannelChat";
 import NewChannelPost from "../../comp/Channel/NewChannelPost";

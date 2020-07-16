@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import ChannelCard1 from "../ChannelCard1";
@@ -23,7 +23,7 @@ export default function UserMain() {
     blockers
   } = useSelector(state => state.relationships);
   const { defaultAvatar } = useSelector(state => state.general);
-  const { id, firstName, lastName, username, avatar } = useSelector(
+  const { firstName, lastName, username, avatar } = useSelector(
     state => state.userProfile
   );
   const apiLoading = useSelector(state => state.api.userPage.loading);

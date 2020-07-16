@@ -43,9 +43,7 @@ export default function Channel({ tab, type = "channel" }) {
   const updateChannelApi = useSelector(state => state.api.channel);
   const draft = useSelector(state => state.postDrafts[channelId]);
   const posts = useSelector(state => state.posts[channelId]);
-  const { id: ownId, username: ownUsername, avatar: ownAvatar } = useSelector(
-    state => state.self
-  );
+  const { id: ownId, username: ownUsername } = useSelector(state => state.self);
   const users = useSelector(state => state.users);
 
   let adminList = useSelector(state => state.channels[channelId]?.admins);

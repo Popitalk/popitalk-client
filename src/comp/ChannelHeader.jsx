@@ -1,23 +1,8 @@
-import React, { useState, useLayoutEffect, useRef } from "react";
+import React from "react";
 import RoomIcon from "./Controls/RoomIcon";
-import { useSelector, useDispatch } from "react-redux";
 
-import {
-  Link,
-  Switch,
-  Route,
-  useRouteMatch,
-  useLocation,
-  useHistory,
-  useParams
-} from "react-router-dom";
-export default function ChannelHeader({
-  id,
-  name,
-  icon,
-  videoStatus,
-  type = "channel"
-}) {
+import { Link, useLocation } from "react-router-dom";
+export default function ChannelHeader({ id, name, icon, type = "channel" }) {
   const navButtons = [
     { name: "Video", endpoint: "video" },
     { name: "Posts", endpoint: "channel" },
@@ -27,7 +12,6 @@ export default function ChannelHeader({
 
   // const channel = useSelector(state => state.channels[id]);
 
-  const match = useRouteMatch();
   const location = useLocation();
   // const channelRef = useRef(null);
   // const scrollRef = useRef(null);

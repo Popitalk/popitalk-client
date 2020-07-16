@@ -1,29 +1,15 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-to-interactive-role */
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import {
-  useScroll,
-  usePrevious,
-  useUpdateEffect,
-  useDebounce
-} from "react-use";
+import { usePrevious, useUpdateEffect } from "react-use";
 import { createSelector } from "reselect";
-import {
-  getMessages,
-  getLatestMessages,
-  setInitialScroll
-} from "../../redux/actions";
+import { getMessages, getLatestMessages } from "../../redux/actions";
 import messagesFormatter2 from "../../util/messagesFormatter2";
 import useHasMoreBottom from "../../containers/hooks/useHasMoreBottom";
 
 import InfiniteScroller from "./InfiniteScroller";
 import ChatMessage from "./ChatMessage";
 import Spinner from "../Spinner";
-
-const seenUsers = [
-  "https://i.imgur.com/aqjzchq.jpg",
-  "https://i.imgur.com/tLljw1z.jpg"
-];
 
 const OldMessagesAlert = ({ onClick }) => (
   <div
@@ -46,10 +32,9 @@ const selectFormattedMessages = createSelector(
 export default function ChatMessages({ channelId, channelMessages }) {
   const [clickedMessage, setClickedMessage] = useState("");
   const containerRef = useRef();
-  const { y } = useScroll(containerRef);
+  // const { y } = useScroll(containerRef);
   const channel = useSelector(state => state.channels[channelId]);
   const hasMoreBottom = useHasMoreBottom(channel, channelMessages);
-  const oldScrollTop = useRef();
   // const [debouncedY, setDebouncedY] = useState(null);
   const previousChannelId = usePrevious(channelId);
   const { defaultAvatar } = useSelector(state => state.general);
@@ -58,13 +43,7 @@ export default function ChatMessages({ channelId, channelMessages }) {
     selectFormattedMessages(state, channelId)
   );
   const apiLoading = useSelector(state => state.api.messages.loading);
-  const apiError = useSelector(state => state.api.messages.error);
-  const deletedMessageApiLoading = useSelector(
-    state => state.api.deleteMessage.loading
-  );
-  const deletedMessageId = useSelector(
-    state => state.api.deleteMessage.args?.messageId
-  );
+  // const apiError = useSelector(state => state.api.messages.error);
 
   const { id: ownId } = useSelector(state => state.self);
   const dispatch = useDispatch();
@@ -81,44 +60,44 @@ export default function ChatMessages({ channelId, channelMessages }) {
     }
   };
 
-  const [, cancel] = useDebounce(
-    () => {
-      let yVal;
+  // const [, cancel] = useDebounce(
+  //   () => {
+  //     let yVal;
 
-      if (
-        containerRef.current.scrollHeight -
-          (containerRef.current.scrollTop + containerRef.current.clientHeight) <
-        100
-      ) {
-        yVal = null;
-      } else {
-        yVal = containerRef.current.scrollTop;
-      }
-      oldScrollTop.current = {
-        channelId,
-        y: yVal
-      };
+  //     if (
+  //       containerRef.current.scrollHeight -
+  //         (containerRef.current.scrollTop + containerRef.current.clientHeight) <
+  //       100
+  //     ) {
+  //       yVal = null;
+  //     } else {
+  //       yVal = containerRef.current.scrollTop;
+  //     }
+  //     oldScrollTop.current = {
+  //       channelId,
+  //       y: yVal
+  //     };
 
-      // console.log("XXX", channelId, y);
-      // dispatch(setInitialScroll({ channelId: channelId, initialScroll: yVal }));
-    },
-    5000,
-    [y]
-  );
+  //     // console.log("XXX", channelId, y);
+  //     // dispatch(setInitialScroll({ channelId: channelId, initialScroll: yVal }));
+  //   },
+  //   5000,
+  //   [y]
+  // );
 
-  useEffect(() => {
-    return () => {
-      if (oldScrollTop.current) {
-        dispatch(
-          setInitialScroll({
-            channelId: oldScrollTop.current.channelId,
-            initialScroll: oldScrollTop.current.y
-          })
-        );
-      }
-    };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [channelId]);
+  // useEffect(() => {
+  //   const oldScroll = oldScrollTop.current;
+  //   return () => {
+  //     if (oldScroll) {
+  //       dispatch(
+  //         setInitialScroll({
+  //           channelId: oldScroll.channelId,
+  //           initialScroll: oldScroll.y
+  //         })
+  //       );
+  //     }
+  //   };
+  // }, [channelId]);
 
   useUpdateEffect(() => {
     if (channelId !== previousChannelId) return;

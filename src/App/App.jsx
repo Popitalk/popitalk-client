@@ -38,7 +38,6 @@ const ChannelRouteWrapper = withGetChannel(RouteWrapper);
 export default function App() {
   const validatedSession = useSelector(state => state.general.validatedSession);
   const loggedIn = useSelector(state => state.general.loggedIn);
-  const wsConnected = useSelector(state => state.general.wsConnected);
   const isCollapsed = useSelector(state => state.ui.isCollapsed);
   const dispatch = useDispatch();
 

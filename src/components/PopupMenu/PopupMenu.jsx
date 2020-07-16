@@ -1,5 +1,5 @@
 import React, { useState, useRef } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import useOnClickOutside from "use-onclickoutside";
 // import { updateMember } from "../../redux/actions";

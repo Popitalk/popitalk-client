@@ -19,8 +19,7 @@ export default function EditInformationModal({
   informationUpdated,
   error
 }) {
-  const [uploadedImage, setUploadedImage] = useState(undefined);
-
+  const [, setUploadedImage] = useState(undefined);
   return (
     <div className="p-12 overflow-auto">
       <Formik

@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import sources from "./videoSourceImages";
 import VideoSearchBar from "./VideoSearchBar";
 import VideoResults from "./VideoResults";
 

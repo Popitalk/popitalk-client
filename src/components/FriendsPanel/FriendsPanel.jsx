@@ -27,7 +27,6 @@ export default function FriendsPanel({ unexpandable = false }) {
   const dispatch = useDispatch();
   const location = useLocation();
   const searchedUsers = useSelector(state => state.userSearch);
-  const apiLoading = useSelector(state => state.api.userSearchApi.loading);
   const apiError = useSelector(state => state.api.userSearchApi.error);
   const { defaultAvatar } = useSelector(state => state.general);
   const users = useSelector(state => state.users);

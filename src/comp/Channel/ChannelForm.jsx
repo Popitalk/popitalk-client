@@ -1,10 +1,8 @@
 import React, { useState } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Formik, connect } from "formik";
 import * as Yup from "yup";
 import Input from "../Controls/Input";
 import ImageUpload from "../Controls/ImageUpload";
-import ToggleCheckbox from "../Controls/ToggleCheckbox";
 import ChannelFormSubmit from "./ChannelFormSubmit";
 import TagInput from "../Controls/TagInput";
 import ControlHeader from "../Controls/ControlHeader";
@@ -59,7 +57,7 @@ export default function ChannelForm({
   loading,
   error
 }) {
-  const [uploadedImage, setUploadedImage] = useState(undefined);
+  const [, setUploadedImage] = useState(undefined);
   const [tags, setTags] = useState(categoryToTags(initial.category));
 
   const handleEnter = formik => {
@@ -111,6 +109,7 @@ export default function ChannelForm({
         category: Yup.string().notRequired()
       })}
       onSubmit={values => {
+        console.log(values.icon);
         handleSubmit({
           name: values.name,
           description: values.description,

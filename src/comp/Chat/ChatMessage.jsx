@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import MessageAuthorAvatar from "./MessageAuthorAvatar";
 import MessageCreatedTime from "./MessageCreatedTime";
 import MessageAuthorUsername from "./MessageAuthorUsername";

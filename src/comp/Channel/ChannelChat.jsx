@@ -1,9 +1,6 @@
-import React, { useState } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import React from "react";
 import "../VideoStatus.css";
 import ChannelPost from "./ChannelPost";
-import ChannelComment from "./ChannelComment";
-import NewChannelComment from "./NewChannelComment";
 import { formatDistanceToNow } from "date-fns";
 
 // {
