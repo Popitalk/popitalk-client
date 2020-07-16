@@ -42,6 +42,8 @@ export default function AvatarDeck({
                 className={`${avatarClasses} bg-disabledBackground text-xs focus:outline-none order-first z-10`}
               >{`+${totalLeft}`}</button>
             );
+          } else {
+            return null;
           }
         })}
     </div>

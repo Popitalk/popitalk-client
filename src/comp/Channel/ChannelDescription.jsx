@@ -52,6 +52,8 @@ export default function ChannelDescription({
                     onClick={handleListAdmins}
                   >{`+${totalLeft}`}</button>
                 );
+              } else {
+                return null;
               }
             })}
           </div>

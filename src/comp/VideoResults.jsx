@@ -36,6 +36,8 @@ export default function VideoResults({
         {results.map((result, idx) => {
           if (idx <= currThreshold - 1) {
             return <VideoPanelCard key={idx} {...result} />;
+          } else {
+            return null;
           }
         })}
       </div>

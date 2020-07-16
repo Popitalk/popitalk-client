@@ -35,7 +35,7 @@ export default function ChannelCard({
               avatars={avatars}
               size="md"
               className="img w-auto h-8 flex-shrink-0"
-              threshold={3}
+              threshold={2}
             />
           </div>
         </div>
