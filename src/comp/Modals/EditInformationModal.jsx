@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import {
@@ -19,7 +19,6 @@ export default function EditInformationModal({
   informationUpdated,
   error
 }) {
-  const [, setUploadedImage] = useState(undefined);
   return (
     <div className="p-12 overflow-auto">
       <Formik
@@ -51,7 +50,6 @@ export default function EditInformationModal({
                 icon={values.avatar}
                 onUpload={e => {
                   if (e.target.files[0]) {
-                    setUploadedImage(e.target.files[0]);
                     setFieldValue(
                       "avatar",
                       URL.createObjectURL(e.target.files[0])
@@ -60,7 +58,6 @@ export default function EditInformationModal({
                 }}
                 onRemove={() => {
                   setFieldValue("avatar", null);
-                  setUploadedImage(null);
                 }}
                 disabled={loading}
                 className=""

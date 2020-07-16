@@ -11,7 +11,7 @@ import { validateSession } from "../redux/actions";
 import "../styles/app.css";
 import "./App.css";
 import "../helpers/initIcons";
-import withGetChannel from "../comp/withGetChannel";
+import withGetChannel from "../containers/withGetChannel";
 import LeftPanel from "../containers/LeftPanel";
 import RecommendedView from "../comp/RecommendedView";
 import ChatPanel from "../containers/ChatPanel";

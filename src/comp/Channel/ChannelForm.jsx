@@ -57,7 +57,6 @@ export default function ChannelForm({
   loading,
   error
 }) {
-  const [, setUploadedImage] = useState(undefined);
   const [tags, setTags] = useState(categoryToTags(initial.category));
 
   const handleEnter = formik => {
@@ -141,13 +140,11 @@ export default function ChannelForm({
               icon={values.icon}
               onUpload={e => {
                 if (e.target.files[0]) {
-                  setUploadedImage(e.target.files[0]);
                   setFieldValue("icon", URL.createObjectURL(e.target.files[0]));
                 }
               }}
               onRemove={() => {
                 setFieldValue("icon", null);
-                setUploadedImage(null);
               }}
               disabled={loading}
               className="mb-8"
