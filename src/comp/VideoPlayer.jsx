@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import ReactPlayer from "react-player";
+import Slider from "rc-slider";
+import "rc-slider/assets/index.css";
 
 function VideoPlayer() {
   const [playingIcon, playStatus] = useState(false);
@@ -44,8 +46,21 @@ function VideoPlayer() {
                 />
               </div> */}
             </button>
-            <div className="flex flex-col px-2">
-              <button className="w-full h-1 rounded-xs bg-quaternaryBackground transition transform ease-in-out hover:scale-y-150 duration-100 focus:outline-none" />
+            <div className="flex flex-col px-2 w-full">
+              <Slider
+                trackStyle={{ backgroundColor: "#1DA4FE" }}
+                handleStyle={{
+                  backgroundColor: "#1DA4FE",
+                  borderColor: "#1DA4FE"
+                }}
+                railStyle={{
+                  backgroundColor: "#fff",
+                  borderColor: "#1DA4FE",
+                  opacity: 0.25
+                }}
+                className="-mb-1 cursor-pointer transition-opacity opacity-75 hover:opacity-100 duration-150"
+              ></Slider>
+              {/* <button className="w-full h-1 rounded-xs bg-quaternaryBackground transition transform ease-in-out hover:scale-y-150 duration-100 focus:outline-none" /> */}
               <div className="flex items-center justify-between w-full my-1">
                 <div className="space-x-4">
                   <button
