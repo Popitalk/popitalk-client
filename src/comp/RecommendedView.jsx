@@ -5,6 +5,7 @@ import VideoCardList from "./VideoCardList.jsx";
 import Input from "./Controls/Input.jsx";
 import { useSelector } from "react-redux";
 import Button from "./Controls/Button";
+import Alert from "../comp/Alert";
 
 function RecommendedChannels({ list, selectedPage }) {
   const isCollapsed = useSelector(state => state.ui.isCollapsed);
@@ -20,7 +21,11 @@ function RecommendedChannels({ list, selectedPage }) {
 
   const [search, setSearch] = useState("");
   return (
-    <div className="mt-10 mx-auto w-full max-w-screen-xl">
+    <div className="mt-10 mx-auto w-full max-w-screen-xl relative">
+      {/* <Alert color='red' textColor='white'>
+        The channel/room you entered does not exist.
+      </Alert> */}
+
       <div className="w-auto mx-2 sm:mx-auto m-auto bg-white sm:w-2/3">
         <Input
           variant="channel"
@@ -34,6 +39,7 @@ function RecommendedChannels({ list, selectedPage }) {
           onChange={e => setSearch(e.target.value)}
         />
       </div>
+
       <div className="flex justify-center my-4">
         <Button
           leftIcon="bell"
@@ -69,6 +75,7 @@ function RecommendedChannels({ list, selectedPage }) {
           trending
         </Button>
       </div>
+
       <div className="mt-2">
         {selectedPage === "channels" ? (
           <ChannelCardList

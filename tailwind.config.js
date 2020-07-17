@@ -93,6 +93,8 @@ module.exports = {
       /** OTHERS */
       pink: "#F966F8",
       black: "#000000",
+      red: '#e53e3e',
+      white: '#fff',
       onlineColor: "#00CD46",
       notificationsColor: "#FF0000",
       playerControlsHover: "rgba(255, 255, 255, 0.4)"
