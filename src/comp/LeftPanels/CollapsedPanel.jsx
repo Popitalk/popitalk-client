@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import PropTypes from "prop-types";
 import RoomIcon from "../Controls/RoomIcon";
@@ -10,27 +10,38 @@ function CollapsedPanel({
   channels,
   selected,
   handleSelectRoom,
-  handleCollapse
+  handleCollapse,
+  updateSelectedPage,
+  selectedPage,
+  isCollapsed
 }) {
+  // States to control whether the channels and friends lists are expanded in the collapsed panel.
+  const [isFollowingExpanded, setFollowingExpanded] = useState(false);
+  const [isDiscoverExpanded, setDiscoverExpanded] = useState(false);
+  // Extracts properties from react-collapsed library for both buttons.
   const {
     getCollapseProps: getCollapsePropsFollowing,
     getToggleProps: getTogglePropsFollowing
-  } = useCollapse();
+  } = useCollapse({ isExpanded: isFollowingExpanded });
   const {
     getCollapseProps: getCollapsePropsDiscover,
     getToggleProps: getTogglePropsDiscover
-  } = useCollapse();
-
-  const [chipSelected, setChipSelected] = useState("");
-  const onChipClick = title => {
-    if (chipSelected === title) {
-      setChipSelected("");
-    } else {
-      setChipSelected(title);
+  } = useCollapse({ isExpanded: isDiscoverExpanded });
+  // This useEffect controls which list will be open when the panel is collapsed.
+  useEffect(() => {
+    if (isCollapsed) {
+      if (selectedPage === "channels") {
+        setFollowingExpanded(true);
+        setDiscoverExpanded(false);
+      } else if (selectedPage === "friends") {
+        setFollowingExpanded(false);
+        setDiscoverExpanded(true);
+      }
     }
-  };
+  }, [isCollapsed, setFollowingExpanded, setDiscoverExpanded, selectedPage]);
+
   return (
-    <div className="bg-primaryBackground px-2 flex flex-col items-center w-20 h-full select-none overflow-scroll">
+    <div className="bg-primaryBackground px-2 flex flex-col items-center w-20 h-full select-none overflow-x-hidden overflow-y-scroll">
       <button
         className="py-5 w-full flex items-center flex-col focus:outline-none"
         onClick={handleCollapse}
@@ -46,10 +57,14 @@ function CollapsedPanel({
           className="flex flex-col h-12 w-20 bg-secondaryBackground mb-1 shadow-none"
           shape="none"
           background="bgColor"
-          selectedColor={chipSelected === "following" && "primary"}
+          selectedColor={isFollowingExpanded ? true : false}
           size="sm"
+          // updateSelectedPage here updates which tab of the panel will be open when the panel is expanded.
           {...getTogglePropsFollowing({
-            onClick: () => onChipClick("following")
+            onClick: () => {
+              setFollowingExpanded(!isFollowingExpanded);
+              updateSelectedPage("channels");
+            }
           })}
         >
           Channels
@@ -99,14 +114,15 @@ function CollapsedPanel({
           className="flex flex-col h-12 w-20 mb-1 bg-secondaryBackground shadow-none"
           shape="none"
           background="bgColor"
-          selectedColor={chipSelected === "discover" && "primary"}
+          selectedColor={isDiscoverExpanded ? true : false}
+          // updateSelectedPage here updates which tab of the panel will be open when the panel is expanded.
           {...getTogglePropsDiscover({
-            onClick: () => onChipClick("discover")
+            onClick: () => {
+              setDiscoverExpanded(!isDiscoverExpanded);
+              updateSelectedPage("friends");
+            }
           })}
           size="sm"
-          // {...getToggleProps({
-          //   onClick: () => onChipClick("discover")
-          // })}
         >
           Friends
         </Button>
