@@ -7,19 +7,20 @@ import VideoPlayerStatusCard from "./VideoPlayerStatusCard";
 import defaultImage from "../assets/default/user-default.png";
 
 function VideoPlayer() {
+  //Determine if the mouse is hovering over the video player
   const [isHovering, setIsHovering] = useState(false);
-  //TO HANDLE PAUSE & PLAY WHILE CHANGING THE PLAY BUTTON ICON
+  //Determine state for pasue & play & playingIcon
   const [playingIcon, playStatus] = useState(false);
   const [playing, handlePause] = useState(true);
-  //TO HANDLE MUTE WHILE CHANGING THE MUTE BUTTON ICON
+  //Determine state for volume & muteIcon
   const [muted, handleMute] = useState(false);
   const [mutedIcon, muteStatus] = useState(true);
-
+  //sync playIcon and play states
   const setBothPlaying = () => {
     playStatus(!playingIcon);
     handlePause(!playing);
   };
-
+  //sync volumeIcon and muted states
   const setMuted = () => {
     handleMute(!muted);
     muteStatus(!mutedIcon);
@@ -48,20 +49,21 @@ function VideoPlayer() {
               systemMessage="Starting 10s"
             />
           </div>
-          <div className="flex flex-col justify-end w-full h-full transition-colors bg-gradient-t-player transition-opacity opacity-0 hover:opacity-100 duration-200">
+          <div
+            //Always show the video controls while the video is at pause.
+            className={
+              playingIcon === true
+                ? "flex flex-col justify-end w-full h-full transition-colors bg-gradient-t-player"
+                : "flex flex-col justify-end w-full h-full transition-colors bg-gradient-t-player transition-opacity opacity-0 hover:opacity-100 duration-200"
+            }
+          >
             <button
               className="bg-transparent w-full h-full focus:outline-none"
               onClick={() => setBothPlaying()}
-            >
-              {/* <div className="flex h-full justify-center items-center">
-                <FontAwesomeIcon
-                  icon={playingIcon === true ? "pause" : "play"}
-                  className="text-tertiaryText"
-                />
-              </div> */}
-            </button>
+            />
             <div
               className="flex flex-col px-2 w-full"
+              //Set the mouse hovering state
               onMouseEnter={() => setIsHovering(!isHovering)}
               onMouseLeave={() => setIsHovering(!isHovering)}
             >
@@ -107,9 +109,9 @@ function VideoPlayer() {
                 }
                 className="-mb-1 cursor-pointer transition-opacity opacity-75 hover:opacity-100 duration-150"
               ></Slider>
-              {/* <button className="w-full h-1 rounded-xs bg-quaternaryBackground transition transform ease-in-out hover:scale-y-150 duration-100 focus:outline-none" /> */}
               <div className="flex items-center justify-between w-full my-1">
                 <div className="flex space-x-4 items-center">
+                  {/* Play button */}
                   <button
                     className="w-8 p-1 rounded-full hover:bg-playerControlsHover focus:outline-none duration-100 transition transform ease-in-out hover:scale-110"
                     onClick={() => setBothPlaying()}
@@ -119,6 +121,7 @@ function VideoPlayer() {
                       className="text-tertiaryText"
                     />
                   </button>
+                  {/* Volume button */}
                   <button
                     className="w-8 p-1 rounded-full hover:bg-playerControlsHover focus:outline-none duration-100 transition transform ease-in-out hover:scale-110"
                     onClick={() => setMuted()}
@@ -130,6 +133,7 @@ function VideoPlayer() {
                   </button>
                   <span className="text-tertiaryText text-xs">0:11 / 5:04</span>
                 </div>
+                {/* Full screen button */}
                 <button className="w-8 p-1 rounded-full hover:bg-playerControlsHover focus:outline-none transition transform ease-in-out hover:scale-110 duration-100">
                   <FontAwesomeIcon
                     icon="compress"
