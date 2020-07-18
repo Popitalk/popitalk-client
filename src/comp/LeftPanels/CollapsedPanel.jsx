@@ -10,6 +10,7 @@ function CollapsedPanel({
   channels,
   selected,
   handleSelectRoom,
+  handleSelect,
   handleCollapse,
   updateSelectedPage,
   selectedPage,
@@ -69,18 +70,6 @@ function CollapsedPanel({
         >
           Channels
         </Button>
-        {/* CHANNEL BUTTON WITH ICON */}
-        {/* <button
-          className={`${
-            selectedPage === "channels"
-              ? "text-highlightText"
-              : "text-secondaryButtonText"
-          } py-4 w-full flex items-center flex-col hover:text-highlightText duration-100 rounded-xl focus:outline-none transition transform ease-in-out hover:scale-110 duration-100`}
-          onClick={() => updateSelectedPage("channels")}
-        >
-          <FontAwesomeIcon icon="tv" className="fa-1x" />
-          <h3 className="text-xs p-1">Channels</h3>
-        </button> */}
         <section {...getCollapsePropsFollowing()}>
           <div className="flex flex-col w-full items-center">
             {channels.map(channel => {
@@ -98,7 +87,7 @@ function CollapsedPanel({
                   className={`flex-shrink-0 transition transform ease-in-out
                     hover:scale-110 duration-100 m-1 rounded-circle
                     ${selected === channel.id && "bg-highlightText"}`}
-                  onClick={() => handleSelectRoom(channel.id)}
+                  onClick={() => handleSelect(channel.id)}
                   role="button"
                 >
                   {roomIcon}
@@ -126,17 +115,6 @@ function CollapsedPanel({
         >
           Friends
         </Button>
-        {/* <button
-          className={`${
-            selectedPage === "friends"
-              ? "text-highlightText"
-              : "text-secondaryButtonText"
-          } py-4 w-full flex items-center flex-col hover:text-highlightText duration-100 rounded-xl focus:outline-none transition transform ease-in-out hover:scale-110 duration-100`}
-          onClick={() => updateSelectedPage("friends")}
-        >
-          <FontAwesomeIcon icon="user-friends" className="fa-1x" />
-          <h3 className="text-xs p-1">Friends</h3>
-        </button> */}
         <section {...getCollapsePropsDiscover()}>
           <div className="flex flex-col w-full items-center">
             {rooms.map(room => {

@@ -40,15 +40,13 @@ function VideoPlayer() {
           />
         </div>
         <div className="absolute flex flex-col justify-end w-full h-full transition-colors">
-          <div>
-            <div className="p-2 inline-block">
-              <VideoPlayerStatusCard
-                defaultAvatar={defaultImage}
-                username="Andrew"
-                message="skipped to 0:11"
-                systemMessage="Starting 10s"
-              />
-            </div>
+          <div className="p-2 w-auto inline-block select-none">
+            <VideoPlayerStatusCard
+              defaultAvatar={defaultImage}
+              username="Andrew"
+              message="skipped to 0:11"
+              systemMessage="Starting 10s"
+            />
           </div>
           <div className="flex flex-col justify-end w-full h-full transition-colors bg-gradient-t-player transition-opacity opacity-0 hover:opacity-100 duration-200">
             <button
