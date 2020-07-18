@@ -31,7 +31,7 @@ export default function VideoSearchBar({ className, onClick }) {
               className={`flex justify-center mr-2 items-center ${
                 source === img.source
                   ? "bg-gradient-r-button shadow-md"
-                  : "bg-primaryBackground"
+                  : "bg-primaryBackground hover:bg-highlightBackground"
               } h-10 w-10 rounded-full focus:outline-none`}
               onClick={() => setSource(img.source)}
             >
