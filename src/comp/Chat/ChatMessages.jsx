@@ -147,9 +147,10 @@ export default function ChatMessages({ channelId, channelMessages }) {
     channel.firstMessageId !== channelMessages[0]?.id;
   return (
     // <div className="ChatMessages--container" ref={scrollRef}>
+    // InfiniteScroller has to have h-screen, because h-full recalculates/repaints all messages on every key stroke in ChatActions
     <>
       <InfiniteScroller
-        className="overflow-auto h-full mt-1 pb-4 mozilla-thin-scrollbar"
+        className="overflow-auto h-screen mt-1 pb-4 mozilla-thin-scrollbar"
         ref={containerRef}
         onTopView={onTopView}
         hasMoreTop={hasMoreTop}
