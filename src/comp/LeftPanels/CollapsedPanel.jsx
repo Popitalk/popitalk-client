@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import PropTypes from "prop-types";
 import RoomIcon from "../Controls/RoomIcon";
 import Button from "../Controls/Button";
-import { Collapse } from "react-collapse";
+import useCollapse from "react-collapsed";
 
 function CollapsedPanel({
   rooms,
@@ -12,16 +12,16 @@ function CollapsedPanel({
   handleSelectRoom,
   handleCollapse
 }) {
-  const [channelSelected, setChannelSelected] = useState(true);
-  const [friendSelected, setFriendSelected] = useState(true);
+  const { getCollapseProps, getToggleProps } = useCollapse();
 
-  const onChannelClick = () => {
-    setChannelSelected(!channelSelected);
+  const [chipSelected, setChipSelected] = useState("");
+  const onChipClick = title => {
+    if (chipSelected === title) {
+      setChipSelected("");
+    } else {
+      setChipSelected(title);
+    }
   };
-  const onFriendClick = () => {
-    setFriendSelected(!friendSelected);
-  };
-
   return (
     <div className="bg-primaryBackground px-2 flex flex-col items-center w-20 h-full select-none">
       <button
@@ -39,13 +39,27 @@ function CollapsedPanel({
           className="flex flex-col h-12 w-20 bg-secondaryBackground mb-1 shadow-none"
           shape="none"
           background="bgColor"
-          selectedColor={channelSelected === true && "primary"}
+          selectedColor={chipSelected === "following" && "primary"}
           size="sm"
-          onClick={onChannelClick}
+          {...getToggleProps({
+            onClick: () => onChipClick("following")
+          })}
         >
           Channels
         </Button>
-        <Collapse isOpened={channelSelected}>
+        {/* CHANNEL BUTTON WITH ICON */}
+        {/* <button
+          className={`${
+            selectedPage === "channels"
+              ? "text-highlightText"
+              : "text-secondaryButtonText"
+          } py-4 w-full flex items-center flex-col hover:text-highlightText duration-100 rounded-xl focus:outline-none transition transform ease-in-out hover:scale-110 duration-100`}
+          onClick={() => updateSelectedPage("channels")}
+        >
+          <FontAwesomeIcon icon="tv" className="fa-1x" />
+          <h3 className="text-xs p-1">Channels</h3>
+        </button> */}
+        <section {...getCollapseProps()}>
           <div className="flex flex-col w-full items-center">
             {channels.map(channel => {
               const roomIcon = (
@@ -70,7 +84,7 @@ function CollapsedPanel({
               );
             })}
           </div>
-        </Collapse>
+        </section>
       </div>
       {/* FRIENDS */}
       <div className="bg-primaryBackground rounded-xl mb-4">
@@ -78,13 +92,27 @@ function CollapsedPanel({
           className="flex flex-col h-12 w-20 mb-1 bg-secondaryBackground shadow-none"
           shape="none"
           background="bgColor"
-          selectedColor={friendSelected === true && "primary"}
-          onClick={() => onFriendClick()}
+          selectedColor={chipSelected === "discover" && "primary"}
+          onClick={() => onChipClick("discover")}
           size="sm"
+          // {...getToggleProps({
+          //   onClick: () => onChipClick("discover")
+          // })}
         >
           Friends
         </Button>
-        <Collapse isOpened={friendSelected}>
+        {/* <button
+          className={`${
+            selectedPage === "friends"
+              ? "text-highlightText"
+              : "text-secondaryButtonText"
+          } py-4 w-full flex items-center flex-col hover:text-highlightText duration-100 rounded-xl focus:outline-none transition transform ease-in-out hover:scale-110 duration-100`}
+          onClick={() => updateSelectedPage("friends")}
+        >
+          <FontAwesomeIcon icon="user-friends" className="fa-1x" />
+          <h3 className="text-xs p-1">Friends</h3>
+        </button> */}
+        <section>
           <div className="flex flex-col w-full items-center">
             {rooms.map(room => {
               const images = room.members.map(m => m.avatar);
@@ -113,7 +141,7 @@ function CollapsedPanel({
               );
             })}
           </div>
-        </Collapse>
+        </section>
       </div>
     </div>
   );
