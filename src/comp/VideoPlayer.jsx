@@ -28,6 +28,7 @@ function VideoPlayer() {
   return (
     <>
       <div className="relative pb-16/9 h-full w-full">
+        <div className="absolute bg-black h-full w-full"></div>
         <div className="hover:select-none">
           <ReactPlayer
             url="https://www.youtube.com/watch?v=5qap5aO4i9A"
