@@ -27,7 +27,7 @@ export default function VideoCard({
       <div className="w-full px-3 py-2 rounded-b-xl z-20 text-secondaryText">
         <div className="flex items-center">
           <p className="text-xs font-regular">{leftInfo}</p>
-          <span className="mx-1">•</span>
+          <span className="mx-1">·</span>
           <p className="text-xs font-regular">{rightInfo}</p>
         </div>
         <p className="text-lg font-semibold text-primaryText mb-1 z-30">
