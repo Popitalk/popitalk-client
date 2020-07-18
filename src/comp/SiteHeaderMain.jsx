@@ -107,7 +107,7 @@ export default function SiteHeaderMain({
           <ul className="items-center hidden space-x-10 md:flex">
             <li>
               <div
-                className="transition transform ease-in-out hover:scale-105 duration-100 flex items-center p-2 cursor-pointer rounded-xl"
+                className="flex items-center p-2 cursor-pointer rounded-xl"
                 role="button"
                 onClick={() => openProfileHandler(userID)}
               >

@@ -44,7 +44,7 @@ export default function ChannelsPanel({
             icon="plus"
             background="primaryButton"
             onClick={handleCreateChannel}
-            className="transition transform ease-in-out hover:scale-110 duration-100"
+            className="hover:scale-110"
           />
         </div>
         <ChannelsList
