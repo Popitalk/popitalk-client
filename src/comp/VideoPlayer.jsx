@@ -3,11 +3,15 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import ReactPlayer from "react-player";
 import Slider from "rc-slider";
 import "rc-slider/assets/index.css";
+import VideoPlayerStatusCard from "./VideoPlayerStatusCard";
+import defaultImage from "../assets/default/user-default.png";
 
 function VideoPlayer() {
   const [isHovering, setIsHovering] = useState(false);
+  //TO HANDLE PAUSE & PLAY WHILE CHANGING THE PLAY BUTTON ICON
   const [playingIcon, playStatus] = useState(false);
   const [playing, handlePause] = useState(true);
+  //TO HANDLE MUTE WHILE CHANGING THE MUTE BUTTON ICON
   const [muted, handleMute] = useState(false);
   const [mutedIcon, muteStatus] = useState(true);
 
@@ -17,8 +21,8 @@ function VideoPlayer() {
   };
 
   const setMuted = () => {
-    muteStatus(!mutedIcon);
     handleMute(!muted);
+    muteStatus(!mutedIcon);
   };
 
   return (
@@ -35,6 +39,16 @@ function VideoPlayer() {
           />
         </div>
         <div className="absolute flex flex-col justify-end w-full h-full transition-colors">
+          <div>
+            <div className="p-2 inline-block">
+              <VideoPlayerStatusCard
+                defaultAvatar={defaultImage}
+                username="Andrew"
+                message="skipped to 0:11"
+                systemMessage="Starting 10s"
+              />
+            </div>
+          </div>
           <div className="flex flex-col justify-end w-full h-full transition-colors bg-gradient-t-player transition-opacity opacity-0 hover:opacity-100 duration-200">
             <button
               className="bg-transparent w-full h-full focus:outline-none"
