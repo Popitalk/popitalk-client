@@ -104,19 +104,19 @@ export default function SiteHeaderMain({
               className="transition transform ease-in-out hover:scale-110 duration-100 w-10 h-10"
             />
           </Link>
-          <ul className="items-center hidden space-x-10 md:flex">
+          <ul className="items-center hidden space-x-8 md:flex">
             <li>
               <div
-                className="flex items-center p-2 cursor-pointer rounded-xl"
+                className="flex items-center p-2 cursor-pointer rounded-xl transition transform ease-in-out hover:scale-105 duration-100"
                 role="button"
                 onClick={() => openProfileHandler(userID)}
               >
-                <span className="font-bold text-primaryText">{username}</span>
                 <img
-                  className="w-8 h-8 ml-2 rounded-full object-cover"
+                  className="w-8 h-8 mr-2 rounded-full object-cover"
                   src={avatar}
                   alt={`${username}'s avatar`}
                 />
+                <span className="font-bold text-primaryText">{username}</span>
               </div>
             </li>
             <li>
