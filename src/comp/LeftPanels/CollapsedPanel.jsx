@@ -12,7 +12,14 @@ function CollapsedPanel({
   handleSelectRoom,
   handleCollapse
 }) {
-  const { getCollapseProps, getToggleProps } = useCollapse();
+  const {
+    getCollapseProps: getCollapsePropsFollowing,
+    getToggleProps: getTogglePropsFollowing
+  } = useCollapse();
+  const {
+    getCollapseProps: getCollapsePropsDiscover,
+    getToggleProps: getTogglePropsDiscover
+  } = useCollapse();
 
   const [chipSelected, setChipSelected] = useState("");
   const onChipClick = title => {
@@ -41,7 +48,7 @@ function CollapsedPanel({
           background="bgColor"
           selectedColor={chipSelected === "following" && "primary"}
           size="sm"
-          {...getToggleProps({
+          {...getTogglePropsFollowing({
             onClick: () => onChipClick("following")
           })}
         >
@@ -59,7 +66,7 @@ function CollapsedPanel({
           <FontAwesomeIcon icon="tv" className="fa-1x" />
           <h3 className="text-xs p-1">Channels</h3>
         </button> */}
-        <section {...getCollapseProps()}>
+        <section {...getCollapsePropsFollowing()}>
           <div className="flex flex-col w-full items-center">
             {channels.map(channel => {
               const roomIcon = (
@@ -93,7 +100,9 @@ function CollapsedPanel({
           shape="none"
           background="bgColor"
           selectedColor={chipSelected === "discover" && "primary"}
-          onClick={() => onChipClick("discover")}
+          {...getTogglePropsDiscover({
+            onClick: () => onChipClick("discover")
+          })}
           size="sm"
           // {...getToggleProps({
           //   onClick: () => onChipClick("discover")
@@ -112,7 +121,7 @@ function CollapsedPanel({
           <FontAwesomeIcon icon="user-friends" className="fa-1x" />
           <h3 className="text-xs p-1">Friends</h3>
         </button> */}
-        <section>
+        <section {...getCollapsePropsDiscover()}>
           <div className="flex flex-col w-full items-center">
             {rooms.map(room => {
               const images = room.members.map(m => m.avatar);
