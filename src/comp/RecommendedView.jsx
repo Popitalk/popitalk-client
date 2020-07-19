@@ -1,14 +1,16 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
+import { useSelector } from "react-redux";
+
 import ChannelCardList from "./Channel/ChannelCardList.jsx";
 import VideoCardList from "./VideoCardList.jsx";
 import Input from "./Controls/Input.jsx";
-import { useSelector } from "react-redux";
 import Button from "./Controls/Button";
 import Alert from "../comp/Alert";
 
 function RecommendedChannels({ list, selectedPage }) {
   const isCollapsed = useSelector(state => state.ui.isCollapsed);
+  const alert = useSelector(state => state.ui.alert);
 
   const [chipSelected, setChipSelected] = useState("");
   const onChipClick = title => {
@@ -21,12 +23,14 @@ function RecommendedChannels({ list, selectedPage }) {
 
   const [search, setSearch] = useState("");
   return (
-    <div className="mt-10 mx-auto w-full max-w-screen-xl relative">
-      {/* <Alert color='red' textColor='white'>
-        The channel/room you entered does not exist.
-      </Alert> */}
+    <div className="mt-4 mx-auto w-full max-w-screen-xl relative">
+      {!!alert && (
+        <Alert color="red" textColor="white" duration={3000}>
+          {alert}
+        </Alert>
+      )}
 
-      <div className="w-auto mx-2 sm:mx-auto m-auto bg-white sm:w-2/3">
+      <div className="w-auto mx-2 pt-6 sm:mx-auto m-auto sm:w-2/3">
         <Input
           variant="channel"
           size="md"

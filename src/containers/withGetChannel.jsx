@@ -2,7 +2,7 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams, Redirect } from "react-router-dom";
 
-import { getChannel } from "../redux/actions";
+import { getChannel, setAlert } from "../redux/actions";
 
 // HoC for retrieving channel from server and
 // redirecting if channel doesn't exist
@@ -20,6 +20,7 @@ const withGetChannel = Component => {
 
     // check for channel again after dispatch, redirect if nonexistent
     if (!channel) {
+      dispatch(setAlert("The channel/room you entered does not exist."));
       return <Redirect to="/channels" />;
     }
 
