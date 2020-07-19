@@ -8,6 +8,7 @@ export default function ChannelComment({
   id,
   name,
   avatar,
+  authorId,
   timeFromPost,
   text,
   liked,
@@ -20,7 +21,7 @@ export default function ChannelComment({
     <div className="flex flex-row bg-secondaryBackground p-2">
       <aside
         className="flex-shrink-0 pr-2"
-        onClick={() => dispatch(openProfileModal(id))}
+        onClick={() => dispatch(openProfileModal(authorId))}
         role="button"
       >
         <AvatarIcon
@@ -33,7 +34,7 @@ export default function ChannelComment({
         <main>
           <span
             className="font-bold text-sm pr-1"
-            onClick={() => dispatch(openProfileModal(id))}
+            onClick={() => dispatch(openProfileModal(authorId))}
             role="button"
           >
             {name}{" "}

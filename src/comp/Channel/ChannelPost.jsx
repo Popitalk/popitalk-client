@@ -148,6 +148,7 @@ export default function ChannelPost({
                 key={idx}
                 id={comment.id}
                 name={comment.author.username}
+                authorId={comment.author.id}
                 avatar={comment.author.avatar || defaultAvatar}
                 timeFromPost={formatDistanceToNow(new Date(comment.createdAt), {
                   addSuffix: true
@@ -165,6 +166,7 @@ export default function ChannelPost({
                 key={idx}
                 id={comment.id}
                 name={comment.author.username}
+                authorId={comment.author.id}
                 avatar={comment.author.avatar || defaultAvatar}
                 timeFromPost={formatDistanceToNow(new Date(comment.createdAt), {
                   addSuffix: true
