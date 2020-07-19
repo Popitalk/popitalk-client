@@ -47,7 +47,7 @@ export default function ImageUpload({
             {selectMessage}
           </p>
         )}
-        <div className="flex flex-col justify-center items-center text-tertiaryText font-bold rounded-circle absolute w-full h-full z-20 bg-black opacity-50 cursor-pointer invisible group-hover:visible">
+        <div className="flex flex-col justify-center items-center text-tertiaryText font-bold rounded-circle absolute w-full h-full z-20 bg-black bg-opacity-50 cursor-pointer transition-opacity opacity-0 group-hover:opacity-100 duration-100">
           {icon && <p>{changeMessage}</p>}
         </div>
       </div>

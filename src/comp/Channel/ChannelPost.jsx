@@ -8,6 +8,8 @@ import ToggleIcon from "../Controls/ToggleIcon";
 import { formatDistanceToNow } from "date-fns";
 import useOnClickOutside from "use-onclickoutside";
 import PopupMenu from "../Controls/PopupMenu";
+import { openProfileModal } from "../../redux/actions";
+import { useDispatch } from "react-redux";
 
 export default function ChannelPost({
   id,
@@ -31,6 +33,8 @@ export default function ChannelPost({
   const [showMenu, setShowMenu] = useState(false);
   const showNumComment = 2;
   const menuRef = useRef(null);
+  // Opening profile modal
+  const dispatch = useDispatch();
 
   const handleComment = () => {
     setShowNewComment(!showNewComment);
@@ -54,11 +58,15 @@ export default function ChannelPost({
     <div className="flex flex-col justify-center items-center">
       <div className="flex flex-col rounded-lg shadow px-8 py-4 bg-primaryBackground mt-8 hover:shadow-md cursor-pointer sm:w-102 md:w-102 lg:w-104 max-w-xl">
         <div className="flex justify-between relative">
-          <header className="flex transition transform ease-in-out hover:scale-105 duration-100">
+          <header
+            className="flex"
+            onClick={() => dispatch(openProfileModal(authorId))}
+            role="button"
+          >
             <AvatarIcon
               avatar={avatar}
               username={name}
-              className="img w-10 h-10 rounded-circle"
+              className="img w-10 h-10 rounded-circle flex transition transform ease-in-out hover:scale-110 duration-100"
             />
             <div className="flex flex-col pl-2">
               <span>{name}</span>

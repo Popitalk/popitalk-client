@@ -3,6 +3,8 @@ import Button from "../Controls/Button";
 import "../VideoStatus.css";
 import AvatarIcon from "../Controls/AvatarIcon";
 import VideoStatus from "../VideoStatus";
+import { openProfileModal } from "../../redux/actions";
+import { useDispatch } from "react-redux";
 
 export default function ChannelDescription({
   id,
@@ -17,6 +19,8 @@ export default function ChannelDescription({
   handleUnfollow,
   handleListAdmins
 }) {
+  // Opening profile modal
+  const dispatch = useDispatch();
   return (
     <div className="flex flex-col mb-12">
       <div className="flex flex-row justify-center bg-secondaryBackground p-4 ml-8">
@@ -35,13 +39,18 @@ export default function ChannelDescription({
             {adminList.map((admin, idx) => {
               if (idx < threshold) {
                 return (
-                  <AvatarIcon
-                    key={idx}
-                    username={admin.name}
-                    avatar={admin.avatar}
-                    className="img h-6 w-6 rounded-circle mx-px"
-                    limit={3}
-                  />
+                  <div
+                    onClick={() => dispatch(openProfileModal(admin.id))}
+                    role="button"
+                  >
+                    <AvatarIcon
+                      key={idx}
+                      username={admin.name}
+                      avatar={admin.avatar}
+                      className="img h-6 w-6 rounded-circle mx-px transition transform ease-in-out hover:scale-110 duration-100"
+                      limit={3}
+                    />
+                  </div>
                 );
               } else if (idx === adminList.length - 1) {
                 const totalLeft = adminList.length - threshold;
