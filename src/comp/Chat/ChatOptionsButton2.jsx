@@ -42,19 +42,28 @@ function ChatOptionsButton2({ message, channel, ownId, match }) {
     messageRejected: message?.status?.toLowerCase() === "rejected",
     messagePending: message?.status?.toLowerCase() === "pending"
   };
-  const options = [
-    (conditions.messageAccepted || conditions.messageRejected) && {
-      name: "Delete",
-      handler: () =>
-        dispatch(openDeleteMessageModal({ channelId, messageId: message.id })),
-      danger: false
-    },
-    conditions.messageRejected && {
-      name: "Resend",
-      handler: () => handleSend(message.content),
-      danger: false
+  // Function that generates options of the pop up depending if message is rejected/accepted
+  function getOptions() {
+    const options = [];
+    if (conditions.messageAccepted || conditions.messageRejected) {
+      options.push({
+        name: "Delete",
+        handler: () =>
+          dispatch(
+            openDeleteMessageModal({ channelId, messageId: message.id })
+          ),
+        danger: false
+      });
     }
-  ];
+    if (conditions.messageRejected) {
+      options.push({
+        name: "Resend",
+        handler: () => handleSend(message.content),
+        danger: false
+      });
+    }
+    return options;
+  }
   // deletedMessageId === message.id && deletedMessageApiLoading
   // Returns the button only ((if you are the admin of the channel OR it is your own message) AND the message is not pending) OR the message is rejected.
   // Doesn't test if you sent the rejected message, can't think of a posibility where you could see other peoples rejected messages.
@@ -66,7 +75,7 @@ function ChatOptionsButton2({ message, channel, ownId, match }) {
       conditions.messageRejected ? (
         <div className="opacity-0 chat-options-button w-4 px-0 space-x-2 self-center mx-1 focus:outline-none">
           <PopupMenu
-            options={options}
+            options={getOptions()}
             type="message"
             messageId={message.id}
             disabled={false}
