@@ -17,7 +17,7 @@ export default function VideoPanelCard({
   return (
     <>
       {!title && (
-        <div className="cursor-pointer w-full flex-shrink-0 max-w-2xs relative m-1 rounded-xl hover:shadow-xl transition-all ease-in-out duration-100 bg-disabledBackground">
+        <div className="cursor-pointer w-full flex-shrink-0 max-w-2xs relative m-1 rounded-md hover:shadow-xl transition-all ease-in-out duration-100 bg-disabledBackground">
           <div className="pb-16/9 w-full relative">
             <div className="flex items-center justify-center w-full h-full absolute">
               <Button size="md" icon="plus" />
@@ -27,7 +27,7 @@ export default function VideoPanelCard({
       )}
       {title && (
         <div className="cursor-pointer w-full flex-shrink-0 max-w-2xs m-1 group">
-          <div className="relative flex justify-center flex-grow pb-16/9 w-full rounded-xl group-hover:shadow-xl transition-all ease-in-out duration-100">
+          <div className="relative flex justify-center flex-grow pb-16/9 w-full rounded-md group-hover:shadow-xl transition-all ease-in-out duration-100">
             <div className="absolute top-0 left-0 w-full p-2 rounded-b-xl">
               <div className="flex justify-between">
                 <VideoStatus status={status} statusMessage={statusMessage} />
@@ -59,7 +59,7 @@ export default function VideoPanelCard({
             <img
               src={thumbnail}
               alt="video-thumbnail"
-              className="absolute top-0 h-full img rounded-xl"
+              className="absolute top-0 h-full img rounded-md"
             />
 
             {/* <div className="absolute top-0 z-20 w-full h-full bg-gradient-t-channelCardOverlay rounded-xl" /> */}

@@ -1,4 +1,4 @@
-const defaultThumbnail = "https://i.imgur.com/xCGu56D.jpg";
+const defaultThumbnail = "https://source.unsplash.com/weekly";
 
 export const testImages = [
   "https://source.unsplash.com/128x128/?1,random",
@@ -17,7 +17,7 @@ export const testQueue = [
     title: "Video 1",
     views: "20k views",
     timeFromUpload: "2 months ago",
-    thumbnail: "https://i.imgur.com/aqjzchq.jpg",
+    thumbnail: "https://source.unsplash.com/random",
     status: "queued",
     statusMessage: "In 10min",
     sourceChannelName: "sourceChannel"
@@ -27,7 +27,7 @@ export const testQueue = [
     title: "Video 2",
     views: "1M views",
     timeFromUpload: "1 week ago",
-    thumbnail: "https://i.imgur.com/aqjzchq.jpg",
+    thumbnail: "https://source.unsplash.com/random",
     status: "queued",
     statusMessage: "In 14min",
     sourceChannelName: "sourceChannel"
@@ -37,7 +37,7 @@ export const testQueue = [
     title: "Video 3",
     views: "200k views",
     timeFromUpload: "1 months ago",
-    thumbnail: "https://i.imgur.com/aqjzchq.jpg",
+    thumbnail: "https://source.unsplash.com/random",
     status: "queued",
     statusMessage: "In 18min",
     sourceChannelName: "sourceChannel"
@@ -47,7 +47,7 @@ export const testQueue = [
     title: "Video 4",
     views: "1.2M views",
     timeFromUpload: "3 months ago",
-    thumbnail: "https://i.imgur.com/aqjzchq.jpg",
+    thumbnail: "https://source.unsplash.com/random",
     status: "queued",
     statusMessage: "In 25min",
     sourceChannelName: "sourceChannel"
@@ -57,7 +57,7 @@ export const testQueue = [
     title: "Video 5",
     views: "1.2M views",
     timeFromUpload: "3 months ago",
-    thumbnail: "https://i.imgur.com/aqjzchq.jpg",
+    thumbnail: "https://source.unsplash.com/random",
     status: "queued",
     statusMessage: "In 50min",
     sourceChannelName: "sourceChannel"
@@ -67,7 +67,7 @@ export const testQueue = [
     title: "Video 6",
     views: "1.1M views",
     timeFromUpload: "4 months ago",
-    thumbnail: "https://i.imgur.com/aqjzchq.jpg",
+    thumbnail: "https://source.unsplash.com/random",
     status: "queued",
     statusMessage: "In 50min",
     sourceChannelName: "sourceChannel"
@@ -79,7 +79,7 @@ export const testQueue2 = [
     title: "Video 1",
     views: "20k views",
     timeFromUpload: "2 months ago",
-    thumbnail: "https://i.imgur.com/aqjzchq.jpg",
+    thumbnail: "https://source.unsplash.com/random",
     status: "queued",
     statusMessage: "In 10min",
     sourceChannelName: "sourceChannel"
@@ -89,7 +89,7 @@ export const testQueue2 = [
     title: "Video 2",
     views: "1M views",
     timeFromUpload: "1 week ago",
-    thumbnail: "https://i.imgur.com/aqjzchq.jpg",
+    thumbnail: "https://source.unsplash.com/random",
     status: "queued",
     statusMessage: "In 14min",
     sourceChannelName: "sourceChannel"
@@ -99,7 +99,7 @@ export const testQueue2 = [
     title: "Video 3",
     views: "200k views",
     timeFromUpload: "1 months ago",
-    thumbnail: "https://i.imgur.com/aqjzchq.jpg",
+    thumbnail: "https://source.unsplash.com/random",
     status: "queued",
     statusMessage: "In 18min",
     sourceChannelName: "sourceChannel"
@@ -109,7 +109,7 @@ export const testQueue2 = [
     title: "Video 4",
     views: "1.2M views",
     timeFromUpload: "3 months ago",
-    thumbnail: "https://i.imgur.com/aqjzchq.jpg",
+    thumbnail: "https://source.unsplash.com/random",
     status: "queued",
     statusMessage: "In 25min",
     sourceChannelName: "sourceChannel"
@@ -119,7 +119,7 @@ export const testQueue2 = [
     title: "Video 5",
     views: "1.2M views",
     timeFromUpload: "3 months ago",
-    thumbnail: "https://i.imgur.com/aqjzchq.jpg",
+    thumbnail: "https://source.unsplash.com/random",
     status: "queued",
     statusMessage: "In 50min",
     sourceChannelName: "sourceChannel"
@@ -129,7 +129,7 @@ export const testQueue2 = [
     title: "Video 6",
     views: "1.1M views",
     timeFromUpload: "4 months ago",
-    thumbnail: "https://i.imgur.com/aqjzchq.jpg",
+    thumbnail: "https://source.unsplash.com/random",
     status: "queued",
     statusMessage: "In 50min",
     sourceChannelName: "sourceChannel"
@@ -141,7 +141,7 @@ export const testQueue3 = [
     title: "Video 1",
     views: "20k views",
     timeFromUpload: "2 months ago",
-    thumbnail: "https://i.imgur.com/aqjzchq.jpg",
+    thumbnail: "https://source.unsplash.com/random",
     status: "queued",
     statusMessage: "In 10min",
     sourceChannelName: "sourceChannel"
@@ -151,7 +151,7 @@ export const testQueue3 = [
     title: "Video 2",
     views: "1M views",
     timeFromUpload: "1 week ago",
-    thumbnail: "https://i.imgur.com/aqjzchq.jpg",
+    thumbnail: "https://source.unsplash.com/random",
     status: "queued",
     statusMessage: "In 14min",
     sourceChannelName: "sourceChannel"
@@ -161,7 +161,7 @@ export const testQueue3 = [
     title: "Video 3",
     views: "200k views",
     timeFromUpload: "1 months ago",
-    thumbnail: "https://i.imgur.com/aqjzchq.jpg",
+    thumbnail: "https://source.unsplash.com/random",
     status: "queued",
     statusMessage: "In 18min",
     sourceChannelName: "sourceChannel"
@@ -171,7 +171,7 @@ export const testQueue3 = [
     title: "Video 4",
     views: "1.2M views",
     timeFromUpload: "3 months ago",
-    thumbnail: "https://i.imgur.com/aqjzchq.jpg",
+    thumbnail: "https://source.unsplash.com/random",
     status: "queued",
     statusMessage: "In 25min",
     sourceChannelName: "sourceChannel"
@@ -181,7 +181,7 @@ export const testQueue3 = [
     title: "Video 5",
     views: "1.2M views",
     timeFromUpload: "3 months ago",
-    thumbnail: "https://i.imgur.com/aqjzchq.jpg",
+    thumbnail: "https://source.unsplash.com/random",
     status: "queued",
     statusMessage: "In 50min",
     sourceChannelName: "sourceChannel"
@@ -191,7 +191,7 @@ export const testQueue3 = [
     title: "Video 6",
     views: "1.1M views",
     timeFromUpload: "4 months ago",
-    thumbnail: "https://i.imgur.com/aqjzchq.jpg",
+    thumbnail: "https://source.unsplash.com/random",
     status: "queued",
     statusMessage: "In 50min",
     sourceChannelName: "sourceChannel"
@@ -204,7 +204,7 @@ export const testResult = [
     title: "Video 1",
     views: "20k views",
     timeFromUpload: "2 months ago",
-    thumbnail: "https://i.imgur.com/aqjzchq.jpg",
+    thumbnail: "https://source.unsplash.com/random",
     sourceChannelName: "sourceChannel",
     type: "add"
   },
@@ -213,7 +213,7 @@ export const testResult = [
     title: "Video 2",
     views: "1M views",
     timeFromUpload: "1 week ago",
-    thumbnail: "https://i.imgur.com/aqjzchq.jpg",
+    thumbnail: "https://source.unsplash.com/random",
     sourceChannelName: "sourceChannel",
     type: "add"
   },
@@ -222,7 +222,7 @@ export const testResult = [
     title: "Video 3",
     views: "200k views",
     timeFromUpload: "1 months ago",
-    thumbnail: "https://i.imgur.com/aqjzchq.jpg",
+    thumbnail: "https://source.unsplash.com/random",
     sourceChannelName: "sourceChannel",
     type: "add"
   },
@@ -231,7 +231,7 @@ export const testResult = [
     title: "Video 4",
     views: "1.2M views",
     timeFromUpload: "3 months ago",
-    thumbnail: "https://i.imgur.com/aqjzchq.jpg",
+    thumbnail: "https://source.unsplash.com/random",
     sourceChannelName: "sourceChannel",
     type: "add"
   },
@@ -240,7 +240,7 @@ export const testResult = [
     title: "Video 5",
     views: "1.2M views",
     timeFromUpload: "3 months ago",
-    thumbnail: "https://i.imgur.com/aqjzchq.jpg",
+    thumbnail: "https://source.unsplash.com/random",
     sourceChannelName: "sourceChannel",
     type: "add"
   },
@@ -249,7 +249,7 @@ export const testResult = [
     title: "Video 6",
     views: "1.2M views",
     timeFromUpload: "3 months ago",
-    thumbnail: "https://i.imgur.com/aqjzchq.jpg",
+    thumbnail: "https://source.unsplash.com/random",
     sourceChannelName: "sourceChannel",
     type: "add"
   },
@@ -258,7 +258,7 @@ export const testResult = [
     title: "Video 7",
     views: "1.2M views",
     timeFromUpload: "3 months ago",
-    thumbnail: "https://i.imgur.com/aqjzchq.jpg",
+    thumbnail: "https://source.unsplash.com/random",
     sourceChannelName: "sourceChannel",
     type: "add"
   },
@@ -267,7 +267,7 @@ export const testResult = [
     title: "Video 8",
     views: "1.2M views",
     timeFromUpload: "3 months ago",
-    thumbnail: "https://i.imgur.com/aqjzchq.jpg",
+    thumbnail: "https://source.unsplash.com/random",
     sourceChannelName: "sourceChannel",
     type: "add"
   },
@@ -276,7 +276,7 @@ export const testResult = [
     title: "Video 9",
     views: "1.2M views",
     timeFromUpload: "3 months ago",
-    thumbnail: "https://i.imgur.com/aqjzchq.jpg",
+    thumbnail: "https://source.unsplash.com/random",
     sourceChannelName: "sourceChannel",
     type: "add"
   },
@@ -285,7 +285,7 @@ export const testResult = [
     title: "Video 10",
     views: "1.2M views",
     timeFromUpload: "3 months ago",
-    thumbnail: "https://i.imgur.com/aqjzchq.jpg",
+    thumbnail: "https://source.unsplash.com/random",
     sourceChannelName: "sourceChannel",
     type: "add"
   },
@@ -294,7 +294,7 @@ export const testResult = [
     title: "Video 11",
     views: "1.2M views",
     timeFromUpload: "3 months ago",
-    thumbnail: "https://i.imgur.com/aqjzchq.jpg",
+    thumbnail: "https://source.unsplash.com/random",
     sourceChannelName: "sourceChannel",
     type: "add"
   },
@@ -303,7 +303,7 @@ export const testResult = [
     title: "Video 12",
     views: "1.2M views",
     timeFromUpload: "3 months ago",
-    thumbnail: "https://i.imgur.com/aqjzchq.jpg",
+    thumbnail: "https://source.unsplash.com/random",
     sourceChannelName: "sourceChannel",
     type: "add"
   }
@@ -314,7 +314,7 @@ export const testUsers = [
     username: "Andrew",
     firstName: "Andrew",
     lastName: "Jang",
-    avatar: "https://i.imgur.com/xCGu56D.jpg",
+    avatar: "https://source.unsplash.com/random",
     variant: "stranger",
     owner: false
   },
@@ -323,7 +323,7 @@ export const testUsers = [
     username: "Andrew",
     firstName: "Andrew",
     lastName: "Jang",
-    avatar: "https://i.imgur.com/xCGu56D.jpg",
+    avatar: "https://source.unsplash.com/random",
     variant: "friend",
     owner: true
   },
@@ -332,7 +332,7 @@ export const testUsers = [
     username: "Andrew",
     firstName: "Andrew",
     lastName: "Jang",
-    avatar: "https://i.imgur.com/xCGu56D.jpg",
+    avatar: "https://source.unsplash.com/random",
     variant: "self",
     owner: false
   },
@@ -341,7 +341,7 @@ export const testUsers = [
     username: "Andrew",
     firstName: "Andrew",
     lastName: "Jang",
-    avatar: "https://i.imgur.com/xCGu56D.jpg",
+    avatar: "https://source.unsplash.com/random",
     variant: "receivedRequest",
     owner: false
   },
@@ -350,7 +350,7 @@ export const testUsers = [
     username: "Andrew",
     firstName: "Andrew",
     lastName: "Jang",
-    avatar: "https://i.imgur.com/xCGu56D.jpg",
+    avatar: "https://source.unsplash.com/random",
     variant: "sentRequest",
     owner: false
   }
@@ -360,37 +360,37 @@ export const testNotifications = [
   {
     id: 1,
     username: "Andrew",
-    avatar: "https://i.imgur.com/xCGu56D.jpg",
+    avatar: "https://source.unsplash.com/random",
     message: "You and Andrew are now friends"
   },
   {
     id: 2,
     username: "Andrew",
-    avatar: "https://i.imgur.com/xCGu56D.jpg",
+    avatar: "https://source.unsplash.com/random",
     message: "Andrew followed your channel"
   },
   {
     id: 3,
     username: "Andrew",
-    avatar: "https://i.imgur.com/xCGu56D.jpg",
+    avatar: "https://source.unsplash.com/random",
     message: "Andrew posted on your channel"
   },
   {
     id: 4,
     username: "Andrew",
-    avatar: "https://i.imgur.com/xCGu56D.jpg",
+    avatar: "https://source.unsplash.com/random",
     message: "Andrew commented on your post"
   },
   {
     id: 5,
     username: "Andrew",
-    avatar: "https://i.imgur.com/xCGu56D.jpg",
+    avatar: "https://source.unsplash.com/random",
     message: "Andrew liked your post"
   },
   {
     id: 6,
     username: "Andrew",
-    avatar: "https://i.imgur.com/xCGu56D.jpg",
+    avatar: "https://source.unsplash.com/random",
     message: "Andrew liked your comment"
   }
 ];

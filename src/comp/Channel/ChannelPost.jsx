@@ -52,11 +52,7 @@ export default function ChannelPost({
   // console.log("ownId", ownId, "authorId", authorId);
   return (
     <div className="flex flex-col justify-center items-center">
-      <div
-        className="flex flex-col rounded-lg shadow px-8 py-4 bg-primaryBackground mt-8 hover:shadow-md cursor-pointer sm:w-102 md:w-102 lg:w-104 max-w-xl"
-        onClick={handleComment}
-        role="button"
-      >
+      <div className="flex flex-col rounded-lg shadow px-8 py-4 bg-primaryBackground mt-8 hover:shadow-md cursor-pointer sm:w-102 md:w-102 lg:w-104 max-w-xl">
         <div className="flex justify-between relative">
           <header className="flex transition transform ease-in-out hover:scale-105 duration-100">
             <AvatarIcon
@@ -77,28 +73,19 @@ export default function ChannelPost({
               disabled={ownId !== authorId}
             />
           </div>
-          {/* <button
-            className="flex items-start text-secondaryText"
-            onClick={() => {
-              setShowMenu(!showMenu);
-            }}
-          >
-            <FontAwesomeIcon icon={"ellipsis-v"} />
-          </button>
-          {showMenu && (
-            <span
-              ref={menuRef}
-              className="absolute top-0 right-0 mt-5 rounded-md shadow hover:shadow-md bg-primaryBackground"
-            >
-              <button className="p-2">Delete</button>
-            </span>
- 
-          )} */}
         </div>
-        <p className="text-primaryText text-lg pt-6 pb-5 px-2 break-words">
+        <p
+          className="text-primaryText text-lg pt-6 pb-5 px-2 break-words"
+          onClick={handleComment}
+          role="button"
+        >
           {text}
         </p>
-        <section className="flex justify-start text-xs pb-3 text-secondaryText">
+        <section
+          className="flex justify-start text-xs pb-3 text-secondaryText"
+          onClick={handleComment}
+          role="button"
+        >
           <span className="pr-3 select-none">
             {likeCount} {likeCount > 1 ? "likes" : "like"}
           </span>

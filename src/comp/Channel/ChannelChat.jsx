@@ -55,7 +55,7 @@ export default function ChannelChat({
   removePost
 }) {
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col h-screen">
       {posts &&
         posts.map((post, idx) => {
           const postComments = comments[post.id];
