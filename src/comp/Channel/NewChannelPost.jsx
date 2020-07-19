@@ -14,23 +14,19 @@ export default function NewChannelPost({
   const [pickerOpen, setPickerOpen] = useState(false);
   const textareaRef = useRef();
 
-  // const remToPixel = (rootFontSizePx = 16, rem) => {
-  //   return rem * rootFontSizePx;
-  // };
-
   const handleSubmit = e => {
     e.preventDefault();
     savePost(draft?.trim());
     saveDraft("");
-    textareaRef.current.style.height = "40px";
+    textareaRef.current.style.height = "39px";
     console.log("submit", draft?.trim());
   };
   const handleEmot = e => {
     setPickerOpen(!pickerOpen);
   };
   const handleChange = e => {
-    e.target.style.height = "40px";
-    e.target.style.height = `${Math.min(e.target.scrollHeight + 2, 168)}px`;
+    e.target.style.height = "39px";
+    e.target.style.height = `${Math.min(e.target.scrollHeight, 168)}px`;
     saveDraft(e.target.value);
     console.log("save draft", e.target.value, draft);
   };
@@ -71,7 +67,7 @@ export default function NewChannelPost({
           type="submit"
           className="w-10 h-10 font-bold text-highlightText pr-2 text-md focus:outline-none transition transform ease-in-out hover:scale-110 duration-100"
         >
-          Post{" "}
+          Post
         </button>
       </form>
       {pickerOpen && (
@@ -83,7 +79,6 @@ export default function NewChannelPost({
             }, 250);
           }}
         >
-          {""}
           <Picker
             perLine={8}
             style={{ position: "flex", bottom: "0", right: "-5rem" }}
@@ -102,6 +97,10 @@ export default function NewChannelPost({
             native={true}
             onClick={e => {
               console.log("info draft and symbol", draft, e.native);
+              // A fix to undefined error but not sure if this is a good approach -- Andrew
+              if (typeof draft === "undefined") {
+                draft = "";
+              }
               saveDraft(`${draft} ${e.native}`);
               setPickerOpen(false);
               textareaRef.current.focus();
