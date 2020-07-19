@@ -20,7 +20,7 @@ const withGetChannel = Component => {
 
     // check for channel again after dispatch, redirect if nonexistent
     if (!channel) {
-      dispatch(setAlert("The channel/room you entered does not exist."));
+      dispatch(setAlert("The channel / room you entered does not exist."));
       return <Redirect to="/channels" />;
     }
 

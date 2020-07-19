@@ -23,13 +23,10 @@ function RecommendedChannels({ list, selectedPage }) {
 
   const [search, setSearch] = useState("");
   return (
-    <div className="mt-4 mx-auto w-full max-w-screen-xl relative">
-      {!!alert && (
-        <Alert color="red" textColor="white" duration={3000}>
-          {alert}
-        </Alert>
-      )}
-
+    <div className="relative mt-4 mx-auto w-full max-w-screen-xl">
+      <div className="fixed mx-2 -my-4 z-50">
+        {!!alert && <Alert duration={3000}>{alert}</Alert>}
+      </div>
       <div className="w-auto mx-2 pt-6 sm:mx-auto m-auto sm:w-2/3">
         <Input
           variant="channel"
