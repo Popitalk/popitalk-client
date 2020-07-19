@@ -47,12 +47,7 @@ export default function VideoSection({
             );
           })}
           {isInvitingAllowed && (
-            <Button
-              icon="user-plus"
-              size="sm"
-              style={{ transform: "scaleX(-1)" }}
-              onClick={inviteUsers}
-            />
+            <Button icon="user-plus" size="sm" onClick={inviteUsers} />
           )}
         </section>
       </div>

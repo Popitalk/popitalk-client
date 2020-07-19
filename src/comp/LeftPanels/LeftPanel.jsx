@@ -74,6 +74,7 @@ export default function LeftPanel({
           handleSelectRoom={handleSelectRoom}
           handleSelect={handleSelectChannel}
           handleCollapse={handleCollapse}
+          isCollapsed={isCollapsed}
           selectedPage={selectedPage}
           updateSelectedPage={updateSelectedPage}
         />

@@ -119,7 +119,7 @@ export default function Input({
               icon="search"
               size="sm"
               background="secondary"
-              className="absolute right-0 mr-4 transition transform ease-in-out hover:scale-110 duration-100"
+              className="absolute right-0 mr-4 hover:scale-110"
               onClick={onClick}
             />
           </>
@@ -130,7 +130,7 @@ export default function Input({
               icon="search"
               size="sm"
               background="secondary"
-              className="absolute right-0 mr-2 transition transform ease-in-out hover:scale-110 duration-100"
+              className="absolute right-0 mr-2 hover:scale-110"
               onClick={onClick}
             />
           </>

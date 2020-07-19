@@ -36,7 +36,7 @@ export default function RoomInfoCard({
       subtitleColor={room.notifications ? "black" : "gray"}
       boldFont={room.notifications}
       addBorder={addBorder}
-      backgroundColor={selected === room.id ? "gray" : "white"}
+      backgroundColor={selected === room.id ? "highlight" : "white"}
       padding="xs"
       cardClick={handleSelect ? () => handleSelect(room.id) : null}
     />

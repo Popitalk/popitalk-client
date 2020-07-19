@@ -100,7 +100,7 @@ export default function CreateNewAccountForm({ handleSubmit, error, loading }) {
                 </a>
                 .
               </p>
-              <div className="mt-4 transition transform ease-in-out hover:scale-105 duration-100">
+              <div className="mt-4">
                 <Button type="submit" disabled={loading || !isValid || !dirty}>
                   Sign Up
                 </Button>

@@ -34,7 +34,7 @@ export default function VideoPanelCard({
                 {type === "cancel" && (
                   <Button
                     icon="minus"
-                    className="z-10 btn btn-no-mr opacity-0 group-hover:opacity-100"
+                    className="z-10 btn btn-no-mr transition-opacity opacity-0 group-hover:opacity-100 duration-150"
                     shape="rounded"
                     background="cancel"
                     size="sm"

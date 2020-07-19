@@ -39,38 +39,37 @@ function RecommendedChannels({ list, selectedPage }) {
           onChange={e => setSearch(e.target.value)}
         />
       </div>
-
-      <div className="flex justify-center my-4">
+      <div className="flex justify-center my-4 h-10">
         <Button
           leftIcon="bell"
-          className="uppercase mr-4 shadow-xs hover:shadow-none focus:shadow-none bg-secondaryBackground"
+          className="uppercase mr-4 shadow-xs hover:shadow-none focus:shadow-none bg-secondaryBackground space-x-2"
           shape="chip"
           background="bgColor"
           selectedColor={chipSelected === "following" && "primary"}
           onClick={() => onChipClick("following")}
-          size="md"
+          size="sm"
         >
           following
         </Button>
         <Button
           leftIcon="globe"
-          className="uppercase mr-4 shadow-xs hover:shadow-none focus:shadow-none bg-secondaryBackground"
+          className="uppercase mr-4 shadow-xs hover:shadow-none focus:shadow-none bg-secondaryBackground space-x-2"
           shape="chip"
           background="bgColor"
           selectedColor={chipSelected === "discover" && "secondary"}
           onClick={() => onChipClick("discover")}
-          size="md"
+          size="sm"
         >
           discover
         </Button>
         <Button
           leftIcon="heart"
-          className="uppercase shadow-xs hover:shadow-none focus:shadow-none bg-secondaryBackground"
+          className="uppercase shadow-xs hover:shadow-none focus:shadow-none bg-secondaryBackground space-x-2"
           shape="chip"
           background="bgColor"
           selectedColor={chipSelected === "trending" && "cancel"}
           onClick={() => onChipClick("trending")}
-          size="md"
+          size="sm"
         >
           trending
         </Button>
