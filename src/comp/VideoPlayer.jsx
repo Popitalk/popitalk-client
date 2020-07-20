@@ -81,7 +81,7 @@ function VideoPlayer() {
               setDuration(player.current.getDuration());
             }}
             onProgress={({ playedSeconds }) => {
-              setProgress(Math.floor(playedSeconds));
+              setProgress(playedSeconds);
             }}
           />
         </div>
@@ -113,6 +113,8 @@ function VideoPlayer() {
               onMouseLeave={() => setIsHovering(false)}
             >
               <Slider
+                max={duration}
+                value={progress}
                 handleStyle={
                   isHovering === true
                     ? {
