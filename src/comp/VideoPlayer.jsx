@@ -23,6 +23,10 @@ function VideoPlayer() {
   const [progress, setProgress] = useState(0);
   const [duration, setDuration] = useState(0);
 
+  const handleVideoSliderChange = s => {
+    player.current.seekTo(s, "seconds");
+  };
+
   //sync playIcon and play states
   const setBothPlaying = () => {
     playStatus(!playingIcon);
@@ -48,7 +52,7 @@ function VideoPlayer() {
       out.push(minutes.toString());
     }
 
-    const seconds = Math.floor(s % 60);
+    const seconds = Math.round(s % 60);
     out.push(seconds.toString().padStart(2, "0"));
 
     return out.join(":");
@@ -115,6 +119,7 @@ function VideoPlayer() {
               <Slider
                 max={duration}
                 value={progress}
+                onChange={handleVideoSliderChange}
                 handleStyle={
                   isHovering === true
                     ? {
