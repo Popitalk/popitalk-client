@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import ReactPlayer from "react-player";
 import Slider from "rc-slider";
@@ -7,23 +7,61 @@ import VideoPlayerStatusCard from "./VideoPlayerStatusCard";
 import defaultImage from "../assets/default/user-default.png";
 
 function VideoPlayer() {
+  const player = useRef(null);
+
   //Determine if the mouse is hovering over the video player
   const [isHovering, setIsHovering] = useState(false);
+
   //Determine state for pasue & play & playingIcon
   const [playingIcon, playStatus] = useState(false);
   const [playing, handlePause] = useState(true);
+
   //Determine state for volume & muteIcon
   const [muted, handleMute] = useState(false);
   const [mutedIcon, muteStatus] = useState(true);
+
+  const [progress, setProgress] = useState(0);
+  const [duration, setDuration] = useState(0);
+
   //sync playIcon and play states
   const setBothPlaying = () => {
     playStatus(!playingIcon);
     handlePause(!playing);
   };
+
   //sync volumeIcon and muted states
   const setMuted = () => {
     handleMute(!muted);
     muteStatus(!mutedIcon);
+  };
+
+  // formats seconds into HH:MM:SS string
+  const formatSeconds = s => {
+    const out = [];
+
+    const hours = Math.floor(s / 3600);
+    const minutes = Math.floor((s % 3600) / 60);
+    if (hours > 0) {
+      out.push(hours.toString());
+      out.push(minutes.toString().padStart(2, "0"));
+    } else {
+      out.push(minutes.toString());
+    }
+
+    const seconds = Math.floor(s % 60);
+    out.push(seconds.toString().padStart(2, "0"));
+
+    return out.join(":");
+  };
+
+  // generate video timestamp if video has finite duration
+  const generateTimestamp = () => {
+    if (duration > 0) {
+      const progressTimestamp = formatSeconds(progress);
+      const durationTimestamp = formatSeconds(duration);
+      return `${progressTimestamp} / ${durationTimestamp}`;
+    }
+    return null;
   };
 
   return (
@@ -32,12 +70,19 @@ function VideoPlayer() {
         <div className="absolute bg-black h-full w-full"></div>
         <div className="hover:select-none">
           <ReactPlayer
-            url="https://www.youtube.com/watch?v=5qap5aO4i9A"
+            ref={player}
+            url="https://www.youtube.com/watch?v=LHODkrToLM8"
             width="100%"
             height="100%"
             className="absolute t-0 l-0"
             playing={playing}
             muted={muted}
+            onReady={() => {
+              setDuration(player.current.getDuration());
+            }}
+            onProgress={({ playedSeconds }) => {
+              setProgress(Math.floor(playedSeconds));
+            }}
           />
         </div>
         <div className="absolute flex flex-col justify-end w-full h-full transition-colors">
@@ -64,8 +109,8 @@ function VideoPlayer() {
             <div
               className="flex flex-col px-2 w-full"
               //Set the mouse hovering state
-              onMouseEnter={() => setIsHovering(!isHovering)}
-              onMouseLeave={() => setIsHovering(!isHovering)}
+              onMouseEnter={() => setIsHovering(true)}
+              onMouseLeave={() => setIsHovering(false)}
             >
               <Slider
                 handleStyle={
@@ -108,7 +153,7 @@ function VideoPlayer() {
                       }
                 }
                 className="-mb-1 cursor-pointer transition-opacity opacity-75 hover:opacity-100 duration-150"
-              ></Slider>
+              />
               <div className="flex items-center justify-between w-full my-1">
                 <div className="flex space-x-4 items-center">
                   {/* Play button */}
@@ -131,7 +176,10 @@ function VideoPlayer() {
                       className="text-tertiaryText"
                     />
                   </button>
-                  <span className="text-tertiaryText text-xs">0:11 / 5:04</span>
+                  <span className="text-tertiaryText text-xs">
+                    {/* Video timestamp */}
+                    {generateTimestamp()}
+                  </span>
                 </div>
                 {/* Full screen button */}
                 <button className="w-8 p-1 rounded-full hover:bg-playerControlsHover focus:outline-none transition transform ease-in-out hover:scale-110 duration-100">
