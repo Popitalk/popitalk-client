@@ -9,14 +9,14 @@ import defaultImage from "../assets/default/user-default.png";
 function VideoPlayer() {
   const player = useRef(null);
 
-  //Determine if the mouse is hovering over the video player
+  // Determine if the mouse is hovering over the video player
   const [isHovering, setIsHovering] = useState(false);
 
-  //Determine state for pasue & play & playingIcon
+  // Determine state for pasue & play & playingIcon
   const [playingIcon, playStatus] = useState(false);
   const [playing, handlePause] = useState(true);
 
-  //Determine state for volume & muteIcon
+  // Determine state for volume & muteIcon
   const [muted, handleMute] = useState(false);
   const [mutedIcon, muteStatus] = useState(true);
 
@@ -27,13 +27,13 @@ function VideoPlayer() {
     player.current.seekTo(s, "seconds");
   };
 
-  //sync playIcon and play states
+  // Sync playIcon and play states
   const setBothPlaying = () => {
     playStatus(!playingIcon);
     handlePause(!playing);
   };
 
-  //sync volumeIcon and muted states
+  // Sync volumeIcon and muted states
   const setMuted = () => {
     handleMute(!muted);
     muteStatus(!mutedIcon);
@@ -99,7 +99,7 @@ function VideoPlayer() {
             />
           </div>
           <div
-            //Always show the video controls while the video is at pause.
+            // Always show the video controls while the video is at pause.
             className={
               playingIcon === true
                 ? "flex flex-col justify-end w-full h-full transition-colors bg-gradient-t-player"
@@ -112,7 +112,7 @@ function VideoPlayer() {
             />
             <div
               className="flex flex-col px-2 w-full"
-              //Set the mouse hovering state
+              // Set the mouse hovering state
               onMouseEnter={() => setIsHovering(true)}
               onMouseLeave={() => setIsHovering(false)}
             >
