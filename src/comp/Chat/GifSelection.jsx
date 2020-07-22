@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 export default function GifSelection({ updateGifsOpen }) {
-  const [isGifSelected, setGifSelected] = useState();
+  const [isGifSelected, setGifSelected] = useState(false);
   const onGifClick = () => {
     setGifSelected(!isGifSelected);
   };

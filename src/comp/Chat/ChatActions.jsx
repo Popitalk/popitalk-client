@@ -90,7 +90,7 @@ function ChatActions(props) {
   const onEmojiClick = (emojiObject, event) => {
     console.log(emojiObject);
     setChosenEmoji(emojiObject.native);
-    setEmojiIsOpen(false);
+    // setEmojiIsOpen(false);
     textareaRef.current.focus();
   };
 

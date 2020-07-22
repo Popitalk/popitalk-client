@@ -37,7 +37,7 @@ export default function GifTable({ updateGifsOpen }) {
         }
       })
     );
-    updateGifsOpen(false);
+    // updateGifsOpen(false);
   };
   return (
     <div className={`giftable relative bg-transparent w-84`}>
