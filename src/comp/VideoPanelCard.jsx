@@ -64,12 +64,12 @@ export default function VideoPanelCard({
 
             {/* <div className="absolute top-0 z-20 w-full h-full bg-gradient-t-channelCardOverlay rounded-xl" /> */}
           </div>
-          <div className="w-full py-2 px-0 h-20">
-            <p className="flex-col text-sm h-10 overflow-hidden text-primaryText break-words">
+          <div className="w-full pt-2 px-0">
+            <p className="text-sm font-semibold truncate-2-lines overflow-hidden text-primaryText break-words">
               {title}
             </p>
             <div className="flex items-end">
-              <p className="text-xs py-2 text-secondaryText items-end">
+              <p className="text-xs pt-2 text-secondaryText items-end">
                 {leftInfo} &middot; {rightInfo}
               </p>
             </div>

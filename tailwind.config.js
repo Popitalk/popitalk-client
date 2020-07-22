@@ -24,6 +24,13 @@ const children = [
 
 module.exports = {
   theme: {
+    truncate: {
+      lines: {
+        2: "2",
+        3: "3",
+        5: "5"
+      }
+    },
     screens: {
       sm: "640px",
       md: "900px",
@@ -195,6 +202,7 @@ module.exports = {
   plugins: [
     require("tailwindcss-gradients"),
     require("tailwindcss-filters"),
-    require("tailwindcss-children")
+    require("tailwindcss-children"),
+    require("tailwindcss-truncate-multiline")()
   ]
 };
