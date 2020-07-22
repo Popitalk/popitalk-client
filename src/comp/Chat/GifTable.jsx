@@ -45,7 +45,7 @@ export default function GifTable({ updateGifsOpen }) {
         variant="user"
         size="sm"
         value={search}
-        placeholder="Search for a gif"
+        placeholder="Search for a GIF"
         onChange={e => setSearch(e.target.value)}
         onClick={() =>
           console.log(
@@ -53,13 +53,22 @@ export default function GifTable({ updateGifsOpen }) {
             search
           )
         }
+        className="px-1"
       />
       <ul className="flex overflow-scroll space-x-1 p-1">
         {testGifs.data.map(gif => {
           return (
-            <li key={gif.id} role="button" onClick={() => handleSendGif(gif)}>
+            <li
+              key={gif.id}
+              role="button"
+              onClick={() => handleSendGif(gif)}
+              className="relative"
+            >
+              <div className="flex absolute w-full h-full top-0 left-0 justify-center items-center text-tertiaryText text-md font-bold bg-black bg-opacity-25 transition-opacity opacity-0 hover:opacity-100 duration-100">
+                <p className="shadow-xl">Send</p>
+              </div>
               <img
-                className="h-20 max-w-none"
+                className="h-40 max-w-none"
                 src={gif.images.fixed_width.url}
                 alt={gif.title}
               />

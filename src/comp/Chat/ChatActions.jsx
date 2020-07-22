@@ -100,11 +100,15 @@ function ChatActions(props) {
         {/* EMOJI BUTTON */}
         <button
           onClick={() => setEmojiIsOpen(!emojiIsOpen)}
-          className="w-10 h-10 p-2 text-center rounded-lg bg-secondaryBackground hover:bg-highlightBackground focus:outline-none transition transform ease-in-out hover:scale-110 duration-100"
+          className={`${
+            emojiIsOpen
+              ? "bg-highlightText hover-none"
+              : "bg-secondaryBackground hover:bg-highlightBackground"
+          }w-10 h-10 p-2 text-center rounded-lg focus:outline-none transition transform ease-in-out hover:scale-110 duration-100`}
         >
           <FontAwesomeIcon
             icon={["far", "smile"]}
-            className="text-highlightText"
+            className={emojiIsOpen ? "text-tertiaryText" : "text-highlightText"}
             size="lg"
             role="button"
           />
