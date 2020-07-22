@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import VideoPanelCard from "./VideoPanelCard";
+import Button from "./Controls/Button";
 
 export default function VideoResults({
   results,
   totalResults,
   handleLoadMoreResults,
-  threshold = 24
+  threshold
 }) {
   const [currThreshold, setCurrThreshold] = useState(threshold);
 
@@ -18,9 +19,9 @@ export default function VideoResults({
     return nextThreshold;
   };
 
-  const handleClick = () => {
-    setCurrThreshold(setNextThreshold);
-  };
+  // const handleClick = () => {
+  //   setCurrThreshold(setNextThreshold);
+  // };
 
   const handleLoad = () => {
     setCurrThreshold(setNextThreshold);
@@ -43,13 +44,13 @@ export default function VideoResults({
       </div>
 
       {currThreshold < highestResults && (
-        <div className="flex justify-center py-4">
-          <button
-            className="text-tertiaryText text-sm focus:outline-none bg-gradient-r-button p-2 rounded-xl"
-            onClick={currThreshold < results.length ? handleClick : handleLoad}
+        <div className="flex justify-center pt-12 pb-8">
+          <Button
+            onClick={handleLoad}
+            // onClick={currThreshold >= results.length ? handleClick : handleLoad}
           >
             Show more
-          </button>
+          </Button>
         </div>
       )}
       {results.length === 0 && (

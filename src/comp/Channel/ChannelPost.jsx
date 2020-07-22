@@ -5,11 +5,11 @@ import AvatarIcon from "../Controls/AvatarIcon";
 import ChannelComment from "./ChannelComment";
 import NewChannelComment from "./NewChannelComment";
 import ToggleIcon from "../Controls/ToggleIcon";
-import { formatDistanceToNow } from "date-fns";
 import useOnClickOutside from "use-onclickoutside";
 import PopupMenu from "../Controls/PopupMenu";
 import { openProfileModal } from "../../redux/actions";
 import { useDispatch } from "react-redux";
+import moment from "moment";
 
 export default function ChannelPost({
   id,
@@ -150,9 +150,7 @@ export default function ChannelPost({
                 name={comment.author.username}
                 authorId={comment.author.id}
                 avatar={comment.author.avatar || defaultAvatar}
-                timeFromPost={formatDistanceToNow(new Date(comment.createdAt), {
-                  addSuffix: true
-                })}
+                timeFromPost={moment(comment.createdAt).fromNow()}
                 text={comment.content}
                 toggleLike={toggleLike}
                 liked={comment.liked}
@@ -168,9 +166,7 @@ export default function ChannelPost({
                 name={comment.author.username}
                 authorId={comment.author.id}
                 avatar={comment.author.avatar || defaultAvatar}
-                timeFromPost={formatDistanceToNow(new Date(comment.createdAt), {
-                  addSuffix: true
-                })}
+                timeFromPost={moment(comment.createdAt).fromNow()}
                 text={comment.content}
                 toggleLike={toggleLike}
                 liked={comment.liked}
