@@ -240,6 +240,8 @@ export const calculatePlayedTime = (
   videoStartTime,
   videoLength
 ) => {
-  console.log(currTime);
-  return currTime;
+  const msToS = 1 / 1000;
+  const elapsedTime = (currTime - clockStartTime) * msToS;
+  const playedTime = videoStartTime + elapsedTime;
+  return Number(playedTime.toFixed(0));
 };
