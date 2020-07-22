@@ -29,10 +29,8 @@ export default function VideoSection({
           ) : (
             <p></p>
           )}
-          <p className="text-2xl mx-1 text-primaryText">{title}</p>
-          <p className="text-sm -mt-1 mx-1 text-primaryText">
-            {sourceChannelName}
-          </p>
+          <p className="text-2xl text-primaryText">{title}</p>
+          <p className="text-sm text-secondaryText">{sourceChannelName}</p>
         </section>
         <section className="flex flex-row items-top mx-px mr-4">
           {activeFriendViewers.map((friend, idx) => {

@@ -7,7 +7,7 @@ export default function VideoSearchBar({ className, onClick }) {
   const [value, setValue] = useState("");
 
   return (
-    <div className="p-2 bg-secondaryBackground px-4">
+    <div className="bg-secondaryBackground px-4 py-2">
       <form
         className={className ? className : "mb-1"}
         onSubmit={e => e.preventDefault()}
