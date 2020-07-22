@@ -16,18 +16,20 @@ export default function ChannelCard({
   handleFollow
 }) {
   return (
-    <div className="cursor-pointer w-full flex-shrink-0 rounded-xl group py-4 px-2 select-none">
-      <div className="flex-grow flex flex-row justify-center w-full pb-5/4 p-3 relative rounded-xl group-hover:shadow-xl transition-all ease-in-out duration-200">
+    <div className="cursor-pointer w-full flex-shrink-0 rounded-lg group pt-4 pb-12 px-2 select-none">
+      <div className="relative flex-grow flex flex-row justify-center w-full pb-5/4 p-3 rounded-lg group-hover:shadow-xl transition-all ease-in-out duration-100">
         <img
           src={videoThumbnail}
           alt="channel"
-          className="img absolute top-0 h-full rounded-xl transition-all ease-in-out duration-100"
+          className="absolute img top-0 h-full rounded-lg transition-all ease-in-out duration-100"
         />
         <div className="absolute w-full z-10">
-          <div className="flex relative justify-between px-3">
-            <div className="flex items-center pr-2">
+          <div className="flex relative justify-between px-2">
+            <div className="flex items-center">
               <VideoStatus status={live ? "playing" : "paused"} />
-              <p className="text-sm font-regular flex-shrink-1 text-tertiaryText w-full max-w-2xs clamp-2 mb-1 ml-3">
+              <p className="text-sm flex-shrink-1 text-tertiaryText w-full max-w-2xs truncate-2-lines mb-1 ml-2">
+                Some long long long long long long long long long long long long
+                long long Title
                 {videoTitle}
               </p>
             </div>
@@ -49,19 +51,20 @@ export default function ChannelCard({
           size="md"
           className="img absolute top-0 right-0 w-auto h-8 mt-3 mr-3 z-30"
         /> */}
-        <div className="h-full w-full absolute top-0 bg-gradient-t-channelCardOverlay rounded-xl" />
-        <div className="h-full w-full absolute top-0 bg-gradient-t-channelCardOverlay transform rotate-180 rounded-xl" />
-        <div className="absolute w-full bottom-0 left-0 p-3 rounded-b-xl">
+        <div className="h-full w-full absolute top-0 bg-gradient-t-channelCardOverlay rounded-lg" />
+        <div className="h-full w-full absolute top-0 bg-gradient-t-channelCardOverlay transform rotate-180 rounded-lg" />
+        <div className="absolute w-full bottom-0 left-0 p-2 rounded-b-lg">
           <div className="flex flex-row items-center">
             <RoomIcon
               ids={[id]}
               images={[icon]}
               watching={live}
               size="sm"
-              className="mr-3 w-12 h-12"
+              className="mr-2 w-12 h-12"
             />
-            <div className="pr-4 flex-shrink-1">
-              <p className="text-sm font-semibold text-tertiaryText clamp-2">
+            <div className="pr-2 flex-shrink-1">
+              <p className="text-sm font-semibold text-tertiaryText truncate-2-lines">
+                Some long long long long long long long long long Text
                 {name}
               </p>
             </div>
