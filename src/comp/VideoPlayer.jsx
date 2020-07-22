@@ -22,8 +22,9 @@ function VideoPlayer() {
 
   const [progress, setProgress] = useState(0);
   const [duration, setDuration] = useState(0);
+  const [volume, setVolume] = useState(1);
 
-  const handleVideoSliderChange = s => {
+  const handleProgressSliderChange = s => {
     player.current.seekTo(s, "seconds");
   };
 
@@ -80,7 +81,7 @@ function VideoPlayer() {
             height="100%"
             className="absolute t-0 l-0"
             playing={playing}
-            muted={muted}
+            volume={volume}
             onReady={() => {
               setDuration(player.current.getDuration());
             }}
@@ -119,7 +120,7 @@ function VideoPlayer() {
               <Slider
                 max={duration}
                 value={progress}
-                onChange={handleVideoSliderChange}
+                onChange={handleProgressSliderChange}
                 handleStyle={
                   isHovering === true
                     ? {
@@ -173,16 +174,31 @@ function VideoPlayer() {
                       className="text-tertiaryText"
                     />
                   </button>
+
                   {/* Volume button */}
                   <button
                     className="w-8 p-1 rounded-full hover:bg-playerControlsHover focus:outline-none duration-100 transition transform ease-in-out hover:scale-110"
                     onClick={() => setMuted()}
                   >
                     <FontAwesomeIcon
-                      icon={mutedIcon === true ? "volume-up" : "volume-mute"}
+                      icon={volume > 0 ? "volume-up" : "volume-mute"}
                       className="text-tertiaryText"
                     />
                   </button>
+                  {/* Volume slider */}
+                  <div className="w-16">
+                    <Slider
+                      max={100}
+                      value={volume * 100}
+                      onChange={v => {
+                        setVolume(v / 100);
+                      }}
+                      handleStyle={{ borderColor: "#fff", cursor: "pointer" }}
+                      trackStyle={{ backgroundColor: "#fff" }}
+                      railStyle={{ backgroundColor: "#fff", opacity: 0.25 }}
+                    />
+                  </div>
+
                   <span className="text-tertiaryText text-xs">
                     {/* Video timestamp */}
                     {generateTimestamp()}
