@@ -103,6 +103,10 @@ export const leaveRoom = roomId => {
   return axios.delete(`/api/channels/rooms/${roomId}`);
 };
 
+export const setPlaying = (channelId, videoObj) => {
+  return axios.put(`/api/channels/${channelId}/play`, videoObj);
+};
+
 // MEMBERS
 
 export const updateMember = updateInfo => {

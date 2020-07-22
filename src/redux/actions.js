@@ -27,7 +27,7 @@ import {
   MODAL_DELETE_CHANNEL,
   MODAL_ROOM_EXISTS
 } from "../helpers/constants";
-
+import moment from "moment";
 /* -------------------------------------------------------------------------- */
 /*                                   GENERAL                                  */
 /* -------------------------------------------------------------------------- */
@@ -782,10 +782,20 @@ export const clearError = createAction("api/clearError");
 export const setAlert = createAction("ui/setAlert");
 
 /* -------------------------------------------------------------------------- */
-/*                              VIDEO CONTROL                                 */
+/*                              VIDEO                                         */
 /* -------------------------------------------------------------------------- */
 
-export const updatePlaying = createAction("videoControl/updatePlaying");
-export const updatePlayedSeconds = createAction(
-  "videoControl/updatePlayedSeconds"
+// controls: {playing: boolean, skip: boolean, playedSeconds: Integer}, info: {length: Integer (seconds)}
+// clock_start_time, video_start_time, queue_position, channelId
+export const setPlaying = createAsyncThunk(
+  "video/setPlaying",
+  async (channelId, video) => {
+    const videoObject = {
+      queueStartPosition: video.queueStartPosition,
+      clockStartTime: moment(),
+      videoStartTime: video.startTime
+    };
+    const response = await api.setPlaying(channelId, videoObject);
+    return response;
+  }
 );
