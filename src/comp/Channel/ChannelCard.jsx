@@ -21,7 +21,7 @@ export default function ChannelCard({
         <img
           src={videoThumbnail}
           alt="channel"
-          className="img absolute top-0 h-full rounded-xl group-hover:opacity-75 transition-all ease-in-out duration-100"
+          className="img absolute top-0 h-full rounded-xl transition-all ease-in-out duration-100"
         />
         <div className="absolute w-full z-10">
           <div className="flex relative justify-between px-3">
