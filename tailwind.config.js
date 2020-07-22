@@ -149,6 +149,9 @@ module.exports = {
         suggestions: "0px 3px 6px rgba(0, 0, 0, 0.16)",
         account: "0px 32px 40px 5px rgba(0,0,0,0.25)"
       },
+      opacity: {
+        "95": "0.95"
+      },
       width: {
         dropdown: "24rem",
         modal: "36rem"
@@ -159,6 +162,7 @@ module.exports = {
         modalFull: "70vh"
       },
       scale: {
+        "102": "1.02",
         "200": "2"
       },
       maxHeight: {

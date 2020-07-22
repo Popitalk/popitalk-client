@@ -25,12 +25,13 @@ export default function MiniFriendsList({
             />
           </div>
         ))}
-        <div className="px-0 transition transform ease-in-out hover:scale-110 duration-100">
+        <div className="px-0">
           <Button
             icon="user-plus"
             size="lg"
             background="secondary"
             onClick={handleFindFriends}
+            className="hover:scale-110"
           />
         </div>
       </div>

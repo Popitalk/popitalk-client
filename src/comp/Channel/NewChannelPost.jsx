@@ -1,5 +1,4 @@
 import React, { useState, useRef } from "react";
-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "../VideoStatus.css";
 import "emoji-mart/css/emoji-mart.css";
@@ -15,63 +14,65 @@ export default function NewChannelPost({
   const [pickerOpen, setPickerOpen] = useState(false);
   const textareaRef = useRef();
 
-  // const remToPixel = (rootFontSizePx = 16, rem) => {
-  //   return rem * rootFontSizePx;
-  // };
-
   const handleSubmit = e => {
     e.preventDefault();
     savePost(draft?.trim());
     saveDraft("");
-    textareaRef.current.style.height = "40px";
+    textareaRef.current.style.height = "39px";
     console.log("submit", draft?.trim());
   };
   const handleEmot = e => {
     setPickerOpen(!pickerOpen);
   };
   const handleChange = e => {
-    e.target.style.height = "40px";
-    e.target.style.height = `${Math.min(e.target.scrollHeight + 2, 168)}px`;
+    e.target.style.height = "39px";
+    e.target.style.height = `${Math.min(e.target.scrollHeight, 168)}px`;
     saveDraft(e.target.value);
     console.log("save draft", e.target.value, draft);
   };
 
   return (
-    <div className="flex flex-col justify-center items-center">
+    <div className="relative flex flex-col justify-center items-center">
       <form
         onSubmit={handleSubmit}
-        className={`flex flex-row justify-center bg-secondaryBackground content-center py-2 sm:w-102 md:w-102 lg:w-104 max-w-xl ${className}`}
+        className={`flex flex-row justify-center bg-secondaryBackground content-center py-2 sm:w-102 md:w-102 lg:w-104 max-w-xla`}
       >
-        <button
-          className="text-highlightText text-2xl mx-4 focus:outline-none"
+        {/* EMOJI BUTTON */}
+        <div
           onClick={handleEmot}
+          className="w-10 h-10 p-2 mx-2 text-2xl text-highlightText rounded-lg bg-secondaryBackground select-none hover:bg-highlightBackground transition transform ease-in-out hover:scale-110 duration-100"
+          role="button"
         >
-          <FontAwesomeIcon icon={["far", "smile"]} />
-        </button>
+          <FontAwesomeIcon icon={["far", "smile"]} className="mb-2" />
+        </div>
+        {/* INPUT */}
         <textarea
           type="text"
           placeholder="Post something..."
-          className="rounded-lg pl-3 p-2 w-full shadow resize-none overflow-hidden focus:outline-none"
+          className="w-full h-10 py-2 px-3 text-start overflow-hidden rounded-lg resize-none bg-primaryBackground shadow-sm hover:shadow-md focus:outline-none text-primaryText text-sm transition transform ease-in-out hover:scale-102 duration-100"
           rows={1}
           maxLength={2000}
           value={draft}
           onChange={handleChange}
           ref={textareaRef}
         />
+        {/* GIF BUTTON */}
+        <div className="w-10 h-10 p-2 mx-2 rounded-lg bg-secondaryBackground select-none hover:bg-highlightBackground transition transform ease-in-out hover:scale-110 duration-100">
+          <p className="text-highlightText font-bold" role="button">
+            GIF
+          </p>
+        </div>
+        {/* SEND BUTTON */}
         <button
-          className="text-highlightText text-2xl ml-4 focus:outline-none"
-          onClick={handleUploadImg}
-        >
-          <FontAwesomeIcon icon={["fa", "image"]} />
-        </button>
-        <input
           type="submit"
-          value="Send"
-          className="ml-4 mr-2 bg-transparent text-highlightText font-bold cursor-pointer focus:outline-none"
-        />
+          className="w-10 h-10 font-bold text-highlightText pr-2 text-md focus:outline-none transition transform ease-in-out hover:scale-110 duration-100"
+        >
+          Post
+        </button>
       </form>
       {pickerOpen && (
         <div
+          className="absolute top-0 left-0 ml-8 mt-12 mr-8 z-50"
           onBlur={() => {
             setTimeout(() => {
               setPickerOpen(false);
@@ -79,21 +80,34 @@ export default function NewChannelPost({
           }}
         >
           <Picker
-            set="twitter"
-            title="Emojis"
-            showPreview={false}
-            showSkinTones={false}
-            autoFocus
+            perLine={8}
+            style={{ position: "flex", bottom: "0", right: "-5rem" }}
             emojiTooltip={true}
-            onSelect={e => {
+            // If both disabled, then no footer is shown
+            showSkinTones={false}
+            showPreview={false}
+            autoFocus
+            // Bellow options can be used to adjust what is shown in the footer by default.
+            // emoji="eyes"
+            // title="  Popitalk"
+            // Uses the native set of emojis, so nothing needs to be downloaded. To make all our
+            // wanted emojis available on any device we should provide our own sheet, or use the one
+            // provided by emoji mart.
+            // But then they have to be downloaded.
+            native={true}
+            onClick={e => {
               console.log("info draft and symbol", draft, e.native);
+              // A fix to undefined error but not sure if this is a good approach -- Andrew
+              if (typeof draft === "undefined") {
+                draft = "";
+              }
               saveDraft(`${draft} ${e.native}`);
-              // setPost((old) => `${old} ${e.native}`);
               setPickerOpen(false);
               textareaRef.current.focus();
               console.log("selected");
             }}
-          />
+            exclude={["flags"]}
+          ></Picker>
         </div>
       )}
     </div>

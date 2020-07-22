@@ -779,6 +779,7 @@ export const setLeftPanelActiveTabFriends = createAction(
   "ui/setLeftPanelActiveTabFriends"
 );
 export const clearError = createAction("api/clearError");
+export const setAlert = createAction("ui/setAlert");
 
 /* -------------------------------------------------------------------------- */
 /*                              VIDEO CONTROL                                 */

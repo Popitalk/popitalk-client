@@ -7,6 +7,8 @@ import React, {
 } from "react";
 import { useInView } from "react-intersection-observer";
 import { throttle } from "lodash";
+import { useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 function InfiniteScroller(
   {
@@ -30,7 +32,10 @@ function InfiniteScroller(
   // let [ready, setReady] = useState(false);
   let [oldScrollHeight, setOldScrollHeight] = useState(0);
   let [olderScrollHeight, setOlderScrollHeight] = useState(0);
-
+  const params = useParams();
+  const draft = useSelector(
+    state => state.chatDrafts[params.channelId || params.roomId]
+  );
   let [bottomRef, bottomInView] = useInView({
     triggerOnce: false,
     rootMargin: `${threshold * 2}px 0px`
@@ -65,6 +70,7 @@ function InfiniteScroller(
   );
 
   useLayoutEffect(() => {
+    // if initialScroll is unset, it default to "bottom" and the messages div is scrolled to the latest message.
     if (initialScroll === "bottom") {
       containerRef.current.scrollTo(0, containerRef.current.scrollHeight);
     } else if (initialScroll === "top") {
@@ -81,7 +87,7 @@ function InfiniteScroller(
       containerRef.current.scrollTo(0, scrollVal);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [containerRef, reScroll, threshold]);
+  }, [containerRef, reScroll, threshold, draft]);
 
   useEffect(() => {
     if (!loading) return;

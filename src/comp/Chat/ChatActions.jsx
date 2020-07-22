@@ -96,6 +96,7 @@ function ChatActions(props) {
   return (
     <>
       <div className="flex items-center pt-1 space-x-1 md:space-x-2 mx-2">
+        {/* EMOJI BUTTON */}
         <button
           onClick={() => setEmojiIsOpen(!emojiIsOpen)}
           className="w-10 h-10 p-2 text-center rounded-lg bg-secondaryBackground hover:bg-highlightBackground focus:outline-none transition transform ease-in-out hover:scale-110 duration-100"
@@ -139,12 +140,13 @@ function ChatActions(props) {
           ref={textareaRef}
           onChange={handleChange}
         />
-        {/* GIF BUTTON*/}
+        {/* GIF BUTTON */}
         <div className="w-10 h-10 p-2 rounded-lg bg-secondaryBackground hover:bg-highlightBackground transition transform ease-in-out hover:scale-110 duration-100">
           <p className="text-highlightText font-bold" role="button">
             GIF
           </p>
         </div>
+        {/* SEND BUTTON */}
         <button
           onClick={handleSend}
           ref={sendButton}
@@ -153,7 +155,6 @@ function ChatActions(props) {
           Send
         </button>
       </div>
-      {/** ADD EMOJI PICKER BELOW */}
     </>
   );
 }

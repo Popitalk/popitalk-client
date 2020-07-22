@@ -25,7 +25,7 @@ export default function ChannelsList({
         title={channel.name}
         subtitle={`${channel.numOnline} online`}
         subtitleSize="xs"
-        backgroundColor={selected === channel.id ? "gray" : "transparent"}
+        backgroundColor={selected === channel.id ? "highlight" : "transparent"}
         cardClick={() => handleSelect(channel.id)}
       />
     );

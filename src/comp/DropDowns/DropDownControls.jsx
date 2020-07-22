@@ -20,7 +20,11 @@ export default function DropDownControls({ children, onClose, onClick, icon }) {
     <div className="relative">
       <FontAwesomeIcon
         icon={icon}
-        className="cursor-pointer text-secondaryText hover:text-highlightText"
+        className={
+          open === true
+            ? "cursor-pointer text-highlightText"
+            : "cursor-pointer text-secondaryText hover:text-highlightText"
+        }
         roll="button"
         size="lg"
         onMouseDown={() => {

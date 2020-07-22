@@ -1,7 +1,7 @@
 import React from "react";
 import RoomIcon from "./Controls/RoomIcon";
-
 import { Link, useLocation } from "react-router-dom";
+
 export default function ChannelHeader({ id, name, icon, type = "channel" }) {
   const navButtons = [
     { name: "Video", endpoint: "video" },
@@ -36,18 +36,20 @@ export default function ChannelHeader({ id, name, icon, type = "channel" }) {
   // );
   return (
     <header className="flex justify-between bg-secondaryBackground p-1 z-20 select-none">
-      <div className="flex items-center transition transform ease-in-out hover:scale-105 duration-100 cursor-pointer">
-        <RoomIcon
-          ids={[id]}
-          images={[icon]}
-          // watching={videoStatus === "playing" ? true : false}
-          size="sm"
-          className="mx-2"
-        />
-        <p className="text-md font-medium text-primaryText p-2">
-          {type === "channel" ? name : `Private Room with ${name}`}
-        </p>
-      </div>
+      <Link to={`/channels/${id}/video`} className="no-underline">
+        <div className="flex items-center">
+          <RoomIcon
+            ids={[id]}
+            images={[icon]}
+            // watching={videoStatus === "playing" ? true : false}
+            size="sm"
+            className="mx-2 transition transform ease-in-out hover:scale-110 duration-100 cursor-pointer"
+          />
+          <p className="text-md font-medium text-primaryText p-2">
+            {type === "channel" ? name : `Private Room with ${name}`}
+          </p>
+        </div>
+      </Link>
       {type === "channel" && (
         <nav className="flex flex-wrap justify-center m-2">
           {navButtons.map((button, idx) => {

@@ -31,7 +31,7 @@ export default function InfoCard({
     "bg-primaryBackground": backgroundColor === "white",
     "bg-secondaryBackground": backgroundColor === "gray",
     "bg-highlightBackground": backgroundColor === "highlight",
-    "hover:bg-secondaryBackground duration-50": hoverable,
+    "hover:bg-highlightBackground duration-75": hoverable,
     "py-2": padding === "sm",
     "py-1": padding === "xs",
     "py-0": padding === "none",
