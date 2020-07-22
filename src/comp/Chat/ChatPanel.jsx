@@ -32,7 +32,7 @@ export default function ChatPanel({
           This is the start of the chat!
         </h1>
       )}
-      {isGifsOpen ? <GifTable /> : null}
+      {isGifsOpen ? <GifTable updateGifsOpen={updateGifsOpen} /> : null}
       <ChatActions updateGifsOpen={updateGifsOpen} />
     </div>
   );
