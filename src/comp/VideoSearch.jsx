@@ -21,9 +21,7 @@ export default function VideoSearch({
       <VideoSearchBar onClick={handleClick} />
       <div className="pt-4 px-4">
         <span className="text-md rainbow-text font-bold">
-          {searchTerm
-            ? `Results for ${searchTerm}`
-            : "Trending videos right now"}
+          {searchTerm ? `Results for "${searchTerm}"` : "Trending Videos"}
         </span>
       </div>
       {searchTerm.length > 0 ? (

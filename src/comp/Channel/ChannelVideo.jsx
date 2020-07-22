@@ -67,7 +67,7 @@ export default function ChannelVideo({
           <VideoSearch
             trendingResults={trendingResults}
             searchResults={searchResults}
-            threshold={12}
+            threshold={24}
           />
         </div>
       )}

@@ -1,19 +1,20 @@
 import React from "react";
 import Button from "./Controls/Button";
 import VideoStatus from "./VideoStatus";
+import moment from "moment";
 
 export default function VideoPanelCard({
   id,
   title,
   views,
-  timeFromUpload,
+  publishedAt,
   thumbnail = "somedefaultimagehere",
   status,
   statusMessage,
   type = "cancel"
 }) {
   const leftInfo = `${views}`;
-  const rightInfo = `${timeFromUpload}`;
+  const rightInfo = `${moment(publishedAt).fromNow()}`;
   return (
     <>
       {!title && (
@@ -69,7 +70,7 @@ export default function VideoPanelCard({
               {title}
             </p>
             <div className="flex items-end">
-              <p className="text-xs pt-2 text-secondaryText items-end">
+              <p className="text-xs pt-2 text-secondaryText items-end ">
                 {leftInfo} &middot; {rightInfo}
               </p>
             </div>

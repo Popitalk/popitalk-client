@@ -256,7 +256,7 @@ export default function Channel({ tab, type = "channel" }) {
                 trendingResults={trendingResults}
                 searchResults={searchResults}
                 totalResults={totalResults}
-                threshold={12}
+                threshold={24}
                 handleSearch={handleSearch}
               />
             </div>
