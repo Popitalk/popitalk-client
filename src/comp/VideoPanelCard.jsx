@@ -13,7 +13,7 @@ export default function VideoPanelCard({
   statusMessage,
   type = "cancel"
 }) {
-  const leftInfo = `${views}`;
+  // const leftInfo = `${views}`;
   const rightInfo = `${moment(publishedAt).fromNow()}`;
   return (
     <>
@@ -71,7 +71,8 @@ export default function VideoPanelCard({
             </p>
             <div className="flex items-end">
               <p className="text-xs pt-2 text-secondaryText items-end ">
-                {leftInfo} &middot; {rightInfo}
+                {/* {leftInfo} &middot; {rightInfo} */}
+                {"Youtube"} &middot; {rightInfo}
               </p>
             </div>
           </div>
