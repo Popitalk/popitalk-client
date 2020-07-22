@@ -233,3 +233,13 @@ export const utilizeFocus = () => {
 
   return { setFocus, ref };
 };
+
+export const calculatePlayedTime = (
+  currTime,
+  clockStartTime,
+  videoStartTime,
+  videoLength
+) => {
+  console.log(currTime);
+  return currTime;
+};
