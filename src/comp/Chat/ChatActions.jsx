@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { setChatDraft, addMessage } from "../../redux/actions";
 import { withRouter } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
+import GifSelection from "./GifSelection";
 
 function ChatActions(props) {
   const channelId = props.match.params.roomId || props.match.params.channelId;
@@ -141,11 +142,7 @@ function ChatActions(props) {
           onChange={handleChange}
         />
         {/* GIF BUTTON */}
-        <div className="w-10 h-10 p-2 rounded-lg bg-secondaryBackground hover:bg-highlightBackground transition transform ease-in-out hover:scale-110 duration-100">
-          <p className="text-highlightText font-bold" role="button">
-            GIF
-          </p>
-        </div>
+        <GifSelection updateGifsOpen={props.updateGifsOpen} />
         {/* SEND BUTTON */}
         <button
           onClick={handleSend}

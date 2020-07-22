@@ -22,7 +22,8 @@ function InfiniteScroller(
     hasMoreTop = false,
     initialScroll = "top",
     children,
-    reScroll
+    reScroll,
+    isGifsOpen
   },
   ref
 ) {
@@ -87,7 +88,7 @@ function InfiniteScroller(
       containerRef.current.scrollTo(0, scrollVal);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [containerRef, reScroll, threshold, draft]);
+  }, [containerRef, reScroll, threshold, draft, isGifsOpen]);
 
   useEffect(() => {
     if (!loading) return;

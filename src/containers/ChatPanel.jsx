@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { withRouter } from "react-router-dom";
 import ChatPanel from "../comp/Chat/ChatPanel";
@@ -15,6 +15,10 @@ function ChatPanelContainer(props) {
     state => state.channels[channelId].members?.length
   );
   const isRoom = !!props.match.params.roomId;
+  const [isGifsOpen, setIsGifsOpen] = useState(false);
+  const updateGifsOpen = () => {
+    setIsGifsOpen(!isGifsOpen);
+  };
 
   return (
     <ChatPanel
@@ -23,6 +27,8 @@ function ChatPanelContainer(props) {
       openFollowersList={openFollowersList}
       followersCount={followersCount}
       isRoom={isRoom}
+      updateGifsOpen={updateGifsOpen}
+      isGifsOpen={isGifsOpen}
     />
   );
 }
