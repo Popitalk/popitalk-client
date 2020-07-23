@@ -40,7 +40,7 @@ function VideoPlayer() {
   };
 
   const toggleMute = () => {
-    if (muted && volume === 0) {
+    if (volume === 0) {
       setVolume({ volume: 0.1, muted: false });
       return;
     }
