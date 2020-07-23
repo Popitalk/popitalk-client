@@ -192,7 +192,7 @@ function VideoPlayer() {
 
                   {/* Volume button & slider hover effect */}
                   <div
-                    className="flex flex-row hover:bg-playerControlsHover py-1 pl-2 pr-4 rounded-lg"
+                    className="flex flex-row hover:bg-playerControlsHover py-1 pl-2 pr-4 rounded-xl"
                     onMouseEnter={() => setIsHoveringVolume(true)}
                     onMouseLeave={() => setIsHoveringVolume(false)}
                   >
@@ -212,7 +212,7 @@ function VideoPlayer() {
                     <div
                       className={
                         isHoveringVolume
-                          ? "flex w-16 justify-center items-center ml-2 transition-all duration-100"
+                          ? "flex w-16 justify-center items-center ml-1 transition-all duration-100"
                           : "flex w-0 opacity-0 items-center transition-all duration-100"
                       }
                     >
