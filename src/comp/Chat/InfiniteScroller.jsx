@@ -37,6 +37,9 @@ function InfiniteScroller(
   const draft = useSelector(
     state => state.chatDrafts[params.channelId || params.roomId]
   );
+  const messages = useSelector(
+    state => state.messages[params.channelId || params.roomId]
+  );
   let [bottomRef, bottomInView] = useInView({
     triggerOnce: false,
     rootMargin: `${threshold * 2}px 0px`
@@ -88,7 +91,7 @@ function InfiniteScroller(
       containerRef.current.scrollTo(0, scrollVal);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [containerRef, reScroll, threshold, draft, isGifsOpen]);
+  }, [containerRef, reScroll, threshold, draft, isGifsOpen, messages]);
 
   useEffect(() => {
     if (!loading) return;
