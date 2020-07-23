@@ -29,7 +29,11 @@ const selectFormattedMessages = createSelector(
     messages[channelId] ? messagesFormatter2(messages[channelId]) : []
 );
 
-export default function ChatMessages({ channelId, channelMessages }) {
+export default function ChatMessages({
+  channelId,
+  channelMessages,
+  isGifsOpen
+}) {
   const [clickedMessage, setClickedMessage] = useState("");
   const containerRef = useRef();
   // const { y } = useScroll(containerRef);
@@ -160,6 +164,7 @@ export default function ChatMessages({ channelId, channelMessages }) {
         reScroll={channelId}
         loading={apiLoading}
         loader={Spinner}
+        isGifsOpen={isGifsOpen}
       >
         {messages.map(message => {
           return (

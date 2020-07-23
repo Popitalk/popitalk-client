@@ -11,7 +11,7 @@ import useLocalStorage from "../hooks/useLocalStorage";
 function VideoPlayer() {
   const player = useRef(null);
 
-  //Determine if the mouse is hovering over the video player
+  // Determine if the mouse is hovering over the video player
   const [isHovering, setIsHovering] = useState(false);
 
   //Determine state for pause & play & playingIcon
@@ -109,7 +109,7 @@ function VideoPlayer() {
             />
           </div>
           <div
-            //Always show the video controls while the video is at pause.
+            // Always show the video controls while the video is at pause.
             className={
               playingIcon === true
                 ? "flex flex-col justify-end w-full h-full transition-colors bg-gradient-t-player"
@@ -122,7 +122,7 @@ function VideoPlayer() {
             />
             <div
               className="flex flex-col px-2 w-full"
-              //Set the mouse hovering state
+              // Set the mouse hovering state
               onMouseEnter={() => setIsHovering(true)}
               onMouseLeave={() => setIsHovering(false)}
             >

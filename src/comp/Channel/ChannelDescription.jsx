@@ -40,6 +40,7 @@ export default function ChannelDescription({
               if (idx < threshold) {
                 return (
                   <div
+                    key={idx}
                     onClick={() => dispatch(openProfileModal(admin.id))}
                     role="button"
                   >
