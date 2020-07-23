@@ -94,20 +94,19 @@ export default function ChannelPost({
           onClick={handleComment}
           role="button"
         >
-          <span className="pr-3 select-none">
+          <span className="pr-3 select-none hover:filter-brightness-9 duration-100">
             {likeCount} {likeCount > 1 ? "likes" : "like"}
           </span>
-          <span>
+          <span className="pr-3 select-none hover:filter-brightness-9 duration-100">
             {commentCount} {commentCount > 1 ? "comments" : "comment"}
           </span>
         </section>
         <footer className="flex text-secondaryText text-xl">
-          {/** Adding className and setting focus:outline-none didn't work so I added it in colors for now -- ANDREW */}
           <ToggleIcon
             icons={{ default: ["far", "heart"], toggle: ["fa", "heart"] }}
             colors={{
-              default: "text-secondaryText focus:outline-none",
-              toggle: "text-notificationsColor focus:outline-none"
+              default: "text-secondaryText",
+              toggle: "text-notificationsColor"
             }}
             status={liked}
             toggleStatus={stat => toggleLike(id, "post", stat)}
@@ -115,7 +114,7 @@ export default function ChannelPost({
             Like
           </ToggleIcon>
           <button
-            className="flex align-middle ml-12 focus:outline-none"
+            className="flex align-middle ml-12 focus:outline-none hover:filter-brightness-9"
             onClick={handleComment}
           >
             <FontAwesomeIcon icon={["far", "comment"]} />

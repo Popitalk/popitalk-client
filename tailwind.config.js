@@ -102,7 +102,7 @@ module.exports = {
       black: "#000000",
       onlineColor: "#00CD46",
       notificationsColor: "#FF0000",
-      playerControlsHover: "rgba(255, 255, 255, 0.4)"
+      playerControlsHover: "rgba(255, 255, 255, 0.2)"
     },
     gradients: {
       primary: ["#76BDFF 20.56%", "#FF66FE 51.9%", "#FFC4AB 89.93%"],

@@ -14,6 +14,9 @@ function VideoPlayer() {
   // Determine if the mouse is hovering over the video player
   const [isHovering, setIsHovering] = useState(false);
 
+  // Determine if the mouse is hovering over the volume button
+  const [isHoveringVolume, setIsHoveringVolume] = useState(false);
+
   //Determine state for pause & play & playingIcon
   const [playingIcon, playStatus] = useState(false);
   const [playing, handlePause] = useState(true);
@@ -187,26 +190,41 @@ function VideoPlayer() {
                     />
                   </button>
 
-                  {/* Volume button */}
-                  <button
-                    className="w-8 p-1 rounded-full hover:bg-playerControlsHover focus:outline-none duration-100 transition transform ease-in-out hover:scale-110"
-                    onClick={toggleMute}
+                  {/* Volume button & slider hover effect */}
+                  <div
+                    className="flex flex-row hover:bg-playerControlsHover py-1 pl-2 pr-4 rounded-lg"
+                    onMouseEnter={() => setIsHoveringVolume(true)}
+                    onMouseLeave={() => setIsHoveringVolume(false)}
                   >
-                    <FontAwesomeIcon
-                      icon={volume === 0 || muted ? "volume-mute" : "volume-up"}
-                      className="text-tertiaryText"
-                    />
-                  </button>
-                  {/* Volume slider */}
-                  <div className="w-16">
-                    <Slider
-                      max={100}
-                      value={muted ? 0 : volume * 100}
-                      onChange={v => handleVolumeSliderChange(v / 100)}
-                      handleStyle={{ borderColor: "#fff", cursor: "pointer" }}
-                      trackStyle={{ backgroundColor: "#fff" }}
-                      railStyle={{ backgroundColor: "#fff", opacity: 0.25 }}
-                    />
+                    {/* Volume button */}
+                    <button
+                      className="w-8 p-1 rounded-full focus:outline-none duration-100 transition transform ease-in-out hover:scale-110"
+                      onClick={toggleMute}
+                    >
+                      <FontAwesomeIcon
+                        icon={
+                          volume === 0 || muted ? "volume-mute" : "volume-up"
+                        }
+                        className="flex text-tertiaryText text-lg items-center"
+                      />
+                    </button>
+                    {/* Volume slider */}
+                    <div
+                      className={
+                        isHoveringVolume
+                          ? "flex w-16 justify-center items-center ml-2 transition-all duration-100"
+                          : "flex w-0 opacity-0 items-center transition-all duration-100"
+                      }
+                    >
+                      <Slider
+                        max={100}
+                        value={muted ? 0 : volume * 100}
+                        onChange={v => handleVolumeSliderChange(v / 100)}
+                        handleStyle={{ borderColor: "#fff", cursor: "pointer" }}
+                        trackStyle={{ backgroundColor: "#fff" }}
+                        railStyle={{ backgroundColor: "#fff", opacity: 0.25 }}
+                      />
+                    </div>
                   </div>
 
                   <span className="text-tertiaryText text-xs">
