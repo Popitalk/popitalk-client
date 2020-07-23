@@ -2,9 +2,11 @@ import React, { useState, useRef } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import ReactPlayer from "react-player";
 import Slider from "rc-slider";
+
 import "rc-slider/assets/index.css";
 import VideoPlayerStatusCard from "./VideoPlayerStatusCard";
 import defaultImage from "../assets/default/user-default.png";
+import useLocalStorage from "../hooks/useLocalStorage";
 
 function VideoPlayer() {
   const player = useRef(null);
@@ -12,20 +14,23 @@ function VideoPlayer() {
   //Determine if the mouse is hovering over the video player
   const [isHovering, setIsHovering] = useState(false);
 
-  //Determine state for pasue & play & playingIcon
+  //Determine state for pause & play & playingIcon
   const [playingIcon, playStatus] = useState(false);
   const [playing, handlePause] = useState(true);
 
-  //Determine state for volume & muteIcon
-  const [muted, handleMute] = useState(false);
-  const [mutedIcon, muteStatus] = useState(true);
-
   const [progress, setProgress] = useState(0);
   const [duration, setDuration] = useState(0);
-  const [volume, setVolume] = useState(1);
+  const [{ volume, muted }, setVolume] = useLocalStorage("volume", {
+    volume: 1,
+    muted: true
+  });
 
   const handleProgressSliderChange = s => {
     player.current.seekTo(s, "seconds");
+  };
+
+  const handleVolumeSliderChange = v => {
+    setVolume({ volume: v, muted: false });
   };
 
   //sync playIcon and play states
@@ -34,10 +39,13 @@ function VideoPlayer() {
     handlePause(!playing);
   };
 
-  //sync volumeIcon and muted states
-  const setMuted = () => {
-    handleMute(!muted);
-    muteStatus(!mutedIcon);
+  const toggleMute = () => {
+    if (muted && volume === 0) {
+      setVolume({ volume: 0.1, muted: false });
+      return;
+    }
+
+    setVolume({ volume, muted: !muted });
   };
 
   // formats seconds into HH:MM:SS string
@@ -82,6 +90,7 @@ function VideoPlayer() {
             className="absolute t-0 l-0"
             playing={playing}
             volume={volume}
+            muted={muted}
             onReady={() => {
               setDuration(player.current.getDuration());
             }}
@@ -178,10 +187,10 @@ function VideoPlayer() {
                   {/* Volume button */}
                   <button
                     className="w-8 p-1 rounded-full hover:bg-playerControlsHover focus:outline-none duration-100 transition transform ease-in-out hover:scale-110"
-                    onClick={() => setMuted()}
+                    onClick={toggleMute}
                   >
                     <FontAwesomeIcon
-                      icon={volume > 0 ? "volume-up" : "volume-mute"}
+                      icon={volume === 0 || muted ? "volume-mute" : "volume-up"}
                       className="text-tertiaryText"
                     />
                   </button>
@@ -189,10 +198,8 @@ function VideoPlayer() {
                   <div className="w-16">
                     <Slider
                       max={100}
-                      value={volume * 100}
-                      onChange={v => {
-                        setVolume(v / 100);
-                      }}
+                      value={muted ? 0 : volume * 100}
+                      onChange={v => handleVolumeSliderChange(v / 100)}
                       handleStyle={{ borderColor: "#fff", cursor: "pointer" }}
                       trackStyle={{ backgroundColor: "#fff" }}
                       railStyle={{ backgroundColor: "#fff", opacity: 0.25 }}
