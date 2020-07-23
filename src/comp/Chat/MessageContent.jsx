@@ -13,7 +13,15 @@ export default function MessageContent({ message }) {
         }`
       }
     >
-      {message.content}
+      {message.content.gif ? (
+        <img
+          className="w-full"
+          src={message.content.images.downsized_medium}
+          alt={message.content.title}
+        />
+      ) : (
+        message.content
+      )}
       {message.upload && (
         <img src={message.upload} alt="Message" className="mt-2 rounded-lg" />
       )}

@@ -30,12 +30,12 @@ export default function ChannelQueue({
           <ChannelListQueue playlist={playlist} />
         </div>
         <div className="mt-8 ">
-          <h2 className="px-4 text-lg">Find More Videos</h2>
+          <h2 className="px-4 text-lg font-bold">Find More Videos</h2>
           <VideoSearch
             trendingResults={trendingResults}
             searchResults={searchResults}
             totalResults={totalResults}
-            threshold={12}
+            threshold={24}
             handleSearch={handleSearch}
           />
         </div>

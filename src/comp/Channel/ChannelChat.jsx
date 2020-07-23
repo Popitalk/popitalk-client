@@ -1,7 +1,7 @@
 import React from "react";
 import "../VideoStatus.css";
 import ChannelPost from "./ChannelPost";
-import { formatDistanceToNow } from "date-fns";
+import moment from "moment";
 
 // {
 //   "channelId": "98f40347-7ec5-49ab-ae0d-0255663f9ea1",
@@ -66,9 +66,7 @@ export default function ChannelChat({
               id={post.id}
               name={post.author.username}
               avatar={post.author.avatar || defaultAvatar}
-              timeFromPost={formatDistanceToNow(new Date(post.createdAt), {
-                addSuffix: true
-              })}
+              timeFromPost={moment(post.createdAt).fromNow()}
               text={post.content}
               liked={post.liked}
               comments={postComments}

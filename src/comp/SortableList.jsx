@@ -23,13 +23,13 @@ export default function SortableList({
   const SortableList = SortableContainer(({ items }) => {
     return (
       <div>
-        <p className="pt-6 pb-2 px-5 text-lg text-bold text-primaryText select-none">
+        <p className="pt-6 pb-2 px-4 text-lg font-bold text-primaryText select-none">
           Up Next
         </p>
         <div
           className={`flex ${
-            axis === "y" ? "flex-col" : "flex-row"
-          } flex-grow overflow-auto px-4 items-start mozilla-thin-scrollbar`}
+            axis === "x" ? "flex-row" : "flex-col"
+          } flex-grow overflow-auto px-4 pt-2 pb-8 items-start mozilla-thin-scrollbar`}
         >
           {items.map((value, index) => (
             <SortableItem

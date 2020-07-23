@@ -5,11 +5,11 @@ import AvatarIcon from "../Controls/AvatarIcon";
 import ChannelComment from "./ChannelComment";
 import NewChannelComment from "./NewChannelComment";
 import ToggleIcon from "../Controls/ToggleIcon";
-import { formatDistanceToNow } from "date-fns";
 import useOnClickOutside from "use-onclickoutside";
 import PopupMenu from "../Controls/PopupMenu";
 import { openProfileModal } from "../../redux/actions";
 import { useDispatch } from "react-redux";
+import moment from "moment";
 
 export default function ChannelPost({
   id,
@@ -94,20 +94,19 @@ export default function ChannelPost({
           onClick={handleComment}
           role="button"
         >
-          <span className="pr-3 select-none">
+          <span className="pr-3 select-none hover:filter-brightness-9 duration-100">
             {likeCount} {likeCount > 1 ? "likes" : "like"}
           </span>
-          <span>
+          <span className="pr-3 select-none hover:filter-brightness-9 duration-100">
             {commentCount} {commentCount > 1 ? "comments" : "comment"}
           </span>
         </section>
         <footer className="flex text-secondaryText text-xl">
-          {/** Adding className and setting focus:outline-none didn't work so I added it in colors for now -- ANDREW */}
           <ToggleIcon
             icons={{ default: ["far", "heart"], toggle: ["fa", "heart"] }}
             colors={{
-              default: "text-secondaryText focus:outline-none",
-              toggle: "text-notificationsColor focus:outline-none"
+              default: "text-secondaryText",
+              toggle: "text-notificationsColor"
             }}
             status={liked}
             toggleStatus={stat => toggleLike(id, "post", stat)}
@@ -115,7 +114,7 @@ export default function ChannelPost({
             Like
           </ToggleIcon>
           <button
-            className="flex align-middle ml-12 focus:outline-none"
+            className="flex align-middle ml-12 focus:outline-none hover:filter-brightness-9"
             onClick={handleComment}
           >
             <FontAwesomeIcon icon={["far", "comment"]} />
@@ -150,9 +149,7 @@ export default function ChannelPost({
                 name={comment.author.username}
                 authorId={comment.author.id}
                 avatar={comment.author.avatar || defaultAvatar}
-                timeFromPost={formatDistanceToNow(new Date(comment.createdAt), {
-                  addSuffix: true
-                })}
+                timeFromPost={moment(comment.createdAt).fromNow()}
                 text={comment.content}
                 toggleLike={toggleLike}
                 liked={comment.liked}
@@ -168,9 +165,7 @@ export default function ChannelPost({
                 name={comment.author.username}
                 authorId={comment.author.id}
                 avatar={comment.author.avatar || defaultAvatar}
-                timeFromPost={formatDistanceToNow(new Date(comment.createdAt), {
-                  addSuffix: true
-                })}
+                timeFromPost={moment(comment.createdAt).fromNow()}
                 text={comment.content}
                 toggleLike={toggleLike}
                 liked={comment.liked}

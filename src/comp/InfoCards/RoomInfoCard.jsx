@@ -11,10 +11,10 @@ export default function RoomInfoCard({
   addBorder
 }) {
   const images = room.members.map(m => m.avatar);
-  const name = room.members.map(m => m.username).join();
+  const name = room.members.map(m => " " + m.username).join();
   const subtitleAndDate = room.lastMessageContent
-    ? room.lastMessageContent + " · " + moment(room.lastMessageAt).fromNow()
-    : null;
+    ? moment(room.lastMessageAt).fromNow() + " · " + room.lastMessageContent
+    : "";
 
   const roomIcon = (
     <RoomIcon

@@ -23,7 +23,7 @@ function RecommendedChannels({ list, selectedPage }) {
 
   const [search, setSearch] = useState("");
   return (
-    <div className="relative mt-4 mx-auto w-full max-w-screen-xl">
+    <div className="relative mt-4 mx-auto w-full max-w-screen-xl overflow-y-scroll">
       <div className="fixed mx-2 -my-4 z-50">
         {!!alert && <Alert duration={3000}>{alert}</Alert>}
       </div>

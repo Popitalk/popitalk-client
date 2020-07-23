@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { setChatDraft, addMessage } from "../../redux/actions";
 import { withRouter } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
+import GifSelection from "./GifSelection";
 
 function ChatActions(props) {
   const channelId = props.match.params.roomId || props.match.params.channelId;
@@ -89,7 +90,7 @@ function ChatActions(props) {
   const onEmojiClick = (emojiObject, event) => {
     console.log(emojiObject);
     setChosenEmoji(emojiObject.native);
-    setEmojiIsOpen(false);
+    // setEmojiIsOpen(false);
     textareaRef.current.focus();
   };
 
@@ -99,11 +100,15 @@ function ChatActions(props) {
         {/* EMOJI BUTTON */}
         <button
           onClick={() => setEmojiIsOpen(!emojiIsOpen)}
-          className="w-10 h-10 p-2 text-center rounded-lg bg-secondaryBackground hover:bg-highlightBackground focus:outline-none transition transform ease-in-out hover:scale-110 duration-100"
+          className={`${
+            emojiIsOpen
+              ? "bg-highlightText hover:bg-highlightBackground"
+              : "bg-secondaryBackground hover:bg-highlightBackground"
+          }w-10 h-10 p-2 text-center rounded-lg focus:outline-none transition transform ease-in-out hover:scale-110 duration-100`}
         >
           <FontAwesomeIcon
             icon={["far", "smile"]}
-            className="text-highlightText"
+            className={emojiIsOpen ? "text-tertiaryText" : "text-highlightText"}
             size="lg"
             role="button"
           />
@@ -141,11 +146,7 @@ function ChatActions(props) {
           onChange={handleChange}
         />
         {/* GIF BUTTON */}
-        <div className="w-10 h-10 p-2 rounded-lg bg-secondaryBackground hover:bg-highlightBackground transition transform ease-in-out hover:scale-110 duration-100">
-          <p className="text-highlightText font-bold" role="button">
-            GIF
-          </p>
-        </div>
+        <GifSelection updateGifsOpen={props.updateGifsOpen} />
         {/* SEND BUTTON */}
         <button
           onClick={handleSend}

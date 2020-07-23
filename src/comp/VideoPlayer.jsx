@@ -2,9 +2,11 @@ import React, { useState, useRef } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import ReactPlayer from "react-player";
 import Slider from "rc-slider";
+
 import "rc-slider/assets/index.css";
 import VideoPlayerStatusCard from "./VideoPlayerStatusCard";
 import defaultImage from "../assets/default/user-default.png";
+import useLocalStorage from "../hooks/useLocalStorage";
 
 function VideoPlayer() {
   const player = useRef(null);
@@ -12,31 +14,41 @@ function VideoPlayer() {
   // Determine if the mouse is hovering over the video player
   const [isHovering, setIsHovering] = useState(false);
 
-  // Determine state for pasue & play & playingIcon
+  // Determine if the mouse is hovering over the volume button
+  const [isHoveringVolume, setIsHoveringVolume] = useState(false);
+
+  //Determine state for pause & play & playingIcon
   const [playingIcon, playStatus] = useState(false);
   const [playing, handlePause] = useState(true);
 
-  // Determine state for volume & muteIcon
-  const [muted, handleMute] = useState(false);
-  const [mutedIcon, muteStatus] = useState(true);
-
   const [progress, setProgress] = useState(0);
   const [duration, setDuration] = useState(0);
+  const [{ volume, muted }, setVolume] = useLocalStorage("volume", {
+    volume: 1,
+    muted: true
+  });
 
-  const handleVideoSliderChange = s => {
+  const handleProgressSliderChange = s => {
     player.current.seekTo(s, "seconds");
   };
 
-  // Sync playIcon and play states
+  const handleVolumeSliderChange = v => {
+    setVolume({ volume: v, muted: false });
+  };
+
+  //sync playIcon and play states
   const setBothPlaying = () => {
     playStatus(!playingIcon);
     handlePause(!playing);
   };
 
-  // Sync volumeIcon and muted states
-  const setMuted = () => {
-    handleMute(!muted);
-    muteStatus(!mutedIcon);
+  const toggleMute = () => {
+    if (volume === 0) {
+      setVolume({ volume: 0.1, muted: false });
+      return;
+    }
+
+    setVolume({ volume, muted: !muted });
   };
 
   // formats seconds into HH:MM:SS string
@@ -52,7 +64,7 @@ function VideoPlayer() {
       out.push(minutes.toString());
     }
 
-    const seconds = Math.round(s % 60);
+    const seconds = Math.floor(s % 60);
     out.push(seconds.toString().padStart(2, "0"));
 
     return out.join(":");
@@ -80,6 +92,7 @@ function VideoPlayer() {
             height="100%"
             className="absolute t-0 l-0"
             playing={playing}
+            volume={volume}
             muted={muted}
             onReady={() => {
               setDuration(player.current.getDuration());
@@ -87,6 +100,7 @@ function VideoPlayer() {
             onProgress={({ playedSeconds }) => {
               setProgress(playedSeconds);
             }}
+            progressInterval={100}
           />
         </div>
         <div className="absolute flex flex-col justify-end w-full h-full transition-colors">
@@ -117,9 +131,11 @@ function VideoPlayer() {
               onMouseLeave={() => setIsHovering(false)}
             >
               <Slider
-                max={duration}
-                value={progress}
-                onChange={handleVideoSliderChange}
+                max={duration * 10}
+                value={progress * 10}
+                onChange={s => {
+                  handleProgressSliderChange(s / 10);
+                }}
                 handleStyle={
                   isHovering === true
                     ? {
@@ -173,16 +189,44 @@ function VideoPlayer() {
                       className="text-tertiaryText"
                     />
                   </button>
-                  {/* Volume button */}
-                  <button
-                    className="w-8 p-1 rounded-full hover:bg-playerControlsHover focus:outline-none duration-100 transition transform ease-in-out hover:scale-110"
-                    onClick={() => setMuted()}
+
+                  {/* Volume button & slider hover effect */}
+                  <div
+                    className="flex flex-row hover:bg-playerControlsHover py-1 pl-2 pr-4 rounded-xl"
+                    onMouseEnter={() => setIsHoveringVolume(true)}
+                    onMouseLeave={() => setIsHoveringVolume(false)}
                   >
-                    <FontAwesomeIcon
-                      icon={mutedIcon === true ? "volume-up" : "volume-mute"}
-                      className="text-tertiaryText"
-                    />
-                  </button>
+                    {/* Volume button */}
+                    <button
+                      className="w-8 p-1 rounded-full focus:outline-none duration-100 transition transform ease-in-out hover:scale-110"
+                      onClick={toggleMute}
+                    >
+                      <FontAwesomeIcon
+                        icon={
+                          volume === 0 || muted ? "volume-mute" : "volume-up"
+                        }
+                        className="flex text-tertiaryText text-lg items-center"
+                      />
+                    </button>
+                    {/* Volume slider */}
+                    <div
+                      className={
+                        isHoveringVolume
+                          ? "flex w-16 justify-center items-center ml-1 transition-all duration-100"
+                          : "flex w-0 opacity-0 items-center transition-all duration-100"
+                      }
+                    >
+                      <Slider
+                        max={100}
+                        value={muted ? 0 : volume * 100}
+                        onChange={v => handleVolumeSliderChange(v / 100)}
+                        handleStyle={{ borderColor: "#fff", cursor: "pointer" }}
+                        trackStyle={{ backgroundColor: "#fff" }}
+                        railStyle={{ backgroundColor: "#fff", opacity: 0.25 }}
+                      />
+                    </div>
+                  </div>
+
                   <span className="text-tertiaryText text-xs">
                     {/* Video timestamp */}
                     {generateTimestamp()}

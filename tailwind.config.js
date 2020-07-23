@@ -24,6 +24,13 @@ const children = [
 
 module.exports = {
   theme: {
+    truncate: {
+      lines: {
+        2: "2",
+        3: "3",
+        5: "5"
+      }
+    },
     screens: {
       sm: "640px",
       md: "900px",
@@ -95,7 +102,7 @@ module.exports = {
       black: "#000000",
       onlineColor: "#00CD46",
       notificationsColor: "#FF0000",
-      playerControlsHover: "rgba(255, 255, 255, 0.4)"
+      playerControlsHover: "rgba(255, 255, 255, 0.2)"
     },
     gradients: {
       primary: ["#76BDFF 20.56%", "#FF66FE 51.9%", "#FFC4AB 89.93%"],
@@ -195,6 +202,7 @@ module.exports = {
   plugins: [
     require("tailwindcss-gradients"),
     require("tailwindcss-filters"),
-    require("tailwindcss-children")
+    require("tailwindcss-children"),
+    require("tailwindcss-truncate-multiline")()
   ]
 };
