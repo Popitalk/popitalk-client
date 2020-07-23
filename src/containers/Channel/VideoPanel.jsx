@@ -8,7 +8,7 @@ import VideoSection from "../../comp/VideoSection";
 import QueueSection from "../../comp/QueueSection";
 
 export default function VideoPanel({ playlist, classNames }) {
-  const [queueList, setQueueList] = useState(playlist.slice(1));
+  const [queueList, setQueueList] = useState(playlist);
   const handlerChange = ({ oldIndex, newIndex }) => {
     setQueueList(arrayMove(queueList, oldIndex, newIndex));
   };
