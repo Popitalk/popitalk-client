@@ -61,7 +61,7 @@ function VideoPlayer() {
       out.push(minutes.toString());
     }
 
-    const seconds = Math.round(s % 60);
+    const seconds = Math.floor(s % 60);
     out.push(seconds.toString().padStart(2, "0"));
 
     return out.join(":");
@@ -97,6 +97,7 @@ function VideoPlayer() {
             onProgress={({ playedSeconds }) => {
               setProgress(playedSeconds);
             }}
+            progressInterval={100}
           />
         </div>
         <div className="absolute flex flex-col justify-end w-full h-full transition-colors">
@@ -127,9 +128,11 @@ function VideoPlayer() {
               onMouseLeave={() => setIsHovering(false)}
             >
               <Slider
-                max={duration}
-                value={progress}
-                onChange={handleProgressSliderChange}
+                max={duration * 10}
+                value={progress * 10}
+                onChange={s => {
+                  handleProgressSliderChange(s / 10);
+                }}
                 handleStyle={
                   isHovering === true
                     ? {
