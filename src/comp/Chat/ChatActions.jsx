@@ -102,7 +102,7 @@ function ChatActions(props) {
           onClick={() => setEmojiIsOpen(!emojiIsOpen)}
           className={`${
             emojiIsOpen
-              ? "bg-highlightText hover-none"
+              ? "bg-highlightText hover:bg-highlightBackground"
               : "bg-secondaryBackground hover:bg-highlightBackground"
           }w-10 h-10 p-2 text-center rounded-lg focus:outline-none transition transform ease-in-out hover:scale-110 duration-100`}
         >

@@ -43,7 +43,7 @@ export default function Button({
     [`btn-${size}`]: true,
     [backgrounds[background]]: true,
     [shapes[shape]]: true,
-    "transition transform ease-in-out hover:scale-105 duration-100": true,
+    "transition transform ease-in-out hover:scale-105 duration-100 disable": true,
     "text-secondaryText": background === "bgColor",
     "btn-icon": icon && !shape,
     "btn-text": variant === "text",

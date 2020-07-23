@@ -37,7 +37,7 @@ export default function PopupMenu({
   );
 
   const iconClasses = classnames("text-md font-bold select-none", {
-    "text-secondaryText group-hover:filter-brightness-8": !open,
+    "text-secondaryText group-hover:filter-brightness-9 duration-100": !open,
     "text-highlightText": open
   });
 

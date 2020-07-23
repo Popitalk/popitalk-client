@@ -15,7 +15,7 @@ export default function InfoCard({
   padding = "none",
   cardClick
 }) {
-  const titleClasses = classnames("text-md text-primaryText truncate pb-1", {
+  const titleClasses = classnames("text-sm text-primaryText truncate pb-1", {
     "font-bold": boldFont
   });
 
