@@ -24,7 +24,7 @@ export default function GifTable({ updateGifsOpen }) {
           id: gif.id,
           title: gif.title,
           images: {
-            downsized_medium: gif.images.downsized_medium.url,
+            downsized_medium: gif.images.fixed_height_small.url,
             fixed_width: gif.images.fixed_width.url
           }
         },
@@ -57,6 +57,7 @@ export default function GifTable({ updateGifsOpen }) {
       />
       <ul className="flex overflow-scroll space-x-1 p-1">
         {testGifs.data.map(gif => {
+          console.log(gif);
           return (
             <li
               key={gif.id}
@@ -68,8 +69,8 @@ export default function GifTable({ updateGifsOpen }) {
                 <p className="shadow-xl">Send</p>
               </div>
               <img
-                className="h-40 max-w-none"
-                src={gif.images.fixed_width.url}
+                className="h-20 max-w-none"
+                src={gif.images.fixed_height_downsampled.url}
                 alt={gif.title}
               />
             </li>
