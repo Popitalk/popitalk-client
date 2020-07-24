@@ -20,7 +20,10 @@ import {
   followChannel,
   unfollowChannel,
   openListModal,
-  searchVideos
+  searchVideos,
+  setPlaying,
+  setPaused,
+  skipPlayer
 } from "../../redux/actions";
 import { testQueue, testResult } from "../../stories/seed-arrays";
 import ChannelHeader from "../../comp/ChannelHeader";
@@ -224,7 +227,25 @@ export default function Channel({ tab, type = "channel" }) {
       </div>
       {(tab === "video" || tab === "channel") && (
         <>
-          <VideoPanel playlist={copyTestQueue} classNames="pt-0" />
+          <VideoPanel
+            playlist={copyTestQueue}
+            classNames="pt-0"
+            dispatchPlay={(queueStartPosition, videoStartTime) =>
+              dispatch(
+                setPlaying({ channelId, queueStartPosition, videoStartTime })
+              )
+            }
+            dispatchPause={(queueStartPosition, videoStartTime) =>
+              dispatch(
+                setPaused({ channelId, queueStartPosition, videoStartTime })
+              )
+            }
+            dispatchSkip={(queueStartPosition, videoStartTime) =>
+              dispatch(
+                skipPlayer({ channelId, queueStartPosition, videoStartTime })
+              )
+            }
+          />
           {type === "channel" && (
             <ForumPanel
               ref={channelRef}

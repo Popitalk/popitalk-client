@@ -107,6 +107,14 @@ export const setPlaying = (channelId, videoObj) => {
   return axios.put(`/api/channels/${channelId}/play`, videoObj);
 };
 
+export const setPaused = (channelId, videoObj) => {
+  return axios.put(`/api/channels/${channelId}/pause`, videoObj);
+};
+
+export const skipPlayer = (channelId, videoObj) => {
+  return axios.put(`/api/channels/${channelId}/skip`, videoObj);
+};
+
 // MEMBERS
 
 export const updateMember = updateInfo => {

@@ -48,7 +48,9 @@ import {
   friendOnlineWs,
   friendOfflineWs,
   addRoomMembers,
-  setPlaying
+  setPlaying,
+  setPaused,
+  skipPlayer
 } from "../actions";
 
 const initialState = {};
@@ -324,7 +326,9 @@ export default createReducer(initialState, {
   [friendOfflineWs]: R_updateFriendRoomToOffline,
   [logout.fulfilled]: R_resetState,
   [deleteAccount.fulfilled]: R_resetState,
-  [setPlaying.fulfilled]: R_updateChannel
+  [setPlaying.fulfilled]: R_updateChannel,
+  [setPaused.fulfilled]: R_updateChannel,
+  [skipPlayer.fulfilled]: R_updateChannel
 });
 
 // import * as actions from "../actions";

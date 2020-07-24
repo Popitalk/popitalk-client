@@ -13,13 +13,20 @@ export default function VideoSection({
   status,
   inviteUsers,
   openProfile,
-  isInvitingAllowed
+  isInvitingAllowed,
+  dispatchPlay,
+  dispatchPause,
+  dispatchSkip
 }) {
   return (
     <div className="flex flex-col">
       <div className="flex">
         {/* <p className="">Video Container for Video Player</p> */}
-        <VideoPlayer></VideoPlayer>
+        <VideoPlayer
+          dispatchPlay={dispatchPlay}
+          dispatchPause={dispatchPause}
+          dispatchSkip={dispatchSkip}
+        />
       </div>
       <div className="flex flex-row justify-between bg-secondaryBackground pt-4">
         <section className="mx-4">

@@ -7,7 +7,13 @@ import { mapIdsToUsers } from "../../helpers/functions";
 import VideoSection from "../../comp/VideoSection";
 import QueueSection from "../../comp/QueueSection";
 
-export default function VideoPanel({ playlist, classNames }) {
+export default function VideoPanel({
+  playlist,
+  classNames,
+  dispatchPlay,
+  dispatchPause,
+  dispatchSkip
+}) {
   const [queueList, setQueueList] = useState(playlist);
   const handlerChange = ({ oldIndex, newIndex }) => {
     setQueueList(arrayMove(queueList, oldIndex, newIndex));
@@ -36,6 +42,9 @@ export default function VideoPanel({ playlist, classNames }) {
         inviteUsers={() => dispatch(openInviteModal(finalId, false))}
         openProfile={id => dispatch(openProfileModal(id))}
         isInvitingAllowed={isInvitingAllowed}
+        dispatchPlay={dispatchPlay}
+        dispatchPause={dispatchPause}
+        dispatchSkip={dispatchSkip}
       />
       <QueueSection queueList={queueList} handlerChange={handlerChange} />
     </div>

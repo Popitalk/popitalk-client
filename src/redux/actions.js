@@ -785,17 +785,41 @@ export const setAlert = createAction("ui/setAlert");
 /*                              VIDEO                                         */
 /* -------------------------------------------------------------------------- */
 
-// controls: {playing: boolean, skip: boolean, playedSeconds: Integer}, info: {length: Integer (seconds)}
-// clock_start_time, video_start_time, queue_position, channelId
 export const setPlaying = createAsyncThunk(
   "video/setPlaying",
-  async (channelId, video) => {
+  async playerInfo => {
     const videoObject = {
-      queueStartPosition: video.queueStartPosition,
+      queueStartPosition: playerInfo.queueStartPosition,
       clockStartTime: moment(),
-      videoStartTime: video.startTime
+      videoStartTime: playerInfo.videoStartTime
     };
-    const response = await api.setPlaying(channelId, videoObject);
-    return response;
+    const response = await api.setPlaying(playerInfo.channelId, videoObject);
+    return response.data;
+  }
+);
+
+export const setPaused = createAsyncThunk(
+  "video/setPaused",
+  async playerInfo => {
+    const videoObject = {
+      queueStartPosition: playerInfo.queueStartPosition,
+      clockStartTime: moment(),
+      videoStartTime: playerInfo.videoStartTime
+    };
+    const response = await api.setPaused(playerInfo.channelId, videoObject);
+    return response.data;
+  }
+);
+
+export const skipPlayer = createAsyncThunk(
+  "video/skipPlayer",
+  async playerInfo => {
+    const videoObject = {
+      queueStartPosition: playerInfo.queueStartPosition,
+      clockStartTime: moment(),
+      videoStartTime: playerInfo.videoStartTime
+    };
+    const response = await api.skipPlayer(playerInfo.channelId, videoObject);
+    return response.data;
   }
 );

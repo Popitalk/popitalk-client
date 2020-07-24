@@ -8,7 +8,7 @@ import VideoPlayerStatusCard from "./VideoPlayerStatusCard";
 import defaultImage from "../assets/default/user-default.png";
 import useLocalStorage from "../hooks/useLocalStorage";
 
-function VideoPlayer() {
+function VideoPlayer({ dispatchPlay, dispatchPause, dispatchSkip }) {
   const player = useRef(null);
 
   // Determine if the mouse is hovering over the video player
@@ -18,7 +18,6 @@ function VideoPlayer() {
   const [isHoveringVolume, setIsHoveringVolume] = useState(false);
 
   //Determine state for pause & play & playingIcon
-  const [playingIcon, playStatus] = useState(false);
   const [playing, handlePause] = useState(true);
 
   const [progress, setProgress] = useState(0);
@@ -30,6 +29,7 @@ function VideoPlayer() {
 
   const handleProgressSliderChange = s => {
     player.current.seekTo(s, "seconds");
+    dispatchSkip(0, s);
   };
 
   const handleVolumeSliderChange = v => {
@@ -38,8 +38,13 @@ function VideoPlayer() {
 
   //sync playIcon and play states
   const setBothPlaying = () => {
-    playStatus(!playingIcon);
     handlePause(!playing);
+    if (playing) {
+      console.log(progress);
+      dispatchPause(0, progress);
+    } else {
+      dispatchPlay(0, progress);
+    }
   };
 
   const toggleMute = () => {
@@ -115,7 +120,7 @@ function VideoPlayer() {
           <div
             // Always show the video controls while the video is at pause.
             className={
-              playingIcon === true
+              !playing
                 ? "flex flex-col justify-end w-full h-full transition-colors bg-gradient-t-player"
                 : "flex flex-col justify-end w-full h-full transition-colors bg-gradient-t-player transition-opacity opacity-0 hover:opacity-100 duration-200"
             }
@@ -185,7 +190,7 @@ function VideoPlayer() {
                     onClick={() => setBothPlaying()}
                   >
                     <FontAwesomeIcon
-                      icon={playingIcon === true ? "play" : "pause"}
+                      icon={!playing ? "play" : "pause"}
                       className="text-tertiaryText"
                     />
                   </button>
