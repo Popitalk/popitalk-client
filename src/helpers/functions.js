@@ -7,6 +7,7 @@ import {
   cancelFriendRequest
 } from "../redux/actions";
 import React, { useEffect } from "react";
+import moment from "moment";
 
 export function getTextClass(size) {
   return classnames({
@@ -235,12 +236,14 @@ export const utilizeFocus = () => {
 };
 
 export const calculatePlayedTime = (
-  currTime,
+  queueStartPosition,
   clockStartTime,
   videoStartTime,
-  videoLength
+  playlist,
+  currTime = moment()
 ) => {
   const msToS = 1 / 1000;
+
   const elapsedTime = (currTime - clockStartTime) * msToS;
   const playedTime = videoStartTime + elapsedTime;
   return Number(playedTime.toFixed(0));
