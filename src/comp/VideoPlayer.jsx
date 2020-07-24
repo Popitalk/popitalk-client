@@ -2,6 +2,7 @@ import React, { useState, useRef } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import ReactPlayer from "react-player";
 import Slider from "rc-slider";
+import screenfull from "screenfull";
 
 import "rc-slider/assets/index.css";
 import VideoPlayerStatusCard from "./VideoPlayerStatusCard";
@@ -9,7 +10,8 @@ import defaultImage from "../assets/default/user-default.png";
 import useLocalStorage from "../hooks/useLocalStorage";
 
 function VideoPlayer() {
-  const player = useRef(null);
+  const videoPlayer = useRef(null);
+  const reactPlayer = useRef(null);
 
   // Determine if the mouse is hovering over the video player
   const [isHovering, setIsHovering] = useState(false);
@@ -29,11 +31,15 @@ function VideoPlayer() {
   });
 
   const handleProgressSliderChange = s => {
-    player.current.seekTo(s, "seconds");
+    reactPlayer.current.seekTo(s, "seconds");
   };
 
   const handleVolumeSliderChange = v => {
     setVolume({ volume: v, muted: false });
+  };
+
+  const handleFullScreen = () => {
+    if (screenfull.isEnabled) screenfull.toggle(videoPlayer.current);
   };
 
   //sync playIcon and play states
@@ -82,11 +88,11 @@ function VideoPlayer() {
 
   return (
     <>
-      <div className="relative pb-16/9 h-full w-full">
+      <div ref={videoPlayer} className="relative pb-16/9 h-full w-full">
         <div className="absolute bg-black h-full w-full"></div>
         <div className="hover:select-none">
           <ReactPlayer
-            ref={player}
+            ref={reactPlayer}
             url="https://www.youtube.com/watch?v=LHODkrToLM8"
             width="100%"
             height="100%"
@@ -95,7 +101,7 @@ function VideoPlayer() {
             volume={volume}
             muted={muted}
             onReady={() => {
-              setDuration(player.current.getDuration());
+              setDuration(reactPlayer.current.getDuration());
             }}
             onProgress={({ playedSeconds }) => {
               setProgress(playedSeconds);
@@ -233,7 +239,12 @@ function VideoPlayer() {
                   </span>
                 </div>
                 {/* Full screen button */}
-                <button className="w-8 p-1 rounded-full hover:bg-playerControlsHover focus:outline-none transition transform ease-in-out hover:scale-110 duration-100">
+                <button
+                  className={`w-8 p-1 rounded-full hover:bg-playerControlsHover
+                    focus:outline-none transition transform ease-in-out
+                    hover:scale-110 duration-100`}
+                  onClick={handleFullScreen}
+                >
                   <FontAwesomeIcon
                     icon="compress"
                     className="text-tertiaryText"
