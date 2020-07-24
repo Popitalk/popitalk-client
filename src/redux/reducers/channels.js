@@ -47,7 +47,8 @@ import {
   searchVideos,
   friendOnlineWs,
   friendOfflineWs,
-  addRoomMembers
+  addRoomMembers,
+  setPlaying
 } from "../actions";
 
 const initialState = {};
@@ -322,7 +323,8 @@ export default createReducer(initialState, {
   [friendOnlineWs]: R_updateFriendRoomToOnline,
   [friendOfflineWs]: R_updateFriendRoomToOffline,
   [logout.fulfilled]: R_resetState,
-  [deleteAccount.fulfilled]: R_resetState
+  [deleteAccount.fulfilled]: R_resetState,
+  [setPlaying.fulfilled]: R_updateChannel
 });
 
 // import * as actions from "../actions";
