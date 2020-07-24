@@ -52,7 +52,7 @@ export default function ChatMessage({
       <React.Fragment>
         {clickedMessage === message.id ? (
           <div
-            className="flex items-center justify-center space-x-2 text-xs py-4 select-none"
+            className="flex items-center justify-center text-xs select-none"
             onClick={() => updateClickedMessage(message.id)}
             role="button"
           >
