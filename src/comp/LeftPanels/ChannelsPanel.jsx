@@ -35,8 +35,8 @@ export default function ChannelsPanel({
         }}
       />
       <div className="flex flex-col items-start px-2 bg-primaryBackground sm:mt-4">
-        <div className="flex items-center">
-          <h4 className="my-4 mx-2 text-md font-semibold text-secondaryText">
+        <div className="flex items-center mb-4">
+          <h4 className="mx-2 text-md font-semibold text-secondaryText">
             Your channels
           </h4>
           <Button
@@ -52,6 +52,7 @@ export default function ChannelsPanel({
           selected={selectedChannel}
           handleSelect={handleSelectChannel}
           fullHeight={true}
+          emptyMessage="Create your own public Channel!"
         />
         <h4 className="my-4 mx-2 text-md font-semibold text-secondaryText">
           Following
@@ -61,6 +62,7 @@ export default function ChannelsPanel({
           selected={selectedChannel}
           handleSelect={handleSelectChannel}
           fullHeight={true}
+          emptyMessage="Discover and Follow Channels!"
         />
       </div>
       <ReactTooltip effect="solid" place="bottom" className="tooltip" />

@@ -86,7 +86,7 @@ export default function App() {
         </div>
         <Switch>
           <Route exact path="/welcome">
-            <div className="h-full overflow-auto">
+            <div className="h-full overflow-y-auto">
               <CreateNewAccountContainer component={WelcomePage} />
             </div>
           </Route>

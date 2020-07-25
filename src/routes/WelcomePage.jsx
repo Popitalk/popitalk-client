@@ -5,7 +5,7 @@ import Welcome from "../assets/welcome.png";
 
 function WelcomePage(props) {
   return (
-    <div className="w-screen h-screen">
+    <div className="w-full h-full">
       <section className="rounded-b-xl bg-primaryBackground flex flex-col sm:flex-row justify-around items-center lg:justify-around px-20 pb-24 shadow-xl">
         <div className="relative flex items-center justify-center md:w-1/2 h-full xs:w-0">
           <img

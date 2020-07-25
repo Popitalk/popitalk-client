@@ -7,6 +7,7 @@ export default function ChannelsList({
   channels,
   selected,
   handleSelect,
+  emptyMessage,
   ...rest
 }) {
   const itemRenderer = channel => {
@@ -32,6 +33,11 @@ export default function ChannelsList({
   };
 
   return (
-    <InfoCardList items={channels} itemRenderer={itemRenderer} {...rest} />
+    <InfoCardList
+      items={channels}
+      itemRenderer={itemRenderer}
+      emptyMessage={emptyMessage}
+      {...rest}
+    />
   );
 }

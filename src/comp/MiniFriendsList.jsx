@@ -1,34 +1,47 @@
 import React from "react";
 import Button from "./Controls/Button";
-import AvatarIcon from "./Controls/AvatarIcon";
+import RoomIcon from "./Controls/RoomIcon";
 
 export default function MiniFriendsList({
   friends,
   handleSelectRoom,
-  handleFindFriends
+  handleFindFriends,
+  room
 }) {
-  const finalFriends = friends.slice(0, 5);
+  const finalFriends = friends.slice(0, 4);
 
   return (
-    <div className="w-full overflow-auto px-4 pt-2 pb-2 select-none">
-      <div className="flex flex-wrap flex-grow justify-between md:flex-no-wrap">
-        {finalFriends.map(item => (
-          <div
-            key={item.id}
-            className="flex-shrink-0 px-2px transition transform ease-in-out hover:scale-110 duration-100"
-          >
-            <AvatarIcon
-              avatar={item.members[0].avatar}
-              username={item.members[0].username}
-              imageClick={() => handleSelectRoom(item.id)}
-              tooltip={item.members.map(m => m.username).join()}
-            />
-          </div>
-        ))}
-        <div className="px-0">
+    <div className="w-auto px-3 select-none overflow-hidden">
+      <div className="flex flex-row items-center md:flex-no-wrap">
+        <div className="flex flex-row w-auto items-center">
+          {finalFriends.map(room => {
+            const images = room.members.map(m => m.avatar);
+            const roomIcon = (
+              <RoomIcon
+                images={images}
+                self={room.type === "self"}
+                online={room.online}
+                watching={room.watching}
+                notifications={room.notifications}
+                size="lg"
+              />
+            );
+            return (
+              <div
+                key={room.id}
+                className="transition transform ease-in-out hover:scale-110 duration-100 rounded-circle py-2 px-px"
+                onClick={() => handleSelectRoom(room.id)}
+                role="button"
+              >
+                {roomIcon}
+              </div>
+            );
+          })}
+        </div>
+        <div className="px-1">
           <Button
             icon="user-plus"
-            size="lg"
+            size="md"
             background="secondary"
             onClick={handleFindFriends}
             className="hover:scale-110"
