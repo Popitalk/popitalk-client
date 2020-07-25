@@ -1,5 +1,6 @@
 import React from "react";
 import { SortableContainer, SortableElement } from "react-sortable-hoc";
+import Button from "./Controls/Button";
 
 // Handler Change Params ({oldIndex, newIndex)}
 export default function SortableList({
@@ -12,8 +13,20 @@ export default function SortableList({
 }) {
   if (!items || items.length === 0) {
     return (
-      <div className="h-32 w-full flex items-center justify-center">
-        <p className="text-sm">Nothing to show</p>
+      <div>
+        <p className="pt-6 pb-2 px-4 text-lg font-bold text-primaryText select-none">
+          Up Next
+        </p>
+        <div className="cursor-pointer w-full flex-shrink-0 max-w-2xs mx-4 mb-4 rounded-md shadow-xs hover:shadow-md transition-all ease-in-out duration-100 bg-disabledBackground">
+          <div className="relative pb-16/9 w-full">
+            <div className="absolute flex items-center justify-center w-full h-full">
+              <Button size="sm" icon="search" />
+              <p className="mx-2 text-secondaryText text-sm hover:filter-brightness-9">
+                Search for a video
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
     );
   }
