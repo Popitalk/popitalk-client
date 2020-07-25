@@ -11,7 +11,7 @@ export default function MiniFriendsList({
   const finalFriends = friends.slice(0, 4);
 
   return (
-    <div className="w-auto px-3 select-none overflow-hidden">
+    <div className="w-auto px-2 select-none overflow-hidden">
       <div className="flex flex-row items-center md:flex-no-wrap">
         <div className="flex flex-row w-auto items-center">
           {finalFriends.map(room => {
@@ -31,7 +31,7 @@ export default function MiniFriendsList({
             return (
               <div
                 key={room.id}
-                className="transition transform ease-in-out hover:scale-110 duration-100 rounded-circle py-2 px-px"
+                className="transition transform ease-in-out hover:scale-110 duration-100 rounded-circle py-2 px-2px"
                 onClick={() => handleSelectRoom(room.id)}
                 role="button"
               >

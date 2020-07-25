@@ -55,8 +55,9 @@ export default function RoomIcon({
     "flex flex-shrink-0 items-center justify-center relative rounded-full ": true,
     "h-8 w-8": size === "sm",
     "h-12 w-12": size === "md",
-    "h-16 w-16": size === "lg",
-    "h-20 w-20": size === "xl",
+    "h-14 w-14": size === "lg",
+    "h-16 w-16": size === "xl",
+    "h-20 w-20": size === "2xl",
     "bg-imageBorder1": !watching,
     "bg-gradient-r-primary p-2px": watching,
     [className]: className
@@ -109,8 +110,8 @@ export default function RoomIcon({
       )}
       {self && (
         <p
-          className="font-semibold text-xs absolute bottom-0
-         bg-gradient-br-button text-primaryButtonText rounded-lg shadow-sm flex items-center justify-center py-2px px-1 select-none"
+          className="font-semibold text-xs absolute bottom-0 truncate
+         bg-gradient-br-button text-primaryButtonText rounded-lg shadow-xs flex items-center justify-center py-2px px-1 select-none"
         >
           My room
         </p>
