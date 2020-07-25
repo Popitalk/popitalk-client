@@ -115,6 +115,10 @@ export const skipPlayer = (channelId, videoObj) => {
   return axios.put(`/api/channels/${channelId}/skip`, videoObj);
 };
 
+export const getVideoStatus = channelId => {
+  return axios.get(`/api/channels/${channelId}/status`);
+};
+
 // MEMBERS
 
 export const updateMember = updateInfo => {

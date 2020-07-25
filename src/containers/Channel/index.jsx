@@ -38,6 +38,7 @@ export default function Channel({ tab, type = "channel" }) {
   let { channelId, roomId } = useParams();
   channelId = channelId || roomId;
   const channel = useSelector(state => state.channels[channelId]);
+  // console.log("channel", channel);
   const dispatch = useDispatch();
   if (!channel) {
     dispatch(getChannel(channelId));
