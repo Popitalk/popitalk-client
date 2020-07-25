@@ -29,7 +29,8 @@ export default function RoomIcon({
   self,
   notifications,
   size = "md",
-  className
+  className,
+  tooltip
 }) {
   const OnlineFriendStyle = {
     top:
@@ -94,7 +95,12 @@ export default function RoomIcon({
               cornerRadius(index, images.length <= 4 ? images.length : 4)
             )}
           >
-            <img className="img h-full" src={image} alt="dogo" />
+            <img
+              className="img h-full"
+              src={image}
+              alt="dogo"
+              data-tip={tooltip}
+            />
           </div>
         ))}
       </div>

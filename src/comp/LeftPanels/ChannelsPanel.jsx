@@ -65,7 +65,11 @@ export default function ChannelsPanel({
           emptyMessage="Discover and Follow Channels!"
         />
       </div>
-      <ReactTooltip effect="solid" place="bottom" className="tooltip" />
+      <ReactTooltip
+        effect="solid"
+        place="bottom"
+        className="tooltip truncate"
+      />
       {/* <div className="sm:mt-10">
         <h4 className="my-4 mx-2 text-md font-semibold text-secondaryText">
           Suggested

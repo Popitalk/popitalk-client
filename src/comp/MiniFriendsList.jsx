@@ -16,6 +16,7 @@ export default function MiniFriendsList({
         <div className="flex flex-row w-auto items-center">
           {finalFriends.map(room => {
             const images = room.members.map(m => m.avatar);
+            const name = room.members.map(m => " " + m.username).join();
             const roomIcon = (
               <RoomIcon
                 images={images}
@@ -24,6 +25,7 @@ export default function MiniFriendsList({
                 watching={room.watching}
                 notifications={room.notifications}
                 size="lg"
+                tooltip={name}
               />
             );
             return (
