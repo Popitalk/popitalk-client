@@ -9,12 +9,8 @@ function VideoCardList({ videoList, isCollapsed, chipSelected }) {
   const currentVideoList = [];
   videoList.forEach(type => currentVideoList.push(...type.channels));
   return (
-    <div className="mx-4 my-8">
-      <div
-        className={`grid ${
-          isCollapsed ? "grid-cols-5 " : "grid-cols-4 "
-        }gap-2 w-full pb-5`}
-      >
+    <div className="mx-6 my-8">
+      <div className="grid grid-cols-4 gap-3 w-full pb-5">
         {currentVideoList.map(video => (
           <VideoCard cardWidthClass="w-auto" key={video.id} {...video} />
         ))}

@@ -5,7 +5,6 @@ import { useSelector } from "react-redux";
 import ChannelCardList from "./Channel/ChannelCardList.jsx";
 import VideoCardList from "./VideoCardList.jsx";
 import Input from "./Controls/Input.jsx";
-import Button from "./Controls/Button";
 import Alert from "../comp/Alert";
 
 function RecommendedChannels({ list, selectedPage }) {
@@ -40,43 +39,50 @@ function RecommendedChannels({ list, selectedPage }) {
           onChange={e => setSearch(e.target.value)}
         />
       </div>
-      <div className="flex justify-center my-4 h-10">
-        <Button
-          leftIcon="bell"
-          className="uppercase mr-4 shadow-xs hover:shadow-none focus:shadow-none bg-secondaryBackground space-x-2"
-          shape="chip"
-          background="bgColor"
-          selectedColor={chipSelected === "following" && "primary"}
+      <div className="flex justify-start px-6 mt-8 h-8 space-x-2">
+        <button
+          className="shadow-sm bg-primaryBackground focus:outline-none transition transform ease-in-out hover:scale-105 duration-100 rounded-full focus:shadow-none"
           onClick={() => onChipClick("following")}
-          size="sm"
         >
-          following
-        </Button>
-        <Button
-          leftIcon="globe"
-          className="uppercase mr-4 shadow-xs hover:shadow-none focus:shadow-none bg-secondaryBackground space-x-2"
-          shape="chip"
-          background="bgColor"
-          selectedColor={chipSelected === "discover" && "secondary"}
+          <div
+            className={`flex flex-row items-center font-bold h-full px-4 ${
+              chipSelected === "following"
+                ? "btn-playing"
+                : "text-secondaryText"
+            }`}
+          >
+            <p className="text-lg mr-1">#</p>
+            following
+          </div>
+        </button>
+        <button
+          className="shadow-sm bg-primaryBackground focus:outline-none transition transform ease-in-out hover:scale-105 duration-100 rounded-full focus:shadow-none"
           onClick={() => onChipClick("discover")}
-          size="sm"
         >
-          discover
-        </Button>
-        <Button
-          leftIcon="heart"
-          className="uppercase shadow-xs hover:shadow-none focus:shadow-none bg-secondaryBackground space-x-2"
-          shape="chip"
-          background="bgColor"
-          selectedColor={chipSelected === "trending" && "cancel"}
+          <div
+            className={`flex flex-row items-center font-bold h-full px-4 ${
+              chipSelected === "discover" ? "btn-playing" : "text-secondaryText"
+            }`}
+          >
+            <p className="text-md mr-1">#</p>
+            discover
+          </div>
+        </button>
+        <button
+          className="shadow-sm bg-primaryBackground focus:outline-none transition transform ease-in-out hover:scale-105 duration-100 rounded-full focus:shadow-none"
           onClick={() => onChipClick("trending")}
-          size="sm"
         >
-          trending
-        </Button>
+          <div
+            className={`flex flex-row items-center font-bold h-full px-4 ${
+              chipSelected === "trending" ? "btn-playing" : "text-secondaryText"
+            }`}
+          >
+            <p className="text-lg mr-1">#</p>
+            trending
+          </div>
+        </button>
       </div>
-
-      <div className="mt-2">
+      <div>
         {selectedPage === "channels" ? (
           <ChannelCardList
             channelList={list}

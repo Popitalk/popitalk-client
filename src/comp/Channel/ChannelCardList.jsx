@@ -9,7 +9,7 @@ function ChannelCardList({ channelList, isCollapsed, chipSelected }) {
   const currentChannelList = [];
   channelList.forEach(type => currentChannelList.push(...type.channels));
   return (
-    <div className="mx-2">
+    <div className="mx-4">
       <div
         className={`grid ${
           isCollapsed ? "grid-cols-4 " : "grid-cols-3 "

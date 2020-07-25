@@ -26,15 +26,10 @@ export default function Button({
     bgColor: "bg-gradient-br-bgColor"
   };
 
-  // console.log("before shape", shape);
-  //shape = !shape && icon ? "circle" : shape;
-  // console.log("after shape", shape);
-
   const shapes = {
     regular: "rounded-lg",
     pill: "rounded-pill",
     circle: "rounded-circle",
-    chip: "rounded-full",
     none: "rounded-sm"
   };
 
@@ -43,7 +38,7 @@ export default function Button({
     [`btn-${size}`]: true,
     [backgrounds[background]]: true,
     [shapes[shape]]: true,
-    "transition transform ease-in-out hover:scale-105 duration-100 disable": true,
+    "transition transform ease-in-out hover:scale-105 duration-100": true,
     "text-secondaryText": background === "bgColor",
     "btn-icon": icon && !shape,
     "btn-text": variant === "text",
