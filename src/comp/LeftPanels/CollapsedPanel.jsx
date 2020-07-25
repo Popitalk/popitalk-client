@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import RoomIcon from "../Controls/RoomIcon";
 import Button from "../Controls/Button";
 import useCollapse from "react-collapsed";
+import ReactTooltip from "react-tooltip";
 
 function CollapsedPanel({
   rooms,
@@ -54,6 +55,11 @@ function CollapsedPanel({
       </button>
       {/* CHANNELS */}
       <div className="bg-primaryBackground rounded-xl">
+        <ReactTooltip
+          effect="solid"
+          place="right"
+          className="tooltip truncate"
+        />
         <Button
           className="flex flex-col h-12 w-20 bg-secondaryBackground mb-1 shadow-none"
           shape="none"
@@ -79,6 +85,7 @@ function CollapsedPanel({
                   images={[channel.icon]}
                   watching={channel.watching}
                   size="lg"
+                  tooltip={channel.name}
                 />
               );
               return (
@@ -99,6 +106,11 @@ function CollapsedPanel({
       </div>
       {/* FRIENDS */}
       <div className="bg-primaryBackground rounded-xl mb-4">
+        <ReactTooltip
+          effect="solid"
+          place="right"
+          className="tooltip truncate"
+        />
         <Button
           className="flex flex-col h-12 w-20 mb-1 bg-secondaryBackground shadow-none"
           shape="none"
@@ -119,7 +131,7 @@ function CollapsedPanel({
           <div className="flex flex-col w-full items-center">
             {rooms.map(room => {
               const images = room.members.map(m => m.avatar);
-
+              const name = room.members.map(m => " " + m.username).join();
               const roomIcon = (
                 <RoomIcon
                   images={images}
@@ -128,6 +140,7 @@ function CollapsedPanel({
                   watching={room.watching}
                   notifications={room.notifications}
                   size="lg"
+                  tooltip={name}
                 />
               );
               return (
