@@ -23,19 +23,21 @@ export default function ChannelDescription({
   const dispatch = useDispatch();
   return (
     <div className="flex flex-col mb-12">
-      <div className="flex flex-row justify-center bg-secondaryBackground p-4 ml-8">
+      <div className="flex flex-row justify-center bg-secondaryBackground">
         <AvatarIcon
           username={name}
           avatar={icon}
-          className="img h-40 w-40 rounded-circle mx-px"
+          className="img h-32 w-32 rounded-circle mx-px"
         />
-        <section className="mx-8">
+        <section className="mx-6">
           {/* <p className="text-xs mx-1">NOW PLAYING</p> */}
-          {status && <VideoStatus status={status} type="text" />}
-          <p className="text-3xl mx-1 font-bold">{name}</p>
-          <p className="text-sm my-2 mx-1">{description}</p>
+          {status && (
+            <VideoStatus status={status} type="text" className="text-sm" />
+          )}
+          <p className="text-2xl font-bold truncate-2-lines">{name}</p>
+          <p className="text-sm my-2">{description}</p>
           <div className="flex flex-row items-center mt-4">
-            <p className="text-xs mx-1"> ADMIN </p>
+            <p className="text-xs mr-2"> ADMINS </p>
             {adminList.map((admin, idx) => {
               if (idx < threshold) {
                 return (

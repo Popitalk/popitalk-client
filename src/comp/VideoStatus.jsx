@@ -42,7 +42,7 @@ export default function VideoStatus({
     return (
       <>
         {status === "playing" && (
-          <span className="rainbow-text font-semibold">Playing</span>
+          <span className="rainbow-text text-sm font-semibold">Playing</span>
         )}
         {status === "paused" && (
           <p className="text-secondaryText font-semibold">Paused</p>
