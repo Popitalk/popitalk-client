@@ -45,6 +45,7 @@ export default function ChannelsPanel({
             background="primaryButton"
             onClick={handleCreateChannel}
             className="hover:scale-110"
+            tooltip="Create"
           />
         </div>
         <ChannelsList

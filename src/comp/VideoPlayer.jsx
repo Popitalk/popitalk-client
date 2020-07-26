@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import ReactPlayer from "react-player";
 import Slider from "rc-slider";
 import screenfull from "screenfull";
-
+import ReactTooltip from "react-tooltip";
 import "rc-slider/assets/index.css";
 import VideoPlayerStatusCard from "./VideoPlayerStatusCard";
 import defaultImage from "../assets/default/user-default.png";
@@ -126,6 +126,11 @@ function VideoPlayer() {
                 : "flex flex-col justify-end w-full h-full transition-colors bg-gradient-t-player transition-opacity opacity-0 hover:opacity-100 duration-200"
             }
           >
+            <ReactTooltip
+              effect="solid"
+              place="top"
+              className="tooltip truncate"
+            />
             <button
               className="bg-transparent w-full h-full focus:outline-none"
               onClick={() => setBothPlaying()}
@@ -189,6 +194,7 @@ function VideoPlayer() {
                   <button
                     className="w-8 p-1 rounded-full hover:bg-playerControlsHover focus:outline-none duration-100 transition transform ease-in-out hover:scale-110"
                     onClick={() => setBothPlaying()}
+                    data-tip={playingIcon === true ? "Play" : "Pause"}
                   >
                     <FontAwesomeIcon
                       icon={playingIcon === true ? "play" : "pause"}
@@ -206,6 +212,7 @@ function VideoPlayer() {
                     <button
                       className="w-8 p-1 rounded-full focus:outline-none duration-100 transition transform ease-in-out hover:scale-110"
                       onClick={toggleMute}
+                      data-tip={muted ? "Unmute" : "Mute"}
                     >
                       <FontAwesomeIcon
                         icon={
@@ -244,6 +251,7 @@ function VideoPlayer() {
                     focus:outline-none transition transform ease-in-out
                     hover:scale-110 duration-100`}
                   onClick={handleFullScreen}
+                  data-tip="Full screen"
                 >
                   <FontAwesomeIcon
                     icon="compress"

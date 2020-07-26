@@ -16,6 +16,7 @@ export default function Button({
   className,
   selectedColor,
   hoverable,
+  tooltip,
   ...props
 }) {
   if (selectedColor) background = selectedColor;
@@ -46,7 +47,12 @@ export default function Button({
   });
 
   return (
-    <button className={buttonClasses} disabled={disabled} {...props}>
+    <button
+      className={buttonClasses}
+      data-tip={tooltip}
+      disabled={disabled}
+      {...props}
+    >
       {leftIcon && <FontAwesomeIcon icon={leftIcon} />}
       {icon ? <FontAwesomeIcon icon={icon} /> : <span>{children}</span>}
       {rightIcon && <FontAwesomeIcon icon={rightIcon} />}
