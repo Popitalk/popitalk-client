@@ -84,10 +84,6 @@ export default function Channel({ tab, type = "channel" }) {
         .map(userId => users[userId].username)
         .join(", ");
     }
-
-    if (roomName.length > 25) {
-      roomName = `${roomName.slice(0, 25)}...`;
-    }
     return roomName;
   };
 
@@ -209,22 +205,20 @@ export default function Channel({ tab, type = "channel" }) {
   return (
     <div
       ref={scrollRef}
-      className="flex flex-col w-full bg-secondaryBackground overflow-auto"
+      className="flex flex-col bg-secondaryBackground overflow-x-hidden"
     >
-      <div className="sticky top-0 w-full z-20">
-        <ChannelHeader
-          id={channelId || roomId}
-          name={pickRoomName(channel, users, ownId)}
-          icon={channel.icon || defaultIcon}
-          videoStatus={
-            activeVideo && activeVideo.status ? activeVideo.status : ""
-          }
-          type={type}
-        />
-      </div>
+      <ChannelHeader
+        id={channelId || roomId}
+        name={pickRoomName(channel, users, ownId)}
+        icon={channel.icon || defaultIcon}
+        videoStatus={
+          activeVideo && activeVideo.status ? activeVideo.status : ""
+        }
+        type={type}
+      />
       {(tab === "video" || tab === "channel") && (
         <>
-          <VideoPanel playlist={copyTestQueue} classNames="pt-0" />
+          <VideoPanel playlist={copyTestQueue} />
           {type === "channel" && (
             <ForumPanel
               ref={channelRef}
@@ -250,8 +244,8 @@ export default function Channel({ tab, type = "channel" }) {
             />
           )}
           {type === "room" && (
-            <div>
-              <h2 className="text-lg mt-20 px-4 text-bold">Find More Videos</h2>
+            <div className="my-4">
+              <h2 className="text-lg px-4">Find More Videos</h2>
               <VideoSearch
                 trendingResults={trendingResults}
                 searchResults={searchResults}
