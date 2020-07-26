@@ -794,7 +794,6 @@ export const setPlaying = createAsyncThunk(
       videoStartTime: playerInfo.videoStartTime
     };
     const response = await api.setPlaying(playerInfo.channelId, videoObject);
-    console.log(response.data);
 
     return response.data;
   }
@@ -809,7 +808,7 @@ export const setPaused = createAsyncThunk(
       videoStartTime: playerInfo.videoStartTime
     };
     const response = await api.setPaused(playerInfo.channelId, videoObject);
-    console.log(response.data);
+
     return response.data;
   }
 );
@@ -823,14 +822,16 @@ export const skipPlayer = createAsyncThunk(
       videoStartTime: playerInfo.videoStartTime
     };
     const response = await api.skipPlayer(playerInfo.channelId, videoObject);
+
     return response.data;
   }
 );
 
-export const getVideoStatus = createAsyncThunk(
-  "video/getVideoStatus",
+export const getPlayerStatus = createAsyncThunk(
+  "video/getPlayerStatus",
   async playerInfo => {
-    const response = await api.getVideoStatus(playerInfo.channelId);
+    const response = await api.getPlayerStatus(playerInfo.channelId);
+    console.log("getPlayerStatus", response.data);
     return response.data;
   }
 );

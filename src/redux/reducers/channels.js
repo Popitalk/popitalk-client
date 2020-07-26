@@ -50,7 +50,8 @@ import {
   addRoomMembers,
   setPlaying,
   setPaused,
-  skipPlayer
+  skipPlayer,
+  getPlayerStatus
 } from "../actions";
 
 const initialState = {};
@@ -328,7 +329,8 @@ export default createReducer(initialState, {
   [deleteAccount.fulfilled]: R_resetState,
   [setPlaying.fulfilled]: R_updateChannel,
   [setPaused.fulfilled]: R_updateChannel,
-  [skipPlayer.fulfilled]: R_updateChannel
+  [skipPlayer.fulfilled]: R_updateChannel,
+  [getPlayerStatus.fulfilled]: R_updateChannel
 });
 
 // import * as actions from "../actions";

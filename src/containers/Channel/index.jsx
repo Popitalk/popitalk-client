@@ -23,7 +23,8 @@ import {
   searchVideos,
   setPlaying,
   setPaused,
-  skipPlayer
+  skipPlayer,
+  getPlayerStatus
 } from "../../redux/actions";
 import { testQueue, testResult } from "../../stories/seed-arrays";
 import ChannelHeader from "../../comp/ChannelHeader";
@@ -38,11 +39,12 @@ export default function Channel({ tab, type = "channel" }) {
   let { channelId, roomId } = useParams();
   channelId = channelId || roomId;
   const channel = useSelector(state => state.channels[channelId]);
-  // console.log("channel", channel);
   const dispatch = useDispatch();
   if (!channel) {
     dispatch(getChannel(channelId));
   }
+  console.log("channel", channel);
+
   const { defaultIcon, defaultAvatar } = useSelector(state => state.general);
   const updateChannelApi = useSelector(state => state.api.channel);
   const draft = useSelector(state => state.postDrafts[channelId]);
@@ -179,6 +181,12 @@ export default function Channel({ tab, type = "channel" }) {
   };
 
   const loading = channel?.loaded ? false : true;
+  useEffect(() => {
+    if (!loading) {
+      dispatch(getPlayerStatus({ channelId }));
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [loading]);
 
   useEffect(() => {
     if (channel && !channel?.loaded) {
