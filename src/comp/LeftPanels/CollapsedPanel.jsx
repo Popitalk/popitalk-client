@@ -55,11 +55,7 @@ function CollapsedPanel({
       </button>
       {/* CHANNELS */}
       <div className="bg-primaryBackground rounded-xl">
-        <ReactTooltip
-          effect="solid"
-          place="right"
-          className="tooltip truncate"
-        />
+        <ReactTooltip effect="solid" className="tooltip truncate" />
         <Button
           className="flex flex-col h-12 w-20 bg-secondaryBackground mb-1 shadow-none"
           shape="none"
@@ -86,6 +82,7 @@ function CollapsedPanel({
                   watching={channel.watching}
                   size="lg"
                   tooltip={channel.name}
+                  tooltipPlace="right"
                 />
               );
               return (
@@ -106,11 +103,7 @@ function CollapsedPanel({
       </div>
       {/* FRIENDS */}
       <div className="bg-primaryBackground rounded-xl mb-4">
-        <ReactTooltip
-          effect="solid"
-          place="right"
-          className="tooltip truncate"
-        />
+        <ReactTooltip effect="solid" className="tooltip truncate" />
         <Button
           className="flex flex-col h-12 w-20 mb-1 bg-secondaryBackground shadow-none"
           shape="none"
@@ -141,6 +134,7 @@ function CollapsedPanel({
                   notifications={room.notifications}
                   size="lg"
                   tooltip={name}
+                  tooltipPlace="right"
                 />
               );
               return (

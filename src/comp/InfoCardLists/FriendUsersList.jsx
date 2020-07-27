@@ -11,7 +11,7 @@ export default function FriendUsersList({ users, handleProfile, ...rest }) {
     <InfoCardList
       items={users}
       itemRenderer={itemRenderer}
-      itemSize={68}
+      itemSize={60}
       {...rest}
     />
   );

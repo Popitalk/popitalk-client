@@ -30,7 +30,8 @@ export default function RoomIcon({
   notifications,
   size = "md",
   className,
-  tooltip
+  tooltip,
+  tooltipPlace
 }) {
   const OnlineFriendStyle = {
     top:
@@ -101,6 +102,7 @@ export default function RoomIcon({
               src={image}
               alt="dogo"
               data-tip={tooltip}
+              data-place={tooltipPlace}
             />
           </div>
         ))}

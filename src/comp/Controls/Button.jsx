@@ -17,6 +17,7 @@ export default function Button({
   selectedColor,
   hoverable,
   tooltip,
+  tooltipPlace = "bottom",
   ...props
 }) {
   if (selectedColor) background = selectedColor;
@@ -50,6 +51,7 @@ export default function Button({
     <button
       className={buttonClasses}
       data-tip={tooltip}
+      data-place={tooltipPlace}
       disabled={disabled}
       {...props}
     >

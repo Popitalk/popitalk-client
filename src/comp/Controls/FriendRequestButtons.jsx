@@ -1,7 +1,7 @@
 import React from "react";
 import Button from "./Button";
 
-export default function FriendRequestButtons({ user }) {
+export default function FriendRequestButtons({ user, size = "md" }) {
   // variants: self, friend, stranger, receivedRequest, sentRequest, blocked
   if (user.variant === "blocked") {
     return <></>;
@@ -13,7 +13,7 @@ export default function FriendRequestButtons({ user }) {
       <></>
     ) : (
       <Button
-        size="md"
+        size={size}
         icon={sentRequest ? "user-check" : "user-plus"}
         disabled={sentRequest}
         className="cursor-pointer bg-primaryBackground ml-auto"
@@ -21,13 +21,14 @@ export default function FriendRequestButtons({ user }) {
           e.stopPropagation();
           user.handleAccept();
         }}
+        tooltip={sentRequest ? "Add Friend" : "Waiting"}
       />
     );
 
   const rejectButton =
     user.variant === "receivedRequest" || sentRequest ? (
       <Button
-        size="sm"
+        size={size}
         icon="times"
         background="cancel"
         className="ml-2"
@@ -35,6 +36,7 @@ export default function FriendRequestButtons({ user }) {
           e.stopPropagation();
           user.handleReject();
         }}
+        tooltip="Cancel"
       />
     ) : (
       <></>

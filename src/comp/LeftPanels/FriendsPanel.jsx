@@ -6,6 +6,7 @@ import Input from "../Controls/Input";
 import RoomsList from "../InfoCardLists/RoomsList";
 import PanelHeader from "./PanelHeader";
 import { utilizeFocus } from "../../helpers/functions";
+
 class FriendsPanel extends Component {
   constructor(props) {
     super(props);
@@ -102,7 +103,7 @@ class FriendsPanel extends Component {
             variant="user"
             size="sm"
             value={this.state.search}
-            placeholder="Search with username"
+            placeholder="Search Username"
             onChange={e => this.syncSearch(e.target.value)}
             onClick={() => this.syncSearch(this.state.search)}
             forwardedRef={this.searchFieldRef.ref}
@@ -110,22 +111,18 @@ class FriendsPanel extends Component {
         </div>
         {this.state.open && (
           <div className="rounded-md bg-secondaryBackground shadow-inner border border-primaryBorder mx-2 mt-2">
-            <div className="flex justify-between px-3 py-1 space-x-1">
-              <div>
-                <span className="text-xs">Results for </span>
-                <span className="text-xs font-bold">{this.state.search}</span>
-              </div>
-              <div>
-                <span
-                  role="button"
-                  className="text-xs font-semibold no-underline cursor-pointer text-highlightText"
-                  onClick={() => this.syncSearch("")}
-                >
-                  Close
-                </span>
-              </div>
+            <div className="flex flex-row items-center justify-between ml-1 px-3 py-1">
+              <p className="text-xs">
+                Results for &quot;{this.state.search}&quot;
+              </p>
+              <button
+                className="flex text-xs font-bold text-highlightText focus:outline-none px-2 py-1 rounded-xl transition-all hover:bg-highlightBackground duration-100"
+                onClick={() => this.syncSearch("")}
+              >
+                Close
+              </button>
             </div>
-            <div className="flex w-full h-64 rounded-lg">
+            <div className="flex w-full h-64 px-1 rounded-lg">
               <StretchList
                 list={FriendUsersList}
                 users={this.props.userSearchResults}

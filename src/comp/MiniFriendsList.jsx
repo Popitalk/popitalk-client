@@ -26,6 +26,7 @@ export default function MiniFriendsList({
                 notifications={room.notifications}
                 size="lg"
                 tooltip={name}
+                tooltipPlace="bottom"
               />
             );
             return (
