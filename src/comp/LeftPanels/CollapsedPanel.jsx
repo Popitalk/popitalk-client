@@ -45,13 +45,10 @@ function CollapsedPanel({
   return (
     <div className="bg-primaryBackground px-2 flex flex-col items-center w-20 h-full select-none overflow-x-hidden overflow-y-scroll">
       <button
-        className="py-5 w-full flex items-center flex-col focus:outline-none"
+        className="flex py-5 w-full items-center flex-col rounded-full focus:outline-none text-secondaryText hover:text-highlightText transition transform ease-in-out hover:scale-110 duration-100"
         onClick={handleCollapse}
       >
-        <FontAwesomeIcon
-          icon="bars"
-          className="cursor-pointer text-secondaryText hover:text-highlightText duration-100 fa-1x transition transform ease-in-out hover:scale-110 duration-100"
-        />
+        <FontAwesomeIcon icon="bars" />
       </button>
       {/* CHANNELS */}
       <div className="bg-primaryBackground rounded-xl">

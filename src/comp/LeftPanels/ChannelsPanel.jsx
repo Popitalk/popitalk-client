@@ -67,37 +67,6 @@ export default function ChannelsPanel({
         />
       </div>
       <ReactTooltip effect="solid" className="tooltip truncate" />
-      {/* <div className="sm:mt-10">
-        <h4 className="my-4 mx-2 text-md font-semibold text-secondaryText">
-          Suggested
-        </h4>
-        <div className="grid grid-cols-1 sm:grid-cols-2 sm:gap-2 md:grid-cols-1">
-          <div className="flex justify-center py-2 px-2">
-            <SuggestionCard
-              id={123}
-              name="Thelmo Society"
-              icon="https://i.imgur.com/xCGu56D.jpg"
-              videoStatus="playing"
-              videoTitle="Video Title"
-              videoSource="youtube"
-              videoThumbnail="https://i.imgur.com/aqjzchq.jpg"
-              activeViewers="2,000"
-            />
-          </div>
-          <div className="flex justify-center py-16 px-2">
-            <SuggestionCard
-              id={123}
-              name="Thelmo Society"
-              icon="https://i.imgur.com/xCGu56D.jpg"
-              videoStatus="paused"
-              videoTitle="Video Title"
-              videoSource="youtube"
-              videoThumbnail="https://i.imgur.com/aqjzchq.jpg"
-              activeViewers="2,000"
-            />
-          </div>
-        </div>
-      </div> */}
     </div>
   );
 }
