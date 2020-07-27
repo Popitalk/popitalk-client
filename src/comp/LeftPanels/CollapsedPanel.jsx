@@ -54,7 +54,7 @@ function CollapsedPanel({
       <div className="bg-primaryBackground rounded-xl">
         <ReactTooltip effect="solid" className="tooltip truncate" />
         <Button
-          className="flex flex-col h-12 w-20 bg-secondaryBackground mb-1 shadow-none"
+          className="flex flex-col h-12 w-20 bg-secondaryBackground shadow-none"
           shape="none"
           background="bgColor"
           selectedColor={isFollowingExpanded ? true : false}

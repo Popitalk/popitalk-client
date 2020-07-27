@@ -92,26 +92,25 @@ class FriendsPanel extends Component {
 
   render() {
     return (
-      <div className="w-full h-full flex flex-col bg-primaryBackground xl:w-84 lg:w-84 md:w-84 sm:w-84 select-none overflow-y-scroll">
+      <div className="w-84 h-full bg-primaryBackground select-none overflow-y-scroll">
         <PanelHeader
           handleCollapse={this.props.handleCollapse}
           updateSelectedPage={this.props.updateSelectedPage}
           selectedPage={this.props.selectedPage}
         />
-        <div className="mt-2 mx-4">
-          <Input
-            variant="user"
-            size="sm"
-            value={this.state.search}
-            placeholder="Search Username"
-            onChange={e => this.syncSearch(e.target.value)}
-            onClick={() => this.syncSearch(this.state.search)}
-            forwardedRef={this.searchFieldRef.ref}
-          />
-        </div>
+        <Input
+          variant="user"
+          size="sm"
+          value={this.state.search}
+          placeholder="Search Username"
+          onChange={e => this.syncSearch(e.target.value)}
+          onClick={() => this.syncSearch(this.state.search)}
+          forwardedRef={this.searchFieldRef.ref}
+          className="m-2 mx-3"
+        />
         {this.state.open && (
-          <div className="rounded-md bg-secondaryBackground shadow-inner border border-primaryBorder mx-2 mt-2">
-            <div className="flex flex-row items-center justify-between ml-1 px-3 py-1">
+          <div className="rounded-md bg-secondaryBackground shadow-inner border border-primaryBorder mx-3 m-2">
+            <div className="flex flex-row items-center justify-between ml-2 px-2 py-1">
               <p className="text-xs">
                 Results for &quot;{this.state.search}&quot;
               </p>
@@ -131,7 +130,7 @@ class FriendsPanel extends Component {
             </div>
           </div>
         )}
-        <div className="bg-primaryBackground px-1 pt-4">
+        <div className="bg-primaryBackground px-1 pb-2">
           <RoomsList
             rooms={this.state.rooms}
             selected={this.props.selectedRoom}

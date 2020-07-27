@@ -11,9 +11,9 @@ function ChannelCardList({ channelList, isCollapsed, chipSelected }) {
   return (
     <div className="mx-4">
       <div
-        className={`grid ${
+        className={`grid w-full ${
           isCollapsed ? "grid-cols-4 " : "grid-cols-3 "
-        }w-full pb-8`}
+        }`}
       >
         {currentChannelList.map(channel => (
           <ChannelCard key={channel.id} {...channel} />

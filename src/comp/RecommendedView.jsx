@@ -22,7 +22,7 @@ function RecommendedChannels({ list, selectedPage }) {
 
   const [search, setSearch] = useState("");
   return (
-    <div className="relative mt-4 mx-auto w-full max-w-screen-xl overflow-y-scroll">
+    <div className="relative my-4 mx-auto w-full max-w-screen-xl overflow-y-scroll">
       <div className="fixed mx-2 -my-4 z-50">
         {!!alert && <Alert duration={3000}>{alert}</Alert>}
       </div>
@@ -39,66 +39,57 @@ function RecommendedChannels({ list, selectedPage }) {
           onChange={e => setSearch(e.target.value)}
         />
       </div>
+      {/* OPTION TABS */}
       <div className="flex justify-start px-6 mt-8 h-8 space-x-2">
         <button
-          className="shadow-sm bg-primaryBackground focus:outline-none transition transform ease-in-out hover:scale-105 duration-100 rounded-full focus:shadow-none"
+          className={`flex flex-row items-center text-secondaryText font-bold h-full px-4 shadow-sm bg-primaryBackground focus:outline-none transition transform ease-in-out hover:scale-105 duration-100 rounded-full ${
+            chipSelected === "following"
+              ? "rainbow-text shadow-none"
+              : "text-secondaryText"
+          }`}
           onClick={() => onChipClick("following")}
         >
-          <div
-            className={`flex flex-row items-center font-bold h-full px-4 ${
-              chipSelected === "following"
-                ? "btn-playing"
-                : "text-secondaryText"
-            }`}
-          >
-            <p className="text-lg mr-1">#</p>
-            following
-          </div>
+          <p className="text-lg mr-1">#</p>
+          following
         </button>
         <button
-          className="shadow-sm bg-primaryBackground focus:outline-none transition transform ease-in-out hover:scale-105 duration-100 rounded-full focus:shadow-none"
+          className={`flex flex-row items-center text-secondaryText font-bold h-full px-4 shadow-sm bg-primaryBackground focus:outline-none transition transform ease-in-out hover:scale-105 duration-100 rounded-full focus:shadow-none ${
+            chipSelected === "discover"
+              ? "rainbow-text shadow-none"
+              : "text-secondaryText"
+          }`}
           onClick={() => onChipClick("discover")}
         >
-          <div
-            className={`flex flex-row items-center font-bold h-full px-4 ${
-              chipSelected === "discover" ? "btn-playing" : "text-secondaryText"
-            }`}
-          >
-            <p className="text-md mr-1">#</p>
-            discover
-          </div>
+          <p className="text-md mr-1">#</p>
+          discover
         </button>
         <button
-          className="shadow-sm bg-primaryBackground focus:outline-none transition transform ease-in-out hover:scale-105 duration-100 rounded-full focus:shadow-none"
+          className={`flex flex-row items-center text-secondaryText font-bold h-full px-4 shadow-sm bg-primaryBackground focus:outline-none transition transform ease-in-out hover:scale-105 duration-100 rounded-full focus:shadow-none ${
+            chipSelected === "trending"
+              ? "rainbow-text shadow-none"
+              : "text-secondaryText"
+          }`}
           onClick={() => onChipClick("trending")}
         >
-          <div
-            className={`flex flex-row items-center font-bold h-full px-4 ${
-              chipSelected === "trending" ? "btn-playing" : "text-secondaryText"
-            }`}
-          >
-            <p className="text-lg mr-1">#</p>
-            trending
-          </div>
+          <p className="text-lg mr-1">#</p>
+          trending
         </button>
       </div>
-      <div>
-        {selectedPage === "channels" ? (
-          <ChannelCardList
-            channelList={list}
+      {selectedPage === "channels" ? (
+        <ChannelCardList
+          channelList={list}
+          isCollapsed={isCollapsed}
+          chipSelected={chipSelected}
+        />
+      ) : (
+        selectedPage === "friends" && (
+          <VideoCardList
+            videoList={list}
             isCollapsed={isCollapsed}
             chipSelected={chipSelected}
           />
-        ) : (
-          selectedPage === "friends" && (
-            <VideoCardList
-              videoList={list}
-              isCollapsed={isCollapsed}
-              chipSelected={chipSelected}
-            />
-          )
-        )}
-      </div>
+        )
+      )}
     </div>
   );
 }

@@ -15,20 +15,16 @@ export default function PanelHeader({
         <FontAwesomeIcon icon="bars" />
       </button>
       <button
-        className={`text-2xl px-2 p-1 focus:outline-none font-semibold ${
-          selectedPage === "channels"
-            ? "btn-playing"
-            : "text-secondaryText hover:bg-secondaryBackground rounded-xl transition transform ease-in-out hover:scale-105 duration-100"
+        className={`text-2xl px-2 p-1 focus:outline-none font-semibold hover:bg-secondaryBackground rounded-xl transition transform ease-in-out hover:scale-105 duration-100 ${
+          selectedPage === "channels" ? "rainbow-text" : "text-secondaryText"
         } `}
         onClick={() => updateSelectedPage("channels")}
       >
         Channels
       </button>
       <button
-        className={`text-2xl px-2 p-1 focus:outline-none font-semibold ${
-          selectedPage === "friends"
-            ? "btn-playing"
-            : "text-secondaryText hover:bg-secondaryBackground rounded-xl transition transform ease-in-out hover:scale-105 duration-100"
+        className={`text-2xl px-2 p-1 focus:outline-none font-semibold hover:bg-secondaryBackground rounded-xl transition transform ease-in-out hover:scale-105 duration-100 ${
+          selectedPage === "friends" ? "rainbow-text" : "text-secondaryText"
         } `}
         onClick={() => updateSelectedPage("friends")}
       >

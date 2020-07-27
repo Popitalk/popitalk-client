@@ -20,7 +20,7 @@ export default function ChannelsPanel({
   setFriendsSearchFocus
 }) {
   return (
-    <div className="w-full h-full bg-primaryBackground w-84 xl:w-84 lg:w-84 md:w-84 sm:w-84 select-none overflow-y-scroll">
+    <div className="w-84 h-full bg-primaryBackground select-none overflow-y-scroll">
       <PanelHeader
         handleCollapse={handleCollapse}
         updateSelectedPage={updateSelectedPage}
