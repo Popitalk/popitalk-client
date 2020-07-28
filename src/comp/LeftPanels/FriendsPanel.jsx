@@ -92,7 +92,7 @@ class FriendsPanel extends Component {
 
   render() {
     return (
-      <div className="w-84 h-full bg-primaryBackground select-none overflow-y-scroll">
+      <div className="flex flex-col w-84 h-full bg-primaryBackground select-none overflow-y-scroll">
         <PanelHeader
           handleCollapse={this.props.handleCollapse}
           updateSelectedPage={this.props.updateSelectedPage}
