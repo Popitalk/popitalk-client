@@ -235,16 +235,21 @@ export const utilizeFocus = () => {
   return { setFocus, ref };
 };
 
-export const calculatePlayedTime = (
-  queueStartPosition,
-  clockStartTime,
-  videoStartTime,
+export const calculatePlayerStatus = (
+  { queueStartPosition, clockStartTime, videoStartTime, status },
   playlist,
   currTime = moment()
 ) => {
+  if (playlist.length === 0) return {};
   const msToS = 1 / 1000;
 
   const elapsedTime = (currTime - clockStartTime) * msToS;
-  const playedTime = videoStartTime + elapsedTime;
-  return Number(playedTime.toFixed(0));
+  // return Number(playedTime.toFixed(0));
+  const newPlayerStatus = {
+    queueStartPosition,
+    clockStartTime,
+    videoStartTime: videoStartTime + elapsedTime,
+    status
+  };
+  return newPlayerStatus;
 };
