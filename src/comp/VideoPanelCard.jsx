@@ -19,7 +19,7 @@ export default function VideoPanelCard({
     <>
       {!title && (
         <div className="flex w-full flex-shrink-0 max-w-2xs items-center pr-2">
-          <button className="relative cursor-pointer pb-16/9 w-full rounded-md shadow-xs hover:shadow-md transition-all ease-in-out duration-100 bg-disabledBackground hover:bg-highlightBackground focus:outline-none">
+          <div className="relative cursor-pointer pb-16/9 w-full rounded-md shadow-xs hover:shadow-md transition-all ease-in-out duration-100 bg-disabledBackground hover:bg-highlightBackground focus:outline-none">
             <div className="absolute flex items-center justify-center w-full h-full">
               <Button
                 size="sm"
@@ -30,7 +30,7 @@ export default function VideoPanelCard({
                 Search for a video
               </p>
             </div>
-          </button>
+          </div>
         </div>
       )}
       {title && (

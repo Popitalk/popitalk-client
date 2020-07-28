@@ -14,7 +14,7 @@ export default function ChatPanel({
   updateGifsOpen
 }) {
   return (
-    <div className="w-dropdown h-full py-2 bg-primaryBackground flex flex-col md:w-84">
+    <div className="w-84 h-full bg-primaryBackground flex flex-col">
       <ChatHeader
         channelId={channelId}
         openFollowersList={openFollowersList}
@@ -28,9 +28,9 @@ export default function ChatPanel({
           isGifsOpen={isGifsOpen}
         />
       ) : (
-        <h1 className="flex text-secondaryText text-xs justify-center mt-56 mb-12">
+        <p className="flex h-screen h-full text-secondaryText text-sm items-center justify-center">
           This is the start of the chat!
-        </h1>
+        </p>
       )}
       {isGifsOpen ? <GifTable updateGifsOpen={updateGifsOpen} /> : null}
       <ChatActions updateGifsOpen={updateGifsOpen} />

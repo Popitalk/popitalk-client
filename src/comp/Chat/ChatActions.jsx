@@ -96,7 +96,7 @@ function ChatActions(props) {
 
   return (
     <>
-      <div className="flex items-center pt-1 space-x-1 md:space-x-2 mx-2">
+      <div className="flex items-center p-2 bg-primaryBackground space-x-1 md:space-x-2">
         {/* EMOJI BUTTON */}
         <button
           onClick={() => setEmojiIsOpen(!emojiIsOpen)}

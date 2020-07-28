@@ -101,7 +101,7 @@ export default function ChatMessages({
         dispatch(setInitialScroll({ channelId: channelId, initialScroll: 1 }));
       }
     },
-    50,
+    200,
     [y]
   );
 
@@ -168,7 +168,7 @@ export default function ChatMessages({
     // InfiniteScroller has to have h-screen, because h-full recalculates/repaints all messages on every key stroke in ChatActions
     <>
       <InfiniteScroller
-        className="overflow-auto h-screen mt-1 pb-4 mozilla-thin-scrollbar"
+        className="overflow-auto h-screen pb-4 mozilla-thin-scrollbar"
         ref={containerRef}
         onTopView={onTopView}
         hasMoreTop={hasMoreTop}
