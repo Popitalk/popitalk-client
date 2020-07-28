@@ -8,7 +8,12 @@ import VideoPlayerStatusCard from "./VideoPlayerStatusCard";
 import defaultImage from "../assets/default/user-default.png";
 import useLocalStorage from "../hooks/useLocalStorage";
 
-function VideoPlayer({ dispatchPlay, dispatchPause, dispatchSkip }) {
+function VideoPlayer({
+  playerStatus,
+  dispatchPlay,
+  dispatchPause,
+  dispatchSkip
+}) {
   const player = useRef(null);
 
   // Determine if the mouse is hovering over the video player
@@ -18,7 +23,7 @@ function VideoPlayer({ dispatchPlay, dispatchPause, dispatchSkip }) {
   const [isHoveringVolume, setIsHoveringVolume] = useState(false);
 
   //Determine state for pause & play & playingIcon
-  const [playing, handlePause] = useState(true);
+  const [playing, setPlaying] = useState(true);
 
   const [progress, setProgress] = useState(0);
   const [duration, setDuration] = useState(0);
@@ -38,9 +43,8 @@ function VideoPlayer({ dispatchPlay, dispatchPause, dispatchSkip }) {
 
   //sync playIcon and play states
   const setBothPlaying = () => {
-    handlePause(!playing);
+    setPlaying(!playing);
     if (playing) {
-      console.log(progress);
       dispatchPause(0, progress);
     } else {
       dispatchPlay(0, progress);

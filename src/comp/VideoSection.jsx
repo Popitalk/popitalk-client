@@ -6,7 +6,6 @@ import VideoStatus from "./VideoStatus";
 import VideoPlayer from "./VideoPlayer";
 
 export default function VideoSection({
-  id,
   title,
   sourceChannelName,
   activeFriendViewers,
@@ -14,6 +13,7 @@ export default function VideoSection({
   inviteUsers,
   openProfile,
   isInvitingAllowed,
+  playerStatus,
   dispatchPlay,
   dispatchPause,
   dispatchSkip
@@ -23,6 +23,7 @@ export default function VideoSection({
       <div className="flex">
         {/* <p className="">Video Container for Video Player</p> */}
         <VideoPlayer
+          playerStatus={playerStatus}
           dispatchPlay={dispatchPlay}
           dispatchPause={dispatchPause}
           dispatchSkip={dispatchSkip}
