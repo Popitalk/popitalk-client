@@ -658,8 +658,8 @@ export const searchVideos = createAsyncThunk(
 export const addVideo = createAsyncThunk(
   "videoSearch/addVideo",
   async videoInfo => {
-    const { channelId, videoId } = videoInfo;
-    const response = await api.addVideo(channelId, videoId);
+    const { channelId, ...minVideoInfo } = videoInfo;
+    const response = await api.addVideo(channelId, minVideoInfo);
 
     console.log("REVVV", response);
 

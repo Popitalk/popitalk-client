@@ -11,7 +11,8 @@ export default function VideoPanelCard({
   thumbnail = "somedefaultimagehere",
   status,
   statusMessage,
-  type = "cancel"
+  type = "cancel",
+  handleAddVideo
 }) {
   // const leftInfo = `${views}`;
   const rightInfo = `${moment(publishedAt).fromNow()}`;
@@ -42,7 +43,23 @@ export default function VideoPanelCard({
                   />
                 )}
                 {type === "add" && (
-                  <button className="z-10 btn btn-sqr opacity-0 group-hover:opacity-100">
+                  <button
+                    className="z-10 btn btn-sqr opacity-0 group-hover:opacity-100"
+                    onClick={() => {
+                      const videoInfo = {
+                        title: title,
+                        publishedAt: publishedAt,
+                        thumbnail: thumbnail
+                      };
+
+                      handleAddVideo({
+                        source: "youtube",
+                        sourceId: id,
+                        length: 1,
+                        videoInfo: JSON.stringify(videoInfo)
+                      });
+                    }}
+                  >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       // width="24"
