@@ -4,7 +4,6 @@ import VideoSearch from "../VideoSearch";
 import ChannelListQueue from "./ChannelListQueue";
 
 export default function ChannelQueue({
-  activeVideo,
   queue,
   trendingResults = [],
   searchResults = [],
@@ -12,11 +11,6 @@ export default function ChannelQueue({
   handleSearch,
   handleAddVideo
 }) {
-  // const handlerChange = ({ oldIndex, newIndex }) => {
-  //   setQueueList(arrayMove(queueList, oldIndex, newIndex));
-  // };
-  const playlist = [activeVideo, ...queue];
-
   return (
     <div className="flex flex-col bg-secondaryBackground">
       <div className="p-0">
@@ -28,7 +22,7 @@ export default function ChannelQueue({
             Add or change videos up next. You can add up to 30 videos.
           </p>
 
-          <ChannelListQueue playlist={playlist} />
+          <ChannelListQueue playlist={queue} />
         </div>
         <div className="mt-8 ">
           <h2 className="px-4 text-lg font-bold">Find More Videos</h2>

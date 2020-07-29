@@ -235,7 +235,7 @@ export default function Channel({ tab, type = "channel" }) {
       {(tab === "video" || tab === "channel") && (
         <>
           <VideoPanel
-            playlist={copyTestQueue}
+            playlist={channel.queue}
             classNames="pt-0"
             dispatchPlay={(queueStartPosition, videoStartTime) =>
               dispatch(
@@ -302,8 +302,7 @@ export default function Channel({ tab, type = "channel" }) {
           totalResults={totalResults}
           handleSearch={handleSearch}
           handleAddVideo={handleAddVideo}
-          activeVideo={testQueue[0]}
-          queue={testQueue}
+          queue={channel.queue}
         />
       )}
       {tab === "settings" && !loading && (
