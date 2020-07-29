@@ -33,7 +33,6 @@ export default function VideoPanel({
     : [];
 
   const dispatch = useDispatch();
-
   console.log("playerStatus", playerStatus);
   const newPlayerStatus = calculatePlayerStatus(playerStatus, playlist);
   console.log("newPlayerStatus", newPlayerStatus);
@@ -43,6 +42,7 @@ export default function VideoPanel({
         {...playlist[newPlayerStatus.queueStartPosition]}
         videoStartTime={newPlayerStatus.videoStartTime}
         status={newPlayerStatus.status}
+        queueStartPosition={newPlayerStatus.queueStartPosition}
         activeFriendViewers={viewers}
         inviteUsers={() => dispatch(openInviteModal(finalId, false))}
         openProfile={id => dispatch(openProfileModal(id))}

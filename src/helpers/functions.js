@@ -258,6 +258,8 @@ export const calculatePlayerStatus = (
   if (newPlayerStatus.videoStartTime + elapsedTime > maxPlaylistTime)
     return { ...newPlayerStatus, status: "Ended" };
 
+  if (status === "Paused" || status === "Ended") return newPlayerStatus;
+
   newPlayerStatus.videoStartTime += elapsedTime;
   console.log("function", newPlayerStatus);
   while (newPlayerStatus.queueStartPosition < playlist.length) {

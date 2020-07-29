@@ -9,6 +9,7 @@ export default function VideoSection({
   title,
   url,
   videoStartTime,
+  queueStartPosition,
   sourceChannelName,
   activeFriendViewers,
   status,
@@ -28,6 +29,7 @@ export default function VideoSection({
           url={url}
           videoStartTime={videoStartTime}
           status={status}
+          queueStartPosition={queueStartPosition}
           dispatchPlay={dispatchPlay}
           dispatchPause={dispatchPause}
           dispatchSkip={dispatchSkip}
