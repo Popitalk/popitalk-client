@@ -243,13 +243,41 @@ export const calculatePlayerStatus = (
   if (playlist.length === 0) return {};
   const msToS = 1 / 1000;
 
-  const elapsedTime = (currTime - clockStartTime) * msToS;
+  let elapsedTime = (currTime - clockStartTime) * msToS;
+  let newVideoStartTime = videoStartTime + elapsedTime;
+  let newQueueStartPosition = queueStartPosition;
+  let newStatus = status;
+  while (newQueueStartPosition < playlist.length) {
+    const totalVideoTime = playlist
+      .slice(queueStartPosition, newQueueStartPosition)
+      .reduce((acc, curr) => acc + curr.length, 0);
+    console.log("totalVideoTime", totalVideoTime);
+    if (newVideoStartTime > totalVideoTime) {
+      console.log("enter length is more than current video");
+      if (newQueueStartPosition + 1 < playlist.length) {
+        newQueueStartPosition++;
+        newVideoStartTime =
+          newVideoStartTime - playlist[newQueueStartPosition].length;
+        console.log(
+          "updating queueStartposition and videoStartTime",
+          newQueueStartPosition,
+          videoStartTime
+        );
+      } else {
+        newStatus = "Ended";
+        break;
+      }
+    }
+    console.log("ended");
+    break;
+  }
+
   // return Number(playedTime.toFixed(0));
   const newPlayerStatus = {
-    queueStartPosition,
+    queueStartPosition: newQueueStartPosition,
     clockStartTime,
-    videoStartTime: videoStartTime + elapsedTime,
-    status
+    videoStartTime: newVideoStartTime,
+    status: newStatus
   };
   return newPlayerStatus;
 };
