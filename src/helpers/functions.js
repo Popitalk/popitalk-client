@@ -241,43 +241,51 @@ export const calculatePlayerStatus = (
   currTime = moment()
 ) => {
   if (playlist.length === 0) return {};
+
   const msToS = 1 / 1000;
 
   let elapsedTime = (currTime - clockStartTime) * msToS;
-  let newVideoStartTime = videoStartTime + elapsedTime;
-  let newQueueStartPosition = queueStartPosition;
-  let newStatus = status;
-  while (newQueueStartPosition < playlist.length) {
-    const totalVideoTime = playlist
-      .slice(queueStartPosition, newQueueStartPosition)
-      .reduce((acc, curr) => acc + curr.length, 0);
-    console.log("totalVideoTime", totalVideoTime);
-    if (newVideoStartTime > totalVideoTime) {
-      console.log("enter length is more than current video");
-      if (newQueueStartPosition + 1 < playlist.length) {
-        newQueueStartPosition++;
-        newVideoStartTime =
-          newVideoStartTime - playlist[newQueueStartPosition].length;
-        console.log(
-          "updating queueStartposition and videoStartTime",
-          newQueueStartPosition,
-          videoStartTime
+  let totalVideoTime = playlist[queueStartPosition].length;
+
+  const newPlayerStatus = {
+    queueStartPosition,
+    videoStartTime,
+    status
+  };
+  const maxPlaylistTime = playlist
+    .slice(queueStartPosition)
+    .reduce((acc, curr) => acc + curr.length, 0);
+
+  if (newPlayerStatus.videoStartTime + elapsedTime > maxPlaylistTime)
+    return { ...newPlayerStatus, status: "Ended" };
+
+  newPlayerStatus.videoStartTime += elapsedTime;
+
+  while (newPlayerStatus.queueStartPosition < playlist.length) {
+    if (newPlayerStatus.videoStartTime > totalVideoTime) {
+      if (newPlayerStatus.queueStartPosition + 1 < playlist.length) {
+        newPlayerStatus.videoStartTime = Number(
+          (
+            newPlayerStatus.videoStartTime -
+            playlist[newPlayerStatus.queueStartPosition].length
+          ).toFixed(0)
         );
-      } else {
-        newStatus = "Ended";
-        break;
+        newPlayerStatus.queueStartPosition++;
+        totalVideoTime += playlist[newPlayerStatus.queueStartPosition].length;
+
+        continue;
       }
+    } else {
+      newPlayerStatus.status =
+        newPlayerStatus.videoStartTime === playlist.length - 1
+          ? "Ended"
+          : newPlayerStatus.status;
+      break;
     }
-    console.log("ended");
     break;
   }
 
   // return Number(playedTime.toFixed(0));
-  const newPlayerStatus = {
-    queueStartPosition: newQueueStartPosition,
-    clockStartTime,
-    videoStartTime: newVideoStartTime,
-    status: newStatus
-  };
+
   return newPlayerStatus;
 };
