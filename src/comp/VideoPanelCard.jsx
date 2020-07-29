@@ -12,7 +12,8 @@ export default function VideoPanelCard({
   status,
   statusMessage,
   type = "cancel",
-  handleAddVideo
+  handleAddVideo,
+  url
 }) {
   // const leftInfo = `${views}`;
   const rightInfo = `${moment(publishedAt).fromNow()}`;
@@ -49,13 +50,13 @@ export default function VideoPanelCard({
                       const videoInfo = {
                         title: title,
                         publishedAt: publishedAt,
-                        thumbnail: thumbnail
+                        thumbnail: thumbnail,
+                        url: url
                       };
 
                       handleAddVideo({
                         source: "youtube",
                         sourceId: id,
-                        length: 1,
                         videoInfo: JSON.stringify(videoInfo)
                       });
                     }}
