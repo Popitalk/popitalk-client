@@ -24,7 +24,7 @@ import {
   setPlaying,
   setPaused,
   skipPlayer,
-  getPlayerStatus
+  addVideo
 } from "../../redux/actions";
 import { testQueue, testResult } from "../../stories/seed-arrays";
 import ChannelHeader from "../../comp/ChannelHeader";
@@ -180,13 +180,11 @@ export default function Channel({ tab, type = "channel" }) {
     dispatch(searchVideos({ channelId, source: "youtube", terms }));
   };
 
+  const handleAddVideo = videoInfo => {
+    dispatch(addVideo({ channelId, ...videoInfo }));
+  };
+
   const loading = channel?.loaded ? false : true;
-  useEffect(() => {
-    if (!loading) {
-      dispatch(getPlayerStatus({ channelId }));
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [loading]);
 
   useEffect(() => {
     if (channel && !channel?.loaded) {
@@ -288,6 +286,7 @@ export default function Channel({ tab, type = "channel" }) {
                 totalResults={totalResults}
                 threshold={24}
                 handleSearch={handleSearch}
+                handleAddVideo={handleAddVideo}
               />
             </div>
           )}
@@ -302,6 +301,7 @@ export default function Channel({ tab, type = "channel" }) {
           searchResults={searchResults}
           totalResults={totalResults}
           handleSearch={handleSearch}
+          handleAddVideo={handleAddVideo}
           activeVideo={testQueue[0]}
           queue={testQueue}
         />

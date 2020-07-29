@@ -6,6 +6,7 @@ export default function VideoResults({
   results,
   totalResults,
   handleLoadMoreResults,
+  handleAddVideo,
   threshold
 }) {
   const [currThreshold, setCurrThreshold] = useState(threshold);
@@ -36,7 +37,14 @@ export default function VideoResults({
       <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 row-gap-8">
         {results.map((result, idx) => {
           if (idx <= currThreshold - 1) {
-            return <VideoPanelCard key={idx} {...result} type="add" />;
+            return (
+              <VideoPanelCard
+                key={idx}
+                {...result}
+                type="add"
+                handleAddVideo={handleAddVideo}
+              />
+            );
           } else {
             return null;
           }
@@ -61,29 +69,3 @@ export default function VideoResults({
     </div>
   );
 }
-
-// {!showComments && comments.length > 1 && (
-//   <button
-//     className="text-secondaryText text-sm"
-//     onClick={() => setShowComments(!showComments)}
-//   >
-//     View more comments
-//   </button>
-// )}
-// {showComments && comments.length > 1 && (
-//   <button
-//     className="text-secondaryText text-sm"
-//     onClick={() => setShowComments(!showComments)}
-//   >
-//     Hide comments
-//   </button>
-// )}
-// {comments.map((comment, idx) => {
-//   if (!showComments && idx === comments.length - 1) {
-//     return <ChannelComment key={idx} {...comment} />;
-//   }
-//   if (showComments) {
-//     return <ChannelComment key={idx} {...comment} />;
-//   }
-// })}
-// {showNewComment && <NewChannelComment />}

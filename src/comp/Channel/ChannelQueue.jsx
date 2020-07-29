@@ -9,7 +9,8 @@ export default function ChannelQueue({
   trendingResults = [],
   searchResults = [],
   totalResults,
-  handleSearch
+  handleSearch,
+  handleAddVideo
 }) {
   // const handlerChange = ({ oldIndex, newIndex }) => {
   //   setQueueList(arrayMove(queueList, oldIndex, newIndex));
@@ -37,6 +38,7 @@ export default function ChannelQueue({
             totalResults={totalResults}
             threshold={24}
             handleSearch={handleSearch}
+            handleAddVideo={handleAddVideo}
           />
         </div>
       </div>

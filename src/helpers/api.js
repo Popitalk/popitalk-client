@@ -163,8 +163,8 @@ export const searchVideos = (source, terms, page) => {
   );
 };
 
-export const addVideo = (channelId, videoId) => {
-  return axios.post("/api/videos/", { channelId, videoId });
+export const addVideo = (channelId, videoInfo) => {
+  return axios.post(`/api/videos/${channelId}`, { ...videoInfo });
 };
 
 // MESSAGES

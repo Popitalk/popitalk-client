@@ -8,7 +8,8 @@ export default function VideoSearch({
   searchResults,
   totalResults,
   threshold,
-  handleSearch
+  handleSearch,
+  handleAddVideo
 }) {
   const [searchTerm, setSearchTerm] = useState("");
 
@@ -29,6 +30,7 @@ export default function VideoSearch({
           results={searchResults}
           totalResults={totalResults}
           handleLoadMoreResults={handleSearch}
+          handleAddVideo={handleAddVideo}
           threshold={threshold}
         />
       ) : (
