@@ -7,6 +7,8 @@ import VideoPlayer from "./VideoPlayer";
 
 export default function VideoSection({
   title,
+  url,
+  videoStartTime,
   sourceChannelName,
   activeFriendViewers,
   status,
@@ -23,7 +25,9 @@ export default function VideoSection({
       <div className="flex">
         {/* <p className="">Video Container for Video Player</p> */}
         <VideoPlayer
-          playerStatus={playerStatus}
+          url={url}
+          videoStartTime={videoStartTime}
+          status={status}
           dispatchPlay={dispatchPlay}
           dispatchPause={dispatchPause}
           dispatchSkip={dispatchSkip}

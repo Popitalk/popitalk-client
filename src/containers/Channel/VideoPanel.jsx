@@ -3,12 +3,12 @@ import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import arrayMove from "array-move";
 import { openInviteModal, openProfileModal } from "../../redux/actions";
-import { mapIdsToUsers } from "../../helpers/functions";
+import { mapIdsToUsers, calculatePlayerStatus } from "../../helpers/functions";
 import VideoSection from "../../comp/VideoSection";
 import QueueSection from "../../comp/QueueSection";
-
 export default function VideoPanel({
   playlist,
+  playerStatus,
   classNames,
   dispatchPlay,
   dispatchPause,
@@ -34,10 +34,15 @@ export default function VideoPanel({
 
   const dispatch = useDispatch();
 
+  console.log("playerStatus", playerStatus);
+  const newPlayerStatus = calculatePlayerStatus(playerStatus, playlist);
+  console.log("newPlayerStatus", newPlayerStatus);
   return (
     <div className={classNames}>
       <VideoSection
-        {...playlist[0]}
+        {...playlist[newPlayerStatus.queueStartPosition]}
+        videoStartTime={newPlayerStatus.videoStartTime}
+        status={newPlayerStatus.status}
         activeFriendViewers={viewers}
         inviteUsers={() => dispatch(openInviteModal(finalId, false))}
         openProfile={id => dispatch(openProfileModal(id))}

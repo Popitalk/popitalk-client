@@ -9,7 +9,9 @@ import defaultImage from "../assets/default/user-default.png";
 import useLocalStorage from "../hooks/useLocalStorage";
 
 function VideoPlayer({
-  playerStatus,
+  url,
+  videoStartTime,
+  status,
   dispatchPlay,
   dispatchPause,
   dispatchSkip
@@ -23,7 +25,7 @@ function VideoPlayer({
   const [isHoveringVolume, setIsHoveringVolume] = useState(false);
 
   //Determine state for pause & play & playingIcon
-  const [playing, setPlaying] = useState(true);
+  const [playing, setPlaying] = useState(status === "Playing");
 
   const [progress, setProgress] = useState(0);
   const [duration, setDuration] = useState(0);
@@ -96,7 +98,7 @@ function VideoPlayer({
         <div className="hover:select-none">
           <ReactPlayer
             ref={player}
-            url="https://www.youtube.com/watch?v=LHODkrToLM8"
+            url={url}
             width="100%"
             height="100%"
             className="absolute t-0 l-0"
@@ -105,6 +107,7 @@ function VideoPlayer({
             muted={muted}
             onReady={() => {
               setDuration(player.current.getDuration());
+              player.current.seekTo(videoStartTime, "seconds");
             }}
             onProgress={({ playedSeconds }) => {
               setProgress(playedSeconds);

@@ -244,8 +244,8 @@ export const calculatePlayerStatus = (
 
   const msToS = 1 / 1000;
 
-  let elapsedTime = (currTime - clockStartTime) * msToS;
-
+  let elapsedTime = (currTime - moment(clockStartTime)) * msToS;
+  console.log("elapsedTime", elapsedTime);
   const newPlayerStatus = {
     queueStartPosition,
     videoStartTime: Number(videoStartTime.toFixed(0)),
@@ -259,7 +259,7 @@ export const calculatePlayerStatus = (
     return { ...newPlayerStatus, status: "Ended" };
 
   newPlayerStatus.videoStartTime += elapsedTime;
-
+  console.log("function", newPlayerStatus);
   while (newPlayerStatus.queueStartPosition < playlist.length) {
     let currVideoTime = playlist[newPlayerStatus.queueStartPosition].length;
     if (newPlayerStatus.videoStartTime > currVideoTime) {

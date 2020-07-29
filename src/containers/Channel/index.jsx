@@ -236,6 +236,12 @@ export default function Channel({ tab, type = "channel" }) {
         <>
           <VideoPanel
             playlist={channel.queue}
+            playerStatus={{
+              queueStartPosition: channel.queueStartPosition,
+              clockStartTime: channel.clockStartTime,
+              videoStartTime: channel.videoStartTime,
+              status: channel.status
+            }}
             classNames="pt-0"
             dispatchPlay={(queueStartPosition, videoStartTime) =>
               dispatch(
