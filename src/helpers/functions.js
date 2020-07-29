@@ -245,11 +245,10 @@ export const calculatePlayerStatus = (
   const msToS = 1 / 1000;
 
   let elapsedTime = (currTime - clockStartTime) * msToS;
-  let totalVideoTime = playlist[queueStartPosition].length;
 
   const newPlayerStatus = {
     queueStartPosition,
-    videoStartTime,
+    videoStartTime: Number(videoStartTime.toFixed(0)),
     status
   };
   const maxPlaylistTime = playlist
@@ -262,30 +261,16 @@ export const calculatePlayerStatus = (
   newPlayerStatus.videoStartTime += elapsedTime;
 
   while (newPlayerStatus.queueStartPosition < playlist.length) {
-    if (newPlayerStatus.videoStartTime > totalVideoTime) {
-      if (newPlayerStatus.queueStartPosition + 1 < playlist.length) {
-        newPlayerStatus.videoStartTime = Number(
-          (
-            newPlayerStatus.videoStartTime -
-            playlist[newPlayerStatus.queueStartPosition].length
-          ).toFixed(0)
-        );
-        newPlayerStatus.queueStartPosition++;
-        totalVideoTime += playlist[newPlayerStatus.queueStartPosition].length;
-
-        continue;
-      }
+    let currVideoTime = playlist[newPlayerStatus.queueStartPosition].length;
+    if (newPlayerStatus.videoStartTime > currVideoTime) {
+      newPlayerStatus.videoStartTime = Number(
+        (newPlayerStatus.videoStartTime - currVideoTime).toFixed(0)
+      );
+      newPlayerStatus.queueStartPosition++;
     } else {
-      newPlayerStatus.status =
-        newPlayerStatus.videoStartTime === playlist.length - 1
-          ? "Ended"
-          : newPlayerStatus.status;
-      break;
+      return newPlayerStatus;
     }
-    break;
   }
-
-  // return Number(playedTime.toFixed(0));
 
   return newPlayerStatus;
 };
