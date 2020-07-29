@@ -36,7 +36,7 @@ export default function ProfileModal({
 
   return (
     <div className="py-8 px-12 overflow-auto">
-      <div className="flex justify-center items-center space-x-8 pt-6 pb-8 px-12">
+      <div className="flex justify-center items-center space-x-8 py-6 px-12">
         {myProfile ? (
           <ImageUpload
             name="avatar"
@@ -51,7 +51,6 @@ export default function ProfileModal({
               updateAvatar(null);
             }}
             disabled={updateUserApi.loading}
-            className=""
           />
         ) : (
           <img

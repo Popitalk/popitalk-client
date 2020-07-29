@@ -1,10 +1,8 @@
 import React, { useState } from "react";
 import { withKnobs } from "@storybook/addon-knobs";
-import WelcomePage from "../comp/Pages/WelcomePage";
 import MainPage from "../comp/Pages/MainPage";
-
 import {
-  testChannels,
+  testChannels1,
   testUsers,
   channelsList,
   friendsList
@@ -16,17 +14,13 @@ export default {
   decorators: [withKnobs]
 };
 
-export const WelcomePageShow = () => {
-  return <WelcomePage />;
-};
-
 export const ChannelQueuePageShow = () => {
   const [selectedChannel, setSelectedChannel] = useState(null);
   return (
     <ChannelQueuePage
       list={friendsList}
       channelPanelProps={{
-        channels: testChannels,
+        channels: testChannels1,
         friends: testUsers,
         selected: selectedChannel,
         handleSelect: id => setSelectedChannel(id)
@@ -41,7 +35,7 @@ export const MainPageShow = () => {
     <MainPage
       list={channelsList}
       channelPanelProps={{
-        channels: testChannels,
+        channels: testChannels1,
         friends: testUsers,
         selected: selectedChannel,
         handleSelect: id => setSelectedChannel(id)

@@ -131,59 +131,59 @@ function VideoPlayer() {
               className="bg-transparent w-full h-full focus:outline-none"
               onClick={() => setBothPlaying()}
             />
-            <div
-              className="flex flex-col px-2 w-full"
-              // Set the mouse hovering state
-              onMouseEnter={() => setIsHovering(true)}
-              onMouseLeave={() => setIsHovering(false)}
-            >
-              <Slider
-                max={duration * 10}
-                value={progress * 10}
-                onChange={s => {
-                  handleProgressSliderChange(s / 10);
-                }}
-                handleStyle={
-                  isHovering === true
-                    ? {
-                        backgroundColor: "#1DA4FE",
-                        borderColor: "#1DA4FE",
-                        cursor: "pointer",
-                        width: 15,
-                        height: 15
-                      }
-                    : {
-                        width: 0,
-                        height: 0,
-                        border: 0
-                      }
-                }
-                trackStyle={
-                  isHovering === true
-                    ? {
-                        backgroundColor: "#1DA4FE",
-                        height: 6
-                      }
-                    : {
-                        backgroundColor: "#1DA4FE",
-                        height: 3
-                      }
-                }
-                railStyle={
-                  isHovering === true
-                    ? {
-                        backgroundColor: "#fff",
-                        opacity: 0.25,
-                        height: 6
-                      }
-                    : {
-                        backgroundColor: "#fff",
-                        opacity: 0.25,
-                        height: 3
-                      }
-                }
-                className="-mb-1 cursor-pointer transition-opacity opacity-75 hover:opacity-100 duration-150"
-              />
+            <div className="flex flex-col px-2 w-full">
+              <div // Set the mouse hovering state
+                onMouseEnter={() => setIsHovering(true)}
+                onMouseLeave={() => setIsHovering(false)}
+              >
+                <Slider
+                  max={duration * 10}
+                  value={progress * 10}
+                  onChange={s => {
+                    handleProgressSliderChange(s / 10);
+                  }}
+                  handleStyle={
+                    isHovering
+                      ? {
+                          backgroundColor: "#1DA4FE",
+                          borderColor: "#1DA4FE",
+                          cursor: "pointer",
+                          width: 15,
+                          height: 15
+                        }
+                      : {
+                          width: 0,
+                          height: 0,
+                          border: 0
+                        }
+                  }
+                  trackStyle={
+                    isHovering
+                      ? {
+                          backgroundColor: "#1DA4FE",
+                          height: 6
+                        }
+                      : {
+                          backgroundColor: "#1DA4FE",
+                          height: 3
+                        }
+                  }
+                  railStyle={
+                    isHovering
+                      ? {
+                          backgroundColor: "#fff",
+                          opacity: 0.25,
+                          height: 6
+                        }
+                      : {
+                          backgroundColor: "#fff",
+                          opacity: 0.25,
+                          height: 3
+                        }
+                  }
+                  className="-mb-1 cursor-pointer transition-all opacity-75 hover:opacity-100 duration-150"
+                />
+              </div>
               <div className="flex items-center justify-between w-full my-1">
                 <div className="flex space-x-4 items-center">
                   {/* Play button */}
@@ -234,6 +234,7 @@ function VideoPlayer() {
                         handleStyle={{ borderColor: "#fff", cursor: "pointer" }}
                         trackStyle={{ backgroundColor: "#fff" }}
                         railStyle={{ backgroundColor: "#fff", opacity: 0.25 }}
+                        className="cursor-pointer"
                       />
                     </div>
                   </div>
