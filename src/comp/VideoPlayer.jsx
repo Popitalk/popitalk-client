@@ -11,6 +11,7 @@ import useLocalStorage from "../hooks/useLocalStorage";
 function VideoPlayer({
   url,
   videoStartTime,
+  queueStartPosition,
   status,
   dispatchPlay,
   dispatchPause,
@@ -36,7 +37,7 @@ function VideoPlayer({
 
   const handleProgressSliderChange = s => {
     player.current.seekTo(s, "seconds");
-    dispatchSkip(0, s);
+    dispatchSkip(queueStartPosition, s);
   };
 
   const handleVolumeSliderChange = v => {
@@ -47,9 +48,9 @@ function VideoPlayer({
   const setBothPlaying = () => {
     setPlaying(!playing);
     if (playing) {
-      dispatchPause(0, progress);
+      dispatchPause(queueStartPosition, progress);
     } else {
-      dispatchPlay(0, progress);
+      dispatchPlay(queueStartPosition, progress);
     }
   };
 
