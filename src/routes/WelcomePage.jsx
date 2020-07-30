@@ -6,7 +6,7 @@ import WelcomeVideo from "../assets/popitalkVideo.mp4";
 function WelcomePage(props) {
   return (
     <div className="w-full h-full">
-      <section className="flex sm:flex-row flex-col rounded-b-lg bg-primaryBackground justify-around items-center px-16 pb-12 shadow-xl">
+      <section className="flex sm:flex-row flex-col bg-primaryBackground justify-around items-center px-16 pb-10 shadow-xl">
         {/* Welcome Video */}
         <div className="bg-gradient-r-primary rounded-circle p-2 flex items-center lg:w-104 lg:h-104 md:w-84 md:h-84 sm:w-12 sm:h-12">
           <div className="w-full h-full p-2 bg-primaryBackground rounded-circle">

@@ -78,7 +78,7 @@ export default function SiteHeaderWelcome({
                 Forgot password?
               </small> */}
             </li>
-            <li className="flex sm:self-end mb-px transition transform ease-in-out hover:scale-105 duration-100">
+            <li className="flex sm:self-end mb-px">
               <Button
                 size="sm"
                 className=""
