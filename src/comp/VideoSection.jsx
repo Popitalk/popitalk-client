@@ -44,9 +44,7 @@ export default function VideoSection({
         </div>
         <div className="py-2">
           <p className="text-lg text-primaryText font-semibold truncate-2-lines overflow-hidden">
-            Some long long long long long long long long long long long long
-            long long long long long long long long long long long long long
-            long long long long long long long long text long long - {title}
+            {title}
           </p>
           <p className="text-sm text-secondaryText py-2">
             {sourceChannelName} &middot; SomeInfo

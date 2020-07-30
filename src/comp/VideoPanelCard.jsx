@@ -72,8 +72,7 @@ export default function VideoPanelCard({
           </div>
           <div className="w-full pt-2 px-0">
             <p className="text-sm font-semibold truncate-2-lines overflow-hidden text-primaryText break-words">
-              Some long long long long long long long long long long long long
-              long long long long long {title}
+              {title}
             </p>
             <div className="flex items-end">
               <p className="text-xs pt-2 text-secondaryText items-end ">

@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { useSelector } from "react-redux";
-
 import ChannelCardList from "./Channel/ChannelCardList.jsx";
 import VideoCardList from "./VideoCardList.jsx";
 import Input from "./Controls/Input.jsx";
@@ -11,14 +10,12 @@ function RecommendedChannels({ list, selectedPage }) {
   const isCollapsed = useSelector(state => state.ui.isCollapsed);
   const alert = useSelector(state => state.ui.alert);
 
-  const [chipSelected, setChipSelected] = useState("");
-  const onChipClick = title => {
-    if (chipSelected === title) {
-      setChipSelected("");
-    } else {
-      setChipSelected(title);
-    }
-  };
+  const [tabSelected, setTab] = useState("# following");
+  const tabs = [
+    { tab: "# following" },
+    { tab: "# discover" },
+    { tab: "# trending" }
+  ];
 
   const [search, setSearch] = useState("");
   return (
@@ -41,52 +38,35 @@ function RecommendedChannels({ list, selectedPage }) {
       </div>
       {/* OPTION TABS */}
       <div className="flex justify-start px-6 mt-8 h-8 space-x-2">
-        <button
-          className={`flex flex-row items-center text-secondaryText font-bold h-full px-4 shadow-sm bg-primaryBackground focus:outline-none transition transform ease-in-out hover:scale-105 duration-100 rounded-full ${
-            chipSelected === "following"
-              ? "rainbow-text shadow-none"
-              : "text-secondaryText"
-          }`}
-          onClick={() => onChipClick("following")}
-        >
-          <p className="text-lg mr-1">#</p>
-          following
-        </button>
-        <button
-          className={`flex flex-row items-center text-secondaryText font-bold h-full px-4 shadow-sm bg-primaryBackground focus:outline-none transition transform ease-in-out hover:scale-105 duration-100 rounded-full focus:shadow-none ${
-            chipSelected === "discover"
-              ? "rainbow-text shadow-none"
-              : "text-secondaryText"
-          }`}
-          onClick={() => onChipClick("discover")}
-        >
-          <p className="text-md mr-1">#</p>
-          discover
-        </button>
-        <button
-          className={`flex flex-row items-center text-secondaryText font-bold h-full px-4 shadow-sm bg-primaryBackground focus:outline-none transition transform ease-in-out hover:scale-105 duration-100 rounded-full focus:shadow-none ${
-            chipSelected === "trending"
-              ? "rainbow-text shadow-none"
-              : "text-secondaryText"
-          }`}
-          onClick={() => onChipClick("trending")}
-        >
-          <p className="text-lg mr-1">#</p>
-          trending
-        </button>
+        {tabs.map((img, idx) => {
+          return (
+            <button
+              key={idx}
+              className={`flex flex-row items-center text-secondaryText font-bold h-full px-4 shadow-sm bg-primaryBackground focus:outline-none transition transform ease-in-out hover:scale-105 duration-100 rounded-full ${
+                tabSelected === img.tab
+                  ? "rainbow-text shadow-none"
+                  : "text-secondaryText"
+              }`}
+              onClick={() => setTab(img.tab)}
+            >
+              <p>{img.tab}</p>
+            </button>
+          );
+        })}
       </div>
+      {/* CARDS */}
       {selectedPage === "channels" ? (
         <ChannelCardList
           channelList={list}
           isCollapsed={isCollapsed}
-          chipSelected={chipSelected}
+          tabSelected={tabSelected}
         />
       ) : (
         selectedPage === "friends" && (
           <VideoCardList
             videoList={list}
             isCollapsed={isCollapsed}
-            chipSelected={chipSelected}
+            tabSelected={tabSelected}
           />
         )
       )}

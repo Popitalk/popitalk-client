@@ -55,7 +55,7 @@ export default function Input({
 
   const inputClasses = classnames(
     getInputClasses(shape, error),
-    "relative bottom-0 py-2 pl-5 pr-4 rounded-lg",
+    "relative bottom-0 py-2 px-4 rounded-lg",
     textClasses,
     {
       "border-primaryBorder": error,
@@ -92,7 +92,7 @@ export default function Input({
         size={size}
         bold={variant !== "video"}
       />
-      <div className="flex flex-row items-center relative">
+      <div className="relative flex flex-row items-center">
         {(variant === "filter" || variant === "filterModal") && (
           <FontAwesomeIcon icon="search" className={iconClasses} />
         )}
@@ -113,13 +113,13 @@ export default function Input({
             <img
               src={sourcesObj[videoSource]}
               alt={videoSource}
-              className="img absolute left-0 ml-4 w-6 h-6"
+              className="img absolute left-0 ml-3 w-6 h-6 object-contain"
             />
             <Button
               icon="search"
               size="sm"
               background="secondary"
-              className="absolute right-0 mr-4 hover:scale-110"
+              className="absolute right-0 mr-3 hover:scale-110"
               onClick={onClick}
             />
           </>

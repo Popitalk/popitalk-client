@@ -2,12 +2,10 @@ import React from "react";
 import PropTypes from "prop-types";
 import VideoCard from "./VideoCard.jsx";
 
-function VideoCardList({ videoList, isCollapsed, chipSelected }) {
-  if (chipSelected) {
-    videoList = videoList.filter(type => type.title === chipSelected);
-  }
+function VideoCardList({ videoList, isCollapsed, tabSelected }) {
   const currentVideoList = [];
   videoList.forEach(type => currentVideoList.push(...type.channels));
+
   return (
     <div className="mx-6 my-8">
       <div className="grid grid-cols-4 gap-3 w-full pb-5">

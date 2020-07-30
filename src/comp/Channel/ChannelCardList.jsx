@@ -2,12 +2,10 @@ import React from "react";
 import PropTypes from "prop-types";
 import ChannelCard from "./ChannelCard.jsx";
 
-function ChannelCardList({ channelList, isCollapsed, chipSelected }) {
-  if (chipSelected) {
-    channelList = channelList.filter(type => type.title === chipSelected);
-  }
+function ChannelCardList({ channelList, isCollapsed, tabSelected }) {
   const currentChannelList = [];
   channelList.forEach(type => currentChannelList.push(...type.channels));
+
   return (
     <div className="mx-4">
       <div
