@@ -22,7 +22,20 @@ describe("calculatePlayerStatus", () => {
     };
     expect(calculatePlayerStatus(playerStatus, [])).toStrictEqual({});
   });
-  test("should return new playerStatus at current time based on previous playerStatus when time elapsed is within one video", () => {
+  test("should return new playerStatus at current time based on previous playerStatus when time elapsed is within one video when playing", () => {
+    const playerStatus = {
+      queueStartPosition: 0,
+      videoStartTime: 2,
+      clockStartTime: moment().subtract(2, "m"),
+      status: "Playing"
+    };
+    expect(calculatePlayerStatus(playerStatus, playlist)).toEqual({
+      queueStartPosition: playerStatus.queueStartPosition,
+      videoStartTime: 122,
+      status: playerStatus.status
+    });
+  });
+  test("should return same playerStatus at current time based on previous playerStatus when time elapsed is within one video when paused", () => {
     const playerStatus = {
       queueStartPosition: 0,
       videoStartTime: 2,
@@ -31,7 +44,7 @@ describe("calculatePlayerStatus", () => {
     };
     expect(calculatePlayerStatus(playerStatus, playlist)).toEqual({
       queueStartPosition: playerStatus.queueStartPosition,
-      videoStartTime: 122,
+      videoStartTime: playerStatus.videoStartTime,
       status: playerStatus.status
     });
   });
@@ -40,7 +53,7 @@ describe("calculatePlayerStatus", () => {
       queueStartPosition: 0,
       videoStartTime: 2,
       clockStartTime: moment().subtract(6, "m"),
-      status: "Paused"
+      status: "Playing"
     };
     expect(calculatePlayerStatus(playerStatus, playlist)).toEqual({
       queueStartPosition: 1,
@@ -53,7 +66,7 @@ describe("calculatePlayerStatus", () => {
       queueStartPosition: 0,
       videoStartTime: 2,
       clockStartTime: moment().subtract(900, "s"),
-      status: "Paused"
+      status: "Playing"
     };
     expect(calculatePlayerStatus(playerStatus, playlist)).toEqual({
       queueStartPosition: 2,
@@ -67,11 +80,11 @@ describe("calculatePlayerStatus", () => {
       queueStartPosition: 0,
       videoStartTime: 2,
       clockStartTime: moment().subtract(20, "m"),
-      status: "Paused"
+      status: "Playing"
     };
     expect(calculatePlayerStatus(playerStatus, playlist)).toEqual({
       queueStartPosition: 0,
-      videoStartTime: 2,
+      videoStartTime: 0,
       status: "Ended"
     });
   });
@@ -80,7 +93,7 @@ describe("calculatePlayerStatus", () => {
       queueStartPosition: 0,
       videoStartTime: 2,
       clockStartTime: moment("2020-07-21 23:06:18.779841-07").subtract(2, "m"),
-      status: "Paused"
+      status: "Playing"
     };
     expect(
       calculatePlayerStatus(
