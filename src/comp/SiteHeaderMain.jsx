@@ -137,7 +137,7 @@ export default function SiteHeaderMain({
                   />
                 </DropDownControls>
                 {hasNotification && (
-                  <div className="absolute top-0 z-10 p-1 ml-3 border-2 rounded-full border-primaryBackground bg-errorText"></div>
+                  <div className="absolute top-0 right-0 -mr-1 z-10 p-1 border-2 rounded-full border-primaryBackground bg-errorText"></div>
                 )}
               </div>
             </li>

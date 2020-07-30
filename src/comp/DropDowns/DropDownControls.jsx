@@ -23,7 +23,7 @@ export default function DropDownControls({ children, onClose, onClick, icon }) {
         className={
           open === true
             ? "cursor-pointer text-highlightText"
-            : "cursor-pointer text-secondaryText hover:text-highlightText"
+            : "cursor-pointer text-secondaryText hover:text-highlightText transition-all duration-100"
         }
         roll="button"
         size="lg"
