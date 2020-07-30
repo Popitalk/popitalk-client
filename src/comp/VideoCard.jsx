@@ -24,8 +24,9 @@ export default function VideoCard({
           className="flex absolute w-full h-full top-0 left-0 rounded-md justify-center items-center 
         text-tertiaryText text-md font-bold bg-black bg-opacity-25 transition-opacity opacity-0 hover:opacity-100 duration-100"
         >
-          Watch it in a room
-          {/* <Button size="sm" icon="share" shape="square" className="px-0 py-4" /> */}
+          <p className="transition transform ease-in-out hover:scale-105 duration-100">
+            Watch it in a room
+          </p>
         </div>
       </div>
       <div className="w-full pt-2 px-1">
