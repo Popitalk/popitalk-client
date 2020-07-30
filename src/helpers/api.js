@@ -167,6 +167,10 @@ export const addVideo = (channelId, videoInfo) => {
   return axios.post(`/api/videos/${channelId}`, { ...videoInfo });
 };
 
+export const deleteVideo = (channelVideoId, channelId) => {
+  return axios.post(`/api/videos/${channelVideoId}`, { channelId });
+};
+
 // MESSAGES
 
 export const addMessage = messageInfo => {

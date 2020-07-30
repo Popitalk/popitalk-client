@@ -661,6 +661,16 @@ export const addVideo = createAsyncThunk(
     const { channelId, ...minVideoInfo } = videoInfo;
     const response = await api.addVideo(channelId, minVideoInfo);
 
+    return response.data;
+  }
+);
+
+export const deleteVideo = createAsyncThunk(
+  "videoSearch/deleteVideo",
+  async videoInfo => {
+    const { channelId, channelVideoId } = videoInfo;
+    const response = await api.deleteVideo(channelVideoId, channelId);
+
     console.log("REVVV", response);
 
     return response.data;
