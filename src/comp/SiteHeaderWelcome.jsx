@@ -11,6 +11,8 @@ export default function SiteHeaderWelcome({
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
+  const [signup, signupStatus] = useState(false);
+
   const handleLogin = () => {
     dispatchLogin(username, password);
     setUsername("");
@@ -18,87 +20,114 @@ export default function SiteHeaderWelcome({
   };
 
   return (
-    <header className="flex flex-col top-0 w-screen border-b border-primaryBorder p-3 md:px-16 sm:justify-between sm:flex-row bg-primaryBackground z-20">
-      <Link to="/welcome" className="no-underline">
-        <div className="flex items-center transition transform ease-in-out hover:scale-105 duration-100 py-3">
-          <img src={Logo} alt="PlayNow's logo" className="w-12 h-12" />
-          <span className="ml-2 text-2xl font-bold text-primaryText">
+    <header
+      className={`${
+        signup ? "hidden" : ""
+      } sm:flex sm:flex-row sm:h-full sm:w-screen sm:px-16 sm:py-3 sm:justify-between sm:items-start 
+      // flex flex-col h-screen justify-start px-12 border-b border-primaryBorder bg-primaryBackground`}
+    >
+      <Link
+        to="/welcome"
+        className="sm:justify-start sm:py-3 sm:mt-0
+        // flex justify-center w-full py-8 mt-4 no-underline"
+      >
+        <div
+          className="sm:flex-row
+          // flex flex-col items-center justify-start transition transform ease-in-out hover:scale-105 duration-100"
+        >
+          <img
+            src={Logo}
+            alt="PlayNow's logo"
+            className="sm:w-12 sm:h-12 // w-20 h-20"
+          />
+          <span className="sm:ml-2 sm:mb-0 sm:text-2xl // flex ml-0 mb-4 text-2xl font-bold text-primaryText">
             Popitalk
           </span>
         </div>
       </Link>
       <nav>
         <form>
-          <ul className="flex flex-col sm:space-x-2 sm:flex-row">
-            <li className="flex flex-col">
-              <label
-                className="ml-1 mb-1 text-xs font-bold text-primaryText"
-                htmlFor="user"
-              >
-                Username or email
-              </label>
-              <input
-                className="h-8 py-2 px-3 border rounded-lg bg-tertiaryBackground border-primaryBorder focus:outline-none text-sm text-primaryText"
-                type="text"
-                value={username}
-                size="sm"
-                id="user"
-                spellCheck={false}
-                onChange={e => setUsername(e.target.value)}
-                disabled={apiLoading}
-                onKeyDown={e => {
-                  if (e.keyCode === 13) {
-                    handleLogin();
+          <ul className="flex flex-col">
+            <div className="sm:flex-row sm:space-x-2 sm:space-y-0 // flex flex-col space-y-4 w-full items-center">
+              <li className="flex flex-col w-full">
+                <label
+                  className="sm:text-xs // w-full ml-1 mb-1 text-sm font-bold text-primaryText"
+                  htmlFor="user"
+                >
+                  Username or email
+                </label>
+                <input
+                  className="sm:h-8 sm:text-sm
+                  // h-10 py-2 px-4 text-md border rounded-lg bg-tertiaryBackground border-primaryBorder focus:outline-none text-primaryText"
+                  type="text"
+                  value={username}
+                  size="sm"
+                  id="user"
+                  spellCheck={false}
+                  onChange={e => setUsername(e.target.value)}
+                  disabled={apiLoading}
+                  onKeyDown={e => {
+                    if (e.keyCode === 13) {
+                      handleLogin();
+                    }
+                  }}
+                />
+              </li>
+              <li className="sm:pb-0 // flex flex-col w-full pb-4">
+                <label
+                  className="sm:text-xs // ml-1 mb-1 text-sm font-bold text-primaryText"
+                  htmlFor="password"
+                >
+                  Password
+                </label>
+                <input
+                  className="sm:h-8 sm:text-sm
+                  // h-10 py-2 px-4 text-md border rounded-lg bg-tertiaryBackground border-primaryBorder focus:outline-none text-primaryText"
+                  type="password"
+                  id="password"
+                  value={password}
+                  spellCheck={false}
+                  onChange={e => setPassword(e.target.value)}
+                  disabled={apiLoading}
+                  onKeyDown={e => {
+                    if (e.keyCode === 13) {
+                      handleLogin();
+                    }
+                  }}
+                />
+                {/* <small className="text-secondaryText text-xs py-1 ml-1">
+                  Forgot password?
+                </small> */}
+              </li>
+              <li className="sm:self-end // flex pb-2px flex-shrink-0">
+                <Button
+                  size="sm"
+                  className="sm:h-auto sm:w-auto // w-24 h-10"
+                  shape="regular"
+                  onClick={handleLogin}
+                  disabled={
+                    apiLoading ||
+                    password.trim().length === 0 ||
+                    username.trim().length === 0
                   }
-                }}
-              />
-            </li>
-            <li className="flex flex-col">
-              <label
-                className="ml-1 mb-1 text-xs font-bold text-primaryText"
-                htmlFor="password"
-              >
-                Password
-              </label>
-              <input
-                className="h-8 py-2 px-3 border rounded-lg bg-tertiaryBackground border-primaryBorder focus:outline-none text-sm"
-                type="password"
-                id="password"
-                value={password}
-                spellCheck={false}
-                onChange={e => setPassword(e.target.value)}
-                disabled={apiLoading}
-                onKeyDown={e => {
-                  if (e.keyCode === 13) {
-                    handleLogin();
-                  }
-                }}
-              />
-              {/* <small className="text-secondaryText text-xs py-1 ml-1">
-                Forgot password?
-              </small> */}
-            </li>
-            <li className="flex sm:self-end mb-px">
-              <Button
-                size="sm"
-                className=""
-                shape="regular"
-                onClick={handleLogin}
-                disabled={
-                  apiLoading ||
-                  password.trim().length === 0 ||
-                  username.trim().length === 0
-                }
-              >
-                Log In
-              </Button>
-            </li>
+                >
+                  Log In
+                </Button>
+              </li>
+            </div>
+            {apiError ? (
+              <small className="sm:self-start sm:my-1 // self-center text-errorText text-xs mx-1 my-4">{`${apiError}. Please try again.`}</small>
+            ) : (
+              <></>
+            )}
+            <p
+              onClick={() => signupStatus(!signup)}
+              role="button"
+              className="sm:hidden // self-center text-secondaryText underline text-sm mx-1 my-8 focus:outline-none"
+            >
+              Don&apos;t have an account?
+            </p>
           </ul>
-          {apiError ? (
-            <small className="self-center text-errorText text-xs mx-1">{`${apiError}. Please try again.`}</small>
-          ) : (
-            <></>
-          )}
         </form>
       </nav>
     </header>

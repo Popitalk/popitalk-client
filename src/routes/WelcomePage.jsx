@@ -19,6 +19,7 @@ function WelcomePage(props) {
                   width: "100%",
                   height: "100%"
                 }}
+                className="rounded-circle"
               >
                 <source src={WelcomeVideo} type="video/mp4" />
               </video>
@@ -26,7 +27,7 @@ function WelcomePage(props) {
           </div>
         </div>
         {/* Sign up form */}
-        <div className="xl:w-102 lg:w-102 md:w-102 sm:w-102 xs:w-full px-4 py-8 sm:rounded-lg sm:shadow-xs hover:shadow-channel md:mx-4 mt-32 xl:mt-8 lg:mt-8 md:mt-8 sm:mt-8 bg-primaryBackground">
+        <div className="xl:w-102 lg:w-102 md:w-102 sm:w-102 xs:w-full px-4 py-8 sm:rounded-lg sm:shadow-xs hover:shadow-channel duration-100 md:mx-4 mt-32 xl:mt-8 lg:mt-8 md:mt-8 sm:mt-8 bg-primaryBackground">
           <CreateNewAccountForm {...props} />
         </div>
       </section>
