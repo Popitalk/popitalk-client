@@ -24,7 +24,9 @@ export default function ChannelsList({
       <InfoCard
         avatar={roomIcon}
         title={channel.name}
-        subtitle={`${channel.numOnline} online`}
+        subtitle={`
+          ${channel.numOnline || 1 * (selected === channel.id)} online
+          `}
         subtitleSize="xs"
         backgroundColor={selected === channel.id ? "highlight" : "transparent"}
         cardClick={() => handleSelect(channel.id)}
