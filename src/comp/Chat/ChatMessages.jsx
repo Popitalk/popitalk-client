@@ -26,8 +26,8 @@ const OldMessagesAlert = ({ onClick }) => (
     role="button"
     onClick={onClick}
   >
-    {/* <p> This is the start of the chat!</p>
-    <p>Jump To Present ▼</p> */}
+    <p> This is the start of the chat!</p>
+    <p>Jump To Present ▼</p>
   </div>
 );
 
