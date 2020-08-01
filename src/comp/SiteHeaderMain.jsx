@@ -115,7 +115,7 @@ export default function SiteHeaderMain({
           </button>
         </li>
         <li>
-          <DropDownControls icon="user-plus">
+          <DropDownControls icon="user-plus" hasNotification={hasNotification}>
             <FriendRequests
               friendRequests={friendRequests}
               handleProfile={openProfileHandler}
@@ -123,18 +123,17 @@ export default function SiteHeaderMain({
           </DropDownControls>
         </li>
         <li>
-          <div className="relative">
-            <DropDownControls icon="bell">
-              <Notifications
-                notifications={notifications}
-                handleProfile={openProfileHandler}
-                handleClear={clearNotificationsHandler}
-              />
-            </DropDownControls>
-            {hasNotification && (
-              <div className="absolute top-0 right-0 -mr-1 z-10 p-1 border-2 rounded-full border-primaryBackground bg-errorText"></div>
-            )}
-          </div>
+          <DropDownControls
+            icon="bell"
+            className="relative"
+            hasNotification={hasNotification}
+          >
+            <Notifications
+              notifications={notifications}
+              handleProfile={openProfileHandler}
+              handleClear={clearNotificationsHandler}
+            />
+          </DropDownControls>
         </li>
         <li>
           <DropDownControls
