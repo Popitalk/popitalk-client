@@ -23,16 +23,17 @@ export default function DropDownControls({
   useOnClickOutside(ref, handler);
 
   return (
-    <button
+    <div
       className={`${
         open === true
           ? "text-highlightText"
           : "cursor-pointer text-secondaryText hover:filter-brightness-8 transition-all duration-100"
-      } sm:relative flex items-center justify-center w-10 h-10 rounded-circle focus:outline-none`}
+      } sm:relative flex items-center justify-center w-10 h-10 rounded-circle`}
       onMouseDown={() => {
         if (onClick) onClick();
         setOpen(true);
       }}
+      role="button"
     >
       <div className="relative">
         <FontAwesomeIcon icon={icon} size="lg" />
@@ -49,6 +50,6 @@ export default function DropDownControls({
           {children}
         </div>
       )}
-    </button>
+    </div>
   );
 }
