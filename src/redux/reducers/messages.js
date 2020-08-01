@@ -53,17 +53,21 @@ const R_addMessages = (state, { payload }) => {
       state[payload.channelId] = state[payload.channelId].slice(0, 100);
     }
   }
-  if (payload.messages.length === 0) {
-    state.allReceived = true;
-  } else {
-    state.allReceived = false;
-  }
 };
 const R_addMessage = (state, { payload }) => {
   const { capacity, ...message } = payload;
   const messageWithStatus = { status: "accepted", ...message };
-  state.allReceived = false;
-  state[payload.channelId].pop();
+  function popElement(index) {
+    if (state[payload.channelId][index].status === "pending") {
+      state[payload.channelId].splice(index, 1);
+      return true;
+    } else if (index < 0) {
+      return false;
+    } else {
+      popElement(index - 1);
+    }
+  }
+  popElement(state[payload.channelId].length - 1);
   if (!state[payload.channelId]) {
     state[payload.channelId] = [messageWithStatus];
   } else if (state[payload.channelId].length < 250) {
@@ -74,6 +78,21 @@ const R_addMessage = (state, { payload }) => {
     }
   }
 };
+
+const R_addMessageWs = (state, { payload }) => {
+  const { capacity, ...message } = payload;
+  const messageWithStatus = { status: "accepted", ...message };
+  if (!state[payload.channelId]) {
+    state[payload.channelId] = [messageWithStatus];
+  } else if (state[payload.channelId].length < 250) {
+    state[payload.channelId].push(messageWithStatus);
+
+    if (capacity === 50) {
+      state[payload.channelId] = state[payload.channelId].slice(-50);
+    }
+  }
+};
+
 const R_addPendingMessage = (state, { meta }) => {
   const tempMessage = {
     status: "pending",
@@ -141,7 +160,7 @@ export default createReducer(initialState, {
   [addMessage.fulfilled]: R_addMessage,
   [addMessage.pending]: R_addPendingMessage,
   [addMessage.rejected]: R_addRejectedMessage,
-  [addMessageWs]: R_addMessage,
+  [addMessageWs]: R_addMessageWs,
   [getLatestMessages.fulfilled]: R_replaceMessages,
   [deleteMessage.fulfilled]: R_deleteMessage,
   [deleteMessageWs]: R_deleteMessage,

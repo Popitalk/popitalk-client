@@ -116,50 +116,67 @@ const websocketMiddleware = () => store => next => action => {
           heartbeat();
         },
         [WS_EVENTS.CHANNEL.ADD_MESSAGE]() {
-          let addMessage = true;
+          // let addMessage = true;
 
-          let messagesState = store.getState().messages;
-          let channelsState = store.getState().channels;
+          // let messagesState = store.getState().messages;
+          // let channelsState = store.getState().channels;
 
-          const channelHasMessages =
-            messagesState[messagePayload.channelId]?.length !== 0;
+          // const channelHasMessages =
+          //   messagesState[messagePayload.channelId]?.length !== 0;
 
-          if (channelHasMessages) {
-            const lastMessageIdInChannel =
-              channelsState[messagePayload.channelId].lastMessageId;
+          // if (channelHasMessages) {
+          //   const lastMessageIdInChannel =
+          //     channelsState[messagePayload.channelId].lastMessageId;
 
-            if (!lastMessageIdInChannel) {
-              addMessage = true;
-            } else {
-              const lastMessageIdInMessages =
-                messagesState[messagePayload.channelId][
-                  messagesState[messagePayload.channelId].length - 1
-                ].id;
+          //   if (!lastMessageIdInChannel) {
+          //     addMessage = true;
+          //   } else {
+          //     // Last message ID in channel has to be a non pending message
+          //     let lastMessageIdInMessages = "";
 
-              addMessage = lastMessageIdInChannel === lastMessageIdInMessages;
-            }
-          }
+          //     function findFirstNonPendingMessage(index) {
+          //       if (
+          //         messagesState[messagePayload.channelId][index].status ===
+          //           "accepted" ||
+          //         messagesState[messagePayload.channelId][index].status ===
+          //           undefined
+          //       ) {
+          //         lastMessageIdInMessages =
+          //           messagesState[messagePayload.channelId][index].id;
+          //       } else if (index < 1) {
+          //         return false;
+          //       } else {
+          //         findFirstNonPendingMessage(index - 1);
+          //       }
+          //     }
+          //     findFirstNonPendingMessage(
+          //       messagesState[messagePayload.channelId].length - 1
+          //     );
 
-          if (addMessage) {
-            const { capacity } = store.getState().channels[
-              messagePayload.channelId
-            ].chatSettings;
-            store.dispatch(
-              addMessageWs({
-                ...messagePayload.message,
-                capacity
-              })
-            );
-          } else {
-            store.dispatch(
-              updateChannelWs({
-                channelId: messagePayload.channelId,
-                updatedChannel: {
-                  lastMessageId: messagePayload.message.id
-                }
-              })
-            );
-          }
+          //     addMessage = lastMessageIdInChannel === lastMessageIdInMessages;
+          //   }
+          // }
+
+          const { capacity } = store.getState().channels[
+            messagePayload.channelId
+          ].chatSettings;
+          store.dispatch(
+            addMessageWs({
+              ...messagePayload.message,
+              capacity
+            })
+          );
+          //       if (addMessage) {
+          // } else {
+          //   store.dispatch(
+          //     updateChannelWs({
+          //       channelId: messagePayload.channelId,
+          //       updatedChannel: {
+          //         lastMessageId: messagePayload.message.id
+          //       }
+          //     })
+          //   );
+          // }
         },
         [WS_EVENTS.CHANNEL.DELETE_MESSAGE]() {
           store.dispatch(deleteMessageWs(messagePayload));
