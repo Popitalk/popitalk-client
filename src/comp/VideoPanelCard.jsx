@@ -13,6 +13,7 @@ export default function VideoPanelCard({
   statusMessage,
   type = "cancel",
   handleAddVideo,
+  handleDeleteVideo,
   url
 }) {
   // const leftInfo = `${views}`;
@@ -41,6 +42,7 @@ export default function VideoPanelCard({
                     shape="rounded"
                     background="cancel"
                     size="sm"
+                    handleDeleteVideo={handleDeleteVideo}
                   />
                 )}
                 {type === "add" && (
