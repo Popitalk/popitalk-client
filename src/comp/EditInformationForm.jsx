@@ -5,8 +5,8 @@ import { connect } from "formik";
 function EditInformationForm({ loading, formik }) {
   return (
     <>
-      <div className="w-full sm:flex mb-2">
-        <div className="w-full flex-1 md:flex-1 md:pr-2 pl-2">
+      <div className="w-full sm:flex sm:pl-0 mb-2 pl-2">
+        <div className="w-full flex-1 sm:flex-1 sm:pr-2 sm:pl-2 pr-2">
           <Input
             header="First Name"
             name="firstName"

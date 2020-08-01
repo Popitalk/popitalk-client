@@ -7,12 +7,15 @@ function WelcomePage(props) {
   return (
     <div className="w-full h-full">
       <section
-        className="sm:flex-row sm:pb-10 sm:pt-0 sm:px-16
-        // flex flex-col bg-primaryBackground justify-around items-center px-8 pt-16 shadow-xl"
+        className="sm:flex-row sm:py-0 sm:px-16
+        // flex flex-col bg-primaryBackground justify-around items-center px-8 py-8 shadow-xl"
       >
         {/* Welcome Video */}
-        <div className="bg-gradient-r-primary rounded-circle p-2 flex items-center lg:w-104 lg:h-104 md:w-84 md:h-84 sm:w-12 sm:h-12">
-          <div className="w-full h-full p-2 bg-primaryBackground rounded-circle">
+        <div
+          className="lg:w-104 lg:h-104 md:w-84 md:h-84 sm:w-40 sm:h-40
+          // flex flex-shrink-0 items-center bg-gradient-r-primary rounded-circle p-1"
+        >
+          <div className="w-full h-full bg-primaryBackground rounded-circle p-1">
             <div className="flex w-full h-full bg-primaryBackground items-center rounded-circle overflow-hidden">
               <video
                 autoPlay

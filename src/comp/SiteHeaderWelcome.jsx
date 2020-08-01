@@ -145,7 +145,7 @@ export default function SiteHeaderWelcome({
               <p
                 onClick={() => signupStatus(!signup)}
                 role="button"
-                className="sm:hidden // self-center text-secondaryText underline text-sm mx-1 my-8 focus:outline-none"
+                className="sm:hidden // self-center text-highlightText underline text-sm mx-1 my-8 focus:outline-none"
               >
                 Don&apos;t have an account?
               </p>
