@@ -15,7 +15,8 @@ function VideoPlayer({
   status,
   dispatchPlay,
   dispatchPause,
-  dispatchSkip
+  dispatchSkip,
+  dispatchUpdatePlayerStatus
 }) {
   const player = useRef(null);
 
@@ -91,7 +92,6 @@ function VideoPlayer({
     }
     return null;
   };
-
   return (
     <>
       <div className="relative pb-16/9 h-full w-full">
@@ -107,13 +107,19 @@ function VideoPlayer({
             volume={volume}
             muted={muted}
             onReady={() => {
-              setDuration(player.current.getDuration());
               player.current.seekTo(videoStartTime, "seconds");
             }}
             onProgress={({ playedSeconds }) => {
               setProgress(playedSeconds);
             }}
             progressInterval={100}
+            onEnded={() => {
+              console.log("ended");
+              dispatchUpdatePlayerStatus();
+            }}
+            onDuration={s => {
+              setDuration(s);
+            }}
           />
         </div>
         <div className="absolute flex flex-col justify-end w-full h-full transition-colors">
