@@ -51,7 +51,9 @@ import {
   setPlaying,
   setPaused,
   skipPlayer,
-  getPlayerStatus
+  getPlayerStatus,
+  addVideo,
+  deleteVideo
 } from "../actions";
 
 const initialState = {};
@@ -273,6 +275,16 @@ const R_updateFriendRoomToOffline = (state, { payload }) => {
 
 const R_resetState = () => initialState;
 
+const R_addVideo = (state, { payload }) => {
+  state[payload.channelId].queue.push({
+    ...payload.video,
+    channelId: payload.channelId
+  });
+};
+
+const R_deleteVideo = (state, { payload }) => {
+  state[payload.channelId].queue.splice(payload.queuePosition, 1);
+};
 // See what the server returns when inviting friends
 // Only add users? Or update channel?
 // Only add users, so that data is in sync?
@@ -332,7 +344,9 @@ export default createReducer(initialState, {
   [setPlaying.fulfilled]: R_updateChannel,
   [setPaused.fulfilled]: R_updateChannel,
   [skipPlayer.fulfilled]: R_updateChannel,
-  [getPlayerStatus.fulfilled]: R_updateChannel
+  [getPlayerStatus.fulfilled]: R_updateChannel,
+  [addVideo.fulfilled]: R_addVideo,
+  [deleteVideo.fulfilled]: R_deleteVideo
 });
 
 // import * as actions from "../actions";

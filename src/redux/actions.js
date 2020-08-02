@@ -660,7 +660,6 @@ export const addVideo = createAsyncThunk(
   async videoInfo => {
     const { channelId, ...minVideoInfo } = videoInfo;
     const response = await api.addVideo(channelId, minVideoInfo);
-
     return response.data;
   }
 );
