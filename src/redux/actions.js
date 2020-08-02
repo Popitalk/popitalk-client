@@ -844,3 +844,5 @@ export const getPlayerStatus = createAsyncThunk(
     return response.data;
   }
 );
+
+export const updatePlayerStatus = createAction("video/updatePlayerStatus");

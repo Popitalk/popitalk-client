@@ -53,8 +53,10 @@ import {
   skipPlayer,
   getPlayerStatus,
   addVideo,
-  deleteVideo
+  deleteVideo,
+  updatePlayerStatus
 } from "../actions";
+import { calculatePlayerStatus } from "../../helpers/functions";
 
 const initialState = {};
 
@@ -285,6 +287,28 @@ const R_addVideo = (state, { payload }) => {
 const R_deleteVideo = (state, { payload }) => {
   state[payload.channelId].queue.splice(payload.queuePosition, 1);
 };
+
+const R_updatePlayerStatus = (state, { payload }) => {
+  console.log("payload", payload);
+  const { channelId } = payload;
+  const { queueStartPosition, clockStartTime, videoStartTime, status } = state[
+    channelId
+  ];
+  const playerStatus = {
+    queueStartPosition,
+    clockStartTime,
+    videoStartTime,
+    status
+  };
+  console.log(
+    "newPlayerStatus",
+    calculatePlayerStatus(playerStatus, state[channelId].queue)
+  );
+  state[channelId] = {
+    ...state[channelId],
+    ...calculatePlayerStatus(playerStatus, state[channelId].queue)
+  };
+};
 // See what the server returns when inviting friends
 // Only add users? Or update channel?
 // Only add users, so that data is in sync?
@@ -346,7 +370,8 @@ export default createReducer(initialState, {
   [skipPlayer.fulfilled]: R_updateChannel,
   [getPlayerStatus.fulfilled]: R_updateChannel,
   [addVideo.fulfilled]: R_addVideo,
-  [deleteVideo.fulfilled]: R_deleteVideo
+  [deleteVideo.fulfilled]: R_deleteVideo,
+  [updatePlayerStatus]: R_updatePlayerStatus
 });
 
 // import * as actions from "../actions";

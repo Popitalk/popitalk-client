@@ -13,6 +13,7 @@ export default function VideoPanel({
   dispatchPlay,
   dispatchPause,
   dispatchSkip,
+  dispatchUpdatePlayerStatus,
   handleDeleteVideo
 }) {
   const [queueList, setQueueList] = useState(playlist);
@@ -34,16 +35,13 @@ export default function VideoPanel({
     : [];
 
   const dispatch = useDispatch();
-  console.log("playerStatus", playerStatus);
-  const newPlayerStatus = calculatePlayerStatus(playerStatus, playlist);
-  console.log("newPlayerStatus", newPlayerStatus);
   return (
     <div className={classNames}>
       <VideoSection
-        {...playlist[newPlayerStatus.queueStartPosition]}
-        videoStartTime={newPlayerStatus.videoStartTime}
-        status={newPlayerStatus.status}
-        queueStartPosition={newPlayerStatus.queueStartPosition}
+        {...playlist[playerStatus.queueStartPosition]}
+        videoStartTime={playerStatus.videoStartTime}
+        status={playerStatus.status}
+        queueStartPosition={playerStatus.queueStartPosition}
         activeFriendViewers={viewers}
         inviteUsers={() => dispatch(openInviteModal(finalId, false))}
         openProfile={id => dispatch(openProfileModal(id))}
@@ -51,6 +49,7 @@ export default function VideoPanel({
         dispatchPlay={dispatchPlay}
         dispatchPause={dispatchPause}
         dispatchSkip={dispatchSkip}
+        dispatchUpdatePlayerStatus={dispatchUpdatePlayerStatus}
       />
       <QueueSection
         queueList={playlist}

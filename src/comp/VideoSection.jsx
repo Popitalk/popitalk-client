@@ -19,7 +19,8 @@ export default function VideoSection({
   playerStatus,
   dispatchPlay,
   dispatchPause,
-  dispatchSkip
+  dispatchSkip,
+  dispatchUpdatePlayerStatus
 }) {
   return (
     <div className="flex flex-col">
@@ -33,6 +34,7 @@ export default function VideoSection({
           dispatchPlay={dispatchPlay}
           dispatchPause={dispatchPause}
           dispatchSkip={dispatchSkip}
+          dispatchUpdatePlayerStatus={dispatchUpdatePlayerStatus}
         />
       </div>
       <div className="flex flex-row justify-between bg-secondaryBackground pt-4">
