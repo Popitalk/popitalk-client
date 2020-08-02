@@ -24,7 +24,8 @@ import {
   setPlaying,
   setPaused,
   skipPlayer,
-  addVideo
+  addVideo,
+  deleteVideo
 } from "../../redux/actions";
 import { testQueue, testResult } from "../../stories/seed-arrays";
 import ChannelHeader from "../../comp/ChannelHeader";
@@ -184,6 +185,9 @@ export default function Channel({ tab, type = "channel" }) {
     dispatch(addVideo({ channelId, ...videoInfo }));
   };
 
+  const handleDeleteVideo = channelVideoId => {
+    dispatch(deleteVideo({ channelId, channelVideoId: channelVideoId }));
+  };
   const loading = channel?.loaded ? false : true;
 
   useEffect(() => {
@@ -258,6 +262,7 @@ export default function Channel({ tab, type = "channel" }) {
                 skipPlayer({ channelId, queueStartPosition, videoStartTime })
               )
             }
+            handleDeleteVideo={handleDeleteVideo}
           />
           {type === "channel" && (
             <ForumPanel

@@ -42,7 +42,9 @@ export default function VideoPanelCard({
                     shape="rounded"
                     background="cancel"
                     size="sm"
-                    handleDeleteVideo={handleDeleteVideo}
+                    onClick={() => {
+                      handleDeleteVideo(id);
+                    }}
                   />
                 )}
                 {type === "add" && (

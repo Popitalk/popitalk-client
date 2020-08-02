@@ -12,7 +12,8 @@ export default function VideoPanel({
   classNames,
   dispatchPlay,
   dispatchPause,
-  dispatchSkip
+  dispatchSkip,
+  handleDeleteVideo
 }) {
   const [queueList, setQueueList] = useState(playlist);
   const handlerChange = ({ oldIndex, newIndex }) => {
@@ -51,7 +52,11 @@ export default function VideoPanel({
         dispatchPause={dispatchPause}
         dispatchSkip={dispatchSkip}
       />
-      <QueueSection queueList={queueList} handlerChange={handlerChange} />
+      <QueueSection
+        queueList={playlist}
+        handlerChange={handlerChange}
+        handleDeleteVideo={handleDeleteVideo}
+      />
     </div>
   );
 }

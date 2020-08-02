@@ -168,7 +168,7 @@ export const addVideo = (channelId, videoInfo) => {
 };
 
 export const deleteVideo = (channelVideoId, channelId) => {
-  return axios.delete(`/api/videos/${channelVideoId}`, { channelId });
+  return axios.delete(`/api/videos/${channelVideoId}`, { data: { channelId } });
 };
 
 // MESSAGES
