@@ -20,10 +20,11 @@ function RecommendedChannels({ list, selectedPage }) {
   const [search, setSearch] = useState("");
   return (
     <div className="relative my-4 mx-auto w-full max-w-screen-xl">
+      {/* Alert to indicate invalid channel URL */}
       <div className="fixed mx-2 -my-4 z-50">
         {!!alert && <Alert duration={3000}>{alert}</Alert>}
       </div>
-      <div className="w-auto mx-2 pt-6 sm:mx-auto m-auto sm:w-2/3">
+      <div className="mx-2 pt-6 mx-auto w-2/3">
         <Input
           variant="channel"
           size="md"
@@ -42,7 +43,7 @@ function RecommendedChannels({ list, selectedPage }) {
           return (
             <button
               key={idx}
-              className={`flex flex-row items-center text-secondaryText font-bold h-full px-4 shadow-sm bg-primaryBackground focus:outline-none transition transform ease-in-out hover:scale-105 duration-100 rounded-full ${
+              className={`flex flex-row items-center text-secondaryText font-bold h-full px-4 shadow-sm bg-primaryBackground focus:outline-none transition transform ease-in-out hover:scale-105 duration-100 rounded-full truncate ${
                 tabSelected === img.tab
                   ? "rainbow-text shadow-none"
                   : "text-secondaryText"

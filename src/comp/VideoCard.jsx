@@ -13,7 +13,7 @@ export default function VideoCard({
   // const leftInfo = `${views}`;
   const rightInfo = `${moment(publishedAt).fromNow()}`;
   return (
-    <div className="cursor-pointer w-full flex-shrink-0 max-w-lg h-64 group">
+    <div className="cursor-pointer w-full flex-shrink-0 max-w-lg h-full group">
       <div className="relative flex justify-center flex-grow pb-16/9 w-full rounded-md group-hover:shadow-xl transition-all ease-in-out duration-100">
         <img
           src={thumbnail}

@@ -38,7 +38,7 @@ const ChannelRouteWrapper = withGetChannel(RouteWrapper);
 export default function App() {
   const validatedSession = useSelector(state => state.general.validatedSession);
   const loggedIn = useSelector(state => state.general.loggedIn);
-  const isCollapsed = useSelector(state => state.ui.isCollapsed);
+  // const isCollapsed = useSelector(state => state.ui.isCollapsed);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -73,9 +73,8 @@ export default function App() {
     <CreateNewAccountContainer component={AnonymousSidebar} />
   );
 
-  const searchClasses = `${
-    isCollapsed ? "block" : "hidden"
-  } flex-grow md:block overflow-auto w-full select-none mozilla-thin-scrollbar`;
+  const searchClasses =
+    "flex-grow block overflow-auto w-full select-none mozilla-thin-scrollbar";
 
   return (
     <>

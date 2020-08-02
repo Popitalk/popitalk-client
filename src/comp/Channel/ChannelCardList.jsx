@@ -9,8 +9,10 @@ function ChannelCardList({ channelList, isCollapsed, tabSelected }) {
   return (
     <div className="mx-4">
       <div
-        className={`grid w-full ${
-          isCollapsed ? "grid-cols-4 " : "grid-cols-3 "
+        className={`grid grid-cols-1 w-full ${
+          isCollapsed
+            ? "sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
+            : "md:grid-cols-2 lg:grid-cols-3"
         }`}
       >
         {currentChannelList.map(channel => (
