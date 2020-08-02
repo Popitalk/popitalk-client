@@ -15,7 +15,9 @@ function CollapsedPanel({
   handleCollapse,
   updateSelectedPage,
   selectedPage,
-  isCollapsed
+  isCollapsed,
+  handleFindFriends,
+  setFriendsSearchFocus
 }) {
   // States to control whether the channels and friends lists are expanded in the collapsed panel.
   const [isFollowingExpanded, setFollowingExpanded] = useState(false);
@@ -41,7 +43,6 @@ function CollapsedPanel({
       }
     }
   }, [isCollapsed, setFollowingExpanded, setDiscoverExpanded, selectedPage]);
-
   return (
     <div className="flex flex-col bg-primaryBackground px-2 items-center w-20 h-full select-none overflow-x-hidden overflow-y-scroll">
       <button
@@ -147,6 +148,16 @@ function CollapsedPanel({
                 </div>
               );
             })}
+            <div className="py-2">
+              <Button
+                icon="user-plus"
+                size="lg"
+                background="primary"
+                className="hover:scale-110"
+                tooltip={"Add Friends"}
+                onClick={handleCollapse}
+              />
+            </div>
           </div>
         </section>
       </div>

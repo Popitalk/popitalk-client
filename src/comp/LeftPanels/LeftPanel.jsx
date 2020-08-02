@@ -29,7 +29,7 @@ export default function LeftPanel({
   const [isCollapsedResponsive, setCollapsedResponsive] = useState();
 
   useEffect(() => {
-    if (size.width < 1200) {
+    if (size.width < 1024) {
       setCollapsedResponsive(true);
     } else {
       setCollapsedResponsive(false);
@@ -94,6 +94,7 @@ export default function LeftPanel({
           isCollapsed={isCollapsed}
           selectedPage={selectedPage}
           updateSelectedPage={updateSelectedPage}
+          setFriendsSearchFocus={setFriendsSearchFocus}
         />
       </div>
     </Fragment>
