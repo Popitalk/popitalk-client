@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useState, useEffect } from "react";
 import FriendsPanel from "./FriendsPanel";
 import CollapsedPanel from "./CollapsedPanel";
 import ChannelsPanel from "./ChannelsPanel";
@@ -25,12 +25,25 @@ export default function LeftPanel({
   setFriendsSearchFocus
 }) {
   const channels = [...yourChannels, ...followingChannels];
+  const size = useWindowSize();
+  const [isCollapsedResponsive, setCollapsedResponsive] = useState();
+
+  useEffect(() => {
+    if (size.width < 1200) {
+      setCollapsedResponsive(true);
+    } else {
+      setCollapsedResponsive(false);
+    }
+  }, [isCollapsed, selectedPage, size.width]);
+  if ((isCollapsed === false) & (isCollapsedResponsive === true)) {
+    isCollapsed = true;
+  }
 
   return (
     <Fragment>
       <div
         className={`${
-          isCollapsed ? "hidden" : ""
+          isCollapsed || isCollapsedResponsive ? "hidden" : ""
         } w-full md:w-auto shadow-md h-full`}
       >
         {selectedPage === "channels" ? (
@@ -66,7 +79,11 @@ export default function LeftPanel({
           />
         )}
       </div>
-      <div className={`block ${isCollapsed ? "md:block" : "hidden"} h-full`}>
+      <div
+        className={`block ${
+          isCollapsed || isCollapsedResponsive ? "md:block" : "hidden"
+        } h-full`}
+      >
         <CollapsedPanel
           rooms={roomsResults}
           channels={channels}
@@ -81,4 +98,36 @@ export default function LeftPanel({
       </div>
     </Fragment>
   );
+}
+
+// Hook
+function useWindowSize() {
+  // Initialize state with undefined width/height so server and client renders match
+  // Learn more here: https://joshwcomeau.com/react/the-perils-of-rehydration/
+  const [windowSize, setWindowSize] = useState({
+    width: undefined,
+    height: undefined
+  });
+
+  useEffect(() => {
+    // Handler to call on window resize
+    function handleResize() {
+      // Set window width/height to state
+      setWindowSize({
+        width: window.innerWidth,
+        height: window.innerHeight
+      });
+    }
+
+    // Add event listener
+    window.addEventListener("resize", handleResize);
+
+    // Call handler right away so state gets updated with initial window size
+    handleResize();
+
+    // Remove event listener on cleanup
+    return () => window.removeEventListener("resize", handleResize);
+  }, []); // Empty array ensures that effect is only run on mount
+
+  return windowSize;
 }
