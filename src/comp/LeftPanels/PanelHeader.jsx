@@ -7,7 +7,7 @@ export default function PanelHeader({
   selectedPage
 }) {
   return (
-    <div className="flex sticky top-0 bg-primaryBackground items-center justify-around w-full z-20 select-none">
+    <div className="flex bg-primaryBackground items-center justify-around w-full select-none">
       <button
         className="p-4 ml-1 rounded-full focus:outline-none text-secondaryText hover:text-highlightText transition transform ease-in-out hover:scale-110 duration-100"
         onClick={handleCollapse}
