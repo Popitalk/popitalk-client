@@ -23,7 +23,7 @@ export default function ChannelDescription({
   const dispatch = useDispatch();
   return (
     <div className="flex flex-col mb-12">
-      <div className="flex flex-row justify-center bg-secondaryBackground">
+      <div className="flex-row // flex justify-center bg-secondaryBackground">
         <AvatarIcon
           username={name}
           avatar={icon}

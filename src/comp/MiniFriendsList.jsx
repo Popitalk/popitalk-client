@@ -41,7 +41,7 @@ export default function MiniFriendsList({
         <Button
           icon="user-plus"
           size="md"
-          background="secondary"
+          background="primary"
           onClick={handleFindFriends}
           className="hover:scale-110"
           tooltip={"Add Friends"}

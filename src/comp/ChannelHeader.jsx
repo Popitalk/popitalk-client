@@ -35,7 +35,7 @@ export default function ChannelHeader({ id, name, icon, type = "channel" }) {
   //   // channel
   // );
   return (
-    <header className="sticky flex top-0 bg-secondaryBackground px-4 py-1 z-20">
+    <div className="flex w-full h-12 bg-secondaryBackground justify-between items-center px-4 py-1 z-20">
       <div className="flex items-center">
         <RoomIcon
           ids={[id]}
@@ -44,14 +44,12 @@ export default function ChannelHeader({ id, name, icon, type = "channel" }) {
           size="sm"
           className="transition transform ease-in-out hover:scale-110 duration-100 cursor-pointer"
         />
-        <div>
-          <p className="flex flex-shrink text-md font-medium text-primaryText p-2 w-full truncate overflow-hidden">
-            {name}
-          </p>
-        </div>
+        <p className="flex flex-shrink-0 text-md font-medium text-primaryText p-2 w-full truncate overflow-hidden">
+          {name}
+        </p>
       </div>
       {type === "channel" && (
-        <nav className="absolute bg-secondaryBackground right-0 flex flex-row flex-shrink-0 items-center py-2">
+        <nav className="flex flex-shrink-0 truncate">
           {navButtons.map((button, idx) => {
             let className =
               "mx-1 font-semibold no-underline focus:outline-none rounded-lg px-2 hover:text-highlightText";
@@ -74,6 +72,6 @@ export default function ChannelHeader({ id, name, icon, type = "channel" }) {
           })}
         </nav>
       )}
-    </header>
+    </div>
   );
 }

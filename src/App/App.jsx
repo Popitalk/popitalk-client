@@ -62,7 +62,7 @@ export default function App() {
   //   );
 
   const chatPanel = (
-    <div className="w-dropdown">
+    <div className="md:flex sm:w-dropdown // hidden">
       <ChatPanel />
     </div>
   );
@@ -74,7 +74,7 @@ export default function App() {
   );
 
   const searchClasses =
-    "flex-grow block overflow-auto w-full select-none mozilla-thin-scrollbar";
+    "flex-grow block overflow-auto w-full mozilla-thin-scrollbar";
 
   return (
     <>
@@ -110,9 +110,7 @@ export default function App() {
           </Route>
           <Route exact path="/channels/:channelId/queue">
             <ChannelRouteWrapper leftPanel={leftPanel}>
-              <div className={searchClasses}>
-                <Channel tab="queue" />
-              </div>
+              <Channel tab="queue" searchClasses={searchClasses} />
               {chatPanel}
             </ChannelRouteWrapper>
           </Route>
@@ -123,9 +121,7 @@ export default function App() {
           </Route>
           <Route exact path="/rooms/:roomId/video">
             <ChannelRouteWrapper leftPanel={leftPanel}>
-              <div className={searchClasses}>
-                <Channel tab="video" type="room" />
-              </div>
+              <Channel tab="video" type="room" searchClasses={searchClasses} />
               {chatPanel}
             </ChannelRouteWrapper>
           </Route>

@@ -31,7 +31,7 @@ import ChannelQueue from "../../comp/Channel/ChannelQueue";
 import VideoSearch from "../../comp/VideoSearch";
 import { mapIdsToUsers } from "../../helpers/functions";
 
-export default function Channel({ tab, type = "channel" }) {
+export default function Channel({ tab, searchClasses, type = "channel" }) {
   let { channelId, roomId } = useParams();
   channelId = channelId || roomId;
   const channel = useSelector(state => state.channels[channelId]);
@@ -203,97 +203,102 @@ export default function Channel({ tab, type = "channel" }) {
 
   if (loading) return <></>;
   return (
-    <div
-      ref={scrollRef}
-      className="flex flex-col bg-secondaryBackground w-full overflow-x-hidden"
-    >
-      <ChannelHeader
-        id={channelId || roomId}
-        name={pickRoomName(channel, users, ownId)}
-        icon={channel.icon || defaultIcon}
-        videoStatus={
-          activeVideo && activeVideo.status ? activeVideo.status : ""
-        }
-        type={type}
-      />
-      {(tab === "video" || tab === "channel") && (
-        <>
-          <VideoPanel playlist={copyTestQueue} />
-          {type === "channel" && (
-            <ForumPanel
-              ref={channelRef}
-              name={channel.name}
-              description={channel.description}
-              icon={channel.icon || defaultIcon}
-              adminList={adminList}
-              status="playing"
-              comments={comments}
-              posts={posts}
-              saveDraft={saveDraft}
-              savePost={savePost}
-              removePost={removePost}
-              saveComment={saveComment}
-              draft={draft}
-              defaultAvatar={defaultAvatar}
-              toggleLike={toggleLike}
-              ownId={ownId}
-              handleFollow={() => handleFollow(channelId)}
-              isMember={isMember}
-              handleUnfollow={() => handleUnfollow(channelId)}
-              handleListAdmins={() => openAdminsList(channelId)}
-            />
-          )}
-          {type === "room" && (
-            <div className="my-4">
-              <h2 className="text-lg px-4">Find More Videos</h2>
-              <VideoSearch
-                trendingResults={trendingResults}
-                searchResults={searchResults}
-                totalResults={totalResults}
-                threshold={24}
-                handleSearch={handleSearch}
-              />
-            </div>
-          )}
-        </>
-      )}
-
-      {tab === "queue" && (
-        <ChannelQueue
-          name={channel.name}
+    <div className="flex flex-col bg-secondaryBackground w-full overflow-x-hidden">
+      <div className="w-full h-12 bg-highlightBackground">
+        <ChannelHeader
+          id={channelId || roomId}
+          name={pickRoomName(channel, users, ownId)}
           icon={channel.icon || defaultIcon}
-          trendingResults={trendingResults}
-          searchResults={searchResults}
-          totalResults={totalResults}
-          handleSearch={handleSearch}
-          activeVideo={testQueue[0]}
-          queue={testQueue}
-        />
-      )}
-      {tab === "settings" && !loading && (
-        <ChannelSettingsPanel
-          ownerId={channel.ownerId || channel.owner_id}
-          followers={mapIdsToUsers(channel.members, users, defaultAvatar)}
-          admins={mapIdsToUsers(channel.admins, users, defaultAvatar)}
-          bannedUsers={mapIdsToUsers(channel.banned, users, defaultAvatar)}
-          initialChannelForm={{
-            ...channel,
-            private: !channel.public,
-            category: ""
-          }}
-          handleChannelFormSubmit={values =>
-            handleChannelFormSubmit(values, channelId)
+          videoStatus={
+            activeVideo && activeVideo.status ? activeVideo.status : ""
           }
-          channelFormLoading={updateChannelApi.loading}
-          channelFormError={
-            updateChannelApi.status === "error" ? updateChannelApi.error : false
-          }
-          addAdminHandler={addAdminHandler}
-          removeAdminHandler={removeAdminHandler}
-          addBanHandler={addBanHandler}
-          removeBanHandler={removeBanHandler}
+          type={type}
         />
-      )}
+      </div>
+      <div
+        ref={scrollRef}
+        className={`flex flex-col overflow-x-hidden h-auto ${searchClasses}`}
+      >
+        {(tab === "video" || tab === "channel") && (
+          <>
+            <VideoPanel playlist={copyTestQueue} />
+            {type === "channel" && (
+              <ForumPanel
+                ref={channelRef}
+                name={channel.name}
+                description={channel.description}
+                icon={channel.icon || defaultIcon}
+                adminList={adminList}
+                status="playing"
+                comments={comments}
+                posts={posts}
+                saveDraft={saveDraft}
+                savePost={savePost}
+                removePost={removePost}
+                saveComment={saveComment}
+                draft={draft}
+                defaultAvatar={defaultAvatar}
+                toggleLike={toggleLike}
+                ownId={ownId}
+                handleFollow={() => handleFollow(channelId)}
+                isMember={isMember}
+                handleUnfollow={() => handleUnfollow(channelId)}
+                handleListAdmins={() => openAdminsList(channelId)}
+              />
+            )}
+            {type === "room" && (
+              <div className="my-4">
+                <h2 className="text-lg px-4">Find More Videos</h2>
+                <VideoSearch
+                  trendingResults={trendingResults}
+                  searchResults={searchResults}
+                  totalResults={totalResults}
+                  threshold={24}
+                  handleSearch={handleSearch}
+                />
+              </div>
+            )}
+          </>
+        )}
+        {tab === "queue" && (
+          <ChannelQueue
+            name={channel.name}
+            icon={channel.icon || defaultIcon}
+            trendingResults={trendingResults}
+            searchResults={searchResults}
+            totalResults={totalResults}
+            handleSearch={handleSearch}
+            activeVideo={testQueue[0]}
+            queue={testQueue}
+          />
+        )}
+        {tab === "settings" && !loading && (
+          <ChannelSettingsPanel
+            ownerId={channel.ownerId || channel.owner_id}
+            followers={mapIdsToUsers(channel.members, users, defaultAvatar)}
+            admins={mapIdsToUsers(channel.admins, users, defaultAvatar)}
+            bannedUsers={mapIdsToUsers(channel.banned, users, defaultAvatar)}
+            initialChannelForm={{
+              ...channel,
+              private: !channel.public,
+              category: ""
+            }}
+            handleChannelFormSubmit={values =>
+              handleChannelFormSubmit(values, channelId)
+            }
+            channelFormLoading={updateChannelApi.loading}
+            channelFormError={
+              updateChannelApi.status === "error"
+                ? updateChannelApi.error
+                : false
+            }
+            addAdminHandler={addAdminHandler}
+            removeAdminHandler={removeAdminHandler}
+            addBanHandler={addBanHandler}
+            removeBanHandler={removeBanHandler}
+          />
+        )}
+      </div>
     </div>
   );
 }
