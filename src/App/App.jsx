@@ -91,7 +91,7 @@ export default function App() {
           </Route>
           <Route exact path="/create">
             <RouteWrapper leftPanel={leftPanel}>
-              <div className="flex justify-center py-12 lg:px-48 sm:px-8 bg-secondaryBackground w-full overflow-auto select-none">
+              <div className="flex justify-center py-12 px-10 md:px-36 lg:px-48 bg-secondaryBackground w-full overflow-auto select-none">
                 <CreateChannelContainer />
               </div>
             </RouteWrapper>
