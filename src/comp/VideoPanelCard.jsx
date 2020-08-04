@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import Button from "./Controls/Button";
 import VideoStatus from "./VideoStatus";
 import moment from "moment";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default function VideoPanelCard({
   id,

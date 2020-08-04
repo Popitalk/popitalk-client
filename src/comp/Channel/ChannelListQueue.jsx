@@ -17,6 +17,7 @@ export default function ChannelListQueue({ playlist }) {
       items={items}
       itemRenderer={itemRenderer}
       handlerChange={handleChange}
+      distance={1}
     >
       <VideoMinimalQueueCard />
     </SortableList>
