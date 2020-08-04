@@ -296,7 +296,9 @@ export default function Channel({ tab, searchClasses, type = "channel" }) {
             )}
             {type === "room" && (
               <div className="my-4">
-                <h2 className="text-lg px-4">Find More Videos</h2>
+                <h2 className="text-lg text-primaryText px-4">
+                  Find More Videos
+                </h2>
                 <VideoSearch
                   trendingResults={trendingResults}
                   searchResults={searchResults}

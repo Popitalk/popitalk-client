@@ -63,7 +63,9 @@ export default function ChannelVideo({
       )}
       {type === "room" && (
         <div>
-          <h2 className="text-2xl mt-20 px-4 font-bold">Find More Videos</h2>
+          <h2 className="text-2xl mt-20 px-4 font-bold text-primaryText">
+            Find More Videos
+          </h2>
           <VideoSearch
             trendingResults={trendingResults}
             searchResults={searchResults}

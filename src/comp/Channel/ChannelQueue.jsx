@@ -21,7 +21,7 @@ export default function ChannelQueue({
       </div>
       <ChannelListQueue playlist={queue} />
       <div className="my-4">
-        <h2 className="px-4 text-lg">Find More Videos</h2>
+        <h2 className="px-4 text-lg text-primaryText">Find More Videos</h2>
         <VideoSearch
           trendingResults={trendingResults}
           searchResults={searchResults}
