@@ -35,7 +35,7 @@ export default function VideoSection({
         dispatchUpdatePlayerStatus={dispatchUpdatePlayerStatus}
       />
       <div className="flex flex-col py-2 px-4">
-        <div className="relative flex items-center py-2">
+        <div className="relative flex items-center h-8">
           {status ? (
             <VideoStatus status={status} type="text" string />
           ) : (
@@ -63,7 +63,7 @@ export default function VideoSection({
             {title}
           </p>
           <p className="text-sm text-secondaryText py-2">
-            {sourceChannelName} &middot; SomeInfo
+            Youtube &middot; {url}
           </p>
         </div>
       </div>

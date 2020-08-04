@@ -13,33 +13,36 @@ export default function VideoMinimalQueueCard({
   return (
     <>
       {!title && (
-        <div className="px-4 rounded-lg py-2 my-1 w-full justify-center flex items-center flex-row bg-tertiaryBackground cursor-pointer">
+        <button
+          className="flex flex-row justify-center items-center cursor-pointer focus:outline-none 
+          h-12 px-4 py-2 my-1 w-full bg-tertiaryBackground shadow-sm hover:shadow-md hover:bg-highlightBackground transition duration-100 rounded-lg"
+        >
           <p className={"text-center mr-2 text-secondaryText text-sm"}>
-            Search and add videos to the queue below.
+            Search and add more videos below!
           </p>
-          <Button size="sm" icon="plus" />
-        </div>
+        </button>
       )}
       {title && (
-        <div className="px-4 rounded-lg py-2 my-1 w-full flex items-center flex-row bg-primaryBackground cursor-move">
-          <div className={"flex w-64 justify-between items-center mr-4"}>
-            <div className={"mx-0"}>
-              <FontAwesomeIcon icon={"bars"} color={"gray"} />
-            </div>
-            <div className={"mr-2"}>
-              <VideoStatus status={status} statusMessage={statusMessage} />
-            </div>
-            <p color={"secondaryText"}>{duration}</p>
-          </div>
-          <p className={"w-full"}>{title}</p>
-          <Button
-            icon="minus"
-            className="btn-no-mr"
-            shape="pill"
-            background="cancel"
-            size="sm"
-            onClick={handleRemove}
+        <div className="relative px-4 rounded-lg h-12 my-1 w-full shadow-xs hover:shadow-md flex flex-row items-center justify-between bg-primaryBackground cursor-pointer">
+          <FontAwesomeIcon
+            icon="bars"
+            className="text-secondaryText cursor-move"
           />
+          <div className="flex flex-row w-full justify-between items-center space-x-2">
+            <VideoStatus status={status} statusMessage={statusMessage} />
+            <p className="text-sm text-secondaryText">{duration}</p>
+            <p className="text-sm w-full mx-2 truncate">{title}</p>
+          </div>
+          <div className="absolute right-0 mr-2 flex">
+            <Button
+              icon="minus"
+              className="btn-no-mr"
+              shape="pill"
+              background="cancel"
+              size="sm"
+              onClick={handleRemove}
+            />
+          </div>
         </div>
       )}
     </>

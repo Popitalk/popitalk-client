@@ -131,14 +131,14 @@ function VideoPlayer({
           />
         </div>
         <div className="absolute flex flex-col justify-end w-full h-full transition-colors">
-          <div className="p-2 w-auto inline-block select-none">
+          {/* <div className="p-2 w-auto inline-block select-none">
             <VideoPlayerStatusCard
               defaultAvatar={defaultImage}
               username="Andrew"
               message="skipped to 0:11"
               systemMessage="Starting 10s"
             />
-          </div>
+          </div> */}
           <div
             // Always show the video controls while the video is at pause.
             className={

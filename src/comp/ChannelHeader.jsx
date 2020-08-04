@@ -35,7 +35,7 @@ export default function ChannelHeader({ id, name, icon, type = "channel" }) {
   //   // channel
   // );
   return (
-    <div className="flex w-full h-12 bg-secondaryBackground justify-between items-center px-4 py-1 z-20">
+    <div className="flex w-full h-12 bg-secondaryBackground justify-between items-center px-4 py-1 z-20 rounded-t-md">
       <div className="flex items-center">
         <RoomIcon
           ids={[id]}

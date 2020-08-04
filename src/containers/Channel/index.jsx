@@ -224,7 +224,7 @@ export default function Channel({ tab, searchClasses, type = "channel" }) {
   if (loading) return <></>;
   return (
     <div className="flex flex-col bg-secondaryBackground w-full overflow-x-hidden">
-      <div className="w-full h-12 bg-highlightBackground">
+      <div className="w-full h-12 bg-primaryBackground">
         <ChannelHeader
           id={channelId || roomId}
           name={pickRoomName(channel, users, ownId)}
