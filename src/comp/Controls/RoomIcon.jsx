@@ -1,6 +1,5 @@
 import React from "react";
 import classnames from "classnames";
-import YoutubeGradient from "../../assets/youtube-gradient-logo.png";
 
 const corners = [
   "rounded-tl-full",
@@ -8,10 +7,6 @@ const corners = [
   "rounded-bl-full",
   "rounded-br-full"
 ];
-
-const LogoStyle = {
-  bottom: "-5px"
-};
 
 const cornerRadius = (index, length) => {
   if (length === 1) return "rounded-full";
@@ -29,7 +24,9 @@ export default function RoomIcon({
   self,
   notifications,
   size = "md",
-  className
+  className,
+  tooltip,
+  tooltipPlace
 }) {
   const OnlineFriendStyle = {
     top:
@@ -54,8 +51,9 @@ export default function RoomIcon({
     "flex flex-shrink-0 items-center justify-center relative rounded-full ": true,
     "h-8 w-8": size === "sm",
     "h-12 w-12": size === "md",
-    "h-16 w-16": size === "lg",
-    "h-20 w-20": size === "xl",
+    "h-14 w-14": size === "lg",
+    "h-16 w-16": size === "xl",
+    "h-20 w-20": size === "2xl",
     "bg-imageBorder1": !watching,
     "bg-gradient-r-primary p-2px": watching,
     [className]: className
@@ -77,7 +75,7 @@ export default function RoomIcon({
     "border-primaryBackground": watching
   });
   const notificationsClasses = classnames({
-    "font-regular text-primaryButtonText text-xs bg-notificationsColor h-5 w-5 rounded-full bg-onlineColor absolute left-0 top-0 flex items-center justify-center select-none": true,
+    "font-regular text-primaryButtonText text-xs bg-notificationsColor h-5 w-5 rounded-lg absolute left-0 top-0 flex items-center justify-center select-none": true,
     "px-2": notifications < 10,
     "px-3": notifications >= 10 && notifications <= 99,
     "px-4": notifications >= 100
@@ -94,7 +92,13 @@ export default function RoomIcon({
               cornerRadius(index, images.length <= 4 ? images.length : 4)
             )}
           >
-            <img className="img h-full" src={image} alt="dogo" />
+            <img
+              className="img h-full"
+              src={image}
+              alt="dogo"
+              data-tip={tooltip}
+              data-place={tooltipPlace}
+            />
           </div>
         ))}
       </div>
@@ -103,19 +107,11 @@ export default function RoomIcon({
       )}
       {self && (
         <p
-          className="font-semibold text-xs absolute bottom-0
-         bg-gradient-br-button text-primaryButtonText rounded-pill flex items-center justify-center py-2px px-1 select-none"
+          className="font-semibold text-xs absolute bottom-0 truncate
+         bg-gradient-br-button text-primaryButtonText rounded-lg shadow-xs flex items-center justify-center py-2px px-1 select-none"
         >
           My room
         </p>
-      )}
-      {watching && (
-        <img
-          src={YoutubeGradient}
-          style={LogoStyle}
-          className="w-6 absolute bottom-0"
-          alt=""
-        />
       )}
       {notifications && (
         <p className={notificationsClasses}>

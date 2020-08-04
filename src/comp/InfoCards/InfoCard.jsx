@@ -15,7 +15,7 @@ export default function InfoCard({
   padding = "none",
   cardClick
 }) {
-  const titleClasses = classnames("text-sm text-primaryText truncate pb-1", {
+  const titleClasses = classnames("text-sm text-primaryText truncate", {
     "font-bold": boldFont
   });
 
@@ -45,14 +45,14 @@ export default function InfoCard({
       onClick={cardClick ? e => cardClick(e) : null}
     >
       {avatar}
-      <div className="flex flex-col mx-3 my-2 truncate">
+      <div className="flex flex-col mx-3 my-2 space-y-1 truncate">
         {title && subtitle ? (
           <>
             <p className={titleClasses}>{title}</p>
             <p className={subtitleClasses}>{subtitle}</p>
           </>
         ) : (
-          <p className="text-md text-primaryText truncate">{title}</p>
+          <p className={titleClasses}>{title}</p>
         )}
       </div>
       {controls ? controls : <></>}

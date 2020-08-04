@@ -6,14 +6,13 @@ export default function InfoCardList({
   itemRenderer,
   height = 300,
   itemSize = 64,
-  fullHeight
+  fullHeight,
+  emptyMessage = "Nothing to show"
 }) {
   if (!items || items.length === 0) {
     return (
-      <div className="h-32 w-full flex items-center justify-center">
-        <p className="text-xs text-secondaryText font-medium">
-          Nothing to show
-        </p>
+      <div className="flex h-44 w-full items-center justify-center">
+        <p className="text-xs text-secondaryText font-medium">{emptyMessage}</p>
       </div>
     );
   }

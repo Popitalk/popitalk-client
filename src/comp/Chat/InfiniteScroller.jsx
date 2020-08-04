@@ -8,7 +8,8 @@ import React, {
 import { useInView } from "react-intersection-observer";
 import { throttle } from "lodash";
 import { useParams } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { setInitialScroll } from "../../redux/actions";
 
 function InfiniteScroller(
   {
@@ -23,7 +24,8 @@ function InfiniteScroller(
     initialScroll = "top",
     children,
     reScroll,
-    isGifsOpen
+    isGifsOpen,
+    channelId
   },
   ref
 ) {
@@ -48,6 +50,7 @@ function InfiniteScroller(
     triggerOnce: false,
     rootMargin: `${threshold}px 0px`
   });
+  const dispatch = useDispatch();
 
   const handleBottomView = useCallback(
     throttle(
@@ -64,6 +67,7 @@ function InfiniteScroller(
   const handleTopView = useCallback(
     throttle(
       () => {
+        dispatch(setInitialScroll({ channelId, initialScroll: "top" }));
         setLoadingItems("top");
         onTopView();
       },

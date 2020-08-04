@@ -15,7 +15,7 @@ export default function MessageContent({ message }) {
     >
       {message.content.gif ? (
         <img
-          className="w-full"
+          className="w-3/5"
           src={message.content.images.downsized_medium}
           alt={message.content.title}
         />

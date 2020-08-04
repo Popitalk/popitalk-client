@@ -9,7 +9,12 @@ export default function ImageInfoCard({
   ...rest
 }) {
   const image = (
-    <AvatarIcon avatar={avatar} username={username} imageClick={imageClick} />
+    <AvatarIcon
+      avatar={avatar}
+      username={username}
+      imageClick={imageClick}
+      className="img w-10 h-10 rounded-circle"
+    />
   );
 
   return <InfoCard avatar={image} {...rest} />;

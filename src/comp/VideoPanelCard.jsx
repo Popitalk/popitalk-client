@@ -21,10 +21,17 @@ export default function VideoPanelCard({
   return (
     <>
       {!title && (
-        <div className="cursor-pointer w-full flex-shrink-0 max-w-2xs relative m-1 rounded-md hover:shadow-md transition-all ease-in-out duration-100 bg-disabledBackground">
-          <div className="pb-16/9 w-full relative">
-            <div className="flex items-center justify-center w-full h-full absolute">
-              <Button size="md" icon="plus" />
+        <div className="flex w-full flex-shrink-0 max-w-2xs items-center pr-2">
+          <div className="relative cursor-pointer pb-16/9 w-full rounded-md shadow-xs hover:shadow-md transition-all ease-in-out duration-100 bg-disabledBackground hover:bg-highlightBackground focus:outline-none">
+            <div className="absolute flex items-center justify-center w-full h-full">
+              <Button
+                size="sm"
+                icon="search"
+                className="opacity-75 shadow-none"
+              />
+              <p className="mx-2 text-secondaryText text-sm hover:filter-brightness-9">
+                Search for a video
+              </p>
             </div>
           </div>
         </div>
@@ -82,10 +89,8 @@ export default function VideoPanelCard({
             <img
               src={thumbnail}
               alt="video-thumbnail"
-              className="absolute top-0 h-full pb-px img rounded-md object-cover"
+              className="absolute top-0 pb-px h-full img rounded-md object-cover"
             />
-
-            {/* <div className="absolute top-0 z-20 w-full h-full bg-gradient-t-channelCardOverlay rounded-xl" /> */}
           </div>
           <div className="w-full pt-2 px-0">
             <p className="text-sm font-semibold truncate-2-lines overflow-hidden text-primaryText break-words">

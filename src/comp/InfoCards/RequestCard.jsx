@@ -3,7 +3,7 @@ import ImageInfoCard from "./ImageInfoCard";
 import FriendRequestButtons from "../Controls/FriendRequestButtons";
 
 export default function RequestCard({ user, handleProfile }) {
-  const buttons = <FriendRequestButtons user={user} />;
+  const buttons = <FriendRequestButtons user={user} size="sm" />;
 
   return (
     <ImageInfoCard
@@ -14,7 +14,7 @@ export default function RequestCard({ user, handleProfile }) {
       subtitle={`${user.firstName} ${user.lastName}`}
       subtitleColor="gray"
       backgroundColor="gray"
-      padding="sm"
+      padding="none"
       cardClick={() => handleProfile(user.id)}
     />
   );

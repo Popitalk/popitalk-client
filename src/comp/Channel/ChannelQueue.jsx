@@ -13,28 +13,23 @@ export default function ChannelQueue({
 }) {
   return (
     <div className="flex flex-col bg-secondaryBackground">
-      <div className="p-0">
-        <div className="mt-4">
-          <h2 className="px-4 text-2xl text-primaryText">
-            Manage Videos Up Next
-          </h2>
-          <p className="px-4 mb-2 text-sm text-secondaryText">
-            Add or change videos up next. You can add up to 30 videos.
-          </p>
-
-          <ChannelListQueue playlist={queue} />
-        </div>
-        <div className="mt-8 ">
-          <h2 className="px-4 text-lg font-bold">Find More Videos</h2>
-          <VideoSearch
-            trendingResults={trendingResults}
-            searchResults={searchResults}
-            totalResults={totalResults}
-            threshold={24}
-            handleSearch={handleSearch}
-            handleAddVideo={handleAddVideo}
-          />
-        </div>
+      <div className="px-4 my-4">
+        <h2 className="text-2xl text-primaryText">Manage Videos Up Next</h2>
+        <p className="text-sm text-secondaryText">
+          Add or change videos up next. You can add up to 30 videos.
+        </p>
+      </div>
+      <ChannelListQueue playlist={queue} />
+      <div className="my-4">
+        <h2 className="px-4 text-lg">Find More Videos</h2>
+        <VideoSearch
+          trendingResults={trendingResults}
+          searchResults={searchResults}
+          totalResults={totalResults}
+          threshold={24}
+          handleSearch={handleSearch}
+          handleAddVideo={handleAddVideo}
+        />
       </div>
     </div>
   );

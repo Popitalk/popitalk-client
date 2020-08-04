@@ -37,7 +37,7 @@ import ChannelQueue from "../../comp/Channel/ChannelQueue";
 import VideoSearch from "../../comp/VideoSearch";
 import { mapIdsToUsers } from "../../helpers/functions";
 
-export default function Channel({ tab, type = "channel" }) {
+export default function Channel({ tab, searchClasses, type = "channel" }) {
   let { channelId, roomId } = useParams();
   channelId = channelId || roomId;
   const channel = useSelector(state => state.channels[channelId]);
@@ -91,10 +91,6 @@ export default function Channel({ tab, type = "channel" }) {
       )
         .map(userId => users[userId].username)
         .join(", ");
-    }
-
-    if (roomName.length > 25) {
-      roomName = `${roomName.slice(0, 25)}...`;
     }
     return roomName;
   };
@@ -227,11 +223,8 @@ export default function Channel({ tab, type = "channel" }) {
 
   if (loading) return <></>;
   return (
-    <div
-      ref={scrollRef}
-      className="flex flex-col w-full bg-secondaryBackground overflow-auto"
-    >
-      <div className="sticky top-0 w-full z-20">
+    <div className="flex flex-col bg-secondaryBackground w-full overflow-x-hidden">
+      <div className="w-full h-12 bg-highlightBackground">
         <ChannelHeader
           id={channelId || roomId}
           name={pickRoomName(channel, users, ownId)}
@@ -242,113 +235,119 @@ export default function Channel({ tab, type = "channel" }) {
           type={type}
         />
       </div>
-      {(tab === "video" || tab === "channel") && (
-        <>
-          <VideoPanel
-            playlist={channel.queue}
-            playerStatus={{
-              queueStartPosition: channel.queueStartPosition,
-              clockStartTime: channel.clockStartTime,
-              videoStartTime: channel.videoStartTime,
-              status: channel.status
-            }}
-            classNames="pt-0"
-            dispatchPlay={(queueStartPosition, videoStartTime) =>
-              dispatch(
-                setPlaying({ channelId, queueStartPosition, videoStartTime })
-              )
-            }
-            dispatchPause={(queueStartPosition, videoStartTime) =>
-              dispatch(
-                setPaused({ channelId, queueStartPosition, videoStartTime })
-              )
-            }
-            dispatchSkip={(queueStartPosition, videoStartTime) =>
-              dispatch(
-                skipPlayer({ channelId, queueStartPosition, videoStartTime })
-              )
-            }
-            dispatchUpdatePlayerStatus={() =>
-              dispatch(updatePlayerStatus({ channelId }))
-            }
-            handleDeleteVideo={handleDeleteVideo}
-          />
-          {type === "channel" && (
-            <ForumPanel
-              ref={channelRef}
-              name={channel.name}
-              description={channel.description}
-              icon={channel.icon || defaultIcon}
-              adminList={adminList}
-              status="playing"
-              comments={comments}
-              posts={posts}
-              saveDraft={saveDraft}
-              savePost={savePost}
-              removePost={removePost}
-              saveComment={saveComment}
-              draft={draft}
-              defaultAvatar={defaultAvatar}
-              toggleLike={toggleLike}
-              ownId={ownId}
-              handleFollow={() => handleFollow(channelId)}
-              isMember={isMember}
-              handleUnfollow={() => handleUnfollow(channelId)}
-              handleListAdmins={() => openAdminsList(channelId)}
+      <div
+        ref={scrollRef}
+        className={`flex flex-col overflow-x-hidden h-auto ${searchClasses}`}
+      >
+        {(tab === "video" || tab === "channel") && (
+          <>
+            <VideoPanel
+              playlist={channel.queue}
+              playerStatus={{
+                queueStartPosition: channel.queueStartPosition,
+                clockStartTime: channel.clockStartTime,
+                videoStartTime: channel.videoStartTime,
+                status: channel.status
+              }}
+              classNames="pt-0"
+              dispatchPlay={(queueStartPosition, videoStartTime) =>
+                dispatch(
+                  setPlaying({ channelId, queueStartPosition, videoStartTime })
+                )
+              }
+              dispatchPause={(queueStartPosition, videoStartTime) =>
+                dispatch(
+                  setPaused({ channelId, queueStartPosition, videoStartTime })
+                )
+              }
+              dispatchSkip={(queueStartPosition, videoStartTime) =>
+                dispatch(
+                  skipPlayer({ channelId, queueStartPosition, videoStartTime })
+                )
+              }
+              dispatchUpdatePlayerStatus={() =>
+                dispatch(updatePlayerStatus({ channelId }))
+              }
+              handleDeleteVideo={handleDeleteVideo}
             />
-          )}
-          {type === "room" && (
-            <div>
-              <h2 className="text-lg mt-20 px-4 text-bold">Find More Videos</h2>
-              <VideoSearch
-                trendingResults={trendingResults}
-                searchResults={searchResults}
-                totalResults={totalResults}
-                threshold={24}
-                handleSearch={handleSearch}
-                handleAddVideo={handleAddVideo}
+            {type === "channel" && (
+              <ForumPanel
+                ref={channelRef}
+                name={channel.name}
+                description={channel.description}
+                icon={channel.icon || defaultIcon}
+                adminList={adminList}
+                status="playing"
+                comments={comments}
+                posts={posts}
+                saveDraft={saveDraft}
+                savePost={savePost}
+                removePost={removePost}
+                saveComment={saveComment}
+                draft={draft}
+                defaultAvatar={defaultAvatar}
+                toggleLike={toggleLike}
+                ownId={ownId}
+                handleFollow={() => handleFollow(channelId)}
+                isMember={isMember}
+                handleUnfollow={() => handleUnfollow(channelId)}
+                handleListAdmins={() => openAdminsList(channelId)}
               />
-            </div>
-          )}
-        </>
-      )}
-
-      {tab === "queue" && (
-        <ChannelQueue
-          name={channel.name}
-          icon={channel.icon || defaultIcon}
-          trendingResults={trendingResults}
-          searchResults={searchResults}
-          totalResults={totalResults}
-          handleSearch={handleSearch}
-          handleAddVideo={handleAddVideo}
-          queue={channel.queue}
-        />
-      )}
-      {tab === "settings" && !loading && (
-        <ChannelSettingsPanel
-          ownerId={channel.ownerId || channel.owner_id}
-          followers={mapIdsToUsers(channel.members, users, defaultAvatar)}
-          admins={mapIdsToUsers(channel.admins, users, defaultAvatar)}
-          bannedUsers={mapIdsToUsers(channel.banned, users, defaultAvatar)}
-          initialChannelForm={{
-            ...channel,
-            private: !channel.public,
-            category: ""
-          }}
-          handleChannelFormSubmit={values =>
-            handleChannelFormSubmit(values, channelId)
-          }
-          channelFormLoading={updateChannelApi.loading}
-          channelFormError={
-            updateChannelApi.status === "error" ? updateChannelApi.error : false
-          }
-          addAdminHandler={addAdminHandler}
-          removeAdminHandler={removeAdminHandler}
-          addBanHandler={addBanHandler}
-          removeBanHandler={removeBanHandler}
-        />
-      )}
+            )}
+            {type === "room" && (
+              <div className="my-4">
+                <h2 className="text-lg px-4">Find More Videos</h2>
+                <VideoSearch
+                  trendingResults={trendingResults}
+                  searchResults={searchResults}
+                  totalResults={totalResults}
+                  threshold={24}
+                  handleSearch={handleSearch}
+                  handleAddVideo={handleAddVideo}
+                />
+              </div>
+            )}
+          </>
+        )}
+        {tab === "queue" && (
+          <ChannelQueue
+            name={channel.name}
+            icon={channel.icon || defaultIcon}
+            trendingResults={trendingResults}
+            searchResults={searchResults}
+            totalResults={totalResults}
+            handleSearch={handleSearch}
+            handleAddVideo={handleAddVideo}
+            queue={channel.queue}
+          />
+        )}
+        {tab === "settings" && !loading && (
+          <ChannelSettingsPanel
+            ownerId={channel.ownerId || channel.owner_id}
+            followers={mapIdsToUsers(channel.members, users, defaultAvatar)}
+            admins={mapIdsToUsers(channel.admins, users, defaultAvatar)}
+            bannedUsers={mapIdsToUsers(channel.banned, users, defaultAvatar)}
+            initialChannelForm={{
+              ...channel,
+              private: !channel.public,
+              category: ""
+            }}
+            handleChannelFormSubmit={values =>
+              handleChannelFormSubmit(values, channelId)
+            }
+            channelFormLoading={updateChannelApi.loading}
+            channelFormError={
+              updateChannelApi.status === "error"
+                ? updateChannelApi.error
+                : false
+            }
+            addAdminHandler={addAdminHandler}
+            removeAdminHandler={removeAdminHandler}
+            addBanHandler={addBanHandler}
+            removeBanHandler={removeBanHandler}
+          />
+        )}
+      </div>
     </div>
   );
 }

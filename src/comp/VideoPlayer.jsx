@@ -2,7 +2,8 @@ import React, { useState, useRef } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import ReactPlayer from "react-player";
 import Slider from "rc-slider";
-
+import screenfull from "screenfull";
+import ReactTooltip from "react-tooltip";
 import "rc-slider/assets/index.css";
 import VideoPlayerStatusCard from "./VideoPlayerStatusCard";
 import defaultImage from "../assets/default/user-default.png";
@@ -18,7 +19,8 @@ function VideoPlayer({
   dispatchSkip,
   dispatchUpdatePlayerStatus
 }) {
-  const player = useRef(null);
+  const videoPlayer = useRef(null);
+  const reactPlayer = useRef(null);
 
   // Determine if the mouse is hovering over the video player
   const [isHovering, setIsHovering] = useState(false);
@@ -37,12 +39,16 @@ function VideoPlayer({
   });
 
   const handleProgressSliderChange = s => {
-    player.current.seekTo(s, "seconds");
     dispatchSkip(queueStartPosition, s);
+    reactPlayer.current.seekTo(s, "seconds");
   };
 
   const handleVolumeSliderChange = v => {
     setVolume({ volume: v, muted: false });
+  };
+
+  const handleFullScreen = () => {
+    if (screenfull.isEnabled) screenfull.toggle(videoPlayer.current);
   };
 
   //sync playIcon and play states
@@ -94,11 +100,12 @@ function VideoPlayer({
   };
   return (
     <>
-      <div className="relative pb-16/9 h-full w-full">
+      <div ref={videoPlayer} className="relative pb-16/9 h-full w-full">
+        <ReactTooltip effect="solid" className="tooltip truncate" />
         <div className="absolute bg-black h-full w-full"></div>
         <div className="hover:select-none">
           <ReactPlayer
-            ref={player}
+            ref={reactPlayer}
             url={url}
             width="100%"
             height="100%"
@@ -107,7 +114,8 @@ function VideoPlayer({
             volume={volume}
             muted={muted}
             onReady={() => {
-              player.current.seekTo(videoStartTime, "seconds");
+              reactPlayer.current.seekTo(videoStartTime, "seconds");
+              setDuration(reactPlayer.current.getDuration());
             }}
             onProgress={({ playedSeconds }) => {
               setProgress(playedSeconds);
@@ -143,65 +151,67 @@ function VideoPlayer({
               className="bg-transparent w-full h-full focus:outline-none"
               onClick={() => setBothPlaying()}
             />
-            <div
-              className="flex flex-col px-2 w-full"
-              // Set the mouse hovering state
-              onMouseEnter={() => setIsHovering(true)}
-              onMouseLeave={() => setIsHovering(false)}
-            >
-              <Slider
-                max={duration * 10}
-                value={progress * 10}
-                onChange={s => {
-                  handleProgressSliderChange(s / 10);
-                }}
-                handleStyle={
-                  isHovering === true
-                    ? {
-                        backgroundColor: "#1DA4FE",
-                        borderColor: "#1DA4FE",
-                        cursor: "pointer",
-                        width: 15,
-                        height: 15
-                      }
-                    : {
-                        width: 0,
-                        height: 0,
-                        border: 0
-                      }
-                }
-                trackStyle={
-                  isHovering === true
-                    ? {
-                        backgroundColor: "#1DA4FE",
-                        height: 6
-                      }
-                    : {
-                        backgroundColor: "#1DA4FE",
-                        height: 3
-                      }
-                }
-                railStyle={
-                  isHovering === true
-                    ? {
-                        backgroundColor: "#fff",
-                        opacity: 0.25,
-                        height: 6
-                      }
-                    : {
-                        backgroundColor: "#fff",
-                        opacity: 0.25,
-                        height: 3
-                      }
-                }
-                className="-mb-1 cursor-pointer transition-opacity opacity-75 hover:opacity-100 duration-150"
-              />
+            <div className="flex flex-col px-2 w-full">
+              <div // Set the mouse hovering state
+                onMouseEnter={() => setIsHovering(true)}
+                onMouseLeave={() => setIsHovering(false)}
+              >
+                <Slider
+                  max={duration * 10}
+                  value={progress * 10}
+                  onChange={s => {
+                    handleProgressSliderChange(s / 10);
+                  }}
+                  handleStyle={
+                    isHovering
+                      ? {
+                          backgroundColor: "#1DA4FE",
+                          borderColor: "#1DA4FE",
+                          cursor: "pointer",
+                          width: 15,
+                          height: 15
+                        }
+                      : {
+                          width: 0,
+                          height: 0,
+                          border: 0
+                        }
+                  }
+                  trackStyle={
+                    isHovering
+                      ? {
+                          backgroundColor: "#1DA4FE",
+                          height: 6
+                        }
+                      : {
+                          backgroundColor: "#1DA4FE",
+                          height: 3
+                        }
+                  }
+                  railStyle={
+                    isHovering
+                      ? {
+                          backgroundColor: "#fff",
+                          opacity: 0.25,
+                          height: 6
+                        }
+                      : {
+                          backgroundColor: "#fff",
+                          opacity: 0.25,
+                          height: 3
+                        }
+                  }
+                  className="-mb-1 cursor-pointer transition-all opacity-75 hover:opacity-100 duration-150"
+                />
+              </div>
               <div className="flex items-center justify-between w-full my-1">
                 <div className="flex space-x-4 items-center">
                   {/* Play button */}
                   <button
                     className="w-8 p-1 rounded-full hover:bg-playerControlsHover focus:outline-none duration-100 transition transform ease-in-out hover:scale-110"
                     onClick={() => setBothPlaying()}
+                    data-tip={playing === false ? "Play" : "Pause"}
+                    data-place="top"
                   >
                     <FontAwesomeIcon
                       icon={!playing ? "play" : "pause"}
@@ -219,6 +229,8 @@ function VideoPlayer({
                     <button
                       className="w-8 p-1 rounded-full focus:outline-none duration-100 transition transform ease-in-out hover:scale-110"
                       onClick={toggleMute}
+                      data-tip={muted ? "Unmute" : "Mute"}
+                      data-place="top"
                     >
                       <FontAwesomeIcon
                         icon={
@@ -242,6 +254,7 @@ function VideoPlayer({
                         handleStyle={{ borderColor: "#fff", cursor: "pointer" }}
                         trackStyle={{ backgroundColor: "#fff" }}
                         railStyle={{ backgroundColor: "#fff", opacity: 0.25 }}
+                        className="cursor-pointer"
                       />
                     </div>
                   </div>
@@ -252,7 +265,14 @@ function VideoPlayer({
                   </span>
                 </div>
                 {/* Full screen button */}
-                <button className="w-8 p-1 rounded-full hover:bg-playerControlsHover focus:outline-none transition transform ease-in-out hover:scale-110 duration-100">
+                <button
+                  className={`w-8 p-1 rounded-full hover:bg-playerControlsHover
+                    focus:outline-none transition transform ease-in-out
+                    hover:scale-110 duration-100`}
+                  onClick={handleFullScreen}
+                  data-tip="Full screen"
+                  data-place="top"
+                >
                   <FontAwesomeIcon
                     icon="compress"
                     className="text-tertiaryText"

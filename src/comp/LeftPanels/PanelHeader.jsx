@@ -7,40 +7,28 @@ export default function PanelHeader({
   selectedPage
 }) {
   return (
-    <div className="flex sticky top-0 bg-primaryBackground items-center justify-around w-full px-0 z-20 select-none">
-      <button className="p-4 ml-2 focus:outline-none" onClick={handleCollapse}>
-        <FontAwesomeIcon
-          icon="bars"
-          className="cursor-pointer text-secondaryText hover:text-highlightText transition transform ease-in-out hover:scale-110 duration-100"
-        />
+    <div className="flex bg-primaryBackground items-center justify-around w-full select-none">
+      <button
+        className="p-4 ml-1 rounded-full focus:outline-none text-secondaryText hover:text-highlightText transition transform ease-in-out hover:scale-110 duration-100"
+        onClick={handleCollapse}
+      >
+        <FontAwesomeIcon icon="bars" />
       </button>
       <button
+        className={`text-2xl px-2 p-1 focus:outline-none font-semibold hover:bg-secondaryBackground rounded-xl transition transform ease-in-out hover:scale-105 duration-100 ${
+          selectedPage === "channels" ? "rainbow-text" : "text-secondaryText"
+        } `}
         onClick={() => updateSelectedPage("channels")}
-        className="focus:outline-none"
       >
-        <h3
-          className={`${
-            selectedPage === "channels"
-              ? "text-2xl font-semibold btn-playing px-2 p-1 rounded-full"
-              : "text-secondaryText font-semibold text-2xl hover:bg-secondaryBackground rounded-xl px-2 p-1 transition transform ease-in-out hover:scale-105 duration-100"
-          } `}
-        >
-          Channels
-        </h3>
+        Channels
       </button>
       <button
+        className={`text-2xl px-2 p-1 focus:outline-none font-semibold hover:bg-secondaryBackground rounded-xl transition transform ease-in-out hover:scale-105 duration-100 ${
+          selectedPage === "friends" ? "rainbow-text" : "text-secondaryText"
+        } `}
         onClick={() => updateSelectedPage("friends")}
-        className="focus:outline-none"
       >
-        <h3
-          className={`${
-            selectedPage === "friends"
-              ? "text-2xl font-semibold btn-playing px-2 p-1 rounded-full"
-              : "text-secondaryText font-semibold text-2xl hover:bg-secondaryBackground rounded-xl px-2 p-1 transition transform ease-in-out hover:scale-105 duration-100"
-          } `}
-        >
-          Friends
-        </h3>
+        Friends
       </button>
     </div>
   );

@@ -7,9 +7,9 @@ export default function VideoSearchBar({ className, onClick }) {
   const [value, setValue] = useState("");
 
   return (
-    <div className="bg-secondaryBackground px-4 py-2">
+    <div className="bg-secondaryBackground px-4 py-4">
       <form
-        className={className ? className : "mb-1"}
+        className={className ? className : "mb-4"}
         onSubmit={e => e.preventDefault()}
       >
         <Input
@@ -23,7 +23,7 @@ export default function VideoSearchBar({ className, onClick }) {
           className="w-full md:w-3/4"
         />
       </form>
-      <div className="flex flex-wrap mt-2 grid-cols-services">
+      <div className="flex flex-wrap my-2 grid-cols-services">
         {sources.map((img, idx) => {
           return (
             <button

@@ -25,7 +25,7 @@ import "../comp/ScrollBars.css";
 const RouteWrapper = ({ leftPanel, children }) => {
   return (
     <div className="flex flex-row h-full overflow-auto">
-      <div className="flex-grow md:overflow-auto md:flex-shrink-0 mozilla-thin-scrollbar">
+      <div className="flex-grow md:overflow-auto md:flex-shrink-0 w-auto mozilla-thin-scrollbar">
         {leftPanel}
       </div>
       {children}
@@ -38,7 +38,7 @@ const ChannelRouteWrapper = withGetChannel(RouteWrapper);
 export default function App() {
   const validatedSession = useSelector(state => state.general.validatedSession);
   const loggedIn = useSelector(state => state.general.loggedIn);
-  const isCollapsed = useSelector(state => state.ui.isCollapsed);
+  // const isCollapsed = useSelector(state => state.ui.isCollapsed);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -62,7 +62,7 @@ export default function App() {
   //   );
 
   const chatPanel = (
-    <div className="w-dropdown">
+    <div className="md:flex sm:w-dropdown // hidden">
       <ChatPanel />
     </div>
   );
@@ -73,9 +73,8 @@ export default function App() {
     <CreateNewAccountContainer component={AnonymousSidebar} />
   );
 
-  const searchClasses = `${
-    isCollapsed ? "block" : "hidden"
-  } flex-grow md:block overflow-auto w-full select-none mozilla-thin-scrollbar`;
+  const searchClasses =
+    "flex-grow block overflow-auto w-full mozilla-thin-scrollbar";
 
   return (
     <>
@@ -86,13 +85,13 @@ export default function App() {
         </div>
         <Switch>
           <Route exact path="/welcome">
-            <div className="h-full overflow-auto">
+            <div className="h-full overflow-y-auto">
               <CreateNewAccountContainer component={WelcomePage} />
             </div>
           </Route>
           <Route exact path="/create">
             <RouteWrapper leftPanel={leftPanel}>
-              <div className="flex justify-center py-12 lg:px-48 sm:px-8 bg-secondaryBackground w-full overflow-auto select-none">
+              <div className="flex justify-center py-12 px-10 md:px-36 lg:px-48 bg-secondaryBackground w-full overflow-auto select-none">
                 <CreateChannelContainer />
               </div>
             </RouteWrapper>
@@ -111,9 +110,7 @@ export default function App() {
           </Route>
           <Route exact path="/channels/:channelId/queue">
             <ChannelRouteWrapper leftPanel={leftPanel}>
-              <div className={searchClasses}>
-                <Channel tab="queue" />
-              </div>
+              <Channel tab="queue" searchClasses={searchClasses} />
               {chatPanel}
             </ChannelRouteWrapper>
           </Route>
@@ -124,9 +121,7 @@ export default function App() {
           </Route>
           <Route exact path="/rooms/:roomId/video">
             <ChannelRouteWrapper leftPanel={leftPanel}>
-              <div className={searchClasses}>
-                <Channel tab="video" type="room" />
-              </div>
+              <Channel tab="video" type="room" searchClasses={searchClasses} />
               {chatPanel}
             </ChannelRouteWrapper>
           </Route>

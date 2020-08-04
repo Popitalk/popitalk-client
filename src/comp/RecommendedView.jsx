@@ -1,33 +1,30 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { useSelector } from "react-redux";
-
 import ChannelCardList from "./Channel/ChannelCardList.jsx";
 import VideoCardList from "./VideoCardList.jsx";
 import Input from "./Controls/Input.jsx";
-import Button from "./Controls/Button";
 import Alert from "../comp/Alert";
 
 function RecommendedChannels({ list, selectedPage }) {
   const isCollapsed = useSelector(state => state.ui.isCollapsed);
   const alert = useSelector(state => state.ui.alert);
 
-  const [chipSelected, setChipSelected] = useState("");
-  const onChipClick = title => {
-    if (chipSelected === title) {
-      setChipSelected("");
-    } else {
-      setChipSelected(title);
-    }
-  };
+  const [tabSelected, setTab] = useState("# following");
+  const tabs = [
+    { tab: "# following" },
+    { tab: "# discover" },
+    { tab: "# trending" }
+  ];
 
   const [search, setSearch] = useState("");
   return (
-    <div className="relative mt-4 mx-auto w-full max-w-screen-xl overflow-y-scroll">
+    <div className="relative my-4 mx-auto w-full max-w-screen-xl">
+      {/* Alert to indicate invalid channel URL */}
       <div className="fixed mx-2 -my-4 z-50">
         {!!alert && <Alert duration={3000}>{alert}</Alert>}
       </div>
-      <div className="w-auto mx-2 pt-6 sm:mx-auto m-auto sm:w-2/3">
+      <div className="mx-2 pt-6 mx-auto w-2/3">
         <Input
           variant="channel"
           size="md"
@@ -40,59 +37,40 @@ function RecommendedChannels({ list, selectedPage }) {
           onChange={e => setSearch(e.target.value)}
         />
       </div>
-      <div className="flex justify-center my-4 h-10">
-        <Button
-          leftIcon="bell"
-          className="uppercase mr-4 shadow-xs hover:shadow-none focus:shadow-none bg-secondaryBackground space-x-2"
-          shape="chip"
-          background="bgColor"
-          selectedColor={chipSelected === "following" && "primary"}
-          onClick={() => onChipClick("following")}
-          size="sm"
-        >
-          following
-        </Button>
-        <Button
-          leftIcon="globe"
-          className="uppercase mr-4 shadow-xs hover:shadow-none focus:shadow-none bg-secondaryBackground space-x-2"
-          shape="chip"
-          background="bgColor"
-          selectedColor={chipSelected === "discover" && "secondary"}
-          onClick={() => onChipClick("discover")}
-          size="sm"
-        >
-          discover
-        </Button>
-        <Button
-          leftIcon="heart"
-          className="uppercase shadow-xs hover:shadow-none focus:shadow-none bg-secondaryBackground space-x-2"
-          shape="chip"
-          background="bgColor"
-          selectedColor={chipSelected === "trending" && "cancel"}
-          onClick={() => onChipClick("trending")}
-          size="sm"
-        >
-          trending
-        </Button>
+      {/* OPTION TABS */}
+      <div className="flex justify-start px-6 mt-8 h-8 space-x-2">
+        {tabs.map((img, idx) => {
+          return (
+            <button
+              key={idx}
+              className={`flex flex-row items-center text-secondaryText font-bold h-full px-4 shadow-sm bg-primaryBackground focus:outline-none transition transform ease-in-out hover:scale-105 duration-100 rounded-full truncate ${
+                tabSelected === img.tab
+                  ? "rainbow-text shadow-none"
+                  : "text-secondaryText"
+              }`}
+              onClick={() => setTab(img.tab)}
+            >
+              <p>{img.tab}</p>
+            </button>
+          );
+        })}
       </div>
-
-      <div className="mt-2">
-        {selectedPage === "channels" ? (
-          <ChannelCardList
-            channelList={list}
+      {/* CARDS */}
+      {selectedPage === "channels" ? (
+        <ChannelCardList
+          channelList={list}
+          isCollapsed={isCollapsed}
+          tabSelected={tabSelected}
+        />
+      ) : (
+        selectedPage === "friends" && (
+          <VideoCardList
+            videoList={list}
             isCollapsed={isCollapsed}
-            chipSelected={chipSelected}
+            tabSelected={tabSelected}
           />
-        ) : (
-          selectedPage === "friends" && (
-            <VideoCardList
-              videoList={list}
-              isCollapsed={isCollapsed}
-              chipSelected={chipSelected}
-            />
-          )
-        )}
-      </div>
+        )
+      )}
     </div>
   );
 }

@@ -7,6 +7,7 @@ export default function ChannelsList({
   channels,
   selected,
   handleSelect,
+  emptyMessage,
   ...rest
 }) {
   const itemRenderer = channel => {
@@ -23,7 +24,9 @@ export default function ChannelsList({
       <InfoCard
         avatar={roomIcon}
         title={channel.name}
-        subtitle={`${channel.numOnline} online`}
+        subtitle={`
+          ${channel.numOnline || 1 * (selected === channel.id)} online
+          `}
         subtitleSize="xs"
         backgroundColor={selected === channel.id ? "highlight" : "transparent"}
         cardClick={() => handleSelect(channel.id)}
@@ -32,6 +35,11 @@ export default function ChannelsList({
   };
 
   return (
-    <InfoCardList items={channels} itemRenderer={itemRenderer} {...rest} />
+    <InfoCardList
+      items={channels}
+      itemRenderer={itemRenderer}
+      emptyMessage={emptyMessage}
+      {...rest}
+    />
   );
 }

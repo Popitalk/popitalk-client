@@ -16,6 +16,8 @@ export default function Button({
   className,
   selectedColor,
   hoverable,
+  tooltip,
+  tooltipPlace = "bottom",
   ...props
 }) {
   if (selectedColor) background = selectedColor;
@@ -26,15 +28,10 @@ export default function Button({
     bgColor: "bg-gradient-br-bgColor"
   };
 
-  // console.log("before shape", shape);
-  //shape = !shape && icon ? "circle" : shape;
-  // console.log("after shape", shape);
-
   const shapes = {
     regular: "rounded-lg",
     pill: "rounded-pill",
     circle: "rounded-circle",
-    chip: "rounded-full",
     none: "rounded-sm"
   };
 
@@ -43,7 +40,7 @@ export default function Button({
     [`btn-${size}`]: true,
     [backgrounds[background]]: true,
     [shapes[shape]]: true,
-    "transition transform ease-in-out hover:scale-105 duration-100 disable": true,
+    "transition transform ease-in-out hover:scale-105 duration-100": true,
     "text-secondaryText": background === "bgColor",
     "btn-icon": icon && !shape,
     "btn-text": variant === "text",
@@ -51,7 +48,13 @@ export default function Button({
   });
 
   return (
-    <button className={buttonClasses} disabled={disabled} {...props}>
+    <button
+      className={buttonClasses}
+      data-tip={tooltip}
+      data-place={tooltipPlace}
+      disabled={disabled}
+      {...props}
+    >
       {leftIcon && <FontAwesomeIcon icon={leftIcon} />}
       {icon ? <FontAwesomeIcon icon={icon} /> : <span>{children}</span>}
       {rightIcon && <FontAwesomeIcon icon={rightIcon} />}

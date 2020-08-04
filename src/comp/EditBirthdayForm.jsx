@@ -37,7 +37,7 @@ function EditBirthdayForm({ loading, formik }) {
           size="sm"
         />
       </div>
-      <div className="flex flex-row items-center w-full sm:space-x-8 md:space-x-4 lg:space-x-3 justify-center pt-2">
+      <div className="flex flex-row items-center w-full sm:space-x-8 md:space-x-4 lg:space-x-3 space-x-2 justify-center pt-2">
         <Select
           name="month"
           placeholder="Month"

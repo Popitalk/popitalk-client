@@ -25,6 +25,7 @@ function ChatActions(props) {
       e.target.style.height = "38px";
 
       const text = draft?.trim();
+      dispatch(setChatDraft({ channelId, draft: "" }));
 
       if (text && text.length > 0 && !apiLoading) {
         dispatch(
@@ -42,7 +43,6 @@ function ChatActions(props) {
             }
           })
         );
-        dispatch(setChatDraft({ channelId, draft: "" }));
       }
     }
   };
@@ -50,6 +50,7 @@ function ChatActions(props) {
   const handleSend = () => {
     textareaRef.current.style.height = "38px";
     const text = draft?.trim();
+    dispatch(setChatDraft({ channelId, draft: "" }));
 
     if (text && text.length > 0 && !apiLoading) {
       dispatch(
@@ -67,7 +68,6 @@ function ChatActions(props) {
           }
         })
       );
-      dispatch(setChatDraft({ channelId, draft: "" }));
     }
   };
 
@@ -96,7 +96,7 @@ function ChatActions(props) {
 
   return (
     <>
-      <div className="flex items-center pt-1 space-x-1 md:space-x-2 mx-2">
+      <div className="flex items-center p-2 bg-primaryBackground space-x-1 md:space-x-2">
         {/* EMOJI BUTTON */}
         <button
           onClick={() => setEmojiIsOpen(!emojiIsOpen)}

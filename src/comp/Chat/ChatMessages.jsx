@@ -1,9 +1,18 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-to-interactive-role */
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { usePrevious, useUpdateEffect } from "react-use";
+import {
+  usePrevious,
+  useUpdateEffect,
+  useScroll,
+  useDebounce
+} from "react-use";
 import { createSelector } from "reselect";
-import { getMessages, getLatestMessages } from "../../redux/actions";
+import {
+  getMessages,
+  getLatestMessages,
+  setInitialScroll
+} from "../../redux/actions";
 import messagesFormatter2 from "../../util/messagesFormatter2";
 import useHasMoreBottom from "../../containers/hooks/useHasMoreBottom";
 
@@ -17,8 +26,8 @@ const OldMessagesAlert = ({ onClick }) => (
     role="button"
     onClick={onClick}
   >
-    {/* <p> This is the start of the chat!</p>
-    <p>Jump To Present ▼</p> */}
+    <p> This is the start of the chat!</p>
+    <p>Jump To Present ▼</p>
   </div>
 );
 
@@ -35,14 +44,19 @@ export default function ChatMessages({
   isGifsOpen
 }) {
   const [clickedMessage, setClickedMessage] = useState("");
-  const containerRef = useRef();
-  // const { y } = useScroll(containerRef);
+  const containerRef = useRef(null);
+  const oldScrollTop = useRef(null);
+  const { y } = useScroll(containerRef);
   const channel = useSelector(state => state.channels[channelId]);
   const hasMoreBottom = useHasMoreBottom(channel, channelMessages);
-  // const [debouncedY, setDebouncedY] = useState(null);
   const previousChannelId = usePrevious(channelId);
   const { defaultAvatar } = useSelector(state => state.general);
-  const initialScroll = channel.chatSettings?.initialScroll ?? "bottom";
+  const initialScroll = useSelector(state => {
+    return state.channels[channelId].initialScroll || "bottom";
+  });
+  const hasMoreTop =
+    channel?.firstMessageId &&
+    channel.firstMessageId !== channelMessages[0]?.id;
   const messages = useSelector(state =>
     selectFormattedMessages(state, channelId)
   );
@@ -64,44 +78,47 @@ export default function ChatMessages({
     }
   };
 
-  // const [, cancel] = useDebounce(
-  //   () => {
-  //     let yVal;
+  const [, cancel] = useDebounce(
+    () => {
+      let yVal;
 
-  //     if (
-  //       containerRef.current.scrollHeight -
-  //         (containerRef.current.scrollTop + containerRef.current.clientHeight) <
-  //       100
-  //     ) {
-  //       yVal = null;
-  //     } else {
-  //       yVal = containerRef.current.scrollTop;
-  //     }
-  //     oldScrollTop.current = {
-  //       channelId,
-  //       y: yVal
-  //     };
+      // if (
+      //   containerRef.current.scrollHeight -
+      //     (containerRef.current.scrollTop + containerRef.current.clientHeight) <
+      //   100
+      // ) {
+      //   // yVal = null;
+      // } else {
+      //   yVal = containerRef.current.scrollTop;
+      // }
+      oldScrollTop.current = {
+        channelId,
+        y: yVal
+      };
+      if (y) {
+        dispatch(setInitialScroll({ channelId: channelId, initialScroll: y }));
+      } else if (y === 0 && !hasMoreTop) {
+        dispatch(setInitialScroll({ channelId: channelId, initialScroll: 1 }));
+      }
+    },
+    200,
+    [y]
+  );
 
-  //     // console.log("XXX", channelId, y);
-  //     // dispatch(setInitialScroll({ channelId: channelId, initialScroll: yVal }));
-  //   },
-  //   5000,
-  //   [y]
-  // );
-
-  // useEffect(() => {
-  //   const oldScroll = oldScrollTop.current;
-  //   return () => {
-  //     if (oldScroll) {
-  //       dispatch(
-  //         setInitialScroll({
-  //           channelId: oldScroll.channelId,
-  //           initialScroll: oldScroll.y
-  //         })
-  //       );
-  //     }
-  //   };
-  // }, [channelId]);
+  useEffect(() => {
+    const oldScroll = oldScrollTop.current;
+    return () => {
+      if (oldScroll) {
+        dispatch(
+          setInitialScroll({
+            channelId: oldScroll.channelId,
+            initialScroll: oldScroll.y
+          })
+        );
+      }
+      cancel();
+    };
+  }, [channelId, dispatch, cancel]);
 
   useUpdateEffect(() => {
     if (channelId !== previousChannelId) return;
@@ -146,15 +163,12 @@ export default function ChatMessages({
     dispatch(getLatestMessages({ channelId }));
   };
 
-  const hasMoreTop =
-    channel?.firstMessageId &&
-    channel.firstMessageId !== channelMessages[0]?.id;
   return (
     // <div className="ChatMessages--container" ref={scrollRef}>
     // InfiniteScroller has to have h-screen, because h-full recalculates/repaints all messages on every key stroke in ChatActions
     <>
       <InfiniteScroller
-        className="overflow-auto h-screen mt-1 pb-4 mozilla-thin-scrollbar"
+        className="overflow-auto h-screen pb-4 mozilla-thin-scrollbar"
         ref={containerRef}
         onTopView={onTopView}
         hasMoreTop={hasMoreTop}
@@ -165,6 +179,7 @@ export default function ChatMessages({
         loading={apiLoading}
         loader={Spinner}
         isGifsOpen={isGifsOpen}
+        channelId={channelId}
       >
         {messages.map(message => {
           return (

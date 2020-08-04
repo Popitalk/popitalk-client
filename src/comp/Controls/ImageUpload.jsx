@@ -18,7 +18,7 @@ export default function ImageUpload({
   });
 
   const imageClasses = classnames(
-    "flex flex-row justify-center items-center bg-gradient-b-primary rounded-circle relative p-px group",
+    "relative flex justify-center items-center bg-gradient-b-primary rounded-circle p-2px group",
     {
       "h-32 w-32": size === "sm",
       "h-48 w-48": size === "md"
@@ -40,14 +40,14 @@ export default function ImageUpload({
           <img
             src={icon}
             alt="icon"
-            className="img relative h-full w-full rounded-circle p-1 z-10"
+            className="relative img h-full w-full rounded-circle p-px z-10"
           />
         ) : (
           <p className="flex flex-row justify-center items-center bg-primaryBackground text-secondaryButtonText font-bold rounded-circle w-full h-full relative z-10">
             {selectMessage}
           </p>
         )}
-        <div className="flex flex-col justify-center items-center text-tertiaryText text-sm font-bold rounded-circle absolute w-full h-full z-20 bg-black bg-opacity-50 cursor-pointer transition-opacity opacity-0 group-hover:opacity-100 duration-100">
+        <div className="absolute flex flex-col justify-center items-center text-tertiaryText text-sm font-bold rounded-circle w-full h-full z-20 bg-black bg-opacity-50 cursor-pointer transition-opacity opacity-0 group-hover:opacity-100 duration-100">
           {icon && <p>{changeMessage}</p>}
         </div>
       </div>

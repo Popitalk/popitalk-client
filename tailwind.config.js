@@ -100,7 +100,7 @@ module.exports = {
       /** OTHERS */
       pink: "#F966F8",
       black: "#000000",
-      onlineColor: "#00CD46",
+      onlineColor: "#00E14D",
       notificationsColor: "#FF0000",
       playerControlsHover: "rgba(255, 255, 255, 0.2)"
     },
@@ -129,6 +129,8 @@ module.exports = {
     },
     extend: {
       spacing: {
+        "14": "3.5rem",
+        "18": "4.5rem",
         "44": "11rem",
         "84": "21rem",
         "102": "28rem",

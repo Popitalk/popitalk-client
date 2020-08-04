@@ -2,7 +2,13 @@ import React, { useState, useRef, useCallback } from "react";
 import { useOnClickOutside } from "../../helpers/functions";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-export default function DropDownControls({ children, onClose, onClick, icon }) {
+export default function DropDownControls({
+  children,
+  onClose,
+  onClick,
+  hasNotification = false,
+  icon
+}) {
   const [open, setOpen] = useState(false);
   const ref = useRef();
   const handler = useCallback(() => {
@@ -17,23 +23,32 @@ export default function DropDownControls({ children, onClose, onClick, icon }) {
   useOnClickOutside(ref, handler);
 
   return (
-    <div className="relative">
-      <FontAwesomeIcon
-        icon={icon}
-        className={
-          open === true
-            ? "cursor-pointer text-highlightText"
-            : "cursor-pointer text-secondaryText hover:text-highlightText"
-        }
-        roll="button"
-        size="lg"
+    <div
+      className={`${
+        open === true
+          ? "text-highlightText"
+          : "cursor-pointer text-secondaryText hover:filter-brightness-8 transition-all duration-100"
+      } sm:relative flex items-center justify-center w-10 h-10 rounded-circle`}
+    >
+      <div
+        className="relative"
         onMouseDown={() => {
           if (onClick) onClick();
           setOpen(true);
         }}
-      />
+        role="button"
+      >
+        <FontAwesomeIcon icon={icon} size="lg" />
+        {hasNotification && (
+          <div className="absolute top-0 -mt-1 -mr-1 right-0 z-10 p-1 border-2 rounded-circle border-primaryBackground bg-errorText" />
+        )}
+      </div>
       {open && (
-        <div className="absolute right-0 mt-2 z-30" ref={ref}>
+        <div
+          className="absolute text-primaryText sm:right-0 sm:top-0 sm:mt-10
+          // fixed top-0 right-0 mt-12 justify-center z-30"
+          ref={ref}
+        >
           {children}
         </div>
       )}

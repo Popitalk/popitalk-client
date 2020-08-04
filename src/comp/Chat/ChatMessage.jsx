@@ -22,7 +22,7 @@ export default function ChatMessage({
     return (
       // Unfused message
       <div key={message.id}>
-        <div className="flex items-center space-x-2 text-xs ml-3 mt-4 mb-3">
+        <div className="flex items-center space-x-2 text-xs m-3">
           <div className="flex transition transform ease-in-out hover:scale-105 duration-100 items-center space-x-2 cursor-pointer select-none">
             <MessageAuthorAvatar
               defaultAvatar={defaultAvatar}
@@ -35,7 +35,7 @@ export default function ChatMessage({
           </div>
           <MessageCreatedTime createdAt={message.createdAt} />
         </div>
-        <div className="flex mx-2 chat-options-button-parent cursor-default">
+        <div className="flex mx-2 chat-options-button-parent">
           <MessageHighlightSpan
             status={message.status}
             ownId={ownId}
@@ -52,7 +52,7 @@ export default function ChatMessage({
       <React.Fragment>
         {clickedMessage === message.id ? (
           <div
-            className="flex items-center justify-center space-x-2 text-xs py-4 select-none"
+            className="flex items-center justify-center text-xs select-none"
             onClick={() => updateClickedMessage(message.id)}
             role="button"
           >
@@ -64,7 +64,7 @@ export default function ChatMessage({
         <div
           role="button"
           onClick={() => updateClickedMessage(message.id)}
-          className="flex mx-2 bg-primaryBackground hover:bg-secondaryBackground rounded-md chat-options-button-parent"
+          className="flex mx-2 bg-primaryBackground hover:bg-secondaryBackground rounded-md chat-options-button-parent cursor-text"
           key={message.id}
         >
           <MessageHighlightSpan

@@ -35,23 +35,21 @@ export default function ChannelHeader({ id, name, icon, type = "channel" }) {
   //   // channel
   // );
   return (
-    <header className="flex justify-between bg-secondaryBackground p-1 z-20 select-none">
-      {/* <Link to={`/channels/${id}/video`} className="no-underline"> */}
+    <div className="flex w-full h-12 bg-secondaryBackground justify-between items-center px-4 py-1 z-20">
       <div className="flex items-center">
         <RoomIcon
           ids={[id]}
           images={[icon]}
           // watching={videoStatus === "playing" ? true : false}
           size="sm"
-          className="mx-2 transition transform ease-in-out hover:scale-110 duration-100 cursor-pointer"
+          className="transition transform ease-in-out hover:scale-110 duration-100 cursor-pointer"
         />
-        <p className="text-md font-medium text-primaryText p-2">
-          {type === "channel" ? name : `Private Room with ${name}`}
+        <p className="flex flex-shrink-0 text-md font-medium text-primaryText p-2 w-full truncate overflow-hidden">
+          {name}
         </p>
       </div>
-      {/* </Link> */}
       {type === "channel" && (
-        <nav className="flex flex-wrap justify-center m-2">
+        <nav className="flex flex-shrink-0 truncate">
           {navButtons.map((button, idx) => {
             let className =
               "mx-1 font-semibold no-underline focus:outline-none rounded-lg px-2 hover:text-highlightText";
@@ -74,6 +72,6 @@ export default function ChannelHeader({ id, name, icon, type = "channel" }) {
           })}
         </nav>
       )}
-    </header>
+    </div>
   );
 }
