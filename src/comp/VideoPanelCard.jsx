@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import Button from "./Controls/Button";
 import VideoStatus from "./VideoStatus";
 import moment from "moment";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default function VideoPanelCard({
   id,
@@ -18,6 +19,28 @@ export default function VideoPanelCard({
 }) {
   // const leftInfo = `${views}`;
   const rightInfo = `${moment(publishedAt).fromNow()}`;
+  const [disableButton, setDisableButton] = useState();
+  const [addButtonIcon, setAddButtonIcon] = useState("plus");
+  const [removeButtonIcon, setRemoveButtonIcon] = useState("minus");
+  const removeButtonPressed = () => {
+    setRemoveButtonIcon("check");
+    handleDeleteVideo(id);
+  };
+  const addButtonPressed = () => {
+    setAddButtonIcon("check");
+    const videoInfo = {
+      title: title,
+      publishedAt: publishedAt,
+      thumbnail: thumbnail,
+      url: url
+    };
+    handleAddVideo({
+      source: "youtube",
+      sourceId: id,
+      videoInfo: JSON.stringify(videoInfo)
+    });
+    setDisableButton(true);
+  };
   return (
     <>
       {!title && (
@@ -37,52 +60,29 @@ export default function VideoPanelCard({
         </div>
       )}
       {title && (
-        <div className="cursor-pointer w-full flex-shrink-0 max-w-2xs mr-2 group">
+        <div className="w-full flex-shrink-0 max-w-2xs mr-2">
           <div className="relative flex justify-center flex-grow pb-16/9 w-full rounded-md group-hover:shadow-md transition-all ease-in-out duration-100">
             <div className="absolute top-0 left-0 w-full p-2 rounded-b-xl">
               <div className="flex justify-between">
                 <VideoStatus status={status} statusMessage={statusMessage} />
                 {type === "cancel" && (
                   <Button
-                    icon="minus"
-                    className="z-10 btn btn-no-mr transition-opacity opacity-0 group-hover:opacity-100 duration-150"
-                    shape="rounded"
-                    background="cancel"
+                    className="flex z-10 bg-highlightBackground"
+                    onClick={removeButtonPressed}
+                    onMouseLeave={() => setRemoveButtonIcon("minus")}
+                    icon={removeButtonIcon}
                     size="sm"
-                    onClick={() => {
-                      handleDeleteVideo(id);
-                    }}
+                    background="cancel"
                   />
                 )}
                 {type === "add" && (
-                  <button
-                    className="z-10 btn btn-sqr opacity-0 group-hover:opacity-100"
-                    onClick={() => {
-                      const videoInfo = {
-                        title: title,
-                        publishedAt: publishedAt,
-                        thumbnail: thumbnail,
-                        url: url
-                      };
-
-                      handleAddVideo({
-                        source: "youtube",
-                        sourceId: id,
-                        videoInfo: JSON.stringify(videoInfo)
-                      });
-                    }}
-                  >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      // width="24"
-                      // height="24"
-                      viewBox="0 0 24 24"
-                      shape="pill"
-                      fill="white"
-                    >
-                      <path d="M14 10H2v2h12v-2zm0-4H2v2h12V6zm4 8v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zM2 16h8v-2H2v2z" />
-                    </svg>
-                  </button>
+                  <Button
+                    disabled={disableButton}
+                    className="flex z-10 bg-highlightBackground"
+                    onClick={addButtonPressed}
+                    icon={addButtonIcon}
+                    size="sm"
+                  />
                 )}
               </div>
             </div>

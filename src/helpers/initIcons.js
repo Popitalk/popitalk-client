@@ -28,7 +28,8 @@ import {
   faHeart,
   faVolumeUp,
   faVolumeMute,
-  faCompress
+  faCompress,
+  faCheck
 } from "@fortawesome/free-solid-svg-icons";
 import {
   faSmile as farSmile,
@@ -73,5 +74,6 @@ library.add(
   faHeart,
   faVolumeUp,
   faVolumeMute,
-  faCompress
+  faCompress,
+  faCheck
 );
