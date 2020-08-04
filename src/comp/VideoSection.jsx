@@ -38,9 +38,10 @@ export default function VideoSection({
         {url ? (
           <div>
             <div className="py-2">
-              <p className="text-lg text-primaryText font-semibold truncate-2-lines overflow-hidden">
-                {title}
-              </p>
+              <p
+                className="text-lg text-primaryText font-semibold truncate-2-lines overflow-hidden"
+                dangerouslySetInnerHTML={{ __html: title }}
+              />
               <p className="text-sm text-secondaryText py-2">
                 {sourceChannelName} {url}
               </p>

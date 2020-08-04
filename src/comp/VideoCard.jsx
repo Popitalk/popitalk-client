@@ -30,9 +30,10 @@ export default function VideoCard({
         </div>
       </div>
       <div className="w-full pt-2 px-1">
-        <p className="text-sm font-semibold truncate-2-lines overflow-hidden text-primaryText break-words">
-          {title}
-        </p>
+        <p
+          className="text-sm font-semibold truncate-2-lines overflow-hidden text-primaryText break-words"
+          dangerouslySetInnerHTML={{ __html: title }}
+        />
         <div className="flex items-end">
           <p className="text-xs pt-2 text-secondaryText items-end">
             {"Youtube"} &middot; {rightInfo}

@@ -31,7 +31,10 @@ export default function VideoMinimalQueueCard({
           <div className="flex flex-row w-full justify-between items-center space-x-2">
             <VideoStatus status={status} statusMessage={statusMessage} />
             <p className="text-sm text-secondaryText">{duration}</p>
-            <p className="text-sm w-full mx-2 truncate">{title}</p>
+            <p
+              className="text-sm w-full mx-2 truncate"
+              dangerouslySetInnerHTML={{ __html: title }}
+            />
           </div>
           <div className="absolute right-0 mr-2 flex">
             <Button
