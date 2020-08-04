@@ -4,7 +4,11 @@ import ChannelCard from "./ChannelCard.jsx";
 
 function ChannelCardList({ channelList, isCollapsed, tabSelected }) {
   const currentChannelList = [];
-  channelList.forEach(type => currentChannelList.push(...type.channels));
+  channelList.forEach(type => {
+    if (type.title === tabSelected.slice(2)) {
+      currentChannelList.push(...type.channels);
+    }
+  });
 
   return (
     <div className="mx-4">

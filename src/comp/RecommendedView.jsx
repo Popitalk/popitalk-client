@@ -9,6 +9,26 @@ import Alert from "../comp/Alert";
 function RecommendedChannels({ list, selectedPage }) {
   const isCollapsed = useSelector(state => state.ui.isCollapsed);
   const alert = useSelector(state => state.ui.alert);
+  const channels = useSelector(state => state.channels);
+  const { id: ownId, channelIds } = useSelector(state => state.self);
+  const { defaultIcon } = useSelector(state => state.general);
+
+  let followingChannels = [];
+  channelIds
+    .map(channelId => ({
+      id: channelId,
+      ...channels[channelId],
+      icon: channels[channelId].icon || defaultIcon
+    }))
+    .forEach(channel => {
+      if (channel.ownerId !== ownId && channel.owner_id !== ownId) {
+        followingChannels.push(channel);
+      }
+    });
+
+  // removing the seeded and putting in the actual following list
+  list = list.filter(tag_list => tag_list.title !== "following");
+  list.push({ title: "following", channels: followingChannels });
 
   const [tabSelected, setTab] = useState("# following");
   const tabs = [
