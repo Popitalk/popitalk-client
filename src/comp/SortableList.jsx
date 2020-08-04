@@ -48,7 +48,6 @@ export default function SortableList({
               index={index}
               value={value}
               distance={1}
-              pressDelay={1}
             />
           ))}
           {children}
