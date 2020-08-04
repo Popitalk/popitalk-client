@@ -1,6 +1,5 @@
 import React from "react";
 import classnames from "classnames";
-import YoutubeGradient from "../../assets/youtube-gradient-logo.png";
 
 const corners = [
   "rounded-tl-full",
@@ -8,10 +7,6 @@ const corners = [
   "rounded-bl-full",
   "rounded-br-full"
 ];
-
-const LogoStyle = {
-  bottom: "-5px"
-};
 
 const cornerRadius = (index, length) => {
   if (length === 1) return "rounded-full";
@@ -80,7 +75,7 @@ export default function RoomIcon({
     "border-primaryBackground": watching
   });
   const notificationsClasses = classnames({
-    "font-regular text-primaryButtonText text-xs bg-notificationsColor h-5 w-5 rounded-full bg-onlineColor absolute left-0 top-0 flex items-center justify-center select-none": true,
+    "font-regular text-primaryButtonText text-xs bg-notificationsColor h-5 w-5 rounded-lg absolute left-0 top-0 flex items-center justify-center select-none": true,
     "px-2": notifications < 10,
     "px-3": notifications >= 10 && notifications <= 99,
     "px-4": notifications >= 100
@@ -117,14 +112,6 @@ export default function RoomIcon({
         >
           My room
         </p>
-      )}
-      {watching && (
-        <img
-          src={YoutubeGradient}
-          style={LogoStyle}
-          className="w-6 absolute bottom-0"
-          alt=""
-        />
       )}
       {notifications && (
         <p className={notificationsClasses}>
