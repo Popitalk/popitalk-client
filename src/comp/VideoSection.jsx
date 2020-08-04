@@ -58,14 +58,18 @@ export default function VideoSection({
             )}
           </div>
         </div>
-        <div className="py-2">
-          <p className="text-lg text-primaryText font-semibold truncate-2-lines overflow-hidden">
-            {title}
-          </p>
-          <p className="text-sm text-secondaryText py-2">
-            Youtube &middot; {url}
-          </p>
-        </div>
+        {url ? (
+          <div className="py-2">
+            <p className="text-lg text-primaryText font-semibold truncate-2-lines overflow-hidden">
+              {title}
+            </p>
+            <p className="text-sm text-secondaryText py-2">
+              {sourceChannelName} {url}
+            </p>
+          </div>
+        ) : (
+          <p></p>
+        )}
       </div>
     </div>
   );

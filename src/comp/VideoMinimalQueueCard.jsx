@@ -15,7 +15,7 @@ export default function VideoMinimalQueueCard({
       {!title && (
         <button
           className="flex flex-row justify-center items-center cursor-pointer focus:outline-none 
-          h-12 px-4 py-2 my-1 w-full bg-tertiaryBackground shadow-sm hover:shadow-md hover:bg-highlightBackground transition duration-100 rounded-lg"
+          h-12 px-4 py-2 my-1 w-full bg-tertiaryBackground hover:shadow-sm hover:bg-highlightBackground transition duration-100 rounded-lg"
         >
           <p className={"text-center mr-2 text-secondaryText text-sm"}>
             Search and add more videos below!
