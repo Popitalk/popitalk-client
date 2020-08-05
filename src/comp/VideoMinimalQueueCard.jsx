@@ -39,8 +39,6 @@ export default function VideoMinimalQueueCard({
           <div className="absolute right-0 mr-2 flex">
             <Button
               icon="minus"
-              className="btn-no-mr"
-              shape="pill"
               background="cancel"
               size="sm"
               onClick={handleRemove}

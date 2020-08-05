@@ -47,6 +47,7 @@ export default function SortableList({
               key={`item-${value.id}`}
               index={index}
               value={value}
+              distance={1}
             />
           ))}
           {children}
@@ -60,6 +61,7 @@ export default function SortableList({
       items={items}
       onSortEnd={handlerChange}
       axis={axis}
+      distance={1}
     ></SortableList>
   );
 }

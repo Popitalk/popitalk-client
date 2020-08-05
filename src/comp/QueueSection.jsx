@@ -19,6 +19,7 @@ export default function QueueSection({
       handlerChange={handlerChange}
       height={"100%"}
       className={"cursor-move"}
+      distance={1}
     >
       <VideoPanelCard />
     </SortableList>
