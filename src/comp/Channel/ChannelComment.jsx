@@ -49,7 +49,7 @@ export default function ChannelComment({
         </main>
         <span className="text-xs text-secondaryText">{timeFromPost}</span>
       </article>
-      <aside className="flex items-baseline flex-shrink-0 text-secondaryText">
+      <aside className="flex items-center flex-shrink-0 text-secondaryText">
         <ToggleIcon
           icons={{ default: ["far", "heart"], toggle: ["fa", "heart"] }}
           colors={{

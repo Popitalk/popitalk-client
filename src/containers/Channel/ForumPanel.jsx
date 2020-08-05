@@ -28,7 +28,10 @@ const ForumPanel = (
   ref
 ) => {
   return (
-    <div ref={ref} className="p-32 bg-secondaryBackground justify-center">
+    <div
+      ref={ref}
+      className="px-2 py-32 sm:px-8 md:px-16 lg:px-32 bg-secondaryBackground justify-center"
+    >
       <ChannelDescription
         name={name}
         icon={icon}

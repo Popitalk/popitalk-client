@@ -21,7 +21,7 @@ export default function ToggleIcon({
   });
   return (
     <button
-      className={`flex align-middle hover:text-notificationsColor duration-100 focus:outline-none ${colorChange} ${
+      className={`flex items-center p-2 rounded-xl hover:text-notificationsColor duration-100 focus:outline-none ${colorChange} ${
         className && className.icon ? className.icon : ""
       }`}
       onClick={handleToggle}

@@ -32,11 +32,10 @@ export default function VideoSection({
         dispatchPlayNextVideo={dispatchPlayNextVideo}
       />
       <div className="flex flex-col pt-4 px-4">
-        <div className="flex items-center h-8">
+        <div className="flex items-center h-8 space-x-2">
           <VideoStatus
             status={playerStatus.status.toLowerCase()}
             type="text"
-            className="pr-2"
             string
           />
           <div className="flex flex-row left-0 space-x-1">

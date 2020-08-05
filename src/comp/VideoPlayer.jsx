@@ -227,7 +227,7 @@ function VideoPlayer({
                           displayControls &&
                           "hover:bg-playerControlsHover duration-100 transition transform ease-in-out hover:scale-110"
                         }`}
-                        onClick={displayControls && (() => setBothPlaying())}
+                        onClick={() => setBothPlaying()}
                         data-tip={playing === false ? "Play" : "Pause"}
                         data-place="top"
                       >

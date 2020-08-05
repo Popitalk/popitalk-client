@@ -46,15 +46,18 @@ export default function PopupMenu({
       className={containerClasses}
       role="button"
       onClick={disabled ? undefined : menuHandler}
+      onMouseLeave={() => setOpen(false)}
       ref={ref}
     >
       {loading ? (
         <p>loading...</p>
       ) : (
-        <FontAwesomeIcon icon="ellipsis-v" className={iconClasses} />
+        <div className="flex flex-shrink-0 w-6 h-6 justify-center items-center">
+          <FontAwesomeIcon icon="ellipsis-v" className={iconClasses} />
+        </div>
       )}
       {open && (
-        <div className="absolute z-10 top-0 right-0 mt-4 mr-0 flex flex-col items-center justify-center flex-shrink-0 bg-primaryBackground shadow-channel rounded-md">
+        <div className="absolute z-10 top-0 right-0 mt-6 mr-0 flex flex-col items-center justify-center flex-shrink-0 bg-primaryBackground shadow-channel rounded-md">
           {options.map((option, index) => {
             const optionClasses = classnames(
               "inline-flex justify-center items-center w-full bg-primaryBackground transition-filter duration-100 hover:bg-highlightBackground select-none py-1 px-6 text-center text-sm",

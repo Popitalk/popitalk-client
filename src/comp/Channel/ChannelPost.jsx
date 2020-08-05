@@ -56,52 +56,50 @@ export default function ChannelPost({
   // console.log("ownId", ownId, "authorId", authorId);
   return (
     <div className="flex flex-col justify-center items-center">
-      <div className="flex flex-col rounded-lg shadow px-8 py-4 bg-primaryBackground mt-8 hover:shadow-md cursor-pointer sm:w-102 md:w-102 lg:w-104 max-w-xl">
-        <div className="flex justify-between relative">
+      <div className="flex flex-col rounded-lg px-8 pt-4 mt-8 bg-primaryBackground shadow-sm hover:shadow-md cursor-pointer w-84 sm:w-102 lg:w-104">
+        <div className="flex justify-between items-start">
           <header
-            className="flex"
+            className="flex items-center space-x-2"
             onClick={() => dispatch(openProfileModal(authorId))}
             role="button"
           >
             <AvatarIcon
               avatar={avatar}
               username={name}
-              className="img w-10 h-10 rounded-circle flex transition transform ease-in-out hover:scale-110 duration-100"
+              className="img w-10 h-10 rounded-circle transition transform ease-in-out hover:scale-110 duration-100"
             />
-            <div className="flex flex-col pl-2">
+            <div className="flex flex-col">
               <span>{name}</span>
-              <span className="text-secondaryText text-xs pt-0">
-                {timeFromPost}
-              </span>
+              <span className="text-secondaryText text-xs">{timeFromPost}</span>
             </div>
           </header>
-          <div className="h-10 w-8 pt-2">
-            <PopupMenu
-              options={[{ name: "Delete", handler: () => removePost(id) }]}
-              disabled={ownId !== authorId}
-            />
-          </div>
+          <PopupMenu
+            options={[{ name: "Delete", handler: () => removePost(id) }]}
+            disabled={ownId !== authorId}
+          />
         </div>
-        <p
-          className="text-primaryText text-lg pt-6 pb-5 px-2 break-words"
+        <div
+          className="text-primaryText text-lg py-4 px-2 break-words"
           onClick={handleComment}
           role="button"
         >
           {text}
-        </p>
+        </div>
+        {/* 0 Likes 0 Comments */}
         <section
-          className="flex justify-start text-xs pb-3 text-secondaryText"
+          className="flex justify-start text-xs py-1 space-x-2 text-secondaryText"
           onClick={handleComment}
           role="button"
         >
-          <span className="pr-3 select-none hover:filter-brightness-9 duration-100">
+          <span className="select-none hover:filter-brightness-9 duration-100">
             {likeCount} {likeCount > 1 ? "likes" : "like"}
           </span>
-          <span className="pr-3 select-none hover:filter-brightness-9 duration-100">
+          <span className="select-none hover:filter-brightness-9 duration-100">
             {commentCount} {commentCount > 1 ? "comments" : "comment"}
           </span>
         </section>
-        <footer className="flex text-secondaryText text-xl">
+        {/* Like and Comment buttons */}
+        <footer className="flex text-secondaryText text-xl space-x-6 pb-2 items-center">
           <ToggleIcon
             icons={{ default: ["far", "heart"], toggle: ["fa", "heart"] }}
             colors={{
@@ -110,11 +108,12 @@ export default function ChannelPost({
             }}
             status={liked}
             toggleStatus={stat => toggleLike(id, "post", stat)}
+            className="bg-highlightBackground"
           >
             Like
           </ToggleIcon>
           <button
-            className="flex align-middle ml-12 focus:outline-none hover:filter-brightness-9"
+            className="flex align-middle p-2 focus:outline-none hover:filter-brightness-9"
             onClick={handleComment}
           >
             <FontAwesomeIcon icon={["far", "comment"]} />
@@ -122,10 +121,11 @@ export default function ChannelPost({
           </button>
         </footer>
       </div>
-      <div className="ml-6 mt-2 sm:w-102 md:w-102 lg:w-104 max-w-xl">
+      {/* Comment Section */}
+      <div className="my-2 px-1 w-84 sm:w-102 lg:w-104 max-w-xl">
         {!showComments && comments?.length > showNumComment && (
           <button
-            className="text-secondaryText text-xs mb-2"
+            className="text-secondaryText text-xs px-2 focus:outline-none"
             onClick={() => setShowComments(!showComments)}
           >
             View more comments
@@ -133,7 +133,7 @@ export default function ChannelPost({
         )}
         {showComments && comments?.length > showNumComment && (
           <button
-            className="text-secondaryText text-xs mb-2"
+            className="text-secondaryText text-xs px-2 focus:outline-none"
             onClick={() => setShowComments(!showComments)}
           >
             Hide comments

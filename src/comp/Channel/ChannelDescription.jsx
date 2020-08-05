@@ -23,17 +23,35 @@ export default function ChannelDescription({
   const dispatch = useDispatch();
   return (
     <div className="flex flex-col mb-12">
-      <div className="flex-row // flex justify-center bg-secondaryBackground">
+      <div className="flex justify-end my-4">
+        {isMember ? (
+          <Button
+            size="sm"
+            shape="pill"
+            className="ml-auto bg-disabledBackground shadow-xs hover:shadow-none text-secondaryText"
+            background="bgColor"
+            onClick={handleUnfollow}
+          >
+            Following
+          </Button>
+        ) : (
+          <Button
+            size="sm"
+            shape="pill"
+            className="ml-auto"
+            onClick={handleFollow}
+          >
+            Follow
+          </Button>
+        )}
+      </div>
+      <div className="flex flex-row justify-center bg-secondaryBackground">
         <AvatarIcon
           username={name}
           avatar={icon}
-          className="img h-32 w-32 rounded-circle mx-px"
+          className="img h-32 w-32 rounded-circle mx-px flex-shrink-0"
         />
-        <section className="mx-6">
-          {/* <p className="text-xs mx-1">NOW PLAYING</p> */}
-          {status && (
-            <VideoStatus status={status} type="text" className="text-sm" />
-          )}
+        <section className="mx-8">
           <p className="text-2xl font-bold truncate-2-lines">{name}</p>
           <p className="text-sm my-2">{description}</p>
           <div className="flex flex-row items-center mt-4">
@@ -45,6 +63,7 @@ export default function ChannelDescription({
                     key={idx}
                     onClick={() => dispatch(openProfileModal(admin.id))}
                     role="button"
+                    className="flex flex-shrink-0"
                   >
                     <AvatarIcon
                       key={idx}
@@ -70,28 +89,6 @@ export default function ChannelDescription({
             })}
           </div>
         </section>
-        <div className="ml-4">
-          {isMember ? (
-            <Button
-              size="sm"
-              shape="pill"
-              className="ml-auto bg-disabledBackground shadow-xs hover:shadow-none text-secondaryText"
-              background="bgColor"
-              onClick={handleUnfollow}
-            >
-              Following
-            </Button>
-          ) : (
-            <Button
-              size="sm"
-              shape="pill"
-              className="ml-auto"
-              onClick={handleFollow}
-            >
-              Follow
-            </Button>
-          )}
-        </div>
       </div>
     </div>
   );

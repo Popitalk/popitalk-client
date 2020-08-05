@@ -32,10 +32,10 @@ export default function NewChannelPost({
   };
 
   return (
-    <div className="relative flex flex-col justify-center items-center">
+    <div className="relative flex w-full justify-center items-center">
       <form
         onSubmit={handleSubmit}
-        className={`flex flex-row justify-center bg-secondaryBackground content-center py-2 sm:w-102 md:w-102 lg:w-104 max-w-xla`}
+        className={`flex flex-around justify-center bg-secondaryBackground content-center py-2 sm:w-102 md:w-102 lg:w-104 max-w-xla`}
       >
         {/* EMOJI BUTTON */}
         <div
@@ -49,7 +49,7 @@ export default function NewChannelPost({
         <textarea
           type="text"
           placeholder="Post something..."
-          className="w-full h-10 py-2 px-3 text-start overflow-hidden rounded-lg resize-none bg-primaryBackground shadow-sm hover:shadow-md focus:outline-none text-primaryText text-sm transition transform ease-in-out hover:scale-102 duration-100"
+          className="flex w-full h-10 py-2 px-3 text-start overflow-hidden rounded-lg resize-none bg-primaryBackground shadow-sm hover:shadow-md focus:outline-none text-primaryText text-sm transition transform ease-in-out hover:scale-102 duration-100"
           rows={1}
           maxLength={2000}
           value={draft}
