@@ -11,6 +11,7 @@ import useLocalStorage from "../hooks/useLocalStorage";
 
 function VideoPlayer({
   url,
+  displayControls,
   playerStatus,
   dispatchPlay,
   dispatchPause,
@@ -27,7 +28,7 @@ function VideoPlayer({
   const [isHoveringVolume, setIsHoveringVolume] = useState(false);
 
   //Determine state for pause & play & playingIcon
-  const playing = playerStatus.status === "Playing";
+  const [playing, setPlaying] = useState(false);
 
   const [progress, setProgress] = useState(0);
   const [duration, setDuration] = useState(0);
@@ -97,7 +98,7 @@ function VideoPlayer({
   };
   return (
     <>
-      {url ? (
+      {displayControls ? (
         <div ref={videoPlayer} className="relative pb-16/9 h-full w-full">
           <ReactTooltip effect="solid" className="tooltip truncate" />
           <div className="absolute bg-black h-full w-full"></div>
@@ -116,6 +117,7 @@ function VideoPlayer({
                   playerStatus.videoStartTime,
                   "seconds"
                 );
+                setPlaying(playerStatus.status === "Playing");
               }}
               onProgress={({ playedSeconds }) => {
                 setProgress(playedSeconds);

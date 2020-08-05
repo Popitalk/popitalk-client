@@ -220,7 +220,7 @@ export default function Channel({ tab, searchClasses, type = "channel" }) {
     <div className="flex flex-col bg-secondaryBackground w-full overflow-x-hidden">
       <div className="w-full h-12 bg-primaryBackground">
         <ChannelHeader
-          id={channelId || roomId}
+          id={channelId}
           name={pickRoomName(channel, users, ownId)}
           icon={channel.icon || defaultIcon}
           videoStatus={
@@ -236,6 +236,7 @@ export default function Channel({ tab, searchClasses, type = "channel" }) {
         {(tab === "video" || tab === "channel") && (
           <>
             <VideoPanel
+              channelId={channelId}
               playlist={channel.queue}
               startPlayerStatus={{
                 queueStartPosition: channel.queueStartPosition,

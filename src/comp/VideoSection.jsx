@@ -8,6 +8,7 @@ import VideoPlayer from "./VideoPlayer";
 export default function VideoSection({
   title,
   url,
+  displayControls,
   sourceChannelName,
   activeFriendViewers,
   inviteUsers,
@@ -23,6 +24,7 @@ export default function VideoSection({
     <div className="flex flex-col">
       <VideoPlayer
         url={url}
+        displayControls={displayControls}
         playerStatus={playerStatus}
         dispatchPlay={dispatchPlay}
         dispatchPause={dispatchPause}
