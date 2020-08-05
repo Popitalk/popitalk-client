@@ -52,6 +52,8 @@ const ForumPanel = (
         toggleLike={toggleLike}
         ownId={ownId}
         removePost={removePost}
+        name={name}
+        icon={icon}
       />
     </div>
   );

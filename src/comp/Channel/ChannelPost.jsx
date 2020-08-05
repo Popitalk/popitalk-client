@@ -57,9 +57,9 @@ export default function ChannelPost({
   return (
     <div className="flex flex-col justify-center items-center">
       <div className="flex flex-col rounded-lg px-8 pt-4 mt-8 bg-primaryBackground shadow-sm hover:shadow-md cursor-pointer w-84 sm:w-102 lg:w-104">
-        <div className="flex justify-between items-start">
+        <div className="flex justify-between items-start w-full">
           <header
-            className="flex items-center space-x-2"
+            className="flex items-center w-full space-x-2"
             onClick={() => dispatch(openProfileModal(authorId))}
             role="button"
           >
@@ -68,14 +68,15 @@ export default function ChannelPost({
               username={name}
               className="img w-10 h-10 rounded-circle transition transform ease-in-out hover:scale-110 duration-100"
             />
-            <div className="flex flex-col">
-              <span>{name}</span>
+            <div className="flex flex-col w-84">
+              <span className="truncate">{name}</span>
               <span className="text-secondaryText text-xs">{timeFromPost}</span>
             </div>
           </header>
           <PopupMenu
             options={[{ name: "Delete", handler: () => removePost(id) }]}
             disabled={ownId !== authorId}
+            className="-mr-3"
           />
         </div>
         <div

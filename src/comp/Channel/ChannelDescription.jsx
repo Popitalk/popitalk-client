@@ -2,7 +2,6 @@ import React from "react";
 import Button from "../Controls/Button";
 import "../VideoStatus.css";
 import AvatarIcon from "../Controls/AvatarIcon";
-import VideoStatus from "../VideoStatus";
 import { openProfileModal } from "../../redux/actions";
 import { useDispatch } from "react-redux";
 
@@ -45,12 +44,24 @@ export default function ChannelDescription({
           </Button>
         )}
       </div>
-      <div className="flex flex-row justify-center bg-secondaryBackground">
-        <AvatarIcon
-          username={name}
-          avatar={icon}
-          className="img h-32 w-32 rounded-circle mx-px flex-shrink-0"
-        />
+      <div className="flex flex-row justify-center items-center bg-secondaryBackground">
+        {status === "playing" ? (
+          <div className="p-1 bg-gradient-r-primary rounded-circle">
+            <div className="p-1 bg-secondaryBackground rounded-circle">
+              <AvatarIcon
+                username={name}
+                avatar={icon}
+                className="img h-32 w-32 rounded-circle mx-px flex-shrink-0"
+              />
+            </div>
+          </div>
+        ) : (
+          <AvatarIcon
+            username={name}
+            avatar={icon}
+            className="img h-32 w-32 rounded-circle mx-px flex-shrink-0"
+          />
+        )}
         <section className="mx-8">
           <p className="text-2xl font-bold truncate-2-lines">{name}</p>
           <p className="text-sm my-2">{description}</p>
