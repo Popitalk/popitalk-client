@@ -52,7 +52,7 @@ export default function ChannelHeader({ id, name, icon, type = "channel" }) {
         <nav className="flex flex-shrink-0 truncate">
           {navButtons.map((button, idx) => {
             let className =
-              "mx-1 font-semibold no-underline focus:outline-none rounded-lg px-2 hover:text-highlightText";
+              "mx-1 font-semibold no-underline focus:outline-none p-2 hover:text-highlightText";
             if (
               location.pathname.startsWith(`/channels/${id}/${button.endpoint}`)
             ) {
