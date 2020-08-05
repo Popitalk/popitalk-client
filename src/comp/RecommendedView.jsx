@@ -44,10 +44,10 @@ function RecommendedChannels({ list, selectedPage }) {
       <div className="fixed mx-2 -my-4 z-50">
         {!!alert && <Alert duration={3000}>{alert}</Alert>}
       </div>
-      <div className="mx-2 pt-6 mx-auto w-2/3">
+      <div className="mx-2 pt-6 mx-auto w-3/4 sm:w-1/2">
         <Input
           variant="channel"
-          size="md"
+          size="sm"
           value={search}
           placeholder={
             selectedPage === "channels"

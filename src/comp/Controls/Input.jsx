@@ -55,12 +55,12 @@ export default function Input({
 
   const inputClasses = classnames(
     getInputClasses(shape, error),
-    "relative bottom-0 py-2 px-4 rounded-lg",
+    "relative bottom-0 py-2 px-4 rounded-md hover:shadow-md transition duration-100",
     textClasses,
     {
       "border-primaryBorder": error,
-      "rounded-pill px-3": shape === "pill",
-      "pl-12 pr-12 rounded-lg": variant === "video",
+      "rounded-md px-3": shape === "pill",
+      "pl-12 pr-12 rounded-md": variant === "video",
       "pl-3 pr-12 bg-secondaryBackground": variant === "user",
       "pl-3 pr-12": variant === "channel",
       "pr-20": variant === "counter" || variant === "textarea",
@@ -119,7 +119,7 @@ export default function Input({
               icon="search"
               size="sm"
               background="secondary"
-              className="absolute right-0 mr-3 hover:scale-110"
+              className="absolute right-0 mr-3 hover:scale-110 shadow-none"
               onClick={onClick}
             />
           </>
@@ -130,7 +130,7 @@ export default function Input({
               icon="search"
               size="sm"
               background="secondary"
-              className="absolute right-0 mr-2 hover:scale-110"
+              className="absolute right-0 mr-2 hover:scale-110 shadow-none"
               onClick={onClick}
             />
           </>

@@ -17,7 +17,7 @@ export default function SortableList({
         <p className="py-2 px-4 text-lg text-primaryText select-none">
           Up Next
         </p>
-        <div className="cursor-pointer w-full flex-shrink-0 max-w-2xs mx-4 mb-4 mt-2 rounded-md shadow-xs hover:shadow-md transition-all ease-in-out duration-100 bg-disabledBackground">
+        <div className="cursor-pointer w-full flex-shrink-0 max-w-2xs mx-4 mb-4 mt-2 rounded-md shadow-xs hover:shadow-md transition-all ease-in-out duration-100 bg-disabledBackground hover:bg-highlightBackground">
           <div className="relative pb-16/9 w-full">
             <div className="absolute flex items-center justify-center w-full h-full">
               <Button size="sm" icon="search" />
