@@ -38,7 +38,7 @@ export default function VideoSection({
             type="text"
             string
           />
-          <div className="flex flex-row left-0 px-2">
+          <div className="flex flex-row left-0 space-x-1 px-2">
             {activeFriendViewers.map((friend, idx) => {
               return (
                 <AvatarIcon

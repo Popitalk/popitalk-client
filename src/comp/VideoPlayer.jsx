@@ -5,9 +5,9 @@ import Slider from "rc-slider";
 import screenfull from "screenfull";
 import ReactTooltip from "react-tooltip";
 import "rc-slider/assets/index.css";
-import VideoPlayerStatusCard from "./VideoPlayerStatusCard";
-import defaultImage from "../assets/default/user-default.png";
 import useLocalStorage from "../hooks/useLocalStorage";
+// import VideoPlayerStatusCard from "./VideoPlayerStatusCard";
+// import defaultImage from "../assets/default/user-default.png";
 
 function VideoPlayer({
   url,
@@ -98,7 +98,10 @@ function VideoPlayer({
   };
   return (
     <>
-      {displayControls ? (
+      {/* When nothing is in the queue, it should hide the VideoPlayer for both admin & followers (and show the default placeholder). 
+      I added displayControls below to hide the play button and take away scroll control for followers. 
+      Sound & Full screen control is still accessible to followers*/}
+      {url ? (
         <div ref={videoPlayer} className="relative pb-16/9 h-full w-full">
           <ReactTooltip effect="solid" className="tooltip truncate" />
           <div className="absolute bg-black h-full w-full"></div>
@@ -149,10 +152,13 @@ function VideoPlayer({
                   : "flex flex-col justify-end w-full h-full transition-colors bg-gradient-t-player transition-opacity opacity-0 hover:opacity-100 duration-200"
               }
             >
-              <button
-                className="bg-transparent w-full h-full focus:outline-none"
-                onClick={() => setBothPlaying()}
-              />
+              {/* Click background to play or pause the video */}
+              {displayControls && (
+                <button
+                  className="bg-transparent w-full h-full focus:outline-none"
+                  onClick={() => setBothPlaying()}
+                />
+              )}
               <div className="flex flex-col px-2 w-full">
                 <div // Set the mouse hovering state
                   onMouseEnter={() => setIsHovering(true)}
@@ -161,11 +167,14 @@ function VideoPlayer({
                   <Slider
                     max={duration * 10}
                     value={progress * 10}
-                    onChange={s => {
-                      handleProgressSliderChange(s / 10);
-                    }}
+                    onChange={
+                      displayControls &&
+                      (s => {
+                        handleProgressSliderChange(s / 10);
+                      })
+                    }
                     handleStyle={
-                      isHovering
+                      displayControls && isHovering
                         ? {
                             backgroundColor: "#1DA4FE",
                             borderColor: "#1DA4FE",
@@ -180,7 +189,7 @@ function VideoPlayer({
                           }
                     }
                     trackStyle={
-                      isHovering
+                      displayControls && isHovering
                         ? {
                             backgroundColor: "#1DA4FE",
                             height: 6
@@ -191,7 +200,7 @@ function VideoPlayer({
                           }
                     }
                     railStyle={
-                      isHovering
+                      displayControls && isHovering
                         ? {
                             backgroundColor: "#fff",
                             opacity: 0.25,
@@ -203,24 +212,31 @@ function VideoPlayer({
                             height: 3
                           }
                     }
-                    className="-mb-1 cursor-pointer transition-all opacity-75 hover:opacity-100 duration-150"
+                    className={`-mb-1 ${
+                      displayControls &&
+                      "cursor-pointer transition-all opacity-75 hover:opacity-100 duration-150"
+                    }`}
                   />
                 </div>
                 <div className="flex items-center justify-between w-full my-1">
                   <div className="flex space-x-4 items-center">
                     {/* Play button */}
-                    <button
-                      className="w-8 p-1 rounded-full hover:bg-playerControlsHover focus:outline-none duration-100 transition transform ease-in-out hover:scale-110"
-                      onClick={() => setBothPlaying()}
-                      data-tip={playing === false ? "Play" : "Pause"}
-                      data-place="top"
-                    >
-                      <FontAwesomeIcon
-                        icon={!playing ? "play" : "pause"}
-                        className="text-tertiaryText"
-                      />
-                    </button>
-
+                    {displayControls && (
+                      <button
+                        className={`w-8 p-1 rounded-full focus:outline-none ${
+                          displayControls &&
+                          "hover:bg-playerControlsHover duration-100 transition transform ease-in-out hover:scale-110"
+                        }`}
+                        onClick={displayControls && (() => setBothPlaying())}
+                        data-tip={playing === false ? "Play" : "Pause"}
+                        data-place="top"
+                      >
+                        <FontAwesomeIcon
+                          icon={!playing ? "play" : "pause"}
+                          className="text-tertiaryText"
+                        />
+                      </button>
+                    )}
                     {/* Volume button & slider hover effect */}
                     <div
                       className="flex flex-row hover:bg-playerControlsHover py-1 pl-2 pr-4 rounded-xl"
@@ -299,9 +315,11 @@ function VideoPlayer({
               <p className="text-tertiaryText text-xl sm:text-2xl font-bold">
                 Nothing is playing at the moment.
               </p>
-              <p className="text-tertiaryText text-sm sm:text-md">
-                Channel admins can add videos Up Next!
-              </p>
+              <button className="bg-gradient-r-button font-bold rounded-md py-2 text-tertiaryText text-sm sm:text-md focus:outline-none transition transform ease-in-out hover:scale-102 duration-150">
+                {displayControls
+                  ? "Search and add videos Up Next!"
+                  : "Request <channel> to play something fun!"}
+              </button>
             </div>
           </div>
         </div>
