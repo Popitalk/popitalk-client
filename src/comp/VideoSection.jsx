@@ -36,9 +36,10 @@ export default function VideoSection({
           <VideoStatus
             status={playerStatus.status.toLowerCase()}
             type="text"
+            className="pr-2"
             string
           />
-          <div className="flex flex-row left-0 space-x-1 px-2">
+          <div className="flex flex-row left-0 space-x-1">
             {activeFriendViewers.map((friend, idx) => {
               return (
                 <AvatarIcon

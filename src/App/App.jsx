@@ -79,7 +79,7 @@ export default function App() {
   return (
     <>
       <ModalManager />
-      <div className="h-screen flex flex-col bg-secondaryBackground">
+      <div className="h-screen flex flex-col bg-primaryBackground">
         <div className="h-auto">
           <Header />
         </div>
@@ -127,14 +127,18 @@ export default function App() {
           </Route>
           <Route exact path="/channels">
             <RouteWrapper leftPanel={leftPanel}>
-              <div className={searchClasses}>
+              <div
+                className={`rounded-md bg-secondaryBackground ${searchClasses}`}
+              >
                 <RecommendedView list={channelsList} selectedPage="channels" />
               </div>
             </RouteWrapper>
           </Route>
           <Route exact path="/friends">
             <RouteWrapper leftPanel={leftPanel}>
-              <div className={searchClasses}>
+              <div
+                className={`rounded-md bg-secondaryBackground ${searchClasses}`}
+              >
                 <RecommendedView list={friendsList} selectedPage="friends" />
               </div>
             </RouteWrapper>

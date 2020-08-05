@@ -23,7 +23,7 @@ export default function VideoMinimalQueueCard({
         </button>
       )}
       {title && (
-        <div className="relative px-4 rounded-lg h-12 my-1 w-full shadow-xs hover:shadow-md flex flex-row items-center justify-between bg-primaryBackground cursor-pointer">
+        <div className="relative px-4 rounded-lg h-12 my-1 w-full hover:shadow-md flex flex-row items-center justify-between bg-primaryBackground cursor-pointer">
           <FontAwesomeIcon
             icon="bars"
             className="text-secondaryText cursor-move"

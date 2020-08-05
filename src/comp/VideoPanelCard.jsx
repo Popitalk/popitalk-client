@@ -59,9 +59,9 @@ export default function VideoPanelCard({
         </div>
       )}
       {title && (
-        <div className="w-full flex-shrink-0 max-w-2xs mr-2">
-          <div className="relative flex justify-center flex-grow pb-16/9 w-full rounded-md group-hover:shadow-md transition-all ease-in-out duration-100">
-            <div className="absolute top-0 left-0 w-full p-2 rounded-b-xl">
+        <div className="w-full flex-shrink-0 max-w-2xs mr-2 cursor-pointer">
+          <div className="relative flex justify-center flex-grow pb-16/9 w-full rounded-md shadow-xs hover:shadow-md transition-all ease-in-out duration-100">
+            <div className="absolute top-0 left-0 w-full h-full p-2 rounded-b-xl">
               <div className="flex justify-between">
                 <VideoStatus status={status} statusMessage={statusMessage} />
                 {type === "cancel" && (
@@ -88,7 +88,7 @@ export default function VideoPanelCard({
             <img
               src={thumbnail}
               alt="video-thumbnail"
-              className="absolute top-0 pb-px h-full img rounded-md object-cover"
+              className="absolute top-0 w-full pb-px h-full img rounded-md object-cover"
             />
           </div>
           <div className="w-full pt-2 px-0">

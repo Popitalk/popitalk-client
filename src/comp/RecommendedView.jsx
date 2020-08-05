@@ -39,7 +39,7 @@ function RecommendedChannels({ list, selectedPage }) {
 
   const [search, setSearch] = useState("");
   return (
-    <div className="relative my-4 mx-auto w-full max-w-screen-xl">
+    <div className="relative py-4 mx-auto w-full max-w-screen-xl rounded-md bg-secondaryBackground">
       {/* Alert to indicate invalid channel URL */}
       <div className="fixed mx-2 -my-4 z-50">
         {!!alert && <Alert duration={3000}>{alert}</Alert>}
