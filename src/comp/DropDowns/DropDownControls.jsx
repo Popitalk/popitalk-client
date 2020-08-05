@@ -28,21 +28,17 @@ export default function DropDownControls({
         open === true
           ? "text-highlightText"
           : "cursor-pointer text-secondaryText hover:filter-brightness-8 transition-all duration-100"
-      } sm:relative flex items-center justify-center w-10 h-10 rounded-circle`}
+      } relative flex items-center justify-center w-10 h-10 rounded-circle`}
+      onMouseDown={() => {
+        if (onClick) onClick();
+        setOpen(true);
+      }}
+      role="button"
     >
-      <div
-        className="relative"
-        onMouseDown={() => {
-          if (onClick) onClick();
-          setOpen(true);
-        }}
-        role="button"
-      >
-        <FontAwesomeIcon icon={icon} size="lg" />
-        {hasNotification && (
-          <div className="absolute top-0 -mt-1 -mr-1 right-0 z-10 p-1 border-2 rounded-circle border-primaryBackground bg-errorText" />
-        )}
-      </div>
+      <FontAwesomeIcon icon={icon} size="lg" />
+      {hasNotification && (
+        <div className="absolute top-0 mt-1 mr-1 right-0 z-10 p-1 border-2 rounded-circle border-primaryBackground bg-errorText" />
+      )}
       {open && (
         <div
           className="absolute text-primaryText sm:right-0 sm:top-0 sm:mt-10

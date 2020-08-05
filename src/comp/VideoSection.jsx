@@ -32,13 +32,13 @@ export default function VideoSection({
         dispatchPlayNextVideo={dispatchPlayNextVideo}
       />
       <div className="flex flex-col pt-4 px-4">
-        <div className="relative flex items-center h-8">
+        <div className="flex items-center h-8">
           <VideoStatus
             status={playerStatus.status.toLowerCase()}
             type="text"
             string
           />
-          <div className="absolute flex flex-row left-0">
+          <div className="flex flex-row left-0 px-2">
             {activeFriendViewers.map((friend, idx) => {
               return (
                 <AvatarIcon
