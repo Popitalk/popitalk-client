@@ -8,11 +8,8 @@ import VideoPlayer from "./VideoPlayer";
 export default function VideoSection({
   title,
   url,
-  videoStartTime,
-  queueStartPosition,
   sourceChannelName,
   activeFriendViewers,
-  status,
   inviteUsers,
   openProfile,
   isInvitingAllowed,
@@ -20,27 +17,25 @@ export default function VideoSection({
   dispatchPlay,
   dispatchPause,
   dispatchSkip,
-  dispatchUpdatePlayerStatus
+  dispatchPlayNextVideo
 }) {
   return (
     <div className="flex flex-col">
       <VideoPlayer
         url={url}
-        videoStartTime={videoStartTime}
-        status={status}
-        queueStartPosition={queueStartPosition}
+        playerStatus={playerStatus}
         dispatchPlay={dispatchPlay}
         dispatchPause={dispatchPause}
         dispatchSkip={dispatchSkip}
-        dispatchUpdatePlayerStatus={dispatchUpdatePlayerStatus}
+        dispatchPlayNextVideo={dispatchPlayNextVideo}
       />
       <div className="flex flex-col pt-4 px-4">
         <div className="relative flex items-center h-8">
-          {status ? (
-            <VideoStatus status={status} type="text" string />
-          ) : (
-            <p></p>
-          )}
+          <VideoStatus
+            status={playerStatus.status.toLowerCase()}
+            type="text"
+            string
+          />
           <div className="absolute flex flex-row left-0">
             {activeFriendViewers.map((friend, idx) => {
               return (

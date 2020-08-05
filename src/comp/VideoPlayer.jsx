@@ -11,13 +11,11 @@ import useLocalStorage from "../hooks/useLocalStorage";
 
 function VideoPlayer({
   url,
-  videoStartTime,
-  queueStartPosition,
-  status,
+  playerStatus,
   dispatchPlay,
   dispatchPause,
   dispatchSkip,
-  dispatchUpdatePlayerStatus
+  dispatchPlayNextVideo
 }) {
   const videoPlayer = useRef(null);
   const reactPlayer = useRef(null);
@@ -29,7 +27,7 @@ function VideoPlayer({
   const [isHoveringVolume, setIsHoveringVolume] = useState(false);
 
   //Determine state for pause & play & playingIcon
-  const [playing, setPlaying] = useState(status === "Playing");
+  const playing = playerStatus.status === "Playing";
 
   const [progress, setProgress] = useState(0);
   const [duration, setDuration] = useState(0);
@@ -39,7 +37,7 @@ function VideoPlayer({
   });
 
   const handleProgressSliderChange = s => {
-    dispatchSkip(queueStartPosition, s);
+    dispatchSkip(playerStatus.queueStartPosition, s);
     reactPlayer.current.seekTo(s, "seconds");
   };
 
@@ -53,11 +51,10 @@ function VideoPlayer({
 
   //sync playIcon and play states
   const setBothPlaying = () => {
-    setPlaying(!playing);
     if (playing) {
-      dispatchPause(queueStartPosition, progress);
+      dispatchPause(playerStatus.queueStartPosition, progress);
     } else {
-      dispatchPlay(queueStartPosition, progress);
+      dispatchPlay(playerStatus.queueStartPosition, progress);
     }
   };
 
@@ -115,8 +112,10 @@ function VideoPlayer({
               volume={volume}
               muted={muted}
               onReady={() => {
-                reactPlayer.current.seekTo(videoStartTime, "seconds");
-                setDuration(reactPlayer.current.getDuration());
+                reactPlayer.current.seekTo(
+                  playerStatus.videoStartTime,
+                  "seconds"
+                );
               }}
               onProgress={({ playedSeconds }) => {
                 setProgress(playedSeconds);
@@ -124,7 +123,7 @@ function VideoPlayer({
               progressInterval={100}
               onEnded={() => {
                 console.log("ended");
-                dispatchUpdatePlayerStatus();
+                dispatchPlayNextVideo();
               }}
               onDuration={s => {
                 setDuration(s);

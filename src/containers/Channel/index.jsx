@@ -25,8 +25,7 @@ import {
   setPaused,
   skipPlayer,
   addVideo,
-  deleteVideo,
-  updatePlayerStatus
+  deleteVideo
 } from "../../redux/actions";
 import { testQueue, testResult } from "../../stories/seed-arrays";
 import ChannelHeader from "../../comp/ChannelHeader";
@@ -216,11 +215,6 @@ export default function Channel({ tab, searchClasses, type = "channel" }) {
     }
   }, [tab, loading]);
 
-  useEffect(() => {
-    dispatch(updatePlayerStatus({ channelId }));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [channelId]);
-
   if (loading) return <></>;
   return (
     <div className="flex flex-col bg-secondaryBackground w-full overflow-x-hidden">
@@ -243,7 +237,7 @@ export default function Channel({ tab, searchClasses, type = "channel" }) {
           <>
             <VideoPanel
               playlist={channel.queue}
-              playerStatus={{
+              startPlayerStatus={{
                 queueStartPosition: channel.queueStartPosition,
                 clockStartTime: channel.clockStartTime,
                 videoStartTime: channel.videoStartTime,
@@ -264,9 +258,6 @@ export default function Channel({ tab, searchClasses, type = "channel" }) {
                 dispatch(
                   skipPlayer({ channelId, queueStartPosition, videoStartTime })
                 )
-              }
-              dispatchUpdatePlayerStatus={() =>
-                dispatch(updatePlayerStatus({ channelId }))
               }
               handleDeleteVideo={handleDeleteVideo}
             />

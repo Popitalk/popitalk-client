@@ -835,14 +835,3 @@ export const skipPlayer = createAsyncThunk(
     return response.data;
   }
 );
-
-export const getPlayerStatus = createAsyncThunk(
-  "video/getPlayerStatus",
-  async playerInfo => {
-    const response = await api.getPlayerStatus(playerInfo.channelId);
-    console.log("getPlayerStatus", response.data);
-    return response.data;
-  }
-);
-
-export const updatePlayerStatus = createAction("video/updatePlayerStatus");
