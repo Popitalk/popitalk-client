@@ -23,7 +23,7 @@ class VideoPlayer extends Component {
       //TODO: Re-add local storage functionality
       volume: {
         volume: 1,
-        muted: false //This should be set to false on deployment
+        muted: true //This should be set to false on deployment
       }
     };
 

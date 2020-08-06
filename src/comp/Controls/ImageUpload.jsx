@@ -1,5 +1,6 @@
 import React from "react";
 import classnames from "classnames";
+import defaultImage from "../../assets/default/user-default.png";
 // import Button from "./Button";
 
 export default function ImageUpload({
@@ -18,7 +19,7 @@ export default function ImageUpload({
   });
 
   const imageClasses = classnames(
-    "relative flex justify-center items-center bg-gradient-b-primary rounded-circle p-2px group",
+    "relative flex justify-center items-center rounded-circle group",
     {
       "h-32 w-32": size === "sm",
       "h-48 w-48": size === "md"
@@ -29,6 +30,7 @@ export default function ImageUpload({
     <div className={containerClasses}>
       <div className={imageClasses}>
         <input
+          id="i"
           type="file"
           accept="image/jpeg, image/png"
           onChange={onUpload}
@@ -38,17 +40,22 @@ export default function ImageUpload({
         />
         {icon ? (
           <img
+            id="img"
             src={icon}
             alt="icon"
             className="relative img h-full w-full rounded-circle p-px z-10"
           />
         ) : (
-          <p className="flex flex-row justify-center items-center bg-primaryBackground text-secondaryButtonText font-bold rounded-circle w-full h-full relative z-10">
-            {selectMessage}
+          <p className="relative flex flex-row justify-center items-center bg-primaryBackground rounded-circle w-full h-full relative">
+            <img
+              src={defaultImage}
+              alt="icon"
+              className="img h-full w-full rounded-circle"
+            />
           </p>
         )}
-        <div className="absolute flex flex-col justify-center items-center text-tertiaryText text-sm font-bold rounded-circle w-full h-full z-20 bg-black bg-opacity-50 cursor-pointer transition-opacity opacity-0 group-hover:opacity-100 duration-100">
-          {icon && <p>{changeMessage}</p>}
+        <div className="absolute flex flex-col justify-center items-center text-tertiaryText text-sm font-bold rounded-circle w-full h-full z-20 bg-black bg-opacity-25 transition-opacity opacity-0 group-hover:opacity-100 duration-100">
+          {icon ? <p>{changeMessage}</p> : <p>{selectMessage}</p>}
         </div>
       </div>
       {/* {icon && (

@@ -3,6 +3,7 @@ import ChannelCardList from "../Channel/ChannelCardList";
 import PopupMenu from "../Controls/PopupMenu";
 import FriendRequestButtons from "../Controls/FriendRequestButtons";
 import ImageUpload from "../Controls/ImageUpload";
+// import Resizer from "react-image-file-resizer";
 
 export default function ProfileModal({
   user,
@@ -18,8 +19,27 @@ export default function ProfileModal({
 }) {
   // variants: self, friend, stranger, sentRequest, receivedRequest, blocked
   const variant = user.variant;
-
   const myProfile = variant === "self";
+
+  const onChangePicture = e => {
+    if (e.target.files[0]) {
+      updateAvatar(URL.createObjectURL(e.target.files[0]));
+      // updateAvatar(
+      //   Resizer.imageFileResizer(
+      //     e.target.files[0],
+      //     300,
+      //     300,
+      //     "JPEG",
+      //     100,
+      //     0,
+      //     uri => {
+      //       console.log(uri);
+      //     },
+      //     "blob"
+      //   )
+      // );
+    }
+  };
 
   let options = null;
   if (!myProfile) {
@@ -42,11 +62,7 @@ export default function ProfileModal({
             name="avatar"
             size="sm"
             icon={user.avatar}
-            onUpload={e => {
-              if (e.target.files[0]) {
-                updateAvatar(URL.createObjectURL(e.target.files[0]));
-              }
-            }}
+            onUpload={onChangePicture}
             onRemove={() => {
               updateAvatar(null);
             }}
