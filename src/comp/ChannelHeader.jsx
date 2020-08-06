@@ -2,7 +2,13 @@ import React from "react";
 import RoomIcon from "./Controls/RoomIcon";
 import { Link, useLocation } from "react-router-dom";
 
-export default function ChannelHeader({ id, name, icon, type = "channel" }) {
+export default function ChannelHeader({
+  id,
+  name,
+  icon,
+  videoStatus,
+  type = "channel"
+}) {
   const navButtons = [
     { name: "Video", endpoint: "video" },
     { name: "Posts", endpoint: "channel" },
@@ -42,6 +48,7 @@ export default function ChannelHeader({ id, name, icon, type = "channel" }) {
           images={[icon]}
           // watching={videoStatus === "playing" ? true : false}
           size="sm"
+          watching={videoStatus}
           className="transition transform ease-in-out hover:scale-110 duration-100 cursor-pointer"
         />
         <p className="flex flex-shrink-0 text-md font-medium text-primaryText p-2 w-full truncate overflow-hidden">
@@ -52,7 +59,7 @@ export default function ChannelHeader({ id, name, icon, type = "channel" }) {
         <nav className="flex flex-shrink-0 truncate">
           {navButtons.map((button, idx) => {
             let className =
-              "mx-1 font-semibold no-underline focus:outline-none rounded-lg px-2 hover:text-highlightText";
+              "mx-1 font-semibold no-underline focus:outline-none p-2 hover:text-highlightText";
             if (
               location.pathname.startsWith(`/channels/${id}/${button.endpoint}`)
             ) {
