@@ -17,13 +17,13 @@ class VideoPlayer extends Component {
     this.state = {
       isHovering: false,
       isHoveringVolume: false,
-      playing: false,
+      playing: false, //This should be set to true on deployment
       progress: 0,
       duration: 0,
       //TODO: Re-add local storage functionality
       volume: {
         volume: 1,
-        muted: true
+        muted: true //This should be set to false on deployment
       }
     };
 
@@ -62,7 +62,7 @@ class VideoPlayer extends Component {
   }
 
   toggleMute() {
-    if (this.state.volume.volume === 0) {
+    if (this.state.volume === 0) {
       this.setState({ volume: { volume: 0.1, muted: false } });
       return;
     }
@@ -311,7 +311,7 @@ class VideoPlayer extends Component {
                         {/* Volume button */}
                         <button
                           className="w-8 p-1 rounded-full focus:outline-none duration-100 transition transform ease-in-out hover:scale-110"
-                          onClick={this.toggleMute}
+                          onClick={() => this.toggleMute()}
                           data-tip={this.state.volume.muted ? "Unmute" : "Mute"}
                           data-place="top"
                         >
@@ -367,7 +367,7 @@ class VideoPlayer extends Component {
                       className={`w-8 p-1 rounded-full hover:bg-playerControlsHover
                         focus:outline-none transition transform ease-in-out
                         hover:scale-110 duration-100`}
-                      onClick={this.handleFullScreen}
+                      onClick={() => this.handleFullScreen()}
                       data-tip="Full screen"
                       data-place="top"
                     >
