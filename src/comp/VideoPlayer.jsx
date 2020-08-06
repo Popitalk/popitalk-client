@@ -185,6 +185,15 @@ class VideoPlayer extends Component {
                 }}
               />
             </div>
+            {/* Pause indicator on the background */}
+            {this.state.playing === false && (
+              <div className="absolute flex items-center justify-center w-full h-full">
+                <p className="flex items-center justify-center text-tertiaryText text-2xl px-8 py-4 bg-black bg-opacity-50 rounded-xl shadow-xl space-x-4">
+                  <FontAwesomeIcon icon="pause" className="text-tertiaryText" />
+                  <p>Paused</p>
+                </p>
+              </div>
+            )}
             <div className="absolute flex flex-col justify-end w-full h-full transition-colors">
               {/* <div className="p-2 w-auto inline-block select-none">
                 <VideoPlayerStatusCard

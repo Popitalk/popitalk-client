@@ -25,7 +25,8 @@ export default function Button({
     primary: "bg-gradient-br-button",
     secondary: "bg-gradient-br-search",
     cancel: "bg-gradient-br-cancel",
-    bgColor: "bg-gradient-br-bgColor"
+    bgColor: "bg-gradient-br-bgColor",
+    gradient: "bg-gradient-r-primary"
   };
 
   const shapes = {

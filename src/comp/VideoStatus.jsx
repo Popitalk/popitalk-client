@@ -17,6 +17,7 @@ export default function VideoStatus({
             size={size}
             shape={shape}
             className="text-tertiaryText font-bold shadow-md z-10"
+            background="gradient"
           >
             Playing
           </Button>

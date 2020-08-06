@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Button from "./Controls/Button";
 import VideoStatus from "./VideoStatus";
 import moment from "moment";
@@ -41,6 +41,13 @@ export default function VideoPanelCard({
     });
     setDisableButton(true);
   };
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setDisableButton(false);
+      setAddButtonIcon("plus");
+    }, 2000);
+    return () => clearTimeout(timer);
+  }, []);
   return (
     <>
       {!title && (
