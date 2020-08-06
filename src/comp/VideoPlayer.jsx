@@ -17,13 +17,13 @@ class VideoPlayer extends Component {
     this.state = {
       isHovering: false,
       isHoveringVolume: false,
-      playing: false, //This should be set to true on deployment
+      playing: false,
       progress: 0,
       duration: 0,
       //TODO: Re-add local storage functionality
       volume: {
         volume: 1,
-        muted: true //This should be set to false on deployment
+        muted: false //This should be set to false on deployment
       }
     };
 
