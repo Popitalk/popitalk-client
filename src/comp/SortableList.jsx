@@ -62,6 +62,6 @@ export default function SortableList({
       onSortEnd={handlerChange}
       axis={axis}
       distance={1}
-    ></SortableList>
+    />
   );
 }

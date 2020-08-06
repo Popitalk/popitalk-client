@@ -54,7 +54,6 @@ import {
   addVideo,
   deleteVideo
 } from "../actions";
-import { calculatePlayerStatus } from "../../helpers/functions";
 
 const initialState = {};
 

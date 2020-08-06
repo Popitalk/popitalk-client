@@ -5,10 +5,15 @@ import SortableList from "./SortableList";
 export default function QueueSection({
   queueList,
   handlerChange,
+  handleSkip,
   handleDeleteVideo
 }) {
   const itemRenderer = value => (
-    <VideoPanelCard {...value} handleDeleteVideo={handleDeleteVideo} />
+    <VideoPanelCard
+      {...value}
+      handleSkip={handleSkip}
+      handleDeleteVideo={handleDeleteVideo}
+    />
   );
 
   return (

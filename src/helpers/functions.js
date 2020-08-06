@@ -240,34 +240,40 @@ export const calculatePlayerStatus = (
   playlist,
   currTime = moment()
 ) => {
-  if (playlist.length === 0)
-    return {
-      queueStartPosition: 0,
-      videoStartTime: 0,
-      status: "Ended"
-    };
+  const defaultPlayerStatus = {
+    queueStartPosition: 0,
+    videoStartTime: 0,
+    clockStartTime: currTime,
+    status: "Ended"
+  };
+
+  if (playlist.length === 0) return defaultPlayerStatus;
+
+  const momentStartTime = moment(clockStartTime);
 
   const newPlayerStatus = {
     queueStartPosition,
     videoStartTime: Number(videoStartTime.toFixed(0)),
+    clockStartTime: momentStartTime,
     status
   };
 
   if (status === "Paused" || status === "Ended") return newPlayerStatus;
 
+  if (currTime - momentStartTime > 0) {
+    currTime.add(3, "seconds");
+    newPlayerStatus.clockStartTime = currTime;
+  }
+
   const msToS = 1 / 1000;
 
-  let elapsedTime = (currTime - moment(clockStartTime)) * msToS;
+  let elapsedTime = (currTime - momentStartTime) * msToS;
   const maxPlaylistTime = playlist
     .slice(queueStartPosition)
     .reduce((acc, curr) => acc + curr.length, 0);
 
   if (newPlayerStatus.videoStartTime + elapsedTime > maxPlaylistTime)
-    return {
-      queueStartPosition: 0,
-      videoStartTime: 0,
-      status: "Ended"
-    };
+    return defaultPlayerStatus;
 
   newPlayerStatus.videoStartTime += elapsedTime;
   while (newPlayerStatus.queueStartPosition < playlist.length) {

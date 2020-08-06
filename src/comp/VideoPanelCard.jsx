@@ -12,6 +12,7 @@ export default function VideoPanelCard({
   status,
   statusMessage,
   type = "cancel",
+  handleSkip,
   handleAddVideo,
   handleDeleteVideo,
   url
@@ -89,6 +90,7 @@ export default function VideoPanelCard({
               src={thumbnail}
               alt="video-thumbnail"
               className="absolute top-0 w-full pb-px h-full img rounded-md object-cover"
+              onClick={() => handleSkip(id)}
             />
           </div>
           <div className="w-full pt-2 px-0">
@@ -99,7 +101,7 @@ export default function VideoPanelCard({
             <div className="flex items-end">
               <p className="text-xs pt-2 text-secondaryText items-end ">
                 {/* {leftInfo} &middot; {rightInfo} */}
-                {"Youtube"} &middot; {rightInfo}
+                {"YouTube"} &middot; {rightInfo}
               </p>
             </div>
           </div>

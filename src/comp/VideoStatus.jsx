@@ -16,7 +16,7 @@ export default function VideoStatus({
           <Button
             size={size}
             shape={shape}
-            className="text-tertiaryText font-bold shadow-md"
+            className="text-tertiaryText font-bold shadow-md z-10"
           >
             Playing
           </Button>
@@ -46,17 +46,17 @@ export default function VideoStatus({
     return (
       <>
         {status === "playing" && (
-          <span className="bg-gradient-r-primary rounded-xl px-2 py-1 shadow-md text-tertiaryText text-xs font-semibold select-none">
+          <span className="bg-gradient-r-primary rounded-xl px-2 py-1 shadow-md text-tertiaryText text-xs font-semibold select-none z-10">
             Playing
           </span>
         )}
         {status === "paused" && (
-          <p className="text-secondaryText text-xs font-semibold select-none">
+          <p className="text-secondaryText text-xs font-semibold select-none z-10">
             Paused
           </p>
         )}
         {(status === "queued" || status === "ended") && statusMessage && (
-          <p className="text-secondaryText text-xs font-semibold select-none">
+          <p className="text-secondaryText text-xs font-semibold select-none z-10">
             {statusMessage}
           </p>
         )}
