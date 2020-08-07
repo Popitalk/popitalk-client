@@ -8,6 +8,7 @@ import "rc-slider/assets/index.css";
 import useLocalStorage from "../hooks/useLocalStorage";
 import moment from "moment";
 import VideoPlayerStatusCard from "./VideoPlayerStatusCard";
+import Ripples from "react-ripples";
 
 class VideoPlayer extends Component {
   constructor(props) {
@@ -253,11 +254,13 @@ class VideoPlayer extends Component {
                     : "flex flex-col justify-end w-full h-full transition-colors bg-gradient-t-player transition-opacity opacity-0 hover:opacity-100 duration-200"
                 }
               >
-                {/* Click background to play or pause the video */}
+                {/* Click background to play or pause the video - with ripple animation */}
                 {this.props.displayControls && (
-                  <button
+                  <Ripples
                     className="bg-transparent w-full h-full focus:outline-none"
                     onClick={() => this.setBothPlaying()}
+                    role="button"
+                    during="2200"
                   />
                 )}
                 <div className="flex flex-col px-2 w-full">
