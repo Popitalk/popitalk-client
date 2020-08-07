@@ -229,22 +229,22 @@ class VideoPlayer extends Component {
               />
             </div>
             {/* Pause indicator on the background */}
-            {this.state.playing === false && (
-              <div className="absolute flex items-center justify-center w-full h-full">
-                <div className="flex items-center justify-center text-tertiaryText text-2xl px-8 py-4 bg-black bg-opacity-50 rounded-xl shadow-xl space-x-4">
-                  <FontAwesomeIcon icon="pause" className="text-tertiaryText" />
-                  <p>Paused</p>
-                </div>
-              </div>
-            )}
-            <div className="absolute flex flex-col justify-end w-full h-full transition-colors">
-              {this.state.videoStatus.currSeconds > 0 && (
-                <div className="p-2 w-auto inline-block select-none">
+            <div className="absolute flex items-center justify-center w-full h-full">
+              {this.state.playing === false &&
+                this.state.videoStatus.currSeconds === 0 && (
                   <VideoPlayerStatusCard
-                    systemMessage={`Starting in ${this.state.videoStatus.currSeconds}`}
+                    systemMessage={"Paused"}
+                    icon="pause"
                   />
-                </div>
+                )}
+              {this.state.videoStatus.currSeconds > 0 && (
+                <VideoPlayerStatusCard
+                  systemMessage={`Starting in ${this.state.videoStatus.currSeconds}`}
+                />
               )}
+            </div>
+
+            <div className="absolute flex flex-col justify-end w-full h-full transition-colors">
               <div
                 // Always show the video controls while the video is at pause.
                 className={
