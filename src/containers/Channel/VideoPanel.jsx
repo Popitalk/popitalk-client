@@ -9,7 +9,11 @@ import {
   skipPlayer,
   deleteVideo
 } from "../../redux/actions";
-import { mapIdsToUsers, calculatePlayerStatus } from "../../helpers/functions";
+import {
+  mapIdsToUsers,
+  calculatePlayerStatus,
+  calculateNextPlayerStatus
+} from "../../helpers/functions";
 import VideoSection from "../../comp/VideoSection";
 import QueueSection from "../../comp/QueueSection";
 
@@ -98,8 +102,11 @@ class VideoPanel extends Component {
       this.setState({
         playerStatus: {
           ...this.state.playerStatus,
-          queueStartPosition: nextPosition,
-          videoStartTime: 0
+          ...calculateNextPlayerStatus(
+            this.props.startPlayerStatus,
+            this.props.playlist,
+            nextPosition
+          )
         },
         queueList: newQueueList
       });

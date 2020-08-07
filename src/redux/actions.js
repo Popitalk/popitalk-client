@@ -799,7 +799,7 @@ export const setPlaying = createAsyncThunk(
   async playerInfo => {
     const videoObject = {
       queueStartPosition: playerInfo.queueStartPosition,
-      clockStartTime: moment(),
+      clockStartTime: moment().format(),
       videoStartTime: playerInfo.videoStartTime
     };
     const response = await api.setPlaying(playerInfo.channelId, videoObject);
@@ -813,7 +813,7 @@ export const setPaused = createAsyncThunk(
   async playerInfo => {
     const videoObject = {
       queueStartPosition: playerInfo.queueStartPosition,
-      clockStartTime: moment(),
+      clockStartTime: moment().format(),
       videoStartTime: playerInfo.videoStartTime
     };
     const response = await api.setPaused(playerInfo.channelId, videoObject);
@@ -827,7 +827,7 @@ export const skipPlayer = createAsyncThunk(
   async playerInfo => {
     const videoObject = {
       queueStartPosition: playerInfo.queueStartPosition,
-      clockStartTime: moment(),
+      clockStartTime: moment().format(),
       videoStartTime: playerInfo.videoStartTime
     };
     const response = await api.skipPlayer(playerInfo.channelId, videoObject);

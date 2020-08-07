@@ -7,8 +7,7 @@ import ReactTooltip from "react-tooltip";
 import "rc-slider/assets/index.css";
 import useLocalStorage from "../hooks/useLocalStorage";
 import moment from "moment";
-// import VideoPlayerStatusCard from "./VideoPlayerStatusCard";
-// import defaultImage from "../assets/default/user-default.png";
+import VideoPlayerStatusCard from "./VideoPlayerStatusCard";
 
 class VideoPlayer extends Component {
   constructor(props) {
@@ -24,6 +23,9 @@ class VideoPlayer extends Component {
       volume: {
         volume: 1,
         muted: true //This should be set to false on deployment
+      },
+      videoStatus: {
+        currSeconds: 0
       }
     };
 
@@ -31,6 +33,9 @@ class VideoPlayer extends Component {
     this.videoPlayer = createRef();
 
     this.playTimer = null;
+    this.countDownTimer = null;
+
+    this.setCountDownTimer = this.setCountDownTimer.bind(this);
   }
 
   handleProgressSliderChange(s) {
@@ -104,11 +109,50 @@ class VideoPlayer extends Component {
     return null;
   }
 
-  setPlayTimer() {
-    if (this.playTimer) {
-      clearInterval(this.playTimer);
-      this.playTimer = null;
+  clearTimer(timer) {
+    if (timer) {
+      clearInterval(timer);
+      timer = null;
     }
+  }
+
+  setCountDownTimer() {
+    const remainingTime = this.props.playerStatus.clockStartTime - moment();
+    if (remainingTime > 0) {
+      this.startCountDownTimer(remainingTime);
+    } else {
+      this.clearTimer(this.countDownTimer);
+
+      this.setState({
+        videoStatus: {
+          ...this.state.videoStatus,
+          currSeconds: 0
+        }
+      });
+    }
+  }
+
+  startCountDownTimer(remainingTime) {
+    let waitTime = remainingTime % 1000;
+    if (waitTime === 0) {
+      waitTime = 1000;
+    }
+
+    this.clearTimer(this.countDownTimer);
+    this.countDownTimer = setInterval(() => this.setCountDownTimer(), waitTime);
+
+    const currSeconds = Math.ceil(remainingTime / 1000);
+
+    this.setState({
+      videoStatus: {
+        ...this.state.videoStatus,
+        currSeconds: currSeconds
+      }
+    });
+  }
+
+  setPlayTimer() {
+    this.clearTimer(this.playTimer);
 
     const waitTime = this.props.playerStatus.clockStartTime - moment();
     if (waitTime > 0) {
@@ -117,9 +161,10 @@ class VideoPlayer extends Component {
           playing: this.props.playerStatus.status === "Playing"
         });
 
-        clearInterval(this.playTimer);
-        this.playTimer = null;
+        this.clearTimer(this.playTimer);
       }, waitTime);
+
+      this.startCountDownTimer(waitTime);
     }
 
     this.setState({
@@ -137,10 +182,8 @@ class VideoPlayer extends Component {
   }
 
   componentWillUnmount() {
-    if (this.playTimer) {
-      clearInterval(this.playTimer);
-      this.playTimer = null;
-    }
+    this.clearTimer(this.playTimer);
+    this.clearTimer(this.countDownTimer);
   }
 
   render() {
@@ -188,21 +231,20 @@ class VideoPlayer extends Component {
             {/* Pause indicator on the background */}
             {this.state.playing === false && (
               <div className="absolute flex items-center justify-center w-full h-full">
-                <p className="flex items-center justify-center text-tertiaryText text-2xl px-8 py-4 bg-black bg-opacity-50 rounded-xl shadow-xl space-x-4">
+                <div className="flex items-center justify-center text-tertiaryText text-2xl px-8 py-4 bg-black bg-opacity-50 rounded-xl shadow-xl space-x-4">
                   <FontAwesomeIcon icon="pause" className="text-tertiaryText" />
                   <p>Paused</p>
-                </p>
+                </div>
               </div>
             )}
             <div className="absolute flex flex-col justify-end w-full h-full transition-colors">
-              {/* <div className="p-2 w-auto inline-block select-none">
-                <VideoPlayerStatusCard
-                  defaultAvatar={defaultImage}
-                  username="Andrew"
-                  message="skipped to 0:11"
-                  systemMessage="Starting 10s"
-                />
-              </div> */}
+              {this.state.videoStatus.currSeconds > 0 && (
+                <div className="p-2 w-auto inline-block select-none">
+                  <VideoPlayerStatusCard
+                    systemMessage={`Starting in ${this.state.videoStatus.currSeconds}`}
+                  />
+                </div>
+              )}
               <div
                 // Always show the video controls while the video is at pause.
                 className={
