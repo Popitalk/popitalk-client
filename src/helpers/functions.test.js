@@ -1,4 +1,4 @@
-import { calculatePlayerStatus } from "./functions";
+import { calculatePlayerStatus } from "./videoSyncing";
 import moment from "moment";
 
 const playlist = [{ length: 300 }, { length: 400 }, { length: 500 }];

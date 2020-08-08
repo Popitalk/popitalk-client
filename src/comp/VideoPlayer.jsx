@@ -18,7 +18,7 @@ class VideoPlayer extends Component {
       isHovering: false,
       isHoveringVolume: false,
       playing: false,
-      progress: 0,
+      progress: this.props.playerStatus.videoStartTime,
       duration: 0,
       //TODO: Re-add local storage functionality
       volume: {
@@ -154,12 +154,13 @@ class VideoPlayer extends Component {
 
   setPlayTimer() {
     this.clearTimer(this.playTimer);
+    this.clearTimer(this.countDownTimer);
 
     const waitTime = this.props.playerStatus.clockStartTime - moment();
-    if (waitTime > 0) {
+    if (waitTime > 0 && this.props.playerStatus.status === "Playing") {
       this.playTimer = setInterval(() => {
         this.setState({
-          playing: this.props.playerStatus.status === "Playing"
+          playing: true
         });
 
         this.clearTimer(this.playTimer);
@@ -169,8 +170,13 @@ class VideoPlayer extends Component {
     }
 
     this.setState({
-      playing: false
+      playing: false,
+      progress: this.props.playerStatus.videoStartTime
     });
+  }
+
+  componentDidMount() {
+    this.setPlayTimer();
   }
 
   componentDidUpdate(prevProps) {
@@ -215,7 +221,6 @@ class VideoPlayer extends Component {
                     this.props.playerStatus.videoStartTime,
                     "seconds"
                   );
-                  this.setPlayTimer();
                 }}
                 onProgress={({ playedSeconds }) => {
                   this.setState({ progress: playedSeconds });
@@ -260,7 +265,7 @@ class VideoPlayer extends Component {
                     className="bg-transparent w-full h-full focus:outline-none"
                     onClick={() => this.setBothPlaying()}
                     role="button"
-                    during="2200"
+                    during={2200}
                   />
                 )}
                 <div className="flex flex-col px-2 w-full">

@@ -9,11 +9,11 @@ import {
   skipPlayer,
   deleteVideo
 } from "../../redux/actions";
+import { mapIdsToUsers } from "../../helpers/functions";
 import {
-  mapIdsToUsers,
   calculatePlayerStatus,
   calculateNextPlayerStatus
-} from "../../helpers/functions";
+} from "../../helpers/videoSyncing";
 import VideoSection from "../../comp/VideoSection";
 import QueueSection from "../../comp/QueueSection";
 
@@ -99,14 +99,16 @@ class VideoPanel extends Component {
       ].status = this.state.playerStatus.status.toLowerCase();
       newQueueList[nextPosition - 1].status = "ended";
 
+      const nextPlayerStatus = calculateNextPlayerStatus(
+        this.props.startPlayerStatus,
+        this.props.playlist,
+        nextPosition
+      );
+
       this.setState({
         playerStatus: {
           ...this.state.playerStatus,
-          ...calculateNextPlayerStatus(
-            this.props.startPlayerStatus,
-            this.props.playlist,
-            nextPosition
-          )
+          ...nextPlayerStatus
         },
         queueList: newQueueList
       });
@@ -128,11 +130,7 @@ class VideoPanel extends Component {
 
   handleSkip(id) {
     const index = this.state.queueList.findIndex(v => v.id === id);
-    if (this.state.playerStatus.status === "Playing") {
-      this.props.dispatchPlay(index, 0);
-    } else {
-      this.props.dispatchPause(index, 0);
-    }
+    this.props.dispatchSkip(index, 0);
   }
 
   componentDidUpdate(prevProps) {
@@ -145,18 +143,20 @@ class VideoPanel extends Component {
         this.props.startPlayerStatus.status ||
       prevProps.channelId !== this.props.channelId
     ) {
+      const playerStatus = calculatePlayerStatus(
+        this.props.startPlayerStatus,
+        this.props.playlist
+      );
+
       this.setState({
         playerStatus: {
           channelId: this.props.channelId,
-          ...calculatePlayerStatus(
-            this.props.startPlayerStatus,
-            this.props.playlist
-          )
+          ...playerStatus
         },
         queueList: this.mapVideoStatuses(
           this.props.playlist,
-          this.props.startPlayerStatus.queueStartPosition,
-          this.props.startPlayerStatus.status
+          playerStatus.queueStartPosition,
+          playerStatus.status
         )
       });
     }
