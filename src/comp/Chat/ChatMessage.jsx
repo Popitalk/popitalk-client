@@ -72,7 +72,6 @@ export default function ChatMessage({
             ownId={ownId}
             userId={message.userId}
           />
-
           <MessageContent message={message} />
           <ChatOptionsButton2 ownId={ownId} message={message} />
         </div>

@@ -1,4 +1,5 @@
 import React from "react";
+import Linkify from "react-linkify";
 
 export default function MessageContent({ message }) {
   return (
@@ -20,7 +21,7 @@ export default function MessageContent({ message }) {
           alt={JSON.parse(message.content).title}
         />
       ) : (
-        message.content
+        <Linkify>{message.content}</Linkify>
       )}
     </span>
   );
