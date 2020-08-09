@@ -19,8 +19,7 @@ export default function GifTable({ updateGifsOpen }) {
         id: uuidv4(),
         userId,
         channelId,
-        content: {
-          gif: true,
+        content: JSON.stringify({
           id: gif.id,
           title: gif.title,
           still: gif.embed_url,
@@ -28,8 +27,8 @@ export default function GifTable({ updateGifsOpen }) {
             downsized_medium: gif.images.fixed_height.url,
             fixed_width: gif.images.fixed_width.url
           }
-        },
-        upload: null,
+        }),
+        upload: "gif",
         createdAt: Date.now(),
         author: {
           id: "",
