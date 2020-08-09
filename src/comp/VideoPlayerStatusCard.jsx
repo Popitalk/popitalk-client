@@ -10,7 +10,7 @@ export default function VideoCard({
   icon
 }) {
   return (
-    <button className="flex items-center justify-center px-8 py-4 bg-black bg-opacity-75 rounded-xl shadow-xl space-x-4 z-20">
+    <div className="flex items-center justify-center px-8 py-4 bg-black bg-opacity-75 rounded-xl shadow-xl space-x-4 z-20">
       {avatar && message && username && (
         <>
           <AvatarIcon avatar={avatar} className="w-10 h-10 rounded-full" />
@@ -26,6 +26,6 @@ export default function VideoCard({
         {icon && <FontAwesomeIcon icon={icon} />}
         <p>{systemMessage}</p>
       </div>
-    </button>
+    </div>
   );
 }

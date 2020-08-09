@@ -234,22 +234,6 @@ class VideoPlayer extends Component {
                 }}
               />
             </div>
-            {/* Pause indicator on the background */}
-            <div className="absolute flex items-center justify-center w-full h-full">
-              {this.state.playing === false &&
-                this.state.videoStatus.currSeconds === 0 && (
-                  <VideoPlayerStatusCard
-                    systemMessage={"Paused"}
-                    icon="pause"
-                  />
-                )}
-              {this.state.videoStatus.currSeconds > 0 && (
-                <VideoPlayerStatusCard
-                  systemMessage={`Starting in ${this.state.videoStatus.currSeconds}`}
-                />
-              )}
-            </div>
-
             <div className="absolute flex flex-col justify-end w-full h-full transition-colors">
               <div
                 // Always show the video controls while the video is at pause.
@@ -266,7 +250,23 @@ class VideoPlayer extends Component {
                     onClick={() => this.setBothPlaying()}
                     role="button"
                     during={2200}
-                  />
+                  >
+                    {/* VideoPlayerStatusCard */}
+                    <div className="absolute flex items-center justify-center w-full h-full">
+                      {this.state.playing === false &&
+                        this.state.videoStatus.currSeconds === 0 && (
+                          <VideoPlayerStatusCard
+                            systemMessage={"Paused"}
+                            icon="pause"
+                          />
+                        )}
+                      {this.state.videoStatus.currSeconds > 0 && (
+                        <VideoPlayerStatusCard
+                          systemMessage={`Starting in ${this.state.videoStatus.currSeconds}`}
+                        />
+                      )}
+                    </div>
+                  </Ripples>
                 )}
                 <div className="flex flex-col px-2 w-full">
                   <div // Set the mouse hovering state

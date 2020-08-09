@@ -61,17 +61,17 @@ function RecommendedChannels({ list, selectedPage }) {
       <div className="flex justify-start px-6 mt-8 h-8 space-x-2">
         {tabs.map((img, idx) => {
           return (
-            <button
+            <nav
               key={idx}
-              className={`flex flex-row items-center text-secondaryText font-bold h-full px-4 shadow-sm bg-primaryBackground focus:outline-none transition transform ease-in-out hover:scale-105 duration-100 rounded-full truncate ${
+              className={`flex flex-row items-center font-bold h-full px-4 shadow-sm transition transform ease-in-out hover:scale-105 duration-100 rounded-full truncate ${
                 tabSelected === img.tab
-                  ? "rainbow-text shadow-none"
-                  : "text-secondaryText"
+                  ? "text-highlightText cursor-default shadow-none bg-secondaryBackground"
+                  : "text-secondaryText cursor-pointer bg-primaryBackground"
               }`}
               onClick={() => setTab(img.tab)}
             >
-              <p>{img.tab}</p>
-            </button>
+              {img.tab}
+            </nav>
           );
         })}
       </div>

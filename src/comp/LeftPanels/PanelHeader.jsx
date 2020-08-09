@@ -14,22 +14,26 @@ export default function PanelHeader({
       >
         <FontAwesomeIcon icon="bars" />
       </button>
-      <button
+      <nav
         className={`text-2xl px-2 p-1 focus:outline-none font-semibold hover:bg-secondaryBackground rounded-xl transition transform ease-in-out hover:scale-105 duration-100 ${
-          selectedPage === "channels" ? "rainbow-text" : "text-secondaryText"
+          selectedPage === "channels"
+            ? "rainbow-text cursor-default"
+            : "text-secondaryText cursor-pointer"
         } `}
         onClick={() => updateSelectedPage("channels")}
       >
         Channels
-      </button>
-      <button
+      </nav>
+      <nav
         className={`text-2xl px-2 p-1 focus:outline-none font-semibold hover:bg-secondaryBackground rounded-xl transition transform ease-in-out hover:scale-105 duration-100 ${
-          selectedPage === "friends" ? "rainbow-text" : "text-secondaryText"
+          selectedPage === "friends"
+            ? "rainbow-text cursor-default"
+            : "text-secondaryText cursor-pointer"
         } `}
         onClick={() => updateSelectedPage("friends")}
       >
         Friends
-      </button>
+      </nav>
     </div>
   );
 }
