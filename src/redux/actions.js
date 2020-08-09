@@ -435,7 +435,8 @@ export const addMessage = createAsyncThunk(
   async (message, { getState }) => {
     const infoObject = {
       channelId: message.channelId,
-      content: message.content
+      content: message.content,
+      upload: message.upload
     };
     const response = await api.addMessage(infoObject);
     const payload = response.data;
