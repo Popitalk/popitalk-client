@@ -30,7 +30,8 @@ const mapStateToProps = (state, { channelId }) => {
   return {
     viewers: viewers,
     isInvitingAllowed: channel.type === "group",
-    displayControls: channel.admins.find(a => a === ownId)
+    displayControls:
+      channel.type === "channel" ? channel.admins.find(a => a === ownId) : ownId
   };
 };
 
