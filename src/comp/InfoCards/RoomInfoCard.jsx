@@ -12,9 +12,17 @@ export default function RoomInfoCard({
 }) {
   const images = room.members.map(m => m.avatar);
   const name = room.members.map(m => " " + m.username).join();
-  const subtitleAndDate = room.lastMessageContent
-    ? moment(room.lastMessageAt).fromNow() + " · " + room.lastMessageContent
-    : "";
+  let subtitleAndDate = "";
+  try {
+    JSON.parse(room.lastMessageContent);
+    subtitleAndDate = room.lastMessageContent
+      ? moment(room.lastMessageAt).fromNow() + " · GIF"
+      : "";
+  } catch {
+    subtitleAndDate = room.lastMessageContent
+      ? moment(room.lastMessageAt).fromNow() + " · " + room.lastMessageContent
+      : "";
+  }
 
   const roomIcon = (
     <RoomIcon
