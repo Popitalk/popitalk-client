@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import classnames from "classnames";
 import defaultImage from "../../assets/default/user-default.png";
 // import Button from "./Button";
@@ -14,9 +14,26 @@ export default function ImageUpload({
   changeMessage = "Change Image",
   className
 }) {
+  const [imageURL, setImageURL] = useState(icon);
   const containerClasses = classnames("flex flex-col items-center", {
     [className]: className
   });
+
+  const readURL = file => {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = e => resolve(e.target.result);
+      reader.onerror = e => reject(e);
+      reader.readAsDataURL(file);
+    });
+  };
+
+  const onChange = async event => {
+    event.persist();
+    const url = await readURL(event.target.files[0]);
+    setImageURL(url);
+    onUpload(event);
+  };
 
   const imageClasses = classnames(
     "relative flex justify-center items-center rounded-circle group",
@@ -33,15 +50,15 @@ export default function ImageUpload({
           id="i"
           type="file"
           accept="image/jpeg, image/png"
-          onChange={onUpload}
+          onChange={onChange}
           disabled={disabled}
           name={name}
           className="absolute rounded-circle cursor-pointer z-40 border-none outline-none rounded-lg h-full w-full opacity-0"
         />
-        {icon ? (
+        {imageURL ? (
           <img
             id="img"
-            src={icon}
+            src={imageURL}
             alt="icon"
             className="relative img h-full w-full rounded-circle p-px z-10"
           />
