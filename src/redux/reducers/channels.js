@@ -50,7 +50,6 @@ import {
   addRoomMembers,
   setPlaying,
   setPaused,
-  skipPlayer,
   addVideo,
   deleteVideo
 } from "../actions";
@@ -348,7 +347,6 @@ export default createReducer(initialState, {
   [deleteAccount.fulfilled]: R_resetState,
   [setPlaying.fulfilled]: R_updateChannel,
   [setPaused.fulfilled]: R_updateChannel,
-  [skipPlayer.fulfilled]: R_updateChannel,
   [addVideo.fulfilled]: R_addVideo,
   [deleteVideo.fulfilled]: R_deleteVideo
 });

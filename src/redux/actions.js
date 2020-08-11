@@ -822,17 +822,3 @@ export const setPaused = createAsyncThunk(
     return response.data;
   }
 );
-
-export const skipPlayer = createAsyncThunk(
-  "video/skipPlayer",
-  async playerInfo => {
-    const videoObject = {
-      queueStartPosition: playerInfo.queueStartPosition,
-      clockStartTime: moment().format(),
-      videoStartTime: playerInfo.videoStartTime
-    };
-    const response = await api.skipPlayer(playerInfo.channelId, videoObject);
-
-    return response.data;
-  }
-);

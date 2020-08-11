@@ -19,6 +19,7 @@ class VideoPlayer extends Component {
       isHoveringVolume: false,
       playing: false,
       progress: this.props.playerStatus.videoStartTime,
+      ready: false,
       duration: 0,
       //TODO: Re-add local storage functionality
       volume: {
@@ -40,8 +41,7 @@ class VideoPlayer extends Component {
   }
 
   handleProgressSliderChange(s) {
-    this.props.dispatchSkip(this.props.playerStatus.queueStartPosition, s);
-    this.reactPlayer.current.seekTo(s, "seconds");
+    this.props.dispatchSkip(s);
   }
 
   handleVolumeSliderChange(v) {
@@ -152,7 +152,7 @@ class VideoPlayer extends Component {
     });
   }
 
-  setPlayTimer() {
+  setPlayTimer(ready) {
     this.clearTimer(this.playTimer);
     this.clearTimer(this.countDownTimer);
 
@@ -168,7 +168,14 @@ class VideoPlayer extends Component {
 
       this.startCountDownTimer(waitTime);
     }
+    if (ready) {
+      this.reactPlayer.current.seekTo(
+        this.props.playerStatus.videoStartTime,
+        "seconds"
+      );
+    }
 
+    console.log("not playing", waitTime);
     this.setState({
       playing: false,
       progress: this.props.playerStatus.videoStartTime
@@ -176,15 +183,21 @@ class VideoPlayer extends Component {
   }
 
   componentDidMount() {
-    this.setPlayTimer();
+    this.setPlayTimer(this.state.ready);
   }
 
   componentDidUpdate(prevProps) {
     if (
       prevProps.playerStatus.clockStartTime !==
-      this.props.playerStatus.clockStartTime
+        this.props.playerStatus.clockStartTime ||
+      prevProps.playerStatus.status !== this.props.playerStatus.status
     ) {
-      this.setPlayTimer();
+      const ready = prevProps.url === this.props.url && this.state.ready;
+      if (prevProps.url !== this.props.url) {
+        this.setState({ ready: false });
+      }
+
+      this.setPlayTimer(ready);
     }
   }
 
@@ -221,6 +234,7 @@ class VideoPlayer extends Component {
                     this.props.playerStatus.videoStartTime,
                     "seconds"
                   );
+                  this.setState({ ready: true });
                 }}
                 onProgress={({ playedSeconds }) => {
                   this.setState({ progress: playedSeconds });

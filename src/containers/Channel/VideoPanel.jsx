@@ -6,7 +6,6 @@ import {
   openProfileModal,
   setPlaying,
   setPaused,
-  skipPlayer,
   deleteVideo
 } from "../../redux/actions";
 import { mapIdsToUsers } from "../../helpers/functions";
@@ -42,8 +41,6 @@ const mapDispatchToProps = (dispatch, { channelId }) => ({
     dispatch(setPlaying({ channelId, queueStartPosition, videoStartTime })),
   dispatchPause: (queueStartPosition, videoStartTime) =>
     dispatch(setPaused({ channelId, queueStartPosition, videoStartTime })),
-  dispatchSkip: (queueStartPosition, videoStartTime) =>
-    dispatch(skipPlayer({ channelId, queueStartPosition, videoStartTime })),
   handleDeleteVideo: channelVideoId =>
     dispatch(deleteVideo({ channelId, channelVideoId }))
 });
@@ -129,9 +126,16 @@ class VideoPanel extends Component {
     }
   }
 
-  handleSkip(id) {
-    const index = this.state.queueList.findIndex(v => v.id === id);
-    this.props.dispatchSkip(index, 0);
+  handleSkip(id = null, s = 0) {
+    const index = id
+      ? this.state.queueList.findIndex(v => v.id === id)
+      : this.state.playerStatus.queueStartPosition;
+
+    if (this.state.playerStatus.status === "Playing") {
+      this.props.dispatchPlay(index, s);
+    } else {
+      this.props.dispatchPause(index, s);
+    }
   }
 
   componentDidUpdate(prevProps) {
@@ -185,7 +189,7 @@ class VideoPanel extends Component {
           displayControls={this.props.displayControls}
           dispatchPlay={this.props.dispatchPlay}
           dispatchPause={this.props.dispatchPause}
-          dispatchSkip={this.props.dispatchSkip}
+          dispatchSkip={s => this.handleSkip(null, s)}
           dispatchPlayNextVideo={this.playNextVideo}
         />
         <QueueSection
