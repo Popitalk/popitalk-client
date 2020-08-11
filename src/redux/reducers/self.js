@@ -48,7 +48,12 @@ const R_selfInit = (state, { payload }) => {
     .filter(([channelId, channel]) => channel.type !== "channel")
     .map(([channelId, channel]) => channelId);
   state.channelIds = Object.entries(payload.channels)
-    .filter(([channelId, channel]) => channel.type === "channel")
+    .filter(
+      ([channelId, channel]) =>
+        channel.type === "channel" &&
+        (channel.ownerId === payload.id ||
+          channel?.members?.findIndex(id => id === payload.id))
+    )
     .map(([channelId, channel]) => channelId);
 };
 
