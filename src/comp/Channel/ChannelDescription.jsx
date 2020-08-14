@@ -30,7 +30,7 @@ export default function ChannelDescription({
             shape="pill"
             className="ml-auto bg-disabledBackground shadow-xs hover:shadow-none text-secondaryText"
             background="bgColor"
-            onClickEvent={handleUnfollow}
+            onClick={handleUnfollow}
             analyticsString="Following Button: Channel Description"
           >
             Following
@@ -41,7 +41,7 @@ export default function ChannelDescription({
             size="sm"
             shape="pill"
             className="ml-auto"
-            onClickEvent={handleFollow}
+            onClick={handleFollow}
             analyticsString="Follow Button: Channel Description"
           >
             Follow

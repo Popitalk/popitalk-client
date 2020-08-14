@@ -55,7 +55,7 @@ export default function VideoSection({
                 actionButton
                 icon="user-plus"
                 size="sm"
-                onClickEvent={inviteUsers}
+                onClick={inviteUsers}
                 analyticsString="Invite User Button: VideoSection"
               />
             )}

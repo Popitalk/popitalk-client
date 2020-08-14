@@ -21,7 +21,7 @@ export default function Button({
   tooltip,
   tooltipPlace = "bottom",
   analyticsString,
-  onClickEvent,
+  onClick,
   // For buttons containing an image.
   imageButton,
   imageButtonSrc,
@@ -67,13 +67,13 @@ export default function Button({
     [className]: className
   });
 
-  const analyticsHandler = () => {
+  const analyticsHandler = e => {
     ReactGA.event({
       category: "Button",
       action: analyticsString
     });
-    if (onClickEvent) {
-      onClickEvent();
+    if (onClick) {
+      onClick(e);
     }
   };
 

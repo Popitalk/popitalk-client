@@ -31,7 +31,7 @@ export default function ShareModal({
       <StretchList list={RoomsList} rooms={rooms} getControls={getCheckbox} />
       <Button
         actionButton
-        onClickEvent={() => handleSend(selected)}
+        onClick={() => handleSend(selected)}
         analyticsString="Share Button: ShareModal"
         className="absolute bottom-0 self-center mb-4"
       >

@@ -55,7 +55,7 @@ export default function VideoResults({
         <div className="flex justify-center pt-12 pb-8">
           <Button
             actionButton
-            onClickEvent={handleLoad}
+            onClick={handleLoad}
             analyticsString="Show More Video: Video Results"
             // onClick={currThreshold >= results.length ? handleClick : handleLoad}
           >

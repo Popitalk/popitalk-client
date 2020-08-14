@@ -34,7 +34,7 @@ export default function SiteHeaderWelcome({
         <Button
           styleNone
           styleNoneContent="Back to Login"
-          onClickEvent={() => signupStatus(!signup)}
+          onClick={() => signupStatus(!signup)}
           analyticsString="Back to Login Button: SiteHeaderWelcome"
           className="text-sm text-highlightText underline focus:outline-none hover:filter-brightness-9"
         />
@@ -118,7 +118,7 @@ export default function SiteHeaderWelcome({
                     size="sm"
                     className="sm:h-auto sm:w-auto // w-24 h-10"
                     shape="regular"
-                    onClickEvent={handleLogin}
+                    onClick={handleLogin}
                     analyticsString="Login Button: SiteHeaderWelcome"
                     disabled={
                       apiLoading ||
@@ -138,7 +138,7 @@ export default function SiteHeaderWelcome({
           <Button
             styleNone
             styleNoneContent="Don't have an account?"
-            onClickEvent={() => signupStatus(!signup)}
+            onClick={() => signupStatus(!signup)}
             analyticsString="Don't have an account Button: SiteHeaderWelcome"
             className="sm:hidden //  text-highlightText underline text-sm mx-1 my-8 focus:outline-none"
           />

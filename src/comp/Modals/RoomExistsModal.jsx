@@ -22,7 +22,7 @@ export default function RoomExistsModal({
       </div>
       <Button
         actionButton
-        onClickEvent={createNewHandler}
+        onClick={createNewHandler}
         analyticsString="Create New Room Button: RoomExistsModal"
       >
         Create New

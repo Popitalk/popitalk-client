@@ -28,7 +28,7 @@ export default function ChannelFormSubmit({
             type="button"
             shape="pill"
             disabled={disabled}
-            onClickEvent={handleReset}
+            onClick={handleReset}
             analyticsString="Channel Reset Button: ChannelFormSubmit"
             className="text-secondaryText"
           >

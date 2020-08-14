@@ -77,7 +77,7 @@ export default function ChannelCard({
               size="sm"
               shape="pill"
               className="ml-auto"
-              onClickEvent={handleFollow}
+              onClick={handleFollow}
               analyticsString="Channel Follow Button: ChannelCard"
             >
               Follow

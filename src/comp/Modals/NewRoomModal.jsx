@@ -31,7 +31,7 @@ export default function NewRoomModal({
       />
       <Button
         actionButton
-        onClickEvent={() => handleSend(selected)}
+        onClick={() => handleSend(selected)}
         analyticsString="Send New Room Invitation Button: NewRoomModal"
         className="absolute bottom-0 self-center mb-4"
         disabled={

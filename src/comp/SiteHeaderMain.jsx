@@ -109,7 +109,7 @@ export default function SiteHeaderMain({
             imageButtonSpan={username}
             imageButtonClassName="w-8 h-8 mr-2 rounded-full object-cover"
             className="scale-105"
-            onClickEvent={() => openProfileHandler(userID)}
+            onClick={() => openProfileHandler(userID)}
             analyticsString="My Profile Button: SiteHeaderMain"
           />
         </li>

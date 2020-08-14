@@ -144,7 +144,7 @@ class FriendsPanel extends Component {
             size="md"
             leftIcon="plus"
             className="fixed bottom-0 left-0 ml-44 mb-4 hover:opacity-100 hover:scale-105 shadow-channel"
-            onClickEvent={() => this.props.handleCreateRoom()}
+            onClick={() => this.props.handleCreateRoom()}
             analyticsString="Create Room Button: FriendsPanel"
           >
             New Room

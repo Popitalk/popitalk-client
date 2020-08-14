@@ -64,7 +64,7 @@ function CollapsedPanel({
             size="sm"
             // updateSelectedPage here updates which tab of the panel will be open when the panel is expanded.
             {...getTogglePropsFollowing({
-              onClickEvent: () => {
+              onClick: () => {
                 setFollowingExpanded(!isFollowingExpanded);
                 updateSelectedPage("channels");
               }
@@ -112,7 +112,7 @@ function CollapsedPanel({
             selectedColor={isDiscoverExpanded ? true : false}
             // updateSelectedPage here updates which tab of the panel will be open when the panel is expanded.
             {...getTogglePropsDiscover({
-              onClickEvent: () => {
+              onClick: () => {
                 setDiscoverExpanded(!isDiscoverExpanded);
                 updateSelectedPage("friends");
               }
@@ -159,7 +159,7 @@ function CollapsedPanel({
                   background="primary"
                   className="hover:scale-110"
                   tooltip="Add Friends"
-                  onClickEvent={handleCollapse}
+                  onClick={handleCollapse}
                   analyticsString="Search Friends Button: CollapsedPanel"
                 />
               </div>

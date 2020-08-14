@@ -9,7 +9,7 @@ export default function BlockedUsersModal({ users, handleUnblock }) {
       <Button
         actionButton
         size="sm"
-        onClickEvent={() => handleUnblock(user.id)}
+        onClick={() => handleUnblock(user.id)}
         className="ml-auto"
         analyticsString="Unblock Button: BlockUsersModal"
       >

@@ -29,7 +29,7 @@ export default function Notifications({
         <Button
           actionButton
           size="sm"
-          onClickEvent={handleClear}
+          onClick={handleClear}
           className="absolute top-0 right-0 mt-1 mr-4"
           analyticsString="Clear Notification Button: Notifications"
         >

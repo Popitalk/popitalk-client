@@ -18,7 +18,7 @@ export default function FriendRequestButtons({ user, size = "md" }) {
         icon={sentRequest ? "user-check" : "user-plus"}
         disabled={sentRequest}
         className="cursor-pointer bg-primaryBackground ml-auto"
-        onClickEvent={e => {
+        onClick={e => {
           e.stopPropagation();
           user.handleAccept();
         }}
@@ -35,7 +35,7 @@ export default function FriendRequestButtons({ user, size = "md" }) {
         icon="times"
         background="cancel"
         className="ml-2"
-        onClickEvent={e => {
+        onClick={e => {
           e.stopPropagation();
           user.handleReject();
         }}

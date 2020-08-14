@@ -33,7 +33,7 @@ export default function MiniFriendsList({
             key={room.id}
             styleNoneContent={roomIcon}
             className="rounded-circle py-2 px-2px focus:outline-none"
-            onClickEvent={() => handleSelectRoom(room.id)}
+            onClick={() => handleSelectRoom(room.id)}
             analyticsString="Room Icon Button: MiniFriendsList"
           />
         );
@@ -44,7 +44,7 @@ export default function MiniFriendsList({
           icon="user-plus"
           size="md"
           background="primary"
-          onClickEvent={handleFindFriends}
+          onClick={handleFindFriends}
           className="hover:scale-110"
           tooltip="Add Friends"
           analyticsString="Add Friend Button: MiniFriendsList"

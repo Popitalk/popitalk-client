@@ -45,7 +45,7 @@ export default function ChannelsPanel({
               size="sm"
               icon="plus"
               background="primaryButton"
-              onClickEvent={handleCreateChannel}
+              onClick={handleCreateChannel}
               analyticsString="Create Channel Button: ChannelsPanel"
               className="hover:scale-110"
               tooltip="Create"

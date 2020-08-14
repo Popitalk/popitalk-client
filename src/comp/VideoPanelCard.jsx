@@ -78,7 +78,7 @@ export default function VideoPanelCard({
                   <Button
                     actionButton
                     className="flex z-10 bg-highlightBackground"
-                    onClickEvent={removeButtonPressed}
+                    onClick={removeButtonPressed}
                     analyticsString="Remove Video: VideoPanelCard"
                     onMouseLeave={() => setRemoveButtonIcon("minus")}
                     icon={removeButtonIcon}
@@ -91,7 +91,7 @@ export default function VideoPanelCard({
                     actionButton
                     disabled={disableButton}
                     className="flex z-10 bg-highlightBackground"
-                    onClickEvent={addButtonPressed}
+                    onClick={addButtonPressed}
                     analyticsString="Add Video Button: VideoPanelCard"
                     icon={addButtonIcon}
                     size="sm"
