@@ -105,7 +105,7 @@ export default function CreateNewAccountForm({ handleSubmit, error, loading }) {
                   actionButton
                   type="submit"
                   disabled={loading || !isValid || !dirty}
-                  analyticsString="Sign Up Button:CreateNewAccountForm"
+                  analyticsString="Sign Up Button: CreateNewAccountForm"
                 >
                   Sign Up
                 </Button>
