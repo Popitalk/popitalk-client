@@ -45,19 +45,20 @@ function CollapsedPanel({
   }, [isCollapsed, setFollowingExpanded, setDiscoverExpanded, selectedPage]);
   return (
     <div className="flex flex-col bg-primaryBackground px-2 items-center w-20 h-full select-none overflow-x-hidden">
-      <button
-        className="flex py-5 w-full items-center flex-col rounded-full focus:outline-none text-secondaryText hover:text-highlightText transition transform ease-in-out hover:scale-110 duration-100"
+      <Button
+        styleNone
+        hoverable
+        icon="bars"
+        className="flex items-center justify-center py-5 w-full rounded-full text-secondaryText hover:text-highlightText"
         onClick={handleCollapse}
-      >
-        <FontAwesomeIcon icon="bars" />
-      </button>
+      />
       <div className="flex-col h-full overflow-y-scroll">
         {/* CHANNELS */}
         <div className="bg-primaryBackground rounded-xl">
           <ReactTooltip effect="solid" className="tooltip truncate" />
           <Button
             actionButton
-            className="flex flex-col h-12 w-20 bg-secondaryBackground shadow-none"
+            className="flex h-12 w-20 bg-secondaryBackground shadow-none"
             shape="none"
             background="bgColor"
             selectedColor={isFollowingExpanded ? true : false}

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import sources from "./videoSourceImages";
 import Input from "./Controls/Input";
+import Button from "./Controls/Button";
 
 export default function VideoSearchBar({ className, onClick }) {
   const [source, setSource] = useState("Youtube");
@@ -26,17 +27,18 @@ export default function VideoSearchBar({ className, onClick }) {
       <div className="flex flex-wrap my-2 grid-cols-services">
         {sources.map((img, idx) => {
           return (
-            <button
+            <Button
               key={idx}
+              imageButton
+              imageButtonSrc={img.icon}
+              imageButtonClassName="h-6"
               className={`flex justify-center mr-2 items-center ${
                 source === img.source
                   ? "bg-gradient-r-button shadow-md"
                   : "bg-primaryBackground hover:bg-highlightBackground"
               } h-10 w-10 rounded-full focus:outline-none`}
               onClick={() => setSource(img.source)}
-            >
-              <img src={img.icon} alt={img.source} className="h-6" />
-            </button>
+            />
           );
         })}
       </div>

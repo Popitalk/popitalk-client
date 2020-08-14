@@ -13,14 +13,12 @@ export default function VideoMinimalQueueCard({
   return (
     <>
       {!title && (
-        <button
-          className="flex flex-row justify-center items-center cursor-pointer focus:outline-none 
-          h-12 px-4 py-2 my-1 w-full bg-tertiaryBackground hover:shadow-sm hover:bg-highlightBackground transition duration-100 rounded-lg"
-        >
-          <p className={"text-center mr-2 text-secondaryText text-sm"}>
-            Search and add more videos below!
-          </p>
-        </button>
+        <Button
+          styleNone
+          styleNoneContent="Search and add more videos below!"
+          styleNoneContentClassName="text-center text-secondaryText text-sm"
+          className="h-12 w-full bg-tertiaryBackground hover:shadow-sm hover:bg-highlightBackground transition duration-100 rounded-lg"
+        />
       )}
       {title && (
         <div className="relative px-4 rounded-lg h-12 my-1 w-full hover:shadow-md flex flex-row items-center justify-between bg-primaryBackground cursor-pointer">

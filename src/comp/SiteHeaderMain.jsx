@@ -99,6 +99,7 @@ export default function SiteHeaderMain({
           imageButton
           imageButtonSrc={Logo}
           imageButtonClassName="w-10 h-10"
+          hoverable
         />
       </Link>
       <ul className="sm:space-x-6 // flex items-center space-x-6">
@@ -111,6 +112,7 @@ export default function SiteHeaderMain({
             className="scale-105"
             onClick={() => openProfileHandler(userID)}
             analyticsString="My Profile Button: SiteHeaderMain"
+            hoverable
           />
         </li>
         <li>

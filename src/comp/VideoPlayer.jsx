@@ -9,6 +9,7 @@ import useLocalStorage from "../hooks/useLocalStorage";
 import moment from "moment";
 import VideoPlayerStatusCard from "./VideoPlayerStatusCard";
 import Ripples from "react-ripples";
+import Button from "./Controls/Button";
 
 class VideoPlayer extends Component {
   constructor(props) {
@@ -343,24 +344,23 @@ class VideoPlayer extends Component {
                   </div>
                   <div className="flex items-center justify-between w-full my-1">
                     <div className="flex space-x-4 items-center">
-                      {/* Play button */}
+                      {/* Play & Pause button */}
                       {this.props.displayControls && (
-                        <button
-                          className={`w-8 p-1 rounded-full focus:outline-none ${
+                        <Button
+                          styleNone
+                          styleNoneIconClassName="text-tertiaryText"
+                          hoverable
+                          icon={!this.state.playing ? "play" : "pause"}
+                          className={`w-8 p-1 rounded-full ${
                             this.props.displayControls &&
-                            "hover:bg-playerControlsHover duration-100 transition transform ease-in-out hover:scale-110"
+                            "hover:bg-playerControlsHover"
                           }`}
                           onClick={() => this.setBothPlaying()}
                           data-tip={
                             this.state.playing === false ? "Play" : "Pause"
                           }
                           data-place="top"
-                        >
-                          <FontAwesomeIcon
-                            icon={!this.state.playing ? "play" : "pause"}
-                            className="text-tertiaryText"
-                          />
-                        </button>
+                        />
                       )}
                       {/* Volume button & slider hover effect */}
                       <div
@@ -373,22 +373,21 @@ class VideoPlayer extends Component {
                         }
                       >
                         {/* Volume button */}
-                        <button
-                          className="w-8 p-1 rounded-full focus:outline-none duration-100 transition transform ease-in-out hover:scale-110"
+                        <Button
+                          styleNone
+                          icon={
+                            this.state.volume.volume === 0 ||
+                            this.state.volume.muted
+                              ? "volume-mute"
+                              : "volume-up"
+                          }
+                          styleNoneIconClassName="flex text-tertiaryText text-lg items-center"
+                          className="w-8 p-1 rounded-full"
+                          hoverable
                           onClick={() => this.toggleMute()}
                           data-tip={this.state.volume.muted ? "Unmute" : "Mute"}
                           data-place="top"
-                        >
-                          <FontAwesomeIcon
-                            icon={
-                              this.state.volume.volume === 0 ||
-                              this.state.volume.muted
-                                ? "volume-mute"
-                                : "volume-up"
-                            }
-                            className="flex text-tertiaryText text-lg items-center"
-                          />
-                        </button>
+                        />
                         {/* Volume slider */}
                         <div
                           className={
@@ -427,19 +426,16 @@ class VideoPlayer extends Component {
                       </span>
                     </div>
                     {/* Full screen button */}
-                    <button
-                      className={`w-8 p-1 rounded-full hover:bg-playerControlsHover
-                        focus:outline-none transition transform ease-in-out
-                        hover:scale-110 duration-100`}
+                    <Button
+                      styleNone
+                      icon="compress"
+                      styleNoneIconClassName="text-tertiaryText"
+                      hoverable
+                      className="w-8 p-1 rounded-full hover:bg-playerControlsHover"
                       onClick={() => this.handleFullScreen()}
                       data-tip="Full screen"
                       data-place="top"
-                    >
-                      <FontAwesomeIcon
-                        icon="compress"
-                        className="text-tertiaryText"
-                      />
-                    </button>
+                    />
                   </div>
                 </div>
               </div>
@@ -459,11 +455,14 @@ class VideoPlayer extends Component {
                 <p className="text-tertiaryText text-xl sm:text-2xl font-bold">
                   Nothing is playing at the moment.
                 </p>
-                <button className="bg-gradient-r-button font-bold rounded-md py-2 text-tertiaryText text-sm sm:text-md focus:outline-none transition transform ease-in-out hover:scale-102 duration-150">
+                <Button
+                  actionButton
+                  className="text-sm sm:text-md hover:scale-102"
+                >
                   {this.props.displayControls
                     ? "Search and add videos Up Next!"
                     : "Request <channel> to play something fun!"}
-                </button>
+                </Button>
               </div>
             </div>
           </div>

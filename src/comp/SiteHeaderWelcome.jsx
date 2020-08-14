@@ -33,6 +33,7 @@ export default function SiteHeaderWelcome({
         />
         <Button
           styleNone
+          hoverable
           styleNoneContent="Back to Login"
           onClick={() => signupStatus(!signup)}
           analyticsString="Back to Login Button: SiteHeaderWelcome"

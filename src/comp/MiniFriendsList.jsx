@@ -30,6 +30,7 @@ export default function MiniFriendsList({
         return (
           <Button
             styleNone
+            hoverable
             key={room.id}
             styleNoneContent={roomIcon}
             className="rounded-circle py-2 px-2px focus:outline-none"

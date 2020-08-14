@@ -15,6 +15,7 @@ export default function Button({
   icon,
   size,
   disabled,
+  hoverable,
   children,
   className,
   selectedColor,
@@ -31,7 +32,9 @@ export default function Button({
   // For non-explicit buttons such as SiteHeaderButtons or images that act as buttons.
   styleNone,
   styleNoneContent,
+  styleNoneContentClassName,
   styleNoneImage,
+  styleNoneIconClassName,
   ...props
 }) {
   if (selectedColor) background = selectedColor;
@@ -51,7 +54,8 @@ export default function Button({
   };
 
   const styleNoneClasses = classnames({
-    "transition transform ease-in-out hover:scale-110 duration-100 focus:outline-none": true,
+    "transition transform ease-in-out hover:scale-110 duration-100": hoverable,
+    "focus:outline-none": true,
     [className]: className
   });
 
@@ -99,8 +103,17 @@ export default function Button({
 
       {/* For non-explicit buttons such as SiteHeaderButtons or images that act as buttons. */}
       {styleNone && (
-        <button onClick={analyticsHandler} className={styleNoneClasses}>
-          {styleNoneContent}
+        <button
+          className={styleNoneClasses}
+          data-tip={tooltip}
+          data-place={tooltipPlace}
+          onClick={analyticsHandler}
+          {...props}
+        >
+          <span className={styleNoneContentClassName}>{styleNoneContent}</span>
+          {icon && (
+            <FontAwesomeIcon className={styleNoneIconClassName} icon={icon} />
+          )}
         </button>
       )}
 
@@ -111,8 +124,8 @@ export default function Button({
           data-tip={tooltip}
           data-place={tooltipPlace}
           disabled={disabled}
-          {...props}
           onClick={analyticsHandler}
+          {...props}
         >
           {leftIcon && <FontAwesomeIcon icon={leftIcon} />}
           {icon ? <FontAwesomeIcon icon={icon} /> : <span>{children}</span>}
