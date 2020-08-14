@@ -21,6 +21,7 @@ import CreateChannelContainer from "../containers/CreateChannelContainer";
 import { channelsList, friendsList } from "../stories/seed-arrays";
 import Channel from "../containers/Channel";
 import "../comp/ScrollBars.css";
+import ReactGa from "react-ga";
 
 const RouteWrapper = ({ leftPanel, children }) => {
   return (
@@ -44,6 +45,13 @@ export default function App() {
   useEffect(() => {
     dispatch(validateSession());
   }, [dispatch]);
+
+  useEffect(() => {
+    ReactGa.initialize("UA-175311766-1");
+
+    //to report pageview
+    ReactGa.pageview(window.location.pathname + window.location.search);
+  }, []);
 
   if (!validatedSession)
     // if (!validatedSession)

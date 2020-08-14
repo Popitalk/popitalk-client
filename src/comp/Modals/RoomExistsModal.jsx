@@ -20,7 +20,12 @@ export default function RoomExistsModal({
           addBorder={true}
         />
       </div>
-      <Button onClick={createNewHandler}>Create New</Button>
+      <Button
+        onClickEvent={createNewHandler}
+        analyticsString="Create New Room Button: RoomExistsModal"
+      >
+        Create New
+      </Button>
     </div>
   );
 }

@@ -126,7 +126,8 @@ export default function SiteHeaderWelcome({
                     size="sm"
                     className="sm:h-auto sm:w-auto // w-24 h-10"
                     shape="regular"
-                    onClick={handleLogin}
+                    onClickEvent={handleLogin}
+                    analyticsString="Login Button: SiteHeaderWelcome"
                     disabled={
                       apiLoading ||
                       password.trim().length === 0 ||

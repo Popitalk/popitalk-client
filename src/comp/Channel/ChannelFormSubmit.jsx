@@ -27,13 +27,20 @@ export default function ChannelFormSubmit({
             type="button"
             shape="pill"
             disabled={disabled}
-            onClick={handleReset}
+            onClickEvent={handleReset}
+            analyticsString="Channel Reset Button: ChannelFormSubmit"
             className="text-secondaryText"
           >
             Reset
           </Button>
         )}
-        <Button size="md" type="submit" shape="pill" disabled={disabled}>
+        <Button
+          size="md"
+          type="submit"
+          shape="pill"
+          disabled={disabled}
+          analyticsString="Channel Create Button: ChannelFormSubmit"
+        >
           {type === "create" ? "Create" : "Save"}
         </Button>
       </div>

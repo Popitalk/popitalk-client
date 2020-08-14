@@ -101,7 +101,11 @@ export default function CreateNewAccountForm({ handleSubmit, error, loading }) {
                 .
               </p>
               <div className="mt-4">
-                <Button type="submit" disabled={loading || !isValid || !dirty}>
+                <Button
+                  type="submit"
+                  disabled={loading || !isValid || !dirty}
+                  analyticsString="Sign Up Button:CreateNewAccountForm"
+                >
                   Sign Up
                 </Button>
               </div>

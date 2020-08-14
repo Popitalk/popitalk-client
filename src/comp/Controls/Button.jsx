@@ -1,6 +1,7 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import classnames from "classnames";
+import ReactGA from "react-ga";
 
 export default function Button({
   variant,
@@ -18,6 +19,8 @@ export default function Button({
   hoverable,
   tooltip,
   tooltipPlace = "bottom",
+  analyticsString,
+  onClickEvent,
   ...props
 }) {
   if (selectedColor) background = selectedColor;
@@ -48,6 +51,17 @@ export default function Button({
     [className]: className
   });
 
+  const analyticsHandler = () => {
+    ReactGA.event({
+      category: "Button",
+      action: analyticsString
+    });
+    if (onClickEvent) {
+      onClickEvent();
+    }
+    alert(analyticsString);
+  };
+
   return (
     <button
       className={buttonClasses}
@@ -55,6 +69,7 @@ export default function Button({
       data-place={tooltipPlace}
       disabled={disabled}
       {...props}
+      onClick={analyticsHandler}
     >
       {leftIcon && <FontAwesomeIcon icon={leftIcon} />}
       {icon ? <FontAwesomeIcon icon={icon} /> : <span>{children}</span>}

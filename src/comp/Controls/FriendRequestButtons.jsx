@@ -17,10 +17,11 @@ export default function FriendRequestButtons({ user, size = "md" }) {
         icon={sentRequest ? "user-check" : "user-plus"}
         disabled={sentRequest}
         className="cursor-pointer bg-primaryBackground ml-auto"
-        onClick={e => {
+        onClickEvent={e => {
           e.stopPropagation();
           user.handleAccept();
         }}
+        analyticsString="Friend Rq Button: FriendRequestButtons"
         tooltip={sentRequest ? "Add Friend" : "Waiting"}
       />
     );
@@ -32,10 +33,11 @@ export default function FriendRequestButtons({ user, size = "md" }) {
         icon="times"
         background="cancel"
         className="ml-2"
-        onClick={e => {
+        onClickEvent={e => {
           e.stopPropagation();
           user.handleReject();
         }}
+        analyticsString="Canel Friend Rq Button:FriendRequestButtons"
         tooltip="Cancel"
       />
     ) : (

@@ -42,9 +42,10 @@ export default function MiniFriendsList({
           icon="user-plus"
           size="md"
           background="primary"
-          onClick={handleFindFriends}
+          onClickEvent={handleFindFriends}
           className="hover:scale-110"
-          tooltip={"Add Friends"}
+          tooltip="Add Friends"
+          analyticsString="Add Friend Button: MiniFriendsList"
         />
       </div>
     </div>

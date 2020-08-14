@@ -30,7 +30,12 @@ export default function DeleteMessageModal({
         >
           Cancel
         </span>
-        <Button background="cancel" size="md" onClick={handleDelete}>
+        <Button
+          background="cancel"
+          size="md"
+          onClick={handleDelete}
+          analyticsString="Delete Message Button: DeleteMessageModal"
+        >
           Delete
         </Button>
       </div>

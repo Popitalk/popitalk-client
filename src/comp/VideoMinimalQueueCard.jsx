@@ -41,7 +41,8 @@ export default function VideoMinimalQueueCard({
               icon="minus"
               background="cancel"
               size="sm"
-              onClick={handleRemove}
+              onClickEvent={handleRemove}
+              analyticsString="Delete Video Button: VideoMinimalQueueCard"
             />
           </div>
         </div>

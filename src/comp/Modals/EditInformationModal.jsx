@@ -79,6 +79,7 @@ export default function EditInformationModal({
                   disabled={
                     loading || !isValid || (_.isEmpty(touched) && !dirty)
                   }
+                  analyticsString="Edit User Info Button: EditInformationModal"
                 >
                   Confirm
                 </Button>

@@ -155,8 +155,9 @@ function CollapsedPanel({
                   size="lg"
                   background="primary"
                   className="hover:scale-110"
-                  tooltip={"Add Friends"}
-                  onClick={handleCollapse}
+                  tooltip="Add Friends"
+                  onClickEvent={handleCollapse}
+                  analyticsString="Search Friends Button: CollapsedPanel"
                 />
               </div>
             </div>

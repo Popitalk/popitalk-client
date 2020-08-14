@@ -51,7 +51,12 @@ export default function VideoSection({
               );
             })}
             {isInvitingAllowed && (
-              <Button icon="user-plus" size="sm" onClick={inviteUsers} />
+              <Button
+                icon="user-plus"
+                size="sm"
+                onClickEvent={inviteUsers}
+                analyticsString="Invite User Button: VideoSection"
+              />
             )}
           </div>
         </div>

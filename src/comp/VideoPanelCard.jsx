@@ -58,6 +58,7 @@ export default function VideoPanelCard({
                 size="sm"
                 icon="search"
                 className="opacity-75 shadow-none"
+                analyticsString="Direct to Search Button: VideoPanelCard"
               />
               <p className="mx-2 text-secondaryText text-sm hover:filter-brightness-9">
                 Search for a video
@@ -75,7 +76,8 @@ export default function VideoPanelCard({
                 {type === "cancel" && (
                   <Button
                     className="flex z-10 bg-highlightBackground"
-                    onClick={removeButtonPressed}
+                    onClickEvent={removeButtonPressed}
+                    analyticsString="Remove Video: VideoPanelCard"
                     onMouseLeave={() => setRemoveButtonIcon("minus")}
                     icon={removeButtonIcon}
                     size="sm"
@@ -86,7 +88,8 @@ export default function VideoPanelCard({
                   <Button
                     disabled={disableButton}
                     className="flex z-10 bg-highlightBackground"
-                    onClick={addButtonPressed}
+                    onClickEvent={addButtonPressed}
+                    analyticsString="Add Video Button: VideoPanelCard"
                     icon={addButtonIcon}
                     size="sm"
                   />

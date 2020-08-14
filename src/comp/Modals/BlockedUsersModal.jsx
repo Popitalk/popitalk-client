@@ -8,8 +8,9 @@ export default function BlockedUsersModal({ users, handleUnblock }) {
     return (
       <Button
         size="sm"
-        onClick={() => handleUnblock(user.id)}
+        onClickEvent={() => handleUnblock(user.id)}
         className="ml-auto"
+        analyticsString="Unblock Button: BlockUsersModal"
       >
         Unblock
       </Button>

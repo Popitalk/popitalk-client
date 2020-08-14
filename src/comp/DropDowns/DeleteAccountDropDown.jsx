@@ -14,7 +14,8 @@ export default function DeleteAccountDropDown({ handleBack, handleDelete }) {
           background="cancel"
           shape="pill"
           size="md"
-          onClick={handleDelete}
+          onClickEvent={handleDelete}
+          analyticsString="Delete Account Button: DeleteAccountDropDown"
         >
           Delete
         </Button>

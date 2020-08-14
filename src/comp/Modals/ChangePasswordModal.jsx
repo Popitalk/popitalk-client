@@ -85,7 +85,11 @@ export default function ChangePasswordModal({
             </p>
           )}
           <div className="flex justify-center pt-4">
-            <Button type="submit" disabled={loading || !isValid || !dirty}>
+            <Button
+              type="submit"
+              disabled={loading || !isValid || !dirty}
+              analyticsString="Confirm Password Change Button: ChangePasswordModal"
+            >
               Confirm
             </Button>
           </div>

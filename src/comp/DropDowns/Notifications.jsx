@@ -28,8 +28,9 @@ export default function Notifications({
       <div className="relative">
         <Button
           size="sm"
-          onClick={handleClear}
+          onClickEvent={handleClear}
           className="absolute top-0 right-0 mt-1 mr-4"
+          analyticsString="Clear Notification Button: Notifications"
         >
           Clear
         </Button>

@@ -9,7 +9,8 @@ export default function WatchModal({ rooms, handleWatchNow, ...rest }) {
     return (
       <Button
         size="sm"
-        onClick={() => handleWatchNow(room.id)}
+        onClickEvent={() => handleWatchNow(room.id)}
+        analyticsString="Watch Now Button: WatchModal"
         className="ml-auto"
       >
         Watch Now
