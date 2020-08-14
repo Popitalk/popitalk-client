@@ -23,24 +23,21 @@ export default function SiteHeaderWelcome({
       {/* Mobile header shown in Signup */}
       <div
         className={`${signup ? "" : "hidden"} sm:hidden
-        // flex flex-row h-16 justify-start px-6 border-b border-primaryBorder bg-primaryBackground`}
+        // flex flex-row items-center justify-between w-full h-16 px-6 border-b border-primaryBorder bg-primaryBackground`}
       >
-        <div className="flex w-full py-2 no-underline">
-          <div className="flex flex-row items-center transition transform ease-in-out hover:scale-105 duration-100 cursor-pointer select-none">
-            <img src={Logo} alt="PlayNow's logo" className="w-8 h-8" />
-            <span className="flex ml-2 text-lg font-bold text-primaryText">
-              Popitalk
-            </span>
-          </div>
-        </div>
-        <div className="flex w-48 items-center justify-end">
-          <button
-            onClick={() => signupStatus(!signup)}
-            className="text-sm text-highlightText underline focus:outline-none hover:filter-brightness-9"
-          >
-            Back to Login
-          </button>
-        </div>
+        <Button
+          imageButton
+          imageButtonSrc={Logo}
+          imageButtonClassName="w-8 h-8 mr-2"
+          imageButtonSpan="Popitalk"
+        />
+        <Button
+          styleNone
+          styleNoneContent="Back to Login"
+          onClickEvent={() => signupStatus(!signup)}
+          analyticsString="Back to Login Button: SiteHeaderWelcome"
+          className="text-sm text-highlightText underline focus:outline-none hover:filter-brightness-9"
+        />
       </div>
       {/* Main header */}
       <div
@@ -51,23 +48,17 @@ export default function SiteHeaderWelcome({
       >
         <div
           className="sm:justify-start sm:py-3 sm:mt-0
-          // flex justify-center w-full py-8 mt-4 no-underline"
+          // flex justify-center w-full py-8 mt-4"
         >
-          <div
-            className="sm:flex-row
-            // flex flex-col items-center justify-start transition transform ease-in-out hover:scale-105 duration-100 cursor-pointer select-none"
-          >
-            <img
-              src={Logo}
-              alt="PlayNow's logo"
-              className="sm:w-12 sm:h-12 // w-20 h-20"
-            />
-            <span className="md:ml-2 md:mb-0 md:text-2xl // sm:text-xl sm:mb-0 sm:ml-1 // flex ml-0 mb-4 text-2xl font-bold text-primaryText">
-              Popitalk
-            </span>
-          </div>
+          <Button
+            imageButton
+            imageButtonSrc={Logo}
+            imageButtonClassName="w-12 h-12 hover:scale-105"
+            imageButtonSpan="Popitalk"
+            imageButtonSpanClassName="md:ml-2 md:text-2xl // sm:text-xl sm:ml-1 // flex ml-1 text-2xl"
+          />
         </div>
-        <nav>
+        <nav className="flex flex-col">
           <form>
             <ul className="flex flex-col">
               <div className="sm:flex-row sm:space-x-2 sm:space-y-0 // flex flex-col space-y-4 w-full items-center">
@@ -123,6 +114,7 @@ export default function SiteHeaderWelcome({
                 </li>
                 <li className="sm:self-end // flex pb-2px flex-shrink-0">
                   <Button
+                    actionButton
                     size="sm"
                     className="sm:h-auto sm:w-auto // w-24 h-10"
                     shape="regular"
@@ -138,20 +130,18 @@ export default function SiteHeaderWelcome({
                   </Button>
                 </li>
               </div>
-              {apiError ? (
+              {apiError && (
                 <small className="sm:self-start sm:my-1 // self-center text-errorText text-xs mx-1 my-4">{`${apiError}. Please try again.`}</small>
-              ) : (
-                <></>
               )}
-              <p
-                onClick={() => signupStatus(!signup)}
-                role="button"
-                className="sm:hidden // self-center text-highlightText underline text-sm mx-1 my-8 focus:outline-none"
-              >
-                Don&apos;t have an account?
-              </p>
             </ul>
           </form>
+          <Button
+            styleNone
+            styleNoneContent="Don't have an account?"
+            onClickEvent={() => signupStatus(!signup)}
+            analyticsString="Don't have an account Button: SiteHeaderWelcome"
+            className="sm:hidden //  text-highlightText underline text-sm mx-1 my-8 focus:outline-none"
+          />
         </nav>
       </div>
     </header>

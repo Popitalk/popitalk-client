@@ -28,17 +28,19 @@ export default function MiniFriendsList({
           />
         );
         return (
-          <button
+          <Button
+            styleNone
             key={room.id}
-            className="transition transform ease-in-out hover:scale-110 duration-100 rounded-circle py-2 px-2px focus:outline-none"
-            onClick={() => handleSelectRoom(room.id)}
-          >
-            {roomIcon}
-          </button>
+            styleNoneContent={roomIcon}
+            className="rounded-circle py-2 px-2px focus:outline-none"
+            onClickEvent={() => handleSelectRoom(room.id)}
+            analyticsString="Room Icon Button: MiniFriendsList"
+          />
         );
       })}
       <div className="px-1">
         <Button
+          actionButton
           icon="user-plus"
           size="md"
           background="primary"

@@ -4,6 +4,8 @@ import classnames from "classnames";
 import ReactGA from "react-ga";
 
 export default function Button({
+  // For normal buttons with a gradient background.
+  actionButton,
   variant,
   background,
   color,
@@ -16,11 +18,20 @@ export default function Button({
   children,
   className,
   selectedColor,
-  hoverable,
   tooltip,
   tooltipPlace = "bottom",
   analyticsString,
   onClickEvent,
+  // For buttons containing an image.
+  imageButton,
+  imageButtonSrc,
+  imageButtonSpan,
+  imageButtonClassName,
+  imageButtonSpanClassName = "text-primaryText font-bold",
+  // For non-explicit buttons such as SiteHeaderButtons or images that act as buttons.
+  styleNone,
+  styleNoneContent,
+  styleNoneImage,
   ...props
 }) {
   if (selectedColor) background = selectedColor;
@@ -38,6 +49,11 @@ export default function Button({
     circle: "rounded-circle",
     none: "rounded-sm"
   };
+
+  const styleNoneClasses = classnames({
+    "transition transform ease-in-out hover:scale-110 duration-100 focus:outline-none": true,
+    [className]: className
+  });
 
   const buttonClasses = classnames({
     btn: true,
@@ -59,22 +75,51 @@ export default function Button({
     if (onClickEvent) {
       onClickEvent();
     }
-    alert(analyticsString);
   };
 
   return (
-    <button
-      className={buttonClasses}
-      data-tip={tooltip}
-      data-place={tooltipPlace}
-      disabled={disabled}
-      {...props}
-      onClick={analyticsHandler}
-    >
-      {leftIcon && <FontAwesomeIcon icon={leftIcon} />}
-      {icon ? <FontAwesomeIcon icon={icon} /> : <span>{children}</span>}
-      {rightIcon && <FontAwesomeIcon icon={rightIcon} />}
-    </button>
+    <>
+      {/* For buttons containing an image */}
+      {imageButton && (
+        <button onClick={analyticsHandler} className={styleNoneClasses}>
+          <div className="flex items-center justify-center">
+            <img
+              src={imageButtonSrc}
+              alt="Somthing"
+              className={imageButtonClassName}
+            />
+            {imageButtonSpan && (
+              <span className={imageButtonSpanClassName}>
+                {imageButtonSpan}
+              </span>
+            )}
+          </div>
+        </button>
+      )}
+
+      {/* For non-explicit buttons such as SiteHeaderButtons or images that act as buttons. */}
+      {styleNone && (
+        <button onClick={analyticsHandler} className={styleNoneClasses}>
+          {styleNoneContent}
+        </button>
+      )}
+
+      {/* For normal buttons with a gradient background. */}
+      {actionButton && (
+        <button
+          className={buttonClasses}
+          data-tip={tooltip}
+          data-place={tooltipPlace}
+          disabled={disabled}
+          {...props}
+          onClick={analyticsHandler}
+        >
+          {leftIcon && <FontAwesomeIcon icon={leftIcon} />}
+          {icon ? <FontAwesomeIcon icon={icon} /> : <span>{children}</span>}
+          {rightIcon && <FontAwesomeIcon icon={rightIcon} />}
+        </button>
+      )}
+    </>
   );
 }
 

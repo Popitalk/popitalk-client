@@ -41,6 +41,7 @@ export default function ChannelsPanel({
               Your channels
             </h4>
             <Button
+              actionButton
               size="sm"
               icon="plus"
               background="primaryButton"

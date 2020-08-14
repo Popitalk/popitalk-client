@@ -7,6 +7,7 @@ import DeleteAccountDropDown from "./DropDowns/DeleteAccountDropDown";
 import FriendRequests from "./DropDowns/FriendRequests";
 import Notifications from "./DropDowns/Notifications";
 import DropDownControls from "./DropDowns/DropDownControls";
+import Button from "./Controls/Button";
 
 const SETTINGS = 1;
 const ACCOUNT_SETTINGS = 2;
@@ -93,26 +94,24 @@ export default function SiteHeaderMain({
 
   return (
     <header className="sm:px-6 // relative flex items-center justify-between h-12 px-4 z-30 bg-primaryBackground select-none">
-      <Link to="/channels">
-        <img
-          src={Logo}
-          alt="PlayNow's logo"
-          className="transition transform ease-in-out hover:scale-110 duration-100 w-10 h-10"
+      <Link to="/channels" className="flex items-center justify-center">
+        <Button
+          imageButton
+          imageButtonSrc={Logo}
+          imageButtonClassName="w-10 h-10"
         />
       </Link>
       <ul className="sm:space-x-6 // flex items-center space-x-6">
-        <li>
-          <button
-            className="sm:flex sm:mr-4 // hidden items-center cursor-pointer rounded-xl transition transform ease-in-out hover:scale-105 duration-100 focus:outline-none"
-            onClick={() => openProfileHandler(userID)}
-          >
-            <img
-              className="w-8 h-8 mr-2 rounded-full object-cover"
-              src={avatar}
-              alt={`${username}'s avatar`}
-            />
-            <span className="font-bold text-primaryText">{username}</span>
-          </button>
+        <li className="flex items-center">
+          <Button
+            imageButton
+            imageButtonSrc={avatar}
+            imageButtonSpan={username}
+            imageButtonClassName="w-8 h-8 mr-2 rounded-full object-cover"
+            className="scale-105"
+            onClickEvent={() => openProfileHandler(userID)}
+            analyticsString="My Profile Button: SiteHeaderMain"
+          />
         </li>
         <li>
           <DropDownControls icon="user-plus" hasNotification={hasNotification}>
