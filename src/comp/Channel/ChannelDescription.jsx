@@ -25,6 +25,7 @@ export default function ChannelDescription({
       <div className="flex justify-end my-4">
         {isMember ? (
           <Button
+            actionButton
             size="sm"
             shape="pill"
             className="ml-auto bg-disabledBackground shadow-xs hover:shadow-none text-secondaryText"
@@ -36,6 +37,7 @@ export default function ChannelDescription({
           </Button>
         ) : (
           <Button
+            actionButton
             size="sm"
             shape="pill"
             className="ml-auto"

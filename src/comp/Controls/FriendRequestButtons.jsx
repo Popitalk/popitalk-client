@@ -13,6 +13,7 @@ export default function FriendRequestButtons({ user, size = "md" }) {
       <></>
     ) : (
       <Button
+        actionButton
         size={size}
         icon={sentRequest ? "user-check" : "user-plus"}
         disabled={sentRequest}
@@ -29,6 +30,7 @@ export default function FriendRequestButtons({ user, size = "md" }) {
   const rejectButton =
     user.variant === "receivedRequest" || sentRequest ? (
       <Button
+        actionButton
         size={size}
         icon="times"
         background="cancel"

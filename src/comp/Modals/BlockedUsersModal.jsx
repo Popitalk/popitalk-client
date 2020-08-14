@@ -7,6 +7,7 @@ export default function BlockedUsersModal({ users, handleUnblock }) {
   const getButton = user => {
     return (
       <Button
+        actionButton
         size="sm"
         onClickEvent={() => handleUnblock(user.id)}
         className="ml-auto"

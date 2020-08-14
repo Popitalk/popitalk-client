@@ -55,6 +55,7 @@ export default function VideoPanelCard({
           <div className="relative cursor-pointer pb-16/9 w-full rounded-md shadow-xs hover:shadow-md transition-all ease-in-out duration-100 bg-disabledBackground hover:bg-highlightBackground focus:outline-none">
             <div className="absolute flex items-center justify-center w-full h-full">
               <Button
+                actionButton
                 size="sm"
                 icon="search"
                 className="opacity-75 shadow-none"
@@ -75,6 +76,7 @@ export default function VideoPanelCard({
                 <VideoStatus status={status} statusMessage={statusMessage} />
                 {type === "cancel" && (
                   <Button
+                    actionButton
                     className="flex z-10 bg-highlightBackground"
                     onClickEvent={removeButtonPressed}
                     analyticsString="Remove Video: VideoPanelCard"
@@ -86,6 +88,7 @@ export default function VideoPanelCard({
                 )}
                 {type === "add" && (
                   <Button
+                    actionButton
                     disabled={disableButton}
                     className="flex z-10 bg-highlightBackground"
                     onClickEvent={addButtonPressed}

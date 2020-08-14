@@ -27,6 +27,7 @@ export default function Notifications({
     <DropDownContainer>
       <div className="relative">
         <Button
+          actionButton
           size="sm"
           onClickEvent={handleClear}
           className="absolute top-0 right-0 mt-1 mr-4"

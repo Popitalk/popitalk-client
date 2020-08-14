@@ -14,6 +14,7 @@ export default function VideoStatus({
       <>
         {status === "playing" && (
           <Button
+            actionButton
             size={size}
             shape={shape}
             className="text-tertiaryText font-bold shadow-md z-10"
@@ -24,6 +25,7 @@ export default function VideoStatus({
         )}
         {status === "paused" && (
           <Button
+            actionButton
             size={size}
             shape={shape}
             className="btn-paused shadow-md z-10"
@@ -33,6 +35,7 @@ export default function VideoStatus({
         )}
         {(status === "queued" || status === "ended") && statusMessage && (
           <Button
+            actionButton
             size={size}
             shape={shape}
             className="btn-paused shadow-md z-10"

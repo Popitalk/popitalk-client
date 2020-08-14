@@ -62,6 +62,7 @@ export default function ForgotPasswordModal({
               <></>
             )}
             <Button
+              actionButton
               type="submit"
               disabled={loading || !isValid || !dirty}
               analyticsString="Forgot Password Button: ForgotPasswordModal"

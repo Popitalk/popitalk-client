@@ -94,6 +94,7 @@ export default function VideoStatus({
         )}
         {(status === "queued" || status === "ended") && statusMessage && (
           <Button
+            actionButton
             size={size}
             shape={shape}
             className="btn-paused shadow-md z-20"

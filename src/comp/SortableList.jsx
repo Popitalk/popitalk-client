@@ -21,6 +21,7 @@ export default function SortableList({
           <div className="relative pb-16/9 w-full">
             <div className="absolute flex items-center justify-center w-full h-full">
               <Button
+                actionButton
                 size="sm"
                 icon="search"
                 analyticsString="Search Video Button: SortableList"

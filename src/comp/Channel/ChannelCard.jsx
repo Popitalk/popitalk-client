@@ -73,6 +73,7 @@ export default function ChannelCard({
               {name}
             </p>
             <Button
+              actionButton
               size="sm"
               shape="pill"
               className="ml-auto"

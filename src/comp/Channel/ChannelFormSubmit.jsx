@@ -22,6 +22,7 @@ export default function ChannelFormSubmit({
       <div>
         {!disabled && type === "update" && (
           <Button
+            actionButton
             variant="text"
             size="md"
             type="button"
@@ -35,6 +36,7 @@ export default function ChannelFormSubmit({
           </Button>
         )}
         <Button
+          actionButton
           size="md"
           type="submit"
           shape="pill"

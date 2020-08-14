@@ -11,6 +11,7 @@ export default function DeleteAccountDropDown({ handleBack, handleDelete }) {
         <h4 className="text-lg">Are you sure?</h4>
         <p className="text-base pt-2 pb-8">You cannot undo this action.</p>
         <Button
+          actionButton
           background="cancel"
           shape="pill"
           size="md"

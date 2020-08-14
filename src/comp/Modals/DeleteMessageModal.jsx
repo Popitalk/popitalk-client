@@ -31,6 +31,7 @@ export default function DeleteMessageModal({
           Cancel
         </span>
         <Button
+          actionButton
           background="cancel"
           size="md"
           onClick={handleDelete}

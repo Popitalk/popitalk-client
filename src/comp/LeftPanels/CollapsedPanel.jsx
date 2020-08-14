@@ -56,6 +56,7 @@ function CollapsedPanel({
         <div className="bg-primaryBackground rounded-xl">
           <ReactTooltip effect="solid" className="tooltip truncate" />
           <Button
+            actionButton
             className="flex flex-col h-12 w-20 bg-secondaryBackground shadow-none"
             shape="none"
             background="bgColor"
@@ -63,7 +64,7 @@ function CollapsedPanel({
             size="sm"
             // updateSelectedPage here updates which tab of the panel will be open when the panel is expanded.
             {...getTogglePropsFollowing({
-              onClick: () => {
+              onClickEvent: () => {
                 setFollowingExpanded(!isFollowingExpanded);
                 updateSelectedPage("channels");
               }
@@ -104,13 +105,14 @@ function CollapsedPanel({
         <div className="bg-primaryBackground rounded-xl mb-4">
           <ReactTooltip effect="solid" className="tooltip truncate" />
           <Button
+            actionButton
             className="flex flex-col h-12 w-20 mb-1 bg-secondaryBackground shadow-none"
             shape="none"
             background="bgColor"
             selectedColor={isDiscoverExpanded ? true : false}
             // updateSelectedPage here updates which tab of the panel will be open when the panel is expanded.
             {...getTogglePropsDiscover({
-              onClick: () => {
+              onClickEvent: () => {
                 setDiscoverExpanded(!isDiscoverExpanded);
                 updateSelectedPage("friends");
               }
@@ -151,6 +153,7 @@ function CollapsedPanel({
               })}
               <div className="py-2">
                 <Button
+                  actionButton
                   icon="user-plus"
                   size="lg"
                   background="primary"

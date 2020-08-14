@@ -75,6 +75,7 @@ export default function EditInformationModal({
               {error && <p className="text-errorText text-sm">{error}</p>}
               <div className="pt-4">
                 <Button
+                  actionButton
                   type="submit"
                   disabled={
                     loading || !isValid || (_.isEmpty(touched) && !dirty)

@@ -116,6 +116,7 @@ export default function Input({
               className="img absolute left-0 ml-3 w-6 h-6 object-contain"
             />
             <Button
+              actionButton
               icon="search"
               size="sm"
               background="secondary"
@@ -127,6 +128,7 @@ export default function Input({
         {(variant === "user" || variant === "channel") && (
           <>
             <Button
+              actionButton
               icon="search"
               size="sm"
               background="secondary"

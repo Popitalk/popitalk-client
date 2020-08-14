@@ -30,6 +30,7 @@ export default function NewRoomModal({
         getControls={getControls}
       />
       <Button
+        actionButton
         onClickEvent={() => handleSend(selected)}
         analyticsString="Send New Room Invitation Button: NewRoomModal"
         className="absolute bottom-0 self-center mb-4"
