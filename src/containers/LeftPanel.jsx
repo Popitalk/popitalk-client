@@ -32,8 +32,7 @@ export default function LeftPanelContainer() {
   const relationships = useSelector(state => state.relationships);
   const foundUsers = useSelector(state => state.userSearch);
   const userSearchStatus = useSelector(state => state.api.userSearchApi.status);
-  const { defaultAvatar } = useSelector(state => state.general);
-  const { defaultIcon } = useSelector(state => state.general);
+  const { defaultAvatar, defaultIcon } = useSelector(state => state.general);
   const { id: ownId, channelIds, roomIds } = useSelector(state => state.self);
   const isCollapsed = useSelector(state => state.ui.isCollapsed);
 

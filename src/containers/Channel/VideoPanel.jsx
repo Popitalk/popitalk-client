@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import arrayMove from "array-move";
 import {
   openInviteModal,
   openProfileModal,
   setPlaying,
   setPaused,
-  deleteVideo
+  deleteVideo,
+  swapVideos
 } from "../../redux/actions";
 import { mapIdsToUsers } from "../../helpers/functions";
 import {
@@ -42,7 +42,9 @@ const mapDispatchToProps = (dispatch, { channelId }) => ({
   dispatchPause: (queueStartPosition, videoStartTime) =>
     dispatch(setPaused({ channelId, queueStartPosition, videoStartTime })),
   handleDeleteVideo: channelVideoId =>
-    dispatch(deleteVideo({ channelId, channelVideoId }))
+    dispatch(deleteVideo({ channelId, channelVideoId })),
+  handleSwapVideos: ({ oldIndex, newIndex }) =>
+    dispatch(swapVideos({ channelId, oldIndex, newIndex }))
 });
 
 class VideoPanel extends Component {
@@ -164,14 +166,23 @@ class VideoPanel extends Component {
           playerStatus.status
         )
       });
+    } else if (prevProps.playlist !== this.props.playlist) {
+      const playerStatus = calculatePlayerStatus(
+        this.props.startPlayerStatus,
+        this.props.playlist
+      );
+
+      this.setState({
+        queueList: this.mapVideoStatuses(
+          this.props.playlist,
+          playerStatus.queueStartPosition,
+          playerStatus.status
+        )
+      });
     }
   }
 
   render() {
-    const handlerChange = ({ oldIndex, newIndex }) => {
-      // setQueueList(arrayMove(queueList, oldIndex, newIndex));
-    };
-
     let video = null;
     if (this.state.playerStatus.channelId === this.props.channelId) {
       video = this.props.playlist[this.state.playerStatus.queueStartPosition];
@@ -194,7 +205,7 @@ class VideoPanel extends Component {
         />
         <QueueSection
           queueList={this.state.queueList}
-          handlerChange={handlerChange}
+          handlerChange={this.props.handleSwapVideos}
           handleSkip={this.handleSkip}
           handleDeleteVideo={this.props.handleDeleteVideo}
         />

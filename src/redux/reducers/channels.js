@@ -1,4 +1,5 @@
 import { createReducer } from "@reduxjs/toolkit";
+import arrayMove from "array-move";
 import {
   validateSession,
   login,
@@ -51,7 +52,8 @@ import {
   setPlaying,
   setPaused,
   addVideo,
-  deleteVideo
+  deleteVideo,
+  swapVideos
 } from "../actions";
 
 const initialState = {};
@@ -289,6 +291,15 @@ const R_addVideo = (state, { payload }) => {
 const R_deleteVideo = (state, { payload }) => {
   state[payload.channelId].queue.splice(payload.queuePosition, 1);
 };
+
+const R_swapVideos = (state, { payload }) => {
+  state[payload.channelId].queue = arrayMove(
+    state[payload.channelId].queue,
+    payload.oldIndex,
+    payload.newIndex
+  );
+};
+
 // See what the server returns when inviting friends
 // Only add users? Or update channel?
 // Only add users, so that data is in sync?
@@ -348,7 +359,8 @@ export default createReducer(initialState, {
   [setPlaying.fulfilled]: R_updateChannel,
   [setPaused.fulfilled]: R_updateChannel,
   [addVideo.fulfilled]: R_addVideo,
-  [deleteVideo.fulfilled]: R_deleteVideo
+  [deleteVideo.fulfilled]: R_deleteVideo,
+  [swapVideos.fulfilled]: R_swapVideos
 });
 
 // import * as actions from "../actions";

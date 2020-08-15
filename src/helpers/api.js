@@ -167,6 +167,10 @@ export const deleteVideo = (channelVideoId, channelId) => {
   return axios.delete(`/api/videos/${channelVideoId}`, { data: { channelId } });
 };
 
+export const swapVideos = (channelId, swapInfo) => {
+  return axios.put(`/api/videos/${channelId}`, swapInfo);
+};
+
 // MESSAGES
 
 export const addMessage = messageInfo => {

@@ -670,9 +670,15 @@ export const deleteVideo = createAsyncThunk(
   async videoInfo => {
     const { channelId, channelVideoId } = videoInfo;
     const response = await api.deleteVideo(channelVideoId, channelId);
+    return response.data;
+  }
+);
 
-    console.log("REVVV", response);
-
+export const swapVideos = createAsyncThunk(
+  "videoSearch/swapVideos",
+  async swapInfo => {
+    const { channelId, ...minSwapInfo } = swapInfo;
+    const response = await api.swapVideos(channelId, minSwapInfo);
     return response.data;
   }
 );
