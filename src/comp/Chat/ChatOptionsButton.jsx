@@ -1,5 +1,5 @@
 import React, { Fragment, useState } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Button from "../Controls/Button";
 import "./ChatOptionsButton.css";
 
 export default function ChatOptionsButton({
@@ -13,18 +13,16 @@ export default function ChatOptionsButton({
     return (
       <Fragment>
         {conditions.displayButton ? (
-          <button
-            className="opacity-0 chat-options-button w-8 px-0 space-x-2 self-center mx-1 focus:outline-none"
+          <Button
+            styleNone
+            icon="ellipsis-v"
+            styleNoneIconClassName="text-secondaryText"
+            className="opacity-0 chat-options-button w-8 px-0 space-x-2 self-center mx-1"
             onClick={() => {
               setOptionsClosed(false);
               setTimeout(() => setOptionsClosed(true), 3000);
             }}
-          >
-            <FontAwesomeIcon
-              icon="ellipsis-v"
-              className={"text-secondaryText"}
-            />
-          </button>
+          />
         ) : null}
       </Fragment>
     );
@@ -34,34 +32,28 @@ export default function ChatOptionsButton({
         {
           // New feature, optional chaining. https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Optional_chaining
           handleResend && conditions.messageRejected ? (
-            <button
+            <Button
+              styleNone
+              icon="redo-alt"
+              styleNoneIconClassName="text-xs text-tertiaryText"
               className="focus:outline-none flex items-center"
               onClick={() => handleResend(message.content)}
-            >
-              <FontAwesomeIcon
-                size="xs"
-                icon="redo-alt"
-                className="text-tertiaryText"
-              />
-            </button>
+            />
           ) : (
             <></>
           )
         }
         {handleDelete &&
         (conditions.messageRejected || conditions.messageAccepted) ? (
-          <button
-            className="focus:outline-none flex items-center"
+          <Button
+            styleNone
+            icon="times"
+            styleNoneIconClassName="text-sm text-tertiaryText"
+            className="flex items-center"
             onClick={() =>
               handleDelete({ type: message?.type, id: message.id })
             }
-          >
-            <FontAwesomeIcon
-              size="sm"
-              icon="times"
-              className="text-tertiaryText"
-            />
-          </button>
+          />
         ) : (
           <></>
         )}

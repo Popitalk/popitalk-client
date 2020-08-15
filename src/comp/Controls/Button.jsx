@@ -4,7 +4,7 @@ import classnames from "classnames";
 import ReactGA from "react-ga";
 
 export default function Button({
-  // For normal buttons with a gradient background.
+  // For buttons with a gradient background and most widely used.
   actionButton,
   variant,
   background,
@@ -19,22 +19,23 @@ export default function Button({
   children,
   className,
   selectedColor,
-  tooltip,
-  tooltipPlace = "bottom",
-  analyticsString,
-  onClick,
   // For buttons containing an image.
   imageButton,
   imageButtonSrc,
   imageButtonSpan,
   imageButtonClassName,
   imageButtonSpanClassName = "text-primaryText font-bold",
-  // For non-explicit buttons such as SiteHeaderButtons or images that act as buttons.
+  // For buttons that only contains icons.
   styleNone,
   styleNoneContent,
   styleNoneContentClassName,
   styleNoneImage,
   styleNoneIconClassName,
+  // Button Tooltip
+  tooltip,
+  tooltipPlace = "bottom",
+  // Google Analytics
+  analyticsString,
   ...props
 }) {
   if (selectedColor) background = selectedColor;
@@ -54,12 +55,12 @@ export default function Button({
   };
 
   const styleNoneClasses = classnames({
-    "transition transform ease-in-out hover:scale-110 duration-100": hoverable,
+    "transition transform ease-in-out hover:scale-105 duration-100": hoverable,
     "focus:outline-none": true,
     [className]: className
   });
 
-  const buttonClasses = classnames({
+  const actionButtonClasses = classnames({
     btn: true,
     [`btn-${size}`]: true,
     [backgrounds[background]]: true,
@@ -71,13 +72,16 @@ export default function Button({
     [className]: className
   });
 
+  //analyticsHander contains two functions: Google Analytics event function & button event funtion.
   const analyticsHandler = e => {
+    //Google Analytics function
     ReactGA.event({
       category: "Button",
       action: analyticsString
     });
-    if (onClick) {
-      onClick(e);
+    // Button function
+    if (props.onClick) {
+      props.onClick(e);
     }
   };
 
@@ -101,7 +105,7 @@ export default function Button({
         </button>
       )}
 
-      {/* For non-explicit buttons such as SiteHeaderButtons or images that act as buttons. */}
+      {/* For non-explicit buttons such as SiteHeaderButtons or icons that act as buttons. */}
       {styleNone && (
         <button
           className={styleNoneClasses}
@@ -110,17 +114,17 @@ export default function Button({
           onClick={analyticsHandler}
           {...props}
         >
-          <span className={styleNoneContentClassName}>{styleNoneContent}</span>
           {icon && (
             <FontAwesomeIcon className={styleNoneIconClassName} icon={icon} />
           )}
+          <span className={styleNoneContentClassName}>{styleNoneContent}</span>
         </button>
       )}
 
       {/* For normal buttons with a gradient background. */}
       {actionButton && (
         <button
-          className={buttonClasses}
+          className={actionButtonClasses}
           data-tip={tooltip}
           data-place={tooltipPlace}
           disabled={disabled}

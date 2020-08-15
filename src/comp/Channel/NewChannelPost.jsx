@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "../VideoStatus.css";
 import "emoji-mart/css/emoji-mart.css";
 import { Picker } from "emoji-mart";
+import Button from "../Controls/Button";
 
 export default function NewChannelPost({
   handleUploadImg,
@@ -57,18 +58,21 @@ export default function NewChannelPost({
           ref={textareaRef}
         />
         {/* GIF BUTTON */}
-        <div className="w-10 h-10 p-2 mx-2 rounded-lg bg-secondaryBackground select-none hover:bg-highlightBackground transition transform ease-in-out hover:scale-110 duration-100">
-          <p className="text-highlightText font-bold" role="button">
-            GIF
-          </p>
-        </div>
+        <Button
+          hoverable
+          styleNone
+          styleNoneContent="GIF"
+          styleNoneContentClassName="text-highlightText font-bold"
+          className="w-10 h-10 p-2 mx-2 rounded-lg bg-secondaryBackground select-none hover:bg-highlightBackground"
+        />
         {/* SEND BUTTON */}
-        <button
+        <Button
+          hoverable
+          styleNone
+          styleNoneContent="Post"
           type="submit"
-          className="w-10 h-10 font-bold text-highlightText pr-2 text-md focus:outline-none transition transform ease-in-out hover:scale-110 duration-100"
-        >
-          Post
-        </button>
+          className="w-10 h-10 font-bold text-highlightText pr-2 text-md"
+        />
       </form>
       {pickerOpen && (
         <div

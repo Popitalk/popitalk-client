@@ -1,11 +1,11 @@
 import React, { useRef, useState, useEffect } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Picker } from "emoji-mart";
 import { useSelector, useDispatch } from "react-redux";
 import { setChatDraft, addMessage } from "../../redux/actions";
 import { withRouter } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 import GifSelection from "./GifSelection";
+import Button from "../Controls/Button";
 
 function ChatActions(props) {
   const channelId = props.match.params.roomId || props.match.params.channelId;
@@ -98,21 +98,20 @@ function ChatActions(props) {
     <>
       <div className="flex items-center p-2 bg-primaryBackground space-x-1 md:space-x-2">
         {/* EMOJI BUTTON */}
-        <button
+        <Button
+          hoverable
+          styleNone
+          icon={["far", "smile"]}
+          styleNoneIconClassName={`text-xl ${
+            emojiIsOpen ? "text-tertiaryText" : "text-highlightText"
+          }`}
           onClick={() => setEmojiIsOpen(!emojiIsOpen)}
           className={`${
             emojiIsOpen
-              ? "bg-highlightText hover:bg-highlightBackground"
+              ? "bg-highlightText"
               : "bg-secondaryBackground hover:bg-highlightBackground"
-          }w-10 h-10 p-2 text-center rounded-lg focus:outline-none transition transform ease-in-out hover:scale-110 duration-100`}
-        >
-          <FontAwesomeIcon
-            icon={["far", "smile"]}
-            className={emojiIsOpen ? "text-tertiaryText" : "text-highlightText"}
-            size="lg"
-            role="button"
-          />
-        </button>
+          } w-10 h-10 p-2 text-center rounded-lg`}
+        />
         {emojiIsOpen ? (
           <div className="absolute bottom-0 mb-16">
             {""}
@@ -148,13 +147,14 @@ function ChatActions(props) {
         {/* GIF BUTTON */}
         <GifSelection updateGifsOpen={props.updateGifsOpen} />
         {/* SEND BUTTON */}
-        <button
+        <Button
+          hoverable
+          styleNone
+          styleNoneContent="Send"
           onClick={handleSend}
           ref={sendButton}
-          className="font-bold text-highlightText pr-2 text-sm focus:outline-none transition transform ease-in-out hover:scale-110 duration-100"
-        >
-          Send
-        </button>
+          className="font-bold text-highlightText pr-2 text-sm"
+        />
       </div>
     </>
   );

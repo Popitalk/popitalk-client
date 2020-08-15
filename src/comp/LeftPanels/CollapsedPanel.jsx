@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import PropTypes from "prop-types";
 import RoomIcon from "../Controls/RoomIcon";
 import Button from "../Controls/Button";

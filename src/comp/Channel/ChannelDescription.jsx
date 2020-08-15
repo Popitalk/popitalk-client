@@ -92,11 +92,13 @@ export default function ChannelDescription({
               } else if (idx === adminList.length - 1) {
                 const totalLeft = adminList.length - threshold;
                 return (
-                  <button
+                  <Button
+                    styleNone
+                    styleNoneContent={`+${totalLeft}`}
                     key={idx}
-                    className={`img h-8 w-8 rounded-circle mx-px bg-primaryBackground text-xs shadow-md focus:outline-none`}
+                    className="img h-8 w-8 rounded-circle mx-px bg-primaryBackground text-xs shadow-md"
                     onClick={handleListAdmins}
-                  >{`+${totalLeft}`}</button>
+                  />
                 );
               } else {
                 return null;

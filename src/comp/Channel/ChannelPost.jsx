@@ -1,5 +1,4 @@
 import React, { useState, useRef, useEffect } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "../VideoStatus.css";
 import AvatarIcon from "../Controls/AvatarIcon";
 import ChannelComment from "./ChannelComment";
@@ -10,6 +9,7 @@ import PopupMenu from "../Controls/PopupMenu";
 import { openProfileModal } from "../../redux/actions";
 import { useDispatch } from "react-redux";
 import moment from "moment";
+import Button from "../Controls/Button";
 
 export default function ChannelPost({
   id,
@@ -113,32 +113,33 @@ export default function ChannelPost({
           >
             Like
           </ToggleIcon>
-          <button
-            className="flex align-middle p-2 focus:outline-none hover:filter-brightness-9"
+          <Button
+            styleNone
+            icon={["far", "comment"]}
+            styleNoneContent="Comment"
+            styleNoneContentClassName="text-sm font-bold ml-2"
+            className="flex p-2 hover:filter-brightness-9"
             onClick={handleComment}
-          >
-            <FontAwesomeIcon icon={["far", "comment"]} />
-            <span className="text-sm font-bold ml-2">Comment</span>
-          </button>
+          />
         </footer>
       </div>
       {/* Comment Section */}
       <div className="my-2 px-1 w-84 sm:w-102 lg:w-104 max-w-xl">
         {!showComments && comments?.length > showNumComment && (
-          <button
-            className="text-secondaryText text-xs px-2 focus:outline-none"
+          <Button
+            styleNone
+            styleNoneContent="View more comments"
+            className="text-secondaryText text-xs px-2"
             onClick={() => setShowComments(!showComments)}
-          >
-            View more comments
-          </button>
+          />
         )}
         {showComments && comments?.length > showNumComment && (
-          <button
-            className="text-secondaryText text-xs px-2 focus:outline-none"
+          <Button
+            styleNone
+            styleNoneContent="Hide comments"
+            className="text-secondaryText text-xs px-2"
             onClick={() => setShowComments(!showComments)}
-          >
-            Hide comments
-          </button>
+          />
         )}
 
         {comments?.map((comment, idx) => {

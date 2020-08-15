@@ -115,12 +115,12 @@ class FriendsPanel extends Component {
                 <p className="text-xs">
                   Results for &quot;{this.state.search}&quot;
                 </p>
-                <button
-                  className="flex text-xs font-bold text-highlightText focus:outline-none px-2 py-1 rounded-xl transition-all hover:bg-highlightBackground duration-100"
+                <Button
+                  styleNone
+                  styleNoneContent="Close"
+                  className="flex text-xs font-bold text-highlightText px-2 py-1 rounded-xl transition-all hover:bg-highlightBackground duration-100"
                   onClick={() => this.syncSearch("")}
-                >
-                  Close
-                </button>
+                />
               </div>
               <div className="flex w-full h-64 px-1 rounded-lg">
                 <StretchList

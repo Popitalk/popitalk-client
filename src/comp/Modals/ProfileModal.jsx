@@ -3,6 +3,7 @@ import ChannelCardList from "../Channel/ChannelCardList";
 import PopupMenu from "../Controls/PopupMenu";
 import FriendRequestButtons from "../Controls/FriendRequestButtons";
 import ImageUpload from "../Controls/ImageUpload";
+import Button from "../Controls/Button";
 // import Resizer from "react-image-file-resizer";
 
 export default function ProfileModal({
@@ -93,9 +94,21 @@ export default function ProfileModal({
             {`${user.firstName} ${user.lastName}`}
           </div>
           <div className="flex space-x-8 pt-4 pb-12 text-primaryText">
-            <button className="text-sm font-semibold focus:outline-none">{`${following} Following`}</button>
-            <button className="text-sm font-semibold focus:outline-none">{`${followers} Followers`}</button>
-            <button className="text-sm font-semibold focus:outline-none">{`${friends} Friends`}</button>
+            <Button
+              styleNone
+              styleNoneContent={`${following} Following`}
+              className="text-sm font-semibold"
+            />
+            <Button
+              styleNone
+              styleNoneContent={`${followers} Followers`}
+              className="text-sm font-semibold"
+            />
+            <Button
+              styleNone
+              styleNoneContent={`${friends} Friends`}
+              className="text-sm font-semibold"
+            />
           </div>
         </div>
       </div>

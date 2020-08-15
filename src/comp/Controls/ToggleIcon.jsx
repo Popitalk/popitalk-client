@@ -1,6 +1,6 @@
 import React from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import classnames from "classnames";
+import Button from "./Button";
 
 export default function ToggleIcon({
   icons,
@@ -20,29 +20,17 @@ export default function ToggleIcon({
     [colors.toggle]: status
   });
   return (
-    <button
+    <Button
+      styleNone
+      icon={!status ? icons.default : icons.toggle}
+      styleNoneContent={children && children}
+      styleNoneContentClassName={
+        className && className.text ? className.text : `text-sm font-bold ml-1`
+      }
       className={`flex items-center p-2 rounded-xl hover:text-notificationsColor duration-100 focus:outline-none ${colorChange} ${
         className && className.icon ? className.icon : ""
       }`}
       onClick={handleToggle}
-    >
-      {!status ? (
-        <FontAwesomeIcon icon={icons.default} />
-      ) : (
-        <FontAwesomeIcon icon={icons.toggle} />
-      )}
-
-      {children && (
-        <span
-          className={
-            className && className.text
-              ? className.text
-              : `text-sm font-bold ml-1`
-          }
-        >
-          {children}
-        </span>
-      )}
-    </button>
+    />
   );
 }

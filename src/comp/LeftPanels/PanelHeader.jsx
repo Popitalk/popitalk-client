@@ -1,5 +1,5 @@
 import React from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Button from "../Controls/Button";
 
 export default function PanelHeader({
   handleCollapse,
@@ -8,12 +8,13 @@ export default function PanelHeader({
 }) {
   return (
     <div className="flex bg-primaryBackground items-center justify-around w-full select-none">
-      <button
-        className="p-4 ml-1 rounded-full focus:outline-none text-secondaryText hover:text-highlightText transition transform ease-in-out hover:scale-110 duration-100"
+      <Button
+        hoverable
+        styleNone
+        icon="bars"
+        className="p-4 ml-2 rounded-full text-secondaryText hover:text-highlightText"
         onClick={handleCollapse}
-      >
-        <FontAwesomeIcon icon="bars" />
-      </button>
+      />
       <nav
         className={`text-2xl px-2 p-1 focus:outline-none font-semibold hover:bg-secondaryBackground rounded-xl transition transform ease-in-out hover:scale-105 duration-100 ${
           selectedPage === "channels"

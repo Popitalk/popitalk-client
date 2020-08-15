@@ -1,5 +1,6 @@
 import React from "react";
 import classnames from "classnames";
+import Button from "./Button";
 
 export default function AvatarDeck({
   ids,
@@ -38,10 +39,13 @@ export default function AvatarDeck({
           } else if (index === avatars.length - 1) {
             const totalLeft = avatars.length - threshold;
             return (
-              <button
+              <Button
+                hoverable
+                styleNone
+                styleNoneContent={`+${totalLeft}`}
                 key={ids?.[index] || index}
-                className={`${avatarClasses} bg-disabledBackground text-xs focus:outline-none order-first z-10`}
-              >{`+${totalLeft}`}</button>
+                className={`${avatarClasses} bg-disabledBackground text-xs order-first z-10`}
+              />
             );
           } else {
             return null;
