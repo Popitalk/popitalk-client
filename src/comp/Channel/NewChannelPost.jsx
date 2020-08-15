@@ -1,5 +1,4 @@
 import React, { useState, useRef } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "../VideoStatus.css";
 import "emoji-mart/css/emoji-mart.css";
 import { Picker } from "emoji-mart";
