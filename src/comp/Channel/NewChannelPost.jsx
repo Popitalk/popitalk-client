@@ -34,18 +34,16 @@ export default function NewChannelPost({
 
   return (
     <div className="relative flex w-full justify-center items-center">
-      <form
-        onSubmit={handleSubmit}
-        className={`flex flex-around justify-center bg-secondaryBackground content-center py-2 sm:w-102 md:w-102 lg:w-104 max-w-xla`}
-      >
+      <div className="flex flex-around justify-center bg-secondaryBackground content-center py-2 sm:w-102 md:w-102 lg:w-104 max-w-xla">
         {/* EMOJI BUTTON */}
-        <div
+        <Button
+          hoverable
+          styleNone
+          icon={["far", "smile"]}
+          styleNoneIconClassName="mb-2 text-2xl text-highlightText"
           onClick={handleEmot}
-          className="w-10 h-10 p-2 mx-2 text-2xl text-highlightText rounded-lg bg-secondaryBackground select-none hover:bg-highlightBackground transition transform ease-in-out hover:scale-110 duration-100"
-          role="button"
-        >
-          <FontAwesomeIcon icon={["far", "smile"]} className="mb-2" />
-        </div>
+          className="w-10 h-10 p-2 mx-2 rounded-lg bg-secondaryBackground hover:bg-highlightBackground"
+        />
         {/* INPUT */}
         <textarea
           type="text"
@@ -70,10 +68,10 @@ export default function NewChannelPost({
           hoverable
           styleNone
           styleNoneContent="Post"
-          type="submit"
+          onClick={handleSubmit}
           className="w-10 h-10 font-bold text-highlightText pr-2 text-md"
         />
-      </form>
+      </div>
       {pickerOpen && (
         <div
           className="absolute top-0 left-0 ml-8 mt-12 mr-8 z-50"
@@ -111,7 +109,7 @@ export default function NewChannelPost({
               console.log("selected");
             }}
             exclude={["flags"]}
-          ></Picker>
+          />
         </div>
       )}
     </div>

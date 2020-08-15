@@ -114,7 +114,6 @@ function ChatActions(props) {
         />
         {emojiIsOpen ? (
           <div className="absolute bottom-0 mb-16">
-            {""}
             <Picker
               perLine={8}
               style={{ position: "absolute", bottom: "0", right: "-19rem" }}
@@ -132,7 +131,7 @@ function ChatActions(props) {
               native={true}
               onClick={onEmojiClick}
               exclude={["flags"]}
-            ></Picker>
+            />
           </div>
         ) : null}
         <textarea
