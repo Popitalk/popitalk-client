@@ -5,6 +5,7 @@ import ChannelCardList from "./Channel/ChannelCardList.jsx";
 import VideoCardList from "./VideoCardList.jsx";
 import Input from "./Controls/Input.jsx";
 import Alert from "../comp/Alert";
+import Button from "./Controls/Button.jsx";
 
 function RecommendedChannels({ list, selectedPage }) {
   const isCollapsed = useSelector(state => state.ui.isCollapsed);
@@ -61,7 +62,9 @@ function RecommendedChannels({ list, selectedPage }) {
       <div className="flex justify-start px-6 mt-8 h-8 space-x-2">
         {tabs.map((img, idx) => {
           return (
-            <nav
+            <Button
+              styleNone
+              styleNoneContent={img.tab}
               key={idx}
               className={`flex flex-row items-center font-bold h-full px-4 shadow-sm transition transform ease-in-out hover:scale-105 duration-100 rounded-full truncate ${
                 tabSelected === img.tab
@@ -69,9 +72,8 @@ function RecommendedChannels({ list, selectedPage }) {
                   : "text-secondaryText cursor-pointer bg-primaryBackground"
               }`}
               onClick={() => setTab(img.tab)}
-            >
-              {img.tab}
-            </nav>
+              analyticsString={`${img.tab} Button: RecommendedView`}
+            />
           );
         })}
       </div>
