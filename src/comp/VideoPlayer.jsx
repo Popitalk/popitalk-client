@@ -360,6 +360,7 @@ class VideoPlayer extends Component {
                             this.state.playing === false ? "Play" : "Pause"
                           }
                           data-place="top"
+                          analyticsString="Play/Pause Button: VideoPlayer"
                         />
                       )}
                       {/* Volume button & slider hover effect */}
@@ -387,6 +388,7 @@ class VideoPlayer extends Component {
                           onClick={() => this.toggleMute()}
                           data-tip={this.state.volume.muted ? "Unmute" : "Mute"}
                           data-place="top"
+                          analyticsString="Volume Button: VideoPlayer"
                         />
                         {/* Volume slider */}
                         <div
@@ -435,6 +437,7 @@ class VideoPlayer extends Component {
                       onClick={() => this.handleFullScreen()}
                       data-tip="Full screen"
                       data-place="top"
+                      analyticsString="Full Screen Button: VideoPlayer"
                     />
                   </div>
                 </div>
@@ -458,6 +461,7 @@ class VideoPlayer extends Component {
                 <Button
                   actionButton
                   className="text-sm sm:text-md hover:scale-102"
+                  analyticsString="Request Admin Button: VideoPlayer"
                 >
                   {this.props.displayControls
                     ? "Search and add videos Up Next!"

@@ -43,6 +43,7 @@ export default function NewChannelPost({
           styleNoneIconClassName="mb-2 text-2xl text-highlightText"
           onClick={handleEmot}
           className="w-10 h-10 p-2 mx-2 rounded-lg bg-secondaryBackground hover:bg-highlightBackground"
+          analyticsString="Emoji Button: NewChannelPost"
         />
         {/* INPUT */}
         <textarea
@@ -62,6 +63,7 @@ export default function NewChannelPost({
           styleNoneContent="GIF"
           styleNoneContentClassName="text-highlightText font-bold"
           className="w-10 h-10 p-2 mx-2 rounded-lg bg-secondaryBackground select-none hover:bg-highlightBackground"
+          analyticsString="GIF Button: NewChannelPost"
         />
         {/* SEND BUTTON */}
         <Button
@@ -70,6 +72,7 @@ export default function NewChannelPost({
           styleNoneContent="Post"
           onClick={handleSubmit}
           className="w-10 h-10 font-bold text-highlightText pr-2 text-md"
+          analyticsString="Post Button: NewChannelPost"
         />
       </div>
       {pickerOpen && (

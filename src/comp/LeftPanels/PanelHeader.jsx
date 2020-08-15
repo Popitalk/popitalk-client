@@ -14,6 +14,7 @@ export default function PanelHeader({
         icon="bars"
         className="p-4 ml-2 rounded-full text-secondaryText hover:text-highlightText"
         onClick={handleCollapse}
+        analyticsString="Collapse Button: PanelHeader"
       />
       <nav
         className={`text-2xl px-2 p-1 focus:outline-none font-semibold hover:bg-secondaryBackground rounded-xl transition transform ease-in-out hover:scale-105 duration-100 ${

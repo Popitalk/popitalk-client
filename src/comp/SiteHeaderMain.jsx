@@ -99,20 +99,20 @@ export default function SiteHeaderMain({
           imageButton
           imageButtonSrc={Logo}
           imageButtonClassName="w-10 h-10"
+          analyticsString="Main Logo Button: SiteHeaderMain"
           hoverable
         />
       </Link>
       <ul className="sm:space-x-6 // flex items-center space-x-6">
         <li className="flex items-center">
           <Button
+            hoverable
             imageButton
             imageButtonSrc={avatar}
             imageButtonSpan={username}
             imageButtonClassName="w-8 h-8 mr-2 rounded-full object-cover"
-            className="scale-105"
             onClick={() => openProfileHandler(userID)}
             analyticsString="My Profile Button: SiteHeaderMain"
-            hoverable
           />
         </li>
         <li>

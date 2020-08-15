@@ -30,6 +30,7 @@ export default function SiteHeaderWelcome({
           imageButtonSrc={Logo}
           imageButtonClassName="w-8 h-8 mr-2"
           imageButtonSpan="Popitalk"
+          analyticsString="Popitalk Logo Button: SiteHeaderWelcome"
         />
         <Button
           styleNone
@@ -37,7 +38,7 @@ export default function SiteHeaderWelcome({
           styleNoneContent="Back to Login"
           onClick={() => signupStatus(!signup)}
           analyticsString="Back to Login Button: SiteHeaderWelcome"
-          className="text-sm text-highlightText underline focus:outline-none hover:filter-brightness-9"
+          className="text-sm text-highlightText underline hover:filter-brightness-9"
         />
       </div>
       {/* Main header */}
@@ -57,6 +58,7 @@ export default function SiteHeaderWelcome({
             imageButtonClassName="w-12 h-12 hover:scale-105"
             imageButtonSpan="Popitalk"
             imageButtonSpanClassName="md:ml-2 md:text-2xl // sm:text-xl sm:ml-1 // flex ml-1 text-2xl"
+            analyticsString="Logo Button: SiteHeaderWelcome"
           />
         </div>
         <nav className="flex flex-col">

@@ -38,6 +38,7 @@ export default function VideoSearchBar({ className, onClick }) {
                   : "bg-primaryBackground hover:bg-highlightBackground"
               } h-10 w-10 rounded-full focus:outline-none`}
               onClick={() => setSource(img.source)}
+              analyticsString={`${source} Source Button: VideoSearchBar`}
             />
           );
         })}

@@ -120,6 +120,7 @@ export default function ChannelPost({
             styleNoneContentClassName="text-sm font-bold ml-2"
             className="flex p-2 hover:filter-brightness-9"
             onClick={handleComment}
+            analyticsString="Comment Button: ChannelPost"
           />
         </footer>
       </div>
@@ -131,6 +132,7 @@ export default function ChannelPost({
             styleNoneContent="View more comments"
             className="text-secondaryText text-xs px-2"
             onClick={() => setShowComments(!showComments)}
+            analyticsString="View more comments Button: ChannelPost"
           />
         )}
         {showComments && comments?.length > showNumComment && (
@@ -139,6 +141,7 @@ export default function ChannelPost({
             styleNoneContent="Hide comments"
             className="text-secondaryText text-xs px-2"
             onClick={() => setShowComments(!showComments)}
+            analyticsString="Hide comments Button: ChannelPost"
           />
         )}
 

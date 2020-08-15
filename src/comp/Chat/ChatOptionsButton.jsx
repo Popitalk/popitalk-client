@@ -22,6 +22,7 @@ export default function ChatOptionsButton({
               setOptionsClosed(false);
               setTimeout(() => setOptionsClosed(true), 3000);
             }}
+            analyticsString="Chat Options Button: ChatOptionsButton"
           />
         ) : null}
       </Fragment>
@@ -38,6 +39,7 @@ export default function ChatOptionsButton({
               styleNoneIconClassName="text-xs text-tertiaryText"
               className="focus:outline-none flex items-center"
               onClick={() => handleResend(message.content)}
+              analyticsString="Resend Button: ChatOptionsButton"
             />
           ) : (
             <></>
@@ -53,6 +55,7 @@ export default function ChatOptionsButton({
             onClick={() =>
               handleDelete({ type: message?.type, id: message.id })
             }
+            analyticsString="Chat Delete Button: ChatOptionsButton"
           />
         ) : (
           <></>

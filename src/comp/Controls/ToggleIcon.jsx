@@ -31,6 +31,7 @@ export default function ToggleIcon({
         className && className.icon ? className.icon : ""
       }`}
       onClick={handleToggle}
+      analyticsString="Like Button: ToggleIcon"
     />
   );
 }

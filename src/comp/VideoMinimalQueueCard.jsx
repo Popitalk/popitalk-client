@@ -18,6 +18,7 @@ export default function VideoMinimalQueueCard({
           styleNoneContent="Search and add more videos below!"
           styleNoneContentClassName="text-center text-secondaryText text-sm"
           className="h-12 w-full bg-tertiaryBackground hover:shadow-sm hover:bg-highlightBackground transition duration-100 rounded-lg"
+          analyticsString="Direct to search Button: VideoMinimalQueueCard"
         />
       )}
       {title && (

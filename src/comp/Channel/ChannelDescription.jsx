@@ -98,6 +98,7 @@ export default function ChannelDescription({
                     key={idx}
                     className="img h-8 w-8 rounded-circle mx-px bg-primaryBackground text-xs shadow-md"
                     onClick={handleListAdmins}
+                    analyticsString="Followers List Button: ChannelDescription"
                   />
                 );
               } else {

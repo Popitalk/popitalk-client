@@ -14,6 +14,7 @@ function TabNavMobile({ selectedPage, updateSelectedPage }) {
         }`}
         onClick={() => updateSelectedPage("channels")}
         className="p-5"
+        analyticsString="Channels Button: TabNavMobile"
       />
       <Button
         styleNone
@@ -25,6 +26,7 @@ function TabNavMobile({ selectedPage, updateSelectedPage }) {
         }`}
         onClick={() => updateSelectedPage("main")}
         className="p-5"
+        analyticsString="Main Button: TabNavMobile"
       />
       <Button
         styleNone
@@ -36,6 +38,7 @@ function TabNavMobile({ selectedPage, updateSelectedPage }) {
         }`}
         onClick={() => updateSelectedPage("friends")}
         className="p-5"
+        analyticsString="Friends Button: TabNavMobile"
       />
     </div>
   );

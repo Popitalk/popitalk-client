@@ -98,16 +98,19 @@ export default function ProfileModal({
               styleNone
               styleNoneContent={`${following} Following`}
               className="text-sm font-semibold"
+              analyticsString="Show following list Button: ProfileModal"
             />
             <Button
               styleNone
               styleNoneContent={`${followers} Followers`}
               className="text-sm font-semibold"
+              analyticsString="Show followers list Button: ProfileModal"
             />
             <Button
               styleNone
               styleNoneContent={`${friends} Friends`}
               className="text-sm font-semibold"
+              analyticsString="Show friends list Button: ProfileModal"
             />
           </div>
         </div>

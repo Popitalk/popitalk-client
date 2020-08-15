@@ -122,6 +122,7 @@ export default function Input({
               background="secondary"
               className="absolute right-0 mr-3 hover:scale-110 shadow-none"
               onClick={onClick}
+              analyticsString="Search Button: Input"
             />
           </>
         )}
@@ -134,6 +135,7 @@ export default function Input({
               background="secondary"
               className="absolute right-0 mr-2 hover:scale-110 shadow-none"
               onClick={onClick}
+              analyticsString="Search Button: Input"
             />
           </>
         )}

@@ -120,6 +120,7 @@ class FriendsPanel extends Component {
                   styleNoneContent="Close"
                   className="flex text-xs font-bold text-highlightText px-2 py-1 rounded-xl transition-all hover:bg-highlightBackground duration-100"
                   onClick={() => this.syncSearch("")}
+                  analyticsString="Close Friend Search Button: FriendsPanel"
                 />
               </div>
               <div className="flex w-full h-64 px-1 rounded-lg">

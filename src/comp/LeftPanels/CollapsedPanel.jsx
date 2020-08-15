@@ -50,6 +50,7 @@ function CollapsedPanel({
         icon="bars"
         className="flex items-center justify-center py-5 w-full rounded-full text-secondaryText hover:text-highlightText"
         onClick={handleCollapse}
+        analyticsString="LeftPanel Expand Button: CollapsedPanel"
       />
       <div className="flex-col h-full overflow-y-scroll">
         {/* CHANNELS */}
@@ -62,6 +63,7 @@ function CollapsedPanel({
             background="bgColor"
             selectedColor={isFollowingExpanded ? true : false}
             size="sm"
+            analyticsString="Channels Collapse Button: CollapsedPanel"
             // updateSelectedPage here updates which tab of the panel will be open when the panel is expanded.
             {...getTogglePropsFollowing({
               onClick: () => {
@@ -110,6 +112,7 @@ function CollapsedPanel({
             shape="none"
             background="bgColor"
             selectedColor={isDiscoverExpanded ? true : false}
+            analyticsString="Friends Expand Button: CollapsedPanel"
             // updateSelectedPage here updates which tab of the panel will be open when the panel is expanded.
             {...getTogglePropsDiscover({
               onClick: () => {

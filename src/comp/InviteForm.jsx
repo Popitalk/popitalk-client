@@ -30,7 +30,12 @@ export default function InviteForm({ link }) {
         value={link}
         readOnly={true}
         interiorButton={
-          <Button actionButton size="sm" onClick={copyHandler}>
+          <Button
+            actionButton
+            size="sm"
+            onClick={copyHandler}
+            analyticsString="Copy Button: InviteForm"
+          >
             Copy
           </Button>
         }

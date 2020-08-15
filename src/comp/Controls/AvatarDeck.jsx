@@ -45,6 +45,7 @@ export default function AvatarDeck({
                 styleNoneContent={`+${totalLeft}`}
                 key={ids?.[index] || index}
                 className={`${avatarClasses} bg-disabledBackground text-xs order-first z-10`}
+                analyticsString="View More Users Button: AvatarDeck"
               />
             );
           } else {

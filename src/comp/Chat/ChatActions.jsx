@@ -111,6 +111,7 @@ function ChatActions(props) {
               ? "bg-highlightText"
               : "bg-secondaryBackground hover:bg-highlightBackground"
           } w-10 h-10 p-2 text-center rounded-lg`}
+          analyticsString="GIF Button: ChatActions"
         />
         {emojiIsOpen ? (
           <div className="absolute bottom-0 mb-16">
@@ -153,6 +154,7 @@ function ChatActions(props) {
           onClick={handleSend}
           ref={sendButton}
           className="font-bold text-highlightText pr-2 text-sm"
+          analyticsString="Send Button: Chat Actions"
         />
       </div>
     </>
