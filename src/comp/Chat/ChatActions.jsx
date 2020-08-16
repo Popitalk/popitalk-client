@@ -13,7 +13,7 @@ function ChatActions(props) {
   const [emojiIsOpen, setEmojiIsOpen] = useState(false);
   const [chosenEmoji, setChosenEmoji] = useState("");
   const textareaRef = useRef();
-  const sendButton = useRef();
+  // const sendButton = useRef();
   const draft = useSelector(state => state.chatDrafts[channelId]);
   const currentUserUsername = useSelector(state => state.self.username);
   const apiLoading = useSelector(state => state.api.addMessage.loading);
@@ -152,7 +152,7 @@ function ChatActions(props) {
           styleNone
           styleNoneContent="Send"
           onClick={handleSend}
-          ref={sendButton}
+          // ref={sendButton}
           className="font-bold text-highlightText pr-2 text-sm"
           analyticsString="Send Button: Chat Actions"
         />

@@ -5,7 +5,7 @@ import Slider from "rc-slider";
 import screenfull from "screenfull";
 import ReactTooltip from "react-tooltip";
 import "rc-slider/assets/index.css";
-import useLocalStorage from "../hooks/useLocalStorage";
+// import useLocalStorage from "../hooks/useLocalStorage";
 import moment from "moment";
 import VideoPlayerStatusCard from "./VideoPlayerStatusCard";
 import Ripples from "react-ripples";
@@ -247,6 +247,7 @@ class VideoPlayer extends Component {
                 onDuration={s => {
                   this.setState({ duration: s });
                 }}
+                caption="false"
               />
             </div>
             <div className="absolute flex flex-col justify-end w-full h-full transition-colors">

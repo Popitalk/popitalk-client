@@ -1,6 +1,7 @@
 {
   "short_name": "Popitalk Client",
   "name": "Popitalk Client",
+  "description": "A Website to watch together. We believe in making texting more fun and enjoyable.",
   "icons": [
     {
       "src": "favicon.ico",

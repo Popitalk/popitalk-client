@@ -22,6 +22,7 @@ import { channelsList, friendsList } from "../stories/seed-arrays";
 import Channel from "../containers/Channel";
 import "../comp/ScrollBars.css";
 import ReactGa from "react-ga";
+import Helmet from "react-helmet";
 
 const RouteWrapper = ({ leftPanel, children }) => {
   return (
@@ -86,6 +87,15 @@ export default function App() {
 
   return (
     <>
+      <Helmet>
+        <meta charSet="UFT-8" />
+        <title>Popitalk - Watch Together!</title>
+        <meta
+          name="description"
+          content="Popitalk is exactly what you need with your friends to watch together. We believe in making texting more fun and enjoyable."
+        />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+      </Helmet>
       <ModalManager />
       <div className="h-screen flex flex-col bg-primaryBackground">
         <div className="h-auto">
