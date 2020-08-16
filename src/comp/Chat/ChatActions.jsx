@@ -13,46 +13,13 @@ function ChatActions(props) {
   const [emojiIsOpen, setEmojiIsOpen] = useState(false);
   const [chosenEmoji, setChosenEmoji] = useState("");
   const textareaRef = useRef();
-  const sendButton = useRef();
   const draft = useSelector(state => state.chatDrafts[channelId]);
   const currentUserUsername = useSelector(state => state.self.username);
-  const apiLoading = useSelector(state => state.api.addMessage.loading);
   const userId = useSelector(state => state.self.id);
 
-  const handleSubmit = e => {
-    if (e.keyCode === 13 && !e.shiftKey) {
-      e.preventDefault();
-      e.target.style.height = "38px";
-
-      const text = draft?.trim();
-      dispatch(setChatDraft({ channelId, draft: "" }));
-
-      if (text && text.length > 0 && !apiLoading) {
-        dispatch(
-          addMessage({
-            id: uuidv4(),
-            userId,
-            channelId,
-            content: text,
-            upload: null,
-            createdAt: Date.now(),
-            author: {
-              id: "",
-              username: currentUserUsername,
-              avatar: null
-            }
-          })
-        );
-      }
-    }
-  };
-
   const handleSend = () => {
-    textareaRef.current.style.height = "38px";
-    const text = draft?.trim();
-    dispatch(setChatDraft({ channelId, draft: "" }));
-
-    if (text && text.length > 0 && !apiLoading) {
+    const text = textareaRef.current.value.trim();
+    if (text.length > 0)
       dispatch(
         addMessage({
           id: uuidv4(),
@@ -68,31 +35,42 @@ function ChatActions(props) {
           }
         })
       );
-    }
+    textareaRef.current.value = "";
+    textareaRef.current.style.height = "38px";
   };
 
+  const handleChange = e => {
+    if (e.keyCode === 13 && !e.shiftKey) {
+      e.preventDefault();
+      handleSend(e);
+    }
+    e.target.style.height = "38px";
+    e.target.style.height = `${Math.min(e.target.scrollHeight + 2, 168)}px`;
+  };
+
+  // Hanldes emoji's in chat
   useEffect(() => {
-    dispatch(
-      setChatDraft({
-        channelId,
-        draft: `${(draft ? draft : "") + chosenEmoji}`
-      })
-    );
+    textareaRef.current.value += chosenEmoji;
     setChosenEmoji("");
   }, [channelId, chosenEmoji, dispatch, draft]);
 
-  const handleChange = e => {
-    e.target.style.height = "38px";
-    e.target.style.height = `${Math.min(e.target.scrollHeight + 2, 168)}px`;
-    dispatch(setChatDraft({ channelId, draft: e.target.value }));
-  };
-
   const onEmojiClick = (emojiObject, event) => {
-    console.log(emojiObject);
     setChosenEmoji(emojiObject.native);
     // setEmojiIsOpen(false);
     textareaRef.current.focus();
   };
+  // Manages chat drafts
+  useEffect(() => {
+    textareaRef.current.value = draft;
+    textareaRef.current.style.height = "38px";
+    textareaRef.current.style.height = `${Math.min(
+      textareaRef.current.scrollHeight + 2,
+      168
+    )}px`;
+    return () => {
+      dispatch(setChatDraft({ channelId, draft: textareaRef.current.value }));
+    };
+  }, [channelId, dispatch, draft]);
 
   return (
     <>
@@ -124,7 +102,7 @@ function ChatActions(props) {
               showPreview={false}
               // Bellow options can be used to adjust what is shown in the footer by default.
               // emoji="eyes"
-              // title="  Popitalk"
+              // title="Popitalk"
               // Uses the native set of emojis, so nothing needs to be downloaded. To make all our
               // wanted emojis available on any device we should provide our own sheet, or use the one
               // provided by emoji mart.
@@ -138,11 +116,9 @@ function ChatActions(props) {
         <textarea
           className="w-full h-10 py-2 px-3 text-start overflow-hidden rounded-lg resize-none bg-secondaryBackground focus:outline-none text-primaryText text-sm transition transform ease-in-out hover:scale-105 duration-100"
           placeholder="Type a message..."
-          value={draft || ""}
           maxLength="240"
-          onKeyDown={handleSubmit}
           ref={textareaRef}
-          onChange={handleChange}
+          onKeyDown={handleChange}
         />
         {/* GIF BUTTON */}
         <GifSelection updateGifsOpen={props.updateGifsOpen} />
@@ -152,7 +128,6 @@ function ChatActions(props) {
           styleNone
           styleNoneContent="Send"
           onClick={handleSend}
-          ref={sendButton}
           className="font-bold text-highlightText pr-2 text-sm"
           analyticsString="Send Button: Chat Actions"
         />
