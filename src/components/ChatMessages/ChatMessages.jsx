@@ -122,19 +122,19 @@ export default function ChatMessages({ channelId, channelMessages }) {
     [y]
   );
 
-  useEffect(() => {
-    return () => {
-      if (oldScrollTop.current) {
-        dispatch(
-          setInitialScroll({
-            channelId: oldScrollTop.current.channelId,
-            initialScroll: oldScrollTop.current.y
-          })
-        );
-      }
-    };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [channelId]);
+  // useEffect(() => {
+  //   return () => {
+  //     if (oldScrollTop.current) {
+  //       dispatch(
+  //         setInitialScroll({
+  //           channelId: oldScrollTop.current.channelId,
+  //           initialScroll: oldScrollTop.current.y
+  //         })
+  //       );
+  //     }
+  //   };
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [channelId]);
 
   useUpdateEffect(() => {
     if (channelId !== previousChannelId) return;
