@@ -31,6 +31,7 @@ import ChannelSettingsPanel from "../../comp/Channel/ChannelSettingsPanel";
 import ChannelQueue from "../../comp/Channel/ChannelQueue";
 import VideoSearch from "../../comp/VideoSearch";
 import { mapIdsToUsers } from "../../helpers/functions";
+import Helmet from "react-helmet";
 
 export default function Channel({ tab, searchClasses, type = "channel" }) {
   let { channelId, roomId } = useParams();
@@ -210,6 +211,18 @@ export default function Channel({ tab, searchClasses, type = "channel" }) {
   if (loading) return <></>;
   return (
     <div className="flex flex-col bg-secondaryBackground w-full overflow-x-hidden">
+      {/* Google Search Index & SEO */}
+      <Helmet>
+        <meta charSet="UFT-8" />
+        <title>{pickRoomName(channel, users, ownId)} - Popitalk</title>
+        <meta
+          name="description"
+          content={type === "channel" && channel.description}
+        />
+        {type === "room" && <meta name="robots" content="noindex" />}
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+      </Helmet>
+      {/* Channel & Room structure */}
       <div className="w-full h-12 bg-primaryBackground">
         <ChannelHeader
           id={channelId}

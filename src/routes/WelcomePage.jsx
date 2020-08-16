@@ -2,10 +2,20 @@ import React from "react";
 import CreateNewAccountForm from "../comp/CreateNewAccountForm";
 import Footer from "../comp/Footer";
 import WelcomeVideo from "../assets/popitalkVideo.mp4";
+import Helmet from "react-helmet";
 
 function WelcomePage(props) {
   return (
     <div className="w-full h-full">
+      <Helmet>
+        <meta charSet="UFT-8" />
+        <title>Popitalk - Log In or Sign Up</title>
+        <meta
+          name="description"
+          content="Create an account or log into Popitalk. It's FREE. Connect with friends, family and start watching together!"
+        />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+      </Helmet>
       <section
         className="sm:flex-row sm:py-0 sm:px-16
         // flex flex-col bg-primaryBackground justify-around items-center px-8 py-8 shadow-xl"

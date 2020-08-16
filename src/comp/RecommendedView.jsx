@@ -6,6 +6,7 @@ import VideoCardList from "./VideoCardList.jsx";
 import Input from "./Controls/Input.jsx";
 import Alert from "../comp/Alert";
 import Button from "./Controls/Button.jsx";
+import Helmet from "react-helmet";
 
 function RecommendedChannels({ list, selectedPage }) {
   const isCollapsed = useSelector(state => state.ui.isCollapsed);
@@ -41,6 +42,15 @@ function RecommendedChannels({ list, selectedPage }) {
   const [search, setSearch] = useState("");
   return (
     <div className="relative py-4 mx-auto w-full max-w-screen-xl rounded-md bg-secondaryBackground">
+      <Helmet>
+        <meta charSet="UFT-8" />
+        <title>Popitalk</title>
+        <meta
+          name="description"
+          content="Search and Discover Trending Channels. Popitalk is exactly what you need with your friends to watch together."
+        />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+      </Helmet>
       {/* Alert to indicate invalid channel URL */}
       <div className="fixed mx-2 -my-4 z-50">
         {!!alert && <Alert duration={3000}>{alert}</Alert>}

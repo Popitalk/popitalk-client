@@ -89,7 +89,7 @@ module.exports = {
 
       /** TEXTS */
       primaryText: "#323232",
-      secondaryText: "#A5A5A5",
+      secondaryText: "#979797",
       tertiaryText: "#FFFFFF",
       liveText: "#FFFFFF",
       highlightText: "#1DA4FE",

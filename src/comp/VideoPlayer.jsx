@@ -246,6 +246,7 @@ class VideoPlayer extends Component {
                 onDuration={s => {
                   this.setState({ duration: s });
                 }}
+                caption="false"
               />
             </div>
             <div className="absolute flex flex-col justify-end w-full h-full transition-colors">
