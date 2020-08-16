@@ -67,10 +67,18 @@ function ChatActions(props) {
       textareaRef.current.scrollHeight + 2,
       168
     )}px`;
+
     return () => {
-      dispatch(setChatDraft({ channelId, draft: textareaRef.current.value }));
+      dispatch(
+        setChatDraft({
+          channelId,
+          // eslint-disable-next-line react-hooks/exhaustive-deps
+          draft: textareaRef.current.value
+        })
+      );
     };
-  }, [channelId, dispatch, draft]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [channelId]);
 
   return (
     <>
