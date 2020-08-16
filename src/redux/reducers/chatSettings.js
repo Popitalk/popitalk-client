@@ -14,6 +14,8 @@ import {
   setInitialScroll
 } from "../actions";
 
+import { extendedCapacity } from "./messages";
+
 const initialState = {};
 
 const R_initChatSettings = (state, { payload }) => {
@@ -46,7 +48,8 @@ const R_resetScroll = (state, { payload }) => {
 };
 
 const R_updateChannelInitialScroll = (state, { payload }) => {
-  state[payload.channelId].capacity = payload.initialScroll === null ? 50 : 250;
+  state[payload.channelId].capacity =
+    payload.initialScroll === null ? 50 : extendedCapacity;
   state[payload.channelId].initialScroll = payload.initialScroll;
 };
 

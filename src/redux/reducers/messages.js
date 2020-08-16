@@ -19,6 +19,10 @@ import {
 } from "../actions";
 
 const initialState = {};
+// Defines how many messages can exist in state at once,
+// When chat is scrolled to past messages.
+// Reduced to 150 from 250, for scrolling performance.
+export const extendedCapacity = 150;
 
 const R_messagesInit = (state, { payload }) => {
   if (payload.messages) {
@@ -41,7 +45,7 @@ const R_addMessages = (state, { payload }) => {
       ? _.uniqBy([...state[payload.channelId], ...payload.messages], "id")
       : payload.messages;
 
-    if (state[payload.channelId].length > 250) {
+    if (state[payload.channelId].length > extendedCapacity) {
       state[payload.channelId] = state[payload.channelId].slice(-100);
     }
   } else if (payload.direction === "top") {
@@ -49,7 +53,7 @@ const R_addMessages = (state, { payload }) => {
       ? _.uniqBy([...payload.messages, ...state[payload.channelId]], "id")
       : payload.messages;
 
-    if (state[payload.channelId].length > 250) {
+    if (state[payload.channelId].length > extendedCapacity) {
       state[payload.channelId] = state[payload.channelId].slice(0, 100);
     }
   }
@@ -58,11 +62,12 @@ const R_addMessage = (state, { payload }) => {
   const { capacity, ...message } = payload;
   const messageWithStatus = { status: "accepted", ...message };
   function popElement(index) {
+    if (index < 0) {
+      return;
+    }
     if (state[payload.channelId][index].status === "pending") {
       state[payload.channelId].splice(index, 1);
-      return true;
-    } else if (index < 0) {
-      return false;
+      return;
     } else {
       popElement(index - 1);
     }
@@ -70,7 +75,7 @@ const R_addMessage = (state, { payload }) => {
   popElement(state[payload.channelId].length - 1);
   if (!state[payload.channelId]) {
     state[payload.channelId] = [messageWithStatus];
-  } else if (state[payload.channelId].length < 250) {
+  } else if (state[payload.channelId].length < extendedCapacity) {
     state[payload.channelId].push(messageWithStatus);
 
     if (capacity === 50) {
@@ -84,7 +89,7 @@ const R_addMessageWs = (state, { payload }) => {
   const messageWithStatus = { status: "accepted", ...message };
   if (!state[payload.channelId]) {
     state[payload.channelId] = [messageWithStatus];
-  } else if (state[payload.channelId].length < 250) {
+  } else if (state[payload.channelId].length < extendedCapacity) {
     state[payload.channelId].push(messageWithStatus);
 
     if (capacity === 50) {
@@ -108,7 +113,7 @@ const R_addPendingMessage = (state, { meta }) => {
       avatar: null
     }
   };
-  if (state[meta.arg.channelId].length < 250) {
+  if (state[meta.arg.channelId].length < extendedCapacity) {
     state[meta.arg.channelId].push(tempMessage);
   }
 };
@@ -128,7 +133,7 @@ const R_addRejectedMessage = (state, { meta }) => {
       avatar: null
     }
   };
-  if (state[meta.arg.channelId].length < 250) {
+  if (state[meta.arg.channelId].length < extendedCapacity) {
     state[meta.arg.channelId].push(tempMessage);
   }
 };

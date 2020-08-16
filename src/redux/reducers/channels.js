@@ -56,6 +56,8 @@ import {
   swapVideos
 } from "../actions";
 
+import { extendedCapacity } from "./messages";
+
 const initialState = {};
 
 const R_initChannels = (state, { payload }) => {
@@ -245,7 +247,7 @@ const R_deleteChannel = (state, { payload }) => {
 const R_updateChannelInitialScroll = (state, { payload }) => {
   if (state[payload.channelId]) {
     state[payload.channelId].capacity =
-      payload.initialScroll === null ? 50 : 250;
+      payload.initialScroll === null ? 50 : extendedCapacity;
     state[payload.channelId].initialScroll = payload.initialScroll;
   }
 };

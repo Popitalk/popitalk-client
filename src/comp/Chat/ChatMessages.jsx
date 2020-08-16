@@ -127,7 +127,7 @@ export default function ChatMessages({
     if (messages[messages.length - 1].userId === ownId) {
       containerRef.current.scrollTo({
         top: containerRef.current.scrollHeight,
-        behavior: "smooth"
+        behavior: "auto"
       });
     } else if (
       containerRef.current.scrollHeight -
@@ -136,7 +136,7 @@ export default function ChatMessages({
     ) {
       containerRef.current.scrollTo({
         top: containerRef.current.scrollHeight,
-        behavior: "smooth"
+        behavior: "auto"
       });
     }
 
