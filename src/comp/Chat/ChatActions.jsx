@@ -61,7 +61,7 @@ function ChatActions(props) {
   };
   // Manages chat drafts
   useEffect(() => {
-    textareaRef.current.value = draft;
+    textareaRef.current.value = draft || "";
     textareaRef.current.style.height = "38px";
     textareaRef.current.style.height = `${Math.min(
       textareaRef.current.scrollHeight + 2,
