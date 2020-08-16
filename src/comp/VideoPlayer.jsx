@@ -168,7 +168,7 @@ class VideoPlayer extends Component {
 
       this.startCountDownTimer(waitTime);
     }
-    if (ready) {
+    if (ready && this.props.playerStatus.videoStartTime) {
       this.reactPlayer.current.seekTo(
         this.props.playerStatus.videoStartTime,
         "seconds"
