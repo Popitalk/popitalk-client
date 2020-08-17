@@ -16,6 +16,10 @@ function RecommendedChannels({ list, selectedPage }) {
   const { defaultIcon } = useSelector(state => state.general);
 
   let followingChannels = [];
+  let discoverChannels = [];
+  let trendingChannels = [];
+  const allChannelIds = Object.keys(channels);
+
   channelIds
     .map(channelId => ({
       id: channelId,
@@ -28,9 +32,25 @@ function RecommendedChannels({ list, selectedPage }) {
       }
     });
 
+  allChannelIds
+    .map(channelId => ({
+      id: channelId,
+      ...channels[channelId],
+      icon: channels[channelId].icon || defaultIcon
+    }))
+    .forEach(channel => {
+      if (channel.speciality === "discover") {
+        discoverChannels.push(channel);
+      } else if (channel.speciality === "trending") {
+        trendingChannels.push(channel);
+      }
+    });
+
   // removing the seeded and putting in the actual following list
-  list = list.filter(tag_list => tag_list.title !== "following");
+  list = [];
   list.push({ title: "following", channels: followingChannels });
+  list.push({ title: "discover", channels: discoverChannels });
+  list.push({ title: "trending", channels: trendingChannels });
 
   const [tabSelected, setTab] = useState("# following");
   const tabs = [
