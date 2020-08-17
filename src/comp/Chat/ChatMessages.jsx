@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import {
   usePrevious,
   useUpdateEffect,
-  useScroll,
+  useScrolling,
   useDebounce
 } from "react-use";
 import { createSelector } from "reselect";
@@ -46,7 +46,7 @@ export default function ChatMessages({
   const [clickedMessage, setClickedMessage] = useState("");
   const containerRef = useRef(null);
   const oldScrollTop = useRef(null);
-  const { y } = useScroll(containerRef);
+  const scrolling = useScrolling(containerRef);
   const channel = useSelector(state => state.channels[channelId]);
   const hasMoreBottom = useHasMoreBottom(channel, channelMessages);
   const previousChannelId = usePrevious(channelId);
@@ -80,8 +80,6 @@ export default function ChatMessages({
 
   const [, cancel] = useDebounce(
     () => {
-      let yVal;
-
       // if (
       //   containerRef.current.scrollHeight -
       //     (containerRef.current.scrollTop + containerRef.current.clientHeight) <
@@ -91,31 +89,31 @@ export default function ChatMessages({
       // } else {
       //   yVal = containerRef.current.scrollTop;
       // }
-      oldScrollTop.current = {
-        channelId,
-        y: yVal
-      };
+      const y = containerRef.current.scrollTop;
       if (y) {
-        dispatch(setInitialScroll({ channelId: channelId, initialScroll: y }));
+        oldScrollTop.current = {
+          channelId,
+          y
+        };
       } else if (y === 0 && !hasMoreTop) {
-        dispatch(setInitialScroll({ channelId: channelId, initialScroll: 1 }));
+        oldScrollTop.current = {
+          channelId,
+          y: 1
+        };
       }
     },
     200,
-    [y]
+    [scrolling]
   );
 
   useEffect(() => {
-    const oldScroll = oldScrollTop.current;
     return () => {
-      if (oldScroll) {
-        dispatch(
-          setInitialScroll({
-            channelId: oldScroll.channelId,
-            initialScroll: oldScroll.y
-          })
-        );
-      }
+      dispatch(
+        setInitialScroll({
+          channelId: oldScrollTop.current.channelId,
+          initialScroll: oldScrollTop.current.y
+        })
+      );
       cancel();
     };
   }, [channelId, dispatch, cancel]);
