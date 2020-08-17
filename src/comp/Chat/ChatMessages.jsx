@@ -107,6 +107,7 @@ export default function ChatMessages({
   );
 
   useEffect(() => {
+    if (!oldScrollTop.current) oldScrollTop.current = {};
     return () => {
       dispatch(
         setInitialScroll({
