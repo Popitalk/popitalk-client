@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Logo from "../assets/logo.png";
 import Button from "./Controls/Button";
+import strings from "./Localization";
 
 export default function SiteHeaderWelcome({
   apiLoading,
@@ -70,7 +71,7 @@ export default function SiteHeaderWelcome({
                     className="sm:text-xs // w-full ml-1 mb-1 text-sm font-bold text-primaryText"
                     htmlFor="user"
                   >
-                    Username or email
+                    {strings.loginUsername}
                   </label>
                   <input
                     className="sm:h-8 sm:text-sm
@@ -94,7 +95,7 @@ export default function SiteHeaderWelcome({
                     className="sm:text-xs // ml-1 mb-1 text-sm font-bold text-primaryText"
                     htmlFor="password"
                   >
-                    Password
+                    {strings.loginPassword}
                   </label>
                   <input
                     className="sm:h-8 sm:text-sm
@@ -129,7 +130,7 @@ export default function SiteHeaderWelcome({
                       username.trim().length === 0
                     }
                   >
-                    Log In
+                    {strings.loginButton}
                   </Button>
                 </li>
               </div>

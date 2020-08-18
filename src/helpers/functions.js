@@ -7,6 +7,7 @@ import {
   cancelFriendRequest
 } from "../redux/actions";
 import React, { useEffect } from "react";
+import strings from "../comp/Localization";
 
 export function getTextClass(size) {
   return classnames({
@@ -75,18 +76,18 @@ export function getDatePickerValues() {
   });
 
   const months = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December"
+    strings.jan,
+    strings.feb,
+    strings.mar,
+    strings.apr,
+    strings.may,
+    strings.jun,
+    strings.jul,
+    strings.aug,
+    strings.sep,
+    strings.oct,
+    strings.nov,
+    strings.dec
   ].map((month, index) => {
     return { value: index + 1, label: month };
   });

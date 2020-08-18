@@ -3,6 +3,7 @@ import Select from "./Controls/Select";
 import ControlHeader from "./Controls/ControlHeader";
 import { connect } from "formik";
 import { getDatePickerValues } from "../helpers/functions";
+import strings from "./Localization";
 
 function EditBirthdayForm({ loading, formik }) {
   const datePicker = getDatePickerValues();
@@ -27,7 +28,7 @@ function EditBirthdayForm({ loading, formik }) {
     <>
       <div className="w-full pt-2 px-2">
         <ControlHeader
-          header="Birthday"
+          header={strings.createNewAccountBirthday}
           error={
             formik.touched.day &&
             formik.touched.month &&

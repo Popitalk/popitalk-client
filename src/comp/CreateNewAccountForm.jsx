@@ -10,6 +10,7 @@ import {
   getSetPasswordSchema,
   getInitialDatePickerValues
 } from "../helpers/functions";
+import strings from "./Localization";
 
 export default function CreateNewAccountForm({ handleSubmit, error, loading }) {
   const initialDoB = new Date();
@@ -60,14 +61,14 @@ export default function CreateNewAccountForm({ handleSubmit, error, loading }) {
           <form onSubmit={handleSubmit}>
             <div className="flex flex-col items-center w-full">
               <p className="text-center text-3xl font-bold">
-                Create a new account
+                {strings.createNewAccountTitle}
               </p>
               <p className="pb-8 text-center account-form-par">
-                Get the full experience. It&apos;s FREE!
+                {strings.createNewAccountSubtitle}
               </p>
               <EditInformationForm loading={loading} />
               <Input
-                header="Username"
+                header={strings.createNewAccountUsername}
                 name="username"
                 type="text"
                 disabled={loading}
@@ -78,7 +79,7 @@ export default function CreateNewAccountForm({ handleSubmit, error, loading }) {
                 className="w-full px-2"
               />
               <Input
-                header="Password"
+                header={strings.createNewAccountPassword}
                 name="password"
                 type="password"
                 disabled={loading}
@@ -90,15 +91,13 @@ export default function CreateNewAccountForm({ handleSubmit, error, loading }) {
               />
               <EditBirthdayForm loading={loading} />
               <p className="pt-8 text-center text-xs account-form-par">
-                By clicking Sign Up, you agree to the{" "}
-                <a href="https://medium.com/popitalk/end-user-license-agreement-and-terms-of-service-dc8a25c0f5d2?source=friends_link&sk=2150df3f6e097d60599c30a5d3e8942a">
-                  Terms
-                </a>{" "}
-                and{" "}
-                <a href="https://medium.com/popitalk/privacy-policy-ab89684edca6?source=friends_link&sk=555c056e49c784af16481f96f8dcbfe3">
-                  Policy
+                {strings.createNewAccountTerms}{" "}
+                <a
+                  className="no-underline"
+                  href="https://medium.com/popitalk/end-user-license-agreement-and-terms-of-service-dc8a25c0f5d2?source=friends_link&sk=2150df3f6e097d60599c30a5d3e8942a"
+                >
+                  {strings.createNewAccountTerms1}
                 </a>
-                .
               </p>
               <div className="mt-4">
                 <Button
@@ -107,7 +106,7 @@ export default function CreateNewAccountForm({ handleSubmit, error, loading }) {
                   disabled={loading || !isValid || !dirty}
                   analyticsString="Sign Up Button: CreateNewAccountForm"
                 >
-                  Sign Up
+                  {strings.createNewAccountButton}
                 </Button>
               </div>
               {error ? (

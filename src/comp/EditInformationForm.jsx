@@ -1,6 +1,7 @@
 import React from "react";
 import Input from "./Controls/Input";
 import { connect } from "formik";
+import strings from "./Localization";
 
 function EditInformationForm({ loading, formik }) {
   return (
@@ -8,7 +9,7 @@ function EditInformationForm({ loading, formik }) {
       <div className="w-full sm:flex sm:pl-0 mb-2 pl-2">
         <div className="w-full flex-1 sm:flex-1 sm:pr-2 sm:pl-2 pr-2">
           <Input
-            header="First Name"
+            header={strings.createNewAccountFirstName}
             name="firstName"
             type="text"
             disabled={loading}
@@ -21,7 +22,7 @@ function EditInformationForm({ loading, formik }) {
         </div>
         <div className="w-full flex-1 md:flex-1 md:pl-2 pr-2">
           <Input
-            header="Last Name"
+            header={strings.createNewAccountLastName}
             name="lastName"
             type="text"
             disabled={loading}
@@ -35,7 +36,7 @@ function EditInformationForm({ loading, formik }) {
       </div>
       <div className="w-full mb-2 px-2">
         <Input
-          header="Email"
+          header={strings.createNewAccountEmail}
           name="email"
           type="email"
           disabled={loading}
