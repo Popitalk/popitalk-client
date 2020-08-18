@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Logo from "../assets/logo.png";
 import Button from "./Controls/Button";
-import strings from "./Localization";
+import strings from "../helpers/localization";
 
 export default function SiteHeaderWelcome({
   apiLoading,

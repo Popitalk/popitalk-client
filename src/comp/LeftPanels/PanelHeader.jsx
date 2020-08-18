@@ -1,6 +1,6 @@
 import React from "react";
 import Button from "../Controls/Button";
-import strings from "../Localization";
+import strings from "../../helpers/localization";
 
 export default function PanelHeader({
   handleCollapse,

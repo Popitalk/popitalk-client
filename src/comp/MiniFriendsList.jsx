@@ -1,7 +1,7 @@
 import React from "react";
 import Button from "./Controls/Button";
 import RoomIcon from "./Controls/RoomIcon";
-import strings from "./Localization";
+import strings from "../helpers/localization";
 
 export default function MiniFriendsList({
   friends,

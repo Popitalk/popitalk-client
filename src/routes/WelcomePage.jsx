@@ -3,7 +3,7 @@ import CreateNewAccountForm from "../comp/CreateNewAccountForm";
 import Footer from "../comp/Footer";
 import WelcomeVideo from "../assets/popitalkVideo.mp4";
 import Helmet from "react-helmet";
-import strings from "../comp/Localization";
+import strings from "../helpers/localization";
 
 function WelcomePage(props) {
   return (

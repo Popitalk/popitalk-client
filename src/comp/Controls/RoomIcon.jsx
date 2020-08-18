@@ -1,6 +1,6 @@
 import React from "react";
 import classnames from "classnames";
-import strings from "../Localization";
+import strings from "../../helpers/localization";
 
 const corners = [
   "rounded-tl-full",

@@ -1,5 +1,5 @@
 import React from "react";
-import strings from "./Localization";
+import strings from "../helpers/localization";
 
 function Footer() {
   return (
