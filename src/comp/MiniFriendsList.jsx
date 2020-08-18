@@ -1,6 +1,7 @@
 import React from "react";
 import Button from "./Controls/Button";
 import RoomIcon from "./Controls/RoomIcon";
+import strings from "./Localization";
 
 export default function MiniFriendsList({
   friends,
@@ -47,7 +48,7 @@ export default function MiniFriendsList({
           background="primary"
           onClick={handleFindFriends}
           className="hover:scale-110"
-          tooltip="Add Friends"
+          tooltip={strings.addFriendsButton}
           analyticsString="Add Friend Button: MiniFriendsList"
         />
       </div>

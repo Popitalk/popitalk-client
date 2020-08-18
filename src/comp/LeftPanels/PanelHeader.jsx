@@ -1,5 +1,6 @@
 import React from "react";
 import Button from "../Controls/Button";
+import strings from "../Localization";
 
 export default function PanelHeader({
   handleCollapse,
@@ -7,7 +8,7 @@ export default function PanelHeader({
   selectedPage
 }) {
   return (
-    <div className="flex bg-primaryBackground items-center justify-around w-full select-none">
+    <div className="flex bg-primaryBackground items-center w-full select-none space-x-4">
       <Button
         hoverable
         styleNone
@@ -24,7 +25,7 @@ export default function PanelHeader({
         } `}
         onClick={() => updateSelectedPage("channels")}
       >
-        Channels
+        {strings.channels}
       </nav>
       <nav
         className={`text-2xl px-2 p-1 focus:outline-none font-semibold hover:bg-secondaryBackground rounded-xl transition transform ease-in-out hover:scale-105 duration-100 ${
@@ -34,7 +35,7 @@ export default function PanelHeader({
         } `}
         onClick={() => updateSelectedPage("friends")}
       >
-        Friends
+        {strings.friends}
       </nav>
     </div>
   );

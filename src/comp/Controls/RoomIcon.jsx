@@ -1,5 +1,6 @@
 import React from "react";
 import classnames from "classnames";
+import strings from "../Localization";
 
 const corners = [
   "rounded-tl-full",
@@ -110,7 +111,7 @@ export default function RoomIcon({
           className="font-semibold text-xs absolute bottom-0 truncate
          bg-gradient-br-button text-primaryButtonText rounded-lg shadow-xs flex items-center justify-center py-2px px-1 select-none"
         >
-          My room
+          {strings.myRoom}
         </p>
       )}
       {notifications && (

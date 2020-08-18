@@ -6,6 +6,7 @@ import Input from "../Controls/Input";
 import RoomsList from "../InfoCardLists/RoomsList";
 import PanelHeader from "./PanelHeader";
 import { utilizeFocus } from "../../helpers/functions";
+import strings from "../Localization";
 
 class FriendsPanel extends Component {
   constructor(props) {
@@ -103,7 +104,7 @@ class FriendsPanel extends Component {
             variant="user"
             size="sm"
             value={this.state.search}
-            placeholder="Search Username"
+            placeholder={strings.searchFriendsInput}
             onChange={e => this.syncSearch(e.target.value)}
             onClick={() => this.syncSearch(this.state.search)}
             forwardedRef={this.searchFieldRef.ref}
@@ -113,11 +114,11 @@ class FriendsPanel extends Component {
             <div className="rounded-md bg-secondaryBackground shadow-inner border border-primaryBorder mx-3 m-2">
               <div className="flex flex-row items-center justify-between ml-2 px-2 py-1">
                 <p className="text-xs">
-                  Results for &quot;{this.state.search}&quot;
+                  {strings.searchFriendsResult} &quot;{this.state.search}&quot;
                 </p>
                 <Button
                   styleNone
-                  styleNoneContent="Close"
+                  styleNoneContent={strings.searchFriendsClose}
                   className="flex text-xs font-bold text-highlightText px-2 py-1 rounded-xl transition-all hover:bg-highlightBackground duration-100"
                   onClick={() => this.syncSearch("")}
                   analyticsString="Close Friend Search Button: FriendsPanel"
@@ -148,7 +149,7 @@ class FriendsPanel extends Component {
             onClick={() => this.props.handleCreateRoom()}
             analyticsString="Create Room Button: FriendsPanel"
           >
-            New Room
+            {strings.newRoomButton}
           </Button>
         </div>
       </div>

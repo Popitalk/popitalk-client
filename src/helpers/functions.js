@@ -33,35 +33,34 @@ export function getUserInformationSchema() {
 
   return {
     firstName: Yup.string()
-      .min(2, "Too short *")
-      .max(32, "Too long *")
-      .required("Required *"),
+      .min(2, strings.inputTextTooShort)
+      .max(32, strings.inputTextTooLong)
+      .required(strings.inputTextRequired),
     lastName: Yup.string()
-      .min(2, "Too short *")
-      .max(32, "Too long *")
-      .required("Required *"),
+      .min(1, strings.inputTextTooShort)
+      .max(32, strings.inputTextTooLong)
+      .required(strings.inputTextRequired),
     dateOfBirth: Yup.date()
-      .max(
-        thirteenYearsAgo,
-        "You can't use Popitalk if you are younger than 13."
-      )
+      .max(thirteenYearsAgo, strings.ageLimitText)
       .required(),
-    email: Yup.string().email("Invalid email *").required("Required *")
+    email: Yup.string()
+      .email(strings.invalidEmail)
+      .required(strings.inputTextRequired)
   };
 }
 
 export function getSetPasswordSchema(checkOldPassword) {
   let password = Yup.string()
-    .min(6, "At least 6 characters needed*")
-    .matches(/[a-z]/, "At least one lowercase letter needed *")
-    .matches(/[A-Z]/, "At least one uppercase letter needed *")
-    .matches(/\d+/, "Password should have at least one number.")
-    .required("Required *");
+    .min(6, strings.passwordTooShort)
+    .matches(/[a-z]/, strings.lowerCaseRequired)
+    .matches(/[A-Z]/, strings.upperCaseRequired)
+    .matches(/\d+/, strings.numberRequired)
+    .required(strings.inputTextRequired);
 
   if (checkOldPassword) {
     password = password.notOneOf(
       [Yup.ref("oldPassword"), null],
-      "Passwords must not match."
+      strings.newPasswordRequirement
     );
   }
 

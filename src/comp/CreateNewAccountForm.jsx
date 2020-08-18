@@ -32,9 +32,9 @@ export default function CreateNewAccountForm({ handleSubmit, error, loading }) {
           ...getUserInformationSchema(),
           ...getSetPasswordSchema(),
           username: Yup.string()
-            .min(6, "Minimum 6 characters*")
-            .max(32, "Maximum 32 characters*")
-            .required("Required*")
+            .min(6, strings.passwordTooShort)
+            .max(32, strings.passwordTooLong)
+            .required(strings.inputTextRequired)
         })}
         onSubmit={values => {
           const dateOfBirth = values.dateOfBirth.toISOString().substring(0, 10);

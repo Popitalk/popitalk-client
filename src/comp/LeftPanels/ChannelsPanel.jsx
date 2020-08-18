@@ -5,6 +5,7 @@ import MiniFriendsList from "../MiniFriendsList";
 import PanelHeader from "./PanelHeader";
 import ReactTooltip from "react-tooltip";
 import "./Tooltip.css";
+import strings from "../Localization";
 
 export default function ChannelsPanel({
   yourChannels,
@@ -38,7 +39,7 @@ export default function ChannelsPanel({
         <div className="flex flex-col items-start px-2 bg-primaryBackground sm:mt-4">
           <div className="flex items-center mb-4">
             <h4 className="mx-2 text-md font-semibold text-secondaryText">
-              Your channels
+              {strings.yourChannels}
             </h4>
             <Button
               actionButton
@@ -48,7 +49,7 @@ export default function ChannelsPanel({
               onClick={handleCreateChannel}
               analyticsString="Create Channel Button: ChannelsPanel"
               className="hover:scale-110"
-              tooltip="Create"
+              tooltip={strings.createChannelButton}
             />
           </div>
           <ChannelsList
@@ -56,17 +57,17 @@ export default function ChannelsPanel({
             selected={selectedChannel}
             handleSelect={handleSelectChannel}
             fullHeight={true}
-            emptyMessage="Create your own public Channel!"
+            emptyMessage={strings.yourChannelsPlaceholder}
           />
           <h4 className="my-4 mx-2 text-md font-semibold text-secondaryText">
-            Following
+            {strings.followingChannels}
           </h4>
           <ChannelsList
             channels={followingChannels}
             selected={selectedChannel}
             handleSelect={handleSelectChannel}
             fullHeight={true}
-            emptyMessage="Discover and Follow Channels!"
+            emptyMessage={strings.followingChannelsPlaceholder}
           />
         </div>
       </div>

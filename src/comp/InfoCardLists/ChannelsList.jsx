@@ -2,6 +2,7 @@ import React from "react";
 import RoomIcon from "../Controls/RoomIcon";
 import InfoCard from "../InfoCards/InfoCard";
 import InfoCardList from "./InfoCardList";
+import strings from "../Localization";
 
 export default function ChannelsList({
   channels,
@@ -25,7 +26,9 @@ export default function ChannelsList({
         avatar={roomIcon}
         title={channel.name}
         subtitle={`
-          ${channel.numOnline || 1 * (selected === channel.id)} online
+          ${channel.numOnline || 1 * (selected === channel.id)} ${
+          strings.online
+        }
           `}
         subtitleSize="xs"
         backgroundColor={selected === channel.id ? "highlight" : "transparent"}
