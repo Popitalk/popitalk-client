@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import sortBy from "lodash/sortBy";
-import { useParams } from "react-router-dom";
+import { useParams, Redirect } from "react-router-dom";
 import {
   getChannel,
   setPostDraft,
@@ -21,9 +21,10 @@ import {
   unfollowChannel,
   openListModal,
   searchVideos,
-  addVideo
+  addVideo,
+  setAlert
 } from "../../redux/actions";
-import { testQueue, testResult } from "../../stories/seed-arrays";
+import { testResult } from "../../stories/seed-arrays";
 import ChannelHeader from "../../comp/ChannelHeader";
 import VideoPanel from "./VideoPanel";
 import ForumPanel from "./ForumPanel";
@@ -38,12 +39,9 @@ export default function Channel({ tab, searchClasses, type = "channel" }) {
   channelId = channelId || roomId;
   const channel = useSelector(state => state.channels[channelId]);
   const dispatch = useDispatch();
-  if (!channel) {
-    dispatch(getChannel(channelId));
-  }
 
   const { defaultIcon, defaultAvatar } = useSelector(state => state.general);
-  const updateChannelApi = useSelector(state => state.api.channel);
+  const channelApi = useSelector(state => state.api.channel);
   const draft = useSelector(state => state.postDrafts[channelId]);
   const posts = useSelector(state => state.posts[channelId]);
   const { id: ownId, username: ownUsername } = useSelector(state => state.self);
@@ -57,14 +55,15 @@ export default function Channel({ tab, searchClasses, type = "channel" }) {
   const channelRef = useRef(null);
   const scrollRef = useRef(null);
 
-  // console.log("tab", tab);
-  const copyTestQueue = [...testQueue];
-  const activeVideo = copyTestQueue[0];
-  activeVideo.status = "playing";
-
   const trendingResults = testResult;
-  const searchResults = channel.videoSearch.results;
-  const totalResults = channel.videoSearch.totalResults;
+  const searchResults = channel ? channel.videoSearch.results : [];
+  const totalResults = channel ? channel.videoSearch.totalResults : [];
+  const admins =
+    channel && channel.admins
+      ? mapIdsToUsers(channel.admins, users, defaultAvatar)
+      : [];
+  const editor =
+    channel && (channel.ownerId === ownId || admins.find(a => a.id === ownId));
 
   const isMember =
     channel && channel.members
@@ -208,6 +207,15 @@ export default function Channel({ tab, searchClasses, type = "channel" }) {
     }
   }, [tab, loading]);
 
+  if (
+    channelApi.status !== "loading" &&
+    channelApi.status !== "initial" &&
+    !channel
+  ) {
+    dispatch(setAlert("The channel / room you entered does not exist."));
+    return <Redirect to="/channels" />;
+  }
+
   if (loading) return <></>;
   return (
     <div className="flex flex-col bg-secondaryBackground w-full overflow-x-hidden">
@@ -226,11 +234,10 @@ export default function Channel({ tab, searchClasses, type = "channel" }) {
       <div className="w-full h-12 bg-primaryBackground">
         <ChannelHeader
           id={channelId}
+          isAdmin={editor}
           name={pickRoomName(channel, users, ownId)}
           icon={channel.icon || defaultIcon}
-          videoStatus={
-            activeVideo && activeVideo.status ? activeVideo.status : ""
-          }
+          videoStatus={true}
           type={type}
         />
       </div>
@@ -306,9 +313,9 @@ export default function Channel({ tab, searchClasses, type = "channel" }) {
         )}
         {tab === "settings" && !loading && (
           <ChannelSettingsPanel
-            ownerId={channel.ownerId || channel.owner_id}
+            ownerId={channel.ownerId}
             followers={mapIdsToUsers(channel.members, users, defaultAvatar)}
-            admins={mapIdsToUsers(channel.admins, users, defaultAvatar)}
+            admins={admins}
             bannedUsers={mapIdsToUsers(channel.banned, users, defaultAvatar)}
             initialChannelForm={{
               ...channel,
@@ -318,11 +325,9 @@ export default function Channel({ tab, searchClasses, type = "channel" }) {
             handleChannelFormSubmit={values =>
               handleChannelFormSubmit(values, channelId)
             }
-            channelFormLoading={updateChannelApi.loading}
+            channelFormLoading={channelApi.loading}
             channelFormError={
-              updateChannelApi.status === "error"
-                ? updateChannelApi.error
-                : false
+              channelApi.status === "error" ? channelApi.error : false
             }
             addAdminHandler={addAdminHandler}
             removeAdminHandler={removeAdminHandler}

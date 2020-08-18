@@ -4,17 +4,20 @@ import { Link, useLocation } from "react-router-dom";
 
 export default function ChannelHeader({
   id,
+  isAdmin,
   name,
   icon,
   videoStatus,
   type = "channel"
 }) {
-  const navButtons = [
+  let navButtons = [
     { name: "Video", endpoint: "video" },
-    { name: "Posts", endpoint: "channel" },
-    { name: "Up Next", endpoint: "queue" },
-    { name: "Settings", endpoint: "settings" }
+    { name: "Posts", endpoint: "channel" }
   ];
+  if (isAdmin) {
+    navButtons.push({ name: "Up Next", endpoint: "queue" });
+    navButtons.push({ name: "Settings", endpoint: "settings" });
+  }
 
   // const channel = useSelector(state => state.channels[id]);
 

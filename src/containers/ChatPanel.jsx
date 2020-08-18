@@ -12,7 +12,7 @@ function ChatPanelContainer(props) {
   const openFollowersList = () =>
     dispatch(openListModal(channelId, "followers"));
   const followersCount = useSelector(
-    state => state.channels[channelId].members?.length
+    state => state.channels[channelId]?.members?.length
   );
   const isRoom = !!props.match.params.roomId;
   const [isGifsOpen, setIsGifsOpen] = useState(false);

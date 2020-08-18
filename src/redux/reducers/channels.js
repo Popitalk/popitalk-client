@@ -96,7 +96,7 @@ const R_addChannel = (state, { payload }) => {
   state[channelId] = {
     ...state[channelId],
     ...channel,
-    queue,
+    queue: queue ? queue : [],
     loaded: true,
     chatSettings: {
       capacity: 50,
