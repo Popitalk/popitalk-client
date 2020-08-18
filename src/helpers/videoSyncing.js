@@ -1,6 +1,6 @@
-import moment from "moment";
+const moment = require("moment");
 
-const BUFFER_TIME = 3;
+module.exports.BUFFER_TIME = 3;
 
 const defaultPlayerStatus = () => {
   return {
@@ -26,7 +26,7 @@ const checkNewPlayerStatus = (
 
     if (nextPosition < playlist.length) {
       // Skip to the next video
-      return calculateNextPlayerStatus(
+      return this.calculateNextPlayerStatus(
         { queueStartPosition, clockStartTime, videoStartTime },
         playlist,
         nextPosition
@@ -40,7 +40,7 @@ const checkNewPlayerStatus = (
   return newPlayerStatus;
 };
 
-export const calculateNextPlayerStatus = (
+module.exports.calculateNextPlayerStatus = (
   { queueStartPosition, clockStartTime, videoStartTime },
   playlist,
   nextPosition
@@ -53,9 +53,9 @@ export const calculateNextPlayerStatus = (
 
   let queuePosition = queueStartPosition + 1;
   let elapsedTime =
-    playlist[queueStartPosition].length - videoStartTime + BUFFER_TIME;
+    playlist[queueStartPosition].length - videoStartTime + this.BUFFER_TIME;
   while (queuePosition < nextPosition) {
-    elapsedTime += playlist[queuePosition].length + BUFFER_TIME;
+    elapsedTime += playlist[queuePosition].length + this.BUFFER_TIME;
     queuePosition++;
   }
 
@@ -67,9 +67,10 @@ export const calculateNextPlayerStatus = (
   return newPlayerStatus;
 };
 
-export const calculatePlayerStatus = (
+module.exports.calculatePlayerStatus = (
   { queueStartPosition, clockStartTime, videoStartTime, status },
   playlist,
+  getCurrentOnly,
   currTime = moment()
 ) => {
   if (playlist.length === 0 || status === "Ended") return defaultPlayerStatus();
@@ -85,10 +86,11 @@ export const calculatePlayerStatus = (
 
   if (status === "Paused") return newPlayerStatus;
 
-  if (currTime - momentStartTime >= 0) {
+  if (getCurrentOnly) {
+  } else if (currTime - momentStartTime >= 0) {
     // The user has joined an active channel
     // They will begin buffering at a bufferTime seconds into the future
-    currTime.add(BUFFER_TIME, "seconds");
+    currTime.add(this.BUFFER_TIME, "seconds");
     newPlayerStatus.clockStartTime = currTime;
   } else {
     return checkNewPlayerStatus(
@@ -114,18 +116,22 @@ export const calculatePlayerStatus = (
 
       // Subtract the video length from the elapsed time
       // Also subtract buffer time in between this video and the next
-      newPlayerStatus.videoStartTime -= currVideoTime + BUFFER_TIME;
+      newPlayerStatus.videoStartTime -= currVideoTime + this.BUFFER_TIME;
 
       if (newPlayerStatus.videoStartTime < 0) {
         // The user has joined the channel in between videos
         // Re-add the buffer time between this video and the next
         // This is the time the user will begin watching the video
-        newPlayerStatus.videoStartTime += BUFFER_TIME;
+        newPlayerStatus.videoStartTime += this.BUFFER_TIME;
         break;
       }
     } else {
       break;
     }
+  }
+
+  if (getCurrentOnly) {
+    return newPlayerStatus;
   }
 
   return checkNewPlayerStatus(

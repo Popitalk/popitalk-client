@@ -14,7 +14,6 @@ const ACCOUNT_SETTINGS = 2;
 const DELETE_ACCOUNT = 3;
 
 export default function SiteHeaderMain({
-  hasNotification,
   userID,
   username,
   avatar,
@@ -116,7 +115,10 @@ export default function SiteHeaderMain({
           />
         </li>
         <li>
-          <DropDownControls icon="user-plus" hasNotification={hasNotification}>
+          <DropDownControls
+            icon="user-plus"
+            hasNotification={friendRequests.length > 0}
+          >
             <FriendRequests
               friendRequests={friendRequests}
               handleProfile={openProfileHandler}
@@ -127,7 +129,7 @@ export default function SiteHeaderMain({
           <DropDownControls
             icon="bell"
             className="relative"
-            hasNotification={hasNotification}
+            hasNotification={notifications.length > 0}
           >
             <Notifications
               notifications={notifications}

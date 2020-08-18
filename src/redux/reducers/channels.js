@@ -292,14 +292,20 @@ const R_addVideo = (state, { payload }) => {
 
 const R_deleteVideo = (state, { payload }) => {
   state[payload.channelId].queue.splice(payload.queuePosition, 1);
+
+  R_updateChannel(state, { payload });
 };
 
 const R_swapVideos = (state, { payload }) => {
-  state[payload.channelId].queue = arrayMove(
-    state[payload.channelId].queue,
+  const channelId = payload.channelId;
+
+  state[channelId].queue = arrayMove(
+    state[channelId].queue,
     payload.oldIndex,
     payload.newIndex
   );
+
+  R_updateChannel(state, { payload });
 };
 
 // See what the server returns when inviting friends

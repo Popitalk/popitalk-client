@@ -185,7 +185,7 @@ class VideoPanel extends Component {
   render() {
     let video = null;
     if (this.state.playerStatus.channelId === this.props.channelId) {
-      video = this.props.playlist[this.state.playerStatus.queueStartPosition];
+      video = this.state.queueList[this.state.playerStatus.queueStartPosition];
     }
 
     return (

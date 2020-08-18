@@ -55,7 +55,6 @@ export default function HeaderContainer() {
   if (loggedIn) {
     return (
       <SiteHeaderMain
-        hasNotification={true}
         userID={id}
         username={username}
         avatar={avatar || defaultAvatar}

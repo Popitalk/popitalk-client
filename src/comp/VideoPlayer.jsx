@@ -9,6 +9,7 @@ import moment from "moment";
 import VideoPlayerStatusCard from "./VideoPlayerStatusCard";
 import Ripples from "react-ripples";
 import Button from "./Controls/Button";
+import { BUFFER_TIME } from "../helpers/videoSyncing";
 
 class VideoPlayer extends Component {
   constructor(props) {
@@ -175,7 +176,6 @@ class VideoPlayer extends Component {
       );
     }
 
-    console.log("not playing", waitTime);
     this.setState({
       playing: false,
       progress: this.props.playerStatus.videoStartTime
@@ -195,9 +195,19 @@ class VideoPlayer extends Component {
       const ready = prevProps.url === this.props.url && this.state.ready;
       if (prevProps.url !== this.props.url) {
         this.setState({ ready: false });
+        this.setPlayTimer(ready);
+      } else {
+        if (
+          Math.abs(
+            this.props.playerStatus.videoStartTime -
+              this.state.progress -
+              BUFFER_TIME
+          ) > 3 ||
+          this.props.playerStatus.status !== prevProps.playerStatus.status
+        ) {
+          this.setPlayTimer(ready);
+        }
       }
-
-      this.setPlayTimer(ready);
     }
   }
 
