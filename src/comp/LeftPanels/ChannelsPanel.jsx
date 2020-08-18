@@ -5,7 +5,7 @@ import MiniFriendsList from "../MiniFriendsList";
 import PanelHeader from "./PanelHeader";
 import ReactTooltip from "react-tooltip";
 import "./Tooltip.css";
-import strings from "../Localization";
+import strings from "../../helpers/localization";
 
 export default function ChannelsPanel({
   yourChannels,

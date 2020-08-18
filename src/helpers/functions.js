@@ -7,7 +7,7 @@ import {
   cancelFriendRequest
 } from "../redux/actions";
 import React, { useEffect } from "react";
-import strings from "../comp/Localization";
+import strings from "./localization";
 
 export function getTextClass(size) {
   return classnames({

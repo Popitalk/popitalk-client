@@ -6,7 +6,7 @@ import Input from "../Controls/Input";
 import RoomsList from "../InfoCardLists/RoomsList";
 import PanelHeader from "./PanelHeader";
 import { utilizeFocus } from "../../helpers/functions";
-import strings from "../Localization";
+import strings from "../../helpers/localization";
 
 class FriendsPanel extends Component {
   constructor(props) {

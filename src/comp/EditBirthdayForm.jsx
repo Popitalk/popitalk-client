@@ -3,7 +3,7 @@ import Select from "./Controls/Select";
 import ControlHeader from "./Controls/ControlHeader";
 import { connect } from "formik";
 import { getDatePickerValues } from "../helpers/functions";
-import strings from "./Localization";
+import strings from "../helpers/localization";
 
 function EditBirthdayForm({ loading, formik }) {
   const datePicker = getDatePickerValues();
