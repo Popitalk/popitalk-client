@@ -1,5 +1,6 @@
 import React from "react";
 import moment from "moment";
+import strings from ".././helpers/localization";
 
 export default function VideoCard({
   id,
@@ -25,7 +26,7 @@ export default function VideoCard({
         text-tertiaryText text-md font-bold bg-black bg-opacity-25 transition-opacity opacity-0 hover:opacity-100 duration-100"
         >
           <p className="transition transform ease-in-out hover:scale-105 duration-100">
-            Watch it in a room
+            {strings.watch}
           </p>
         </div>
       </div>

@@ -3,6 +3,7 @@ import RoomIcon from "../Controls/RoomIcon";
 import AvatarDeck from "../Controls/AvatarDeck";
 import Button from "../Controls/Button";
 import VideoStatus from "../VideoStatusIcon";
+import strings from "../../helpers/localization";
 
 export default function ChannelCard({
   id,
@@ -39,7 +40,6 @@ export default function ChannelCard({
               <>
                 <VideoStatus status={live ? "playing" : "paused"} />
                 <p className="text-sm flex-shrink-1 font-bold w-full max-w-2xs truncate-2-lines ml-2 text-tertiaryText">
-                  Some Video Title
                   {videoTitle}
                 </p>
               </>
@@ -80,7 +80,7 @@ export default function ChannelCard({
               onClick={handleFollow}
               analyticsString="Channel Follow Button: ChannelCard"
             >
-              Follow
+              {strings.follow}
             </Button>
           </div>
         </div>

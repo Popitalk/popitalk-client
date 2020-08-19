@@ -4,10 +4,11 @@ import LocalizedStrings from "react-localization";
 let strings = new LocalizedStrings({
   //  Default - English  //
   en: {
-    // WelcomePage & SiteHeaderWelcome
+    // MataData & WelcomePage & SiteHeaderWelcome
     loginPageTitle: "Popitalk - Log In or Sign Up",
     loginPageDescription:
       "Create an account or log into Popitalk. It's FREE. Connect with friends, family and start watching together!",
+    title: "Popitalk",
     loginUsername: "Username or email",
     loginPassword: "Password",
     loginButton: "Log In",
@@ -79,6 +80,16 @@ let strings = new LocalizedStrings({
     myRoom: "My room",
     // ChannelsList
     online: "online",
+    // RecommendedView
+    channelSearchInput: "Search for a channel",
+    videoSearchInput: "Search for a video",
+    following: "# Following",
+    discover: "# Discover",
+    trending: "# Trending",
+    // ChannelCard
+    follow: "Follow",
+    // VideoCard
+    watch: "Watch it in a room",
     // Moment.JS
     location: "en"
   },
@@ -89,6 +100,9 @@ let strings = new LocalizedStrings({
     loginPageTitle: "Popitalk - 로그인 또는 회원가입",
     loginPageDescription:
       "Popitalk 계정을 만들거나 로그인하세요. 친구, 가족, 아는 사람들과 유튜브 같이 시청하고 채팅해요.",
+    title: "포피톡",
+    description:
+      "Popitalk으로 친구와 가족들과 유튜브 같이 시청하고 채팅해요. 새로운 채널을 구독하고 재미있는 영상을 시청하세요",
     loginUsername: "이메일 또는 아이디",
     loginPassword: "비밀번호",
     loginButton: "로그인",
@@ -162,6 +176,16 @@ let strings = new LocalizedStrings({
     myRoom: "내 톡방",
     // ChannelsList
     online: "온라인",
+    // RecommendedView
+    channelSearchInput: "채널 검색",
+    videoSearchInput: "동영상 검색",
+    following: "# 팔로잉",
+    discover: "# 추천",
+    trending: "# 인기",
+    // ChannelCard
+    follow: "팔로우",
+    // VideoCard
+    watch: "톡방에서 시청하기",
     // Moment.JS
     location: "ko"
   }

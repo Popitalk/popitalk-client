@@ -7,6 +7,7 @@ import Input from "./Controls/Input.jsx";
 import Alert from "../comp/Alert";
 import Button from "./Controls/Button.jsx";
 import Helmet from "react-helmet";
+import strings from "../helpers/localization";
 
 function RecommendedChannels({ list, selectedPage }) {
   const isCollapsed = useSelector(state => state.ui.isCollapsed);
@@ -59,9 +60,9 @@ function RecommendedChannels({ list, selectedPage }) {
 
   const [tabSelected, setTab] = useState("# following");
   const tabs = [
-    { tab: "# following" },
-    { tab: "# discover" },
-    { tab: "# trending" }
+    { tab: strings.following },
+    { tab: strings.discover },
+    { tab: strings.trending }
   ];
 
   const [search, setSearch] = useState("");
@@ -69,11 +70,8 @@ function RecommendedChannels({ list, selectedPage }) {
     <div className="relative py-4 mx-auto w-full max-w-screen-xl rounded-md bg-secondaryBackground">
       <Helmet>
         <meta charSet="UFT-8" />
-        <title>Popitalk</title>
-        <meta
-          name="description"
-          content="Search and Discover Trending Channels. Popitalk is exactly what you need with your friends to watch together."
-        />
+        <title>{strings.title}</title>
+        <meta name="description" content={strings.description} />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Helmet>
       {/* Alert to indicate invalid channel URL */}
@@ -87,8 +85,8 @@ function RecommendedChannels({ list, selectedPage }) {
           value={search}
           placeholder={
             selectedPage === "channels"
-              ? "Search for a channel"
-              : "Search for a video"
+              ? strings.channelSearchInput
+              : strings.videoSearchInput
           }
           onChange={e => setSearch(e.target.value)}
         />

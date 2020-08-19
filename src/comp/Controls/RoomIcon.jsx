@@ -49,7 +49,7 @@ export default function RoomIcon({
   };
 
   const container1Classes = classnames({
-    "flex flex-shrink-0 items-center justify-center relative rounded-full ": true,
+    "flex flex-shrink-0 items-center justify-center relative rounded-full rounded-circle": true,
     "h-8 w-8": size === "sm",
     "h-12 w-12": size === "md",
     "h-14 w-14": size === "lg",
@@ -60,7 +60,7 @@ export default function RoomIcon({
     [className]: className
   });
   const container2Classes = classnames({
-    "grid border-thin w-full h-full rounded-full ": true,
+    "grid w-full h-full rounded-full overflow-hidden": true,
     "grid-cols-2": images.length !== 1,
     "border-imageBorder1": !watching,
     "border-none bg-primaryBackground p-2px": watching
