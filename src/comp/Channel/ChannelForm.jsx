@@ -6,6 +6,7 @@ import ImageUpload from "../Controls/ImageUpload";
 import ChannelFormSubmit from "./ChannelFormSubmit";
 import TagInput from "../Controls/TagInput";
 import ControlHeader from "../Controls/ControlHeader";
+import strings from "../../helpers/localization";
 
 const CategoryInput = connect(
   ({ formik, loading, tags, handleCancel, handleEnter }) => {
@@ -148,16 +149,16 @@ export default function ChannelForm({
               }}
               disabled={loading}
               className="mb-8"
-              selectMessage="Select Channel Icon"
-              changeMessage="Change Channel Icon"
+              selectMessage={strings.selectChannelIcon}
+              changeMessage={strings.changeChannelIcon}
             />
             <div className="">
               <Input
                 variant="counter"
                 name="name"
-                header="Channel Name *"
+                header={strings.createChannelName}
                 type="text"
-                placeholder="Name your channel"
+                placeholder={strings.channelNameInput}
                 maxLength={20}
                 spellCheck={false}
                 disabled={loading}
@@ -170,9 +171,9 @@ export default function ChannelForm({
               <Input
                 variant="textarea"
                 name="description"
-                header="Description *"
+                header={strings.createChannelDesc}
                 type="text"
-                placeholder="Describe your channel"
+                placeholder={strings.channelDescInput}
                 disabled={loading}
                 onChange={handleChange}
                 onBlur={handleBlur}
@@ -182,7 +183,7 @@ export default function ChannelForm({
                 className="mb-8"
               />
               <ControlHeader
-                header="Channel Category (optional)"
+                header={strings.channelCatagory}
                 error={touched.tags && errors.category}
                 size="sm"
               />

@@ -11,6 +11,11 @@ let strings = new LocalizedStrings({
     loginPageDescription:
       "Create an account or log into Popitalk. It's FREE. Connect with friends, family and start watching together!",
     title: "Popitalk",
+    description:
+      "Watch together! Connect with friends, family and start watching together! We believe in making texting more fun and enjoyable.",
+    createChannelTitle: "Create Channel - Popitalk",
+    createChannelDescription:
+      "Create your own channel on Popitalk. Add videos to up next and enjoy your time with followers! We believe in making texting more fun and enjoyable.",
     loginUsername: "Username or email",
     loginPassword: "Password",
     loginButton: "Log In",
@@ -126,7 +131,19 @@ let strings = new LocalizedStrings({
     comment: "Comment",
     comments: "Comments",
     channelWelcomePost:
-      "This is the start! Make an awesome channel and have fun watching together!"
+      "This is the start! Make an awesome channel and have fun watching together!",
+    //CreateChannel > ChannelForm, ChannelFormSubmit
+    selectChannelIcon: "Select Channel Icon",
+    changeChannelIcon: "Change Channel Icon",
+    createChannelName: "Channel Name *",
+    channelNameInput: "Name your channel",
+    createChannelDesc: "Channel Description *",
+    channelDescInput: "Describe your channel",
+    channelCatagory: "Channel Catagory (optional)",
+    readyToCreate: "Ready to create your own channel?",
+    saveChannelEdit: "Remember to save your changes.",
+    createButton: "Create",
+    resetButton: "Reset"
   },
 
   //  KOREAN  //
@@ -140,6 +157,9 @@ let strings = new LocalizedStrings({
     title: "포피톡",
     description:
       "Popitalk으로 친구와 가족들과 유튜브 같이 시청하고 채팅해요. 새로운 채널을 구독하고 재미있는 영상을 시청하세요",
+    createChannelTitle: "채널 만들기 - Popitalk",
+    createChannelDescription:
+      "포피톡에서 채널을 개설하세요. 재미있는 영상들을 재생하고 팔로워들과 소통하세요.",
     loginUsername: "이메일 또는 아이디",
     loginPassword: "비밀번호",
     loginButton: "로그인",
@@ -256,7 +276,19 @@ let strings = new LocalizedStrings({
     likes: "좋아요",
     comment: "댓글",
     comments: "댓글",
-    channelWelcomePost: "채널을 개설했습니다!"
+    channelWelcomePost: "채널을 개설했습니다!",
+    //CreateChannel > ChannelForm, ChannelFormSubmit
+    selectChannelIcon: "채널 프사 업로드",
+    changeChannelIcon: "채널 프사 변경",
+    createChannelName: "채널 이름 *",
+    channelNameInput: "이름을 지어주세요",
+    createChannelDesc: "채널 설명 *",
+    channelDescInput: "어떤 채널인가요?",
+    channelCatagory: "카테고리 (선택)",
+    readyToCreate: "채널 개설 준비되셨습니까?",
+    saveChannelEdit: "변경된 내용을 저장하시겠습니가?",
+    createButton: "만들기",
+    resetButton: "초기화"
   }
 });
 

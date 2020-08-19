@@ -71,7 +71,7 @@ export default function ImageUpload({
             />
           </p>
         )}
-        <div className="absolute flex flex-col justify-center items-center text-tertiaryText text-sm font-bold rounded-circle w-full h-full z-20 bg-black bg-opacity-25 transition-opacity opacity-0 group-hover:opacity-100 duration-100">
+        <div className="absolute flex justify-center items-center text-tertiaryText text-sm font-bold rounded-full h-48 w-48 z-20 bg-black bg-opacity-25 transition-opacity opacity-0 group-hover:opacity-100 duration-100">
           {icon ? <p>{changeMessage}</p> : <p>{selectMessage}</p>}
         </div>
       </div>

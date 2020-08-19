@@ -1,6 +1,7 @@
 import React from "react";
 import classnames from "classnames";
 import Button from "../Controls/Button";
+import strings from "../../helpers/localization";
 
 export default function ChannelFormSubmit({
   type = "create",
@@ -15,9 +16,7 @@ export default function ChannelFormSubmit({
   return (
     <div className={classes}>
       <p className="mr-8">
-        {type === "create"
-          ? "Ready to create your own channel?"
-          : "Remember to save your changes."}
+        {type === "create" ? strings.readyToCreate : strings.saveChannelEdit}
       </p>
       <div>
         {!disabled && type === "update" && (
@@ -32,7 +31,7 @@ export default function ChannelFormSubmit({
             analyticsString="Channel Reset Button: ChannelFormSubmit"
             className="text-secondaryText"
           >
-            Reset
+            {strings.resetButton}
           </Button>
         )}
         <Button
@@ -43,7 +42,7 @@ export default function ChannelFormSubmit({
           disabled={disabled}
           analyticsString="Channel Create Button: ChannelFormSubmit"
         >
-          {type === "create" ? "Create" : "Save"}
+          {type === "create" ? strings.createButton : "Save"}
         </Button>
       </div>
     </div>
