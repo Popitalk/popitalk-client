@@ -1,6 +1,7 @@
 import React from "react";
 import Button from "./Controls/Button";
 // import "./VideoStatus.css";
+import strings from "../helpers/localization";
 
 export default function VideoStatus({
   status = "none",
@@ -20,7 +21,7 @@ export default function VideoStatus({
             className="text-tertiaryText font-bold shadow-md z-10"
             background="gradient"
           >
-            Playing
+            {strings.playing}
           </Button>
         )}
         {status === "paused" && (
@@ -30,7 +31,7 @@ export default function VideoStatus({
             shape={shape}
             className="btn-paused shadow-md z-10"
           >
-            Paused
+            {strings.paused}
           </Button>
         )}
         {(status === "queued" || status === "ended") && statusMessage && (
@@ -51,12 +52,12 @@ export default function VideoStatus({
       <>
         {status === "playing" && (
           <span className="bg-gradient-r-primary rounded-xl px-2 py-1 shadow-md text-tertiaryText text-xs font-semibold select-none z-10">
-            Playing
+            {strings.playing}
           </span>
         )}
         {status === "paused" && (
           <p className="text-secondaryText text-xs font-semibold select-none z-10">
-            Paused
+            {strings.paused}
           </p>
         )}
         {(status === "queued" || status === "ended") && statusMessage && (

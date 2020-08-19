@@ -4,6 +4,8 @@ import LocalizedStrings from "react-localization";
 let strings = new LocalizedStrings({
   //  Default - English  //
   en: {
+    // Moment.JS
+    location: "en",
     // MataData & WelcomePage & SiteHeaderWelcome
     loginPageTitle: "Popitalk - Log In or Sign Up",
     loginPageDescription:
@@ -88,14 +90,29 @@ let strings = new LocalizedStrings({
     trending: "# Trending",
     // ChannelCard
     follow: "Follow",
+    nothingPlaying: "Nothing is Playing",
     // VideoCard
     watch: "Watch it in a room",
-    // Moment.JS
-    location: "en"
+    // ChannelHeader
+    video: "Video",
+    posts: "Posts",
+    upNext: "Up Next",
+    settings: "Settings",
+    // VideoPlayer
+    paused: "Paused",
+    startingIn: "Starting in",
+    play: "Play",
+    pause: "Pause",
+    mute: "Mute",
+    unmute: "Unmute",
+    fullScreen: "Full screen",
+    playing: "재생중"
   },
 
   //  KOREAN  //
   ko: {
+    // Moment.JS
+    location: "ko",
     // WelcomePage & SiteHeaderWelcome
     loginPageTitle: "Popitalk - 로그인 또는 회원가입",
     loginPageDescription:
@@ -184,10 +201,23 @@ let strings = new LocalizedStrings({
     trending: "# 인기",
     // ChannelCard
     follow: "팔로우",
+    nothingPlaying: "재생되고 있는 영상이 없습니다",
     // VideoCard
     watch: "톡방에서 시청하기",
-    // Moment.JS
-    location: "ko"
+    // ChannelHeader
+    video: "티비",
+    posts: "프로필",
+    upNext: "재생목록",
+    settings: "설정",
+    // VideoPlayer & VideoStatus
+    paused: "일시정지",
+    startingIn: "곧 재생됩니다",
+    play: "재생",
+    pause: "일시정지",
+    mute: "음소거",
+    unmute: "음소거 해제",
+    fullScreen: "전체화면",
+    playing: "재생중"
   }
 });
 

@@ -29,7 +29,7 @@ export default function ChannelCard({
         ) : (
           <div className="absolute top-0 h-full w-full rounded-lg bg-gray-400">
             <div className="flex items-center justify-center w-full h-full text-xs text-secondaryBackground">
-              Nothing is Playing
+              {strings.nothingPlaying}
             </div>
           </div>
         )}

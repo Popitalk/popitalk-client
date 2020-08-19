@@ -1,6 +1,7 @@
 import React from "react";
 import RoomIcon from "./Controls/RoomIcon";
 import { Link, useLocation } from "react-router-dom";
+import strings from ".././helpers/localization";
 
 export default function ChannelHeader({
   id,
@@ -11,12 +12,12 @@ export default function ChannelHeader({
   type = "channel"
 }) {
   let navButtons = [
-    { name: "Video", endpoint: "video" },
-    { name: "Posts", endpoint: "channel" }
+    { name: strings.video, endpoint: "video" },
+    { name: strings.posts, endpoint: "channel" }
   ];
   if (isAdmin) {
-    navButtons.push({ name: "Up Next", endpoint: "queue" });
-    navButtons.push({ name: "Settings", endpoint: "settings" });
+    navButtons.push({ name: strings.upNext, endpoint: "queue" });
+    navButtons.push({ name: strings.settings, endpoint: "settings" });
   }
 
   // const channel = useSelector(state => state.channels[id]);

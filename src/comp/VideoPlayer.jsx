@@ -10,6 +10,7 @@ import VideoPlayerStatusCard from "./VideoPlayerStatusCard";
 import Ripples from "react-ripples";
 import Button from "./Controls/Button";
 import { BUFFER_TIME } from "../helpers/videoSyncing";
+import strings from "../helpers/localization";
 
 class VideoPlayer extends Component {
   constructor(props) {
@@ -281,13 +282,13 @@ class VideoPlayer extends Component {
                       {this.state.playing === false &&
                         this.state.videoStatus.currSeconds === 0 && (
                           <VideoPlayerStatusCard
-                            systemMessage={"Paused"}
+                            systemMessage={strings.paused}
                             icon="pause"
                           />
                         )}
                       {this.state.videoStatus.currSeconds > 0 && (
                         <VideoPlayerStatusCard
-                          systemMessage={`Starting in ${this.state.videoStatus.currSeconds}`}
+                          systemMessage={`${strings.startingIn} ${this.state.videoStatus.currSeconds}`}
                         />
                       )}
                     </div>
@@ -367,7 +368,9 @@ class VideoPlayer extends Component {
                           }`}
                           onClick={() => this.setBothPlaying()}
                           data-tip={
-                            this.state.playing === false ? "Play" : "Pause"
+                            this.state.playing === false
+                              ? strings.play
+                              : strings.pause
                           }
                           data-place="top"
                           analyticsString="Play/Pause Button: VideoPlayer"
@@ -396,7 +399,11 @@ class VideoPlayer extends Component {
                           className="w-8 p-1 rounded-full"
                           hoverable
                           onClick={() => this.toggleMute()}
-                          data-tip={this.state.volume.muted ? "Unmute" : "Mute"}
+                          data-tip={
+                            this.state.volume.muted
+                              ? strings.unmute
+                              : strings.mute
+                          }
                           data-place="top"
                           analyticsString="Volume Button: VideoPlayer"
                         />
@@ -445,7 +452,7 @@ class VideoPlayer extends Component {
                       hoverable
                       className="w-8 p-1 rounded-full hover:bg-playerControlsHover"
                       onClick={() => this.handleFullScreen()}
-                      data-tip="Full screen"
+                      data-tip={strings.fullScreen}
                       data-place="top"
                       analyticsString="Full Screen Button: VideoPlayer"
                     />
