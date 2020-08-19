@@ -52,7 +52,13 @@ export default function LeftPanelContainer() {
       if (channel.ownerId === ownId || channel.owner_id === ownId) {
         yourChannels.push(channel);
       } else {
-        followingChannels.push(channel);
+        if (
+          channel && channel.members
+            ? !!channel.members.filter(memberId => memberId === ownId).length
+            : null
+        ) {
+          followingChannels.push(channel);
+        }
       }
     });
 
