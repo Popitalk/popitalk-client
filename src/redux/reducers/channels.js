@@ -184,7 +184,6 @@ const R_updatePostInfo = (state, { payload }) => {
 
 const R_addMember = (state, { payload }) => {
   state[payload.channelId].members.push(payload.userId);
-  state[payload.channel.id].numOnline += 1;
 };
 
 const R_addMembers = (state, { payload }) => {
@@ -196,12 +195,10 @@ const R_deleteMember = (state, { payload }) => {
   state[payload.channelId].members = state[payload.channelId].members.filter(
     userId => userId !== payload.userId
   );
-  state[payload.channel.id].numOnline -= 1;
 };
 
 const R_addAdmin = (state, { payload }) => {
   state[payload.channelId].admins.push(payload.userId);
-  state[payload.channel.id].numOnline += 1;
 };
 
 const R_addAdminWs = (state, { payload }) => {
@@ -210,14 +207,12 @@ const R_addAdminWs = (state, { payload }) => {
   if (payload.banned) {
     state[payload.channelId].banned = payload.banned;
   }
-  state[payload.channel.id].numOnline += 1;
 };
 
 const R_deleteAdmin = (state, { payload }) => {
   state[payload.channelId].admins = state[payload.channelId].admins.filter(
     userId => userId !== payload.userId
   );
-  state[payload.channel.id].numOnline -= 1;
 };
 
 const R_addBan = (state, { payload }) => {
