@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import sources from "./videoSourceImages";
 import Input from "./Controls/Input";
 import Button from "./Controls/Button";
+import strings from "../helpers/localization";
 
 export default function VideoSearchBar({ className, onClick }) {
   const [source, setSource] = useState("Youtube");
@@ -16,7 +17,7 @@ export default function VideoSearchBar({ className, onClick }) {
         <Input
           variant="video"
           size="md"
-          placeholder="Search for a video to watch next"
+          placeholder={strings.videoSearchInput}
           value={value}
           onChange={e => setValue(e.target.value)}
           videoSource={source}

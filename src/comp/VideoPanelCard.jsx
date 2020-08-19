@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Button from "./Controls/Button";
 import VideoStatus from "./VideoStatus";
 import moment from "moment";
+import strings from "../helpers/localization";
 
 export default function VideoPanelCard({
   id,
@@ -62,7 +63,7 @@ export default function VideoPanelCard({
                 analyticsString="Direct to Search Button: VideoPanelCard"
               />
               <p className="mx-2 text-secondaryText text-sm hover:filter-brightness-9">
-                Search for a video
+                {strings.findMoreVideos}
               </p>
             </div>
           </div>

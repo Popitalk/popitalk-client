@@ -1,6 +1,7 @@
 import React from "react";
 import { SortableContainer, SortableElement } from "react-sortable-hoc";
 import Button from "./Controls/Button";
+import strings from "../helpers/localization";
 
 // Handler Change Params ({oldIndex, newIndex)}
 export default function SortableList({
@@ -15,7 +16,7 @@ export default function SortableList({
     return (
       <div>
         <p className="py-2 px-4 text-lg text-primaryText select-none">
-          Up Next
+          {strings.upNext}
         </p>
         <div className="cursor-pointer w-full flex-shrink-0 max-w-2xs mx-4 mb-4 mt-2 rounded-md shadow-xs hover:shadow-md transition-all ease-in-out duration-100 bg-disabledBackground hover:bg-highlightBackground">
           <div className="relative pb-16/9 w-full">
@@ -27,7 +28,7 @@ export default function SortableList({
                 analyticsString="Search Video Button: SortableList"
               />
               <p className="mx-2 text-secondaryText text-sm hover:filter-brightness-9">
-                Search for a video
+                {strings.videoSearchInput}
               </p>
             </div>
           </div>
@@ -41,7 +42,9 @@ export default function SortableList({
   const SortableList = SortableContainer(({ items }) => {
     return (
       <div className="py-4">
-        <p className="px-4 text-lg text-primaryText select-none">Up Next</p>
+        <p className="px-4 text-lg text-primaryText select-none">
+          {strings.upNext}
+        </p>
         <div
           className={`flex ${
             axis === "x" ? "flex-row" : "flex-col"

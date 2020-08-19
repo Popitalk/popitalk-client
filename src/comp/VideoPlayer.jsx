@@ -473,7 +473,7 @@ class VideoPlayer extends Component {
               />
               <div className="flex flex-col space-y-2">
                 <p className="text-tertiaryText text-xl sm:text-2xl font-bold">
-                  Nothing is playing at the moment.
+                  {strings.nothingPlaying}
                 </p>
                 <Button
                   actionButton
@@ -481,8 +481,8 @@ class VideoPlayer extends Component {
                   analyticsString="Request Admin Button: VideoPlayer"
                 >
                   {this.props.displayControls
-                    ? "Search and add videos Up Next!"
-                    : "Request <channel> to play something fun!"}
+                    ? strings.manageUpNext
+                    : strings.requestVideoButton}
                 </Button>
               </div>
             </div>

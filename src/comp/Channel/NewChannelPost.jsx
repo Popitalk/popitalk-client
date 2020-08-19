@@ -3,6 +3,7 @@ import "../VideoStatus.css";
 import "emoji-mart/css/emoji-mart.css";
 import { Picker } from "emoji-mart";
 import Button from "../Controls/Button";
+import strings from "../../helpers/localization";
 
 export default function NewChannelPost({
   handleUploadImg,
@@ -47,7 +48,7 @@ export default function NewChannelPost({
         {/* INPUT */}
         <textarea
           type="text"
-          placeholder="Post something..."
+          placeholder={strings.postInput}
           className="flex w-full h-10 py-2 px-3 text-start overflow-hidden rounded-lg resize-none bg-primaryBackground shadow-sm hover:shadow-md focus:outline-none text-primaryText text-sm transition transform ease-in-out hover:scale-102 duration-100"
           rows={1}
           maxLength={2000}
@@ -68,7 +69,8 @@ export default function NewChannelPost({
         <Button
           hoverable
           styleNone
-          styleNoneContent="Post"
+          icon="paper-plane"
+          styleNoneIconClassName="text-lg"
           onClick={handleSubmit}
           className="w-10 h-10 font-bold text-highlightText pr-2 text-md"
           analyticsString="Post Button: NewChannelPost"

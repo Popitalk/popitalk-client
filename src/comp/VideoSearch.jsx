@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import VideoSearchBar from "./VideoSearchBar";
 import VideoResults from "./VideoResults";
+import strings from "../helpers/localization";
 
 export default function VideoSearch({
   className,
@@ -22,7 +23,9 @@ export default function VideoSearch({
       <VideoSearchBar onClick={handleClick} />
       <div className="px-4">
         <span className="text-md rainbow-text font-bold">
-          {searchTerm ? `Results for "${searchTerm}"` : "Trending Videos"}
+          {searchTerm
+            ? `${strings.searchResult} "${searchTerm}"`
+            : strings.trending}
         </span>
       </div>
       {searchTerm.length > 0 ? (

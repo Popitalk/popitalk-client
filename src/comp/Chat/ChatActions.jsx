@@ -6,6 +6,7 @@ import { withRouter } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 import GifSelection from "./GifSelection";
 import Button from "../Controls/Button";
+import strings from "../../helpers/localization";
 
 function ChatActions(props) {
   const channelId = props.match.params.roomId || props.match.params.channelId;
@@ -123,7 +124,7 @@ function ChatActions(props) {
         ) : null}
         <textarea
           className="w-full h-10 py-2 px-3 text-start overflow-hidden rounded-lg resize-none bg-secondaryBackground focus:outline-none text-primaryText text-sm transition transform ease-in-out hover:scale-105 duration-100"
-          placeholder="Type a message..."
+          placeholder={strings.chatInput}
           maxLength="240"
           ref={textareaRef}
           onKeyDown={handleChange}
@@ -134,9 +135,10 @@ function ChatActions(props) {
         <Button
           hoverable
           styleNone
-          styleNoneContent="Send"
+          icon="paper-plane"
+          styleNoneIconClassName="text-lg text-highlightText"
           onClick={handleSend}
-          className="font-bold text-highlightText pr-2 text-sm"
+          className="flex items-center flex-shrink-0 justify-center w-8 h-10"
           analyticsString="Send Button: Chat Actions"
         />
       </div>

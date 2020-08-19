@@ -2,6 +2,7 @@ import React from "react";
 import "../VideoStatus.css";
 import ChannelPost from "./ChannelPost";
 import moment from "moment";
+import strings from "../../helpers/localization";
 
 export default function ChannelChat({
   id,
@@ -47,7 +48,7 @@ export default function ChannelChat({
           name={name}
           avatar={icon}
           timeFromPost={moment().fromNow()}
-          text={`This is the start of ${name}! 🥳 🤗 👀 💩 😻 🥺 🦁Have fun watching together!`}
+          text={strings.channelWelcomePost}
           saveComment={saveComment}
           toggleLike={toggleLike}
           ownId={ownId}

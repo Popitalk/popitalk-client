@@ -75,7 +75,7 @@ let strings = new LocalizedStrings({
     followingChannelsPlaceholder: "Discover and Follow Channels!",
     createChannelButton: "Create",
     searchFriendsInput: "Search Username",
-    searchFriendsResult: "Results for",
+    searchResult: "Results for",
     searchFriendsClose: "Close",
     newRoomButton: "New Room",
     // RoomIcon
@@ -90,7 +90,7 @@ let strings = new LocalizedStrings({
     trending: "# Trending",
     // ChannelCard
     follow: "Follow",
-    nothingPlaying: "Nothing is Playing",
+    nothingPlaying: "Nothing is Playing at this moment",
     // VideoCard
     watch: "Watch it in a room",
     // ChannelHeader
@@ -98,7 +98,7 @@ let strings = new LocalizedStrings({
     posts: "Posts",
     upNext: "Up Next",
     settings: "Settings",
-    // VideoPlayer
+    // VideoPlayer & VideoStatus
     paused: "Paused",
     startingIn: "Starting in",
     play: "Play",
@@ -106,7 +106,27 @@ let strings = new LocalizedStrings({
     mute: "Mute",
     unmute: "Unmute",
     fullScreen: "Full screen",
-    playing: "재생중"
+    playing: "Playing",
+    requestVideoButton: "Send a request to the admin",
+    // Chat Header
+    roomMembers: "room members",
+    followers: "followers",
+    chatInput: "Type a message...",
+    // SortableList & ChannelQueue & VideoMinimalQueueCard
+    findMoreVideos: "Search for videos",
+    manageUpNext: "Manage videos up next",
+    upNextSubtitle:
+      "Add, delete or change the orders of the videos. You can add up to 30 videos.",
+    searchAddVideos: "Search and add more videos below!",
+    //ChannelDescription & NewChannelPost & ChannelPost
+    admins: "Admins",
+    postInput: "Post something...",
+    like: "Like",
+    likes: "Likes",
+    comment: "Comment",
+    comments: "Comments",
+    channelWelcomePost:
+      "This is the start! Make an awesome channel and have fun watching together!"
   },
 
   //  KOREAN  //
@@ -186,7 +206,7 @@ let strings = new LocalizedStrings({
     followingChannelsPlaceholder: "채널을 팔로우 할 수 있습니다",
     createChannelButton: "만들기",
     searchFriendsInput: "아이디로 친구 찾기",
-    searchFriendsResult: "검색 결과",
+    searchResult: "검색 결과",
     searchFriendsClose: "닫기",
     newRoomButton: "방 만들기",
     // RoomIcon
@@ -207,7 +227,7 @@ let strings = new LocalizedStrings({
     // ChannelHeader
     video: "티비",
     posts: "프로필",
-    upNext: "재생목록",
+    upNext: "재생 목록",
     settings: "설정",
     // VideoPlayer & VideoStatus
     paused: "일시정지",
@@ -217,7 +237,26 @@ let strings = new LocalizedStrings({
     mute: "음소거",
     unmute: "음소거 해제",
     fullScreen: "전체화면",
-    playing: "재생중"
+    playing: "재생중",
+    requestVideoButton: "채널 관리자한테 요청하세요",
+    // ChatHeader & ChatActions
+    roomMembers: "대화상대",
+    followers: "팔로워",
+    chatInput: "메시지를 작성하세요...",
+    // SortableList
+    findMoreVideos: "더 많은 영상을 검색하세요",
+    manageUpNext: "재생 목록을 관리하세요",
+    upNextSubtitle:
+      "동영상을 재생 목록에 추가, 삭제 혹은 이동할 수 있습니다. 최대 30개까지 추가가능 합니다.",
+    searchAddVideos: "밑에서 동영상을 검색하고 추가하세요!",
+    //ChannelDescription & NewChannelPost & ChannelPost & ChannelChat
+    admins: "관리자",
+    postInput: "게시글을 입력하세요...",
+    like: "좋아요",
+    likes: "좋아요",
+    comment: "댓글",
+    comments: "댓글",
+    channelWelcomePost: "채널을 개설했습니다!"
   }
 });
 

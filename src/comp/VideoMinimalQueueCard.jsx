@@ -2,6 +2,7 @@ import React from "react";
 import Button from "./Controls/Button";
 import VideoStatus from "./VideoStatus";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import strings from "../helpers/localization";
 
 export default function VideoMinimalQueueCard({
   title,
@@ -15,7 +16,7 @@ export default function VideoMinimalQueueCard({
       {!title && (
         <Button
           styleNone
-          styleNoneContent="Search and add more videos below!"
+          styleNoneContent={strings.searchAddVideos}
           styleNoneContentClassName="text-center text-secondaryText text-sm"
           className="h-12 w-full bg-tertiaryBackground hover:shadow-sm hover:bg-highlightBackground transition duration-100 rounded-lg"
           analyticsString="Direct to search Button: VideoMinimalQueueCard"

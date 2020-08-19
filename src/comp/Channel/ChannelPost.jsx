@@ -10,6 +10,7 @@ import { openProfileModal } from "../../redux/actions";
 import { useDispatch } from "react-redux";
 import moment from "moment";
 import Button from "../Controls/Button";
+import strings from "../../helpers/localization";
 
 export default function ChannelPost({
   id,
@@ -93,10 +94,11 @@ export default function ChannelPost({
           role="button"
         >
           <span className="select-none hover:filter-brightness-9 duration-100">
-            {likeCount} {likeCount > 1 ? "likes" : "like"}
+            {likeCount} {likeCount > 1 ? strings.likes : strings.like}
           </span>
           <span className="select-none hover:filter-brightness-9 duration-100">
-            {commentCount} {commentCount > 1 ? "comments" : "comment"}
+            {commentCount}{" "}
+            {commentCount > 1 ? strings.comments : strings.comment}
           </span>
         </section>
         {/* Like and Comment buttons */}
@@ -111,12 +113,12 @@ export default function ChannelPost({
             toggleStatus={stat => toggleLike(id, "post", stat)}
             className="bg-highlightBackground"
           >
-            Like
+            {strings.like}
           </ToggleIcon>
           <Button
             styleNone
             icon={["far", "comment"]}
-            styleNoneContent="Comment"
+            styleNoneContent={strings.comment}
             styleNoneContentClassName="text-sm font-bold ml-2"
             className="flex p-2 hover:filter-brightness-9"
             onClick={handleComment}

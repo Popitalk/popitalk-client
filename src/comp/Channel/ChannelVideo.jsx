@@ -8,6 +8,7 @@ import ChannelDescription from "./ChannelDescription";
 import NewChannelPost from "./NewChannelPost";
 import ChannelChat from "./ChannelChat";
 import VideoSearch from "../VideoSearch";
+import strings from "../../helpers/localization";
 
 export default function ChannelVideo({
   id,
@@ -40,7 +41,7 @@ export default function ChannelVideo({
         type={type}
       />
       <VideoSection {...activeVideo} />
-      <h2 className="text-2xl pt-4 px-4">Up Next</h2>
+      <h2 className="text-2xl pt-4 px-4">{strings.upNext}</h2>
       <QueueSection queueList={queueList} handlerChange={handlerChange} />
       {type === "channel" && (
         <div className="mx-32 mt-40">
@@ -64,7 +65,7 @@ export default function ChannelVideo({
       {type === "room" && (
         <div>
           <h2 className="text-2xl mt-20 px-4 font-bold text-primaryText">
-            Find More Videos
+            {strings.findMoreVideos}
           </h2>
           <VideoSearch
             trendingResults={trendingResults}

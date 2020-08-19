@@ -4,6 +4,7 @@ import "../VideoStatus.css";
 import AvatarIcon from "../Controls/AvatarIcon";
 import { openProfileModal } from "../../redux/actions";
 import { useDispatch } from "react-redux";
+import strings from "../../helpers/localization";
 
 export default function ChannelDescription({
   id,
@@ -33,7 +34,7 @@ export default function ChannelDescription({
             onClick={handleUnfollow}
             analyticsString="Following Button: Channel Description"
           >
-            Following
+            {strings.following}
           </Button>
         ) : (
           <Button
@@ -44,7 +45,7 @@ export default function ChannelDescription({
             onClick={handleFollow}
             analyticsString="Follow Button: Channel Description"
           >
-            Follow
+            {strings.follow}
           </Button>
         )}
       </div>
@@ -70,7 +71,7 @@ export default function ChannelDescription({
           <p className="text-2xl font-bold truncate-2-lines">{name}</p>
           <p className="text-sm my-2">{description}</p>
           <div className="flex flex-row items-center mt-4">
-            <p className="text-xs mr-2"> ADMINS </p>
+            <p className="text-xs mr-2"> {strings.admins} </p>
             {adminList.map((admin, idx) => {
               if (idx < threshold) {
                 return (

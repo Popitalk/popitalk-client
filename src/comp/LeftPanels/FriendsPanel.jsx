@@ -114,7 +114,7 @@ class FriendsPanel extends Component {
             <div className="rounded-md bg-secondaryBackground shadow-inner border border-primaryBorder mx-3 m-2">
               <div className="flex flex-row items-center justify-between ml-2 px-2 py-1">
                 <p className="text-xs">
-                  {strings.searchFriendsResult} &quot;{this.state.search}&quot;
+                  {strings.searchResult} &quot;{this.state.search}&quot;
                 </p>
                 <Button
                   styleNone
