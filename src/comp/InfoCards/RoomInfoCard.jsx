@@ -2,6 +2,8 @@ import React from "react";
 import RoomIcon from "../Controls/RoomIcon";
 import InfoCard from "../InfoCards/InfoCard";
 import moment from "moment";
+import "moment/locale/ko";
+import strings from "../../helpers/localization";
 
 export default function RoomInfoCard({
   room,
@@ -16,11 +18,13 @@ export default function RoomInfoCard({
   try {
     JSON.parse(room.lastMessageContent);
     subtitleAndDate = room.lastMessageContent
-      ? moment(room.lastMessageAt).fromNow() + " · GIF"
+      ? moment(room.lastMessageAt).locale(strings.location).fromNow() + " · GIF"
       : "";
   } catch {
     subtitleAndDate = room.lastMessageContent
-      ? moment(room.lastMessageAt).fromNow() + " · " + room.lastMessageContent
+      ? moment(room.lastMessageAt).locale(strings.location).fromNow() +
+        " · " +
+        room.lastMessageContent
       : "";
   }
 

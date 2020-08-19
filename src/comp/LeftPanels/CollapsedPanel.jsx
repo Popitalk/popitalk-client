@@ -4,6 +4,7 @@ import RoomIcon from "../Controls/RoomIcon";
 import Button from "../Controls/Button";
 import useCollapse from "react-collapsed";
 import ReactTooltip from "react-tooltip";
+import strings from "../../helpers/localization";
 
 function CollapsedPanel({
   rooms,
@@ -72,7 +73,7 @@ function CollapsedPanel({
               }
             })}
           >
-            Channels
+            {strings.channels}
           </Button>
           <section {...getCollapsePropsFollowing()}>
             <div className="flex flex-col w-full items-center">
@@ -122,7 +123,7 @@ function CollapsedPanel({
             })}
             size="sm"
           >
-            Friends
+            {strings.friends}
           </Button>
           <section {...getCollapsePropsDiscover()}>
             <div className="flex flex-col w-full items-center">
@@ -161,7 +162,7 @@ function CollapsedPanel({
                   size="lg"
                   background="primary"
                   className="hover:scale-110"
-                  tooltip="Add Friends"
+                  tooltip={strings.addFriendsButton}
                   onClick={handleCollapse}
                   analyticsString="Search Friends Button: CollapsedPanel"
                 />

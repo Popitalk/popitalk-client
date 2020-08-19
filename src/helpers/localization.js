@@ -78,7 +78,9 @@ let strings = new LocalizedStrings({
     // RoomIcon
     myRoom: "My room",
     // ChannelsList
-    online: "online"
+    online: "online",
+    // Moment.JS
+    location: "en"
   },
 
   //  KOREAN  //
@@ -145,7 +147,7 @@ let strings = new LocalizedStrings({
     // PanelHeader & MiniFriendsList
     channels: "티비채널",
     friends: "채팅",
-    addFriendsButton: "친구 찾기",
+    addFriendsButton: "친구 추가",
     // ChannelsPanel & FriendsPanel
     yourChannels: "내 채널",
     yourChannelsPlaceholder: "나만의 채널을 만들어 보세요!",
@@ -159,7 +161,9 @@ let strings = new LocalizedStrings({
     // RoomIcon
     myRoom: "내 톡방",
     // ChannelsList
-    online: "온라인"
+    online: "온라인",
+    // Moment.JS
+    location: "ko"
   }
 });
 
