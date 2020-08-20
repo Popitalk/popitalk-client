@@ -1,4 +1,4 @@
-import React, { useState, useRef, useCallback } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import PropTypes from "prop-types";
 import { useSelector } from "react-redux";
 import ChannelCardList from "./Channel/ChannelCardList.jsx";
@@ -73,10 +73,10 @@ function RecommendedChannels({ list, selectedPage }) {
   const [pageNumber, setPageNumber] = useState(1);
   const { books, hasMore, loading, error } = useBookSearch(query, pageNumber);
 
-  function handleSearch() {
+  const handleSearch = useCallback(() => {
     setQuery(search);
     setPageNumber(1);
-  }
+  }, [search]);
 
   const observer = useRef();
   const lastBookElementRef = useCallback(
@@ -94,6 +94,18 @@ function RecommendedChannels({ list, selectedPage }) {
     },
     [loading, hasMore]
   );
+
+  useEffect(() => {
+    const listener = event => {
+      if (event.code === "Enter" || event.code === "NumpadEnter") {
+        handleSearch();
+      }
+    };
+    document.addEventListener("keydown", listener);
+    return () => {
+      document.removeEventListener("keydown", listener);
+    };
+  }, [handleSearch, query]);
 
   return (
     <div className="relative py-4 mx-auto w-full max-w-screen-xl rounded-md bg-secondaryBackground">
@@ -120,19 +132,6 @@ function RecommendedChannels({ list, selectedPage }) {
           onChange={e => setSearch(e.target.value)}
           onClick={handleSearch}
         />
-        {books.map((book, index) => {
-          if (books.length === index + 1) {
-            return (
-              <div ref={lastBookElementRef} key={book}>
-                {book}
-              </div>
-            );
-          } else {
-            return <div key={book}>{book}</div>;
-          }
-        })}
-        <div>{loading && "Loading..."}</div>
-        <div>{error && "error..."}</div>
       </div>
       {/* OPTION TABS */}
       <div className="flex justify-start px-6 mt-8 h-8 space-x-2">
@@ -152,6 +151,21 @@ function RecommendedChannels({ list, selectedPage }) {
             />
           );
         })}
+      </div>
+      <div>
+        {books.map((book, index) => {
+          if (books.length === index + 1) {
+            return (
+              <div ref={lastBookElementRef} key={book}>
+                {book}
+              </div>
+            );
+          } else {
+            return <div key={book}>{book}</div>;
+          }
+        })}
+        <div>{loading && "Loading..."}</div>
+        <div>{error && "error..."}</div>
       </div>
       {/* CARDS */}
       {selectedPage === "channels" ? (
