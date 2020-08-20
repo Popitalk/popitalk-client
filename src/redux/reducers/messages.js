@@ -105,7 +105,7 @@ const R_addPendingMessage = (state, { meta }) => {
     userId: meta.arg.userId,
     channelId: meta.arg.channelId,
     content: meta.arg.content,
-    upload: null,
+    upload: meta.arg.upload,
     createdAt: Date.now(),
     author: {
       id: "",
