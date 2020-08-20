@@ -143,7 +143,13 @@ let strings = new LocalizedStrings({
     readyToCreate: "Ready to create your own channel?",
     saveChannelEdit: "Remember to save your changes.",
     createButton: "Create",
-    resetButton: "Reset"
+    resetButton: "Reset",
+    // ChannelSettingsPanel
+    channelSettings: "Channel Settings",
+    manageFollowers: "Manage Followers",
+    manageAdmins: "Manage Admins",
+    manageBannedUsers: "Manage Banned Users",
+    deleteChannel: "Delete Channel"
   },
 
   //  KOREAN  //
@@ -288,7 +294,13 @@ let strings = new LocalizedStrings({
     readyToCreate: "채널 개설 준비되셨습니까?",
     saveChannelEdit: "변경된 내용을 저장하시겠습니가?",
     createButton: "만들기",
-    resetButton: "초기화"
+    resetButton: "초기화",
+    // ChannelSettingsPanel
+    channelSettings: "채널 설정",
+    manageFollowers: "팔로워 관리",
+    manageAdmins: "관리자 설정",
+    manageBannedUsers: "차단 목록",
+    deleteChannel: "채널 삭제"
   }
 });
 

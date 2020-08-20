@@ -25,7 +25,7 @@ export default function FriendRequestButtons({ user, size = "md" }) {
         }}
         analyticsString="Friend Rq Button: FriendRequestButtons"
         tooltip={sentRequest ? "Request sent" : "Add friend"}
-        tooltipPlace="bottom"
+        tooltipPlace="left"
       />
     );
 

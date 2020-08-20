@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import ChannelSettingsSidebar from "./ChannelSettingsSidebar";
 import ChannelForm from "./ChannelForm";
 import ManageUsers from "../ManageUsers";
+import strings from "../../helpers/localization";
 
 export default function ChannelSettingsPanel({
   ownerId,
@@ -27,18 +28,10 @@ export default function ChannelSettingsPanel({
   };
 
   let buttons = [
-    {
-      text: "Channel Settings"
-    },
-    {
-      text: "Manage Followers"
-    },
-    {
-      text: "Manage Admins"
-    },
-    {
-      text: "Manage Banned Users"
-    }
+    { text: strings.channelSettings },
+    { text: strings.manageFollowers },
+    { text: strings.manageAdmins },
+    { text: strings.manageBannedUsers }
   ];
 
   buttons = buttons.map((b, i) => {
@@ -112,7 +105,7 @@ export default function ChannelSettingsPanel({
 
   return (
     <div className="h-full w-full px-2 bg-secondaryBackground flex items-center md:flex-row md:items-stretch overflow-auto">
-      <div className="flex-none p-4">
+      <div className="flex-none h-full p-4">
         <ChannelSettingsSidebar
           buttons={buttons}
           handleDeleteChannel={handleDeleteChannel}

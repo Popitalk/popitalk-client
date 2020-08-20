@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useCallback } from "react";
 import PropTypes from "prop-types";
 import { useSelector } from "react-redux";
 import ChannelCardList from "./Channel/ChannelCardList.jsx";
@@ -8,6 +8,7 @@ import Alert from "../comp/Alert";
 import Button from "./Controls/Button.jsx";
 import Helmet from "react-helmet";
 import strings from "../helpers/localization";
+import useBookSearch from "../helpers/useBookSearch";
 
 function RecommendedChannels({ list, selectedPage }) {
   const isCollapsed = useSelector(state => state.ui.isCollapsed);
@@ -65,7 +66,35 @@ function RecommendedChannels({ list, selectedPage }) {
     { tab: strings.trending }
   ];
 
+  // Infinite scroll
+  // search is the Input Value. query is the search term triggered in handleSearch
   const [search, setSearch] = useState("");
+  const [query, setQuery] = useState("");
+  const [pageNumber, setPageNumber] = useState(1);
+  const { books, hasMore, loading, error } = useBookSearch(query, pageNumber);
+
+  function handleSearch() {
+    setQuery(search);
+    setPageNumber(1);
+  }
+
+  const observer = useRef();
+  const lastBookElementRef = useCallback(
+    node => {
+      if (loading) return;
+      if (observer.current) observer.current.disconnect();
+      observer.current = new IntersectionObserver(entries => {
+        if (entries[0].isIntersecting && hasMore) {
+          setPageNumber(prevPageNumber => prevPageNumber + 1);
+          console.log("visible");
+        }
+      });
+      if (node) observer.current.observe(node);
+      console.log(node);
+    },
+    [loading, hasMore]
+  );
+
   return (
     <div className="relative py-4 mx-auto w-full max-w-screen-xl rounded-md bg-secondaryBackground">
       <Helmet>
@@ -89,7 +118,21 @@ function RecommendedChannels({ list, selectedPage }) {
               : strings.videoSearchInput
           }
           onChange={e => setSearch(e.target.value)}
+          onClick={handleSearch}
         />
+        {books.map((book, index) => {
+          if (books.length === index + 1) {
+            return (
+              <div ref={lastBookElementRef} key={book}>
+                {book}
+              </div>
+            );
+          } else {
+            return <div key={book}>{book}</div>;
+          }
+        })}
+        <div>{loading && "Loading..."}</div>
+        <div>{error && "error..."}</div>
       </div>
       {/* OPTION TABS */}
       <div className="flex justify-start px-6 mt-8 h-8 space-x-2">

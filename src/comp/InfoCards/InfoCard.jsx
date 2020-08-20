@@ -55,7 +55,7 @@ export default function InfoCard({
           <p className={titleClasses}>{title}</p>
         )}
       </div>
-      {controls ? controls : <></>}
+      {controls && controls}
     </div>
   );
 }
