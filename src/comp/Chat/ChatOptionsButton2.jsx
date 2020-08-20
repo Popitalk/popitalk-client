@@ -50,7 +50,10 @@ function ChatOptionsButton2({ message, channel, ownId, match }) {
         name: "Delete",
         handler: () =>
           dispatch(
-            openDeleteMessageModal({ channelId, messageId: message.id })
+            openDeleteMessageModal({
+              channelId,
+              messageId: message.id
+            })
           ),
         danger: false
       });

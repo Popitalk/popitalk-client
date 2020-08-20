@@ -20,6 +20,7 @@ export default function DeleteMessageModal({
           message={message}
           ownId={ownId}
           defaultAvatar={defaultAvatar}
+          incrementLoadedMessages={undefined}
         />
       </div>
       <div className="flex justify-end items-center pt-8">

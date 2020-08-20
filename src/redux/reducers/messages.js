@@ -60,7 +60,6 @@ const R_addMessages = (state, { payload }) => {
 };
 const R_addMessage = (state, { payload }) => {
   const { capacity, ...message } = payload;
-  const messageWithStatus = { status: "accepted", ...message };
   function popElement(index) {
     if (index < 0) {
       return;
@@ -74,9 +73,9 @@ const R_addMessage = (state, { payload }) => {
   }
   popElement(state[payload.channelId].length - 1);
   if (!state[payload.channelId]) {
-    state[payload.channelId] = [messageWithStatus];
+    state[payload.channelId] = [message];
   } else if (state[payload.channelId].length < extendedCapacity) {
-    state[payload.channelId].push(messageWithStatus);
+    state[payload.channelId].push(message);
 
     if (capacity === 50) {
       state[payload.channelId] = state[payload.channelId].slice(-50);
@@ -86,11 +85,10 @@ const R_addMessage = (state, { payload }) => {
 
 const R_addMessageWs = (state, { payload }) => {
   const { capacity, ...message } = payload;
-  const messageWithStatus = { status: "accepted", ...message };
   if (!state[payload.channelId]) {
-    state[payload.channelId] = [messageWithStatus];
+    state[payload.channelId] = [message];
   } else if (state[payload.channelId].length < extendedCapacity) {
-    state[payload.channelId].push(messageWithStatus);
+    state[payload.channelId].push(message);
 
     if (capacity === 50) {
       state[payload.channelId] = state[payload.channelId].slice(-50);

@@ -25,7 +25,9 @@ function InfiniteScroller(
     children,
     reScroll,
     isGifsOpen,
-    channelId
+    channelId,
+    gifsLoaded,
+    setGifsLoaded
   },
   ref
 ) {
@@ -79,23 +81,38 @@ function InfiniteScroller(
 
   useLayoutEffect(() => {
     // if initialScroll is unset, it default to "bottom" and the messages div is scrolled to the latest message.
-    if (initialScroll === "bottom") {
-      containerRef.current.scrollTo(0, containerRef.current.scrollHeight);
-    } else if (initialScroll === "top") {
-      containerRef.current.scrollTo(0, 0);
-    } else {
-      let scrollVal;
-
-      if (initialScroll <= threshold) {
-        scrollVal = Math.floor(initialScroll) + threshold + 5;
+    function handleScroll() {
+      if (initialScroll === "bottom") {
+        containerRef.current.lastChild.scrollIntoView();
+      } else if (initialScroll === "top") {
+        containerRef.current.scrollTo(0, 0);
       } else {
-        scrollVal = Math.floor(initialScroll);
-      }
+        let scrollVal;
 
-      containerRef.current.scrollTo(0, scrollVal);
+        if (initialScroll <= threshold) {
+          scrollVal = Math.floor(initialScroll) + threshold + 5;
+        } else {
+          scrollVal = Math.floor(initialScroll);
+        }
+        containerRef.current.scrollTo(0, scrollVal);
+        setGifsLoaded(false);
+      }
+    }
+    // only scroll when all gifs are loaded and rendered
+    // otherwise scroll values are not correct
+    if (gifsLoaded) {
+      handleScroll();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [containerRef, reScroll, threshold, draft, isGifsOpen, messages]);
+  }, [
+    containerRef,
+    reScroll,
+    threshold,
+    draft,
+    isGifsOpen,
+    messages,
+    gifsLoaded
+  ]);
 
   useEffect(() => {
     if (!loading) return;
@@ -145,7 +162,9 @@ function InfiniteScroller(
   }, [bottomInView, loading, hasMoreBottom, handleBottomView]);
 
   useEffect(() => {
-    if (topInView && !loading) {
+    // gifsLoaded in if makes sure that initialscroll would be set to top
+    // on initial load
+    if (topInView && !loading && gifsLoaded) {
       handleTopView();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
