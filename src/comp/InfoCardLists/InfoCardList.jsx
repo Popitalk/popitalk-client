@@ -1,5 +1,6 @@
 import React from "react";
 import { FixedSizeList } from "react-window";
+import strings from "../../helpers/localization";
 
 export default function InfoCardList({
   items,
@@ -7,7 +8,7 @@ export default function InfoCardList({
   height = 300,
   itemSize = 64,
   fullHeight,
-  emptyMessage = "Nothing to show"
+  emptyMessage = strings.nothingToShow
 }) {
   if (!items || items.length === 0) {
     return (

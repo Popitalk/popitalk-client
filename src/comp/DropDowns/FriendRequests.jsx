@@ -3,11 +3,12 @@ import DropDownContainer from "./DropDownContainer";
 import ContainerHeader from "../ContainerHeader";
 import FriendUsersList from "../InfoCardLists/FriendUsersList";
 import ReactTooltip from "react-tooltip";
+import strings from "../../helpers/localization";
 
 export default function FriendRequests({ friendRequests, ...rest }) {
   return (
     <DropDownContainer>
-      <ContainerHeader title="Friend Requests" />
+      <ContainerHeader title={strings.friendRequestHeader} />
       <FriendUsersList users={friendRequests} {...rest} />
       <ReactTooltip
         effect="solid"

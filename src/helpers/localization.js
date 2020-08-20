@@ -18,7 +18,6 @@ let strings = new LocalizedStrings({
       "Create your own channel on Popitalk. Add videos to up next and enjoy your time with followers! We believe in making texting more fun and enjoyable.",
     loginUsername: "Username or email",
     loginPassword: "Password",
-    loginButton: "Log In",
     // CreateNewAccountForm & EditInformationForm & EditBirthdayForm
     createNewAccountTitle: "Create a new account",
     createNewAccountSubtitle: "Get the full experience. It's FREE!",
@@ -30,7 +29,6 @@ let strings = new LocalizedStrings({
     createNewAccountBirthday: "Birthday",
     createNewAccountTerms: "By clicking Sign Up, you agree to the",
     createNewAccountTerms1: "Terms and Policy.",
-    createNewAccountButton: "Sign Up",
     // functions.js input errors
     inputTextTooShort: "Too short *",
     inputTextTooLong: "Too long *",
@@ -56,6 +54,21 @@ let strings = new LocalizedStrings({
     discord: "Discord",
     twitter: "Twitter",
     youtube: "Youtube",
+    // Buttons
+    loginButton: "Log In",
+    createNewAccountButton: "Sign Up",
+    createChannelButton: "Create",
+    newRoomButton: "New Room",
+    requestVideoButton: "Send a request to the admin",
+    createButton: "Create",
+    resetButton: "Reset",
+    followButton: "Follow",
+    followingButton: "Following",
+    searchFriendsClose: "Close",
+    clearButton: "Clear",
+    addFriendsButton: "Add Friends",
+    requestSentButton: "Request sent",
+    cancelButton: "Cancel",
     // Months
     jan: "January",
     feb: "February",
@@ -72,17 +85,13 @@ let strings = new LocalizedStrings({
     // PanelHeader & MiniFriendsList
     channels: "Channels",
     friends: "Chat",
-    addFriendsButton: "Add Friends",
     // ChannelsPanel & FriendsPanel
     yourChannels: "Your Channels",
     yourChannelsPlaceholder: "Create your own public Channel!",
     followingChannels: "Following",
     followingChannelsPlaceholder: "Discover and Follow Channels!",
-    createChannelButton: "Create",
     searchFriendsInput: "Search Username",
     searchResult: "Results for",
-    searchFriendsClose: "Close",
-    newRoomButton: "New Room",
     // RoomIcon
     myRoom: "My room",
     // ChannelsList
@@ -94,7 +103,6 @@ let strings = new LocalizedStrings({
     discover: "# Discover",
     trending: "# Trending",
     // ChannelCard
-    follow: "Follow",
     nothingPlaying: "Nothing is Playing at this moment",
     // VideoCard
     watch: "Watch it in a room",
@@ -112,7 +120,6 @@ let strings = new LocalizedStrings({
     unmute: "Unmute",
     fullScreen: "Full screen",
     playing: "Playing",
-    requestVideoButton: "Send a request to the admin",
     // Chat Header
     roomMembers: "room members",
     followers: "followers",
@@ -142,14 +149,23 @@ let strings = new LocalizedStrings({
     channelCatagory: "Channel Catagory (optional)",
     readyToCreate: "Ready to create your own channel?",
     saveChannelEdit: "Remember to save your changes.",
-    createButton: "Create",
-    resetButton: "Reset",
     // ChannelSettingsPanel
     channelSettings: "Channel Settings",
     manageFollowers: "Manage Followers",
     manageAdmins: "Manage Admins",
     manageBannedUsers: "Manage Banned Users",
-    deleteChannel: "Delete Channel"
+    deleteChannel: "Delete Channel",
+    // ContainerHeader
+    friendRequestHeader: "Friend Requests",
+    notificationHeader: "Notification",
+    settingsHeader: "Settings",
+    accountSettings: "Account Settings",
+    blockedUsers: "Blocked Users",
+    logOut: "Log Out",
+    editUserInformation: "Edit User Information",
+    changePassword: "Change Password",
+    // InfoCardList
+    nothingToShow: "Nothing to show."
   },
 
   //  KOREAN  //
@@ -168,7 +184,6 @@ let strings = new LocalizedStrings({
       "포피톡에서 채널을 개설하세요. 재미있는 영상들을 재생하고 팔로워들과 소통하세요.",
     loginUsername: "이메일 또는 아이디",
     loginPassword: "비밀번호",
-    loginButton: "로그인",
     // CreateNewAccountForm & EditInformationForm & EditBirthdayForm
     createNewAccountTitle: "가입하기",
     createNewAccountSubtitle:
@@ -182,7 +197,6 @@ let strings = new LocalizedStrings({
     createNewAccountTerms:
       "가입하기 버튼을 클릭하면 Popitalk의 약관정책에 동의하게 됩니다.",
     createNewAccountTerms1: "이용약관 확인.",
-    createNewAccountButton: "가입하기",
     // functions.js input errors
     inputTextTooShort: "너무 짧습니다 *",
     inputTextTooLong: "너무 깁니다 *",
@@ -208,6 +222,21 @@ let strings = new LocalizedStrings({
     discord: "디스코드",
     twitter: "트위터",
     youtube: "유튜브",
+    // Buttons
+    loginButton: "로그인",
+    createNewAccountButton: "가입하기",
+    createChannelButton: "만들기",
+    newRoomButton: "방 만들기",
+    requestVideoButton: "채널 관리자한테 요청하세요",
+    createButton: "만들기",
+    resetButton: "초기화",
+    followButton: "팔로우",
+    followingButton: "팔로잉",
+    searchFriendsClose: "닫기",
+    clearButton: "지우기",
+    addFriendsButton: "친구 추가",
+    requestSentButton: "친추 보냄",
+    cancelButton: "취소",
     // Months
     jan: "1월",
     feb: "2월",
@@ -224,17 +253,13 @@ let strings = new LocalizedStrings({
     // PanelHeader & MiniFriendsList
     channels: "티비채널",
     friends: "채팅",
-    addFriendsButton: "친구 추가",
     // ChannelsPanel & FriendsPanel
     yourChannels: "내 채널",
     yourChannelsPlaceholder: "나만의 채널을 만들어 보세요!",
     followingChannels: "팔로잉 채널",
     followingChannelsPlaceholder: "채널을 팔로우 할 수 있습니다",
-    createChannelButton: "만들기",
     searchFriendsInput: "아이디로 친구 찾기",
     searchResult: "검색 결과",
-    searchFriendsClose: "닫기",
-    newRoomButton: "방 만들기",
     // RoomIcon
     myRoom: "내 톡방",
     // ChannelsList
@@ -246,7 +271,6 @@ let strings = new LocalizedStrings({
     discover: "# 추천",
     trending: "# 인기",
     // ChannelCard
-    follow: "팔로우",
     nothingPlaying: "재생되고 있는 영상이 없습니다",
     // VideoCard
     watch: "톡방에서 시청하기",
@@ -264,7 +288,6 @@ let strings = new LocalizedStrings({
     unmute: "음소거 해제",
     fullScreen: "전체화면",
     playing: "재생중",
-    requestVideoButton: "채널 관리자한테 요청하세요",
     // ChatHeader & ChatActions
     roomMembers: "대화상대",
     followers: "팔로워",
@@ -293,14 +316,23 @@ let strings = new LocalizedStrings({
     channelCatagory: "카테고리 (선택)",
     readyToCreate: "채널 개설 준비되셨습니까?",
     saveChannelEdit: "변경된 내용을 저장하시겠습니가?",
-    createButton: "만들기",
-    resetButton: "초기화",
     // ChannelSettingsPanel
     channelSettings: "채널 설정",
     manageFollowers: "팔로워 관리",
     manageAdmins: "관리자 설정",
     manageBannedUsers: "차단 목록",
-    deleteChannel: "채널 삭제"
+    deleteChannel: "채널 삭제",
+    // ContainerHeader
+    friendRequestHeader: "친구 추가",
+    notificationHeader: "알림",
+    settingsHeader: "설정",
+    accountSettings: "계정 설정",
+    blockedUsers: "차단 목록",
+    logOut: "로그아웃",
+    editUserInformation: "내 정보 변경",
+    changePassword: "비밀번호 변경",
+    // InfoCardList
+    nothingToShow: "항목이 비었습니다."
   }
 });
 

@@ -80,7 +80,7 @@ export default function ChannelCard({
               onClick={handleFollow}
               analyticsString="Channel Follow Button: ChannelCard"
             >
-              {strings.follow}
+              {strings.followButton}
             </Button>
           </div>
         </div>
