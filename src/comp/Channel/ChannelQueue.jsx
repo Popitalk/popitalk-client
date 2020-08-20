@@ -6,6 +6,8 @@ import strings from "../../helpers/localization";
 
 export default function ChannelQueue({
   queue,
+  handleSwapVideos,
+  handleDeleteVideo,
   trendingResults = [],
   searchResults = [],
   totalResults,
@@ -18,7 +20,11 @@ export default function ChannelQueue({
         <h2 className="text-2xl text-primaryText">{strings.manageUpNext}</h2>
         <p className="text-sm text-secondaryText">{strings.upNextSubtitle}</p>
       </div>
-      <ChannelListQueue playlist={queue} />
+      <ChannelListQueue
+        playlist={queue}
+        handleChange={handleSwapVideos}
+        handleDeleteVideo={handleDeleteVideo}
+      />
       <div className="my-4">
         <h2 className="px-4 text-lg text-primaryText">
           {strings.findMoreVideos}
