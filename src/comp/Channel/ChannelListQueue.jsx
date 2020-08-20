@@ -1,20 +1,22 @@
-import React, { useState } from "react";
+import React from "react";
 import SortableList from "../SortableList";
-import arrayMove from "array-move";
 import VideoMinimalQueueCard from "../VideoMinimalQueueCard";
 
-export default function ChannelListQueue({ playlist }) {
-  const [items, setItems] = useState(playlist);
-
-  const handleChange = ({ oldIndex, newIndex }) => {
-    setItems(arrayMove(items, oldIndex, newIndex));
-  };
-
-  const itemRenderer = value => <VideoMinimalQueueCard {...value} />;
+export default function ChannelListQueue({
+  playlist,
+  handleChange,
+  handleDeleteVideo
+}) {
+  const itemRenderer = value => (
+    <VideoMinimalQueueCard
+      {...value}
+      handleRemove={() => handleDeleteVideo(value.id)}
+    />
+  );
 
   return (
     <SortableList
-      items={items}
+      items={playlist}
       itemRenderer={itemRenderer}
       handlerChange={handleChange}
       distance={1}

@@ -4,9 +4,7 @@ import {
   openInviteModal,
   openProfileModal,
   setPlaying,
-  setPaused,
-  deleteVideo,
-  swapVideos
+  setPaused
 } from "../../redux/actions";
 import { mapIdsToUsers } from "../../helpers/functions";
 import {
@@ -49,11 +47,7 @@ const mapDispatchToProps = (dispatch, { channelId }) => ({
   dispatchPlay: (queueStartPosition, videoStartTime) =>
     dispatch(setPlaying({ channelId, queueStartPosition, videoStartTime })),
   dispatchPause: (queueStartPosition, videoStartTime) =>
-    dispatch(setPaused({ channelId, queueStartPosition, videoStartTime })),
-  handleDeleteVideo: channelVideoId =>
-    dispatch(deleteVideo({ channelId, channelVideoId })),
-  handleSwapVideos: ({ oldIndex, newIndex }) =>
-    dispatch(swapVideos({ channelId, oldIndex, newIndex }))
+    dispatch(setPaused({ channelId, queueStartPosition, videoStartTime }))
 });
 
 class VideoPanel extends Component {

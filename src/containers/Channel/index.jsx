@@ -22,6 +22,8 @@ import {
   openListModal,
   searchVideos,
   addVideo,
+  deleteVideo,
+  swapVideos,
   setAlert
 } from "../../redux/actions";
 import { testResult } from "../../stories/seed-arrays";
@@ -176,6 +178,14 @@ export default function Channel({ tab, searchClasses, type = "channel" }) {
     dispatch(addVideo({ channelId, ...videoInfo }));
   };
 
+  const handleDeleteVideo = channelVideoId => {
+    dispatch(deleteVideo({ channelId, channelVideoId }));
+  };
+
+  const handleSwapVideos = ({ oldIndex, newIndex }) => {
+    dispatch(swapVideos({ channelId, oldIndex, newIndex }));
+  };
+
   const loading = channel?.loaded ? false : true;
 
   useEffect(() => {
@@ -247,7 +257,12 @@ export default function Channel({ tab, searchClasses, type = "channel" }) {
       >
         {(tab === "video" || tab === "channel") && (
           <>
-            <VideoPanel channelId={channelId} classNames="pt-0" />
+            <VideoPanel
+              channelId={channelId}
+              handleDeleteVideo={handleDeleteVideo}
+              handleSwapVideos={handleSwapVideos}
+              classNames="pt-0"
+            />
             {type === "channel" && (
               <ForumPanel
                 ref={channelRef}
@@ -299,6 +314,8 @@ export default function Channel({ tab, searchClasses, type = "channel" }) {
             handleSearch={handleSearch}
             handleAddVideo={handleAddVideo}
             queue={channel.queue}
+            handleSwapVideos={handleSwapVideos}
+            handleDeleteVideo={handleDeleteVideo}
           />
         )}
         {tab === "settings" && !loading && (
