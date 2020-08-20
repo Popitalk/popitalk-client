@@ -34,7 +34,7 @@ export default function ChannelDescription({
             onClick={handleUnfollow}
             analyticsString="Following Button: Channel Description"
           >
-            {strings.following}
+            {strings.followingButton}
           </Button>
         ) : (
           <Button
@@ -45,7 +45,7 @@ export default function ChannelDescription({
             onClick={handleFollow}
             analyticsString="Follow Button: Channel Description"
           >
-            {strings.follow}
+            {strings.followButton}
           </Button>
         )}
       </div>

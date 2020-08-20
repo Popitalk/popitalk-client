@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
 import Logo from "../assets/logo.png";
 import DropDownMenu from "./DropDowns/DropDownMenu";
@@ -8,6 +7,7 @@ import FriendRequests from "./DropDowns/FriendRequests";
 import Notifications from "./DropDowns/Notifications";
 import DropDownControls from "./DropDowns/DropDownControls";
 import Button from "./Controls/Button";
+import strings from "../helpers/localization";
 
 const SETTINGS = 1;
 const ACCOUNT_SETTINGS = 2;
@@ -58,15 +58,15 @@ export default function SiteHeaderMain({
 
   const settingsButtons = [
     {
-      text: "Account Settings",
+      text: strings.accountSettings,
       onClick: () => setDropdownList([...dropdownList, ACCOUNT_SETTINGS])
     },
     {
-      text: "Blocked Users",
+      text: strings.blockedUsers,
       onClick: openBlockedUsersModal
     },
     {
-      text: "Log Out",
+      text: strings.logOut,
       onClick: logoutHandler,
       danger: true
     }
@@ -74,11 +74,11 @@ export default function SiteHeaderMain({
 
   const accountSettingsButtons = [
     {
-      text: "Edit User Information",
+      text: strings.editUserInformation,
       onClick: openEditInformationModal
     },
     {
-      text: "Change Password",
+      text: strings.changePassword,
       onClick: openChangePasswordModal
     } /*,
     {
@@ -145,7 +145,10 @@ export default function SiteHeaderMain({
             onClose={() => setDropdownList([])}
           >
             {settingsDropdown === SETTINGS ? (
-              <DropDownMenu title="Settings" buttons={settingsButtons} />
+              <DropDownMenu
+                title={strings.settingsHeader}
+                buttons={settingsButtons}
+              />
             ) : settingsDropdown === ACCOUNT_SETTINGS ? (
               <DropDownMenu
                 title="Account Settings"
@@ -164,10 +167,11 @@ export default function SiteHeaderMain({
         </li>
         <li>
           <a href="https://about.popitalk.com/">
-            <FontAwesomeIcon
+            <Button
+              styleNone
               icon="info-circle"
-              size="lg"
-              className="cursor-pointer text-secondaryText hover:filter-brightness-8 ml-2"
+              styleNoneIconClassName="text-secondaryText hover:filter-brightness-8 text-xl"
+              analyticsString="To about.popitalk Button: SiteHeaderMain"
             />
           </a>
         </li>

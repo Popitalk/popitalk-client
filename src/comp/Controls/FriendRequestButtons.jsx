@@ -1,5 +1,6 @@
 import React from "react";
 import Button from "./Button";
+import strings from "../../helpers/localization";
 
 export default function FriendRequestButtons({ user, size = "md" }) {
   // variants: self, friend, stranger, receivedRequest, sentRequest, blocked
@@ -24,7 +25,9 @@ export default function FriendRequestButtons({ user, size = "md" }) {
           user.handleAccept();
         }}
         analyticsString="Friend Rq Button: FriendRequestButtons"
-        tooltip={sentRequest ? "Request sent" : "Add friend"}
+        tooltip={
+          sentRequest ? strings.requestSentButton : strings.addFriendsButton
+        }
         tooltipPlace="left"
       />
     );
@@ -42,7 +45,7 @@ export default function FriendRequestButtons({ user, size = "md" }) {
           user.handleReject();
         }}
         analyticsString="Canel Friend Rq Button:FriendRequestButtons"
-        tooltip="Cancel"
+        tooltip={strings.cancelButton}
       />
     ) : (
       <></>
