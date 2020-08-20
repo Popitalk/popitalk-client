@@ -134,7 +134,7 @@ function RecommendedChannels({ list, selectedPage }) {
           onClick={handleSearch}
         />
       </div>
-      {search !== "" ? (
+      {query !== "" ? (
         <div>
           <ChannelSearchList channelList={books} />
         </div>

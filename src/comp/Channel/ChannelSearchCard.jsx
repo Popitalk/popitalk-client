@@ -1,10 +1,8 @@
 import React from "react";
 import RoomIcon from "../Controls/RoomIcon";
 import AvatarDeck from "../Controls/AvatarDeck";
-import Button from "../Controls/Button";
 import VideoStatus from "../VideoStatusIcon";
 import strings from "../../helpers/localization";
-import AvatarIcon from "../Controls/AvatarIcon";
 
 export default function ChannelCard({
   id,
@@ -20,7 +18,7 @@ export default function ChannelCard({
   activeFriendViewers
 }) {
   return (
-    <div className="flex flex-row w-full h-68 py-6 px-8">
+    <div className="flex flex-row w-full h-68 items-center px-0 sm:px-8 my-8">
       {/* === Channel Thumbnail Section === */}
       <div className="w-68 flex-shrink-0">
         <div className="relative justify-center pb-5/4 rounded-lg hover:shadow-xl transition-all duration-100 bg-primaryBackground">
@@ -41,10 +39,10 @@ export default function ChannelCard({
         </div>
       </div>
       {/*  === Channel Description Section === */}
-      <div className="flex flex-col max-w-lg px-4 py-2">
+      <div className="flex flex-col justify-around max-w-lg px-4">
         {/* Video Title & Video Status & Viewer list */}
         {videoThumbnail && (
-          <div className="py-2">
+          <div className="">
             <p className="text-lg flex-shrink-1 font-bold w-full truncate-2-lines text-primaryText">
               <VideoStatus status="playing" type="text" string />
               {videoTitle}
@@ -64,23 +62,25 @@ export default function ChannelCard({
           </div>
         )}
         {/* Channel Icon & Description*/}
-        <div className="flex flex-row items-center py-2">
-          <RoomIcon
-            ids={[id]}
-            images={[icon]}
-            watching={live}
-            size="sm"
-            className="bg-primaryBackground mr-2 w-12 h-12"
-          />
-          <p className="pr-2 flex-shrink-1 text-sm font-semibold truncate-2-lines text-primaryText">
-            {name}Channel Name
+        <div className="flex flex-col items-center py-4">
+          <div className="flex items-center justify-start w-full py-1">
+            <RoomIcon
+              ids={[id]}
+              images={[icon]}
+              watching={live}
+              size="sm"
+              className="bg-primaryBackground mr-2 w-6 h-6"
+            />
+            <p className="pr-2 flex-shrink-1 text-sm font-semibold truncate-2-lines text-primaryText">
+              {name}
+            </p>
+          </div>
+          <p className="pr-2 flex-shrink-1 text-sm truncate-2-lines text-secondaryText">
+            Channel DescriptionChannel DescriptionChannel DescriptionChannel
+            DescriptionChannel DescriptionChannel DescriptionChannel
+            DescriptionChannel Description
           </p>
         </div>
-        <p className="pr-2 flex-shrink-1 text-sm truncate-2-lines text-secondaryText">
-          Channel DescriptionChannel DescriptionChannel DescriptionChannel
-          DescriptionChannel DescriptionChannel DescriptionChannel
-          DescriptionChannel Description
-        </p>
       </div>
     </div>
   );

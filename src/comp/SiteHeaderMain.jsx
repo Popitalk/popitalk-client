@@ -27,6 +27,10 @@ export default function SiteHeaderMain({
   deleteAccountHandler,
   logoutHandler
 }) {
+  function refreshPage() {
+    window.parent.location = window.parent.location.href;
+  }
+
   const [dropdownList, setDropdownList] = useState([]);
 
   const toggleSettings = () => {
@@ -100,6 +104,7 @@ export default function SiteHeaderMain({
           imageButtonClassName="w-10 h-10"
           analyticsString="Main Logo Button: SiteHeaderMain"
           hoverable
+          onClick={refreshPage}
         />
       </Link>
       <ul className="sm:space-x-6 // flex items-center space-x-6">
