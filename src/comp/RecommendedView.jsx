@@ -2,8 +2,7 @@ import React, { useState, useEffect, useRef, useCallback } from "react";
 import PropTypes from "prop-types";
 import { useSelector } from "react-redux";
 import ChannelCardList from "./Channel/ChannelCardList.jsx";
-import ChannelSearchCard from "./Channel/ChannelSearchCard";
-import ChannelCard from "./Channel/ChannelCard.jsx";
+import ChannelSearchList from "./Channel/ChannelSearchList.jsx";
 import VideoCardList from "./VideoCardList.jsx";
 import Input from "./Controls/Input.jsx";
 import Alert from "../comp/Alert";
@@ -135,50 +134,50 @@ function RecommendedChannels({ list, selectedPage }) {
           onClick={handleSearch}
         />
       </div>
-      {/* OPTION TABS */}
-      <div className="flex justify-start px-6 mt-8 h-8 space-x-2">
-        {tabs.map((img, idx) => {
-          return (
-            <Button
-              styleNone
-              styleNoneContent={img.tab}
-              key={idx}
-              className={`flex flex-row items-center font-bold h-full px-4 shadow-sm transition transform ease-in-out hover:scale-105 duration-100 rounded-full truncate ${
-                tabSelected === img.tab
-                  ? "text-highlightText cursor-default shadow-none bg-secondaryBackground"
-                  : "text-secondaryText cursor-pointer bg-primaryBackground"
-              }`}
-              onClick={() => setTab(img.tab)}
-              analyticsString={`${img.tab} Button: RecommendedView`}
-            />
-          );
-        })}
-      </div>
-      <div>
-        {books.map((channel, index) => (
-          <ChannelCard key={channel.id} {...channel} />
-        ))}
-        <div>{loading && "Loading..."}</div>
-        <div>{error && "error..."}</div>
-      </div>
-      {/* CARDS */}
-      {selectedPage === "channels" ? (
-        <>
-          <ChannelSearchCard />
-          <ChannelCardList
-            channelList={list}
-            isCollapsed={isCollapsed}
-            tabSelected={tabSelected}
-          />
-        </>
+      {search !== "" ? (
+        <div>
+          <ChannelSearchList channelList={books} />
+        </div>
       ) : (
-        selectedPage === "friends" && (
-          <VideoCardList
-            videoList={list}
-            isCollapsed={isCollapsed}
-            tabSelected={tabSelected}
-          />
-        )
+        <div>
+          {/* OPTION TABS */}
+          <div className="flex justify-start px-6 mt-8 h-8 space-x-2">
+            {tabs.map((img, idx) => {
+              return (
+                <Button
+                  styleNone
+                  styleNoneContent={img.tab}
+                  key={idx}
+                  className={`flex flex-row items-center font-bold h-full px-4 shadow-sm transition transform ease-in-out hover:scale-105 duration-100 rounded-full truncate ${
+                    tabSelected === img.tab
+                      ? "text-highlightText cursor-default shadow-none bg-secondaryBackground"
+                      : "text-secondaryText cursor-pointer bg-primaryBackground"
+                  }`}
+                  onClick={() => setTab(img.tab)}
+                  analyticsString={`${img.tab} Button: RecommendedView`}
+                />
+              );
+            })}
+          </div>
+          {/* CARDS */}
+          {selectedPage === "channels" ? (
+            <>
+              <ChannelCardList
+                channelList={list}
+                isCollapsed={isCollapsed}
+                tabSelected={tabSelected}
+              />
+            </>
+          ) : (
+            selectedPage === "friends" && (
+              <VideoCardList
+                videoList={list}
+                isCollapsed={isCollapsed}
+                tabSelected={tabSelected}
+              />
+            )
+          )}
+        </div>
       )}
     </div>
   );
