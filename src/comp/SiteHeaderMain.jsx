@@ -8,6 +8,7 @@ import Notifications from "./DropDowns/Notifications";
 import DropDownControls from "./DropDowns/DropDownControls";
 import Button from "./Controls/Button";
 import strings from "../helpers/localization";
+import { browserHistory } from "react-router";
 
 const SETTINGS = 1;
 const ACCOUNT_SETTINGS = 2;
@@ -27,10 +28,6 @@ export default function SiteHeaderMain({
   deleteAccountHandler,
   logoutHandler
 }) {
-  function refreshPage() {
-    window.parent.location = window.parent.location.href;
-  }
-
   const [dropdownList, setDropdownList] = useState([]);
 
   const toggleSettings = () => {
@@ -97,14 +94,13 @@ export default function SiteHeaderMain({
 
   return (
     <header className="sm:px-6 // relative flex items-center justify-between h-12 px-4 z-30 bg-primaryBackground select-none">
-      <Link to="/channels" className="flex items-center justify-center">
+      <Link to="./channels" className="flex items-center justify-center">
         <Button
           imageButton
           imageButtonSrc={Logo}
           imageButtonClassName="w-10 h-10"
           analyticsString="Main Logo Button: SiteHeaderMain"
           hoverable
-          onClick={refreshPage}
         />
       </Link>
       <ul className="sm:space-x-6 // flex items-center space-x-6">
