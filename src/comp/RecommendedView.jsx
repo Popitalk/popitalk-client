@@ -55,11 +55,11 @@ function RecommendedChannels({ list, selectedPage }) {
 
   // removing the seeded and putting in the actual following list
   list = [];
-  list.push({ title: "following", channels: followingChannels });
-  list.push({ title: "discover", channels: discoverChannels });
-  list.push({ title: "trending", channels: trendingChannels });
+  list.push({ title: "Following", channels: followingChannels });
+  list.push({ title: "Discover", channels: discoverChannels });
+  list.push({ title: "Trending", channels: trendingChannels });
 
-  const [tabSelected, setTab] = useState("# following");
+  const [tabSelected, setTab] = useState("# Following");
   const tabs = [
     { tab: strings.following },
     { tab: strings.discover },
