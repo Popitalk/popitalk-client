@@ -12,7 +12,7 @@ export default function QueueSection({
     <VideoPanelCard
       {...value}
       handleSkip={handleSkip}
-      handleDeleteVideo={handleDeleteVideo}
+      handleDeleteVideo={() => handleDeleteVideo(value.id)}
     />
   );
 

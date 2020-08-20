@@ -30,7 +30,16 @@ const mapStateToProps = (state, { channelId }) => {
     viewers: viewers,
     isInvitingAllowed: channel.type === "group",
     displayControls:
-      channel.type === "channel" ? channel.admins.find(a => a === ownId) : ownId
+      channel.type === "channel"
+        ? channel.admins.find(a => a === ownId)
+        : ownId,
+    playlist: channel.queue,
+    startPlayerStatus: {
+      queueStartPosition: channel.queueStartPosition,
+      clockStartTime: channel.clockStartTime,
+      videoStartTime: channel.videoStartTime,
+      status: channel.status
+    }
   };
 };
 
@@ -148,6 +157,8 @@ class VideoPanel extends Component {
         this.props.startPlayerStatus.videoStartTime ||
       prevProps.startPlayerStatus.status !==
         this.props.startPlayerStatus.status ||
+      prevProps.startPlayerStatus.clockStartTime !==
+        this.props.startPlayerStatus.clockStartTime ||
       prevProps.channelId !== this.props.channelId
     ) {
       const playerStatus = calculatePlayerStatus(

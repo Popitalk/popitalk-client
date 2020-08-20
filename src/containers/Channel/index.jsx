@@ -247,17 +247,7 @@ export default function Channel({ tab, searchClasses, type = "channel" }) {
       >
         {(tab === "video" || tab === "channel") && (
           <>
-            <VideoPanel
-              channelId={channelId}
-              playlist={channel.queue}
-              startPlayerStatus={{
-                queueStartPosition: channel.queueStartPosition,
-                clockStartTime: channel.clockStartTime,
-                videoStartTime: channel.videoStartTime,
-                status: channel.status
-              }}
-              classNames="pt-0"
-            />
+            <VideoPanel channelId={channelId} classNames="pt-0" />
             {type === "channel" && (
               <ForumPanel
                 ref={channelRef}
