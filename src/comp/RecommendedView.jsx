@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef, useCallback } from "react";
 import PropTypes from "prop-types";
 import { useSelector } from "react-redux";
 import ChannelCardList from "./Channel/ChannelCardList.jsx";
+import ChannelCard from "./Channel/ChannelCard.jsx";
 import VideoCardList from "./VideoCardList.jsx";
 import Input from "./Controls/Input.jsx";
 import Alert from "../comp/Alert";
@@ -153,17 +154,9 @@ function RecommendedChannels({ list, selectedPage }) {
         })}
       </div>
       <div>
-        {books.map((book, index) => {
-          if (books.length === index + 1) {
-            return (
-              <div ref={lastBookElementRef} key={book}>
-                {book}
-              </div>
-            );
-          } else {
-            return <div key={book}>{book}</div>;
-          }
-        })}
+        {books.map((channel, index) => (
+          <ChannelCard key={channel.id} {...channel} />
+        ))}
         <div>{loading && "Loading..."}</div>
         <div>{error && "error..."}</div>
       </div>
