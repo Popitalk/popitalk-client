@@ -3,8 +3,8 @@ import PropTypes from "prop-types";
 import RoomIcon from "../Controls/RoomIcon";
 import Button from "../Controls/Button";
 import useCollapse from "react-collapsed";
-import ReactTooltip from "react-tooltip";
 import strings from "../../helpers/localization";
+import ReactTooltip from "react-tooltip";
 
 function CollapsedPanel({
   rooms,
@@ -56,7 +56,6 @@ function CollapsedPanel({
       <div className="flex-col h-full overflow-y-scroll">
         {/* CHANNELS */}
         <div className="bg-primaryBackground rounded-xl">
-          <ReactTooltip effect="solid" className="tooltip truncate" />
           <Button
             actionButton
             className="flex h-12 w-20 bg-secondaryBackground shadow-none"
@@ -106,7 +105,6 @@ function CollapsedPanel({
         </div>
         {/* FRIENDS */}
         <div className="bg-primaryBackground rounded-xl mb-4">
-          <ReactTooltip effect="solid" className="tooltip truncate" />
           <Button
             actionButton
             className="flex flex-col h-12 w-20 mb-1 bg-secondaryBackground shadow-none"
@@ -171,6 +169,13 @@ function CollapsedPanel({
           </section>
         </div>
       </div>
+      <ReactTooltip
+        effect="solid"
+        backgroundColor="#F2F2F2"
+        textColor="black"
+        className="shadow-md rounded-md py-1 px-3"
+        arrowColor="transparent"
+      />
     </div>
   );
 }

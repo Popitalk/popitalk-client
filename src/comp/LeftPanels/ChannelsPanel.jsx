@@ -4,7 +4,6 @@ import Button from "../Controls/Button";
 import MiniFriendsList from "../MiniFriendsList";
 import PanelHeader from "./PanelHeader";
 import ReactTooltip from "react-tooltip";
-import "./Tooltip.css";
 import strings from "../../helpers/localization";
 
 export default function ChannelsPanel({
@@ -71,7 +70,13 @@ export default function ChannelsPanel({
           />
         </div>
       </div>
-      <ReactTooltip effect="solid" className="tooltip truncate" />
+      <ReactTooltip
+        effect="solid"
+        backgroundColor="#F2F2F2"
+        textColor="black"
+        className="shadow-md rounded-md py-1 px-3 opacity-100"
+        arrowColor="transparent"
+      />
     </div>
   );
 }

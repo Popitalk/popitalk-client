@@ -15,15 +15,17 @@ export default function FriendRequestButtons({ user, size = "md" }) {
       <Button
         actionButton
         size={size}
-        icon={sentRequest ? "user-check" : "user-plus"}
-        disabled={sentRequest}
-        className="cursor-pointer bg-primaryBackground ml-auto"
+        icon={sentRequest ? "paper-plane" : "user-plus"}
+        background={sentRequest && "bgColor"}
+        // disabled={sentRequest}
+        className={sentRequest ? "ml-auto shadow-none" : "ml-auto"}
         onClick={e => {
           e.stopPropagation();
           user.handleAccept();
         }}
         analyticsString="Friend Rq Button: FriendRequestButtons"
-        tooltip={sentRequest ? "Add Friend" : "Waiting"}
+        tooltip={sentRequest ? "Request sent" : "Add friend"}
+        tooltipPlace="bottom"
       />
     );
 

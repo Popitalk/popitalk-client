@@ -7,6 +7,7 @@ import RoomsList from "../InfoCardLists/RoomsList";
 import PanelHeader from "./PanelHeader";
 import { utilizeFocus } from "../../helpers/functions";
 import strings from "../../helpers/localization";
+import ReactTooltip from "react-tooltip";
 
 class FriendsPanel extends Component {
   constructor(props) {
@@ -143,15 +144,21 @@ class FriendsPanel extends Component {
           </div>
           <Button
             actionButton
-            size="md"
-            leftIcon="plus"
-            className="fixed bottom-0 left-0 ml-44 mb-4 hover:opacity-100 hover:scale-105 shadow-channel"
+            size="lg"
+            icon="plus"
+            className="fixed bottom-0 left-0 ml-68 mb-4 hover:opacity-100 hover:scale-105 shadow-channel"
             onClick={() => this.props.handleCreateRoom()}
             analyticsString="Create Room Button: FriendsPanel"
-          >
-            {strings.newRoomButton}
-          </Button>
+            tooltip={strings.newRoomButton}
+          />
         </div>
+        <ReactTooltip
+          effect="solid"
+          backgroundColor="#F2F2F2"
+          textColor="black"
+          className="shadow-md rounded-md py-1 px-3 opacity-100"
+          arrowColor="transparent"
+        />
       </div>
     );
   }

@@ -228,7 +228,6 @@ class VideoPlayer extends Component {
             ref={this.videoPlayer}
             className="relative pb-16/9 h-full w-full"
           >
-            <ReactTooltip effect="solid" className="tooltip truncate" />
             <div className="absolute bg-black h-full w-full"></div>
             <div className="hover:select-none">
               <ReactPlayer
@@ -277,6 +276,13 @@ class VideoPlayer extends Component {
                     role="button"
                     during={2200}
                   >
+                    <ReactTooltip
+                      effect="solid"
+                      backgroundColor="#F2F2F2"
+                      textColor="black"
+                      className="shadow-lg rounded-md py-1 px-3"
+                      arrowColor="transparent"
+                    />
                     {/* VideoPlayerStatusCard */}
                     <div className="absolute flex items-center justify-center w-full h-full">
                       {this.state.playing === false &&
