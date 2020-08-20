@@ -51,7 +51,7 @@ export default function VideoStatus({
     return (
       <>
         {status === "playing" && (
-          <span className="bg-gradient-r-primary rounded-xl px-2 py-1 shadow-md text-tertiaryText text-xs font-semibold select-none z-10">
+          <span className="bg-gradient-r-primary rounded-xl py-1 shadow-md text-xs font-semibold select-none z-10">
             {strings.playing}
           </span>
         )}

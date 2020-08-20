@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef, useCallback } from "react";
 import PropTypes from "prop-types";
 import { useSelector } from "react-redux";
 import ChannelCardList from "./Channel/ChannelCardList.jsx";
+import ChannelSearchCard from "./Channel/ChannelSearchCard";
 import ChannelCard from "./Channel/ChannelCard.jsx";
 import VideoCardList from "./VideoCardList.jsx";
 import Input from "./Controls/Input.jsx";
@@ -162,11 +163,14 @@ function RecommendedChannels({ list, selectedPage }) {
       </div>
       {/* CARDS */}
       {selectedPage === "channels" ? (
-        <ChannelCardList
-          channelList={list}
-          isCollapsed={isCollapsed}
-          tabSelected={tabSelected}
-        />
+        <>
+          <ChannelSearchCard />
+          <ChannelCardList
+            channelList={list}
+            isCollapsed={isCollapsed}
+            tabSelected={tabSelected}
+          />
+        </>
       ) : (
         selectedPage === "friends" && (
           <VideoCardList
