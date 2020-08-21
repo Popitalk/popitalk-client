@@ -85,7 +85,7 @@ function InfiniteScroller(
       if (initialScroll === "bottom") {
         containerRef.current.lastChild.scrollIntoView();
       } else if (initialScroll === "top") {
-        containerRef.current.scrollTo(0, 0);
+        // containerRef.current.scrollTo(0, 0);
       } else {
         let scrollVal;
 
@@ -94,9 +94,9 @@ function InfiniteScroller(
         } else {
           scrollVal = Math.floor(initialScroll);
         }
-        containerRef.current.scrollTo(0, scrollVal);
-        setInitialLoad(false);
+        containerRef.current.scrollTop = scrollVal;
       }
+      setInitialLoad(false);
     }
     // only scroll when all gifs are loaded and rendered
     // otherwise scroll values are not correct
