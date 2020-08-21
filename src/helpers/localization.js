@@ -58,7 +58,7 @@ let strings = new LocalizedStrings({
     loginButton: "Log In",
     createNewAccountButton: "Sign Up",
     createChannelButton: "Create",
-    newRoomButton: "New Room",
+    newRoomButton: "New Chat",
     requestVideoButton: "Send a request to the admin",
     createButton: "Create",
     resetButton: "Reset",
