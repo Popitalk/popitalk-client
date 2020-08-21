@@ -128,7 +128,7 @@
     "react-hot-loader": "^4.12.21",
     "source-map-explorer": "^2.4.1",
     "stylelint-config-recommended": "^3.0.0",
-    "tailwindcss": "^1.4.5",
+    "tailwindcss": "^1.7.3",
     "tailwindcss-border-gradients": "^2.0.3",
     "tailwindcss-children": "^2.0.0",
     "tailwindcss-filters": "^3.0.0",
