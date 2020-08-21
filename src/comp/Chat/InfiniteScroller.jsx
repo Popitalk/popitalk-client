@@ -34,6 +34,7 @@ function InfiniteScroller(
   const conRef = useRef(null);
   const containerRef = ref || conRef;
   let [loadingItems, setLoadingItems] = useState(null);
+  let [initialLoad, setInitialLoad] = useState(true);
   // let [ready, setReady] = useState(false);
   let [oldScrollHeight, setOldScrollHeight] = useState(0);
   let [olderScrollHeight, setOlderScrollHeight] = useState(0);
@@ -95,7 +96,7 @@ function InfiniteScroller(
           scrollVal = Math.floor(initialScroll);
         }
         containerRef.current.scrollTo(0, scrollVal);
-        setGifsLoaded(false);
+        setInitialLoad(false);
       }
     }
     // only scroll when all gifs are loaded and rendered
@@ -106,6 +107,7 @@ function InfiniteScroller(
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
     containerRef,
+    channelId,
     reScroll,
     threshold,
     draft,
@@ -164,7 +166,7 @@ function InfiniteScroller(
   useEffect(() => {
     // gifsLoaded in if makes sure that initialscroll would be set to top
     // on initial load
-    if (topInView && !loading && gifsLoaded) {
+    if (topInView && !loading && !initialLoad) {
       handleTopView();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
