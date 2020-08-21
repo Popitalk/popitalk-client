@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import ChannelSearchCard from "./ChannelSearchCard.jsx";
+import strings from "../../helpers/localization.js";
 
 function ChannelSearchList({ channelList }) {
   return (
@@ -14,7 +15,9 @@ function ChannelSearchList({ channelList }) {
               ))}
             </div>
           ) : (
-            <div>Not found Component (you know the sad face thing)</div>
+            <div className="flex items-center justify-center text-secondaryText w-full h-32">
+              {strings.nothingToShow}
+            </div>
           )}
         </div>
       ) : (

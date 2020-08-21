@@ -72,7 +72,7 @@ export default function ChannelCard({
             <p className="pr-2 flex-shrink-1 text-sm font-semibold truncate-2-lines text-tertiaryText">
               {name}
             </p>
-            <Button
+            {/* <Button
               actionButton
               size="sm"
               shape="pill"
@@ -81,7 +81,7 @@ export default function ChannelCard({
               analyticsString="Channel Follow Button: ChannelCard"
             >
               {strings.followButton}
-            </Button>
+            </Button> */}
           </div>
         </div>
       </div>

@@ -72,7 +72,12 @@ function RecommendedChannels({ list, selectedPage }) {
   const [search, setSearch] = useState("");
   const [query, setQuery] = useState("");
   const [pageNumber, setPageNumber] = useState(1);
-  const { books, hasMore, loading, error } = useBookSearch(query, pageNumber);
+  const {
+    books,
+    hasMore,
+    loading
+    // , error
+  } = useBookSearch(query, pageNumber);
 
   const handleSearch = useCallback(() => {
     setQuery(search);
@@ -134,7 +139,7 @@ function RecommendedChannels({ list, selectedPage }) {
           onClick={handleSearch}
         />
       </div>
-      {search !== "" ? (
+      {query !== "" ? (
         <div>
           <ChannelSearchList channelList={books} />
         </div>

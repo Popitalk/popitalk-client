@@ -125,7 +125,7 @@ export default function ProfileModal({
           ? "Videos You Watched"
           : `Videos You and ${user.username} Watched`}
       </div> */}
-      <div className="flex">
+      {/* <div className="flex">
         <ChannelCardList channelList={recentVideos} />
       </div>
       <div className="text-md font-bold pb-8 text-primaryText">
@@ -135,7 +135,7 @@ export default function ProfileModal({
       </div>
       <div className="flex">
         <ChannelCardList channelList={followedChannels} />
-      </div>
+      </div> */}
     </div>
   );
 }

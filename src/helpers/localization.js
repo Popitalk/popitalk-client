@@ -58,7 +58,7 @@ let strings = new LocalizedStrings({
     loginButton: "Log In",
     createNewAccountButton: "Sign Up",
     createChannelButton: "Create",
-    newRoomButton: "New Room",
+    newRoomButton: "New Chat",
     requestVideoButton: "Send a request to the admin",
     createButton: "Create",
     resetButton: "Reset",
@@ -165,7 +165,7 @@ let strings = new LocalizedStrings({
     editUserInformation: "Edit User Information",
     changePassword: "Change Password",
     // InfoCardList
-    nothingToShow: "Nothing to show."
+    nothingToShow: "Nothing to show :("
   },
 
   //  KOREAN  //

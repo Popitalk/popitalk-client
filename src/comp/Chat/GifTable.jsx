@@ -25,7 +25,7 @@ export default function GifTable({ updateGifsOpen }) {
           still: gif.embed_url,
           images: {
             downsized_medium: gif.images.fixed_height.url,
-            fixed_width: gif.images.fixed_width.url
+            fixed_height: gif.images.fixed_height.url
           }
         }),
         upload: "gif",
@@ -35,8 +35,7 @@ export default function GifTable({ updateGifsOpen }) {
           username: currentUserUsername,
           avatar: null
         }
-      }),
-      console.log(gif)
+      })
     );
     // updateGifsOpen(false);
   };
