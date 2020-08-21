@@ -111,33 +111,12 @@ export default function App() {
               </div>
             </RouteWrapper>
           </Route>
-          <Route exact path="/channels/:channelId/video">
+          <Route
+            exact
+            path={["/channels/:channelId/:tab", "/rooms/:roomId/video"]}
+          >
             <RouteWrapper leftPanel={leftPanel}>
-              <Channel tab="video" />
-              {chatPanel}
-            </RouteWrapper>
-          </Route>
-          <Route exact path="/channels/:channelId/channel">
-            <RouteWrapper leftPanel={leftPanel}>
-              <Channel tab="channel" />
-              {chatPanel}
-            </RouteWrapper>
-          </Route>
-          <Route exact path="/channels/:channelId/queue">
-            <RouteWrapper leftPanel={leftPanel}>
-              <Channel tab="queue" searchClasses={searchClasses} />
-              {chatPanel}
-            </RouteWrapper>
-          </Route>
-          <Route exact path="/channels/:channelId/settings">
-            <RouteWrapper leftPanel={leftPanel}>
-              <Channel tab="settings" />
-            </RouteWrapper>
-          </Route>
-          <Route exact path="/rooms/:roomId/video">
-            <RouteWrapper leftPanel={leftPanel}>
-              <Channel tab="video" type="room" searchClasses={searchClasses} />
-              {chatPanel}
+              <Channel chatPanel={chatPanel} />
             </RouteWrapper>
           </Route>
           <Route exact path="/channels">
