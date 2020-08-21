@@ -25,7 +25,7 @@ export default function GifTable({ updateGifsOpen }) {
           still: gif.embed_url,
           images: {
             downsized_medium: gif.images.fixed_height.url,
-            fixed_width: gif.images.fixed_width.url
+            fixed_height: gif.images.fixed_height.url
           }
         }),
         upload: "gif",
@@ -58,6 +58,7 @@ export default function GifTable({ updateGifsOpen }) {
       />
       <ul className="flex overflow-scroll space-x-1 p-1">
         {testGifs.data.map(gif => {
+          console.log(gif);
           return (
             <li
               key={gif.id}

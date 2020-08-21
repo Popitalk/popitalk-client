@@ -26,8 +26,7 @@ function InfiniteScroller(
     reScroll,
     isGifsOpen,
     channelId,
-    gifsLoaded,
-    setGifsLoaded
+    gifsLoaded
   },
   ref
 ) {
@@ -107,7 +106,6 @@ function InfiniteScroller(
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
     containerRef,
-    channelId,
     reScroll,
     threshold,
     draft,
