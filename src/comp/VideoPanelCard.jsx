@@ -19,7 +19,7 @@ export default function VideoPanelCard({
   url
 }) {
   // const leftInfo = `${views}`;
-  const rightInfo = `${moment(publishedAt).fromNow()}`;
+  const rightInfo = `${moment(publishedAt).locale(strings.location).fromNow()}`;
   const [disableButton, setDisableButton] = useState();
   const [addButtonIcon, setAddButtonIcon] = useState("plus");
   const [removeButtonIcon, setRemoveButtonIcon] = useState("minus");

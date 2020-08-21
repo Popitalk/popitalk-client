@@ -40,7 +40,10 @@ export default function DropDownControls({
       >
         <FontAwesomeIcon icon={icon} size="lg" />
         {hasNotification && (
-          <div className="absolute top-0 mt-1 mr-1 right-0 z-10 p-1 border-2 rounded-circle border-primaryBackground bg-errorText" />
+          <span className="flex absolute top-0 mt-1 mr-1 right-0 h-2 w-2">
+            {/* <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-errorText opacity-75"></span> */}
+            <span className="relative inline-flex rounded-full h-2 w-2 bg-errorText"></span>
+          </span>
         )}
       </div>
       {open && (

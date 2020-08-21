@@ -5,7 +5,7 @@ import strings from "../../helpers/localization.js";
 
 function ChannelSearchList({ channelList }) {
   return (
-    <div className="mx-4">
+    <div className="my-8">
       {channelList !== [] ? (
         <div>
           {channelList.length !== 0 ? (
@@ -21,7 +21,11 @@ function ChannelSearchList({ channelList }) {
           )}
         </div>
       ) : (
-        <div>Loading</div>
+        <>
+          <ChannelSearchCard loading />
+          <ChannelSearchCard loading />
+          <ChannelSearchCard loading />
+        </>
       )}
     </div>
   );

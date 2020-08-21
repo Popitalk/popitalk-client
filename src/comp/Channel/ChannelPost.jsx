@@ -156,7 +156,9 @@ export default function ChannelPost({
                 name={comment.author.username}
                 authorId={comment.author.id}
                 avatar={comment.author.avatar || defaultAvatar}
-                timeFromPost={moment(comment.createdAt).fromNow()}
+                timeFromPost={moment(comment.createdAt)
+                  .locale(strings.location)
+                  .fromNow()}
                 text={comment.content}
                 toggleLike={toggleLike}
                 liked={comment.liked}
@@ -172,7 +174,9 @@ export default function ChannelPost({
                 name={comment.author.username}
                 authorId={comment.author.id}
                 avatar={comment.author.avatar || defaultAvatar}
-                timeFromPost={moment(comment.createdAt).fromNow()}
+                timeFromPost={moment(comment.createdAt)
+                  .locale(strings.location)
+                  .fromNow()}
                 text={comment.content}
                 toggleLike={toggleLike}
                 liked={comment.liked}

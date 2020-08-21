@@ -12,6 +12,12 @@ function ChannelCardList({ channelList, isCollapsed, tabSelected }) {
 
   return (
     <div className="mx-4">
+      {/* For loading: Placeholder */}
+      <div className="flex space-x-4 m-2 justify-center">
+        <ChannelCard loading />
+        <ChannelCard loading />
+        <ChannelCard loading />
+      </div>
       <div
         className={`grid grid-cols-1 w-full ${
           isCollapsed

@@ -28,7 +28,9 @@ export default function ChannelChat({
               id={post.id}
               name={post.author.username}
               avatar={post.author.avatar || defaultAvatar}
-              timeFromPost={moment(post.createdAt).fromNow()}
+              timeFromPost={moment(post.createdAt)
+                .locale(strings.location)
+                .fromNow()}
               text={post.content}
               liked={post.liked}
               comments={postComments}
@@ -47,7 +49,7 @@ export default function ChannelChat({
         <ChannelPost
           name={name}
           avatar={icon}
-          timeFromPost={moment().fromNow()}
+          timeFromPost={moment().locale(strings.location).fromNow()}
           text={strings.channelWelcomePost}
           saveComment={saveComment}
           toggleLike={toggleLike}
