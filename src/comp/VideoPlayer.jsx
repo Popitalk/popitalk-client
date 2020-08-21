@@ -363,24 +363,26 @@ class VideoPlayer extends Component {
                     <div className="flex space-x-4 items-center">
                       {/* Play & Pause button */}
                       {this.props.displayControls && (
-                        <Button
-                          styleNone
-                          styleNoneIconClassName="text-tertiaryText"
-                          hoverable
-                          icon={!this.state.playing ? "play" : "pause"}
-                          className={`w-8 p-1 rounded-full ${
-                            this.props.displayControls &&
-                            "hover:bg-playerControlsHover"
-                          }`}
-                          onClick={() => this.setBothPlaying()}
-                          data-tip={
-                            this.state.playing === false
-                              ? strings.play
-                              : strings.pause
-                          }
-                          data-place="top"
-                          analyticsString="Play/Pause Button: VideoPlayer"
-                        />
+                        <Ripples className="transition transform hover:scale-110 duration-100 p-px rounded-full">
+                          <Button
+                            styleNone
+                            styleNoneIconClassName="text-tertiaryText"
+                            hoverable
+                            icon={!this.state.playing ? "play" : "pause"}
+                            className={`w-8 p-1 rounded-full ${
+                              this.props.displayControls &&
+                              "hover:bg-playerControlsHover"
+                            }`}
+                            onClick={() => this.setBothPlaying()}
+                            data-tip={
+                              this.state.playing === false
+                                ? strings.play
+                                : strings.pause
+                            }
+                            data-place="top"
+                            analyticsString="Play/Pause Button: VideoPlayer"
+                          />
+                        </Ripples>
                       )}
                       {/* Volume button & slider hover effect */}
                       <div

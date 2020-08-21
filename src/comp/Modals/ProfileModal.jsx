@@ -1,10 +1,10 @@
 import React from "react";
-import ChannelCardList from "../Channel/ChannelCardList";
 import PopupMenu from "../Controls/PopupMenu";
 import FriendRequestButtons from "../Controls/FriendRequestButtons";
 import ImageUpload from "../Controls/ImageUpload";
 import Button from "../Controls/Button";
 // import Resizer from "react-image-file-resizer";
+// import ChannelCardList from "../Channel/ChannelCardList";
 
 export default function ProfileModal({
   user,

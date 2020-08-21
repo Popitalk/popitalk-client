@@ -19,7 +19,7 @@ export default function ChannelCard({
 }) {
   return (
     <div className="flex flex-row w-full h-68 items-center px-0 sm:px-8 md:px-16 my-4">
-      <div className="flex p-4 hover:shadow-md transition-all duration-50 rounded-lg cursor-pointer">
+      <div className="flex px-6 py-4 hover:shadow-md transition-all duration-50 rounded-lg cursor-pointer">
         {/* === Channel Thumbnail Section === */}
         <div className="w-68 flex-shrink-0">
           <div className="relative justify-center pb-5/4 rounded-lg bg-primaryBackground">
