@@ -165,7 +165,7 @@ let strings = new LocalizedStrings({
     editUserInformation: "Edit User Information",
     changePassword: "Change Password",
     // InfoCardList
-    nothingToShow: "Nothing to show."
+    nothingToShow: "Nothing to show :("
   },
 
   //  KOREAN  //
