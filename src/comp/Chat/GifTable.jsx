@@ -35,8 +35,7 @@ export default function GifTable({ updateGifsOpen }) {
           username: currentUserUsername,
           avatar: null
         }
-      }),
-      console.log(gif)
+      })
     );
     // updateGifsOpen(false);
   };
@@ -58,7 +57,6 @@ export default function GifTable({ updateGifsOpen }) {
       />
       <ul className="flex overflow-scroll space-x-1 p-1">
         {testGifs.data.map(gif => {
-          console.log(gif);
           return (
             <li
               key={gif.id}

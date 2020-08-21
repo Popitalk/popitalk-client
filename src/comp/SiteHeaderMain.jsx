@@ -8,7 +8,6 @@ import Notifications from "./DropDowns/Notifications";
 import DropDownControls from "./DropDowns/DropDownControls";
 import Button from "./Controls/Button";
 import strings from "../helpers/localization";
-import { browserHistory } from "react-router";
 
 const SETTINGS = 1;
 const ACCOUNT_SETTINGS = 2;
