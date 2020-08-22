@@ -4,6 +4,7 @@ import AvatarDeck from "../Controls/AvatarDeck";
 // import Button from "../Controls/Button";
 import VideoStatus from "../VideoStatusIcon";
 import strings from "../../helpers/localization";
+import history from "../../history";
 
 export default function ChannelCard({
   id,
@@ -17,6 +18,9 @@ export default function ChannelCard({
   handleFollow,
   loading
 }) {
+  const handleSelect = () => {
+    history.push(`/channels/${id}/video`);
+  };
   return (
     <>
       {loading ? (
@@ -35,7 +39,11 @@ export default function ChannelCard({
           </div>
         </div>
       ) : (
-        <div className="cursor-pointer py-6 px-2">
+        <div
+          className="cursor-pointer py-6 px-2"
+          role={handleSelect ? "button" : null}
+          onClick={handleSelect}
+        >
           <div className="relative flex flex-grow justify-center pb-5/4 p-3 rounded-lg hover:shadow-xl transition-all duration-100">
             {/* ChannelCard background image */}
             {videoThumbnail ? (
