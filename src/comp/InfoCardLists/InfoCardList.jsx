@@ -43,6 +43,7 @@ export default function InfoCardList({
         width="100%"
         itemCount={items.length}
         itemSize={finalSize}
+        loading
       >
         {ItemRenderer}
       </FixedSizeList>

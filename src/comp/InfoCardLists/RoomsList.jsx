@@ -26,6 +26,7 @@ export default function RoomsList({
       itemRenderer={itemRenderer}
       itemSize={70}
       {...rest}
+      loading
     />
   );
 }

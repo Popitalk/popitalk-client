@@ -27,7 +27,8 @@ export default function RoomIcon({
   size = "md",
   className,
   tooltip,
-  tooltipPlace
+  tooltipPlace,
+  loading
 }) {
   const OnlineFriendStyle = {
     top:
@@ -84,40 +85,46 @@ export default function RoomIcon({
 
   return (
     <div className={container1Classes}>
-      <div className={container2Classes}>
-        {images.slice(0, 4).map((image, index) => (
-          <div
-            key={ids?.[index] || index}
-            className={classnames(
-              avatarClasses,
-              cornerRadius(index, images.length <= 4 ? images.length : 4)
-            )}
-          >
-            <img
-              className="img h-full"
-              src={image}
-              alt="dogo"
-              data-tip={tooltip}
-              data-place={tooltipPlace}
-            />
+      {loading ? (
+        <div className="animate-pulse bg-gray-300 grid w-full h-full rounded-full overflow-hidden" />
+      ) : (
+        <>
+          <div className={container2Classes}>
+            {images.slice(0, 4).map((image, index) => (
+              <div
+                key={ids?.[index] || index}
+                className={classnames(
+                  avatarClasses,
+                  cornerRadius(index, images.length <= 4 ? images.length : 4)
+                )}
+              >
+                <img
+                  className="img h-full"
+                  src={image}
+                  alt="dogo"
+                  data-tip={tooltip}
+                  data-place={tooltipPlace}
+                />
+              </div>
+            ))}
           </div>
-        ))}
-      </div>
-      {online && (
-        <div className={onlineFriendClasses} style={OnlineFriendStyle} />
-      )}
-      {self && (
-        <p
-          className="font-semibold text-xs absolute bottom-0 truncate
-         bg-gradient-br-button text-primaryButtonText rounded-lg shadow-xs flex items-center justify-center py-2px px-1 select-none"
-        >
-          {strings.myRoom}
-        </p>
-      )}
-      {notifications && (
-        <p className={notificationsClasses}>
-          {notifications >= 100 ? "99+" : notifications}
-        </p>
+          {online && (
+            <div className={onlineFriendClasses} style={OnlineFriendStyle} />
+          )}
+          {self && (
+            <p
+              className="font-semibold text-xs absolute bottom-0 truncate
+            bg-gradient-br-button text-primaryButtonText rounded-lg shadow-xs flex items-center justify-center py-2px px-1 select-none"
+            >
+              {strings.myRoom}
+            </p>
+          )}
+          {notifications && (
+            <p className={notificationsClasses}>
+              {notifications >= 100 ? "99+" : notifications}
+            </p>
+          )}
+        </>
       )}
     </div>
   );
