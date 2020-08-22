@@ -3,6 +3,7 @@ import RoomIcon from "../Controls/RoomIcon";
 import AvatarDeck from "../Controls/AvatarDeck";
 import VideoStatus from "../VideoStatusIcon";
 import strings from "../../helpers/localization";
+import history from "../../history";
 
 export default function ChannelCard({
   id,
@@ -10,6 +11,7 @@ export default function ChannelCard({
   icon,
   live,
   videoTitle,
+  description,
   videoSource,
   videoThumbnail = true,
   avatars,
@@ -18,6 +20,9 @@ export default function ChannelCard({
   activeFriendViewers,
   loading
 }) {
+  const handleSelect = () => {
+    history.push(`/channels/${id}/video`);
+  };
   return (
     <>
       {loading ? (
@@ -34,7 +39,11 @@ export default function ChannelCard({
           </div>
         </div>
       ) : (
-        <div className="flex flex-row w-full h-68 items-center px-0 sm:px-8 md:px-16 my-4">
+        <div
+          className="flex flex-row w-full h-68 items-center px-0 sm:px-8 md:px-16 my-4"
+          role={handleSelect ? "button" : null}
+          onClick={handleSelect}
+        >
           <div className="flex px-6 py-4 hover:shadow-md transition-all duration-50 rounded-lg cursor-pointer">
             {/* === Channel Thumbnail Section === */}
             <div className="w-68 flex-shrink-0">
@@ -93,10 +102,7 @@ export default function ChannelCard({
                   </p>
                 </div>
                 <p className="pr-2 flex-shrink-1 text-sm truncate-2-lines text-secondaryText">
-                  Channel DescriptionChannel DescriptionChannel
-                  DescriptionChannel DescriptionChannel DescriptionChannel
-                  DescriptionChannel DescriptionChannel DescriptionChannel
-                  Description
+                  {description}
                 </p>
               </div>
             </div>
