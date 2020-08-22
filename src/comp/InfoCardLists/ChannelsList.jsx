@@ -9,6 +9,7 @@ export default function ChannelsList({
   selected,
   handleSelect,
   emptyMessage,
+  isLoading,
   ...rest
 }) {
   const itemRenderer = channel => {
@@ -22,18 +23,26 @@ export default function ChannelsList({
     );
 
     return (
-      <InfoCard
-        avatar={roomIcon}
-        title={channel.name}
-        subtitle={`
-          ${channel.numOnline || 1 * (selected === channel.id)} ${
-          strings.online
-        }
-          `}
-        subtitleSize="xs"
-        backgroundColor={selected === channel.id ? "highlight" : "transparent"}
-        cardClick={() => handleSelect(channel.id)}
-      />
+      <>
+        {isLoading ? (
+          <InfoCard isLoading={isLoading} />
+        ) : (
+          <InfoCard
+            avatar={roomIcon}
+            title={channel.name}
+            subtitle={`
+              ${channel.numOnline || 1 * (selected === channel.id)} ${
+              strings.online
+            }
+              `}
+            subtitleSize="xs"
+            backgroundColor={
+              selected === channel.id ? "highlight" : "transparent"
+            }
+            cardClick={() => handleSelect(channel.id)}
+          />
+        )}
+      </>
     );
   };
 

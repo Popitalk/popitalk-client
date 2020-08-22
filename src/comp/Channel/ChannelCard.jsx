@@ -16,14 +16,14 @@ export default function ChannelCard({
   videoThumbnail,
   avatars,
   handleFollow,
-  loading
+  isLoading
 }) {
   const handleSelect = () => {
     history.push(`/channels/${id}/video`);
   };
   return (
     <>
-      {loading ? (
+      {isLoading ? (
         <div className="flex shadow-xs rounded-lg px-3 py-4 max-w-lg items-between animate-pulse mx-2">
           <div className="relative w-full pb-5/4">
             <div className="absolute w-full h-full flex flex-col justify-between">
@@ -39,12 +39,12 @@ export default function ChannelCard({
           </div>
         </div>
       ) : (
-        <div
-          className="cursor-pointer py-6 px-2"
-          role={handleSelect ? "button" : null}
-          onClick={handleSelect}
-        >
-          <div className="relative flex flex-grow justify-center pb-5/4 p-3 rounded-lg hover:shadow-xl transition-all duration-100">
+        <div className="py-6 px-2 select-none">
+          <div
+            className="relative flex flex-grow justify-center pb-5/4 p-3 rounded-lg hover:shadow-xl transition-all duration-100 cursor-pointer"
+            role={handleSelect ? "button" : null}
+            onClick={handleSelect}
+          >
             {/* ChannelCard background image */}
             {videoThumbnail ? (
               <img

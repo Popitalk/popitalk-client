@@ -7,6 +7,7 @@ export default function RoomsList({
   getControls,
   selected,
   handleSelect,
+  isLoading,
   ...rest
 }) {
   const itemRenderer = room => {
@@ -16,6 +17,7 @@ export default function RoomsList({
         controls={getControls ? getControls(room) : null}
         selected={selected}
         handleSelect={handleSelect}
+        isLoading={isLoading}
       />
     );
   };
@@ -26,7 +28,6 @@ export default function RoomsList({
       itemRenderer={itemRenderer}
       itemSize={70}
       {...rest}
-      loading
     />
   );
 }

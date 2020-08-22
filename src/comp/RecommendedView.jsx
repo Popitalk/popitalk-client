@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useCallback } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import PropTypes from "prop-types";
 import { useSelector } from "react-redux";
 import ChannelCardList from "./Channel/ChannelCardList.jsx";
@@ -17,6 +17,8 @@ function RecommendedChannels({ list, selectedPage }) {
   const channels = useSelector(state => state.channels);
   const { id: ownId, channelIds } = useSelector(state => state.self);
   const { defaultIcon } = useSelector(state => state.general);
+
+  const [isLoaded, setIsLoaded] = useState(false);
 
   let followingChannels = [];
   let discoverChannels = [];
@@ -72,34 +74,12 @@ function RecommendedChannels({ list, selectedPage }) {
   const [search, setSearch] = useState("");
   const [query, setQuery] = useState("");
   const [pageNumber, setPageNumber] = useState(1);
-  const {
-    books,
-    hasMore,
-    loading
-    // , error
-  } = useBookSearch(query, pageNumber);
+  const { books } = useBookSearch(query, pageNumber);
 
   const handleSearch = useCallback(() => {
     setQuery(search);
     setPageNumber(1);
   }, [search]);
-
-  const observer = useRef();
-  const lastBookElementRef = useCallback(
-    node => {
-      if (loading) return;
-      if (observer.current) observer.current.disconnect();
-      observer.current = new IntersectionObserver(entries => {
-        if (entries[0].isIntersecting && hasMore) {
-          setPageNumber(prevPageNumber => prevPageNumber + 1);
-          console.log("visible");
-        }
-      });
-      if (node) observer.current.observe(node);
-      console.log(node);
-    },
-    [loading, hasMore]
-  );
 
   useEffect(() => {
     const listener = event => {
@@ -167,19 +147,29 @@ function RecommendedChannels({ list, selectedPage }) {
           {/* CARDS */}
           {selectedPage === "channels" ? (
             <>
-              <ChannelCardList
-                channelList={list}
-                isCollapsed={isCollapsed}
-                tabSelected={tabSelected}
-              />
+              {isLoaded === "true" ? (
+                <ChannelCardList isLoading />
+              ) : (
+                <ChannelCardList
+                  channelList={list}
+                  isCollapsed={isCollapsed}
+                  tabSelected={tabSelected}
+                />
+              )}
             </>
           ) : (
             selectedPage === "friends" && (
-              <VideoCardList
-                videoList={list}
-                isCollapsed={isCollapsed}
-                tabSelected={tabSelected}
-              />
+              <>
+                {isLoaded === "true" ? (
+                  <VideoCardList isLoading />
+                ) : (
+                  <VideoCardList
+                    videoList={list}
+                    isCollapsed={isCollapsed}
+                    tabSelected={tabSelected}
+                  />
+                )}
+              </>
             )
           )}
         </div>

@@ -14,7 +14,7 @@ export default function InfoCard({
   addBorder,
   padding = "none",
   cardClick,
-  loading
+  isLoading
 }) {
   const titleClasses = classnames("text-sm text-primaryText truncate", {
     "font-bold": boldFont
@@ -41,7 +41,7 @@ export default function InfoCard({
 
   return (
     <>
-      {loading ? (
+      {isLoading === true ? (
         <div className="flex items-center rounded-lg px-2">
           <div className="flex animate-pulse space-x-4 w-full items-center">
             <div className="flex-shrink-0 rounded-full bg-gray-200 h-12 w-12" />

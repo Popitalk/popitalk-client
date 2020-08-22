@@ -10,13 +10,13 @@ export default function VideoCard({
   thumbnail = "somedefaultimagehere",
   handleShare,
   handleWatch,
-  loading
+  isLoading
 }) {
   // const leftInfo = `${views}`;
   const rightInfo = `${moment(publishedAt).locale(strings.location).fromNow()}`;
   return (
     <>
-      {loading ? (
+      {isLoading ? (
         <div className="animate-pulse max-w-lg">
           <div className="flex shadow-xs rounded-md pb-16/9 my-4 items-between bg-gray-300" />
           <div className="flex-1 space-y-2 w-full">

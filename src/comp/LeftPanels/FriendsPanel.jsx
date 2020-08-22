@@ -140,6 +140,7 @@ class FriendsPanel extends Component {
               selected={this.props.selectedRoom}
               handleSelect={this.props.handleSelectRoom}
               fullHeight={true}
+              isLoading={false}
             />
           </div>
           <Button

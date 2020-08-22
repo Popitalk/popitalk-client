@@ -28,7 +28,7 @@ export default function RoomIcon({
   className,
   tooltip,
   tooltipPlace,
-  loading
+  isLoading
 }) {
   const OnlineFriendStyle = {
     top:
@@ -85,8 +85,8 @@ export default function RoomIcon({
 
   return (
     <div className={container1Classes}>
-      {loading ? (
-        <div className="animate-pulse bg-gray-300 grid w-full h-full rounded-full overflow-hidden" />
+      {isLoading ? (
+        <div className="animate-pulse bg-gray-200 grid w-full h-full rounded-full overflow-hidden" />
       ) : (
         <>
           <div className={container2Classes}>

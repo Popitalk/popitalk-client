@@ -9,7 +9,8 @@ export default function ChannelHeader({
   name,
   icon,
   videoStatus,
-  type = "channel"
+  type = "channel",
+  loading
 }) {
   let navButtons = [
     { name: strings.video, endpoint: "video" },
@@ -46,19 +47,26 @@ export default function ChannelHeader({
   // );
   return (
     <div className="flex w-full h-12 bg-secondaryBackground justify-between items-center px-4 py-1 z-20 rounded-t-md">
-      <div className="flex items-center">
-        <RoomIcon
-          ids={[id]}
-          images={[icon]}
-          // watching={videoStatus === "playing" ? true : false}
-          size="sm"
-          watching={videoStatus}
-          className="transition transform ease-in-out hover:scale-110 duration-100 cursor-pointer"
-        />
-        <p className="flex flex-shrink-0 text-md font-medium text-primaryText p-2 w-full truncate overflow-hidden">
-          {name}
-        </p>
-      </div>
+      {loading ? (
+        <div className="flex flex-row items-center w-full h-full space-x-2">
+          <RoomIcon ids={[id]} images={""} size="sm" loading />
+          <div className="animate-pulse w-1/2 h-4 bg-gray-300 rounded" />
+        </div>
+      ) : (
+        <div className="flex items-center">
+          <RoomIcon
+            ids={[id]}
+            images={[icon]}
+            // watching={videoStatus === "playing" ? true : false}
+            size="sm"
+            watching={videoStatus}
+            className="transition transform ease-in-out hover:scale-110 duration-100 cursor-pointer"
+          />
+          <p className="flex flex-shrink-0 text-md font-medium text-primaryText p-2 w-full truncate overflow-hidden">
+            {name}
+          </p>
+        </div>
+      )}
       {type === "channel" && (
         <nav className="flex flex-shrink-0 truncate">
           {navButtons.map((button, idx) => {

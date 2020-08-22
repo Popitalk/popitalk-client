@@ -10,7 +10,8 @@ export default function RoomInfoCard({
   selected,
   controls,
   handleSelect,
-  addBorder
+  addBorder,
+  isLoading
 }) {
   const images = room.members.map(m => m.avatar);
   const name = room.members.map(m => " " + m.username).join();
@@ -36,6 +37,7 @@ export default function RoomInfoCard({
       watching={room.watching}
       notifications={room.notifications}
       size="lg"
+      isLoading={isLoading}
     />
   );
 
@@ -51,6 +53,7 @@ export default function RoomInfoCard({
       backgroundColor={selected === room.id ? "highlight" : "white"}
       padding="xs"
       cardClick={handleSelect ? () => handleSelect(room.id) : null}
+      isLoading={isLoading}
     />
   );
 }

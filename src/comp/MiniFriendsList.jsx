@@ -7,7 +7,8 @@ export default function MiniFriendsList({
   friends,
   handleSelectRoom,
   handleFindFriends,
-  room
+  room,
+  isLoading
 }) {
   const finalFriends = friends.slice(0, 4);
 
@@ -26,6 +27,7 @@ export default function MiniFriendsList({
             size="lg"
             tooltip={name}
             tooltipPlace="bottom"
+            isLoading={isLoading}
           />
         );
         return (
