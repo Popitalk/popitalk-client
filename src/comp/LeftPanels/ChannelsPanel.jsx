@@ -34,7 +34,7 @@ export default function ChannelsPanel({
             setFriendsSearchFocus(true);
             updateSelectedPage("friends");
           }}
-          isLoading={true}
+          isLoading={false}
         />
         <div className="flex flex-col items-start px-2 bg-primaryBackground sm:mt-4">
           <div className="flex items-center mb-4">
@@ -58,7 +58,7 @@ export default function ChannelsPanel({
             handleSelect={handleSelectChannel}
             fullHeight={true}
             emptyMessage={strings.yourChannelsPlaceholder}
-            isLoading={true}
+            isLoading={false}
           />
           <h4 className="my-4 mx-2 text-md font-semibold text-secondaryText">
             {strings.followingChannels}
@@ -69,7 +69,7 @@ export default function ChannelsPanel({
             handleSelect={handleSelectChannel}
             fullHeight={true}
             emptyMessage={strings.followingChannelsPlaceholder}
-            isLoading={true}
+            isLoading={false}
           />
         </div>
       </div>
