@@ -101,7 +101,7 @@ export default function ChannelCard({
                     {name}
                   </p>
                 </div>
-                <p className="pr-2 flex-shrink-1 text-sm truncate-2-lines text-secondaryText">
+                <p className="pr-2 flex-shrink-1 text-sm truncate-2-lines text-secondaryText w-full">
                   {description}
                 </p>
               </div>
