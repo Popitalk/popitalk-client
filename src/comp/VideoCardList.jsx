@@ -8,6 +8,12 @@ function VideoCardList({ videoList, isCollapsed, tabSelected }) {
 
   return (
     <div className="mx-6 my-8">
+      <div className="grid grid-cols-1 w-full gap-4 row-gap-12 lg:row-gap-16 md:row-gap-12 sm:row-gap-12 pb-5 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+        <VideoCard loading />
+        <VideoCard loading />
+        <VideoCard loading />
+        <VideoCard loading />
+      </div>
       <div
         className={`grid grid-cols-1 w-full gap-4 row-gap-12 lg:row-gap-16 md:row-gap-12 sm:row-gap-12 pb-5 ${
           isCollapsed
