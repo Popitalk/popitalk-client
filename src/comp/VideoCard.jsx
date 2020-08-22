@@ -18,7 +18,7 @@ export default function VideoCard({
     <>
       {loading ? (
         <div className="animate-pulse max-w-lg">
-          <div className="flex shadow-xs rounded-md p-4 h-32 my-4 items-between bg-gray-300" />
+          <div className="flex shadow-xs rounded-md pb-16/9 my-4 items-between bg-gray-300" />
           <div className="flex-1 space-y-2 w-full">
             <div className="h-4 bg-gray-300 rounded" />
             <div className="h-4 bg-gray-300 rounded w-5/6" />

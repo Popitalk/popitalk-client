@@ -20,13 +20,13 @@ export default function ChannelCard({
   return (
     <>
       {loading ? (
-        <div className="flex shadow-xs rounded-md p-4 max-w-xs h-64 w-full my-4 items-between">
-          <div className="flex-col w-full animate-pulse flex justify-between p-1">
-            <div className="h-4 bg-gray-300 rounded w-full"></div>
-            <div className="flex w-full space-x-2">
-              <div className="rounded-full bg-gray-300 h-12 w-12"></div>
-              <div className="flex-1 space-y-4 py-1">
-                <div className="space-y-2">
+        <div className="flex shadow-xs rounded-lg px-3 py-4 max-w-lg items-between animate-pulse mx-2">
+          <div className="relative w-full pb-5/4">
+            <div className="absolute w-full h-full flex flex-col justify-between">
+              <div className="h-4 bg-gray-300 rounded w-full"></div>
+              <div className="flex w-full space-x-2">
+                <div className="rounded-full bg-gray-300 h-12 w-12"></div>
+                <div className="flex-1 space-y-2 py-1">
                   <div className="h-4 bg-gray-300 rounded"></div>
                   <div className="h-4 bg-gray-300 rounded w-5/6"></div>
                 </div>
