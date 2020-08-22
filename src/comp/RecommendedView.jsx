@@ -18,7 +18,7 @@ function RecommendedChannels({ list, selectedPage }) {
   const { id: ownId, channelIds } = useSelector(state => state.self);
   const { defaultIcon } = useSelector(state => state.general);
 
-  const [isLoaded, setIsLoaded] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   let followingChannels = [];
   let discoverChannels = [];
@@ -147,7 +147,7 @@ function RecommendedChannels({ list, selectedPage }) {
           {/* CARDS */}
           {selectedPage === "channels" ? (
             <>
-              {isLoaded === "true" ? (
+              {isLoading === true ? (
                 <ChannelCardList isLoading />
               ) : (
                 <ChannelCardList
@@ -160,7 +160,7 @@ function RecommendedChannels({ list, selectedPage }) {
           ) : (
             selectedPage === "friends" && (
               <>
-                {isLoaded === "true" ? (
+                {isLoading === true ? (
                   <VideoCardList isLoading />
                 ) : (
                   <VideoCardList

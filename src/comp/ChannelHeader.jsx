@@ -10,7 +10,7 @@ export default function ChannelHeader({
   icon,
   videoStatus,
   type = "channel",
-  loading
+  isLoading
 }) {
   let navButtons = [
     { name: strings.video, endpoint: "video" },
@@ -47,7 +47,7 @@ export default function ChannelHeader({
   // );
   return (
     <div className="flex w-full h-12 bg-secondaryBackground justify-between items-center px-4 py-1 z-20 rounded-t-md">
-      {loading ? (
+      {isLoading ? (
         <div className="flex flex-row items-center w-full h-full space-x-2">
           <RoomIcon ids={[id]} images={""} size="sm" loading />
           <div className="animate-pulse w-1/2 h-4 bg-gray-300 rounded" />
