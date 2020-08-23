@@ -11,9 +11,9 @@ export default function ChannelCard({
   name,
   icon,
   live,
+  queue,
   videoTitle,
   videoSource,
-  videoThumbnail,
   avatars,
   handleFollow,
   isLoading
@@ -21,6 +21,11 @@ export default function ChannelCard({
   const handleSelect = () => {
     history.push(`/channels/${id}/video`);
   };
+  let videoThumbnail = "";
+  console.log({ queue });
+  if (queue.length > 0) {
+    videoThumbnail = queue[0].thumbnail;
+  }
   return (
     <>
       {isLoading ? (
@@ -46,7 +51,7 @@ export default function ChannelCard({
             onClick={handleSelect}
           >
             {/* ChannelCard background image */}
-            {videoThumbnail ? (
+            {videoThumbnail !== "" ? (
               <img
                 src={videoThumbnail}
                 alt={"channel"}
