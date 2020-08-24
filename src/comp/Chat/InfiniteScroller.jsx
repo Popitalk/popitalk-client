@@ -83,7 +83,9 @@ function InfiniteScroller(
     // if initialScroll is unset, it default to "bottom" and the messages div is scrolled to the latest message.
     function handleScroll() {
       if (initialScroll === "bottom") {
-        containerRef.current.lastChild.scrollIntoView();
+        if (containerRef.current.lastChild) {
+          containerRef.current.lastChild.scrollIntoView();
+        }
       } else if (initialScroll === "top") {
         // containerRef.current.scrollTo(0, 0);
       } else {
