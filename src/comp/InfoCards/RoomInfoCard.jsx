@@ -3,6 +3,7 @@ import RoomIcon from "../Controls/RoomIcon";
 import InfoCard from "../InfoCards/InfoCard";
 import moment from "moment";
 import "moment/locale/ko";
+import "moment/locale/ru";
 import strings from "../../helpers/localization";
 
 export default function RoomInfoCard({

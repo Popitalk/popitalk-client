@@ -333,6 +333,172 @@ let strings = new LocalizedStrings({
     changePassword: "비밀번호 변경",
     // InfoCardList
     nothingToShow: "항목이 비었습니다."
+  },
+
+  //  Russian  //
+  ru: {
+    // Moment.JS
+    location: "ru",
+    // WelcomePage & SiteHeaderWelcome
+    loginPageTitle: "Popitalk - Войдите или зарегистрируйтесь",
+    loginPageDescription:
+      "Создайте учетную запись или войдите в Popitalk.  БЕСПЛАТНО. Общайтесь с друзьями, семьей и начните смотреть вместе!",
+    title: "Попиталк",
+    description:
+      "Смотрите вместе! Общайтесь с друзьями, семьей и начните смотреть вместе! Мы уверены,что текстовые сообщения станут еще веселее и приятнее",
+    createChannelTitle: "Создать канал- popitalk",
+    createChannelDescription:
+      "Создай свой канал на Popitalk.  Добавляй видео в начало и наслаждайся вместе с подписчиками!  Мы делаем текстовые сообщения более увлекательными и приятными.",
+    loginUsername: "Введите логин или почту",
+    loginPassword: "Пароль",
+    // CreateNewAccountForm & EditInformationForm & EditBirthdayForm
+    createNewAccountTitle: "Создать новый аккаунт",
+    createNewAccountSubtitle: "Испробуй сейчас. Бесплатно",
+    createNewAccountFirstName: "Имя",
+    createNewAccountLastName: "Фамилия",
+    createNewAccountEmail: "Адрес электронной почты",
+    createNewAccountUsername: "Имя пользователя",
+    createNewAccountPassword: "Пароль",
+    createNewAccountBirthday: "Дата рождения",
+    createNewAccountTerms: "Нажимая Зарегистрироваться, вы соглашаетесь с.",
+    createNewAccountTerms1: "Условия",
+    // functions.js input errors
+    inputTextTooShort: "Слишком короткий *",
+    inputTextTooLong: "Слишком длинный *",
+    inputTextRequired: "Обязательно *",
+    ageLimitText: "Popitalk могут использовать лица старше 13 лет",
+    invalidEmail: "Неверный адрес электронной почты.",
+    passwordTooShort: "Необходимо минимум 6 символов.",
+    passwordTooLong: "Максимум 32 символа.",
+    lowerCaseRequired: "Требуется хотя бы одна срочная буква.",
+    upperCaseRequired: "Требуется хотя бы одна заглавная буква.",
+    numberRequired: "Пароль должен содержать хотя бы одну цифру",
+    newPasswordRequirement: "Он должен отличаться от вашего старого пароля.",
+    // Footer
+    company: "Команда",
+    aboutPopitalk: "О Popitalk",
+    blog: "Блог",
+    contact: "Контакт",
+    legal: "Легально",
+    termsOfUse: "Условия использования",
+    privacyPolicy: "Политика конфиденциальности",
+    copyright: "Авторские права",
+    community: "Сообщества",
+    discord: "Discord",
+    twitter: "Twitter",
+    youtube: "Youtube",
+    // Buttons
+    loginButton: "Войти",
+    createNewAccountButton: "Зарегистрироваться",
+    createChannelButton: "Создать",
+    newRoomButton: "Создать новый чат",
+    requestVideoButton: "Отправить заявку админу",
+    createButton: "Создать",
+    resetButton: "Сброс",
+    followButton: "Подписаться",
+    followingButton: "Подписчики",
+    searchFriendsClose: "Закрыть",
+    // clearButton: "지우기",
+    addFriendsButton: "Добавить друга",
+    // requestSentButton: "친추 보냄",
+    // cancelButton: "취소",
+    // Months
+    jan: "Январь",
+    feb: "Февраль",
+    mar: "Март",
+    apr: "Апрель",
+    may: "Май",
+    jun: "Июнь",
+    jul: "Июль",
+    aug: "Август",
+    sep: "Сентябрь",
+    oct: "Октябрь",
+    nov: "Ноябрь",
+    dec: "Декабрь",
+    // PanelHeader & MiniFriendsList
+    channels: "Каналы",
+    friends: "Чат",
+    // ChannelsPanel & FriendsPanel
+    yourChannels: "Твои каналы",
+    yourChannelsPlaceholder: "Создать свой собственный канал",
+    followingChannels: "Следующий",
+    followingChannelsPlaceholder: "Находи и подписывается!",
+    searchFriendsInput: "Поиск по имени пользователя",
+    searchResult: "Результаты поиска",
+    // RoomIcon
+    myRoom: "Мой чат",
+    // ChannelsList
+    online: "В сети",
+    // RecommendedView
+    channelSearchInput: "Поиск канала",
+    videoSearchInput: "Поиск видео",
+    following: "# Подписчики",
+    discover: "# Найти",
+    trending: "# В тренде",
+    // ChannelCard
+    nothingPlaying: "В данный момент ничего не играет",
+    // VideoCard
+    watch: "Смотреть в чате",
+    // ChannelHeader
+    video: "Видео",
+    posts: "Посты",
+    upNext: "Up Next",
+    settings: "Настройки",
+    // VideoPlayer & VideoStatus
+    paused: "Приостановлено",
+    startingIn: "Начиная с",
+    play: "Воспроизвести",
+    pause: "Пауза",
+    mute: "Убрать звук",
+    unmute: "Включить звук",
+    fullScreen: "Полный экран",
+    playing: "Играет",
+    // ChatHeader & ChatActions
+    roomMembers: "Участники чата",
+    followers: "Подписчики",
+    chatInput: "Введите текст...",
+    // SortableList
+    findMoreVideos: "Поиск видео",
+    manageUpNext: "Создай видео дольше",
+    upNextSubtitle:
+      "Добавляйте, удаляйте или меняйте порядок видео.  Вы можете добавить до 30 видео.",
+    searchAddVideos: "Находите и добавляйте больше видео ниже",
+    //ChannelDescription & NewChannelPost & ChannelPost & ChannelChat
+    admins: "Админы",
+    postInput: "Добавить пост...",
+    like: "Нравится",
+    likes: "Понравившиеся",
+    comment: "Комментировать",
+    comments: "Комментарии",
+    channelWelcomePost:
+      "Это начало. Создай свой канал и наслаждайся просмотром вместе с друзьями.",
+    //CreateChannel > ChannelForm, ChannelFormSubmit
+    selectChannelIcon: "Выбрать значок канала",
+    changeChannelIcon: "Изменить значок канала",
+    createChannelName: "Название канала *",
+    channelNameInput: "Назови свой канал",
+    createChannelDesc: "Создать свой канал *",
+    channelDescInput: "Описание канала",
+    channelCatagory: "Категории канала (необязательно)",
+    readyToCreate: "Готов создать свой канал?",
+    saveChannelEdit: "Сохранить изменения",
+    // ChannelSettingsPanel
+    channelSettings: "Настройки канала",
+    manageFollowers: "Управление подписчиками",
+    manageAdmins: "Управление админами",
+    manageBannedUsers: "Управление над заблокированные пользователями",
+    deleteChannel: "Удалить канал"
+    // // ContainerHeader
+    // friendRequestHeader: "친구 추가",
+    // notificationHeader: "알림",
+    // settingsHeader: "설정",
+    // accountSettings: "계정 설정",
+    // blockedUsers: "차단 목록",
+    // logOut: "로그아웃",
+    // editUserInformation: "내 정보 변경",
+    // changePassword: "비밀번호 변경",
+    // // InfoCardList
+    // nothingToShow: "항목이 비었습니다."
   }
 });
 
