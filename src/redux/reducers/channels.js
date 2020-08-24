@@ -66,8 +66,8 @@ const R_initChannels = (state, { payload }) => {
 
     Object.entries(payload.channels).forEach(([channelId, channel]) => {
       newChannels[channelId] = {
-        ...channel,
         queue: [],
+        ...channel,
         chatSettings: {
           capacity: 50,
           initialScroll: null
