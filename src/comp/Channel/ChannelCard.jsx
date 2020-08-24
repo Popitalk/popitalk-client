@@ -12,7 +12,6 @@ export default function ChannelCard({
   icon,
   live,
   queue,
-  videoTitle,
   videoSource,
   avatars,
   handleFollow,
@@ -22,9 +21,11 @@ export default function ChannelCard({
     history.push(`/channels/${id}/video`);
   };
   let videoThumbnail = "";
+  let videoTitle = "Nothing Playing at the moment";
   console.log({ queue });
   if (queue.length > 0) {
     videoThumbnail = queue[0].thumbnail;
+    videoTitle = queue[0].title;
   }
   return (
     <>
