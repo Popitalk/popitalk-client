@@ -2,6 +2,7 @@ import { createReducer } from "@reduxjs/toolkit";
 import arrayMove from "array-move";
 import {
   validateSession,
+  refreshSession,
   login,
   logout,
   deleteAccount,
@@ -87,6 +88,17 @@ const R_initChannels = (state, { payload }) => {
     return newChannels;
   } else {
     return {};
+  }
+};
+
+const R_refreshChannels = (state, { payload }) => {
+  if (payload.channels) {
+    Object.entries(payload.channels).forEach(([channelId, channel]) => {
+      state[channelId] = {
+        ...state[channelId],
+        ...channel
+      };
+    });
   }
 };
 
@@ -316,6 +328,7 @@ const R_swapVideos = (state, { payload }) => {
 
 export default createReducer(initialState, {
   [validateSession.fulfilled]: R_initChannels,
+  [refreshSession.fulfilled]: R_refreshChannels,
   [login.fulfilled]: R_initChannels,
   [getChannel.fulfilled]: R_addChannel,
   [addChannel.fulfilled]: R_addChannel,

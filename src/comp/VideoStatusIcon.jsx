@@ -12,7 +12,7 @@ export default function VideoStatus({
   if (type === "button") {
     return (
       <>
-        {status === "playing" && (
+        {status === "Playing" && (
           <button className="w-8 h-8 p-2 rounded-full flex justify-center items-center flex-shrink-0 bg-gradient-tr-primary">
             <svg
               aria-hidden="true"
@@ -31,7 +31,7 @@ export default function VideoStatus({
             </svg>
           </button>
         )}
-        {status === "paused" && (
+        {status === "Paused" && (
           <button className="w-8 h-8 p-2 rounded-full flex justify-center items-center flex-shrink-0 bg-primaryBackground focus:outline-none">
             <svg
               aria-hidden="true"
