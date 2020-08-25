@@ -7,7 +7,8 @@ import {
   toggleLeftPanel,
   searchUsers,
   openProfileModal,
-  openInviteModal
+  openInviteModal,
+  setLastMessageSeen
 } from "../redux/actions";
 import history from "../history";
 import { mapIdsToUsers, setRelationshipHandlers } from "../helpers/functions";
@@ -124,6 +125,7 @@ export default function LeftPanelContainer() {
     history.push(`/channels/${id}/video`);
   };
   const handleSelectRoom = id => {
+    dispatch(setLastMessageSeen({ channelId: id }));
     if (selectedPage !== "friends") setSelectedPage("friends");
     history.push(`/rooms/${id}/video`);
   };

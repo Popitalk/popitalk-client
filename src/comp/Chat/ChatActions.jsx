@@ -1,7 +1,11 @@
 import React, { useRef, useState, useEffect } from "react";
 import { Picker } from "emoji-mart";
 import { useSelector, useDispatch } from "react-redux";
-import { setChatDraft, addMessage } from "../../redux/actions";
+import {
+  setChatDraft,
+  addMessage,
+  setLastMessageSeen
+} from "../../redux/actions";
 import { withRouter } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 import GifSelection from "./GifSelection";
@@ -128,6 +132,8 @@ function ChatActions(props) {
           maxLength="240"
           ref={textareaRef}
           onKeyDown={handleChange}
+          // On text area focus, sets message as seen
+          onFocus={() => dispatch(setLastMessageSeen({ channelId }))}
         />
         {/* GIF BUTTON */}
         <GifSelection updateGifsOpen={props.updateGifsOpen} />

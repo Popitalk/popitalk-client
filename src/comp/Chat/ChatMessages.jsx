@@ -159,7 +159,6 @@ export default function ChatMessages({
     messages.forEach(message => {
       if (message.upload === "gif") counter++;
     });
-    console.log(counter);
     if (counter === 0) {
       setGifsLoaded(true);
     }

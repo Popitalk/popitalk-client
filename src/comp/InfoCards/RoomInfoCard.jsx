@@ -14,7 +14,9 @@ export default function RoomInfoCard({
   addBorder,
   isLoading
 }) {
+  // Selects avatars of room members
   const images = room.members.map(m => m.avatar);
+  // Gives room a name by combining member usernames
   const name = room.members.map(m => " " + m.username).join();
   let subtitleAndDate = "";
   try {
@@ -49,7 +51,7 @@ export default function RoomInfoCard({
       title={name}
       subtitle={subtitleAndDate}
       subtitleColor={room.notifications ? "black" : "gray"}
-      boldFont={room.notifications}
+      boldFont={room.lastMessageIsNew}
       addBorder={addBorder}
       backgroundColor={selected === room.id ? "highlight" : "white"}
       padding="xs"

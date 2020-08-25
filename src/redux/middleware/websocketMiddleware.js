@@ -100,6 +100,14 @@ const websocketMiddleware = () => store => next => action => {
     };
     // When a message is received from the server
     socket.onmessage = ({ data: message }) => {
+      // console logs for trying to find messages that don't arrive
+      // console.log(JSON.parse(message));
+      // if (JSON.parse(message).type === "ADD_MESSAGE")
+      //   console.log({
+      //     type: JSON.parse(message).type,
+      //     content: JSON.parse(message)?.payload?.message?.content,
+      //     author: JSON.parse(message)?.payload?.message?.author?.username
+      //   });
       // It is parsed to JSON
       const parsedMessage = JSON.parse(message);
       const messageType = parsedMessage.type;
