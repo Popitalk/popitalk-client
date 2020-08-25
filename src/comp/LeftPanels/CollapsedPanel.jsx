@@ -17,7 +17,8 @@ function CollapsedPanel({
   selectedPage,
   isCollapsed,
   handleFindFriends,
-  setFriendsSearchFocus
+  setFriendsSearchFocus,
+  numberOfNotifications
 }) {
   // States to control whether the channels and friends lists are expanded in the collapsed panel.
   const [isFollowingExpanded, setFollowingExpanded] = useState(false);

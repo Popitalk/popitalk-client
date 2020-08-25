@@ -17,7 +17,8 @@ export default function ChannelsPanel({
   handleCreateChannel,
   updateSelectedPage,
   selectedPage,
-  setFriendsSearchFocus
+  setFriendsSearchFocus,
+  numberOfNotifications
 }) {
   return (
     <div className="flex flex-col w-84 h-full bg-primaryBackground select-none">
@@ -25,6 +26,7 @@ export default function ChannelsPanel({
         handleCollapse={handleCollapse}
         updateSelectedPage={updateSelectedPage}
         selectedPage={selectedPage}
+        numberOfNotifications={numberOfNotifications}
       />
       <div className="flex-col h-full overflow-y-scroll">
         <MiniFriendsList

@@ -99,6 +99,7 @@ class FriendsPanel extends Component {
           handleCollapse={this.props.handleCollapse}
           updateSelectedPage={this.props.updateSelectedPage}
           selectedPage={this.props.selectedPage}
+          numberOfNotifications={this.props.numberOfNotifications}
         />
         <div className="flex-col h-full overflow-y-scroll">
           <Input

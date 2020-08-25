@@ -12,7 +12,7 @@ import {
 } from "../redux/actions";
 import history from "../history";
 import { mapIdsToUsers, setRelationshipHandlers } from "../helpers/functions";
-import { orderBy } from "lodash";
+import { forEach, orderBy } from "lodash";
 
 export default function LeftPanelContainer() {
   let match = useRouteMatch("/channels/:channelId");
@@ -29,6 +29,16 @@ export default function LeftPanelContainer() {
   const [friendsSearchFocus, setFriendsSearchFocus] = useState(false);
 
   const channels = useSelector(state => state.channels);
+  const numberOfNotifications = useSelector(state => {
+    let counter = 0;
+    const channels = Object.keys(state.channels).map(key => {
+      return state.channels[key];
+    });
+    channels.forEach(channel => {
+      if (channel.lastMessageIsNew) counter++;
+    });
+    return counter;
+  });
   const users = useSelector(state => state.users);
   const relationships = useSelector(state => state.relationships);
   const foundUsers = useSelector(state => state.userSearch);
@@ -154,6 +164,7 @@ export default function LeftPanelContainer() {
           handleCollapse={() => dispatch(toggleLeftPanel())}
           handleCreateRoom={() => handleCreateRoom(selectedChannel)}
           setFriendsSearchFocus={setFriendsSearchFocus}
+          numberOfNotifications={numberOfNotifications}
         />
       </Route>
       <Route exact path="/friends">
@@ -177,6 +188,7 @@ export default function LeftPanelContainer() {
           handleCreateRoom={() => handleCreateRoom(selectedChannel)}
           friendsSearchFocus={friendsSearchFocus}
           setFriendsSearchFocus={setFriendsSearchFocus}
+          numberOfNotifications={numberOfNotifications}
         />
       </Route>
       <Route>
@@ -199,6 +211,7 @@ export default function LeftPanelContainer() {
           handleCollapse={() => dispatch(toggleLeftPanel())}
           handleCreateRoom={() => handleCreateRoom(selectedChannel)}
           setFriendsSearchFocus={setFriendsSearchFocus}
+          numberOfNotifications={numberOfNotifications}
         />
       </Route>
     </Switch>

@@ -22,7 +22,8 @@ export default function LeftPanel({
   updateSelectedPage,
   handleCreateRoom,
   friendsSearchFocus,
-  setFriendsSearchFocus
+  setFriendsSearchFocus,
+  numberOfNotifications
 }) {
   const channels = [...yourChannels, ...followingChannels];
   const size = useWindowSize();
@@ -59,6 +60,7 @@ export default function LeftPanel({
             updateSelectedPage={updateSelectedPage}
             handleCollapse={handleCollapse}
             setFriendsSearchFocus={setFriendsSearchFocus}
+            numberOfNotifications={numberOfNotifications}
           />
         ) : (
           <FriendsPanel
@@ -76,6 +78,7 @@ export default function LeftPanel({
             handleCreateRoom={handleCreateRoom}
             friendsSearchFocus={friendsSearchFocus}
             setFriendsSearchFocus={setFriendsSearchFocus}
+            numberOfNotifications={numberOfNotifications}
           />
         )}
       </div>
@@ -95,6 +98,7 @@ export default function LeftPanel({
           selectedPage={selectedPage}
           updateSelectedPage={updateSelectedPage}
           setFriendsSearchFocus={setFriendsSearchFocus}
+          numberOfNotifications={numberOfNotifications}
         />
       </div>
     </Fragment>

@@ -5,7 +5,8 @@ import strings from "../../helpers/localization";
 export default function PanelHeader({
   handleCollapse,
   updateSelectedPage,
-  selectedPage
+  selectedPage,
+  numberOfNotifications
 }) {
   return (
     <div className="flex bg-primaryBackground items-center w-full select-none space-x-4">
@@ -37,6 +38,7 @@ export default function PanelHeader({
       >
         {strings.friends}
       </nav>
+      <span>{numberOfNotifications === 0 ? "" : numberOfNotifications}</span>
     </div>
   );
 }
