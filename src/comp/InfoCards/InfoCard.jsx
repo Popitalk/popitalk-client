@@ -14,7 +14,8 @@ export default function InfoCard({
   addBorder,
   padding = "none",
   cardClick,
-  isLoading
+  isLoading,
+  badge = false
 }) {
   const titleClasses = classnames("text-sm text-primaryText truncate", {
     "font-bold": boldFont
@@ -28,7 +29,7 @@ export default function InfoCard({
     "text-xs": subtitleSize === "xs"
   });
 
-  const boxClasses = classnames("flex items-center rounded-lg px-2", {
+  const boxClasses = classnames("relative flex items-center rounded-lg px-2", {
     "bg-primaryBackground": backgroundColor === "white",
     "bg-secondaryBackground": backgroundColor === "gray",
     "bg-highlightBackground": backgroundColor === "highlight",
@@ -63,6 +64,11 @@ export default function InfoCard({
               <>
                 <p className={titleClasses}>{title}</p>
                 <p className={subtitleClasses}>{subtitle}</p>
+                {badge === true && (
+                  <div className="absolute flex items-center right-0 top-0 h-full w-3 m-3">
+                    <div className="bg-gradient-r-button w-3 h-3 rounded-full mb-2" />
+                  </div>
+                )}
               </>
             ) : (
               <p className={titleClasses}>{title}</p>

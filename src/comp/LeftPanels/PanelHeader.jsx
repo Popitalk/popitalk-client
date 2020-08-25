@@ -19,26 +19,30 @@ export default function PanelHeader({
         analyticsString="Collapse Button: PanelHeader"
       />
       <nav
-        className={`text-2xl px-2 p-1 focus:outline-none font-semibold hover:bg-secondaryBackground rounded-xl transition transform ease-in-out hover:scale-105 duration-100 ${
+        className={`text-xl px-2 p-1 focus:outline-none hover:bg-secondaryBackground rounded-xl transition transform ease-in-out hover:scale-105 duration-100 ${
           selectedPage === "channels"
-            ? "rainbow-text cursor-default"
-            : "text-secondaryText cursor-pointer"
+            ? "text-primaryText cursor-default font-semibold"
+            : "text-secondaryText cursor-pointer font-regular"
         } `}
         onClick={() => updateSelectedPage("channels")}
       >
         {strings.channels}
       </nav>
       <nav
-        className={`text-2xl px-2 p-1 focus:outline-none font-semibold hover:bg-secondaryBackground rounded-xl transition transform ease-in-out hover:scale-105 duration-100 ${
+        className={`flex text-xl px-2 p-1 focus:outline-none hover:bg-secondaryBackground rounded-xl transition transform ease-in-out hover:scale-105 duration-100 ${
           selectedPage === "friends"
-            ? "rainbow-text cursor-default"
-            : "text-secondaryText cursor-pointer"
+            ? "text-primaryText cursor-default font-semibold"
+            : "text-secondaryText cursor-pointer font-regular"
         } `}
         onClick={() => updateSelectedPage("friends")}
       >
         {strings.friends}
+        {numberOfNotifications !== 0 && (
+          <span className="flex items-center justify-center bg-gradient-r-cancel rounded-full w-4 h-4 text-xs text-tertiaryText font-bold ml-2">
+            {numberOfNotifications}
+          </span>
+        )}
       </nav>
-      <span>{numberOfNotifications === 0 ? "" : numberOfNotifications}</span>
     </div>
   );
 }

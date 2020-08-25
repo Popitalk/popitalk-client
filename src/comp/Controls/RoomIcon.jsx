@@ -72,7 +72,7 @@ export default function RoomIcon({
     "border-none": watching
   });
   const onlineFriendClasses = classnames({
-    "h-4 w-4 rounded-full bg-onlineColor absolute border-2 border-imageBorder2": true,
+    "h-3 w-3 rounded-full bg-onlineColor absolute": true,
     "border-imageBorder1": !watching,
     "border-primaryBackground": watching
   });

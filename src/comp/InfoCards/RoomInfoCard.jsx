@@ -50,8 +50,9 @@ export default function RoomInfoCard({
       controls={controls}
       title={name}
       subtitle={subtitleAndDate}
-      subtitleColor={room.notifications ? "black" : "gray"}
+      subtitleColor={room.lastMessageIsNew ? "black" : "gray"}
       boldFont={room.lastMessageIsNew}
+      badge={room.lastMessageIsNew}
       addBorder={addBorder}
       backgroundColor={selected === room.id ? "highlight" : "white"}
       padding="xs"
