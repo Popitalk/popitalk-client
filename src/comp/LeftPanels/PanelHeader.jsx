@@ -21,7 +21,7 @@ export default function PanelHeader({
       <nav
         className={`text-xl px-2 p-1 focus:outline-none hover:bg-secondaryBackground rounded-xl transition transform ease-in-out hover:scale-105 duration-100 ${
           selectedPage === "channels"
-            ? "text-primaryText cursor-default font-semibold"
+            ? "rainbow-text cursor-default font-semibold"
             : "text-secondaryText cursor-pointer font-regular"
         } `}
         onClick={() => updateSelectedPage("channels")}
@@ -31,7 +31,7 @@ export default function PanelHeader({
       <nav
         className={`flex text-xl px-2 p-1 focus:outline-none hover:bg-secondaryBackground rounded-xl transition transform ease-in-out hover:scale-105 duration-100 ${
           selectedPage === "friends"
-            ? "text-primaryText cursor-default font-semibold"
+            ? "rainbow-text cursor-default font-semibold"
             : "text-secondaryText cursor-pointer font-regular"
         } `}
         onClick={() => updateSelectedPage("friends")}
