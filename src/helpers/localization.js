@@ -93,7 +93,7 @@ let strings = new LocalizedStrings({
     searchFriendsInput: "Search Username",
     searchResult: "Results for",
     // RoomIcon
-    myRoom: "My room",
+    myRoom: "You",
     // ChannelsList
     online: "online",
     // RecommendedView

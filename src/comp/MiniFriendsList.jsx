@@ -23,7 +23,7 @@ export default function MiniFriendsList({
             self={room.type === "self"}
             online={room.online}
             watching={room.watching}
-            notifications={room.notifications}
+            notifications={room.lastMessageIsNew}
             size="lg"
             tooltip={name}
             tooltipPlace="bottom"

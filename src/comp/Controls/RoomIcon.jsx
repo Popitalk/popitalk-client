@@ -31,7 +31,7 @@ export default function RoomIcon({
   isLoading
 }) {
   const OnlineFriendStyle = {
-    top:
+    bottom:
       size === "sm"
         ? "-2px"
         : size === "md"
@@ -39,7 +39,7 @@ export default function RoomIcon({
         : size === "lg"
         ? "2px"
         : "4px",
-    right:
+    left:
       size === "sm"
         ? "-2px"
         : size === "md"
@@ -72,15 +72,15 @@ export default function RoomIcon({
     "border-none": watching
   });
   const onlineFriendClasses = classnames({
-    "h-3 w-3 rounded-full bg-onlineColor absolute": true,
+    "h-4 w-4 rounded-full border border-imageBorder2 bg-onlineColor absolute": true,
     "border-imageBorder1": !watching,
     "border-primaryBackground": watching
   });
   const notificationsClasses = classnames({
-    "font-regular text-primaryButtonText text-xs bg-notificationsColor h-5 w-5 rounded-lg absolute left-0 top-0 flex items-center justify-center select-none": true,
-    "px-2": notifications < 10,
-    "px-3": notifications >= 10 && notifications <= 99,
-    "px-4": notifications >= 100
+    "font-regular text-primaryButtonText text-xs bg-gradient-r-cancel h-2 w-2 animate-bounce rounded-lg absolute right-0 top-0 flex items-center justify-center select-none": true
+    // "px-2": notifications < 10,
+    // "px-3": notifications >= 10 && notifications <= 99,
+    // "px-4": notifications >= 100
   });
 
   return (
@@ -113,8 +113,8 @@ export default function RoomIcon({
           )}
           {self && (
             <p
-              className="font-semibold text-xs absolute bottom-0 truncate
-            bg-gradient-br-button text-primaryButtonText rounded-lg shadow-xs flex items-center justify-center py-2px px-1 select-none"
+              className="font-bold text-xs absolute bottom-0 left-0 truncate
+            text-highlightText bg-primaryBackground rounded-xl p-1 flex items-center justify-center select-none"
             >
               {strings.myRoom}
             </p>
