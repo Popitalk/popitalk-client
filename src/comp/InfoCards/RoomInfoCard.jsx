@@ -21,15 +21,19 @@ export default function RoomInfoCard({
   let subtitleAndDate = "";
   try {
     JSON.parse(room.lastMessageContent);
-    subtitleAndDate = room.lastMessageContent
-      ? moment(room.lastMessageAt).locale(strings.location).fromNow() + " · GIF"
-      : "";
+    subtitleAndDate =
+      room.lastMessageContent && room.lastMessageContent.includes("/200.gif")
+        ? moment(room.lastMessageAt).locale(strings.location).fromNow() +
+          " · GIF"
+        : moment(room.lastMessageAt).locale(strings.location).fromNow() +
+          " . " +
+          room.lastMessageContent;
   } catch {
-    subtitleAndDate = room.lastMessageContent
-      ? moment(room.lastMessageAt).locale(strings.location).fromNow() +
+    subtitleAndDate =
+      room.lastMessageContent &&
+      moment(room.lastMessageAt).locale(strings.location).fromNow() +
         " · " +
-        room.lastMessageContent
-      : "";
+        room.lastMessageContent;
   }
 
   const roomIcon = (
