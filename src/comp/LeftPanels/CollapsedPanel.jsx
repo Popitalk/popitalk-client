@@ -108,7 +108,7 @@ function CollapsedPanel({
         <div className="bg-primaryBackground rounded-xl mb-4">
           <Button
             actionButton
-            className="flex flex-col h-12 w-20 mb-1 bg-secondaryBackground shadow-none"
+            className="flex h-12 w-20 mb-1 bg-secondaryBackground shadow-none"
             shape="none"
             background="bgColor"
             selectedColor={isDiscoverExpanded ? true : false}
@@ -122,7 +122,14 @@ function CollapsedPanel({
             })}
             size="sm"
           >
-            {strings.friends}
+            <div className="flex">
+              {strings.friends}
+              {numberOfNotifications !== 0 && (
+                <span className="flex bg-gradient-r-cancel rounded-full w-2 h-2 animate-bounce ml-1">
+                  {/* {numberOfNotifications} */}
+                </span>
+              )}
+            </div>
           </Button>
           <section {...getCollapsePropsDiscover()}>
             <div className="flex flex-col w-full items-center">
@@ -135,7 +142,7 @@ function CollapsedPanel({
                     self={room.type === "self"}
                     online={room.online}
                     watching={room.watching}
-                    notifications={room.notifications}
+                    notifications={room.lastMessageIsNew}
                     size="lg"
                     tooltip={name}
                     tooltipPlace="right"
