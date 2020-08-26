@@ -124,7 +124,6 @@ const R_updateChannel = (state, { payload }) => {
 };
 
 const R_setLastMessageSeen = (state, { payload }) => {
-  console.log(payload);
   state[payload.channelId].lastMessageIsNew = false;
 };
 

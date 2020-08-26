@@ -12,7 +12,7 @@ import {
 } from "../redux/actions";
 import history from "../history";
 import { mapIdsToUsers, setRelationshipHandlers } from "../helpers/functions";
-import { forEach, orderBy } from "lodash";
+import { orderBy } from "lodash";
 
 export default function LeftPanelContainer() {
   let match = useRouteMatch("/channels/:channelId");

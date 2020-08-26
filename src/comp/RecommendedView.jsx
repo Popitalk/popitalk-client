@@ -17,7 +17,6 @@ function RecommendedChannels({ list, selectedPage }) {
   const channels = useSelector(state => state.channels);
   const { id: ownId, channelIds } = useSelector(state => state.self);
   const { defaultIcon } = useSelector(state => state.general);
-  console.log({ channels });
 
   const [isLoading, setIsLoading] = useState(false);
 

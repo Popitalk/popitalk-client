@@ -70,11 +70,15 @@ const websocketMiddleware = () => store => next => action => {
     socket.onmessage = ({ data: message }) => {
       console.log("MESSAGE", message);
     };
+    // Logs an error if websocket is closed unexpectedly.
+    socket.onerror = event => {
+      console.log("event from onerror", event);
+    };
 
     const heartbeat = () => {
       clearTimeout(timeout);
       // Enqueues data to be transmitted.
-      socket.send(JSON.stringify({ type: "WS_PONG" }));
+      socket.send(JSON.stringify({ type: WS_EVENTS.PONG }));
       // Refreshes timeout
       timeout = setTimeout(() => {
         socket.close();
@@ -85,7 +89,12 @@ const websocketMiddleware = () => store => next => action => {
       clearInterval(interval);
     };
     // An event listener to be called when the connection is closed.
-    socket.onclose = () => {
+    socket.onclose = event => {
+      console.log("Socket was closed");
+      console.log("Event code: ", event.code);
+      // Very likely there will be no reason provided.
+      console.log("Reason: ", event.reason);
+      console.log("Event from onclose: ", event);
       // clears timeout for disconnecting, because the socket is closed.
       clearTimeout(timeout);
       // sets state as disconnected.

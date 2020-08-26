@@ -22,7 +22,7 @@ export default function ChannelCard({
   };
   let videoThumbnail = "";
   let videoTitle = "Nothing Playing at the moment";
-  console.log({ queue });
+
   if (queue.length > 0) {
     videoThumbnail = queue[0].thumbnail;
     videoTitle = queue[0].title;
