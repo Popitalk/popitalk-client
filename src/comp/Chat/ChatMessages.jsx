@@ -20,16 +20,20 @@ import InfiniteScroller from "./InfiniteScroller";
 import ChatMessage from "./ChatMessage";
 import Spinner from "../Spinner";
 
-const OldMessagesAlert = ({ onClick }) => (
-  <div
-    className="ChatMessages--oldMessagesAlert"
-    role="button"
-    onClick={onClick}
-  >
-    <p> This is the start of the chat!</p>
-    <p>Jump To Present ▼</p>
-  </div>
-);
+// const OldMessagesAlert = ({ onClick }) => (
+//   <div
+//     className="ChatMessages--oldMessagesAlert"
+//     role="button"
+//     onClick={onClick}
+//   >
+//     <p> This is the start of the chat!</p>
+//     <p>Jump To Present ▼</p>
+//   </div>
+// );
+
+// const handleJumpToPresent = () => {
+//   dispatch(getLatestMessages({ channelId }));
+// };
 
 const selectFormattedMessages = createSelector(
   state => state.messages,
@@ -181,9 +185,6 @@ export default function ChatMessages({
       })
     );
   };
-  const handleJumpToPresent = () => {
-    dispatch(getLatestMessages({ channelId }));
-  };
 
   return (
     // <div className="ChatMessages--container" ref={scrollRef}>
@@ -226,7 +227,7 @@ export default function ChatMessages({
           </div>
         )} */}
       </InfiniteScroller>
-      {hasMoreBottom && <OldMessagesAlert onClick={handleJumpToPresent} />}
+      {/* {hasMoreBottom && <OldMessagesAlert onClick={handleJumpToPresent} />} */}
     </>
   );
 }
