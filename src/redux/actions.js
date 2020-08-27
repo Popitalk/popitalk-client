@@ -687,6 +687,10 @@ export const swapVideos = createAsyncThunk(
   }
 );
 
+export const addVideoWs = createAction("videoSearch/addVideo/ws");
+export const deleteVideoWs = createAction("videoSearch/deleteVideo/ws");
+export const swapVideosWs = createAction("videoSearch/swapVideos/ws");
+
 /* -------------------------------------------------------------------------- */
 /*                                CHANNELSEARCH                               */
 /* -------------------------------------------------------------------------- */

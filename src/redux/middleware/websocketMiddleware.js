@@ -31,7 +31,10 @@ import {
   deleteChannelWs,
   addChannelWs,
   friendOnlineWs,
-  friendOfflineWs
+  friendOfflineWs,
+  addVideoWs,
+  deleteVideoWs,
+  swapVideosWs
 } from "../actions";
 
 import { WS_EVENTS } from "../../helpers/constants";
@@ -296,6 +299,15 @@ const websocketMiddleware = () => store => next => action => {
         },
         [WS_EVENTS.CHANNEL.SET_FRIEND_OFFLINE]() {
           store.dispatch(friendOfflineWs(messagePayload));
+        },
+        [WS_EVENTS.VIDEO_CONTROL.ADD_VIDEO]() {
+          store.dispatch(addVideoWs(messagePayload));
+        },
+        [WS_EVENTS.VIDEO_CONTROL.DELETE_VIDEO]() {
+          store.dispatch(deleteVideoWs(messagePayload));
+        },
+        [WS_EVENTS.VIDEO_CONTROL.REORDER_QUEUE]() {
+          store.dispatch(swapVideosWs(messagePayload));
         }
       };
       // If commandHandler.[computedPropertyMessageType] is defined, then this function is executed.

@@ -54,7 +54,10 @@ import {
   addVideo,
   deleteVideo,
   swapVideos,
-  setLastMessageSeen
+  setLastMessageSeen,
+  addVideoWs,
+  deleteVideoWs,
+  swapVideosWs
 } from "../actions";
 
 import { extendedCapacity } from "./messages";
@@ -369,8 +372,11 @@ export default createReducer(initialState, {
   [setPlaying.fulfilled]: R_updateChannel,
   [setPaused.fulfilled]: R_updateChannel,
   [addVideo.fulfilled]: R_addVideo,
+  [addVideoWs]: R_addVideo,
   [deleteVideo.fulfilled]: R_deleteVideo,
-  [swapVideos.fulfilled]: R_swapVideos
+  [deleteVideoWs]: R_deleteVideo,
+  [swapVideos.fulfilled]: R_swapVideos,
+  [swapVideosWs]: R_swapVideos
 });
 
 // import * as actions from "../actions";
