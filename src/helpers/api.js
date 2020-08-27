@@ -259,3 +259,7 @@ export const deleteLike = ({ postId, commentId }) => {
 export const getTrendingGifs = offset => {
   return axios.get(`/api/gifs/trending/${offset}`);
 };
+
+export const getSearchGifs = info => {
+  return axios.get(`/api/gifs/search/${info.offset}?searchTerm=${info.term}`);
+};

@@ -70,6 +70,7 @@ let strings = new LocalizedStrings({
     requestSentButton: "Request sent",
     cancelButton: "Cancel",
     loadMoreButton: "Show more",
+    backToTrendingButton: "Back to Trending",
     // Months
     jan: "January",
     feb: "February",

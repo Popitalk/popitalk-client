@@ -848,3 +848,25 @@ export const getTrendingGifs = createAsyncThunk(
     return response.data;
   }
 );
+export const getSearchGifs = createAsyncThunk(
+  "gifs/getSearchGifs",
+  async (term, offset) => {
+    const response = await api.getSearchGifs(term, offset);
+    return response.data;
+  }
+);
+export const initTrendingGifs = createAsyncThunk(
+  "gifs/initTrending",
+  async () => {
+    const response = await api.getTrendingGifs(0);
+    return response.data;
+  }
+);
+
+export const saveOffset = createAction("gifs/offset", offset => {
+  return { payload: { offset } };
+});
+
+export const setDisplay = createAction("gifs/display", display => {
+  return { payload: { display } };
+});

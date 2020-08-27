@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { getTrendingGifs } from "../../redux/actions";
+import { initTrendingGifs } from "../../redux/actions";
 
 export default function GifSelection({ updateGifsOpen, isGifsOpen }) {
   const dispatch = useDispatch();
@@ -13,7 +13,7 @@ export default function GifSelection({ updateGifsOpen, isGifsOpen }) {
       <div
         onClick={() => {
           if (!isGifsOpen) {
-            dispatch(getTrendingGifs(0));
+            dispatch(initTrendingGifs());
           }
           updateGifsOpen();
         }}
