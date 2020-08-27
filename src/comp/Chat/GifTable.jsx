@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import Input from "../Controls/Input";
 import { useSelector, useDispatch } from "react-redux";
-import { addMessage } from "../../redux/actions";
+import { addMessage, getTrendingGifs } from "../../redux/actions";
 import { useParams } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 
 export default function GifTable({ updateGifsOpen }) {
+  const [currentOffset, setCurrentOffset] = useState(0);
   const trendingGifs = useSelector(state => state.gifs.trending || []);
   const params = useParams();
   const channelId = params.channelId || params.roomId;
@@ -75,6 +76,17 @@ export default function GifTable({ updateGifsOpen }) {
             </li>
           );
         })}
+        <li>
+          <button
+            className="h-24 w-24"
+            onClick={() => {
+              dispatch(getTrendingGifs(currentOffset + 10));
+              setCurrentOffset(prevOffset => prevOffset + 10);
+            }}
+          >
+            More gifs
+          </button>
+        </li>
       </ul>
     </div>
   );
