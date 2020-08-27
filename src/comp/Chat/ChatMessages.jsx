@@ -8,11 +8,7 @@ import {
   useDebounce
 } from "react-use";
 import { createSelector } from "reselect";
-import {
-  getMessages,
-  getLatestMessages,
-  setInitialScroll
-} from "../../redux/actions";
+import { getMessages, setInitialScroll } from "../../redux/actions";
 import messagesFormatter2 from "../../util/messagesFormatter2";
 import useHasMoreBottom from "../../containers/hooks/useHasMoreBottom";
 
@@ -48,8 +44,6 @@ export default function ChatMessages({
   isGifsOpen
 }) {
   const [clickedMessage, setClickedMessage] = useState("");
-  const [gifsInChat, setGifsInChat] = useState(0);
-  const [gifsLoaded, setGifsLoaded] = useState(false);
   const containerRef = useRef(null);
   const oldScrollTop = useRef(null);
   const scrolling = useScrolling(containerRef);
@@ -86,15 +80,6 @@ export default function ChatMessages({
 
   const [, cancel] = useDebounce(
     () => {
-      // if (
-      //   containerRef.current.scrollHeight -
-      //     (containerRef.current.scrollTop + containerRef.current.clientHeight) <
-      //   100
-      // ) {
-      //   // yVal = null;
-      // } else {
-      //   yVal = containerRef.current.scrollTop;
-      // }
       const y = containerRef.current.scrollTop;
 
       if (y) {
@@ -149,26 +134,6 @@ export default function ChatMessages({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [messages]);
 
-  // function to count a gif when it is loaded.
-  let loadedMessages = 0;
-  function incrementLoadedMessages() {
-    loadedMessages++;
-    if (loadedMessages >= gifsInChat) {
-      setGifsLoaded(true);
-    }
-  }
-
-  useEffect(() => {
-    let counter = 0;
-    messages.forEach(message => {
-      if (message.upload === "gif") counter++;
-    });
-    if (counter === 0) {
-      setGifsLoaded(true);
-    }
-    setGifsInChat(counter);
-  }, [messages]);
-
   const onTopView = () => {
     dispatch(
       getMessages({
@@ -203,10 +168,6 @@ export default function ChatMessages({
         loader={Spinner}
         isGifsOpen={isGifsOpen}
         channelId={channelId}
-        // Gifs need to be loaded and rendered so that
-        // infinitescroll could scroll chat container correctly
-        gifsLoaded={gifsLoaded}
-        setGifsLoaded={setGifsLoaded}
       >
         {messages.map(message => {
           return (
@@ -217,7 +178,6 @@ export default function ChatMessages({
               ownId={ownId}
               clickedMessage={clickedMessage}
               updateClickedMessage={updateClickedMessage}
-              incrementLoadedMessages={incrementLoadedMessages}
             />
           );
         })}

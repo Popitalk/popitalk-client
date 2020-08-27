@@ -12,9 +12,7 @@ export default function ChatMessage({
   ownId,
   defaultAvatar,
   clickedMessage,
-  updateClickedMessage,
-  // A function to count a GIF when it is loaded in chat container
-  incrementLoadedMessages
+  updateClickedMessage
 }) {
   if (message.type === "date") return <DateMessage message={message} />;
   else if (
@@ -43,10 +41,7 @@ export default function ChatMessage({
             ownId={ownId}
             userId={message.userId}
           />
-          <MessageContent
-            message={message}
-            incrementLoadedMessages={incrementLoadedMessages}
-          />
+          <MessageContent message={message} />
           <ChatOptionsButton2 ownId={ownId} message={message} />
         </div>
       </div>
@@ -77,10 +72,7 @@ export default function ChatMessage({
             ownId={ownId}
             userId={message.userId}
           />
-          <MessageContent
-            message={message}
-            incrementLoadedMessages={incrementLoadedMessages}
-          />
+          <MessageContent message={message} />
           <ChatOptionsButton2 ownId={ownId} message={message} />
         </div>
       </React.Fragment>

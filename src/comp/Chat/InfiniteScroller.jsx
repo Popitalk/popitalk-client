@@ -25,8 +25,7 @@ function InfiniteScroller(
     children,
     reScroll,
     isGifsOpen,
-    channelId,
-    gifsLoaded
+    channelId
   },
   ref
 ) {
@@ -87,6 +86,8 @@ function InfiniteScroller(
           containerRef.current.lastChild.scrollIntoView();
         }
       } else if (initialScroll === "top") {
+        // If user scrolls to top, stop messing with the scroll
+        // and let user have control of it.
         // containerRef.current.scrollTo(0, 0);
       } else {
         let scrollVal;
@@ -100,21 +101,9 @@ function InfiniteScroller(
       }
       setInitialLoad(false);
     }
-    // only scroll when all gifs are loaded and rendered
-    // otherwise scroll values are not correct
-    if (gifsLoaded) {
-      handleScroll();
-    }
+    handleScroll();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [
-    containerRef,
-    reScroll,
-    threshold,
-    draft,
-    isGifsOpen,
-    messages,
-    gifsLoaded
-  ]);
+  }, [containerRef, reScroll, threshold, draft, isGifsOpen, messages]);
 
   useEffect(() => {
     if (!loading) return;
@@ -164,8 +153,6 @@ function InfiniteScroller(
   }, [bottomInView, loading, hasMoreBottom, handleBottomView]);
 
   useEffect(() => {
-    // gifsLoaded in if makes sure that initialscroll would be set to top
-    // on initial load
     if (topInView && !loading && !initialLoad) {
       handleTopView();
     }
