@@ -69,6 +69,7 @@ let strings = new LocalizedStrings({
     addFriendsButton: "Add Friend",
     requestSentButton: "Request sent",
     cancelButton: "Cancel",
+    deleteButton: "Delete",
     loadMoreButton: "Show more",
     // Months
     jan: "January",
@@ -170,7 +171,10 @@ let strings = new LocalizedStrings({
     // SearchResults
     noVideosFound: "No videos found",
     // GifTable
-    SendText: "Send"
+    SendText: "Send",
+    // DeleteMessageModal
+    deleteMessageTitle: "Delete Message",
+    deleteMessageSubtitle: "Are you sure you want to delete this message?"
   },
 
   //  KOREAN  //
@@ -242,6 +246,7 @@ let strings = new LocalizedStrings({
     addFriendsButton: "친구 추가",
     requestSentButton: "친추 보냄",
     cancelButton: "취소",
+    deleteButton: "삭제",
     loadMoreButton: "더 보기",
     // Months
     jan: "1월",
@@ -342,7 +347,10 @@ let strings = new LocalizedStrings({
     // SearchResults
     noVideosFound: "검색 결과가 없습니다.",
     // GifTable
-    SendText: "보내기"
+    SendText: "보내기",
+    // DeleteMessageModal
+    deleteMessageTitle: "메세지 삭제",
+    deleteMessageSubtitle: "삭제된 메세지는 복구가 불가합니다."
   },
 
   //  Russian  //

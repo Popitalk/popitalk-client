@@ -26,7 +26,7 @@ export default function ContainerHeader({ title, handleBack }) {
   return (
     <div className="inset-x-0 top-0 bg-highlightText rounded-t-xl h-10 flex flex-row items-center justify-between">
       {backButton}
-      <div className="text-base font-bold text-tertiaryText inline-block">
+      <div className="text-sm font-bold text-tertiaryText inline-block">
         {title}
       </div>
       {<div className={width}></div>}

@@ -3,6 +3,7 @@ import PopupMenu from "../Controls/PopupMenu";
 import FriendRequestButtons from "../Controls/FriendRequestButtons";
 import ImageUpload from "../Controls/ImageUpload";
 import Button from "../Controls/Button";
+import ReactTooltip from "react-tooltip";
 // import Resizer from "react-image-file-resizer";
 // import ChannelCardList from "../Channel/ChannelCardList";
 
@@ -56,8 +57,8 @@ export default function ProfileModal({
   }
 
   return (
-    <div className="py-8 px-12 overflow-auto">
-      <div className="flex justify-center items-center space-x-8 py-6 px-12">
+    <div className="flex items-start justify-center p-4 py-8 overflow-auto">
+      <div className="flex justify-start items-center space-x-8 py-6 px-12">
         {myProfile ? (
           <ImageUpload
             name="avatar"
@@ -76,24 +77,17 @@ export default function ProfileModal({
             alt={`${user.username}'s avatar`}
           />
         )}
-        <div className="pt-8">
-          <div className="flex flex-row">
-            <p className="text-2xl font-semibold text-primaryText mr-4">
+        <div className="flex flex-col justify-start items-center">
+          <div className="flex flex-row w-full items-center justify-start py-2">
+            <p className="text-2xl font-semibold text-primaryText">
               {user.username}
             </p>
-            <FriendRequestButtons user={user} />
-            {options ? (
-              <div className="flex ml-48">
-                <PopupMenu id={user.id} options={options} />
-              </div>
-            ) : (
-              <></>
-            )}
+            <FriendRequestButtons user={user} tooltipPlace="bottom" size="sm" />
           </div>
-          <div className="text-md font-regular text-secondaryText">
+          <div className="text-secondaryText w-full">
             {`${user.firstName} ${user.lastName}`}
           </div>
-          <div className="flex space-x-8 pt-4 pb-12 text-primaryText">
+          <div className="flex space-x-8 my-4 text-primaryText">
             <Button
               styleNone
               styleNoneContent={`${following} Following`}
@@ -120,6 +114,20 @@ export default function ProfileModal({
           <p className="text-errorText text-sm">{updateUserApi.error}</p>
         </div>
       )}
+      {options ? (
+        <div className="flex">
+          <PopupMenu id={user.id} options={options} />
+        </div>
+      ) : (
+        <></>
+      )}
+      <ReactTooltip
+        effect="solid"
+        backgroundColor="#F2F2F2"
+        textColor="black"
+        className="shadow-md rounded-md py-1 px-3 opacity-100"
+        arrowColor="transparent"
+      />
       {/* <div className="text-md font-bold pb-4 text-primaryText">
         {myProfile
           ? "Videos You Watched"

@@ -10,7 +10,7 @@ export default function FollowersList({
 }) {
   const itemRenderer = u => {
     return (
-      <div className="px-2 mt-2">
+      <div className="my-2">
         <ImageInfoCard
           avatar={u.avatar}
           username={u.username}

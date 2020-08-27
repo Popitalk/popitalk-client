@@ -3,7 +3,11 @@ import Button from "./Button";
 import strings from "../../helpers/localization";
 import ReactTooltip from "react-tooltip";
 
-export default function FriendRequestButtons({ user, size = "md" }) {
+export default function FriendRequestButtons({
+  user,
+  size = "md",
+  tooltipPlace = "left"
+}) {
   useEffect(() => {
     ReactTooltip.rebuild();
   }, []);
@@ -32,7 +36,7 @@ export default function FriendRequestButtons({ user, size = "md" }) {
         tooltip={
           sentRequest ? strings.requestSentButton : strings.addFriendsButton
         }
-        tooltipPlace="left"
+        tooltipPlace={tooltipPlace}
       />
     );
 

@@ -1,6 +1,7 @@
 import React from "react";
 import ChatMessage from "../Chat/ChatMessage";
 import Button from "../Controls/Button";
+import strings from "../../helpers/localization";
 
 export default function DeleteMessageModal({
   message,
@@ -10,12 +11,14 @@ export default function DeleteMessageModal({
   handleDelete
 }) {
   return (
-    <div className="px-8 py-6 space-y-2">
-      <p className="text-lg font-bold text-primaryText">Delete message</p>
-      <p className="text-sm text-secondaryText pb-4">
-        Are you sure you want to delete this message?
+    <div className="px-8 py-4">
+      <p className="text-lg font-bold text-primaryText">
+        {strings.deleteMessageTitle}
       </p>
-      <div className="pointer-events-none">
+      <p className="text-sm text-secondaryText mt-1 mb-4">
+        {strings.deleteMessageSubtitle}
+      </p>
+      <div className="pointer-events-none select-none rounded-xl pb-4 mb-4 border">
         <ChatMessage
           message={message}
           ownId={ownId}
@@ -23,22 +26,21 @@ export default function DeleteMessageModal({
           incrementLoadedMessages={() => undefined}
         />
       </div>
-      <div className="flex justify-end items-center pt-8">
-        <span
-          role="button"
-          className="text-secondaryText text-md pr-8"
+      <div className="flex justify-end items-center space-x-6">
+        <Button
+          styleNone
+          styleNoneContent={strings.cancelButton}
+          styleNoneContentClassName="text-secondaryText text-sm select-none"
           onClick={handleCancel}
-        >
-          Cancel
-        </span>
+        />
         <Button
           actionButton
           background="cancel"
-          size="md"
+          size="sm"
           onClick={handleDelete}
           analyticsString="Delete Message Button: DeleteMessageModal"
         >
-          Delete
+          {strings.deleteButton}
         </Button>
       </div>
     </div>

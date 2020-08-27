@@ -17,7 +17,7 @@ export default function ModalContainer({
   const modalClasses = classnames("rounded-xl shadow-xl outline-none", {
     "bg-primaryBackground": background === "white",
     "bg-secondaryBackground": background === "gray",
-    "w-full sm:w-dropdown": width === "sm",
+    "w-full sm:w-100": width === "sm",
     "w-full sm:w-modal": width === "md",
     "w-full md:w-3/4 lg:w-1/2": width === "lg"
   });

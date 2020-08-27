@@ -25,7 +25,7 @@ export default function DeleteMessageContainer({ handleModalClose }) {
   return (
     <ModalContainer
       isOpen={true}
-      width="md"
+      width="sm"
       handleModalClose={handleModalClose}
     >
       <DeleteMessageModal
