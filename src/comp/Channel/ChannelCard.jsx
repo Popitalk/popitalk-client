@@ -1,7 +1,6 @@
 import React from "react";
 import RoomIcon from "../Controls/RoomIcon";
 import AvatarDeck from "../Controls/AvatarDeck";
-// import Button from "../Controls/Button";
 import VideoStatus from "../VideoStatusIcon";
 import strings from "../../helpers/localization";
 import history from "../../history";
@@ -12,7 +11,6 @@ export default function ChannelCard({
   icon,
   status,
   queue,
-  videoSource,
   avatars,
   handleFollow,
   isLoading

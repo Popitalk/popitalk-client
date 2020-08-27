@@ -237,6 +237,7 @@ class Channel extends Component {
 
   componentDidMount() {
     if (!this.props.channel?.loaded) {
+      console.log("Yeah I'm running");
       this.props.handleGetChannel();
     }
   }

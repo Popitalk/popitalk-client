@@ -15,7 +15,9 @@ export const validateSession = () => {
 };
 
 export const refreshSession = () => {
-  return axios.get("/api/sessions/refresh");
+  const refreshData = axios.get("/api/sessions/refresh");
+  console.log({ refreshData });
+  return refreshData;
 };
 
 export const logout = () => {
@@ -169,6 +171,10 @@ export const deleteVideo = (channelVideoId, channelId) => {
 
 export const swapVideos = (channelId, swapInfo) => {
   return axios.put(`/api/videos/${channelId}`, swapInfo);
+};
+
+export const getQueue = channelId => {
+  return axios.get(`/api/videos/queue/${channelId}`);
 };
 
 // MESSAGES

@@ -50,7 +50,7 @@ export default function VideoStatus({
             </svg>
           </button>
         )}
-        {(status === "queued" || status === "ended") && statusMessage && (
+        {(status === "Queued" || status === "Ended") && statusMessage && (
           <Button
             actionButton
             size={size}
