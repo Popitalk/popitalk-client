@@ -66,7 +66,7 @@ let strings = new LocalizedStrings({
     followingButton: "Following",
     searchFriendsClose: "Close",
     clearButton: "Clear",
-    addFriendsButton: "Add Friends",
+    addFriendsButton: "Add Friend",
     requestSentButton: "Request sent",
     cancelButton: "Cancel",
     loadMoreButton: "Show more",

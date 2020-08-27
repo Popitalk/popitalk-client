@@ -22,14 +22,14 @@ export default function SortableList({
           <div className="relative pb-16/9 w-full">
             <div className="absolute flex items-center justify-center w-full h-full">
               <Button
-                actionButton
-                size="sm"
+                styleNone
+                styleNoneContent={strings.findMoreVideos}
                 icon="search"
+                styleNoneContentClassName="mx-2 text-secondaryText text-sm"
+                styleNoneIconClassName="text-secondaryText"
+                className="hover:filter-brightness-9"
                 analyticsString="Search Video Button: SortableList"
               />
-              <p className="mx-2 text-secondaryText text-sm hover:filter-brightness-9">
-                {strings.videoSearchInput}
-              </p>
             </div>
           </div>
         </div>

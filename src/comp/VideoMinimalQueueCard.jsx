@@ -23,13 +23,17 @@ export default function VideoMinimalQueueCard({
         />
       )}
       {title && (
-        <div className="relative px-4 rounded-lg h-12 my-1 w-full hover:shadow-md flex flex-row items-center justify-between bg-primaryBackground cursor-pointer">
+        <div className="relative px-4 rounded-lg h-12 my-1 w-full hover:shadow-md flex items-center justify-between bg-primaryBackground cursor-pointer">
           <FontAwesomeIcon
             icon="bars"
             className="text-secondaryText cursor-move mr-4"
           />
           <div className="flex flex-row w-full justify-between items-center space-x-2">
-            <VideoStatus status={status} statusMessage={statusMessage} />
+            <VideoStatus
+              status={status}
+              type="text"
+              statusMessage={statusMessage}
+            />
             <p className="text-sm text-secondaryText">{duration}</p>
             <p
               className="text-sm w-full mx-2 truncate"

@@ -1,8 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Button from "./Button";
 import strings from "../../helpers/localization";
+import ReactTooltip from "react-tooltip";
 
 export default function FriendRequestButtons({ user, size = "md" }) {
+  useEffect(() => {
+    ReactTooltip.rebuild();
+  }, []);
   // variants: self, friend, stranger, receivedRequest, sentRequest, blocked
   if (user.variant === "blocked") {
     return <></>;
