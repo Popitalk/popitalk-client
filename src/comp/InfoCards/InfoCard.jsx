@@ -29,16 +29,19 @@ export default function InfoCard({
     "text-xs": subtitleSize === "xs"
   });
 
-  const boxClasses = classnames("relative flex items-center rounded-lg px-2", {
-    "bg-primaryBackground": backgroundColor === "white",
-    "bg-secondaryBackground": backgroundColor === "gray",
-    "bg-highlightBackground": backgroundColor === "highlight",
-    "hover:bg-highlightBackground duration-75": hoverable,
-    "py-2": padding === "sm",
-    "py-1": padding === "xs",
-    "py-0": padding === "none",
-    "border border-highlightText": addBorder
-  });
+  const boxClasses = classnames(
+    "relative flex items-center rounded-lg px-2 m-2",
+    {
+      "bg-primaryBackground": backgroundColor === "white",
+      "bg-secondaryBackground": backgroundColor === "gray",
+      "bg-highlightBackground": backgroundColor === "highlight",
+      "hover:bg-highlightBackground duration-75": hoverable,
+      "py-2": padding === "sm",
+      "py-1": padding === "xs",
+      "py-0": padding === "none",
+      "border border-highlightText": addBorder
+    }
+  );
 
   return (
     <>

@@ -76,7 +76,7 @@ function CollapsedPanel({
             {strings.channels}
           </Button>
           <section {...getCollapsePropsFollowing()}>
-            <div className="flex flex-col w-full items-center">
+            <div className="flex flex-col w-full items-center my-2">
               {channels.map(channel => {
                 const roomIcon = (
                   <RoomIcon
@@ -92,8 +92,8 @@ function CollapsedPanel({
                   <div
                     key={channel.id}
                     className={`flex-shrink-0 transition transform ease-in-out
-                      hover:scale-110 duration-100 m-1 rounded-circle
-                      ${selected === channel.id && "bg-highlightText"}`}
+                      hover:scale-110 duration-100 m-1 rounded-circle p-px
+                      ${selected === channel.id && "bg-gradient-r-button"}`}
                     onClick={() => handleSelect(channel.id)}
                     role="button"
                   >
@@ -132,7 +132,7 @@ function CollapsedPanel({
             </div>
           </Button>
           <section {...getCollapsePropsDiscover()}>
-            <div className="flex flex-col w-full items-center">
+            <div className="flex flex-col w-full items-center my-2">
               {rooms.map(room => {
                 const images = room.members.map(m => m.avatar);
                 const name = room.members.map(m => " " + m.username).join();
@@ -152,8 +152,8 @@ function CollapsedPanel({
                   <div
                     key={room.id}
                     className={`flex-shrink-0 transition transform ease-in-out
-                      hover:scale-110 duration-100 m-1 rounded-circle
-                      ${selected === room.id && "bg-highlightText"}`}
+                      hover:scale-110 duration-100 m-1 rounded-circle p-px
+                      ${selected === room.id && "bg-gradient-r-button"}`}
                     onClick={() => handleSelectRoom(room.id)}
                     role="button"
                   >

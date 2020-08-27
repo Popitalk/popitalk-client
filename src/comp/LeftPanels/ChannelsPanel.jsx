@@ -29,18 +29,20 @@ export default function ChannelsPanel({
         numberOfNotifications={numberOfNotifications}
       />
       <div className="flex-col h-full overflow-y-scroll">
-        <MiniFriendsList
-          friends={friends}
-          handleSelectRoom={handleSelectRoom}
-          handleFindFriends={() => {
-            setFriendsSearchFocus(true);
-            updateSelectedPage("friends");
-          }}
-          isLoading={false}
-        />
-        <div className="flex flex-col items-start px-2 bg-primaryBackground sm:mt-4">
-          <div className="flex items-center mb-4">
-            <h4 className="mx-2 text-md font-semibold text-secondaryText">
+        <div className="mx-4">
+          <MiniFriendsList
+            friends={friends}
+            handleSelectRoom={handleSelectRoom}
+            handleFindFriends={() => {
+              setFriendsSearchFocus(true);
+              updateSelectedPage("friends");
+            }}
+            isLoading={false}
+          />
+        </div>
+        <div className="flex flex-col items-start bg-primaryBackground">
+          <div className="flex items-center m-4 space-x-2">
+            <h4 className="text-md font-semibold text-secondaryText">
               {strings.yourChannels}
             </h4>
             <Button
@@ -62,7 +64,7 @@ export default function ChannelsPanel({
             emptyMessage={strings.yourChannelsPlaceholder}
             isLoading={false}
           />
-          <h4 className="my-4 mx-2 text-md font-semibold text-secondaryText">
+          <h4 className="m-4 text-md font-semibold text-secondaryText">
             {strings.followingChannels}
           </h4>
           <ChannelsList

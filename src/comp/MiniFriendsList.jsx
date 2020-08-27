@@ -13,7 +13,7 @@ export default function MiniFriendsList({
   const finalFriends = friends.slice(0, 4);
 
   return (
-    <div className="flex flex-row items-center md:flex-no-wrap w-auto px-2 select-none overflow-hidden">
+    <div className="flex flex-row items-center w-full select-none overflow-hidden">
       {finalFriends.map(room => {
         const images = room.members.map(m => m.avatar);
         const name = room.members.map(m => " " + m.username).join();

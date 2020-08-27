@@ -151,7 +151,7 @@ export default function SiteHeaderMain({
               />
             ) : settingsDropdown === ACCOUNT_SETTINGS ? (
               <DropDownMenu
-                title="Account Settings"
+                title={strings.accountSettings}
                 buttons={accountSettingsButtons}
                 handleBack={popDropdown}
               />

@@ -174,7 +174,7 @@ module.exports = {
         "95": "0.95"
       },
       width: {
-        dropdown: "24rem",
+        dropdown: "22rem",
         modal: "36rem"
       },
       height: {

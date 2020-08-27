@@ -110,11 +110,11 @@ class FriendsPanel extends Component {
             onChange={e => this.syncSearch(e.target.value)}
             onClick={() => this.syncSearch(this.state.search)}
             forwardedRef={this.searchFieldRef.ref}
-            className="m-2 mx-3"
+            className="my-1 mx-3"
           />
           {this.state.open && (
             <div className="rounded-md bg-secondaryBackground shadow-inner border border-primaryBorder mx-3 m-2">
-              <div className="flex flex-row items-center justify-between ml-2 px-2 py-1">
+              <div className="flex flex-row items-center justify-between px-4 py-1">
                 <p className="text-xs">
                   {strings.searchResult} &quot;{this.state.search}&quot;
                 </p>
@@ -126,7 +126,7 @@ class FriendsPanel extends Component {
                   analyticsString="Close Friend Search Button: FriendsPanel"
                 />
               </div>
-              <div className="flex w-full h-64 px-1 rounded-lg">
+              <div className="flex w-full h-64 rounded-lg">
                 <StretchList
                   list={FriendUsersList}
                   users={this.props.userSearchResults}
@@ -135,7 +135,7 @@ class FriendsPanel extends Component {
               </div>
             </div>
           )}
-          <div className="bg-primaryBackground px-1 pb-2">
+          <div className="bg-primaryBackground pb-8">
             <RoomsList
               rooms={this.state.rooms}
               selected={this.props.selectedRoom}
