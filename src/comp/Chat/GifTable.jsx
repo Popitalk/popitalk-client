@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import Input from "../Controls/Input";
-import { testGifs } from "../../stories/seed-arrays";
 import { useSelector, useDispatch } from "react-redux";
 import { addMessage } from "../../redux/actions";
 import { useParams } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 
 export default function GifTable({ updateGifsOpen }) {
+  const trendingGifs = useSelector(state => state.gifs.trending || []);
   const params = useParams();
   const channelId = params.channelId || params.roomId;
   const userId = useSelector(state => state.self.id);
@@ -56,7 +56,7 @@ export default function GifTable({ updateGifsOpen }) {
         className="px-1"
       />
       <ul className="flex overflow-scroll space-x-1 p-1">
-        {testGifs.data.map(gif => {
+        {trendingGifs.map(gif => {
           return (
             <li
               key={gif.id}

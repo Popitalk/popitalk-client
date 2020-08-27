@@ -836,3 +836,15 @@ export const setPaused = createAsyncThunk(
     return response.data;
   }
 );
+
+/* -------------------------------------------------------------------------- */
+/*                              GIFS                                          */
+/* -------------------------------------------------------------------------- */
+
+export const getTrendingGifs = createAsyncThunk(
+  "gifs/getTrending",
+  async offset => {
+    const response = await api.getTrendingGifs(offset);
+    return response.data;
+  }
+);

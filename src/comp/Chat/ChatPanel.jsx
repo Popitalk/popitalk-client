@@ -33,7 +33,7 @@ export default function ChatPanel({
         </p>
       )}
       {isGifsOpen ? <GifTable updateGifsOpen={updateGifsOpen} /> : null}
-      <ChatActions updateGifsOpen={updateGifsOpen} />
+      <ChatActions updateGifsOpen={updateGifsOpen} isGifsOpen={isGifsOpen} />
     </div>
   );
 }

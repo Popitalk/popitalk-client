@@ -136,7 +136,10 @@ function ChatActions(props) {
           onFocus={() => dispatch(setLastMessageSeen({ channelId }))}
         />
         {/* GIF BUTTON */}
-        <GifSelection updateGifsOpen={props.updateGifsOpen} />
+        <GifSelection
+          updateGifsOpen={props.updateGifsOpen}
+          isGifsOpen={props.isGifsOpen}
+        />
         {/* SEND BUTTON */}
         <Button
           hoverable
