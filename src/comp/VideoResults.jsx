@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import VideoPanelCard from "./VideoPanelCard";
 import Button from "./Controls/Button";
+import strings from "../helpers/localization";
 
 export default function VideoResults({
   results,
@@ -34,13 +35,12 @@ export default function VideoResults({
 
   return (
     <div className="flex flex-col justify-center bg-secondaryBackground p-4">
-      <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 row-gap-8 mb-8">
+      {/* <div className="grid grid-cols-1 xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 row-gap-8 mb-8">
         <VideoPanelCard loading />
         <VideoPanelCard loading />
         <VideoPanelCard loading />
-      </div>
-
-      <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 row-gap-8">
+      </div> */}
+      <div className="grid grid-cols-1 xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 row-gap-8">
         {results.map((result, idx) => {
           if (idx <= currThreshold - 1) {
             return (
@@ -60,18 +60,20 @@ export default function VideoResults({
       {currThreshold < highestResults && (
         <div className="flex justify-center pt-12 pb-8">
           <Button
-            actionButton
+            styleNone
+            styleNoneContent={strings.loadMoreButton}
+            styleNoneContentClassName="text-highlightText text-sm font-bold"
+            hoverable
+            className="w-24 hover:bg-highlightBackground h-10 mx-2 rounded-xl"
             onClick={handleLoad}
             analyticsString="Show More Video: Video Results"
             // onClick={currThreshold >= results.length ? handleClick : handleLoad}
-          >
-            Show more
-          </Button>
+          />
         </div>
       )}
       {results.length === 0 && (
         <p className="text-secondaryText text-sm text-center py-48">
-          No results found
+          {strings.noVideosFound}
         </p>
       )}
     </div>

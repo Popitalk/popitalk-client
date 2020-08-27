@@ -69,6 +69,7 @@ let strings = new LocalizedStrings({
     addFriendsButton: "Add Friends",
     requestSentButton: "Request sent",
     cancelButton: "Cancel",
+    loadMoreButton: "Show more",
     // Months
     jan: "January",
     feb: "February",
@@ -165,7 +166,11 @@ let strings = new LocalizedStrings({
     editUserInformation: "Edit User Information",
     changePassword: "Change Password",
     // InfoCardList
-    nothingToShow: "Nothing to show :("
+    nothingToShow: "Nothing to show :(",
+    // SearchResults
+    noVideosFound: "No videos found",
+    // GifTable
+    SendText: "Send"
   },
 
   //  KOREAN  //
@@ -237,6 +242,7 @@ let strings = new LocalizedStrings({
     addFriendsButton: "친구 추가",
     requestSentButton: "친추 보냄",
     cancelButton: "취소",
+    loadMoreButton: "더 보기",
     // Months
     jan: "1월",
     feb: "2월",
@@ -332,7 +338,11 @@ let strings = new LocalizedStrings({
     editUserInformation: "내 정보 변경",
     changePassword: "비밀번호 변경",
     // InfoCardList
-    nothingToShow: "항목이 비었습니다."
+    nothingToShow: "항목이 비었습니다.",
+    // SearchResults
+    noVideosFound: "검색 결과가 없습니다.",
+    // GifTable
+    SendText: "보내기"
   },
 
   //  Russian  //

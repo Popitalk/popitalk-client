@@ -4,6 +4,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { addMessage, getTrendingGifs } from "../../redux/actions";
 import { useParams } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
+import strings from "../../helpers/localization";
+import Button from "../Controls/Button";
 
 export default function GifTable({ updateGifsOpen }) {
   const [currentOffset, setCurrentOffset] = useState(0);
@@ -41,7 +43,7 @@ export default function GifTable({ updateGifsOpen }) {
     // updateGifsOpen(false);
   };
   return (
-    <div className={`giftable relative bg-transparent w-84`}>
+    <div className="flex flex-col giftable relative bg-transparent w-84">
       <Input
         variant="user"
         size="sm"
@@ -56,7 +58,7 @@ export default function GifTable({ updateGifsOpen }) {
         }
         className="px-1"
       />
-      <ul className="flex overflow-scroll space-x-1 p-1">
+      <ul className="flex items-center overflow-scroll space-x-1 p-1">
         {trendingGifs.map(gif => {
           return (
             <li
@@ -66,7 +68,7 @@ export default function GifTable({ updateGifsOpen }) {
               className="relative"
             >
               <div className="flex absolute w-full h-full top-0 left-0 justify-center items-center text-tertiaryText text-md font-bold bg-black bg-opacity-25 transition-opacity opacity-0 hover:opacity-100 duration-100">
-                <p className="shadow-xl">Send</p>
+                <p className="shadow-xl">{strings.SendText}</p>
               </div>
               <img
                 className="h-24 max-w-none"
@@ -77,15 +79,17 @@ export default function GifTable({ updateGifsOpen }) {
           );
         })}
         <li>
-          <button
-            className="h-24 w-24"
+          <Button
+            styleNone
+            styleNoneContent={strings.loadMoreButton}
+            hoverable
+            styleNoneContentClassName="text-highlightText text-xs font-bold"
+            className="w-24 hover:bg-highlightBackground h-10 mx-2 rounded-xl"
             onClick={() => {
               dispatch(getTrendingGifs(currentOffset + 10));
               setCurrentOffset(prevOffset => prevOffset + 10);
             }}
-          >
-            More gifs
-          </button>
+          />
         </li>
       </ul>
     </div>

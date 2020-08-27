@@ -3,6 +3,8 @@ import Button from "./Controls/Button";
 import VideoStatus from "./VideoStatus";
 import moment from "moment";
 import strings from "../helpers/localization";
+import ReactTooltip from "react-tooltip";
+import classnames from "classnames";
 
 export default function VideoPanelCard({
   id,
@@ -17,13 +19,25 @@ export default function VideoPanelCard({
   handleAddVideo,
   handleDeleteVideo,
   url,
-  loading
+  loading,
+  size,
+  className
 }) {
   // const leftInfo = `${views}`;
   const rightInfo = `${moment(publishedAt).locale(strings.location).fromNow()}`;
   const [disableButton, setDisableButton] = useState();
   const [addButtonIcon, setAddButtonIcon] = useState("plus");
   const [removeButtonIcon, setRemoveButtonIcon] = useState("minus");
+  const sizes = {
+    sm: "max-w-2xs",
+    md: "max-w-md",
+    lg: "max-w-lg"
+  };
+  const cardClasses = classnames({
+    [sizes[size]]: true,
+    "w-full flex-shrink-0 items-center": true,
+    [className]: className
+  });
   const removeButtonPressed = () => {
     setRemoveButtonIcon("check");
     handleDeleteVideo(id);
@@ -50,10 +64,13 @@ export default function VideoPanelCard({
     }, 2000);
     return () => clearTimeout(timer);
   }, []);
+  useEffect(() => {
+    ReactTooltip.rebuild();
+  }, []);
   return (
     <>
       {loading ? (
-        <div className="animate-pulse flex-shrink-0 max-w-lg">
+        <div className="animate-pulse flex-shrink-0">
           <div className="flex shadow-xs rounded-md pb-16/9 my-4 items-between bg-gray-300" />
           <div className="flex-1 space-y-2 w-full">
             <div className="h-4 bg-gray-300 rounded" />
@@ -67,24 +84,23 @@ export default function VideoPanelCard({
               <div className="relative cursor-pointer pb-16/9 w-full rounded-md shadow-xs hover:shadow-md transition-all ease-in-out duration-100 bg-disabledBackground hover:bg-highlightBackground focus:outline-none">
                 <div className="absolute flex items-center justify-center w-full h-full">
                   <Button
-                    actionButton
-                    size="sm"
+                    styleNone
+                    styleNoneContent={strings.findMoreVideos}
                     icon="search"
-                    className="opacity-75 shadow-none"
+                    styleNoneContentClassName="mx-2 text-secondaryText text-sm"
+                    styleNoneIconClassName="text-secondaryText"
+                    className="hover:filter-brightness-9"
                     analyticsString="Direct to Search Button: VideoPanelCard"
                   />
-                  <p className="mx-2 text-secondaryText text-sm hover:filter-brightness-9">
-                    {strings.findMoreVideos}
-                  </p>
                 </div>
               </div>
             </div>
           )}
           {title && (
-            <div className="w-full flex-shrink-0 max-w-2xs mr-2 cursor-pointer">
+            <div className={cardClasses}>
               <div className="relative flex justify-center flex-grow pb-16/9 w-full rounded-md shadow-xs hover:shadow-md transition-all ease-in-out duration-100">
                 <div className="absolute top-0 left-0 w-full h-full p-2 rounded-b-xl">
-                  <div className="flex justify-between">
+                  <div className="relative flex justify-between">
                     <VideoStatus
                       status={status}
                       statusMessage={statusMessage}
@@ -92,13 +108,15 @@ export default function VideoPanelCard({
                     {type === "cancel" && (
                       <Button
                         actionButton
-                        className="flex z-10 bg-highlightBackground"
+                        className="absolute right-0 flex z-10 bg-highlightBackground"
                         onClick={removeButtonPressed}
                         analyticsString="Remove Video: VideoPanelCard"
                         onMouseLeave={() => setRemoveButtonIcon("minus")}
                         icon={removeButtonIcon}
                         size="sm"
                         background="cancel"
+                        tooltip="Remove Video"
+                        tooltipPlace="left"
                       />
                     )}
                     {type === "add" && (
@@ -110,6 +128,8 @@ export default function VideoPanelCard({
                         analyticsString="Add Video Button: VideoPanelCard"
                         icon={addButtonIcon}
                         size="sm"
+                        tooltip="Add to queue"
+                        tooltipPlace="left"
                       />
                     )}
                   </div>

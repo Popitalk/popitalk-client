@@ -39,6 +39,7 @@ import {
   calculateNextPlayerStatus
 } from "../../helpers/videoSyncing";
 import Helmet from "react-helmet";
+import strings from "../../helpers/localization";
 
 const CHANNEL_TYPE = "channel";
 const ROOM_TYPE = "room";
@@ -349,7 +350,6 @@ class Channel extends Component {
     const isMember = channel.members
       ? !!channel.members.filter(memberId => memberId === ownId).length
       : null;
-
     return (
       <>
         <div className="flex flex-col bg-secondaryBackground w-full overflow-x-hidden">
@@ -420,7 +420,7 @@ class Channel extends Component {
                 {type === ROOM_TYPE && (
                   <div className="my-4">
                     <h2 className="text-lg text-primaryText px-4">
-                      Find More Videos
+                      {strings.findMoreVideos}
                     </h2>
                     <VideoSearch
                       trendingResults={trendingResults}

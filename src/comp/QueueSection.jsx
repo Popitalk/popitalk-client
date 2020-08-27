@@ -13,6 +13,8 @@ export default function QueueSection({
       {...value}
       handleSkip={handleSkip}
       handleDeleteVideo={() => handleDeleteVideo(value.id)}
+      size="sm"
+      className="mr-2"
     />
   );
 

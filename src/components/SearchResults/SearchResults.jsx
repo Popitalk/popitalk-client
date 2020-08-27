@@ -5,6 +5,7 @@ import { searchVideos, addVideo } from "../../redux/actions";
 import VideoCard1 from "../VideoCard1";
 import Button1 from "../Button1";
 import "./SearchResults.css";
+import strings from "../../helpers/localization";
 
 export default function SearchResults() {
   const { channelId } = useParams();
@@ -37,9 +38,11 @@ export default function SearchResults() {
 
   return (
     <div className="SearchResults--container">
-      <h4>Results for: &quot;{terms}&quot;</h4>
+      <h4>
+        {strings.searchResult} &quot;{terms}&quot;
+      </h4>
       {results.length === 0 ? (
-        <div>No videos found</div>
+        <div>{strings.noVideosFound}</div>
       ) : (
         <div className="SearchResults--results">
           {results.map(video => (
@@ -56,7 +59,7 @@ export default function SearchResults() {
             />
           ))}
           <Button1 pill size="lg" onClick={handleLoadMore}>
-            Load More
+            {strings.loadMoreButton}
           </Button1>
         </div>
       )}
