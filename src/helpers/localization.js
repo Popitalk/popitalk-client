@@ -71,6 +71,7 @@ let strings = new LocalizedStrings({
     cancelButton: "Cancel",
     deleteButton: "Delete",
     loadMoreButton: "Show more",
+    backToTrendingButton: "Back to Trending",
     // Months
     jan: "January",
     feb: "February",
