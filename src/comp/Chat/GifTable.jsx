@@ -66,7 +66,7 @@ export default function GifTable({ updateGifsOpen }) {
           className="relative"
         >
           <div className="flex absolute w-full h-full top-0 left-0 justify-center items-center text-tertiaryText text-md font-bold bg-black bg-opacity-25 transition-opacity opacity-0 hover:opacity-100 duration-100">
-            <p className="shadow-xl">{strings.SendText}</p>
+            <p className="shadow-xl">{strings.sendText}</p>
           </div>
           <img
             className="h-24 max-w-none"
@@ -78,12 +78,12 @@ export default function GifTable({ updateGifsOpen }) {
     });
   }
   return (
-    <div className="flex flex-col giftable relative bg-transparent w-84">
+    <div className="flex flex-col giftable relative bg-primaryBackground rounded-md pt-2 w-84 h-48">
       <Input
         variant="user"
         size="sm"
         value={search}
-        placeholder="Search for a GIF"
+        placeholder={strings.searchGifInput}
         onChange={e => setSearch(e.target.value)}
         onClick={() => {
           console.log(
@@ -93,9 +93,15 @@ export default function GifTable({ updateGifsOpen }) {
           dispatch(setDisplay(gifsDisplay.searchResults));
           dispatch(getSearchGifs({ term: search, offset: 0 }));
         }}
+        onKeyDown={e => {
+          if (e.keyCode === 13) {
+            dispatch(setDisplay(gifsDisplay.searchResults));
+            dispatch(getSearchGifs({ term: search, offset: 0 }));
+          }
+        }}
         className="px-1"
       />
-      <ul className="flex items-center overflow-scroll space-x-1 p-1">
+      <ul className="flex items-center overflow-x-scroll space-x-1 p-1">
         {displayGifs()}
         <li>
           {display === gifsDisplay.trending ? (
@@ -103,8 +109,8 @@ export default function GifTable({ updateGifsOpen }) {
               styleNone
               styleNoneContent={strings.loadMoreButton}
               hoverable
-              styleNoneContentClassName="text-highlightText text-xs font-bold"
-              className="w-24 hover:bg-highlightBackground h-10 mx-2 rounded-xl"
+              styleNoneContentClassName="text-highlightText text-xs font-bold inline-block p-4"
+              className="w-full hover:bg-highlightBackground mx-2 rounded-xl"
               onClick={() => {
                 const newOffset = offset + 10;
                 dispatch(getTrendingGifs(newOffset));
@@ -116,8 +122,8 @@ export default function GifTable({ updateGifsOpen }) {
               styleNone
               styleNoneContent={strings.backToTrendingButton}
               hoverable
-              styleNoneContentClassName="text-highlightText text-xs font-bold"
-              className="w-24 hover:bg-highlightBackground h-10 mx-2 rounded-xl"
+              styleNoneContentClassName="text-highlightText text-xs font-bold inline-block p-4"
+              className="w-full hover:bg-highlightBackground mx-2 rounded-xl"
               onClick={() => {
                 dispatch(setDisplay(gifsDisplay.trending));
               }}

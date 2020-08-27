@@ -172,7 +172,8 @@ let strings = new LocalizedStrings({
     // SearchResults
     noVideosFound: "No videos found",
     // GifTable
-    SendText: "Send",
+    sendText: "Send",
+    searchGifInput: "Search for a GIF",
     // DeleteMessageModal
     deleteMessageTitle: "Delete Message",
     deleteMessageSubtitle: "Are you sure you want to delete this message?"
@@ -249,6 +250,7 @@ let strings = new LocalizedStrings({
     cancelButton: "취소",
     deleteButton: "삭제",
     loadMoreButton: "더 보기",
+    backToTrendingButton: "처음으로",
     // Months
     jan: "1월",
     feb: "2월",
@@ -348,7 +350,8 @@ let strings = new LocalizedStrings({
     // SearchResults
     noVideosFound: "검색 결과가 없습니다.",
     // GifTable
-    SendText: "보내기",
+    sendText: "보내기",
+    searchGifInput: "GIF 검색",
     // DeleteMessageModal
     deleteMessageTitle: "메세지 삭제",
     deleteMessageSubtitle: "삭제된 메세지는 복구가 불가합니다."
