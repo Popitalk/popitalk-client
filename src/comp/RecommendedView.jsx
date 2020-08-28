@@ -53,16 +53,17 @@ function RecommendedChannels({ list, selectedPage }) {
 
   // removing the seeded and putting in the actual following list
   list = [];
-  list.push({ title: "Following", channels: followingChannels });
   list.push({ title: "Discover", channels: discoverChannels });
   list.push({ title: "Trending", channels: trendingChannels });
+  let tabs = [{ tab: strings.discover }, { tab: strings.trending }];
+  let initialTab = "# Discover";
 
-  const [tabSelected, setTab] = useState("# Following");
-  const tabs = [
-    { tab: strings.following },
-    { tab: strings.discover },
-    { tab: strings.trending }
-  ];
+  if (followingChannels.length > 0) {
+    tabs = [{ tab: strings.following }, ...tabs];
+    list.push({ title: "Following", channels: followingChannels });
+    initialTab = "# Following";
+  }
+  const [tabSelected, setTab] = useState(initialTab);
 
   // Infinite scroll
   // search is the Input Value. query is the search term triggered in handleSearch
