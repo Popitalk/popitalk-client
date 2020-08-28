@@ -21,6 +21,7 @@ export default function VideoPanelCard({
   url,
   loading,
   size,
+  displayControls,
   className
 }) {
   // const leftInfo = `${views}`;

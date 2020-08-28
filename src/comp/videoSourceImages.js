@@ -10,17 +10,17 @@ import DailymotionLogo from "../assets/dailymotion-logo.png";
 import SpotifyLogo from "../assets/spotify-logo.png";
 
 const sources = [
-  { source: "Youtube", icon: YoutubeLogo },
-  { source: "Vimeo", icon: VimeoLogo },
-  { source: "Crunchyroll", icon: CrunchyrollLogo },
-  { source: "Twitch", icon: TwitchLogo },
-  { source: "Instagram", icon: InstagramLogo },
-  { source: "Hulu", icon: HuluLogo },
-  { source: "Gfycat", icon: GfycatLogo },
-  { source: "Facebook", icon: FacebookLogo },
-  { source: "Dailymotion", icon: DailymotionLogo },
+  { source: "Youtube", icon: YoutubeLogo, active: true },
+  // { source: "Vimeo", icon: VimeoLogo, active: false },
+  { source: "Crunchyroll", icon: CrunchyrollLogo, active: false },
+  { source: "Twitch", icon: TwitchLogo, active: false },
+  { source: "Instagram", icon: InstagramLogo, active: false },
+  // { source: "Hulu", icon: HuluLogo, active: false },
+  { source: "Gfycat", icon: GfycatLogo, active: false },
+  { source: "Facebook", icon: FacebookLogo, active: false },
+  // { source: "Dailymotion", icon: DailymotionLogo, active: false },
   // { source: "Twitter", icon: TwitterLogo },
-  { source: "Spotify", icon: SpotifyLogo }
+  { source: "Spotify", icon: SpotifyLogo, active: false }
 ];
 
 export default sources;

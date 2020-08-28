@@ -6,7 +6,8 @@ export default function QueueSection({
   queueList,
   handlerChange,
   handleSkip,
-  handleDeleteVideo
+  handleDeleteVideo,
+  displayControls
 }) {
   const itemRenderer = value => (
     <VideoPanelCard
@@ -15,6 +16,7 @@ export default function QueueSection({
       handleDeleteVideo={() => handleDeleteVideo(value.id)}
       size="sm"
       className="mr-2"
+      displayControls={displayControls}
     />
   );
 
@@ -27,6 +29,7 @@ export default function QueueSection({
       height={"100%"}
       className={"cursor-move"}
       distance={1}
+      displayControls={displayControls}
     >
       <VideoPanelCard />
     </SortableList>

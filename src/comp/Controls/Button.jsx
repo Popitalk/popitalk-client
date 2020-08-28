@@ -89,7 +89,11 @@ export default function Button({
     <>
       {/* For buttons containing an image */}
       {imageButton && (
-        <button onClick={analyticsHandler} className={styleNoneClasses}>
+        <button
+          onClick={analyticsHandler}
+          className={styleNoneClasses}
+          disabled={disabled}
+        >
           <div className="flex items-center justify-center">
             <img
               src={imageButtonSrc}

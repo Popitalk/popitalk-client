@@ -4,6 +4,7 @@ import AvatarDeck from "../Controls/AvatarDeck";
 import VideoStatus from "../VideoStatusIcon";
 import strings from "../../helpers/localization";
 import history from "../../history";
+import channelPlaceholder from "../../assets/default/channelPlaceholder1.png";
 
 export default function ChannelCard({
   id,
@@ -57,22 +58,27 @@ export default function ChannelCard({
                 className="absolute img top-0 h-full rounded-lg bg-primaryBackground"
               />
             ) : (
-              <div className="absolute top-0 h-full w-full rounded-lg bg-gray-400">
-                <div className="flex items-center justify-center w-full h-full text-xs text-secondaryBackground">
-                  {strings.nothingPlaying}
-                </div>
-              </div>
+              <img
+                src={channelPlaceholder}
+                alt={"channel"}
+                className="absolute img top-0 h-full rounded-lg bg-primaryBackground"
+              />
             )}
             {/* Top part of the ChannelCard */}
             <div className="absolute w-full z-10">
               <div className="flex relative justify-between items-center px-2">
-                {videoThumbnail && (
+                {videoThumbnail ? (
                   <>
                     <VideoStatus status={status} />
-                    <p className="text-sm flex-shrink-1 font-bold w-full max-w-2xs truncate-2-lines ml-2 text-tertiaryText">
-                      {videoTitle}
-                    </p>
+                    <p
+                      className="text-sm flex-shrink-1 font-bold w-full max-w-2xs truncate-2-lines ml-2 text-tertiaryText"
+                      dangerouslySetInnerHTML={{ __html: videoTitle }}
+                    />
                   </>
+                ) : (
+                  <p className="text-sm flex-shrink-1 w-full max-w-2xs truncate-2-lines ml-2 text-secondaryText">
+                    {strings.nothingPlaying}
+                  </p>
                 )}
                 <AvatarDeck
                   avatars={avatars}
@@ -99,7 +105,11 @@ export default function ChannelCard({
                   size="sm"
                   className="mr-2 w-12 h-12"
                 />
-                <p className="pr-2 flex-shrink-1 text-sm font-semibold truncate-2-lines text-tertiaryText">
+                <p
+                  className={`pr-2 flex-shrink-1 text-sm font-semibold truncate-2-lines ${
+                    videoThumbnail ? "text-tertiaryText" : "text-primaryText"
+                  }`}
+                >
                   {name}
                 </p>
                 {/* <Button

@@ -82,6 +82,7 @@ class VideoPanel extends Component {
           handlerChange={this.props.handleSwapVideos}
           handleSkip={this.handleSkip}
           handleDeleteVideo={this.props.handleDeleteVideo}
+          displayControls={this.props.displayControls}
         />
       </div>
     );

@@ -11,7 +11,7 @@ export default function VideoSearchBar({ className, onClick }) {
   return (
     <div className="bg-secondaryBackground px-4 py-4">
       <form
-        className={className ? className : "mb-4"}
+        className={className ? className : "mb-2"}
         onSubmit={e => e.preventDefault()}
       >
         <Input
@@ -25,21 +25,31 @@ export default function VideoSearchBar({ className, onClick }) {
           className="w-full md:w-3/4"
         />
       </form>
-      <div className="flex flex-wrap my-2 grid-cols-services">
+      <div className="flex flex-shrink-0 overflow-x-auto my-2 grid-cols-services">
         {sources.map((img, idx) => {
           return (
             <Button
               key={idx}
               imageButton
               imageButtonSrc={img.icon}
-              imageButtonClassName="h-6"
-              className={`flex justify-center mr-2 items-center ${
-                source === img.source
+              imageButtonSpan={img.active === true ? "" : "Coming soon"}
+              imageButtonSpanClassName="absolute text-xs text-secondaryText"
+              imageButtonClassName={`h-6 ${
+                img.active === false && "opacity-25"
+              }`}
+              className={`relative flex justify-center mr-6 items-center flex-shrink-0 my-2 ${
+                source === img.source && img.active === true
                   ? "bg-gradient-r-button shadow-md"
-                  : "bg-primaryBackground hover:bg-highlightBackground"
-              } h-10 w-10 rounded-full focus:outline-none`}
+                  : "bg-primaryBackground cursor-default"
+              } 
+              ${
+                img.active === false
+                  ? "bg-secondaryBackground cursor-disable"
+                  : "w-10"
+              } w-10 h-10 rounded-full focus:outline-none`}
               onClick={() => setSource(img.source)}
               analyticsString={`${source} Source Button: VideoSearchBar`}
+              disabled={img.active === true ? false : true}
             />
           );
         })}
