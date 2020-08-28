@@ -1,7 +1,7 @@
 import React from "react";
 import RoomIcon from "../Controls/RoomIcon";
 import AvatarDeck from "../Controls/AvatarDeck";
-import VideoStatus from "../VideoStatusIcon";
+import VideoStatus from "../VideoStatus";
 import strings from "../../helpers/localization";
 import history from "../../history";
 
@@ -18,6 +18,7 @@ export default function ChannelCard({
   handleFollow,
   playerStatus,
   activeFriendViewers,
+  status,
   loading
 }) {
   const handleSelect = () => {
@@ -70,7 +71,11 @@ export default function ChannelCard({
               {videoThumbnail && (
                 <div className="">
                   <p className="text-lg flex-shrink-1 font-bold w-full truncate-2-lines text-primaryText py-4">
-                    <VideoStatus status="playing" type="text" string />
+                    <VideoStatus
+                      status={status.toLowerCase()}
+                      type="text"
+                      string
+                    />
                     {videoTitle}
                     Video TitleVideo TitleVideo TitleVideo TitleVideo TitleVideo
                     TitleVideo TitleVideo TitleVideo TitleVideo Title

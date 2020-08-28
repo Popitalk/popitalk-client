@@ -1,7 +1,7 @@
 import React from "react";
 import RoomIcon from "../Controls/RoomIcon";
 import AvatarDeck from "../Controls/AvatarDeck";
-import VideoStatus from "../VideoStatusIcon";
+import VideoStatus from "../VideoStatus";
 import strings from "../../helpers/localization";
 import history from "../../history";
 import channelPlaceholder from "../../assets/default/channelPlaceholder1.png";
@@ -44,7 +44,11 @@ export default function ChannelCard({
           </div>
         </div>
       ) : (
-        <div className="p-2 my-4 mx-2 rounded-lg hover:shadow-xl duration-100 cursor-pointer">
+        <div
+          className="p-2 my-4 mx-2 rounded-lg hover:shadow-xl duration-100 cursor-pointer"
+          role={handleSelect ? "button" : null}
+          onClick={handleSelect}
+        >
           {/* Channel Description*/}
           <div className="flex flex-row items-center justify-between w-full py-2">
             <div className="flex flex-row items-center">
@@ -63,14 +67,10 @@ export default function ChannelCard({
                 {name}
               </p>
             </div>
-            <VideoStatus status={status} />
+            <VideoStatus status={status.toLowerCase()} type="text" />
           </div>
           {/* ChannelCard background image */}
-          <div
-            className="relative flex flex-grow justify-center pb-16/9"
-            role={handleSelect ? "button" : null}
-            onClick={handleSelect}
-          >
+          <div className="relative flex flex-grow justify-center pb-16/9">
             {videoThumbnail !== "" ? (
               <img
                 src={videoThumbnail}

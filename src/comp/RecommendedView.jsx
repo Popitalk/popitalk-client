@@ -122,17 +122,19 @@ function RecommendedChannels({ list, selectedPage }) {
       ) : (
         <div>
           {/* OPTION TABS */}
-          <div className="flex justify-start px-6 mt-8 h-8 space-x-2">
+          <div className="flex justify-start px-6 mt-8 h-auto">
             {tabs.map((img, idx) => {
               return (
                 <Button
                   styleNone
                   styleNoneContent={img.tab}
+                  styleNoneContentClassName="font-bold text-lg"
+                  hoverable
                   key={idx}
-                  className={`flex flex-row items-center font-bold h-full px-4 shadow-sm transition transform ease-in-out hover:scale-105 duration-100 rounded-full truncate ${
+                  className={`h-full p-4 ${
                     tabSelected === img.tab
-                      ? "text-highlightText cursor-default shadow-none bg-secondaryBackground"
-                      : "text-secondaryText cursor-pointer bg-primaryBackground"
+                      ? "text-highlightText cursor-default"
+                      : "text-secondaryText cursor-pointer"
                   }`}
                   onClick={() => setTab(img.tab)}
                   analyticsString={`${img.tab} Button: RecommendedView`}
