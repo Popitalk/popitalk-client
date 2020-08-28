@@ -63,11 +63,7 @@ export default function LeftPanelContainer() {
       if (channel.ownerId === ownId || channel.owner_id === ownId) {
         yourChannels.push(channel);
       } else {
-        if (
-          channel && channel.members
-            ? !!channel.members.filter(memberId => memberId === ownId).length
-            : null
-        ) {
+        if (channel.ownerId !== ownId && channel.owner_id !== ownId) {
           followingChannels.push(channel);
         }
       }

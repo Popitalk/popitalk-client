@@ -1,7 +1,6 @@
 import React from "react";
 import RoomIcon from "../Controls/RoomIcon";
 import AvatarDeck from "../Controls/AvatarDeck";
-// import Button from "../Controls/Button";
 import VideoStatus from "../VideoStatusIcon";
 import strings from "../../helpers/localization";
 import history from "../../history";
@@ -10,9 +9,8 @@ export default function ChannelCard({
   id,
   name,
   icon,
-  live,
+  status,
   queue,
-  videoSource,
   avatars,
   handleFollow,
   isLoading
@@ -70,7 +68,7 @@ export default function ChannelCard({
               <div className="flex relative justify-between items-center px-2">
                 {videoThumbnail && (
                   <>
-                    <VideoStatus status={live ? "playing" : "paused"} />
+                    <VideoStatus status={status} />
                     <p className="text-sm flex-shrink-1 font-bold w-full max-w-2xs truncate-2-lines ml-2 text-tertiaryText">
                       {videoTitle}
                     </p>
@@ -97,7 +95,7 @@ export default function ChannelCard({
                 <RoomIcon
                   ids={[id]}
                   images={[icon]}
-                  watching={live}
+                  watching={status}
                   size="sm"
                   className="mr-2 w-12 h-12"
                 />

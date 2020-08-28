@@ -32,12 +32,7 @@ function RecommendedChannels({ list, selectedPage }) {
       icon: channels[channelId].icon || defaultIcon
     }))
     .forEach(channel => {
-      if (
-        (channel && channel.members
-          ? !!channel.members.filter(memberId => memberId === ownId).length
-          : null) &&
-        !(channel.ownerId === ownId || channel.owner_id === ownId)
-      ) {
+      if (channel.ownerId !== ownId && channel.owner_id !== ownId) {
         followingChannels.push(channel);
       }
     });

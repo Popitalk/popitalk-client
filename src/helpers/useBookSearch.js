@@ -15,26 +15,28 @@ export default function useBookSearch(query, pageNumber) {
     setLoading(true);
     setError(false);
     let cancel;
-    axios({
-      method: "GET",
-      url: "/api/channels/search",
-      params: { searchTerm: query, pageNo: pageNumber },
-      cancelToken: new axios.CancelToken(c => (cancel = c))
-    })
-      .then(res => {
-        setBooks(prevBooks => {
-          return [...new Set([...prevBooks, ...res.data])];
-        });
-        setHasMore(res.data.docs.length > 0);
-        setLoading(false);
-        setError(true);
-        console.log(res.data);
-        return null;
+    if (query !== "") {
+      axios({
+        method: "GET",
+        url: "/api/channels/search",
+        params: { searchTerm: query, pageNo: pageNumber },
+        cancelToken: new axios.CancelToken(c => (cancel = c))
       })
-      .catch(e => {
-        if (axios.isCancel(e)) return;
-      });
-    return () => cancel();
+        .then(res => {
+          setBooks(prevBooks => {
+            return [...new Set([...prevBooks, ...res.data])];
+          });
+          setHasMore(res.data.docs.length > 0);
+          setLoading(false);
+          setError(true);
+          console.log(res.data);
+          return null;
+        })
+        .catch(e => {
+          if (axios.isCancel(e)) return;
+        });
+      return () => cancel();
+    }
   }, [query, pageNumber]);
   return { loading, error, books, hasMore };
 }
