@@ -64,6 +64,15 @@ import { extendedCapacity } from "./messages";
 
 const initialState = {};
 
+const defaultVideoSearch = {
+  source: "youtube",
+  terms: "",
+  results: [],
+  totalResults: 1,
+  page: 1,
+  searched: false
+};
+
 const R_initChannels = (state, { payload }) => {
   if (payload.channels) {
     let newChannels = {};
@@ -106,14 +115,7 @@ const R_addChannel = (state, { payload }) => {
       capacity: 50,
       initialScroll: null
     },
-    videoSearch: {
-      source: "youtube",
-      terms: "",
-      results: [],
-      totalResults: 1,
-      page: 1,
-      searched: false
-    }
+    videoSearch: defaultVideoSearch
   };
 };
 
@@ -257,6 +259,11 @@ const R_updateChannelInitialScroll = (state, { payload }) => {
 };
 
 const R_updateSearchedVideos = (state, { payload }) => {
+  if (!payload.terms) {
+    state[payload.channelId].videoSearch = defaultVideoSearch;
+    return;
+  }
+
   let results = [];
   if (state[payload.channelId].videoSearch.terms === payload.terms) {
     results = [

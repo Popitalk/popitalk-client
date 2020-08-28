@@ -153,9 +153,9 @@ export const unfollowChannel = channelId => {
 
 export const searchVideos = (source, terms, page) => {
   return axios.get(
-    `/api/videos/search?source=${source}&terms=${encodeURI(terms)}${
-      page ? `&page=${page}` : ""
-    }`
+    `/api/videos/search?source=${source}${
+      terms ? `&terms=${encodeURI(terms)}` : ""
+    }${page ? `&page=${page}` : ""}`
   );
 };
 

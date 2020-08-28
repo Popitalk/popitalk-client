@@ -54,9 +54,8 @@ class VideoPlayer extends Component {
     if (screenfull.isEnabled) screenfull.toggle(this.videoPlayer.current);
   }
 
-  //sync playIcon and play states
   setBothPlaying() {
-    if (this.state.playing) {
+    if (this.state.playing || this.state.videoStatus.currSeconds !== 0) {
       this.props.dispatchPause(
         this.props.playerStatus.queueStartPosition,
         this.state.progress
@@ -179,7 +178,10 @@ class VideoPlayer extends Component {
 
     this.setState({
       playing: false,
-      progress: this.props.playerStatus.videoStartTime
+      progress: this.props.playerStatus.videoStartTime,
+      videoStatus: {
+        currSeconds: 0
+      }
     });
   }
 
@@ -218,6 +220,9 @@ class VideoPlayer extends Component {
   }
 
   render() {
+    const showPlay =
+      !this.state.playing && this.state.videoStatus.currSeconds === 0;
+
     return (
       <>
         {/* When nothing is in the queue, it should hide the VideoPlayer for both admin & followers (and show the default placeholder). 
@@ -285,7 +290,7 @@ class VideoPlayer extends Component {
                     />
                     {/* VideoPlayerStatusCard */}
                     <div className="absolute flex items-center justify-center w-full h-full">
-                      {this.state.playing === false &&
+                      {!this.state.playing &&
                         this.state.videoStatus.currSeconds === 0 && (
                           <VideoPlayerStatusCard
                             systemMessage={strings.paused}
@@ -368,17 +373,13 @@ class VideoPlayer extends Component {
                             styleNone
                             styleNoneIconClassName="text-tertiaryText"
                             hoverable
-                            icon={!this.state.playing ? "play" : "pause"}
+                            icon={showPlay ? "play" : "pause"}
                             className={`w-8 p-1 rounded-full ${
                               this.props.displayControls &&
                               "hover:bg-playerControlsHover"
                             }`}
                             onClick={() => this.setBothPlaying()}
-                            data-tip={
-                              this.state.playing === false
-                                ? strings.play
-                                : strings.pause
-                            }
+                            data-tip={showPlay ? strings.play : strings.pause}
                             data-place="top"
                             analyticsString="Play/Pause Button: VideoPlayer"
                           />

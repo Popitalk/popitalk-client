@@ -632,16 +632,22 @@ export const searchUsersWs = createAction(searchUsers.fulfilled.type);
 export const searchVideos = createAsyncThunk(
   "videoSearch/searchVideos",
   async (searchInfo, { getState }) => {
-    const { source, terms, channelId } = searchInfo;
+    const { source, terms, next, channelId } = searchInfo;
     const { page, terms: prevTerms } = getState().channels[
       channelId
     ].videoSearch;
 
-    let finalTerms = terms ? terms : prevTerms;
-    finalTerms = finalTerms.trim();
+    let finalTerms = next ? prevTerms : terms ? terms.trim() : "";
+    if (finalTerms === "") {
+      finalTerms = null;
+    }
 
     let response = null;
-    if (finalTerms && finalTerms !== "") {
+    if (
+      (!finalTerms && next) ||
+      getState().general.trendingResults.results.length === 0 ||
+      finalTerms
+    ) {
       response = await api.searchVideos(
         source,
         finalTerms,

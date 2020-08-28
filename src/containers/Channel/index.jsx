@@ -26,7 +26,6 @@ import {
   swapVideos,
   setAlert
 } from "../../redux/actions";
-import { testResult } from "../../stories/seed-arrays";
 import ChannelHeader from "../../comp/ChannelHeader";
 import VideoPanel from "./VideoPanel";
 import ForumPanel from "./ForumPanel";
@@ -36,7 +35,8 @@ import VideoSearch from "../../comp/VideoSearch";
 import { mapIdsToUsers } from "../../helpers/functions";
 import {
   calculatePlayerStatus,
-  calculateNextPlayerStatus
+  calculateNextPlayerStatus,
+  defaultPlayerStatus
 } from "../../helpers/videoSyncing";
 import Helmet from "react-helmet";
 import strings from "../../helpers/localization";
@@ -64,18 +64,23 @@ const mapStateToProps = (state, { match }) => {
 
   const validTabs = [VIDEO_TAB, POSTS_TAB, QUEUE_TAB, SETTINGS_TAB];
 
+  const startPlayerStatus = channel
+    ? {
+        videoStartTime: channel.videoStartTime,
+        queueStartPosition: channel.queueStartPosition,
+        clockStartTime: channel.clockStartTime,
+        status: channel.status
+      }
+    : defaultPlayerStatus();
+
   return {
     channelId: finalId,
     defaultIcon,
     defaultAvatar,
-    channel,
-    startPlayerStatus: {
-      videoStartTime: channel.videoStartTime,
-      queueStartPosition: channel.queueStartPosition,
-      clockStartTime: channel.clockStartTime,
-      status: channel.status
-    },
-    playlist: channel.queue,
+    channel: channel ? channel : {},
+    startPlayerStatus: startPlayerStatus,
+    playlist: channel ? channel.queue : [],
+    trendingResults: state.general.trendingResults,
     channelApi,
     drafts,
     posts,
@@ -130,8 +135,8 @@ const mapDispatchToProps = (dispatch, { match }) => {
     handleFollow: () => dispatch(followChannel(channelId)),
     handleUnfollow: () => dispatch(unfollowChannel(channelId)),
     handleOpenAdminsList: () => dispatch(openListModal(channelId, "admins")),
-    handleSearch: terms =>
-      dispatch(searchVideos({ channelId, source: "youtube", terms })),
+    handleSearch: (terms, next = false) =>
+      dispatch(searchVideos({ channelId, source: "youtube", terms, next })),
     handleAddVideo: videoInfo =>
       dispatch(addVideo({ channelId, ...videoInfo })),
     handleDeleteVideo: channelVideoId =>
@@ -243,6 +248,10 @@ class Channel extends Component {
   }
 
   componentDidUpdate(prevProps) {
+    if (this.props.trendingResults.results.length === 0) {
+      this.props.handleSearch("");
+    }
+
     if (
       prevProps.channelId !== this.props.channelId &&
       !this.props.channel?.loaded
@@ -290,7 +299,7 @@ class Channel extends Component {
       });
     }
 
-    if (prevProps.tab !== this.props.tab) {
+    if (prevProps.tab !== this.props.tab && this.scrollRef.current) {
       const tab = this.props.tab;
 
       if (tab === VIDEO_TAB) {
@@ -337,7 +346,7 @@ class Channel extends Component {
     const handleAddVideo = this.props.handleAddVideo;
     const handleSwapVideos = this.props.handleSwapVideos;
 
-    const trendingResults = testResult;
+    const trendingResults = this.props.trendingResults.results;
     const searchResults = channel.videoSearch.results;
     const totalResults = channel.videoSearch.totalResults;
     const admins = channel.admins
