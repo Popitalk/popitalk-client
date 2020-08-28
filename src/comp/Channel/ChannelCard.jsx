@@ -12,6 +12,7 @@ export default function ChannelCard({
   icon,
   status,
   queue,
+  queueStartPosition,
   avatars,
   handleFollow,
   isLoading
@@ -23,8 +24,13 @@ export default function ChannelCard({
   let videoTitle = "Nothing Playing at the moment";
 
   if (queue.length > 0) {
-    videoThumbnail = queue[0].thumbnail;
-    videoTitle = queue[0].title;
+    try {
+      videoThumbnail = queue[queueStartPosition].thumbnail;
+      videoTitle = queue[queueStartPosition].title;
+    } catch {
+      videoThumbnail = queue[0].thumbnail;
+      videoTitle = queue[0].title;
+    }
   }
   return (
     <>

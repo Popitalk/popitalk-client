@@ -8,6 +8,7 @@ function ChannelCardList({ channelList, isCollapsed, tabSelected, isLoading }) {
   channelList.forEach(type => {
     if (type.title === tabSelected.slice(2)) {
       currentChannelList.push(...type.channels);
+      console.log({ currentChannelList });
     }
   });
 
