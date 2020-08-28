@@ -44,18 +44,38 @@ export default function ChannelCard({
           </div>
         </div>
       ) : (
-        <div className="py-6 px-2 select-none">
+        <div className="p-2 my-4 mx-2 rounded-lg hover:shadow-xl duration-100 cursor-pointer">
+          {/* Channel Description*/}
+          <div className="flex flex-row items-center justify-between w-full py-2">
+            <div className="flex flex-row items-center">
+              <RoomIcon
+                ids={[id]}
+                images={[icon]}
+                // watching={status}
+                size="sm"
+                className="mr-2 w-10 h-10"
+              />
+              <p
+                className={`pr-2 flex-shrink-1 text-sm font-semibold truncate-2-lines ${
+                  videoThumbnail ? "text-primaryText" : "text-primaryText"
+                }`}
+              >
+                {name}
+              </p>
+            </div>
+            <VideoStatus status={status} />
+          </div>
+          {/* ChannelCard background image */}
           <div
-            className="relative flex flex-grow justify-center pb-5/4 p-3 rounded-lg hover:shadow-xl transition-all duration-100 cursor-pointer"
+            className="relative flex flex-grow justify-center pb-16/9"
             role={handleSelect ? "button" : null}
             onClick={handleSelect}
           >
-            {/* ChannelCard background image */}
             {videoThumbnail !== "" ? (
               <img
                 src={videoThumbnail}
                 alt={"channel"}
-                className="absolute img top-0 h-full rounded-lg bg-primaryBackground"
+                className="absolute img top-0 h-full rounded-lg bg-secondaryBackground object-cover pt-px"
               />
             ) : (
               <img
@@ -64,65 +84,26 @@ export default function ChannelCard({
                 className="absolute img top-0 h-full rounded-lg bg-primaryBackground"
               />
             )}
-            {/* Top part of the ChannelCard */}
-            <div className="absolute w-full z-10">
-              <div className="flex relative justify-between items-center px-2">
-                {videoThumbnail ? (
-                  <>
-                    <VideoStatus status={status} />
-                    <p
-                      className="text-sm flex-shrink-1 font-bold w-full max-w-2xs truncate-2-lines ml-2 text-tertiaryText"
-                      dangerouslySetInnerHTML={{ __html: videoTitle }}
-                    />
-                  </>
-                ) : (
-                  <p className="text-sm flex-shrink-1 w-full max-w-2xs truncate-2-lines ml-2 text-secondaryText">
-                    {strings.nothingPlaying}
-                  </p>
-                )}
-                <AvatarDeck
-                  avatars={avatars}
-                  size="md"
-                  className="img w-auto h-8 flex-shrink-0"
-                  threshold={3}
-                />
-              </div>
-            </div>
-            {/* Shaded gradients behind*/}
-            {videoThumbnail && (
-              <>
-                <div className="h-full w-full absolute top-0 bg-gradient-t-channelCardOverlay rounded-lg" />
-                <div className="h-full w-full absolute top-0 bg-gradient-t-channelCardOverlay transform rotate-180 rounded-lg" />
-              </>
+          </div>
+          {/* Video Description & Avatar Deck */}
+          <div className="w-full my-2 flex flex-col justify-between items-center space-y-2">
+            {videoThumbnail ? (
+              <p
+                className="text-sm flex-shrink-1 font-bold w-full truncate-2-lines ml-2 text-primaryText"
+                dangerouslySetInnerHTML={{ __html: videoTitle }}
+              />
+            ) : (
+              <p className="text-sm flex-shrink-1 w-full truncate-2-lines ml-2 text-secondaryText">
+                {strings.nothingPlaying}
+              </p>
             )}
-            {/* Bottom part of the ChannelCard */}
-            <div className="absolute w-full bottom-0 left-0 px-3 py-2 rounded-b-lg">
-              <div className="flex flex-row items-center">
-                <RoomIcon
-                  ids={[id]}
-                  images={[icon]}
-                  watching={status}
-                  size="sm"
-                  className="mr-2 w-12 h-12"
-                />
-                <p
-                  className={`pr-2 flex-shrink-1 text-sm font-semibold truncate-2-lines ${
-                    videoThumbnail ? "text-tertiaryText" : "text-primaryText"
-                  }`}
-                >
-                  {name}
-                </p>
-                {/* <Button
-                  actionButton
-                  size="sm"
-                  shape="pill"
-                  className="ml-auto"
-                  onClick={handleFollow}
-                  analyticsString="Channel Follow Button: ChannelCard"
-                >
-                  {strings.followButton}
-                </Button> */}
-              </div>
+            <div className="flex w-full text-sm px-1">
+              <AvatarDeck
+                avatars={avatars}
+                size="md"
+                className="img w-auto h-8 flex-shrink-0"
+                threshold={3}
+              />
             </div>
           </div>
         </div>

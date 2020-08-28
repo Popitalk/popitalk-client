@@ -38,7 +38,6 @@ export default function SuggestionCard({
           alt="channel"
           className="img absolute top-0 w-full h-full object-cover rounded-xl z-10"
         />
-        <div className="h-full w-full absolute top-0 transform rotate-180 bg-gradient-t-channelCardOverlay z-20 rounded-xl" />
       </div>
       <div className="flex py-2">
         <RoomIcon
