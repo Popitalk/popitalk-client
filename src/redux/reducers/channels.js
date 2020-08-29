@@ -211,7 +211,6 @@ const R_addMember = (state, { payload }) => {
 
 const R_addMembers = (state, { payload }) => {
   state[payload.channel.id].members = payload.channel.members;
-  state[payload.channel.id].numOnline = payload.channel.members.length;
 };
 
 const R_deleteMember = (state, { payload }) => {
