@@ -1,6 +1,8 @@
 import React from "react";
 import RoomIcon from "../Controls/RoomIcon";
 import AvatarDeck from "../Controls/AvatarDeck";
+import { mapIdsToUsers } from "../../helpers/functions";
+import { useSelector } from "react-redux";
 import VideoStatus from "../VideoStatus";
 import strings from "../../helpers/localization";
 import history from "../../history";
@@ -13,7 +15,7 @@ export default function ChannelCard({
   live,
   description,
   videoSource,
-  avatars,
+  members,
   handleFollow,
   playerStatus,
   queueStartPosition,
@@ -27,6 +29,10 @@ export default function ChannelCard({
   };
   let videoThumbnail = "";
   let videoTitle = strings.nothingPlaying;
+  const users = useSelector(state => state.users);
+  const { defaultAvatar } = useSelector(state => state.general);
+  const viewers = members ? mapIdsToUsers(members, users, defaultAvatar) : [];
+  const avatars = viewers.map(viewer => viewer.avatar);
 
   if (queue.length > 0) {
     try {

@@ -98,19 +98,19 @@ export default function ChannelCard({
             )}
           </div>
           {/* Video Description & Avatar Deck */}
-          <div className="w-full my-2 flex flex-col justify-between items-center space-y-2">
+          <div className="w-full my-2 flex flex-col justify-between items-between items-center space-y-2">
             <p
               className={`text-sm flex-shrink-1 font-bold w-full truncate-2-lines ml-2  ${
                 videoThumbnail ? "text-primaryText" : "text-secondaryText"
               }`}
               dangerouslySetInnerHTML={{ __html: videoTitle }}
             />
-            <div className="flex w-full text-sm px-1">
+            <div className="flex w-full text-sm">
               <AvatarDeck
                 avatars={avatars}
                 size="md"
-                className="img w-auto h-8 flex-shrink-0"
-                threshold={3}
+                className="img w-8 h-8 flex-shrink-0"
+                threshold={10}
               />
             </div>
           </div>
