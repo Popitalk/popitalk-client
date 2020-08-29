@@ -1,9 +1,9 @@
-import {
-  createRoom,
-  inviteFriends,
-  deleteChannel,
-  closeAllModals
-} from "../actions";
+// import {
+//   createRoom,
+//   addRoomMembers,
+//   deleteChannel,
+//   closeAllModals
+// } from "../actions";
 
 const modalMiddleware = () => store => next => action => {
   next(action);

@@ -1,15 +1,45 @@
-# Playnows client
+# playnows-client
 
-[Link to demo](https://playsnow.sulaiman-alabbar.com/)
+## Info
+`@popitalk/playnows-client` is the primary web client for interacting with: 
 
-[Landing Page](https://playsnow.sulaiman-alabbar.com/)
+* [`@popitalk/playnows-server`](https://github.com/Popitalk/playnows-server)
+* [`@popitalk/popitalk-server-ws`](https://github.com/Popitalk/popitalk-server-ws)
 
-[Room Page](https://playsnow.sulaiman-alabbar.com/rooms/abc/video)
+You can watch a demo [here](https://placeholder.youtube.com).
 
-[Channel Page](https://playsnow.sulaiman-alabbar.com/channels/abc/video)
+## Codebase
+The codebase for `playnows-client` is written in React with [Tailwindcss](https://tailwindcss.com/) and Redux.js.
 
-[Create Channel Page](https://playsnow.sulaiman-alabbar.com/channels/create)
+### First time setup
+To run the repository locally:
 
-[Following Page](https://playsnow.sulaiman-alabbar.com/channels/following)
+```
+git clone https://github.com/Popitalk/playnows-client
+npm install
+npm start
+```
 
-[Users Page](https://playsnow.sulaiman-alabbar.com/users/abc)
+#### Installation
+*Important* The following services need to be set up for `@popitalk/playnows-client` to function:
+
+* [`@popitalk/playnows-server`](https://github.com/Popitalk/playnows-server)
+* [`@popitalk/popitalk-server-ws`](https://github.com/Popitalk/popitalk-server-ws)
+
+#### Checklist
+
+ - You need to install the required dependencies by running `npm`.
+ - Make sure you have the most recent `.env` file.
+ - Ensure that `.env.example` is either copied and renamed to `.env`, or is simply renamed to `.env`.
+
+### Folder Structure
+```
+popitalk/playnows-client/
+├── comp # The core components
+├── containers # placeholder explanation
+├── helpers # placeholder explanation
+├── hooks # placeholder explanation
+├── redux # placeholder explanation
+└── util # placeholder explanation
+```
+

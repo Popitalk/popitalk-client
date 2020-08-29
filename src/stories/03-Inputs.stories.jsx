@@ -1,9 +1,6 @@
 import React, { useState } from "react";
 import { withKnobs, text, select } from "@storybook/addon-knobs";
-import styled from "styled-components";
-import Button from "../comp/Button";
-import Text from "../comp/Text";
-import Input from "../comp/Input";
+import Input from "../comp/Controls/Input";
 
 export default {
   title: "Inputs",
@@ -11,57 +8,102 @@ export default {
   decorators: [withKnobs]
 };
 
-const Container = styled.div`
-  /* display: flex; */
-  /* flex-direction: column; */
-  /* justify-content: center; */
-  /* align-items: center; */
-  /* display: grid; */
-  /* grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr; */
-  /* justify-items: center; */
-  /* justify-items: center; */
-  /* align-items: center; */
-  /* row-gap: 25px; */
-  padding: 20px;
-  background-color: #fff;
-  & > *:not(:last-child) {
-    margin-bottom: 20px;
-  }
-`;
-const Container2 = styled.div`
-  display: grid;
-  /* grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr; */
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  justify-items: center;
-  justify-items: center;
-  align-items: center;
-  row-gap: 25px;
-  /* gap: 20px; */
-`;
-
-// const Container = styled.div`
-//   /* display: flex; */
-//   /* flex-direction: column; */
-//   /* justify-content: center; */
-//   /* align-items: center; */
-//   display: grid;
-//   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
-//   justify-items: center;
-//   align-items: center;
-//   row-gap: 25px;
-//   padding: 20px;
-//   background-color: #fff;
-//   /* & > *:not(:last-child) {
-//     margin-bottom: 20px;
-//   } */
-// `;
-
 export const Inputs123 = () => {
   const [input, setInput] = useState("");
 
   return (
-    <Container>
-      <Input size="sm" />
-    </Container>
+    <div className="p-5 grid grid-cols-1 gap-1 row-gap-3">
+      <Input
+        size="sm"
+        value={input}
+        placeholder="Search"
+        onChange={e => setInput(e.target.value)}
+        header="Email"
+        error="Bad input"
+      />
+      <Input
+        size="md"
+        value={input}
+        placeholder="Search"
+        onChange={e => setInput(e.target.value)}
+        header="Email"
+        error="Bad input"
+        shape="pill"
+      />
+      <Input
+        size="lg"
+        value={input}
+        placeholder="Search"
+        onChange={e => setInput(e.target.value)}
+        header="Email"
+        error="Bad input"
+      />
+      <Input
+        variant="video"
+        size="lg"
+        value={input}
+        placeholder="Search"
+        onChange={e => setInput(e.target.value)}
+        header="Email"
+        error="Bad input"
+        videoSource="Youtube"
+        // disabled={true}
+      />
+      <Input
+        variant="counter"
+        size="sm"
+        value={input}
+        placeholder="Search"
+        onChange={e => setInput(e.target.value)}
+        header="Email"
+        error="Bad input"
+      />
+      <Input
+        variant="counter"
+        size="md"
+        value={input}
+        placeholder="Search"
+        onChange={e => setInput(e.target.value)}
+        header="Email"
+        error="Bad input"
+      />
+      <Input
+        variant="counter"
+        size="lg"
+        value={input}
+        placeholder="Search"
+        onChange={e => setInput(e.target.value)}
+        header="Email"
+        error="Bad input"
+      />
+      <Input
+        variant="filter"
+        size="lg"
+        value={input}
+        placeholder="Search"
+        onChange={e => setInput(e.target.value)}
+      />
+      <Input
+        variant="filterModal"
+        size="lg"
+        value={input}
+        placeholder="Search"
+        onChange={e => setInput(e.target.value)}
+      />
+      <Input
+        variant="user"
+        size="lg"
+        value={input}
+        placeholder="Search friends"
+        onChange={e => setInput(e.target.value)}
+      />
+      <Input
+        variant="channel"
+        size="lg"
+        value={input}
+        placeholder="Search for channels"
+        onChange={e => setInput(e.target.value)}
+      />
+    </div>
   );
 };

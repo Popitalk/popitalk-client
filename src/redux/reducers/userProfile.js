@@ -1,5 +1,5 @@
 import { createReducer } from "@reduxjs/toolkit";
-import { getUserInfo, getUserInfoModal } from "../actions";
+import { getUserInfo, getUserInfoModal, updateUser } from "../actions";
 
 const initialState = {
   id: "",
@@ -31,5 +31,7 @@ const R_setUserInfoModal = (state, { payload }) => {
 
 export default createReducer(initialState, {
   [getUserInfo.fulfilled]: R_setUserInfo,
-  [getUserInfoModal.fulfilled]: R_setUserInfoModal
+  [getUserInfoModal.fulfilled]: R_setUserInfoModal,
+  [updateUser.fulfilled]: R_setUserInfo,
+  [updateUser.fulfilled]: R_setUserInfoModal
 });

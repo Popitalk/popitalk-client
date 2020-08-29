@@ -1,6 +1,6 @@
-import groupBy from "lodash/groupBy";
 import dateFormatter from "./dateFormatter";
 
+// Receives messages from Redux state
 const messagesFormatter2 = messages => {
   const newMessages = [];
 
@@ -41,7 +41,22 @@ const messagesFormatter2 = messages => {
     return type;
   };
 
+  const addMessageToNewMessages = (message, index) => {
+    newMessages.push({
+      status: message.status,
+      type: getMessageType(message, index),
+      id: message.id,
+      userId: message.userId,
+      content: message.content,
+      upload: message.upload,
+      username: message.author.username,
+      avatar: message.author.avatar,
+      createdAt: dateFormatter(new Date(message.createdAt))
+    });
+  };
+
   messages.forEach((message, index) => {
+    // If newMessages array is empty, an additional date message is added.
     if (newMessages.length === 0) {
       newMessages.push({
         type: "date",
@@ -49,16 +64,9 @@ const messagesFormatter2 = messages => {
         date: dateFormatter(new Date(message.createdAt), true)
       });
 
-      newMessages.push({
-        type: getMessageType(message, index),
-        id: message.id,
-        userId: message.userId,
-        content: message.content,
-        upload: message.upload,
-        username: message.author.username,
-        avatar: message.author.avatar,
-        createdAt: dateFormatter(new Date(message.createdAt))
-      });
+      addMessageToNewMessages(message, index);
+      // If when the message was created is not equal to the DAY, the previous message was created, then an additional
+      // date message is added.
     } else if (
       new Date(message.createdAt).getDate() !==
       new Date(messages[index - 1].createdAt).getDate()
@@ -69,27 +77,10 @@ const messagesFormatter2 = messages => {
         date: dateFormatter(new Date(message.createdAt), true)
       });
 
-      newMessages.push({
-        type: getMessageType(message, index),
-        id: message.id,
-        userId: message.userId,
-        content: message.content,
-        upload: message.upload,
-        username: message.author.username,
-        avatar: message.author.avatar,
-        createdAt: dateFormatter(new Date(message.createdAt))
-      });
+      addMessageToNewMessages(message, index);
     } else {
-      newMessages.push({
-        type: getMessageType(message, index),
-        id: message.id,
-        userId: message.userId,
-        content: message.content,
-        upload: message.upload,
-        username: message.author.username,
-        avatar: message.author.avatar,
-        createdAt: dateFormatter(new Date(message.createdAt))
-      });
+      // Otherwise the messages are just added.
+      addMessageToNewMessages(message, index);
     }
   });
 

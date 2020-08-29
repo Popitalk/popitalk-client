@@ -66,7 +66,9 @@ const R_deletePost = (state, { payload }) => {
   }
 };
 const R_flushPosts = (state, { payload }) => {
-  state[payload.channelId] = state[payload.channelId].slice(0, 7);
+  if (state[payload.channelId]) {
+    state[payload.channelId] = state[payload.channelId].slice(0, 7);
+  }
 };
 
 const R_likePost = (state, { payload }) => {

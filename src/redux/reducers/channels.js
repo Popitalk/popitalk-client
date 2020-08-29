@@ -1,6 +1,8 @@
 import { createReducer } from "@reduxjs/toolkit";
+import arrayMove from "array-move";
 import {
   validateSession,
+  refreshSession,
   login,
   logout,
   deleteAccount,
@@ -44,14 +46,33 @@ import {
   acceptFriendRequest,
   setInitialScroll,
   addFriendWs,
-  inviteFriends,
   searchVideos,
   friendOnlineWs,
-  friendOfflineWs
+  friendOfflineWs,
+  addRoomMembers,
+  setPlaying,
+  setPaused,
+  addVideo,
+  deleteVideo,
+  swapVideos,
+  setLastMessageSeen,
+  addVideoWs,
+  deleteVideoWs,
+  swapVideosWs
 } from "../actions";
-// import { inviteFriends } from "../../helpers/api";
+
+import { extendedCapacity } from "./messages";
 
 const initialState = {};
+
+const defaultVideoSearch = {
+  source: "youtube",
+  terms: "",
+  results: [],
+  totalResults: 1,
+  page: 1,
+  searched: false
+};
 
 const R_initChannels = (state, { payload }) => {
   if (payload.channels) {
@@ -59,6 +80,7 @@ const R_initChannels = (state, { payload }) => {
 
     Object.entries(payload.channels).forEach(([channelId, channel]) => {
       newChannels[channelId] = {
+        queue: [],
         ...channel,
         chatSettings: {
           capacity: 50,
@@ -68,6 +90,7 @@ const R_initChannels = (state, { payload }) => {
           source: "youtube",
           terms: "",
           results: [],
+          totalResults: 1,
           page: 1,
           searched: false
         }
@@ -80,25 +103,31 @@ const R_initChannels = (state, { payload }) => {
   }
 };
 
+const R_refreshChannels = (state, { payload }) => {
+  if (payload.channels) {
+    Object.entries(payload.channels).forEach(([channelId, channel]) => {
+      state[channelId] = {
+        ...state[channelId],
+        ...channel
+      };
+    });
+  }
+};
+
 const R_addChannel = (state, { payload }) => {
   const channelId = payload.id || payload.channelId;
-  let { channel } = payload;
+  let { channel, queue } = payload;
 
   state[channelId] = {
     ...state[channelId],
     ...channel,
+    queue: queue ? queue : [],
     loaded: true,
     chatSettings: {
       capacity: 50,
       initialScroll: null
     },
-    videoSearch: {
-      source: "youtube",
-      terms: "",
-      results: [],
-      page: 1,
-      searched: false
-    }
+    videoSearch: defaultVideoSearch
   };
 };
 
@@ -109,6 +138,10 @@ const R_updateChannel = (state, { payload }) => {
     ...state[channelId],
     ...payload.updatedChannel
   };
+};
+
+const R_setLastMessageSeen = (state, { payload }) => {
+  state[payload.channelId].lastMessageIsNew = false;
 };
 
 const R_updateLastMessageInfoPending = (state, { meta }) => {
@@ -124,7 +157,7 @@ const R_updateLastMessageInfo = (state, { payload }) => {
   state[payload.channelId].lastMessageUsername = payload.author.username;
   state[payload.channelId].lastMessageContent = payload.content;
   state[payload.channelId].lastMessageReceivedByServer = true;
-  state[payload.channelId].lastMessagesUpdateByWebsockets = true;
+  state[payload.channelId].lastMessagesUpdateByWebsockets = false;
   state[payload.channelId].initialScroll = null;
 };
 const R_updateLastMessageInfoWs = (state, { payload }) => {
@@ -135,6 +168,7 @@ const R_updateLastMessageInfoWs = (state, { payload }) => {
   state[payload.channelId].lastMessageAt = payload.createdAt;
   state[payload.channelId].lastMessageUsername = payload.author.username;
   state[payload.channelId].lastMessageContent = payload.content;
+  state[payload.channelId].lastMessageIsNew = true;
   state[payload.channelId].lastMessageReceivedByServer = true;
   state[payload.channelId].lastMessagesUpdateByWebsockets = true;
   state[payload.channelId].initialScroll = null;
@@ -176,7 +210,7 @@ const R_addMember = (state, { payload }) => {
 };
 
 const R_addMembers = (state, { payload }) => {
-  state[payload.channelId].members.push(...payload.userIds);
+  state[payload.channel.id].members = payload.channel.members;
 };
 
 const R_deleteMember = (state, { payload }) => {
@@ -230,19 +264,32 @@ const R_deleteChannel = (state, { payload }) => {
 const R_updateChannelInitialScroll = (state, { payload }) => {
   if (state[payload.channelId]) {
     state[payload.channelId].capacity =
-      payload.initialScroll === null ? 50 : 250;
+      payload.initialScroll === null ? 50 : extendedCapacity;
     state[payload.channelId].initialScroll = payload.initialScroll;
   }
 };
 
 const R_updateSearchedVideos = (state, { payload }) => {
+  if (!payload.terms) {
+    state[payload.channelId].videoSearch = defaultVideoSearch;
+    return;
+  }
+
+  let results = [];
+  if (state[payload.channelId].videoSearch.terms === payload.terms) {
+    results = [
+      ...state[payload.channelId].videoSearch.results,
+      ...payload.results
+    ];
+  } else {
+    results = [...payload.results];
+  }
+
   state[payload.channelId].videoSearch = {
     source: payload.source,
     terms: payload.terms,
-    results: [
-      ...state[payload.channelId].videoSearch.results,
-      ...payload.results
-    ],
+    results: results,
+    totalResults: payload.totalResults,
     page: payload.page ? payload.page : 1,
     searched: true
   };
@@ -258,12 +305,38 @@ const R_updateFriendRoomToOffline = (state, { payload }) => {
 
 const R_resetState = () => initialState;
 
+const R_addVideo = (state, { payload }) => {
+  state[payload.channelId].queue.push({
+    ...payload.video,
+    channelId: payload.channelId
+  });
+};
+
+const R_deleteVideo = (state, { payload }) => {
+  state[payload.channelId].queue.splice(payload.queuePosition, 1);
+
+  R_updateChannel(state, { payload });
+};
+
+const R_swapVideos = (state, { payload }) => {
+  const channelId = payload.channelId;
+
+  state[channelId].queue = arrayMove(
+    state[channelId].queue,
+    payload.oldIndex,
+    payload.newIndex
+  );
+
+  R_updateChannel(state, { payload });
+};
+
 // See what the server returns when inviting friends
 // Only add users? Or update channel?
 // Only add users, so that data is in sync?
 
 export default createReducer(initialState, {
   [validateSession.fulfilled]: R_initChannels,
+  [refreshSession.fulfilled]: R_refreshChannels,
   [login.fulfilled]: R_initChannels,
   [getChannel.fulfilled]: R_addChannel,
   [addChannel.fulfilled]: R_addChannel,
@@ -282,7 +355,7 @@ export default createReducer(initialState, {
   [deleteFriendWs]: R_deleteChannel,
   [blockUser.fulfilled]: R_deleteChannel,
   [addBlockerWs]: R_deleteChannel,
-  [inviteFriends.fulfilled]: R_addMembers,
+  [addRoomMembers.fulfilled]: R_addMembers,
   [addMembersWs]: R_addMembers,
   [followChannel.fulfilled]: R_addMember,
   [addMemberWs]: R_addMember,
@@ -300,6 +373,7 @@ export default createReducer(initialState, {
   [addMessage.fulfilled]: R_updateLastMessageInfo,
   [addMessageWs.pending]: R_updateLastMessageInfoPending,
   [addMessageWs]: R_updateLastMessageInfoWs,
+  [setLastMessageSeen]: R_setLastMessageSeen,
   [getMessages.fulfilled]: R_updateLastMessageUpdate,
   [getLatestMessages.fulfilled]: R_updateLastMessageUpdateLatest,
   [deleteMessage.fulfilled]: R_deletedMessageUpdate,
@@ -313,7 +387,15 @@ export default createReducer(initialState, {
   [friendOnlineWs]: R_updateFriendRoomToOnline,
   [friendOfflineWs]: R_updateFriendRoomToOffline,
   [logout.fulfilled]: R_resetState,
-  [deleteAccount.fulfilled]: R_resetState
+  [deleteAccount.fulfilled]: R_resetState,
+  [setPlaying.fulfilled]: R_updateChannel,
+  [setPaused.fulfilled]: R_updateChannel,
+  [addVideo.fulfilled]: R_addVideo,
+  [addVideoWs]: R_addVideo,
+  [deleteVideo.fulfilled]: R_deleteVideo,
+  [deleteVideoWs]: R_deleteVideo,
+  [swapVideos.fulfilled]: R_swapVideos,
+  [swapVideosWs]: R_swapVideos
 });
 
 // import * as actions from "../actions";

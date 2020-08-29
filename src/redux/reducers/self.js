@@ -63,9 +63,13 @@ const R_addChannel = (state, { payload }) => {
   const channelId = payload.id || payload.channelId;
 
   if (payload.type === "channel" || payload.channel?.type === "channel") {
-    state.channelIds.push(channelId);
+    if (!state.channelIds.includes(channelId)) {
+      state.channelIds.push(channelId);
+    }
   } else {
-    state.roomIds.push(channelId);
+    if (!state.roomIds.includes(channelId)) {
+      state.roomIds.push(channelId);
+    }
   }
 };
 const R_deleteChannel = (state, { payload }) => {

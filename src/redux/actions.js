@@ -1,33 +1,33 @@
 import { createAction, createAsyncThunk } from "@reduxjs/toolkit";
-import _ from "lodash";
 import * as api from "../helpers/api";
 import {
-  PUSH_MODAL,
-  PUSH_MODAL_PROFILE_MODAL,
-  PUSH_MODAL_DELETE_MESSAGE,
-  PUSH_MODAL_DELETE_CHANNEL,
-  POP_MODAL,
-  POP_ALL_MODAL,
+  // PUSH_MODAL,
+  // PUSH_MODAL_PROFILE_MODAL,
+  // PUSH_MODAL_DELETE_MESSAGE,
+  // PUSH_MODAL_DELETE_CHANNEL,
+  // POP_MODAL,
+  // POP_ALL_MODAL,
   MODAL_CREATE_NEW_ACCOUNT,
   MODAL_CREATE_ROOM,
   MODAL_INVITE,
   MODAL_PROFILE,
   MODAL_WATCHING,
-  MODAL_MEMBERS,
+  // MODAL_MEMBERS,
   MODAL_FOLLOWERS,
+  MODAL_LIST,
   MODAL_USER_SETTINGS,
   MODAL_EDIT_USER_SETTINGS,
   MODAL_CHANGE_PASSWORD,
   MODAL_BLOCKED_USERS,
   MODAL_IMAGE,
-  CLOSE_ALL_MODAL,
+  // CLOSE_ALL_MODAL,
   MODAL_DELETE_MESSAGE,
   MODAL_ACCOUNT_SETTINGS,
   MODAL_DELETE_ACCOUNT,
   MODAL_DELETE_CHANNEL,
   MODAL_ROOM_EXISTS
 } from "../helpers/constants";
-
+import moment from "moment";
 /* -------------------------------------------------------------------------- */
 /*                                   GENERAL                                  */
 /* -------------------------------------------------------------------------- */
@@ -41,6 +41,15 @@ export const validateSession = createAsyncThunk(
     return response.data;
   }
 );
+
+export const refreshSession = createAsyncThunk(
+  "general/refreshSession",
+  async () => {
+    const response = await api.refreshSession();
+    return response.data;
+  }
+);
+
 export const login = createAsyncThunk("general/login", async loginInfo => {
   try {
     const response = await api.login(loginInfo);
@@ -120,7 +129,8 @@ export const updateUser = createAsyncThunk(
       if (updateInfo.avatar === null) {
         formData.append("removeAvatar", true);
       } else if (updateInfo.avatar && updateInfo.avatar !== avatar) {
-        formData.append("avatar", updateInfo.avatar);
+        const blob = await fetch(updateInfo.avatar).then(r => r.blob());
+        formData.append("avatar", blob);
       }
 
       const response = await api.updateUser(formData);
@@ -142,71 +152,50 @@ export const updateUser = createAsyncThunk(
 export const sendFriendRequest = createAsyncThunk(
   "relationships/sendFriendRequest",
   async userId => {
-    const response = await api.updateUserRelationships({
-      userId,
-      type: "friend"
-    });
+    const response = await api.sendFriendRequest(userId);
     return response.data;
   }
 );
 export const cancelFriendRequest = createAsyncThunk(
   "relationships/cancelFriendRequest",
   async userId => {
-    const response = await api.updateUserRelationships({
-      userId,
-      type: "unfriend"
-    });
+    const response = await api.cancelFriendRequest(userId);
     return response.data;
   }
 );
 export const acceptFriendRequest = createAsyncThunk(
   "relationships/acceptFriendRequest",
   async userId => {
-    const response = await api.updateUserRelationships({
-      userId,
-      type: "friend"
-    });
+    const response = await api.acceptFriendRequest(userId);
     return response.data;
   }
 );
 export const rejectFriendRequest = createAsyncThunk(
   "relationships/rejectFriendRequest",
   async userId => {
-    const response = await api.updateUserRelationships({
-      userId,
-      type: "unfriend"
-    });
+    const response = await api.rejectFriendRequest(userId);
     return response.data;
   }
 );
 export const deleteFriend = createAsyncThunk(
   "relationships/deleteFriend",
   async userId => {
-    const response = await api.updateUserRelationships({
-      userId,
-      type: "unfriend"
-    });
+    const response = await api.unfriendUser(userId);
     return response.data;
   }
 );
 
 export const blockUser = createAsyncThunk(
   "relationships/blockUser",
-  async userId => {
-    const response = await api.updateUserRelationships({
-      userId,
-      type: "block"
-    });
-    return response.data;
+  async user => {
+    const response = await api.blockUser(user.id);
+    return { ...response.data, user };
   }
 );
 export const unblockUser = createAsyncThunk(
   "relationships/unblockUser",
   async userId => {
-    const response = await api.updateUserRelationships({
-      userId,
-      type: "unblock"
-    });
+    const response = await api.unblockUser(userId);
     return response.data;
   }
 );
@@ -287,7 +276,8 @@ export const updateChannel = createAsyncThunk(
       if (updateInfo.icon === null) {
         formData.append("removeIcon", true);
       } else if (updateInfo.icon && updateInfo.icon !== channel.icon) {
-        formData.append("icon", updateInfo.icon);
+        const blob = await fetch(updateInfo.icon).then(r => r.blob());
+        formData.append("icon", blob);
       }
       const response = await api.updateChannel(channelId, formData);
       return response.data;
@@ -320,28 +310,53 @@ export const addAdmin = createAsyncThunk(
 );
 export const addAdminWs = createAction("channels/addAdmin/ws");
 
-export const deleteAdmin = createAsyncThunk(
-  "channels/deleteAdmin",
-  async updateInfo => {
-    const response = await api.updateMember({ ...updateInfo, type: "unadmin" });
+/* ----------------------------- MEMBERS --------------------------------- */
+
+export const makeAdmin = createAsyncThunk(
+  "members/makeAdmin",
+  async ({ channelId, userId }) => {
+    const response = await api.makeAdmin(channelId, userId);
     return response.data;
   }
 );
-export const deleteAdminWs = createAction("channels/deleteAdmin/ws");
 
-export const addBan = createAsyncThunk("channels/addBan", async updateInfo => {
-  const response = await api.updateMember({ ...updateInfo, type: "ban" });
-  return response.data;
-});
-export const addBanWs = createAction("channels/addBan/ws");
+export const deleteAdmin = createAsyncThunk(
+  "members/deleteAdmin",
+  async ({ channelId, userId }) => {
+    const response = await api.deleteAdmin(channelId, userId);
+    return response.data;
+  }
+);
+
+export const addBan = createAsyncThunk(
+  "members/addBan",
+  async ({ channelId, bannedId }) => {
+    const response = await api.addBan(channelId, bannedId);
+    return response.data;
+  }
+);
 
 export const deleteBan = createAsyncThunk(
-  "channels/deleteBan",
-  async updateInfo => {
-    const response = await api.updateMember({ ...updateInfo, type: "unban" });
+  "members/deleteBan",
+  async ({ channelId, bannedId }) => {
+    const response = await api.deleteBan(channelId, bannedId);
     return response.data;
   }
 );
+
+export const addRoomMembers = createAsyncThunk(
+  "members/addRoomMembers",
+  async inviteInfo => {
+    const { channelId, selectedFriends } = inviteInfo;
+    const response = await api.addRoomMembers(channelId, selectedFriends);
+    return response.data;
+  }
+);
+
+export const deleteAdminWs = createAction("channels/deleteAdmin/ws");
+
+export const addBanWs = createAction("channels/addBan/ws");
+
 export const deleteBanWs = createAction("channels/deleteBan/ws");
 
 export const addMemberWs = createAction("channels/addMember/ws");
@@ -418,7 +433,12 @@ export const getLatestMessages = createAsyncThunk(
 export const addMessage = createAsyncThunk(
   "messages/addMessage",
   async (message, { getState }) => {
-    const response = await api.addMessage(message);
+    const infoObject = {
+      channelId: message.channelId,
+      content: message.content,
+      upload: message.upload
+    };
+    const response = await api.addMessage(infoObject);
     const payload = response.data;
     const { capacity } = getState().channels[payload.channelId].chatSettings;
     return { ...payload, capacity };
@@ -426,12 +446,19 @@ export const addMessage = createAsyncThunk(
 );
 export const addMessageWs = createAction("messages/addMessage/ws");
 
+export const setLastMessageSeen = createAction(
+  "messages/setLastMessageSeen/ws"
+);
+
 export const deleteMessage = createAsyncThunk(
   "messages/deleteMessage",
-  async message => {
-    const { messageId } = message;
-    const response = await api.deleteMessage(messageId);
-    return response.data;
+  async ({ status, id, channelId }) => {
+    if (status === undefined || status === "accepted") {
+      const response = await api.deleteMessage(id);
+      return response.data;
+    } else {
+      return { status, id, channelId };
+    }
   }
 );
 export const deleteMessageWs = createAction("messages/deleteMessage/ws");
@@ -574,14 +601,6 @@ export const createRoom = createAsyncThunk(
   }
 );
 
-export const inviteFriends = createAsyncThunk(
-  "invite/inviteFriends",
-  async inviteInfo => {
-    const { channelId, selectedFriends } = inviteInfo;
-    const response = await api.inviteFriends(channelId, selectedFriends);
-    return response.data;
-  }
-);
 /* -------------------------------------------------------------------------- */
 /*                                 USERSEARCH                                 */
 /* -------------------------------------------------------------------------- */
@@ -591,9 +610,14 @@ export const searchUsers = createAsyncThunk(
     const { blocked, blockers } = getState().relationships;
     const blocks = [...blocked, ...blockers];
 
-    const response = await api.searchUsers(username);
-
-    return { users: response.data.filter(user => !blocks.includes(user.id)) };
+    if (username.trim().length > 0) {
+      const response = await api.searchUsers(username);
+      return {
+        users: response.data.filter(user => !blocks.includes(user.id))
+      };
+    } else {
+      return { users: [] };
+    }
   }
 );
 
@@ -607,29 +631,71 @@ export const searchUsersWs = createAction(searchUsers.fulfilled.type);
 
 export const searchVideos = createAsyncThunk(
   "videoSearch/searchVideos",
-  async searchInfo => {
-    const { source, terms, page, channelId } = searchInfo;
-    const formattedTerms = terms.replace(/ /g, "+");
+  async (searchInfo, { getState }) => {
+    const { source, terms, next, channelId } = searchInfo;
+    const { page, terms: prevTerms } = getState().channels[
+      channelId
+    ].videoSearch;
 
-    const response = await api.searchVideos(source, formattedTerms, page);
+    let finalTerms = next ? prevTerms : terms ? terms.trim() : "";
+    if (finalTerms === "") {
+      finalTerms = null;
+    }
 
-    console.log("RESSSS", response);
+    let response = null;
+    if (
+      (!finalTerms && next) ||
+      getState().general.trendingResults.results.length === 0 ||
+      finalTerms
+    ) {
+      response = await api.searchVideos(
+        source,
+        finalTerms,
+        page === 1 ? null : page
+      );
+    }
 
-    return { channelId, source, terms, page, results: response.data };
+    return {
+      channelId,
+      source,
+      terms: response ? finalTerms : "",
+      page: response ? response.data.nextPageToken : 1,
+      totalResults: response ? response.data.totalResults : 1,
+      results: response ? response.data.results : []
+    };
   }
 );
 
 export const addVideo = createAsyncThunk(
   "videoSearch/addVideo",
   async videoInfo => {
-    const { channelId, videoId } = videoInfo;
-    const response = await api.addVideo(channelId, videoId);
-
-    console.log("REVVV", response);
-
+    const { channelId, ...minVideoInfo } = videoInfo;
+    const response = await api.addVideo(channelId, minVideoInfo);
     return response.data;
   }
 );
+
+export const deleteVideo = createAsyncThunk(
+  "videoSearch/deleteVideo",
+  async videoInfo => {
+    const { channelId, channelVideoId } = videoInfo;
+    const response = await api.deleteVideo(channelVideoId, channelId);
+    return response.data;
+  }
+);
+
+export const swapVideos = createAsyncThunk(
+  "videoSearch/swapVideos",
+  async swapInfo => {
+    const { channelId, ...minSwapInfo } = swapInfo;
+    const response = await api.swapVideos(channelId, minSwapInfo);
+    return response.data;
+  }
+);
+
+export const addVideoWs = createAction("videoSearch/addVideo/ws");
+export const deleteVideoWs = createAction("videoSearch/deleteVideo/ws");
+export const swapVideosWs = createAction("videoSearch/swapVideos/ws");
 
 /* -------------------------------------------------------------------------- */
 /*                                CHANNELSEARCH                               */
@@ -670,9 +736,12 @@ export const closeModalFinal = createAction("modal/closeModalFinal");
 export const openCreateNewAccountModal = createAction("modal/open", () => ({
   payload: { component: MODAL_CREATE_NEW_ACCOUNT }
 }));
-export const openInviteModal = createAction("modal/open", channelId => ({
-  payload: { component: MODAL_INVITE, channelId }
-}));
+export const openInviteModal = createAction(
+  "modal/open",
+  (channelId, isCreatingNewRoom) => ({
+    payload: { component: MODAL_INVITE, channelId, isCreatingNewRoom }
+  })
+);
 export const openCreateRoomModal = createAction("modal/open", () => ({
   payload: { component: MODAL_CREATE_ROOM }
 }));
@@ -694,6 +763,12 @@ export const openWatchingModal = createAction("modal/open", () => ({
 export const openFollowersModal = createAction("modal/open", channelId => ({
   payload: { component: MODAL_FOLLOWERS, channelId }
 }));
+export const openListModal = createAction(
+  "modal/open",
+  (channelId, content) => ({
+    payload: { component: MODAL_LIST, channelId, content }
+  })
+);
 export const openImageModal = createAction("modal/open", () => ({
   payload: { component: MODAL_IMAGE }
 }));
@@ -715,6 +790,89 @@ export const openAccountSettingsModal = createAction("modal/open", () => ({
 export const openDeleteAccountModal = createAction("modal/open", () => ({
   payload: { component: MODAL_DELETE_ACCOUNT }
 }));
-export const openRoomExistsModal = createAction("modal/open", () => ({
-  payload: { component: MODAL_ROOM_EXISTS }
-}));
+export const openRoomExistsModal = createAction(
+  "modal/open",
+  (room, selectedIds) => ({
+    payload: { component: MODAL_ROOM_EXISTS, room, selectedIds }
+  })
+);
+
+/* -------------------------------------------------------------------------- */
+/*                                    UI                                      */
+/* -------------------------------------------------------------------------- */
+
+export const toggleLeftPanel = createAction("ui/toggleLeftPanel");
+export const setLeftPanelActiveTabChannels = createAction(
+  "ui/setLeftPanelActiveTabChannels"
+);
+export const setLeftPanelActiveTabFriends = createAction(
+  "ui/setLeftPanelActiveTabFriends"
+);
+export const clearError = createAction("api/clearError");
+export const setAlert = createAction("ui/setAlert");
+
+/* -------------------------------------------------------------------------- */
+/*                              VIDEO                                         */
+/* -------------------------------------------------------------------------- */
+
+export const setPlaying = createAsyncThunk(
+  "video/setPlaying",
+  async playerInfo => {
+    const videoObject = {
+      queueStartPosition: playerInfo.queueStartPosition,
+      clockStartTime: moment().format(),
+      videoStartTime: playerInfo.videoStartTime
+    };
+    const response = await api.setPlaying(playerInfo.channelId, videoObject);
+
+    return response.data;
+  }
+);
+
+export const setPaused = createAsyncThunk(
+  "video/setPaused",
+  async playerInfo => {
+    const videoObject = {
+      queueStartPosition: playerInfo.queueStartPosition,
+      clockStartTime: moment().format(),
+      videoStartTime: playerInfo.videoStartTime
+    };
+    const response = await api.setPaused(playerInfo.channelId, videoObject);
+
+    return response.data;
+  }
+);
+
+/* -------------------------------------------------------------------------- */
+/*                              GIFS                                          */
+/* -------------------------------------------------------------------------- */
+
+export const getTrendingGifs = createAsyncThunk(
+  "gifs/getTrending",
+  async offset => {
+    const response = await api.getTrendingGifs(offset);
+    return response.data;
+  }
+);
+export const getSearchGifs = createAsyncThunk(
+  "gifs/getSearchGifs",
+  async (term, offset) => {
+    const response = await api.getSearchGifs(term, offset);
+    return response.data;
+  }
+);
+export const initTrendingGifs = createAsyncThunk(
+  "gifs/initTrending",
+  async () => {
+    const response = await api.getTrendingGifs(0);
+    return response.data;
+  }
+);
+
+export const saveOffset = createAction("gifs/offset", offset => {
+  return { payload: { offset } };
+});
+
+export const setDisplay = createAction("gifs/display", display => {
+  return { payload: { display } };
+});

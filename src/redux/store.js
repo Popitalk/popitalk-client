@@ -11,6 +11,7 @@ import postsReducer from "./reducers/posts";
 import commentsReducer from "./reducers/comments";
 import usersReducer from "./reducers/users";
 import messagesReducer from "./reducers/messages";
+import gifsReducer from "./reducers/gifs";
 import chatDraftsReducer from "./reducers/chatDrafts";
 import postDraftsReducer from "./reducers/postDrafts";
 import modalReducer from "./reducers/modal";
@@ -18,6 +19,7 @@ import userSearchReducer from "./reducers/userSearch";
 import inviteReducer from "./reducers/invite";
 import relationshipsReducer from "./reducers/relationships";
 import userProfileReducer from "./reducers/userProfile";
+import uiReducer from "./reducers/ui";
 import localstorageMiddleware from "./middleware/localstorageMiddleware";
 import routingMiddleware from "./middleware/routingMiddleware";
 import modalMiddleware from "./middleware/modalMiddleware";
@@ -32,6 +34,7 @@ const reducer = combineReducers({
   channels: channelsReducer,
   users: usersReducer,
   messages: messagesReducer,
+  gifs: gifsReducer,
   posts: postsReducer,
   comments: commentsReducer,
   chatDrafts: chatDraftsReducer,
@@ -39,7 +42,8 @@ const reducer = combineReducers({
   modal: modalReducer,
   userSearch: userSearchReducer,
   invite: inviteReducer,
-  userProfile: userProfileReducer
+  userProfile: userProfileReducer,
+  ui: uiReducer
 });
 
 const middleware = [
@@ -47,11 +51,13 @@ const middleware = [
   localstorageMiddleware(),
   routingMiddleware(),
   modalMiddleware(),
-  process.env.NODE_ENV !== "production"
-    ? websocketMiddleware("ws://localhost:4000/")
-    : websocketMiddleware(
-        `wss://${window.location.hostname}:${window.location.port}/ws/`
-      ),
+  websocketMiddleware(),
+
+  // process.env.NODE_ENV !== "production"
+  //   ? websocketMiddleware("ws://localhost:4000/")
+  //   : websocketMiddleware(
+  //       `wss://${window.location.hostname}:${window.location.port}/ws/`
+  //     ),
   ...getDefaultMiddleware()
 ];
 
@@ -62,8 +68,3 @@ const store = configureStore({
 });
 
 export default store;
-
-//         websocketMiddleware("ws://localhost:4000/"),
-//         websocketMiddleware(
-//           `wss://${window.location.hostname}:${window.location.port}/ws/`
-//         ),

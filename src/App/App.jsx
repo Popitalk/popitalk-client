@@ -2,72 +2,140 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Switch, Route } from "react-router";
 import { Redirect } from "react-router-dom";
-import LandingPage from "../routes/LandingPage";
-import RoomPage from "../routes/RoomPage";
-import ChannelPage from "../routes/ChannelPage";
-import UserPage from "../routes/UserPage";
-import Header from "../components/Header";
-import LoadingPage from "../components/LoadingPage";
-import ModalManager from "../components/ModalManager";
+import WelcomePage from "../containers/WelcomePage";
+import Header from "../containers/Header";
+import ModalManager from "../containers/Modals/ModalManager";
 import { validateSession } from "../redux/actions";
-import "@fortawesome/fontawesome-free/css/all.css";
-import "./fw.css";
+import "../styles/app.css";
 import "./App.css";
+import "../helpers/initIcons";
+import LeftPanel from "../containers/LeftPanel";
+import RecommendedView from "../comp/RecommendedView";
+import ChatPanel from "../containers/ChatPanel";
+import AnonymousSidebar from "../comp/LeftPanels/AnonymousSidebar";
+import CreateNewAccountContainer from "../containers/CreateNewAccountContainer";
+import CreateChannelContainer from "../containers/CreateChannelContainer";
+import Channel from "../containers/Channel";
+import "../comp/ScrollBars.css";
+import ReactGa from "react-ga";
+import Helmet from "react-helmet";
+
+const RouteWrapper = ({ leftPanel, children }) => {
+  return (
+    <div className="flex flex-row h-full overflow-auto">
+      <div className="flex-grow md:overflow-auto md:flex-shrink-0 w-auto mozilla-thin-scrollbar">
+        {leftPanel}
+      </div>
+      {children}
+    </div>
+  );
+};
 
 export default function App() {
   const validatedSession = useSelector(state => state.general.validatedSession);
   const loggedIn = useSelector(state => state.general.loggedIn);
-  const wsConnected = useSelector(state => state.general.wsConnected);
+  // const isCollapsed = useSelector(state => state.ui.isCollapsed);
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(validateSession());
   }, [dispatch]);
 
-  if (!validatedSession || (loggedIn && !wsConnected))
+  useEffect(() => {
+    ReactGa.initialize("UA-175311766-1");
+
+    //to report pageview
+    ReactGa.pageview(window.location.pathname + window.location.search);
+  }, []);
+
+  if (!validatedSession)
     // if (!validatedSession)
-    return (
-      <section className="App--container">
-        <LoadingPage />
-      </section>
-    );
+    return <section className="App--container" />;
+
+  // if (!validatedSession || (loggedIn && !wsConnected))
+  //   // if (!validatedSession)
+  //   return (
+  //     <section className="App--container">
+  //       <LoadingPage />
+  //     </section>
+  //   );
+
+  const chatPanel = (
+    <div className="md:flex sm:w-dropdown // hidden">
+      <ChatPanel />
+    </div>
+  );
+
+  const leftPanel = loggedIn ? (
+    <LeftPanel />
+  ) : (
+    <CreateNewAccountContainer component={AnonymousSidebar} />
+  );
+
+  const searchClasses =
+    "flex-grow block overflow-auto w-full mozilla-thin-scrollbar";
 
   return (
-    <section className="App--container">
-      <ModalManager />
-      <Header />
-      <Switch>
-        {!loggedIn && (
-          <Route exact path="/welcome">
-            <LandingPage />
-          </Route>
-        )}
-        {loggedIn && (
-          <Route path="/rooms/:channelId">
-            <RoomPage />
-          </Route>
-        )}
-        {loggedIn && (
-          <Route path="/channels/">
-            <ChannelPage />
-          </Route>
-        )}
-        {loggedIn && (
-          <Route path="/users/:userId">
-            <UserPage />
-          </Route>
-        )}
-        <Route
-          path="/"
-          render={() =>
-            loggedIn ? (
-              <Redirect to="/channels/following" />
-            ) : (
-              <Redirect to="/welcome" />
-            )
-          }
+    <>
+      <Helmet>
+        <meta charSet="UFT-8" />
+        <title>Popitalk - Watch Together!</title>
+        <meta
+          name="description"
+          content="Popitalk is exactly what you need with your friends to watch together. We believe in making texting more fun and enjoyable."
         />
-      </Switch>
-    </section>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+      </Helmet>
+      <ModalManager />
+      <div className="h-screen flex flex-col bg-primaryBackground">
+        <div className="h-auto">
+          <Header />
+        </div>
+        <Switch>
+          <Route exact path="/welcome">
+            <div className="h-full overflow-y-auto">
+              <CreateNewAccountContainer component={WelcomePage} />
+            </div>
+          </Route>
+          <Route exact path="/create">
+            <RouteWrapper leftPanel={leftPanel}>
+              <div className="flex justify-center py-12 px-10 md:px-36 lg:px-48 bg-secondaryBackground w-full overflow-auto select-none">
+                <CreateChannelContainer />
+              </div>
+            </RouteWrapper>
+          </Route>
+          <Route
+            exact
+            path={["/channels/:channelId/:tab", "/rooms/:roomId/video"]}
+          >
+            <RouteWrapper leftPanel={leftPanel}>
+              <Channel chatPanel={chatPanel} />
+            </RouteWrapper>
+          </Route>
+          <Route exact path="/channels">
+            <RouteWrapper leftPanel={leftPanel}>
+              <div
+                className={`rounded-md bg-secondaryBackground ${searchClasses}`}
+              >
+                <RecommendedView selectedPage="channels" />
+              </div>
+            </RouteWrapper>
+          </Route>
+          <Route exact path="/friends">
+            <RouteWrapper leftPanel={leftPanel}>
+              <div
+                className={`rounded-md bg-secondaryBackground ${searchClasses}`}
+              >
+                <RecommendedView selectedPage="channels" />
+              </div>
+            </RouteWrapper>
+          </Route>
+          <Route exact path="/users/:userId">
+            <RouteWrapper leftPanel={leftPanel} />
+          </Route>
+          <Redirect to="/channels" />
+        </Switch>
+      </div>
+    </>
   );
 }

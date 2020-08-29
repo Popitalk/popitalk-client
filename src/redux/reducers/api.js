@@ -2,11 +2,12 @@ import {
   login,
   register,
   createRoom,
-  inviteFriends,
+  addRoomMembers,
   deleteAccount,
   updateUser,
   searchUsers,
   addChannel,
+  getChannel,
   updateChannel,
   deleteChannel,
   updateRoom,
@@ -44,6 +45,7 @@ const idsOfActions = {
   [formatType(updateUser.fulfilled.type)]: "userUpdateApi",
   [formatType(searchUsers.fulfilled.type)]: "userSearchApi",
   [formatType(addChannel.fulfilled.type)]: "channel",
+  [formatType(getChannel.fulfilled.type)]: "channel",
   [formatType(updateChannel.fulfilled.type)]: "channel",
   [formatType(deleteChannel.fulfilled.type)]: "channel",
   [formatType(leaveRoom.fulfilled.type)]: "channel",
@@ -52,7 +54,7 @@ const idsOfActions = {
   [formatType(addBan.fulfilled.type)]: "manageUsers",
   [formatType(deleteBan.fulfilled.type)]: "manageUsers",
   [formatType(createRoom.fulfilled.type)]: "invite",
-  [formatType(inviteFriends.fulfilled.type)]: "invite",
+  [formatType(addRoomMembers.fulfilled.type)]: "invite",
   [formatType(updateRoom.fulfilled.type)]: "room",
   [formatType(followChannel.fulfilled.type)]: "followChannel",
   [formatType(unfollowChannel.fulfilled.type)]: "followChannel",
@@ -82,6 +84,10 @@ const initialState = Object.values(idsOfActions)
   .reduce((obj, item) => ({ ...obj, ...item }));
 
 export default (state = initialState, { type, meta, error }) => {
+  if (type === "api/clearError") {
+    return { ...state, userUpdateApi: { status: "initial" } };
+  }
+
   if (!meta) return state;
 
   const actionId = idsOfActions[formatType(type)];

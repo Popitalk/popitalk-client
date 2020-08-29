@@ -4,6 +4,7 @@
 /logs/
 /coverage/
 .env
+/src/styles/app.css
 
 # Other
 *.log
