@@ -17,7 +17,6 @@ import ChatPanel from "../containers/ChatPanel";
 import AnonymousSidebar from "../comp/LeftPanels/AnonymousSidebar";
 import CreateNewAccountContainer from "../containers/CreateNewAccountContainer";
 import CreateChannelContainer from "../containers/CreateChannelContainer";
-import { channelsList, friendsList } from "../stories/seed-arrays";
 import Channel from "../containers/Channel";
 import "../comp/ScrollBars.css";
 import ReactGa from "react-ga";
@@ -124,7 +123,7 @@ export default function App() {
               <div
                 className={`rounded-md bg-secondaryBackground ${searchClasses}`}
               >
-                <RecommendedView list={channelsList} selectedPage="channels" />
+                <RecommendedView selectedPage="channels" />
               </div>
             </RouteWrapper>
           </Route>
@@ -133,7 +132,7 @@ export default function App() {
               <div
                 className={`rounded-md bg-secondaryBackground ${searchClasses}`}
               >
-                <RecommendedView list={channelsList} selectedPage="channels" />
+                <RecommendedView selectedPage="channels" />
               </div>
             </RouteWrapper>
           </Route>
