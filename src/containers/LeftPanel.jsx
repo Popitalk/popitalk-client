@@ -63,8 +63,14 @@ export default function LeftPanelContainer() {
       if (channel.ownerId === ownId || channel.owner_id === ownId) {
         yourChannels.push(channel);
       } else {
-        if (channel.ownerId !== ownId && channel.owner_id !== ownId) {
-          followingChannels.push(channel);
+        if (
+          channel.ownerId !== ownId &&
+          channel.owner_id !== ownId &&
+          channel.members
+        ) {
+          if (channel.members.includes(ownId)) {
+            followingChannels.push(channel);
+          }
         }
       }
     });
