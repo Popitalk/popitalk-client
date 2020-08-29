@@ -10,20 +10,32 @@ export default function ChannelCard({
   name,
   icon,
   live,
-  videoTitle,
   description,
   videoSource,
-  videoThumbnail = true,
   avatars,
   handleFollow,
   playerStatus,
+  queueStartPosition,
   activeFriendViewers,
+  queue,
   status,
   loading
 }) {
   const handleSelect = () => {
     history.push(`/channels/${id}/video`);
   };
+  let videoThumbnail = "";
+  let videoTitle = "Nothing Playing at the moment";
+
+  if (queue.length > 0) {
+    try {
+      videoThumbnail = queue[queueStartPosition].thumbnail;
+      videoTitle = queue[queueStartPosition].title;
+    } catch {
+      videoThumbnail = queue[0].thumbnail;
+      videoTitle = queue[0].title;
+    }
+  }
   return (
     <>
       {loading ? (
@@ -77,8 +89,6 @@ export default function ChannelCard({
                       string
                     />
                     {videoTitle}
-                    Video TitleVideo TitleVideo TitleVideo TitleVideo TitleVideo
-                    TitleVideo TitleVideo TitleVideo TitleVideo Title
                   </p>
                   {activeFriendViewers && (
                     <div className="flex my-2">
