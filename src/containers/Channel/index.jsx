@@ -241,10 +241,30 @@ class Channel extends Component {
     }
   }
 
+  setPlayerStatus() {
+    const playerStatus = calculatePlayerStatus(
+      this.props.startPlayerStatus,
+      this.props.playlist
+    );
+
+    this.setState({
+      playerStatus: {
+        channelId: this.props.channelId,
+        ...playerStatus
+      },
+      queueList: this.mapVideoStatuses(
+        this.props.playlist,
+        playerStatus.queueStartPosition,
+        playerStatus.status
+      )
+    });
+  }
+
   componentDidMount() {
     if (!this.props.channel?.loaded) {
-      console.log("Yeah I'm running");
       this.props.handleGetChannel();
+    } else if (!this.state.playerStatus.channelId) {
+      this.setPlayerStatus();
     }
   }
 
@@ -274,22 +294,7 @@ class Channel extends Component {
         this.props.tab !== QUEUE_TAB &&
         this.props.tab !== SETTINGS_TAB)
     ) {
-      const playerStatus = calculatePlayerStatus(
-        this.props.startPlayerStatus,
-        this.props.playlist
-      );
-
-      this.setState({
-        playerStatus: {
-          channelId: this.props.channelId,
-          ...playerStatus
-        },
-        queueList: this.mapVideoStatuses(
-          this.props.playlist,
-          playerStatus.queueStartPosition,
-          playerStatus.status
-        )
-      });
+      this.setPlayerStatus();
     } else if (prevProps.playlist !== this.props.playlist) {
       this.setState({
         queueList: this.mapVideoStatuses(
