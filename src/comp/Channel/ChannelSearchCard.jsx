@@ -1,7 +1,6 @@
 import React from "react";
 import RoomIcon from "../Controls/RoomIcon";
 import AvatarDeck from "../Controls/AvatarDeck";
-import { mapIdsToUsers } from "../../helpers/functions";
 import { useSelector } from "react-redux";
 import VideoStatus from "../VideoStatus";
 import strings from "../../helpers/localization";
@@ -19,7 +18,7 @@ export default function ChannelCard({
   handleFollow,
   playerStatus,
   queueStartPosition,
-  activeFriendViewers,
+  avatars,
   queue,
   status,
   loading
@@ -29,10 +28,8 @@ export default function ChannelCard({
   };
   let videoThumbnail = "";
   let videoTitle = strings.nothingPlaying;
-  const users = useSelector(state => state.users);
   const { defaultAvatar } = useSelector(state => state.general);
-  const viewers = members ? mapIdsToUsers(members, users, defaultAvatar) : [];
-  const avatars = viewers.map(viewer => viewer.avatar);
+  avatars = avatars.map(avatar => avatar.avatar || defaultAvatar);
 
   if (queue.length > 0) {
     try {
@@ -91,7 +88,7 @@ export default function ChannelCard({
                 <VideoStatus status={status.toLowerCase()} type="text" string />
                 <p dangerouslySetInnerHTML={{ __html: videoTitle }} />
               </div>
-              {activeFriendViewers && (
+              {avatars.length > 0 && (
                 <div className="flex my-2">
                   <AvatarDeck
                     avatars={avatars}
