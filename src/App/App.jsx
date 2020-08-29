@@ -133,7 +133,7 @@ export default function App() {
               <div
                 className={`rounded-md bg-secondaryBackground ${searchClasses}`}
               >
-                <RecommendedView list={friendsList} selectedPage="friends" />
+                <RecommendedView list={channelsList} selectedPage="channels" />
               </div>
             </RouteWrapper>
           </Route>

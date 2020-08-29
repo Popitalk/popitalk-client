@@ -82,14 +82,14 @@ export default function ChannelCard({
               {/* Video Title & Video Status & Viewer list */}
               {videoThumbnail && (
                 <div className="">
-                  <p className="text-lg flex-shrink-1 font-bold w-full truncate-2-lines text-primaryText py-4">
+                  <div className="text-lg flex-shrink-1 font-bold w-full truncate-2-lines text-primaryText py-4">
                     <VideoStatus
                       status={status.toLowerCase()}
                       type="text"
                       string
                     />
-                    {videoTitle}
-                  </p>
+                    <p dangerouslySetInnerHTML={{ __html: videoTitle }}></p>
+                  </div>
                   {activeFriendViewers && (
                     <div className="flex my-2">
                       <AvatarDeck

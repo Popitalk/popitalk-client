@@ -56,14 +56,14 @@ export default function VideoStatus({
           </span>
         )}
         {status === "paused" && (
-          <p className="text-secondaryText text-xs font-semibold select-none z-10">
+          <span className="text-secondaryText text-xs font-semibold select-none z-10">
             {strings.paused}
-          </p>
+          </span>
         )}
         {(status === "queued" || status === "ended") && statusMessage && (
-          <p className="text-secondaryText text-xs font-semibold select-none z-10">
+          <span className="text-secondaryText text-xs font-semibold select-none z-10">
             {statusMessage}
-          </p>
+          </span>
         )}
       </>
     );
