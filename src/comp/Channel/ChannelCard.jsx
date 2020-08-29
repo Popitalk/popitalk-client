@@ -21,7 +21,7 @@ export default function ChannelCard({
     history.push(`/channels/${id}/video`);
   };
   let videoThumbnail = "";
-  let videoTitle = "Nothing Playing at the moment";
+  let videoTitle = strings.nothingPlaying;
 
   if (queue.length > 0) {
     try {
@@ -93,16 +93,12 @@ export default function ChannelCard({
           </div>
           {/* Video Description & Avatar Deck */}
           <div className="w-full my-2 flex flex-col justify-between items-center space-y-2">
-            {videoThumbnail ? (
-              <p
-                className="text-sm flex-shrink-1 font-bold w-full truncate-2-lines ml-2 text-primaryText"
-                dangerouslySetInnerHTML={{ __html: videoTitle }}
-              />
-            ) : (
-              <p className="text-sm flex-shrink-1 w-full truncate-2-lines ml-2 text-secondaryText">
-                {strings.nothingPlaying}
-              </p>
-            )}
+            <p
+              className={`text-sm flex-shrink-1 font-bold w-full truncate-2-lines ml-2  ${
+                videoThumbnail ? "text-primaryText" : "text-secondaryText"
+              }`}
+              dangerouslySetInnerHTML={{ __html: videoTitle }}
+            />
             <div className="flex w-full text-sm px-1">
               <AvatarDeck
                 avatars={avatars}

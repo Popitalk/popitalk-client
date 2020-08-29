@@ -4,6 +4,7 @@ import AvatarDeck from "../Controls/AvatarDeck";
 import VideoStatus from "../VideoStatus";
 import strings from "../../helpers/localization";
 import history from "../../history";
+import channelPlaceholder from "../../assets/default/channelPlaceholder1.png";
 
 export default function ChannelCard({
   id,
@@ -25,7 +26,7 @@ export default function ChannelCard({
     history.push(`/channels/${id}/video`);
   };
   let videoThumbnail = "";
-  let videoTitle = "Nothing Playing at the moment";
+  let videoTitle = strings.nothingPlaying;
 
   if (queue.length > 0) {
     try {
@@ -69,37 +70,29 @@ export default function ChannelCard({
                     className="absolute img top-0 h-full rounded-lg bg-primaryBackground"
                   />
                 ) : (
-                  <div className="absolute top-0 h-full w-full rounded-lg bg-gray-400">
-                    <div className="flex items-center justify-center w-full h-full text-xs text-secondaryBackground">
-                      {strings.nothingPlaying}
-                    </div>
-                  </div>
+                  <img
+                    src={channelPlaceholder}
+                    alt={"channel"}
+                    className="absolute img top-0 h-full rounded-lg bg-primaryBackground"
+                  />
                 )}
               </div>
             </div>
             {/*  === Channel Description Section === */}
             <div className="flex flex-col justify-start max-w-lg px-4">
               {/* Video Title & Video Status & Viewer list */}
-              {videoThumbnail && (
-                <div className="">
-                  <div className="text-lg flex-shrink-1 font-bold w-full truncate-2-lines text-primaryText py-4">
-                    <VideoStatus
-                      status={status.toLowerCase()}
-                      type="text"
-                      string
-                    />
-                    <p dangerouslySetInnerHTML={{ __html: videoTitle }}></p>
-                  </div>
-                  {activeFriendViewers && (
-                    <div className="flex my-2">
-                      <AvatarDeck
-                        avatars={avatars}
-                        size="sm"
-                        className="img w-auto h-4 flex-shrink-0"
-                        threshold={6}
-                      />
-                    </div>
-                  )}
+              <div className="text-lg flex-shrink-1 font-bold w-full truncate-2-lines text-primaryText py-4">
+                <VideoStatus status={status.toLowerCase()} type="text" string />
+                <p dangerouslySetInnerHTML={{ __html: videoTitle }} />
+              </div>
+              {activeFriendViewers && (
+                <div className="flex my-2">
+                  <AvatarDeck
+                    avatars={avatars}
+                    size="sm"
+                    className="img w-auto h-4 flex-shrink-0"
+                    threshold={6}
+                  />
                 </div>
               )}
               {/* Channel Icon & Description*/}
@@ -108,9 +101,9 @@ export default function ChannelCard({
                   <RoomIcon
                     ids={[id]}
                     images={[icon]}
-                    watching={live}
+                    // watching={live}
                     size="sm"
-                    className="bg-primaryBackground mr-2 w-6 h-6"
+                    className="mr-2 w-6 h-6"
                   />
                   <p className="pr-2 flex-shrink-1 text-sm font-semibold truncate-2-lines text-primaryText">
                     {name}
