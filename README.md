@@ -1,28 +1,25 @@
 # playnows-client
-
-## Docs
+<!-- ## Docs
 * [Info](#info)
     * [Status](#status)
 * [Codebase](#codebase)
     * [First time setup](#first-time-setup)
         * [Installation](#installation)
-    * [Folder Structure](#folder-structure)
+    * [Folder Structure](#folder-structure) -->
 
 ## Info
-`@popitalk/playnows-client` is the primary web client for interacting with `@popitalk/playnows-server` and `@popitalk/popitalk-server-ws`.
+`@popitalk/playnows-client` is the primary web client for interacting with: 
 
-`@popitalk/playnows-client` is used by clients to create rooms and channels, watch together and chat with other room members.
+* `@popitalk/playnows-server` 
+* `@popitalk/popitalk-server-ws`
 
-You can watch a demo of `@popitalk/playnows-client` [here](https://placeholder.youtube.com).
-
-### Status
-`@popitalk/playnows-client` has been actively developed internally since May 2020, and is in beta as of November 2020.
+You can watch a demo [here](https://placeholder.youtube.com).
 
 ## Codebase
-The codebase for `@popitalk/playnows-client` is written in HTML, CSS and JS, utilising React with [Tailwindcss](https://tailwindcss.com/) and Redux.js.
+The codebase for `playnows-client` is written in HTML, CSS and JS, utilising React with [Tailwindcss](https://tailwindcss.com/) and Redux.js.
 
 ### First time setup
-First, clone the `@popitalk/playnows-client` repository locally:
+To run the repository locally:
 
 ```
 git clone https://github.com/Popitalk/playnows-client
@@ -36,11 +33,11 @@ npm start
 * [`@popitalk/playnows-server`](https://github.com/Popitalk/playnows-server)
 * [`@popitalk/popitalk-server-ws`](https://github.com/Popitalk/popitalk-server-ws)
 
-You also need to install the required dependencies by running `npm`.
+#### Checklist
 
-Ensure that `.env.example` is either copied and renamed to `.env`, or is simply renamed to `.env`.
-
-In this file, you'll need some values. Documentation is available in the `.env.example` file.
+ - You also need to install the required dependencies by running `npm`.
+ - Make sure you have the most recent `.env` file.
+ - Ensure that `.env.example` is either copied and renamed to `.env`, or is simply renamed to `.env`.
 
 ### Folder Structure
 ```
