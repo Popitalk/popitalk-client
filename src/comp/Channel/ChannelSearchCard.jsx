@@ -84,16 +84,16 @@ export default function ChannelCard({
             {/*  === Channel Description Section === */}
             <div className="flex flex-col justify-start max-w-lg px-4">
               {/* Video Title & Video Status & Viewer list */}
-              <div className="text-lg flex-shrink-1 font-bold w-full truncate-2-lines text-primaryText py-4">
+              <div className="text-lg flex-shrink-1 font-bold w-full truncate-2-lines text-primaryText">
                 <VideoStatus status={status.toLowerCase()} type="text" string />
                 <p dangerouslySetInnerHTML={{ __html: videoTitle }} />
               </div>
               {avatars.length > 0 && (
-                <div className="flex my-2">
+                <div className="flex w-full my-1">
                   <AvatarDeck
                     avatars={avatars}
-                    size="sm"
-                    className="img w-auto h-4 flex-shrink-0"
+                    size="md"
+                    className="img w-8 h-8 flex-shrink-0"
                     threshold={6}
                   />
                 </div>
