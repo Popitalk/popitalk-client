@@ -2,6 +2,8 @@ import React from "react";
 import RoomIcon from "../Controls/RoomIcon";
 import AvatarDeck from "../Controls/AvatarDeck";
 import VideoStatus from "../VideoStatus";
+import { mapIdsToUsers } from "../../helpers/functions";
+import { useSelector } from "react-redux";
 import strings from "../../helpers/localization";
 import history from "../../history";
 import channelPlaceholder from "../../assets/default/channelPlaceholder1.png";
@@ -13,10 +15,14 @@ export default function ChannelCard({
   status,
   queue,
   queueStartPosition,
-  avatars,
+  members,
   handleFollow,
   isLoading
 }) {
+  const users = useSelector(state => state.users);
+  const { defaultAvatar } = useSelector(state => state.general);
+  const viewers = members ? mapIdsToUsers(members, users, defaultAvatar) : [];
+  const avatars = viewers.map(viewer => viewer.avatar);
   const handleSelect = () => {
     history.push(`/channels/${id}/video`);
   };
