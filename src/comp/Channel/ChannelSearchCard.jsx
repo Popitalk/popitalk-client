@@ -61,16 +61,16 @@ export default function ChannelCard({
           role={handleSelect ? "button" : null}
           onClick={handleSelect}
         >
-          <div className="flex px-6 py-4 hover:shadow-md transition-all duration-50 rounded-lg cursor-pointer">
+          <div className="flex px-6 py-4 rounded-lg cursor-pointer">
             {/* === Channel Thumbnail Section === */}
-            <div className="w-68 flex-shrink-0">
-              <div className="relative justify-center pb-5/4 rounded-lg bg-primaryBackground">
+            <div className="w-68">
+              <div className="relative justify-center pb-5/4 md:pb-16/9 rounded-lg bg-primaryBackground">
                 {/* ChannelCard background image */}
                 {videoThumbnail ? (
                   <img
                     src={videoThumbnail}
                     alt={"channel"}
-                    className="absolute img top-0 h-full rounded-lg bg-primaryBackground"
+                    className="absolute img top-0 h-full rounded-lg bg-primaryBackground pt-px"
                   />
                 ) : (
                   <img
@@ -84,7 +84,7 @@ export default function ChannelCard({
             {/*  === Channel Description Section === */}
             <div className="flex flex-col justify-start max-w-lg px-4">
               {/* Video Title & Video Status & Viewer list */}
-              <div className="text-lg flex-shrink-1 font-bold w-full truncate-2-lines text-primaryText">
+              <div className="flex text-lg font-bold w-full truncate-2-lines text-primaryText">
                 <VideoStatus status={status.toLowerCase()} type="text" string />
                 <p dangerouslySetInnerHTML={{ __html: videoTitle }} />
               </div>
@@ -93,26 +93,26 @@ export default function ChannelCard({
                   <AvatarDeck
                     avatars={avatars}
                     size="md"
-                    className="img w-8 h-8 flex-shrink-0"
+                    className="img w-8 h-8"
                     threshold={6}
                   />
                 </div>
               )}
               {/* Channel Icon & Description*/}
-              <div className="flex flex-col items-center py-4">
-                <div className="flex items-center justify-start w-full py-1">
-                  <RoomIcon
+              <div className="flex flex-col items-center my-1">
+                <div className="flex items-center justify-start w-full">
+                  {/* <RoomIcon
                     ids={[id]}
                     images={[icon]}
                     // watching={live}
                     size="sm"
                     className="mr-2 w-6 h-6"
-                  />
-                  <p className="pr-2 flex-shrink-1 text-sm font-semibold truncate-2-lines text-primaryText">
+                  /> */}
+                  <p className="pr-2 text-sm font-semibold truncate text-primaryText">
                     {name}
                   </p>
                 </div>
-                <p className="pr-2 flex-shrink-1 text-sm truncate-2-lines text-secondaryText w-full">
+                <p className="pr-2 text-sm truncate text-secondaryText w-full">
                   {description}
                 </p>
               </div>
