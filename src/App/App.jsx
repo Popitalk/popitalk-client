@@ -2,10 +2,8 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Switch, Route } from "react-router";
 import { Redirect } from "react-router-dom";
-import WelcomePage from "../routes/WelcomePage";
-import UserPage from "../routes/UserPage";
+import WelcomePage from "../containers/WelcomePage";
 import Header from "../containers/Header";
-import LoadingPage from "../components/LoadingPage";
 import ModalManager from "../containers/Modals/ModalManager";
 import { validateSession } from "../redux/actions";
 import "../styles/app.css";
@@ -52,11 +50,7 @@ export default function App() {
 
   if (!validatedSession)
     // if (!validatedSession)
-    return (
-      <section className="App--container">
-        <LoadingPage />
-      </section>
-    );
+    return <section className="App--container" />;
 
   // if (!validatedSession || (loggedIn && !wsConnected))
   //   // if (!validatedSession)
@@ -137,9 +131,7 @@ export default function App() {
             </RouteWrapper>
           </Route>
           <Route exact path="/users/:userId">
-            <RouteWrapper leftPanel={leftPanel}>
-              <UserPage />
-            </RouteWrapper>
+            <RouteWrapper leftPanel={leftPanel} />
           </Route>
           <Redirect to="/channels" />
         </Switch>
