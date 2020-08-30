@@ -2,20 +2,21 @@ import React, { useState } from "react";
 import VideoPanelCard from "../ThumbnailCards/VideoPanelCard";
 import Button from "../Controls/Button";
 import strings from "../../helpers/localization";
+import { VIDEO_RESULTS_PER_PAGE } from "../../helpers/constants";
 
 export default function VideoResults({
   results,
   totalResults,
   handleLoadMoreResults,
   handleAddVideo,
-  threshold
+  threshold = VIDEO_RESULTS_PER_PAGE
 }) {
   const [currThreshold, setCurrThreshold] = useState(threshold);
 
   const setNextThreshold = prev => {
     let nextThreshold = prev + threshold;
-    if (nextThreshold > results.length) {
-      nextThreshold = results.length;
+    if (nextThreshold > totalResults) {
+      nextThreshold = totalResults;
     }
 
     return nextThreshold;

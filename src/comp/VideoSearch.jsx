@@ -1,26 +1,18 @@
-import React, { useState } from "react";
+import React from "react";
 import VideoSearchBar from "./VideoSearchBar";
 import VideoResults from "./ThumbnailCardLists/VideoResults";
 import strings from "../helpers/localization";
 
 export default function VideoSearch({
-  className,
-  trendingResults,
+  searchTerm,
   searchResults,
   totalResults,
-  threshold,
   handleSearch,
   handleAddVideo
 }) {
-  const [searchTerm, setSearchTerm] = useState("");
-
-  const handleClick = value => {
-    setSearchTerm(value);
-    handleSearch(value);
-  };
   return (
     <div className="flex flex-col bg-secondaryBackground">
-      <VideoSearchBar onClick={handleClick} />
+      <VideoSearchBar onClick={handleSearch} />
       <div className="px-4">
         <span className="text-md rainbow-text font-bold">
           {searchTerm
@@ -28,21 +20,12 @@ export default function VideoSearch({
             : strings.trending}
         </span>
       </div>
-      {searchTerm.length > 0 ? (
-        <VideoResults
-          results={searchResults}
-          totalResults={totalResults}
-          handleLoadMoreResults={handleSearch}
-          handleAddVideo={handleAddVideo}
-          threshold={threshold}
-        />
-      ) : (
-        <VideoResults
-          results={trendingResults}
-          totalResults={trendingResults.length}
-          threshold={threshold}
-        />
-      )}
+      <VideoResults
+        results={searchResults}
+        totalResults={totalResults}
+        handleLoadMoreResults={handleSearch}
+        handleAddVideo={handleAddVideo}
+      />
     </div>
   );
 }

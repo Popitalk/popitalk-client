@@ -270,13 +270,8 @@ const R_updateChannelInitialScroll = (state, { payload }) => {
 };
 
 const R_updateSearchedVideos = (state, { payload }) => {
-  if (!payload.terms) {
-    state[payload.channelId].videoSearch = defaultVideoSearch;
-    return;
-  }
-
   let results = [];
-  if (state[payload.channelId].videoSearch.terms === payload.terms) {
+  if (payload.next) {
     results = [
       ...state[payload.channelId].videoSearch.results,
       ...payload.results

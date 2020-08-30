@@ -8,7 +8,7 @@ export default function ChannelQueue({
   queue,
   handleSwapVideos,
   handleDeleteVideo,
-  trendingResults = [],
+  searchTerm,
   searchResults = [],
   totalResults,
   handleSearch,
@@ -30,10 +30,9 @@ export default function ChannelQueue({
           {strings.findMoreVideos}
         </h2>
         <VideoSearch
-          trendingResults={trendingResults}
+          searchTerm={searchTerm}
           searchResults={searchResults}
           totalResults={totalResults}
-          threshold={24}
           handleSearch={handleSearch}
           handleAddVideo={handleAddVideo}
         />
