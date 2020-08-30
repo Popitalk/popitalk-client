@@ -1,5 +1,5 @@
-import React, { useRef, useEffect, useState } from "react";
-import VideoCard from "../VideoCard";
+import React from "react";
+import VideoCard from "../ThumbnailCards/VideoCard";
 import Button from "../Controls/Button";
 import CircleCheckBox from "../Controls/CircleCheckbox";
 import RoomsList from "../InfoCardLists/RoomsList";

@@ -1,5 +1,5 @@
 import React from "react";
-import VideoCard from "../VideoCard";
+import VideoCard from "../ThumbnailCards/VideoCard";
 import Button from "../Controls/Button";
 import RoomsList from "../InfoCardLists/RoomsList";
 import StretchList from "../InfoCardLists/StretchList";

@@ -7,10 +7,10 @@ import {
   setPaused
 } from "../../redux/actions";
 import { mapIdsToUsers } from "../../helpers/functions";
-import VideoSection from "../../comp/VideoSection";
-import QueueSection from "../../comp/ThumbnailCardLists/QueueSection";
-import VideoPanelCard from "../../comp/ThumbnailCards/VideoPanelCard";
-import ScrollableCardList from "../../comp/ThumbnailCardLists/ScrollableCardList";
+import VideoSection from "../../components/VideoSection";
+import QueueSection from "../../components/ThumbnailCardLists/QueueSection";
+import VideoPanelCard from "../../components/ThumbnailCards/VideoPanelCard";
+import ScrollableCardList from "../../components/ThumbnailCardLists/ScrollableCardList";
 
 const mapStateToProps = (state, { channelId }) => {
   const { defaultAvatar } = state.general;

@@ -8,8 +8,8 @@ import {
   updateUser,
   clearError
 } from "../../redux/actions";
-import ModalContainer from "../../comp/Modals/ModalContainer";
-import ProfileModal from "../../comp/Modals/ProfileModal";
+import ModalContainer from "../../components/Modals/ModalContainer";
+import ProfileModal from "../../components/Modals/ProfileModal";
 import { setRelationshipHandlers } from "../../helpers/functions";
 
 export default function ProfileModalContainer({ handleModalClose }) {

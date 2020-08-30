@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import ModalContainer from "../../comp/Modals/ModalContainer";
-import SearchHeader, { buildSearchInput } from "../../comp/SearchHeader";
-import StretchList from "../../comp/InfoCardLists/StretchList";
-import FollowersList from "../../comp/InfoCardLists/FollowersList";
+import ModalContainer from "../../components/Modals/ModalContainer";
+import SearchHeader, { buildSearchInput } from "../../components/SearchHeader";
+import StretchList from "../../components/InfoCardLists/StretchList";
+import FollowersList from "../../components/InfoCardLists/FollowersList";
 import { filterSearch, mapIdsToUsers } from "../../helpers/functions";
 import { useSelector } from "react-redux";
 

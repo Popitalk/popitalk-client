@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { addChannel } from "../redux/actions";
-import ChannelForm from "../comp/Channel/ChannelForm";
+import ChannelForm from "../components/Channel/ChannelForm";
 import Helmet from "react-helmet";
 import strings from "../helpers/localization";
 

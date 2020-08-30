@@ -1,9 +1,9 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { clearError, updateUser } from "../../redux/actions";
-import ModalContainer from "../../comp/Modals/ModalContainer";
-import EditInformationModal from "../../comp/Modals/EditInformationModal";
-import ContainerHeader from "../../comp/ContainerHeader";
+import ModalContainer from "../../components/Modals/ModalContainer";
+import EditInformationModal from "../../components/Modals/EditInformationModal";
+import ContainerHeader from "../../components/ContainerHeader";
 
 export default function EditUserSettingsModal({ handleModalClose }) {
   const {

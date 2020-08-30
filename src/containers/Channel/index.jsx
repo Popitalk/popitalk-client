@@ -27,12 +27,12 @@ import {
   setAlert,
   getTrending
 } from "../../redux/actions";
-import ChannelHeader from "../../comp/ChannelHeader";
+import ChannelHeader from "../../components/ChannelHeader";
 import VideoPanel from "./VideoPanel";
 import ForumPanel from "./ForumPanel";
-import ChannelSettingsPanel from "../../comp/Channel/ChannelSettingsPanel";
-import ChannelQueue from "../../comp/Channel/ChannelQueue";
-import VideoSearch from "../../comp/VideoSearch";
+import ChannelSettingsPanel from "../../components/Channel/ChannelSettingsPanel";
+import ChannelQueue from "../../components/Channel/ChannelQueue";
+import VideoSearch from "../../components/VideoSearch";
 import { mapIdsToUsers } from "../../helpers/functions";
 import {
   calculatePlayerStatus,

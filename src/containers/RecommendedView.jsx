@@ -1,12 +1,12 @@
 import React, { useState, useEffect, useCallback } from "react";
 import PropTypes from "prop-types";
 import { useSelector } from "react-redux";
-import ChannelCardList from "../comp/ThumbnailCardLists/ChannelCardList.jsx";
-import ChannelSearchList from "../comp/ThumbnailCardLists/ChannelSearchList.jsx";
-import VideoCardList from "../comp/ThumbnailCardLists/VideoCardList.jsx";
-import Input from "../comp/Controls/Input.jsx";
-import Alert from "../comp/Alert";
-import Button from "../comp/Controls/Button.jsx";
+import ChannelCardList from "../components/ThumbnailCardLists/ChannelCardList.jsx";
+import ChannelSearchList from "../components/ThumbnailCardLists/ChannelSearchList.jsx";
+import VideoCardList from "../components/ThumbnailCardLists/VideoCardList.jsx";
+import Input from "../components/Controls/Input.jsx";
+import Alert from "../components/Alert";
+import Button from "../components/Controls/Button.jsx";
 import Helmet from "react-helmet";
 import strings from "../helpers/localization";
 import useBookSearch from "../helpers/useBookSearch";

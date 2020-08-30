@@ -12,11 +12,11 @@ import "../helpers/initIcons";
 import LeftPanel from "../containers/LeftPanel";
 import RecommendedView from "../containers/RecommendedView";
 import ChatPanel from "../containers/ChatPanel";
-import AnonymousSidebar from "../comp/LeftPanels/AnonymousSidebar";
+import AnonymousSidebar from "../components/LeftPanels/AnonymousSidebar";
 import CreateNewAccountContainer from "../containers/CreateNewAccountContainer";
 import CreateChannelContainer from "../containers/CreateChannelContainer";
 import Channel from "../containers/Channel";
-import "../comp/ScrollBars.css";
+import "../components/ScrollBars.css";
 import ReactGa from "react-ga";
 import Helmet from "react-helmet";
 

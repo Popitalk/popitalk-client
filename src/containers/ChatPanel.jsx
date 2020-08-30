@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { withRouter } from "react-router-dom";
-import ChatPanel from "../comp/Chat/ChatPanel";
+import ChatPanel from "../components/Chat/ChatPanel";
 import { openListModal } from "../redux/actions";
 
 function ChatPanelContainer(props) {

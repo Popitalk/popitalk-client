@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import ModalContainer from "../../comp/Modals/ModalContainer";
-import BlockedUsersModal from "../../comp/Modals/BlockedUsersModal";
-import SearchHeader, { buildSearchInput } from "../../comp/SearchHeader";
+import ModalContainer from "../../components/Modals/ModalContainer";
+import BlockedUsersModal from "../../components/Modals/BlockedUsersModal";
+import SearchHeader, { buildSearchInput } from "../../components/SearchHeader";
 import { unblockUser } from "../../redux/actions";
 import { filterSearch, mapIdsToUsers } from "../../helpers/functions";
 
