@@ -9,6 +9,8 @@ import {
 import { mapIdsToUsers } from "../../helpers/functions";
 import VideoSection from "../../comp/VideoSection";
 import QueueSection from "../../comp/QueueSection";
+import VideoPanelCard from "../../comp/VideoPanelCard";
+import ScrollableCardList from "../../comp/ScrollableCardList";
 
 const mapStateToProps = (state, { channelId }) => {
   const { defaultAvatar } = state.general;
@@ -77,13 +79,26 @@ class VideoPanel extends Component {
           dispatchSkip={s => this.handleSkip(null, s)}
           dispatchPlayNextVideo={this.props.handlePlayNextVideo}
         />
-        <QueueSection
-          queueList={this.props.playlist}
-          handlerChange={this.props.handleSwapVideos}
-          handleSkip={this.handleSkip}
-          handleDeleteVideo={this.props.handleDeleteVideo}
-          displayControls={this.props.displayControls}
-        />
+        {this.props.displayControls ? (
+          <QueueSection
+            queueList={this.props.playlist}
+            handlerChange={this.props.handleSwapVideos}
+            handleSkip={this.handleSkip}
+            handleDeleteVideo={this.props.handleDeleteVideo}
+          />
+        ) : (
+          <ScrollableCardList axis="x">
+            {this.props.playlist.map(value => (
+              <VideoPanelCard
+                {...value}
+                key={value.id}
+                size="sm"
+                type="none"
+                className="mr-2"
+              />
+            ))}
+          </ScrollableCardList>
+        )}
       </div>
     );
   }

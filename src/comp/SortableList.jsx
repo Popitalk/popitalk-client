@@ -2,6 +2,7 @@ import React from "react";
 import { SortableContainer, SortableElement } from "react-sortable-hoc";
 import Button from "./Controls/Button";
 import strings from "../helpers/localization";
+import ScrollableCardList from "./ScrollableCardList";
 
 // Handler Change Params ({oldIndex, newIndex)}
 export default function SortableList({
@@ -41,26 +42,17 @@ export default function SortableList({
 
   const SortableList = SortableContainer(({ items }) => {
     return (
-      <div className="py-4">
-        <p className="px-4 text-lg text-primaryText select-none">
-          {strings.upNext}
-        </p>
-        <div
-          className={`flex ${
-            axis === "x" ? "flex-row" : "flex-col"
-          } flex-grow overflow-auto px-4 py-4 items-start mozilla-thin-scrollbar`}
-        >
-          {items.map((value, index) => (
-            <SortableItem
-              key={`item-${value.id}`}
-              index={index}
-              value={value}
-              distance={1}
-            />
-          ))}
-          {children}
-        </div>
-      </div>
+      <ScrollableCardList axis={axis}>
+        {items.map((value, index) => (
+          <SortableItem
+            key={`item-${value.id}`}
+            index={index}
+            value={value}
+            distance={1}
+          />
+        ))}
+        {children}
+      </ScrollableCardList>
     );
   });
 
