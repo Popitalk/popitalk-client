@@ -128,7 +128,7 @@ function RecommendedChannels({ list, selectedPage }) {
       ) : (
         <div>
           {/* OPTION TABS */}
-          <div className="flex justify-start px-6 mt-8 h-auto">
+          <div className="flex justify-start px-6 mt-4 h-auto">
             {tabs.map((img, idx) => {
               return (
                 <Button
