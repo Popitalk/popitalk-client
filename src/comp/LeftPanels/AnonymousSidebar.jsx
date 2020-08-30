@@ -1,6 +1,6 @@
 import React from "react";
-import InviteForm from "../InviteForm";
-import CreateNewAccountForm from "../CreateNewAccountForm";
+import InviteForm from "../Forms/InviteForm";
+import CreateNewAccountForm from "../Forms/CreateNewAccountForm";
 
 export default function AnonymousSidebar({ link, ...rest }) {
   const headerClasses = "text-sm font-bold text-secondaryText pb-1 pt-4 pl-2";

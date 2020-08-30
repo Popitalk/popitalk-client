@@ -1,6 +1,4 @@
 import React, { createRef, forwardRef } from "react";
-import Input from "./Controls/Input";
-import Button from "./Controls/Button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faFacebookSquare,
@@ -11,6 +9,8 @@ import {
   faWhatsapp
 } from "@fortawesome/free-brands-svg-icons";
 import { faPaperPlane, faAt } from "@fortawesome/free-solid-svg-icons";
+import Input from "../Controls/Input";
+import Button from "../Controls/Button";
 
 export default function InviteForm({ link }) {
   const faClassName = "text-xl";

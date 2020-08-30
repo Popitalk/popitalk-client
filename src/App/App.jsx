@@ -10,7 +10,7 @@ import "../styles/app.css";
 import "./App.css";
 import "../helpers/initIcons";
 import LeftPanel from "../containers/LeftPanel";
-import RecommendedView from "../comp/RecommendedView";
+import RecommendedView from "../containers/RecommendedView";
 import ChatPanel from "../containers/ChatPanel";
 import AnonymousSidebar from "../comp/LeftPanels/AnonymousSidebar";
 import CreateNewAccountContainer from "../containers/CreateNewAccountContainer";

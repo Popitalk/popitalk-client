@@ -5,7 +5,7 @@ import ImageUpload from "../Controls/ImageUpload";
 import Button from "../Controls/Button";
 import ReactTooltip from "react-tooltip";
 // import Resizer from "react-image-file-resizer";
-// import ChannelCardList from "../Channel/ChannelCardList";
+// import ChannelCardList from "../ThumbnailCardLists/ChannelCardList";
 
 export default function ProfileModal({
   user,

@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
-import Button from "./Controls/Button";
-import VideoStatus from "./VideoStatus";
-import moment from "moment";
-import strings from "../helpers/localization";
 import ReactTooltip from "react-tooltip";
 import classnames from "classnames";
+import moment from "moment";
+import Button from "../Controls/Button";
+import VideoStatus from "../VideoStatus";
+import strings from "../../helpers/localization";
 
 export default function VideoPanelCard({
   id,

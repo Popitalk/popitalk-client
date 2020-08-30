@@ -1,5 +1,5 @@
 import React from "react";
-import CreateNewAccountForm from "../comp/CreateNewAccountForm";
+import CreateNewAccountForm from "../comp/Forms/CreateNewAccountForm";
 import Footer from "../comp/Footer";
 import WelcomeVideo from "../assets/popitalkVideo.mp4";
 import Helmet from "react-helmet";

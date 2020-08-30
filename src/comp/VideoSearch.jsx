@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import VideoSearchBar from "./VideoSearchBar";
-import VideoResults from "./VideoResults";
+import VideoResults from "./ThumbnailCardLists/VideoResults";
 import strings from "../helpers/localization";
 
 export default function VideoSearch({

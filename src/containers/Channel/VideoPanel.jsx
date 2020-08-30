@@ -8,9 +8,9 @@ import {
 } from "../../redux/actions";
 import { mapIdsToUsers } from "../../helpers/functions";
 import VideoSection from "../../comp/VideoSection";
-import QueueSection from "../../comp/QueueSection";
-import VideoPanelCard from "../../comp/VideoPanelCard";
-import ScrollableCardList from "../../comp/ScrollableCardList";
+import QueueSection from "../../comp/ThumbnailCardLists/QueueSection";
+import VideoPanelCard from "../../comp/ThumbnailCards/VideoPanelCard";
+import ScrollableCardList from "../../comp/ThumbnailCardLists/ScrollableCardList";
 
 const mapStateToProps = (state, { channelId }) => {
   const { defaultAvatar } = state.general;

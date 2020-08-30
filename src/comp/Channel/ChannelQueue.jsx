@@ -1,7 +1,7 @@
 import React from "react";
 import "../VideoStatus.css";
 import VideoSearch from "../VideoSearch";
-import ChannelListQueue from "./ChannelListQueue";
+import ChannelListQueue from "../ThumbnailCardLists/ChannelListQueue";
 import strings from "../../helpers/localization";
 
 export default function ChannelQueue({

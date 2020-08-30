@@ -1,9 +1,9 @@
 import React from "react";
-import Select from "./Controls/Select";
-import ControlHeader from "./Controls/ControlHeader";
+import Select from "../Controls/Select";
+import ControlHeader from "../Controls/ControlHeader";
 import { connect } from "formik";
-import { getDatePickerValues } from "../helpers/functions";
-import strings from "../helpers/localization";
+import { getDatePickerValues } from "../../helpers/functions";
+import strings from "../../helpers/localization";
 
 function EditBirthdayForm({ loading, formik }) {
   const datePicker = getDatePickerValues();

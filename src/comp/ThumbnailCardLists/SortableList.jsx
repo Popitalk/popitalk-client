@@ -1,8 +1,8 @@
 import React from "react";
 import { SortableContainer, SortableElement } from "react-sortable-hoc";
-import Button from "./Controls/Button";
-import strings from "../helpers/localization";
-import ScrollableCardList from "./ScrollableCardList";
+import Button from "../Controls/Button";
+import strings from "../../helpers/localization";
+import ScrollableCardList from "../ThumbnailCardLists/ScrollableCardList";
 
 // Handler Change Params ({oldIndex, newIndex)}
 export default function SortableList({

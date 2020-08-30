@@ -1,5 +1,5 @@
 import React from "react";
-import VideoPanelCard from "./VideoPanelCard";
+import VideoPanelCard from "../ThumbnailCards/VideoPanelCard";
 import SortableList from "./SortableList";
 
 export default function QueueSection({

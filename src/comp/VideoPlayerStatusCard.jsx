@@ -2,7 +2,7 @@ import React from "react";
 import AvatarIcon from "./Controls/AvatarIcon";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-export default function VideoCard({
+export default function VideoPlayerStatusCard({
   avatar,
   message,
   username,

@@ -1,16 +1,16 @@
 import React from "react";
 import { Formik } from "formik";
 import * as Yup from "yup";
-import Input from "./Controls/Input";
-import Button from "./Controls/Button";
+import Input from "../Controls/Input";
+import Button from "../Controls/Button";
 import EditInformationForm from "./EditInformationForm";
 import EditBirthdayForm from "./EditBirthdayForm";
 import {
   getUserInformationSchema,
   getSetPasswordSchema,
   getInitialDatePickerValues
-} from "../helpers/functions";
-import strings from "../helpers/localization";
+} from "../../helpers/functions";
+import strings from "../../helpers/localization";
 
 export default function CreateNewAccountForm({ handleSubmit, error, loading }) {
   const initialDoB = new Date();

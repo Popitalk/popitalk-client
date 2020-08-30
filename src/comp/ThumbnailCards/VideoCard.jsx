@@ -1,6 +1,6 @@
 import React from "react";
 import moment from "moment";
-import strings from ".././helpers/localization";
+import strings from "../../helpers/localization";
 
 export default function VideoCard({
   id,

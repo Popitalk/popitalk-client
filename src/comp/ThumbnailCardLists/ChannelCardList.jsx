@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import ChannelCard from "./ChannelCard.jsx";
+import ChannelCard from "../ThumbnailCards/ChannelCard";
 
 function ChannelCardList({ channelList, isCollapsed, tabSelected, isLoading }) {
   const currentChannelList = [];

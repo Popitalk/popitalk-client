@@ -7,8 +7,8 @@ import {
 } from "../../helpers/functions";
 import Button from "../Controls/Button";
 import ImageUpload from "../Controls/ImageUpload";
-import EditInformationForm from "../EditInformationForm";
-import EditBirthdayForm from "../EditBirthdayForm";
+import EditInformationForm from "../Forms/EditInformationForm";
+import EditBirthdayForm from "../Forms/EditBirthdayForm";
 import _ from "lodash";
 
 export default function EditInformationModal({

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import VideoPanelCard from "./VideoPanelCard";
-import Button from "./Controls/Button";
-import strings from "../helpers/localization";
+import VideoPanelCard from "../ThumbnailCards/VideoPanelCard";
+import Button from "../Controls/Button";
+import strings from "../../helpers/localization";
 
 export default function VideoResults({
   results,

@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import ChannelSearchCard from "./ChannelSearchCard.jsx";
+import ChannelSearchCard from "../ThumbnailCards/ChannelSearchCard.jsx";
 import strings from "../../helpers/localization.js";
 
 function ChannelSearchList({ channelList }) {

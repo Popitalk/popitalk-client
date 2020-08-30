@@ -1,6 +1,6 @@
 import React from "react";
-import SortableList from "../SortableList";
-import VideoMinimalQueueCard from "../VideoMinimalQueueCard";
+import SortableList from "./SortableList";
+import VideoMinimalQueueCard from "../ThumbnailCards/VideoMinimalQueueCard";
 
 export default function ChannelListQueue({
   playlist,

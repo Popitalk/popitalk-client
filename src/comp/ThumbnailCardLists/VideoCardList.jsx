@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import VideoCard from "./VideoCard.jsx";
+import VideoCard from "../ThumbnailCards/VideoCard.jsx";
 
 function VideoCardList({ videoList, isCollapsed, tabSelected, isLoading }) {
   const currentVideoList = [];

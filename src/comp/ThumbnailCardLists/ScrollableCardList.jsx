@@ -1,5 +1,5 @@
 import React from "react";
-import strings from "../helpers/localization";
+import strings from "../../helpers/localization";
 
 export default function ScrollableCardList({ axis, children }) {
   return (
