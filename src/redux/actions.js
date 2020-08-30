@@ -695,7 +695,6 @@ export const getTrending = createAsyncThunk(
 export const addVideo = createAsyncThunk(
   "videoSearch/addVideo",
   async videoInfo => {
-    console.log(videoInfo);
     const { channelId, ...minVideoInfo } = videoInfo;
     const response = await api.addVideo(channelId, minVideoInfo);
     return response.data;
