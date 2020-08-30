@@ -83,7 +83,6 @@
     "redux-thunk": "^2.3.0",
     "reselect": "^4.0.0",
     "screenfull": "^5.0.2",
-    "styled-components": "^5.1.0",
     "tailwindcss-truncate-multiline": "^1.0.3",
     "use-deep-compare-effect": "^1.4.0",
     "use-onclickoutside": "^0.3.1",

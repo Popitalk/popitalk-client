@@ -7,7 +7,7 @@ export default function DropDownMenu({ title, handleBack, buttons }) {
   return (
     <DropDownContainer>
       <ContainerHeader title={title} handleBack={handleBack} />
-      <div className="p-3">
+      <div className="p-3 text-sm">
         <ButtonsList buttons={buttons} />
       </div>
     </DropDownContainer>

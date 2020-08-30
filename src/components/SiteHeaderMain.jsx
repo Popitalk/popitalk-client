@@ -4,7 +4,8 @@ import Logo from "../assets/logo.png";
 import DropDownMenu from "./DropDowns/DropDownMenu";
 import DeleteAccountDropDown from "./DropDowns/DeleteAccountDropDown";
 import FriendRequests from "./DropDowns/FriendRequests";
-import Notifications from "./DropDowns/Notifications";
+// import Notifications from "./DropDowns/Notifications";
+import FeedbackDropDown from "./DropDowns/FeedbackDropDown";
 import DropDownControls from "./DropDowns/DropDownControls";
 import Button from "./Controls/Button";
 import strings from "../helpers/localization";
@@ -125,7 +126,7 @@ export default function SiteHeaderMain({
             />
           </DropDownControls>
         </li>
-        <li>
+        {/* <li>
           <DropDownControls
             icon="bell"
             className="relative"
@@ -137,7 +138,7 @@ export default function SiteHeaderMain({
               handleClear={clearNotificationsHandler}
             />
           </DropDownControls>
-        </li>
+        </li> */}
         <li>
           <DropDownControls
             icon="cog"
@@ -166,14 +167,12 @@ export default function SiteHeaderMain({
           </DropDownControls>
         </li>
         <li>
-          <a href="https://about.popitalk.com/">
-            <Button
-              styleNone
-              icon="info-circle"
-              styleNoneIconClassName="text-secondaryText hover:filter-brightness-8 text-xl"
-              analyticsString="To about.popitalk Button: SiteHeaderMain"
-            />
-          </a>
+          <DropDownControls
+            icon="info-circle"
+            analyticsString="To about.popitalk Button: SiteHeaderMain"
+          >
+            <FeedbackDropDown />
+          </DropDownControls>
         </li>
       </ul>
     </header>

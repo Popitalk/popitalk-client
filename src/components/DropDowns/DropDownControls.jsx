@@ -1,13 +1,16 @@
 import React, { useState, useRef, useCallback } from "react";
 import { useOnClickOutside } from "../../helpers/functions";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Button from "../Controls/Button";
 
 export default function DropDownControls({
   children,
   onClose,
   onClick,
   hasNotification = false,
-  icon
+  icon,
+  tooltip,
+  tooltipPlace,
+  analyticsString
 }) {
   const [open, setOpen] = useState(false);
   const ref = useRef();
@@ -30,22 +33,24 @@ export default function DropDownControls({
           : "cursor-pointer text-secondaryText hover:filter-brightness-8 transition-all duration-100"
       } sm:relative flex items-center justify-center w-10 h-10 rounded-circle`}
     >
-      <div
+      <Button
+        styleNone
+        icon={icon}
+        styleNoneIconClassName="text-xl"
         className="flex relative w-10 h-10 items-center justify-center"
+        tooltip={tooltip}
+        tooltipPlace={tooltipPlace}
+        analyticsString={analyticsString}
         onMouseDown={() => {
           if (onClick) onClick();
           setOpen(true);
         }}
-        role="button"
-      >
-        <FontAwesomeIcon icon={icon} size="lg" />
-        {hasNotification && (
-          <span className="flex absolute top-0 mt-1 mr-1 right-0 h-2 w-2">
-            {/* <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-errorText opacity-75"></span> */}
-            <span className="relative inline-flex rounded-full h-2 w-2 bg-errorText"></span>
-          </span>
-        )}
-      </div>
+      />
+      {hasNotification && (
+        <span className="flex absolute top-0 mt-1 mr-1 right-0 h-2 w-2">
+          <span className="relative inline-flex rounded-full h-2 w-2 bg-errorText"></span>
+        </span>
+      )}
       {open && (
         <div
           className="absolute text-primaryText sm:right-0 sm:top-0 sm:mt-10

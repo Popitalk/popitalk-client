@@ -72,6 +72,7 @@ let strings = new LocalizedStrings({
     deleteButton: "Delete",
     loadMoreButton: "Show more",
     backToTrendingButton: "Back to Trending",
+    sendFeedbackButton: "Our Team",
     // Months
     jan: "January",
     feb: "February",
@@ -251,6 +252,7 @@ let strings = new LocalizedStrings({
     deleteButton: "삭제",
     loadMoreButton: "더 보기",
     backToTrendingButton: "처음으로",
+    sendFeedbackButton: "포피톡 팀",
     // Months
     jan: "1월",
     feb: "2월",
