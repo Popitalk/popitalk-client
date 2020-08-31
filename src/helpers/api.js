@@ -77,7 +77,6 @@ export const searchUsers = (username, page) => {
 // CHANNELS
 
 export const updateChannel = (channelId, updateInfo) => {
-  console.log("updateInfo updateChannel", updateInfo);
   return axios.put(`/api/channels/${channelId}`, updateInfo);
 };
 
@@ -128,7 +127,7 @@ export const addRoomMembers = (channelId, userIds) => {
 };
 
 export const makeAdmin = (channelId, userId) => {
-  return axios.post(`/api/members/${channelId}/admins`, { userId });
+  return axios.post(`/api/members/${channelId}/admins`, { adminId: userId });
 };
 
 export const deleteAdmin = (channelId, userId) => {

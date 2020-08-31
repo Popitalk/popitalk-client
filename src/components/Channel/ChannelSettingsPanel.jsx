@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import ChannelSettingsSidebar from "./ChannelSettingsSidebar";
-import ChannelForm from "./ChannelForm";
+import ChannelForm from "../Forms/ChannelForm";
 import ManageUsers from "../ManageUsers";
 import strings from "../../helpers/localization";
 
