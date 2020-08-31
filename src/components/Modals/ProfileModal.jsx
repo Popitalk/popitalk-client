@@ -5,6 +5,7 @@ import ImageUpload from "../Controls/ImageUpload";
 import Button from "../Controls/Button";
 import ReactTooltip from "react-tooltip";
 import Resizer from "react-image-file-resizer";
+import strings from "../../helpers/localization";
 // import ChannelCardList from "../ThumbnailCardLists/ChannelCardList";
 
 export default function ProfileModal({
@@ -87,19 +88,19 @@ export default function ProfileModal({
           <div className="flex space-x-8 my-4 text-primaryText">
             <Button
               styleNone
-              styleNoneContent={`${following} Following`}
+              styleNoneContent={`${following} ${strings.followingChannels}`}
               className="text-sm font-semibold"
               analyticsString="Show following list Button: ProfileModal"
             />
-            <Button
+            {/* <Button
               styleNone
               styleNoneContent={`${followers} Followers`}
               className="text-sm font-semibold"
               analyticsString="Show followers list Button: ProfileModal"
-            />
+            /> */}
             <Button
               styleNone
-              styleNoneContent={`${friends} Friends`}
+              styleNoneContent={`${friends} ${strings.friendsText}`}
               className="text-sm font-semibold"
               analyticsString="Show friends list Button: ProfileModal"
             />

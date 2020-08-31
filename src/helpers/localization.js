@@ -177,7 +177,9 @@ let strings = new LocalizedStrings({
     searchGifInput: "Search for a GIF",
     // DeleteMessageModal
     deleteMessageTitle: "Delete Message",
-    deleteMessageSubtitle: "Are you sure you want to delete this message?"
+    deleteMessageSubtitle: "Are you sure you want to delete this message?",
+    // ProfileModal
+    friendsText: "Friends"
   },
 
   //  KOREAN  //
@@ -356,7 +358,9 @@ let strings = new LocalizedStrings({
     searchGifInput: "GIF 검색",
     // DeleteMessageModal
     deleteMessageTitle: "메세지 삭제",
-    deleteMessageSubtitle: "삭제된 메세지는 복구가 불가합니다."
+    deleteMessageSubtitle: "삭제된 메세지는 복구가 불가합니다.",
+    // ProfileModal
+    friendsText: "친구"
   },
 
   //  Russian  //
