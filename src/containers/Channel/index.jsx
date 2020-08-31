@@ -19,6 +19,7 @@ import {
   deletePost,
   followChannel,
   unfollowChannel,
+  openProfileModal,
   openListModal,
   searchVideos,
   addVideo,
@@ -135,6 +136,7 @@ const mapDispatchToProps = (dispatch, { match }) => {
     handleRemovePost: postId => dispatch(deletePost({ postId })),
     handleFollow: () => dispatch(followChannel(channelId)),
     handleUnfollow: () => dispatch(unfollowChannel(channelId)),
+    openProfileModal: id => dispatch(openProfileModal(id)),
     handleOpenAdminsList: () => dispatch(openListModal(channelId, "admins")),
     handleSearch: (terms, next = false) =>
       dispatch(searchVideos({ channelId, source: "youtube", terms, next })),
@@ -522,6 +524,7 @@ class Channel extends Component {
                 removeAdminHandler={this.props.handleRemoveAdmin}
                 addBanHandler={this.props.handleAddBan}
                 removeBanHandler={this.props.handleRemoveBan}
+                handleProfile={id => this.props.openProfileModal(id)}
               />
             )}
           </div>
