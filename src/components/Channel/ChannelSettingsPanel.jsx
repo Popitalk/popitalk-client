@@ -104,7 +104,7 @@ export default function ChannelSettingsPanel({
   }
 
   return (
-    <div className="h-full w-full px-2 bg-secondaryBackground flex items-center md:flex-row md:items-stretch overflow-auto">
+    <div className="h-full w-full bg-secondaryBackground flex items-center md:flex-row md:items-stretch overflow-auto">
       <div className="flex-none h-full p-4">
         <ChannelSettingsSidebar
           buttons={buttons}
