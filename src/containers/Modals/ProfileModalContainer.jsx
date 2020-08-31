@@ -64,7 +64,7 @@ export default function ProfileModalContainer({ handleModalClose }) {
         user={user}
         following={6}
         followers={22}
-        friends={12}
+        friends={relationships.friends.length}
         recentVideos={[]}
         followedChannels={[]}
         unfriendHandler={() => dispatch(deleteFriend(userId))}
