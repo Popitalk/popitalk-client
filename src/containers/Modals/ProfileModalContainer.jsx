@@ -14,7 +14,7 @@ import { setRelationshipHandlers } from "../../helpers/functions";
 
 export default function ProfileModalContainer({ handleModalClose }) {
   const { userId } = useSelector(state => state.modal);
-  const { id: myId } = useSelector(state => state.self);
+  const { id: myId, channelIds } = useSelector(state => state.self);
 
   const {
     idModal: id,
@@ -26,6 +26,22 @@ export default function ProfileModalContainer({ handleModalClose }) {
   const { defaultAvatar } = useSelector(state => state.general);
   const relationships = useSelector(state => state.relationships);
   const updateUserApi = useSelector(state => state.api.userUpdateApi);
+  const channels = useSelector(state => state.channels);
+
+  let followingChannelsCount = 0;
+  channelIds
+    .map(channelId => ({
+      id: channelId,
+      ownerId: channels[channelId].ownerId || channels[channelId].owner_id,
+      members: channels[channelId].members
+    }))
+    .forEach(channel => {
+      if (channel.ownerId !== myId && channel.members) {
+        if (channel.members.includes(myId)) {
+          followingChannelsCount += 1;
+        }
+      }
+    });
 
   const dispatch = useDispatch();
   useEffect(() => {
@@ -62,7 +78,7 @@ export default function ProfileModalContainer({ handleModalClose }) {
     <ModalContainer isOpen={true} handleModalClose={closeModalAndClearError}>
       <ProfileModal
         user={user}
-        following={6}
+        following={followingChannelsCount}
         followers={22}
         friends={relationships.friends.length}
         recentVideos={[]}
