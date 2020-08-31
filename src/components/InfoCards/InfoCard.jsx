@@ -29,19 +29,16 @@ export default function InfoCard({
     "text-xs": subtitleSize === "xs"
   });
 
-  const boxClasses = classnames(
-    "relative flex items-center rounded-lg px-2 m-2",
-    {
-      "bg-primaryBackground": backgroundColor === "white",
-      "bg-secondaryBackground": backgroundColor === "gray",
-      "bg-highlightBackground": backgroundColor === "highlight",
-      "hover:bg-highlightBackground duration-75": hoverable,
-      "py-2": padding === "sm",
-      "py-1": padding === "xs",
-      "py-0": padding === "none",
-      "border border-highlightText": addBorder
-    }
-  );
+  const containerClasses = classnames("flex items-center rounded-lg px-2 m-2", {
+    "py-2": padding === "sm",
+    "py-1": padding === "xs",
+    "py-0": padding === "none",
+    "border border-highlightText": addBorder,
+    "bg-primaryBackground": backgroundColor === "white",
+    "bg-secondaryBackground": backgroundColor === "gray",
+    "bg-highlightBackground": backgroundColor === "highlight",
+    "hover:bg-highlightBackground duration-75": hoverable
+  });
 
   return (
     <>
@@ -56,28 +53,30 @@ export default function InfoCard({
           </div>
         </div>
       ) : (
-        <div
-          className={boxClasses}
-          role={cardClick ? "button" : null}
-          onClick={cardClick ? e => cardClick(e) : null}
-        >
-          {avatar}
-          <div className="flex flex-col mx-3 my-2 space-y-1 truncate">
-            {title && subtitle ? (
-              <>
+        <div className={containerClasses}>
+          <div
+            className="relative flex items-center w-full"
+            role={cardClick ? "button" : null}
+            onClick={cardClick ? e => cardClick(e) : null}
+          >
+            {avatar}
+            <div className="flex flex-col w-full mx-3 my-2 space-y-1 truncate">
+              {title && subtitle ? (
+                <>
+                  <p className={titleClasses}>{title}</p>
+                  <p className={subtitleClasses}>{subtitle}</p>
+                  {badge === true && (
+                    <div className="absolute flex items-center right-0 top-0 h-full w-3 m-3">
+                      <div className="bg-gradient-r-button w-3 h-3 rounded-full mb-2" />
+                    </div>
+                  )}
+                </>
+              ) : (
                 <p className={titleClasses}>{title}</p>
-                <p className={subtitleClasses}>{subtitle}</p>
-                {badge === true && (
-                  <div className="absolute flex items-center right-0 top-0 h-full w-3 m-3">
-                    <div className="bg-gradient-r-button w-3 h-3 rounded-full mb-2" />
-                  </div>
-                )}
-              </>
-            ) : (
-              <p className={titleClasses}>{title}</p>
-            )}
+              )}
+            </div>
           </div>
-          {controls && controls}
+          <div className="flex-shrink-0">{controls && controls}</div>
         </div>
       )}
     </>

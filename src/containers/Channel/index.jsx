@@ -429,7 +429,7 @@ class Channel extends Component {
           </div>
           <div
             ref={this.scrollRef}
-            className={`flex flex-col overflow-x-hidden h-auto ${this.props.searchClasses}`}
+            className={`flex flex-col overflow-x-hidden h-full ${this.props.searchClasses}`}
           >
             {(tab === VIDEO_TAB || tab === POSTS_TAB) && (
               <>

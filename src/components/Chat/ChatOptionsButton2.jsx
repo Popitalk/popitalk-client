@@ -76,7 +76,7 @@ function ChatOptionsButton2({ message, channel, ownId, match }) {
       {((conditions.isMyMessage || conditions.isAdminOfChannel) &&
         !conditions.messagePending) ||
       conditions.messageRejected ? (
-        <div className="flex transition-opacity duration-100 opacity-0 chat-options-button w-4 px-0 space-x-2 self-center mx-2 focus:outline-none">
+        <div className="flex transition-opacity duration-100 opacity-0 chat-options-button w-4 px-0 space-x-2 self-center mx-2">
           <PopupMenu
             options={getOptions()}
             type="message"
