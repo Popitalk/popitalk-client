@@ -107,7 +107,7 @@ let strings = new LocalizedStrings({
     discover: "# Discover",
     trending: "# Trending",
     // ChannelCard
-    nothingPlaying: "Nothing is Playing at this moment",
+    nothingPlaying: "Nothing is playing at this moment",
     // VideoCard
     watch: "Watch it in a room",
     // ChannelHeader
