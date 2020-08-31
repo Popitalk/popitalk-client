@@ -139,10 +139,8 @@ export default function ChannelForm({
             <ImageUpload
               name="icon"
               icon={values.icon}
-              onUpload={e => {
-                if (e.target.files[0]) {
-                  setFieldValue("icon", URL.createObjectURL(e.target.files[0]));
-                }
+              onUpload={url => {
+                setFieldValue("icon", url);
               }}
               onRemove={() => {
                 setFieldValue("icon", null);

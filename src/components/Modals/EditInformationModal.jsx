@@ -48,13 +48,8 @@ export default function EditInformationModal({
                 name="avatar"
                 size="sm"
                 icon={values.avatar}
-                onUpload={e => {
-                  if (e.target.files[0]) {
-                    setFieldValue(
-                      "avatar",
-                      URL.createObjectURL(e.target.files[0])
-                    );
-                  }
+                onUpload={url => {
+                  setFieldValue("avatar", url);
                 }}
                 onRemove={() => {
                   setFieldValue("avatar", null);

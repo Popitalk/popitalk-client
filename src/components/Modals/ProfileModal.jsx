@@ -4,7 +4,6 @@ import FriendRequestButtons from "../Controls/FriendRequestButtons";
 import ImageUpload from "../Controls/ImageUpload";
 import Button from "../Controls/Button";
 import ReactTooltip from "react-tooltip";
-import Resizer from "react-image-file-resizer";
 import strings from "../../helpers/localization";
 // import ChannelCardList from "../ThumbnailCardLists/ChannelCardList";
 
@@ -23,23 +22,6 @@ export default function ProfileModal({
   // variants: self, friend, stranger, sentRequest, receivedRequest, blocked
   const variant = user.variant;
   const myProfile = variant === "self";
-
-  const onChangePicture = e => {
-    if (e.target.files[0]) {
-      Resizer.imageFileResizer(
-        e.target.files[0],
-        196,
-        196,
-        "JPEG",
-        100,
-        0,
-        uri => {
-          updateAvatar(URL.createObjectURL(uri));
-        },
-        "blob"
-      );
-    }
-  };
 
   let options = null;
   if (!myProfile) {
@@ -62,7 +44,9 @@ export default function ProfileModal({
             name="avatar"
             size="sm"
             icon={user.avatar}
-            onUpload={onChangePicture}
+            onUpload={url => {
+              updateAvatar(url);
+            }}
             onRemove={() => {
               updateAvatar(null);
             }}

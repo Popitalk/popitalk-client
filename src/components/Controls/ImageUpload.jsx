@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Resizer from "react-image-file-resizer";
 import classnames from "classnames";
 import defaultImage from "../../assets/default/user-default.png";
 // import Button from "./Button";
@@ -32,7 +33,21 @@ export default function ImageUpload({
     event.persist();
     const url = await readURL(event.target.files[0]);
     setImageURL(url);
-    onUpload(event);
+
+    if (event.target.files[0]) {
+      Resizer.imageFileResizer(
+        event.target.files[0],
+        196,
+        196,
+        "JPEG",
+        100,
+        0,
+        uri => {
+          onUpload(URL.createObjectURL(uri));
+        },
+        "blob"
+      );
+    }
   };
 
   const imageClasses = classnames(
