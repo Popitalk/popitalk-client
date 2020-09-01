@@ -149,7 +149,8 @@ module.exports = {
         104: "30rem"
       },
       borderWidth: {
-        thin: "thin"
+        thin: "1px"
+        // thin: "thin"
       },
       borderRadius: {
         xl: "15px",
@@ -158,7 +159,8 @@ module.exports = {
         circle: "50%"
       },
       gap: {
-        thin: "thin",
+        // thin: "thin"
+        thin: "1px",
         smm: "0.1rem"
       },
       transitionProperty: {
