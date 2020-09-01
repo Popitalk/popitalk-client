@@ -58,7 +58,7 @@ export default function ChannelSettingsPanel({
   } else if (selected === 1) {
     const options = [
       { name: "Make Admin", handler: addAdminHandler },
-      { name: "Kick", handler: kickUserHandler },
+      // { name: "Kick", handler: kickUserHandler },
       { name: "Ban", danger: true, handler: addBanHandler }
     ];
 
