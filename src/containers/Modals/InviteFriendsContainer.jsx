@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import ModalContainer from "../../comp/Modals/ModalContainer";
-import NewRoomModal from "../../comp/Modals/NewRoomModal";
-import SearchHeader from "../../comp/SearchHeader";
-import { buildTagInput } from "../../comp/Controls/TagInput";
+import ModalContainer from "../../components/Modals/ModalContainer";
+import NewRoomModal from "../../components/Modals/NewRoomModal";
+import SearchHeader from "../../components/SearchHeader";
+import { buildTagInput } from "../../components/Controls/TagInput";
 import {
   createRoom,
   addRoomMembers,

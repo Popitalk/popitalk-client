@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useRouteMatch } from "react-router-dom";
 import { Switch, Route } from "react-router";
-import LeftPanel from "../comp/LeftPanels/LeftPanel";
+import LeftPanel from "../components/LeftPanels/LeftPanel";
 import {
   toggleLeftPanel,
   searchUsers,

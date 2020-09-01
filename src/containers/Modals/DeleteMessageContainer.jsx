@@ -1,6 +1,6 @@
 import React from "react";
-import ModalContainer from "../../comp/Modals/ModalContainer";
-import DeleteMessageModal from "../../comp/Modals/DeleteMessageModal";
+import ModalContainer from "../../components/Modals/ModalContainer";
+import DeleteMessageModal from "../../components/Modals/DeleteMessageModal";
 import { useSelector, useDispatch } from "react-redux";
 import { deleteMessage } from "../../redux/actions";
 import messagesFormatter2 from "../../util/messagesFormatter2";

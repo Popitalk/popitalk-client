@@ -1,9 +1,9 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { clearError, updateUser } from "../../redux/actions";
-import ModalContainer from "../../comp/Modals/ModalContainer";
-import ChangePasswordModal from "../../comp/Modals/ChangePasswordModal";
-import ContainerHeader from "../../comp/ContainerHeader";
+import ModalContainer from "../../components/Modals/ModalContainer";
+import ChangePasswordModal from "../../components/Modals/ChangePasswordModal";
+import ContainerHeader from "../../components/ContainerHeader";
 
 export default function ChangePasswordContainer({ handleModalClose }) {
   const updateUserApi = useSelector(state => state.api.userUpdateApi);

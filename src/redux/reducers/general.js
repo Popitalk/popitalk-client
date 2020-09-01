@@ -6,7 +6,7 @@ import {
   deleteAccount,
   wsConnect,
   wsDisconnect,
-  searchVideos
+  getTrending
 } from "../actions";
 import channelDefault from "../../assets/default/channel-default.png";
 import userDefault from "../../assets/default/user-default.png";
@@ -14,7 +14,7 @@ import userDefault from "../../assets/default/user-default.png";
 const initialState = {
   loggedIn: false,
   validatedSession: false,
-  siteVersion: "1.1.4",
+  cacheVersion: 1,
   defaultAvatar: userDefault,
   defaultIcon: channelDefault,
   groupRoomMemberLimit: 8,
@@ -42,13 +42,10 @@ const R_logout = state => {
 };
 
 const R_setTrending = (state, { payload }) => {
-  if (payload.terms) return;
+  if (!payload) return;
 
   let results = [];
-  if (
-    state.trendingResults.source === payload.source &&
-    state.trendingResults.page !== payload.page
-  ) {
+  if (payload.next) {
     results = [...state.trendingResults.results, ...payload.results];
   } else {
     results = [...payload.results];
@@ -76,5 +73,5 @@ export default createReducer(initialState, {
   },
   [logout.fulfilled]: R_logout,
   [deleteAccount.fulfilled]: R_logout,
-  [searchVideos.fulfilled]: R_setTrending
+  [getTrending.fulfilled]: R_setTrending
 });

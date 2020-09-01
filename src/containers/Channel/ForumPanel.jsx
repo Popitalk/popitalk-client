@@ -1,7 +1,7 @@
 import React from "react";
-import ChannelDescription from "../../comp/Channel/ChannelDescription";
-import ChannelChat from "../../comp/Channel/ChannelChat";
-import NewChannelPost from "../../comp/Channel/NewChannelPost";
+import ChannelDescription from "../../components/Channel/ChannelDescription";
+import ChannelChat from "../../components/Channel/ChannelChat";
+import NewChannelPost from "../../components/Channel/NewChannelPost";
 
 const ForumPanel = (
   {

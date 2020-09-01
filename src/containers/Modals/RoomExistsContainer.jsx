@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import ModalContainer from "../../comp/Modals/ModalContainer";
-import RoomExistsModal from "../../comp/Modals/RoomExistsModal";
+import ModalContainer from "../../components/Modals/ModalContainer";
+import RoomExistsModal from "../../components/Modals/RoomExistsModal";
 import { closeModal, createRoom } from "../../redux/actions";
 import history from "../../history";
 

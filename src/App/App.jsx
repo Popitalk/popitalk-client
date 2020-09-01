@@ -10,13 +10,13 @@ import "../styles/app.css";
 import "./App.css";
 import "../helpers/initIcons";
 import LeftPanel from "../containers/LeftPanel";
-import RecommendedView from "../comp/RecommendedView";
+import RecommendedView from "../containers/RecommendedView";
 import ChatPanel from "../containers/ChatPanel";
-import AnonymousSidebar from "../comp/LeftPanels/AnonymousSidebar";
+import AnonymousSidebar from "../components/LeftPanels/AnonymousSidebar";
 import CreateNewAccountContainer from "../containers/CreateNewAccountContainer";
 import CreateChannelContainer from "../containers/CreateChannelContainer";
 import Channel from "../containers/Channel";
-import "../comp/ScrollBars.css";
+import "../components/ScrollBars.css";
 import ReactGa from "react-ga";
 import Helmet from "react-helmet";
 
@@ -33,7 +33,7 @@ const RouteWrapper = ({ leftPanel, children }) => {
 
 export default function App() {
   const validatedSession = useSelector(state => state.general.validatedSession);
-  const loggedIn = useSelector(state => state.general.loggedIn);
+  const { loggedIn, wsConnected } = useSelector(state => state.general);
   // const isCollapsed = useSelector(state => state.ui.isCollapsed);
   const dispatch = useDispatch();
 
@@ -48,17 +48,10 @@ export default function App() {
     ReactGa.pageview(window.location.pathname + window.location.search);
   }, []);
 
-  if (!validatedSession)
-    // if (!validatedSession)
-    return <section className="App--container" />;
+  if (!validatedSession) return <section className="App--container" />;
 
   // if (!validatedSession || (loggedIn && !wsConnected))
-  //   // if (!validatedSession)
-  //   return (
-  //     <section className="App--container">
-  //       <LoadingPage />
-  //     </section>
-  //   );
+  //   return <section className="App--container">loading spinner</section>;
 
   const chatPanel = (
     <div className="md:flex sm:w-dropdown // hidden">

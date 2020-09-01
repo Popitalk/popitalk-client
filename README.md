@@ -35,7 +35,7 @@ npm start
 ### Folder Structure
 ```
 popitalk/playnows-client/
-├── comp # The core components
+├── components # The core components
 ├── containers # placeholder explanation
 ├── helpers # placeholder explanation
 ├── hooks # placeholder explanation

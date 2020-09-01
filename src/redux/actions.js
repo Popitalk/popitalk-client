@@ -25,7 +25,8 @@ import {
   MODAL_ACCOUNT_SETTINGS,
   MODAL_DELETE_ACCOUNT,
   MODAL_DELETE_CHANNEL,
-  MODAL_ROOM_EXISTS
+  MODAL_ROOM_EXISTS,
+  VIDEO_RESULTS_PER_PAGE
 } from "../helpers/constants";
 import moment from "moment";
 /* -------------------------------------------------------------------------- */
@@ -632,37 +633,62 @@ export const searchUsersWs = createAction(searchUsers.fulfilled.type);
 export const searchVideos = createAsyncThunk(
   "videoSearch/searchVideos",
   async (searchInfo, { getState }) => {
-    const { source, terms, next, channelId } = searchInfo;
+    const { source, next, terms, channelId } = searchInfo;
     const { page, terms: prevTerms } = getState().channels[
       channelId
     ].videoSearch;
 
-    let finalTerms = next ? prevTerms : terms ? terms.trim() : "";
-    if (finalTerms === "") {
-      finalTerms = null;
-    }
+    let finalTerms = next ? prevTerms : terms.trim();
 
     let response = null;
-    if (
-      (!finalTerms && next) ||
-      getState().general.trendingResults.results.length === 0 ||
-      finalTerms
-    ) {
-      response = await api.searchVideos(
-        source,
-        finalTerms,
-        page === 1 ? null : page
-      );
+    if (finalTerms && finalTerms !== "") {
+      response = await api.searchVideos(source, finalTerms, next ? page : null);
     }
 
     return {
       channelId,
       source,
+      next,
       terms: response ? finalTerms : "",
       page: response ? response.data.nextPageToken : 1,
       totalResults: response ? response.data.totalResults : 1,
       results: response ? response.data.results : []
     };
+  }
+);
+
+export const getTrending = createAsyncThunk(
+  "videoSearch/getTrending",
+  async (searchInfo, { getState }) => {
+    const { source, next } = searchInfo;
+    const {
+      page,
+      source: currSource,
+      results
+    } = getState().general.trendingResults;
+
+    let finalPage = page;
+    if (!next || page === 1 || currSource !== source) {
+      finalPage = null;
+    }
+
+    if (
+      !next &&
+      results.length <= VIDEO_RESULTS_PER_PAGE &&
+      source === currSource
+    ) {
+      return null;
+    } else {
+      const response = await api.searchVideos(source, null, finalPage);
+
+      return {
+        source,
+        next,
+        page: response ? response.data.nextPageToken : 1,
+        totalResults: response ? response.data.totalResults : 1,
+        results: response ? response.data.results : []
+      };
+    }
   }
 );
 

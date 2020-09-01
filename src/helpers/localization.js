@@ -72,6 +72,7 @@ let strings = new LocalizedStrings({
     deleteButton: "Delete",
     loadMoreButton: "Show more",
     backToTrendingButton: "Back to Trending",
+    sendFeedbackButton: "Our Team",
     // Months
     jan: "January",
     feb: "February",
@@ -106,7 +107,7 @@ let strings = new LocalizedStrings({
     discover: "# Discover",
     trending: "# Trending",
     // ChannelCard
-    nothingPlaying: "Nothing is Playing at this moment",
+    nothingPlaying: "Nothing is playing at this moment",
     // VideoCard
     watch: "Watch it in a room",
     // ChannelHeader
@@ -176,7 +177,9 @@ let strings = new LocalizedStrings({
     searchGifInput: "Search for a GIF",
     // DeleteMessageModal
     deleteMessageTitle: "Delete Message",
-    deleteMessageSubtitle: "Are you sure you want to delete this message?"
+    deleteMessageSubtitle: "Are you sure you want to delete this message?",
+    // ProfileModal
+    friendsText: "Friends"
   },
 
   //  KOREAN  //
@@ -251,6 +254,7 @@ let strings = new LocalizedStrings({
     deleteButton: "삭제",
     loadMoreButton: "더 보기",
     backToTrendingButton: "처음으로",
+    sendFeedbackButton: "포피톡 팀",
     // Months
     jan: "1월",
     feb: "2월",
@@ -354,7 +358,9 @@ let strings = new LocalizedStrings({
     searchGifInput: "GIF 검색",
     // DeleteMessageModal
     deleteMessageTitle: "메세지 삭제",
-    deleteMessageSubtitle: "삭제된 메세지는 복구가 불가합니다."
+    deleteMessageSubtitle: "삭제된 메세지는 복구가 불가합니다.",
+    // ProfileModal
+    friendsText: "친구"
   },
 
   //  Russian  //

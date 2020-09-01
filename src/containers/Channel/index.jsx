@@ -19,19 +19,21 @@ import {
   deletePost,
   followChannel,
   unfollowChannel,
+  openProfileModal,
   openListModal,
   searchVideos,
   addVideo,
   deleteVideo,
   swapVideos,
-  setAlert
+  setAlert,
+  getTrending
 } from "../../redux/actions";
-import ChannelHeader from "../../comp/ChannelHeader";
+import ChannelHeader from "../../components/ChannelHeader";
 import VideoPanel from "./VideoPanel";
 import ForumPanel from "./ForumPanel";
-import ChannelSettingsPanel from "../../comp/Channel/ChannelSettingsPanel";
-import ChannelQueue from "../../comp/Channel/ChannelQueue";
-import VideoSearch from "../../comp/VideoSearch";
+import ChannelSettingsPanel from "../../components/Channel/ChannelSettingsPanel";
+import ChannelQueue from "../../components/Channel/ChannelQueue";
+import VideoSearch from "../../components/VideoSearch";
 import { mapIdsToUsers } from "../../helpers/functions";
 import {
   calculatePlayerStatus,
@@ -134,9 +136,12 @@ const mapDispatchToProps = (dispatch, { match }) => {
     handleRemovePost: postId => dispatch(deletePost({ postId })),
     handleFollow: () => dispatch(followChannel(channelId)),
     handleUnfollow: () => dispatch(unfollowChannel(channelId)),
+    openProfileModal: id => dispatch(openProfileModal(id)),
     handleOpenAdminsList: () => dispatch(openListModal(channelId, "admins")),
     handleSearch: (terms, next = false) =>
       dispatch(searchVideos({ channelId, source: "youtube", terms, next })),
+    handleGetTrending: next =>
+      dispatch(getTrending({ next, source: "youtube" })),
     handleAddVideo: videoInfo =>
       dispatch(addVideo({ channelId, ...videoInfo })),
     handleDeleteVideo: channelVideoId =>
@@ -155,13 +160,31 @@ class Channel extends Component {
 
     this.state = {
       queueList: this.props.playlist,
-      playerStatus: this.props.startPlayerStatus
+      playerStatus: this.props.startPlayerStatus,
+      searchTerm: ""
     };
 
     this.scrollRef = createRef();
     this.channelRef = createRef();
 
     this.playNextVideo = this.playNextVideo.bind(this);
+    this.handleSearch = this.handleSearch.bind(this);
+  }
+
+  handleSearch(term, next) {
+    if (term !== null) {
+      this.setState({
+        searchTerm: term.trim()
+      });
+    } else {
+      term = this.state.searchTerm;
+    }
+
+    if (term !== "") {
+      this.props.handleSearch(term, next);
+    } else {
+      this.props.handleGetTrending(next);
+    }
   }
 
   pickRoomName() {
@@ -241,16 +264,47 @@ class Channel extends Component {
     }
   }
 
+  setPlayerStatus() {
+    const playerStatus = calculatePlayerStatus(
+      this.props.startPlayerStatus,
+      this.props.playlist
+    );
+
+    this.setState({
+      playerStatus: {
+        channelId: this.props.channelId,
+        ...playerStatus
+      },
+      queueList: this.mapVideoStatuses(
+        this.props.playlist,
+        playerStatus.queueStartPosition,
+        playerStatus.status
+      )
+    });
+
+    if (this.props.trendingResults.results.length === 0) {
+      this.props.handleGetTrending(false);
+    }
+  }
+
   componentDidMount() {
     if (!this.props.channel?.loaded) {
-      console.log("Yeah I'm running");
       this.props.handleGetChannel();
+    } else if (!this.state.playerStatus.channelId) {
+      this.setPlayerStatus();
     }
   }
 
   componentDidUpdate(prevProps) {
-    if (this.props.trendingResults.results.length === 0) {
-      this.props.handleSearch("");
+    const loadChannel =
+      prevProps.channelId !== this.props.channelId ||
+      ((prevProps.tab === QUEUE_TAB || prevProps.tab === SETTINGS_TAB) &&
+        this.props.tab !== QUEUE_TAB &&
+        this.props.tab !== SETTINGS_TAB);
+    if (loadChannel) {
+      this.setState({
+        searchTerm: ""
+      });
     }
 
     if (
@@ -261,7 +315,6 @@ class Channel extends Component {
     } else if (
       (!prevProps.channel && this.props.channel) ||
       (!prevProps.channel.loaded && this.props.channel.loaded) ||
-      prevProps.channelId !== this.props.channelId ||
       prevProps.startPlayerStatus.queueStartPosition !==
         this.props.startPlayerStatus.queueStartPosition ||
       prevProps.startPlayerStatus.videoStartTime !==
@@ -270,26 +323,9 @@ class Channel extends Component {
         this.props.startPlayerStatus.status ||
       prevProps.startPlayerStatus.clockStartTime !==
         this.props.startPlayerStatus.clockStartTime ||
-      ((prevProps.tab === QUEUE_TAB || prevProps.tab === SETTINGS_TAB) &&
-        this.props.tab !== QUEUE_TAB &&
-        this.props.tab !== SETTINGS_TAB)
+      loadChannel
     ) {
-      const playerStatus = calculatePlayerStatus(
-        this.props.startPlayerStatus,
-        this.props.playlist
-      );
-
-      this.setState({
-        playerStatus: {
-          channelId: this.props.channelId,
-          ...playerStatus
-        },
-        queueList: this.mapVideoStatuses(
-          this.props.playlist,
-          playerStatus.queueStartPosition,
-          playerStatus.status
-        )
-      });
+      this.setPlayerStatus();
     } else if (prevProps.playlist !== this.props.playlist) {
       this.setState({
         queueList: this.mapVideoStatuses(
@@ -342,14 +378,10 @@ class Channel extends Component {
     const type = this.props.type;
     const defaultIcon = this.props.defaultIcon;
     const defaultAvatar = this.props.defaultAvatar;
-    const handleSearch = this.props.handleSearch;
     const handleDeleteVideo = this.props.handleDeleteVideo;
     const handleAddVideo = this.props.handleAddVideo;
     const handleSwapVideos = this.props.handleSwapVideos;
 
-    const trendingResults = this.props.trendingResults.results;
-    const searchResults = channel.videoSearch.results;
-    const totalResults = channel.videoSearch.totalResults;
     const admins = channel.admins
       ? mapIdsToUsers(channel.admins, this.props.users, defaultAvatar)
       : [];
@@ -360,6 +392,15 @@ class Channel extends Component {
     const isMember = channel.members
       ? !!channel.members.filter(memberId => memberId === ownId).length
       : null;
+
+    const handleSearch = this.handleSearch;
+    let searchResults = this.props.trendingResults.results;
+    let totalResults = this.props.trendingResults.totalResults;
+    if (this.state.searchTerm !== "") {
+      searchResults = channel.videoSearch.results;
+      totalResults = channel.videoSearch.totalResults;
+    }
+
     return (
       <>
         <div className="flex flex-col bg-secondaryBackground w-full overflow-x-hidden">
@@ -390,7 +431,7 @@ class Channel extends Component {
           </div>
           <div
             ref={this.scrollRef}
-            className={`flex flex-col overflow-x-hidden h-auto ${this.props.searchClasses}`}
+            className={`flex flex-col overflow-x-hidden h-full ${this.props.searchClasses}`}
           >
             {(tab === VIDEO_TAB || tab === POSTS_TAB) && (
               <>
@@ -433,10 +474,9 @@ class Channel extends Component {
                       {strings.findMoreVideos}
                     </h2>
                     <VideoSearch
-                      trendingResults={trendingResults}
+                      searchTerm={this.state.searchTerm}
                       searchResults={searchResults}
                       totalResults={totalResults}
-                      threshold={24}
                       handleSearch={handleSearch}
                       handleAddVideo={handleAddVideo}
                     />
@@ -448,7 +488,7 @@ class Channel extends Component {
               <ChannelQueue
                 name={channel.name}
                 icon={channel.icon || defaultIcon}
-                trendingResults={trendingResults}
+                searchTerm={this.state.searchTerm}
                 searchResults={searchResults}
                 totalResults={totalResults}
                 handleSearch={handleSearch}
@@ -484,6 +524,7 @@ class Channel extends Component {
                 removeAdminHandler={this.props.handleRemoveAdmin}
                 addBanHandler={this.props.handleAddBan}
                 removeBanHandler={this.props.handleRemoveBan}
+                handleProfile={id => this.props.openProfileModal(id)}
               />
             )}
           </div>

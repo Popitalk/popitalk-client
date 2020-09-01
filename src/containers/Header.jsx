@@ -12,8 +12,8 @@ import {
   openBlockedUsersModal
 } from "../redux/actions";
 import { mapIdsToUsers, setRelationshipHandlers } from "../helpers/functions";
-import SiteHeaderMain from "../comp/SiteHeaderMain";
-import SiteHeaderWelcome from "../comp/SiteHeaderWelcome";
+import SiteHeaderMain from "../components/SiteHeaderMain";
+import SiteHeaderWelcome from "../components/SiteHeaderWelcome";
 
 export default function HeaderContainer() {
   const { loggedIn } = useSelector(state => state.general);
