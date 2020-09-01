@@ -5,6 +5,7 @@ import Button from "../Controls/Button";
 import useCollapse from "react-collapsed";
 import strings from "../../helpers/localization";
 import ReactTooltip from "react-tooltip";
+import { channelHasNewMessage } from "../../util/channelHasNewMessage";
 
 function CollapsedPanel({
   rooms,
@@ -142,7 +143,7 @@ function CollapsedPanel({
                     self={room.type === "self"}
                     online={room.online}
                     watching={room.watching}
-                    notifications={room.lastMessageIsNew}
+                    notifications={channelHasNewMessage(room)}
                     size="lg"
                     tooltip={name}
                     tooltipPlace="right"

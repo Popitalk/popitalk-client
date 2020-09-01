@@ -5,6 +5,7 @@ import moment from "moment";
 import "moment/locale/ko";
 import "moment/locale/ru";
 import strings from "../../helpers/localization";
+import { channelHasNewMessage } from "../../util/channelHasNewMessage";
 
 export default function RoomInfoCard({
   room,
@@ -52,16 +53,16 @@ export default function RoomInfoCard({
       isLoading={isLoading}
     />
   );
-
+  const doesChannelHasNewMessage = channelHasNewMessage(room);
   return (
     <InfoCard
       avatar={roomIcon}
       controls={controls}
       title={name}
       subtitle={subtitleAndDate}
-      subtitleColor={room.lastMessageIsNew ? "black" : "gray"}
-      boldFont={room.lastMessageIsNew}
-      badge={room.lastMessageIsNew}
+      subtitleColor={doesChannelHasNewMessage ? "black" : "gray"}
+      boldFont={doesChannelHasNewMessage}
+      badge={doesChannelHasNewMessage}
       addBorder={addBorder}
       backgroundColor={selected === room.id ? "highlight" : "white"}
       padding="xs"

@@ -2,6 +2,7 @@ import React from "react";
 import Button from "./Controls/Button";
 import RoomIcon from "./Controls/RoomIcon";
 import strings from "../helpers/localization";
+import { channelHasNewMessage } from "../util/channelHasNewMessage";
 
 export default function MiniFriendsList({
   friends,
@@ -23,7 +24,7 @@ export default function MiniFriendsList({
             self={room.type === "self"}
             online={room.online}
             watching={room.watching}
-            notifications={room.lastMessageIsNew}
+            notifications={channelHasNewMessage(room)}
             size="lg"
             tooltip={name}
             tooltipPlace="bottom"
