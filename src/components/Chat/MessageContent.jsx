@@ -23,7 +23,9 @@ export default function MessageContent({ message }) {
           alt={JSON.parse(message.content).title}
         />
       ) : (
-        <Linkify>{message.content}</Linkify>
+        <Linkify>
+          <p className="break-words">{message.content}</p>
+        </Linkify>
       )}
     </span>
   );
