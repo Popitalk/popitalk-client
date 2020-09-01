@@ -4,6 +4,7 @@ import "./VideoStatus.css";
 import AvatarIcon from "./Controls/AvatarIcon";
 import VideoStatus from "./VideoStatus";
 import VideoPlayer from "./VideoPlayer";
+import ReactTooltip from "react-tooltip";
 
 export default function VideoSection({
   title,
@@ -43,10 +44,12 @@ export default function VideoSection({
               return (
                 <AvatarIcon
                   key={idx}
-                  username={friend.name}
+                  username={friend.username}
                   avatar={friend.avatar}
                   imageClick={() => openProfile(friend.id)}
                   className="img h-8 w-8 rounded-circle transition transform ease-in-out hover:scale-110 duration-100"
+                  tooltip={friend.username}
+                  tooltipPlace="bottom"
                 />
               );
             })}
@@ -77,6 +80,13 @@ export default function VideoSection({
           <p></p>
         )}
       </div>
+      <ReactTooltip
+        effect="solid"
+        backgroundColor="#F2F2F2"
+        textColor="black"
+        className="shadow-lg rounded-md py-1 px-3"
+        arrowColor="transparent"
+      />
     </div>
   );
 }
