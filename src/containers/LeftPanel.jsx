@@ -13,6 +13,7 @@ import {
 import history from "../history";
 import { mapIdsToUsers, setRelationshipHandlers } from "../helpers/functions";
 import { orderBy } from "lodash";
+import { channelHasNewMessage } from "../util/channelHasNewMessage";
 
 export default function LeftPanelContainer() {
   let match = useRouteMatch("/channels/:channelId");
@@ -35,7 +36,7 @@ export default function LeftPanelContainer() {
       return state.channels[key];
     });
     channels.forEach(channel => {
-      if (channel.lastMessageIsNew) counter++;
+      if (channelHasNewMessage(channel)) counter++;
     });
     return counter;
   });

@@ -205,6 +205,12 @@ export const deleteMessage = messageId => {
   return axios.delete(`/api/messages/${messageId}`);
 };
 
+// Notifications
+
+export const deleteNotification = channelId => {
+  return axios.delete(`/api/messages/notifications?channelId=${channelId}`);
+};
+
 // POSTS
 
 export const addPost = postInfo => {

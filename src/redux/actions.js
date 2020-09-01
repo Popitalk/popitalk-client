@@ -447,10 +447,6 @@ export const addMessage = createAsyncThunk(
 );
 export const addMessageWs = createAction("messages/addMessage/ws");
 
-export const setLastMessageSeen = createAction(
-  "messages/setLastMessageSeen/ws"
-);
-
 export const deleteMessage = createAsyncThunk(
   "messages/deleteMessage",
   async ({ status, id, channelId }) => {
@@ -463,6 +459,18 @@ export const deleteMessage = createAsyncThunk(
   }
 );
 export const deleteMessageWs = createAction("messages/deleteMessage/ws");
+/* -------------------------------------------------------------------------- */
+/*                                  NOTIFICATIONS                             */
+/* -------------------------------------------------------------------------- */
+
+export const setLastMessageSeen = createAction(
+  "messages/setLastMessageSeen/ws",
+  args => {
+    console.log(args.channelId);
+    api.deleteNotification(args.channelId);
+    return { payload: { channelId: args.channelId } };
+  }
+);
 
 /* -------------------------------------------------------------------------- */
 /*                                    POSTS                                   */

@@ -141,7 +141,10 @@ const R_updateChannel = (state, { payload }) => {
 };
 
 const R_setLastMessageSeen = (state, { payload }) => {
-  state[payload.channelId].lastMessageIsNew = false;
+  if (state[payload.channelId].lastMessageIsNew)
+    state[payload.channelId].lastMessageIsNew = false;
+  if (state[payload.channelId].chatNotifications)
+    state[payload.channelId].chatNotifications = null;
 };
 
 const R_updateLastMessageInfoPending = (state, { meta }) => {
