@@ -1,29 +1,29 @@
 # playnows-client
 
 ## Info
-`@popitalk/playnows-client` is the primary web client for interacting with: 
+`@popitalk/popitalk-client` is the primary web client for interacting with: 
 
-* [`@popitalk/playnows-server`](https://github.com/Popitalk/playnows-server)
+* [`@popitalk/popitalk-server-api`](https://github.com/Popitalk/popitalk-server-api)
 * [`@popitalk/popitalk-server-ws`](https://github.com/Popitalk/popitalk-server-ws)
 
 You can watch a demo [here](https://placeholder.youtube.com).
 
 ## Codebase
-The codebase for `playnows-client` is written in React with [Tailwindcss](https://tailwindcss.com/) and Redux.js.
+The codebase for `popitalk-client` is written in React with [Tailwindcss](https://tailwindcss.com/) and Redux.js.
 
 ### First time setup
 To run the repository locally:
 
 ```
-git clone https://github.com/Popitalk/playnows-client
+git clone https://github.com/Popitalk/popitalk-client
 npm install
 npm start
 ```
 
 #### Installation
-*Important* The following services need to be set up for `@popitalk/playnows-client` to function:
+*Important* The following services need to be set up for `@popitalk/popitalk-client` to function:
 
-* [`@popitalk/playnows-server`](https://github.com/Popitalk/playnows-server)
+* [`@popitalk/popitalk-server-api`](https://github.com/Popitalk/popitalk-server-api)
 * [`@popitalk/popitalk-server-ws`](https://github.com/Popitalk/popitalk-server-ws)
 
 #### Checklist
@@ -34,7 +34,7 @@ npm start
 
 ### Folder Structure
 ```
-popitalk/playnows-client/
+popitalk/popitalk-client/
 ├── components # The core components
 ├── containers # placeholder explanation
 ├── helpers # placeholder explanation
