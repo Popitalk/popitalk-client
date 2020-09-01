@@ -76,15 +76,15 @@ module.exports = {
       highlightBackground: "#D3ECFF",
       liveBackground: "#DE0000",
       gray: {
-        "100": "#f5f5f5",
-        "200": "#eeeeee",
-        "300": "#e0e0e0",
-        "400": "#bdbdbd",
-        "500": "#9e9e9e",
-        "600": "#757575",
-        "700": "#616161",
-        "800": "#424242",
-        "900": "#212121"
+        100: "#f5f5f5",
+        200: "#eeeeee",
+        300: "#e0e0e0",
+        400: "#bdbdbd",
+        500: "#9e9e9e",
+        600: "#757575",
+        700: "#616161",
+        800: "#424242",
+        900: "#212121"
       },
 
       /** TEXTS */
@@ -139,14 +139,14 @@ module.exports = {
     },
     extend: {
       spacing: {
-        "14": "3.5rem",
-        "18": "4.5rem",
-        "44": "11rem",
-        "68": "17rem",
-        "84": "21rem",
-        "100": "26rem",
-        "102": "28rem",
-        "104": "30rem"
+        14: "3.5rem",
+        18: "4.5rem",
+        44: "11rem",
+        68: "17rem",
+        84: "21rem",
+        100: "26rem",
+        102: "28rem",
+        104: "30rem"
       },
       borderWidth: {
         thin: "thin"
@@ -171,7 +171,7 @@ module.exports = {
         account: "0px 32px 40px 5px rgba(0,0,0,0.25)"
       },
       opacity: {
-        "95": "0.95"
+        95: "0.95"
       },
       width: {
         dropdown: "22rem",
@@ -183,11 +183,11 @@ module.exports = {
         modalFull: "70vh"
       },
       scale: {
-        "102": "1.02",
-        "200": "2"
+        102: "1.02",
+        200: "2"
       },
       maxHeight: {
-        "32": "8rem"
+        32: "8rem"
       },
       gridTemplateColumns: {
         chat: "2.5rem 1fr 5rem;",
