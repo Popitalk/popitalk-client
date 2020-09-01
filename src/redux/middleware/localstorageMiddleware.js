@@ -10,23 +10,14 @@ import {
 
 const localStorageMiddleware = () => store => next => action => {
   if (validateSession.fulfilled.match(action)) {
-    const { siteVersion } = store.getState().general;
-    const cachedSiteVersion = localStorage.getItem("siteVersion");
+    const { cacheVersion } = store.getState().general;
+    const cachedCacheVersion = Number(localStorage.getItem("cacheVersion"));
 
-    if (cachedSiteVersion) {
-      const siteVersionArr = siteVersion.split(".");
-      const cachedSiteVersionArr = cachedSiteVersion.split(".");
-
-      if (
-        siteVersionArr[0] > cachedSiteVersionArr[0] ||
-        siteVersionArr[1] > cachedSiteVersionArr[1] ||
-        siteVersionArr[2] > cachedSiteVersionArr[2]
-      ) {
-        localStorage.clear();
-      }
+    if (cacheVersion > cachedCacheVersion) {
+      localStorage.clear();
     }
 
-    localStorage.setItem("siteVersion", siteVersion);
+    localStorage.setItem("cacheVersion", cacheVersion);
 
     const cachedChatDrafts = JSON.parse(localStorage.getItem("chatDrafts"));
     const cachedPostDrafts = JSON.parse(localStorage.getItem("postDrafts"));
