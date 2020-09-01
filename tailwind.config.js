@@ -148,20 +148,11 @@ module.exports = {
         102: "28rem",
         104: "30rem"
       },
-      borderWidth: {
-        thin: "1px"
-        // thin: "thin"
-      },
       borderRadius: {
         xl: "15px",
         lg: "13px",
         pill: "10px",
         circle: "50%"
-      },
-      gap: {
-        // thin: "thin"
-        thin: "1px",
-        smm: "0.1rem"
       },
       transitionProperty: {
         filter: "filter"

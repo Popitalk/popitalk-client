@@ -67,7 +67,7 @@ export default function RoomIcon({
     "border-none bg-primaryBackground p-2px": watching
   });
   const avatarClasses = classnames({
-    "border-thin overflow-hidden": true,
+    "border overflow-hidden": true,
     "border-imageBorder1": !watching,
     "border-none": watching
   });
