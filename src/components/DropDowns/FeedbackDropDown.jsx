@@ -9,36 +9,39 @@ export default function FriendRequests({ friendRequests, ...rest }) {
     <DropDownContainer>
       <ContainerHeader title={strings.aboutPopitalk} />
       <div className="flex flex-col justify-center items-center h-auto w-full bg-primaryBackground py-2">
-        <a href="https://twitter.com/PopitalkT">
+        <a href="https://twitter.com/PopitalkT" className="w-full px-4">
           <Button
             styleNone
             styleNoneContent={strings.twitter}
             styleNoneContentClassName="text-primaryText text-sm"
-            className="py-2 px-4 mx-2 hover:bg-highlightBackground rounded-lg duration-75"
+            className="py-2 hover:bg-highlightBackground rounded-lg duration-75 w-full"
           />
         </a>
-        <a href="https://www.youtube.com/channel/UCJSjPolz6SiYKvVxFmK-Z1A">
+        <a
+          href="https://www.youtube.com/channel/UCJSjPolz6SiYKvVxFmK-Z1A"
+          className="w-full px-4"
+        >
           <Button
             styleNone
             styleNoneContent={strings.youtube}
             styleNoneContentClassName="text-primaryText text-sm"
-            className="py-2 px-4 mx-2 hover:bg-highlightBackground rounded-lg duration-75"
+            className="py-2 hover:bg-highlightBackground rounded-lg duration-75 w-full"
           />
         </a>
-        <a href="https://discord.gg/hdFfgg7">
+        <a href="https://discord.gg/hdFfgg7" className="w-full px-4">
           <Button
             styleNone
             styleNoneContent={strings.discord}
             styleNoneContentClassName="text-primaryText text-sm"
-            className="py-2 px-4 mx-2 hover:bg-highlightBackground rounded-lg duration-75"
+            className="py-2 hover:bg-highlightBackground rounded-lg duration-75 w-full"
           />
         </a>
-        <a href="https://about.popitalk.com/">
+        <a href="https://about.popitalk.com/" className="w-full px-4">
           <Button
             styleNone
             styleNoneContent={strings.sendFeedbackButton}
             styleNoneContentClassName="text-primaryText text-sm"
-            className="py-2 px-4 mx-2 hover:bg-highlightBackground rounded-lg duration-75"
+            className="py-2 hover:bg-highlightBackground rounded-lg duration-75 w-full"
           />
         </a>
       </div>

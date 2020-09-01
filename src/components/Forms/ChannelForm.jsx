@@ -1,55 +1,55 @@
-import React, { useState } from "react";
-import { Formik, connect } from "formik";
+import React /*, { useState }*/ from "react";
+import { Formik /*, connect*/ } from "formik";
 import * as Yup from "yup";
 import Input from "../Controls/Input";
 import ImageUpload from "../Controls/ImageUpload";
 import ChannelFormSubmit from "./ChannelFormSubmit";
-import TagInput from "../Controls/TagInput";
-import ControlHeader from "../Controls/ControlHeader";
+// import TagInput from "../Controls/TagInput";
+// import ControlHeader from "../Controls/ControlHeader";
 import strings from "../../helpers/localization";
 
-const CategoryInput = connect(
-  ({ formik, loading, tags, handleCancel, handleEnter }) => {
-    return (
-      <TagInput
-        input={formik.values.tags}
-        tags={tags}
-        handleCancel={id => handleCancel(formik, id)}
-        handleEnter={() => handleEnter(formik)}
-        name="tags"
-        type="text"
-        disabled={loading}
-        onChange={formik.handleChange}
-        onBlur={e => {
-          handleEnter(formik);
-          formik.handleBlur(e);
-        }}
-        value={formik.values.tags}
-        error={formik.touched.tags && formik.errors.category}
-      />
-    );
-  }
-);
+// const CategoryInput = connect(
+//   ({ formik, loading, tags, handleCancel, handleEnter }) => {
+//     return (
+//       <TagInput
+//         input={formik.values.tags}
+//         tags={tags}
+//         handleCancel={id => handleCancel(formik, id)}
+//         handleEnter={() => handleEnter(formik)}
+//         name="tags"
+//         type="text"
+//         disabled={loading}
+//         onChange={formik.handleChange}
+//         onBlur={e => {
+//           handleEnter(formik);
+//           formik.handleBlur(e);
+//         }}
+//         value={formik.values.tags}
+//         error={formik.touched.tags && formik.errors.category}
+//       />
+//     );
+//   }
+// );
 
-let tagID = 1;
+// let tagID = 1;
 
-const categoryToTags = category => {
-  return category
-    .split(",")
-    .filter(c => c.trim().length > 0)
-    .map(n => {
-      return { id: tagID++, name: n.trim() };
-    })
-    .reduce((unique, t) => {
-      return unique.find(u => u.name === t.name) ? unique : [...unique, t];
-    }, []);
-};
+// const categoryToTags = category => {
+//   return category
+//     .split(",")
+//     .filter(c => c.trim().length > 0)
+//     .map(n => {
+//       return { id: tagID++, name: n.trim() };
+//     })
+//     .reduce((unique, t) => {
+//       return unique.find(u => u.name === t.name) ? unique : [...unique, t];
+//     }, []);
+// };
 
-const tagsToCategory = tags => {
-  return tags.reduce((c, t) => {
-    return c.length > 0 ? `${c},${t.name}` : t.name;
-  }, "");
-};
+// const tagsToCategory = tags => {
+//   return tags.reduce((c, t) => {
+//     return c.length > 0 ? `${c},${t.name}` : t.name;
+//   }, "");
+// };
 
 export default function ChannelForm({
   initial,
@@ -58,38 +58,38 @@ export default function ChannelForm({
   loading,
   error
 }) {
-  const [tags, setTags] = useState(categoryToTags(initial.category));
+  // const [tags, setTags] = useState(categoryToTags(initial.category));
 
-  const handleEnter = formik => {
-    const newTags = categoryToTags(formik.values.tags.trim()).filter(
-      n => !tags.find(t => t.name === n.name)
-    );
+  // const handleEnter = formik => {
+  //   const newTags = categoryToTags(formik.values.tags.trim()).filter(
+  //     n => !tags.find(t => t.name === n.name)
+  //   );
 
-    if (newTags.length > 0) {
-      setTags([...tags, ...newTags]);
+  //   if (newTags.length > 0) {
+  //     setTags([...tags, ...newTags]);
 
-      const tempCategory = tagsToCategory(newTags);
-      const newCategory =
-        formik.values.category.length > 0
-          ? `${formik.values.category},${tempCategory}`
-          : tempCategory;
+  //     const tempCategory = tagsToCategory(newTags);
+  //     const newCategory =
+  //       formik.values.category.length > 0
+  //         ? `${formik.values.category},${tempCategory}`
+  //         : tempCategory;
 
-      formik.setFieldValue("category", newCategory);
-      formik.values.category = newCategory;
-    }
+  //     formik.setFieldValue("category", newCategory);
+  //     formik.values.category = newCategory;
+  //   }
 
-    formik.setFieldValue("tags", "");
-    formik.values.tags = "";
-  };
+  //   formik.setFieldValue("tags", "");
+  //   formik.values.tags = "";
+  // };
 
-  const handleCancel = (formik, id) => {
-    const newTags = tags.filter(t => t.id !== id);
-    setTags(newTags);
+  // const handleCancel = (formik, id) => {
+  //   const newTags = tags.filter(t => t.id !== id);
+  //   setTags(newTags);
 
-    const newCategory = tagsToCategory(newTags);
-    formik.setFieldValue("category", newCategory);
-    formik.values.category = newCategory;
-  };
+  //   const newCategory = tagsToCategory(newTags);
+  //   formik.setFieldValue("category", newCategory);
+  //   formik.values.category = newCategory;
+  // };
 
   return (
     <Formik
@@ -180,7 +180,8 @@ export default function ChannelForm({
                 maxLength={150}
                 className="mb-8"
               />
-              <ControlHeader
+              {/* --UNCOMMENT FOR CHANNEL CATEGORY */}
+              {/* <ControlHeader
                 header={strings.channelCatagory}
                 error={touched.tags && errors.category}
                 size="sm"
@@ -190,7 +191,7 @@ export default function ChannelForm({
                 tags={tags}
                 handleCancel={handleCancel}
                 handleEnter={handleEnter}
-              />
+              /> */}
               {/* --UNCOMMENT FOR PRIVATE CHANNELS */}
               {/* <div className="flex items-center mt-8">
                 <div className="mr-8">

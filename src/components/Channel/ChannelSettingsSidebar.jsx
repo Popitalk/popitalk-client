@@ -8,7 +8,7 @@ export default function ChannelSettingsSidebar({
   handleDeleteChannel
 }) {
   return (
-    <div className="h-full py-8 px-8 justify-center bg-secondaryBackground rounded-xl shadow-xs flex flex-col justify-between">
+    <div className="h-full py-8 px-6 justify-center bg-secondaryBackground rounded-xl shadow-xs flex flex-col justify-between">
       <ButtonsList buttons={buttons} />
       <MenuButton
         danger={true}
