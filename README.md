@@ -1,4 +1,4 @@
-# playnows-client
+# popitalk-client
 
 ## Info
 `@popitalk/popitalk-client` is the primary web client for interacting with: 
