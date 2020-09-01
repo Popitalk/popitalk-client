@@ -60,18 +60,17 @@ const R_addMessages = (state, { payload }) => {
 };
 const R_addMessage = (state, { payload }) => {
   const { capacity, ...message } = payload;
-  function popElement(index) {
-    if (index < 0) {
-      return;
-    }
+  // Removes pending message
+  let notFound = true;
+  let index = state[payload.channelId].length - 1;
+  while (notFound && index >= 0) {
     if (state[payload.channelId][index].status === "pending") {
       state[payload.channelId].splice(index, 1);
-      return;
+      notFound = false;
     } else {
-      popElement(index - 1);
+      index -= 1;
     }
   }
-  popElement(state[payload.channelId].length - 1);
   if (!state[payload.channelId]) {
     state[payload.channelId] = [message];
   } else if (state[payload.channelId].length < extendedCapacity) {
@@ -116,7 +115,17 @@ const R_addPendingMessage = (state, { meta }) => {
   }
 };
 const R_addRejectedMessage = (state, { meta }) => {
-  state[meta.arg.channelId].pop();
+  // Removes pending message
+  let notFound = true;
+  let index = state[meta.arg.channelId].length - 1;
+  while (notFound && index >= 0) {
+    if (state[meta.arg.channelId][index].status === "pending") {
+      state[meta.arg.channelId].splice(index, 1);
+      notFound = false;
+    } else {
+      index -= 1;
+    }
+  }
   const tempMessage = {
     status: "rejected",
     id: meta.arg.id,

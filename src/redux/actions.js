@@ -466,7 +466,6 @@ export const deleteMessageWs = createAction("messages/deleteMessage/ws");
 export const setLastMessageSeen = createAction(
   "messages/setLastMessageSeen/ws",
   args => {
-    console.log(args.channelId);
     api.deleteNotification(args.channelId);
     return { payload: { channelId: args.channelId } };
   }
