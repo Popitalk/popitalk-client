@@ -42,7 +42,7 @@ export default function SortableList({
 
   const SortableList = SortableContainer(({ items }) => {
     return (
-      <ScrollableCardList axis={axis}>
+      <ScrollableCardList axis={axis} displayControls>
         {items.map((value, index) => (
           <SortableItem
             key={`item-${value.id}`}

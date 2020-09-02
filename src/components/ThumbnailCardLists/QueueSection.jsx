@@ -25,7 +25,6 @@ export default function QueueSection({
       itemRenderer={itemRenderer}
       handlerChange={handlerChange}
       height={"100%"}
-      className={"cursor-move"}
       distance={1}
     >
       <VideoPanelCard />

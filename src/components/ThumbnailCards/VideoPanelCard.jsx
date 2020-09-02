@@ -138,7 +138,7 @@ export default function VideoPanelCard({
                   src={thumbnail}
                   alt="video-thumbnail"
                   className="absolute top-0 w-full pb-px h-full img rounded-md object-cover"
-                  onClick={() => handleSkip(id)}
+                  onClick={handleSkip && (() => handleSkip(id))}
                 />
               </div>
               <div className="w-full pt-2 px-0">
