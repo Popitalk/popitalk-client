@@ -42,10 +42,10 @@ export default function LeftPanel({
     }
     // Favicon changes depending on notification status
     if (numberOfNotifications !== 0) {
-      setFavicon("favicon-notification.png");
+      setFavicon("https://i.ibb.co/JkKgxv9/favicon-notification.png");
       // play();
     } else {
-      setFavicon("favicon.ico");
+      setFavicon("https://i.ibb.co/wL0BpLN/favicon.png");
     }
   }, [isCollapsed, numberOfNotifications, selectedPage, size.width]);
 
@@ -61,7 +61,7 @@ export default function LeftPanel({
         } w-full md:w-auto shadow-md h-full`}
       >
         <Helmet>
-          <link rel="icon" type="image/png" href={isFavicon} />
+          <link rel="icon" type="image/png" href={isFavicon} target="_blank" />
         </Helmet>
         {selectedPage === "channels" ? (
           <ChannelsPanel
