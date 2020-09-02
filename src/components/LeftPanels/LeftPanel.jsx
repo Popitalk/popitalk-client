@@ -2,6 +2,9 @@ import React, { Fragment, useState, useEffect } from "react";
 import FriendsPanel from "./FriendsPanel";
 import CollapsedPanel from "./CollapsedPanel";
 import ChannelsPanel from "./ChannelsPanel";
+import { Helmet } from "react-helmet";
+// import useSound from "use-sound";
+// import notificationSound from "../../assets/sounds/pop-sound.mp3";
 
 export default function LeftPanel({
   yourChannels,
@@ -28,6 +31,8 @@ export default function LeftPanel({
   const channels = [...yourChannels, ...followingChannels];
   const size = useWindowSize();
   const [isCollapsedResponsive, setCollapsedResponsive] = useState();
+  const [isFavicon, setFavicon] = useState();
+  // const [play] = useSound(notificationSound);
 
   useEffect(() => {
     if (size.width <= 1024) {
@@ -35,7 +40,15 @@ export default function LeftPanel({
     } else {
       setCollapsedResponsive(false);
     }
-  }, [isCollapsed, selectedPage, size.width]);
+    // Favicon changes depending on notification status
+    if (numberOfNotifications !== 0) {
+      setFavicon("favicon-notification.png");
+      // play();
+    } else {
+      setFavicon("favicon.ico");
+    }
+  }, [isCollapsed, numberOfNotifications, selectedPage, size.width]);
+
   if ((isCollapsed === false) & (isCollapsedResponsive === true)) {
     isCollapsed = true;
   }
@@ -47,6 +60,9 @@ export default function LeftPanel({
           isCollapsed || isCollapsedResponsive ? "hidden" : ""
         } w-full md:w-auto shadow-md h-full`}
       >
+        <Helmet>
+          <link rel="icon" type="image/png" href={isFavicon} />
+        </Helmet>
         {selectedPage === "channels" ? (
           <ChannelsPanel
             yourChannels={yourChannels}

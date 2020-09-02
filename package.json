@@ -86,6 +86,7 @@
     "tailwindcss-truncate-multiline": "^1.0.3",
     "use-deep-compare-effect": "^1.4.0",
     "use-onclickoutside": "^0.3.1",
+    "use-sound": "^1.0.2",
     "uuid": "^7.0.2",
     "yup": "^0.28.5"
   },

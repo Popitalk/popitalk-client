@@ -38,9 +38,7 @@ export default function PanelHeader({
       >
         {strings.friends}
         {numberOfNotifications !== 0 && (
-          <span className="flex items-center justify-center bg-gradient-r-cancel rounded-full w-2 h-2 animate-bounce text-xs text-tertiaryText font-bold ml-2 mt-1">
-            {/* {numberOfNotifications} */}
-          </span>
+          <span className="flex items-center justify-center bg-gradient-r-cancel rounded-full w-2 h-2 animate-bounce text-xs text-tertiaryText font-bold ml-2 mt-1" />
         )}
       </nav>
     </div>
