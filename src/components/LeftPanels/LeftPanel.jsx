@@ -115,6 +115,7 @@ export default function LeftPanel({
           updateSelectedPage={updateSelectedPage}
           setFriendsSearchFocus={setFriendsSearchFocus}
           numberOfNotifications={numberOfNotifications}
+          isCollapsedResponsive={isCollapsedResponsive}
         />
       </div>
     </Fragment>
