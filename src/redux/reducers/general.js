@@ -14,7 +14,7 @@ import userDefault from "../../assets/default/user-default.png";
 const initialState = {
   loggedIn: false,
   validatedSession: false,
-  cacheVersion: 1,
+  cacheVersion: 2,
   defaultAvatar: userDefault,
   defaultIcon: channelDefault,
   groupRoomMemberLimit: 8,
