@@ -4,10 +4,12 @@ import SearchHeader, { buildSearchInput } from "../../components/SearchHeader";
 import StretchList from "../../components/InfoCardLists/StretchList";
 import FollowersList from "../../components/InfoCardLists/FollowersList";
 import { filterSearch, mapIdsToUsers } from "../../helpers/functions";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { openProfileModal } from "../../redux/actions";
 
 export default function ListUsersContainer({ handleModalClose }) {
   // TODO: Watching Now
+  const dispatch = useDispatch();
   const channelId = useSelector(state => state.modal.channelId);
   const content = useSelector(state => state.modal.content);
   let title;
@@ -47,7 +49,7 @@ export default function ListUsersContainer({ handleModalClose }) {
       <StretchList
         list={FollowersList}
         users={visible}
-        handleProfile={() => console.log("open profile")}
+        handleProfile={id => dispatch(openProfileModal(id))}
       />
     </ModalContainer>
   );
