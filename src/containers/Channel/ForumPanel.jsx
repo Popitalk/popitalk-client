@@ -23,7 +23,8 @@ const ForumPanel = (
     handleFollow,
     isMember,
     handleUnfollow,
-    handleListAdmins
+    handleListAdmins,
+    displayControls
   },
   ref
 ) => {
@@ -43,7 +44,13 @@ const ForumPanel = (
         handleUnfollow={handleUnfollow}
         handleListAdmins={handleListAdmins}
       />
-      <NewChannelPost saveDraft={saveDraft} savePost={savePost} draft={draft} />
+      {displayControls && (
+        <NewChannelPost
+          saveDraft={saveDraft}
+          savePost={savePost}
+          draft={draft}
+        />
+      )}
       <ChannelChat
         comments={comments}
         posts={posts}
@@ -54,6 +61,7 @@ const ForumPanel = (
         removePost={removePost}
         name={name}
         icon={icon}
+        displayControls={displayControls}
       />
     </div>
   );

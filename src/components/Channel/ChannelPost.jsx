@@ -28,6 +28,7 @@ export default function ChannelPost({
   ownId,
   authorId,
   removePost,
+  displayControls,
   isLoading = false
 }) {
   const [showNewComment, setShowNewComment] = useState(false);
@@ -92,11 +93,13 @@ export default function ChannelPost({
                   </span>
                 </div>
               </header>
-              <PopupMenu
-                options={[{ name: "Delete", handler: () => removePost(id) }]}
-                disabled={ownId !== authorId}
-                className="-mr-3"
-              />
+              {displayControls && (
+                <PopupMenu
+                  options={[{ name: "Delete", handler: () => removePost(id) }]}
+                  disabled={ownId !== authorId}
+                  className="-mr-3"
+                />
+              )}
             </div>
             <div
               className="text-primaryText text-lg py-4 px-2 break-words"

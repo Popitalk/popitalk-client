@@ -14,7 +14,8 @@ export default function ChannelChat({
   ownId,
   removePost,
   name,
-  icon
+  icon,
+  displayControls
 }) {
   return (
     <div className="flex flex-col h-auto">
@@ -42,6 +43,7 @@ export default function ChannelChat({
               authorId={post.author.id}
               ownId={ownId}
               removePost={removePost}
+              displayControls={displayControls}
             />
           );
         })}

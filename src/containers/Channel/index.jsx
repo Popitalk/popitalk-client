@@ -400,6 +400,10 @@ class Channel extends Component {
       searchResults = channel.videoSearch.results;
       totalResults = channel.videoSearch.totalResults;
     }
+    const displayControls =
+      channel.type === "channel"
+        ? channel.admins.find(a => a === ownId)
+        : ownId;
 
     return (
       <>
@@ -466,6 +470,7 @@ class Channel extends Component {
                     isMember={isMember}
                     handleUnfollow={this.props.handleUnfollow}
                     handleListAdmins={this.props.handleOpenAdminsList}
+                    displayControls={displayControls}
                   />
                 )}
                 {type === ROOM_TYPE && (
