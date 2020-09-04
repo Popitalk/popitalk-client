@@ -6,7 +6,8 @@ export default function QueueSection({
   queueList,
   handlerChange,
   handleSkip,
-  handleDeleteVideo
+  handleDeleteVideo,
+  handleFindMore
 }) {
   const itemRenderer = value => (
     <VideoPanelCard
@@ -27,7 +28,7 @@ export default function QueueSection({
       height={"100%"}
       distance={1}
     >
-      <VideoPanelCard />
+      <VideoPanelCard handleFindMore={handleFindMore} />
     </SortableList>
   );
 }

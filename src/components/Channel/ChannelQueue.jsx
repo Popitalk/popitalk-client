@@ -4,16 +4,20 @@ import VideoSearch from "../VideoSearch";
 import ChannelListQueue from "../ThumbnailCardLists/ChannelListQueue";
 import strings from "../../helpers/localization";
 
-export default function ChannelQueue({
-  queue,
-  handleSwapVideos,
-  handleDeleteVideo,
-  searchTerm,
-  searchResults = [],
-  totalResults,
-  handleSearch,
-  handleAddVideo
-}) {
+function ChannelQueue(
+  {
+    queue,
+    handleSwapVideos,
+    handleDeleteVideo,
+    searchTerm,
+    searchResults = [],
+    totalResults,
+    handleSearch,
+    handleFindMore,
+    handleAddVideo
+  },
+  ref
+) {
   return (
     <div className="flex flex-col bg-secondaryBackground">
       <div className="px-4 my-4">
@@ -24,19 +28,18 @@ export default function ChannelQueue({
         playlist={queue}
         handleChange={handleSwapVideos}
         handleDeleteVideo={handleDeleteVideo}
+        handleFindMore={handleFindMore}
       />
-      <div className="my-4">
-        <h2 className="px-4 text-lg text-primaryText">
-          {strings.findMoreVideos}
-        </h2>
-        <VideoSearch
-          searchTerm={searchTerm}
-          searchResults={searchResults}
-          totalResults={totalResults}
-          handleSearch={handleSearch}
-          handleAddVideo={handleAddVideo}
-        />
-      </div>
+      <VideoSearch
+        ref={ref}
+        searchTerm={searchTerm}
+        searchResults={searchResults}
+        totalResults={totalResults}
+        handleSearch={handleSearch}
+        handleAddVideo={handleAddVideo}
+      />
     </div>
   );
 }
+
+export default React.forwardRef(ChannelQueue);

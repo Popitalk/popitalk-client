@@ -5,7 +5,8 @@ import VideoMinimalQueueCard from "../ThumbnailCards/VideoMinimalQueueCard";
 export default function ChannelListQueue({
   playlist,
   handleChange,
-  handleDeleteVideo
+  handleDeleteVideo,
+  handleFindMore
 }) {
   const itemRenderer = value => (
     <VideoMinimalQueueCard
@@ -21,7 +22,7 @@ export default function ChannelListQueue({
       handlerChange={handleChange}
       distance={1}
     >
-      <VideoMinimalQueueCard />
+      <VideoMinimalQueueCard handleFindMore={handleFindMore} />
     </SortableList>
   );
 }

@@ -41,7 +41,6 @@ import {
   defaultPlayerStatus
 } from "../../helpers/videoSyncing";
 import Helmet from "react-helmet";
-import strings from "../../helpers/localization";
 
 const CHANNEL_TYPE = "channel";
 const ROOM_TYPE = "room";
@@ -161,11 +160,13 @@ class Channel extends Component {
     this.state = {
       queueList: this.props.playlist,
       playerStatus: this.props.startPlayerStatus,
-      searchTerm: ""
+      searchTerm: "",
+      scrollToSearch: false
     };
 
     this.scrollRef = createRef();
     this.channelRef = createRef();
+    this.searchRef = createRef();
 
     this.playNextVideo = this.playNextVideo.bind(this);
     this.handleSearch = this.handleSearch.bind(this);
@@ -185,6 +186,16 @@ class Channel extends Component {
     } else {
       this.props.handleGetTrending(next);
     }
+  }
+
+  scrollToSearch() {
+    this.scrollRef.current.scrollTo({
+      top: this.searchRef.current.offsetTop,
+      behavior: "smooth"
+    });
+    this.setState({
+      scrollToSearch: false
+    });
   }
 
   pickRoomName() {
@@ -350,7 +361,11 @@ class Channel extends Component {
           behavior: "smooth"
         });
       } else if (tab === SETTINGS_TAB || tab === QUEUE_TAB) {
-        this.scrollRef.current.scrollTo({ top: 0 });
+        if (tab === QUEUE_TAB && this.state.scrollToSearch) {
+          this.scrollToSearch();
+        } else {
+          this.scrollRef.current.scrollTo({ top: 0 });
+        }
       }
     }
   }
@@ -444,6 +459,18 @@ class Channel extends Component {
                   handleDeleteVideo={handleDeleteVideo}
                   handleSwapVideos={handleSwapVideos}
                   handlePlayNextVideo={this.playNextVideo}
+                  handleFindMore={() => {
+                    if (type === CHANNEL_TYPE) {
+                      this.props.history.push(
+                        `/channels/${channelId}/${QUEUE_TAB}`
+                      );
+                      this.setState({
+                        scrollToSearch: true
+                      });
+                    } else {
+                      this.scrollToSearch();
+                    }
+                  }}
                   playlist={this.state.queueList}
                   playerStatus={this.state.playerStatus}
                   classNames="pt-0"
@@ -474,23 +501,20 @@ class Channel extends Component {
                   />
                 )}
                 {type === ROOM_TYPE && (
-                  <div className="my-4">
-                    <h2 className="text-lg text-primaryText px-4">
-                      {strings.findMoreVideos}
-                    </h2>
-                    <VideoSearch
-                      searchTerm={this.state.searchTerm}
-                      searchResults={searchResults}
-                      totalResults={totalResults}
-                      handleSearch={handleSearch}
-                      handleAddVideo={handleAddVideo}
-                    />
-                  </div>
+                  <VideoSearch
+                    ref={this.searchRef}
+                    searchTerm={this.state.searchTerm}
+                    searchResults={searchResults}
+                    totalResults={totalResults}
+                    handleSearch={handleSearch}
+                    handleAddVideo={handleAddVideo}
+                  />
                 )}
               </>
             )}
             {tab === QUEUE_TAB && (
               <ChannelQueue
+                ref={this.searchRef}
                 name={channel.name}
                 icon={channel.icon || defaultIcon}
                 searchTerm={this.state.searchTerm}
@@ -501,9 +525,10 @@ class Channel extends Component {
                 queue={this.state.queueList}
                 handleSwapVideos={handleSwapVideos}
                 handleDeleteVideo={handleDeleteVideo}
+                handleFindMore={() => this.scrollToSearch()}
               />
             )}
-            {tab === SETTINGS_TAB && !loading && (
+            {tab === SETTINGS_TAB && (
               <ChannelSettingsPanel
                 ownerId={channel.ownerId}
                 followers={mapIdsToUsers(channel.members, users, defaultAvatar)}

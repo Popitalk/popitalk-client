@@ -9,7 +9,8 @@ export default function VideoMinimalQueueCard({
   duration,
   status,
   statusMessage,
-  handleRemove
+  handleRemove,
+  handleFindMore
 }) {
   return (
     <>
@@ -20,6 +21,7 @@ export default function VideoMinimalQueueCard({
           styleNoneContentClassName="text-center text-secondaryText text-sm"
           className="h-12 w-full bg-tertiaryBackground hover:shadow-sm hover:bg-highlightBackground transition duration-100 rounded-lg"
           analyticsString="Direct to search Button: VideoMinimalQueueCard"
+          onClick={handleFindMore}
         />
       )}
       {title && (

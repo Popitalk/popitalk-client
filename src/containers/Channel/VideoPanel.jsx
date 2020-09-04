@@ -85,6 +85,7 @@ class VideoPanel extends Component {
             handlerChange={this.props.handleSwapVideos}
             handleSkip={this.handleSkip}
             handleDeleteVideo={this.props.handleDeleteVideo}
+            handleFindMore={this.props.handleFindMore}
           />
         ) : (
           <ScrollableCardList axis="x">
