@@ -94,7 +94,10 @@ export default function SiteHeaderMain({
 
   return (
     <header className="sm:px-6 // relative flex items-center justify-between h-12 px-4 z-30 bg-primaryBackground select-none">
-      <Link to="/channels" className="flex items-center justify-center">
+      <Link
+        to="/channels"
+        className="flex flex-shrink-0 items-center justify-center"
+      >
         <Button
           imageButton
           imageButtonSrc={Logo}
@@ -103,7 +106,7 @@ export default function SiteHeaderMain({
           hoverable
         />
       </Link>
-      <ul className="sm:space-x-6 // flex items-center space-x-6">
+      <ul className="sm:space-x-6 // flex items-center space-x-2">
         <li className="flex items-center">
           <Button
             hoverable

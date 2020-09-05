@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import sortBy from "lodash/sortBy";
 import { Redirect, withRouter } from "react-router-dom";
 import {
+  addMessage,
   getChannel,
   setPostDraft,
   addPost,
@@ -42,6 +43,7 @@ import {
   defaultPlayerStatus
 } from "../../helpers/videoSyncing";
 import Helmet from "react-helmet";
+import { v4 as uuidv4 } from "uuid";
 
 const CHANNEL_TYPE = "channel";
 const ROOM_TYPE = "room";
@@ -101,6 +103,21 @@ const mapDispatchToProps = (dispatch, { match }) => {
   const channelId = match.params.channelId || match.params.roomId;
 
   return {
+    handleSend: video =>
+      dispatch(
+        addMessage({
+          id: uuidv4(),
+          channelId,
+          content: "* Requested admin to play something fun! *",
+          upload: null,
+          createdAt: Date.now(),
+          author: {
+            id: "",
+            username: "this.props.ownUsername",
+            avatar: null
+          }
+        })
+      ),
     handleSaveDraft: text => dispatch(setPostDraft({ channelId, draft: text })),
     handleSavePost: text => {
       if (text && text.length > 0) {
@@ -446,6 +463,7 @@ class Channel extends Component {
     } else {
       handleNothingPlaying = video => {
         //TODO
+        this.props.handleSend();
         console.log("request admin to play video " + video);
       };
     }
