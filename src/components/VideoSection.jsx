@@ -19,7 +19,8 @@ export default function VideoSection({
   dispatchPlay,
   dispatchPause,
   dispatchSkip,
-  dispatchPlayNextVideo
+  dispatchPlayNextVideo,
+  handleNothingPlaying
 }) {
   return (
     <div className="flex flex-col">
@@ -31,6 +32,7 @@ export default function VideoSection({
         dispatchPause={dispatchPause}
         dispatchSkip={dispatchSkip}
         dispatchPlayNextVideo={dispatchPlayNextVideo}
+        handleNothingPlaying={handleNothingPlaying}
       />
       <div className="flex flex-col pt-4 px-4">
         <div className="flex items-center h-8 space-x-2">

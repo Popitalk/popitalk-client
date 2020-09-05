@@ -488,6 +488,7 @@ class VideoPlayer extends Component {
                   actionButton
                   className="text-sm sm:text-md hover:scale-102"
                   analyticsString="Request Admin Button: VideoPlayer"
+                  onClick={this.props.handleNothingPlaying}
                 >
                   {this.props.displayControls
                     ? strings.manageUpNext

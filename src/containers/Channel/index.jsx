@@ -51,6 +51,8 @@ const POSTS_TAB = "channel";
 const QUEUE_TAB = "queue";
 const SETTINGS_TAB = "settings";
 
+const HEADER_HEIGHT = 96; // The height of the website header + channel header
+
 const mapStateToProps = (state, { match }) => {
   const { channelId, roomId, tab } = match.params;
   const finalId = channelId || roomId;
@@ -193,7 +195,7 @@ class Channel extends Component {
 
   scrollToSearch() {
     this.scrollRef.current.scrollTo({
-      top: this.searchRef.current.offsetTop,
+      top: this.searchRef.current.offsetTop - HEADER_HEIGHT,
       behavior: "smooth"
     });
     this.setState({
@@ -434,6 +436,20 @@ class Channel extends Component {
         ? channel.admins.find(a => a === ownId)
         : ownId;
 
+    let handleNothingPlaying = null;
+    if (type === ROOM_TYPE) {
+      handleNothingPlaying = () => this.scrollToSearch();
+    } else if (displayControls) {
+      handleNothingPlaying = () => {
+        this.props.history.push(`/channels/${channelId}/${QUEUE_TAB}`);
+      };
+    } else {
+      handleNothingPlaying = video => {
+        //TODO
+        console.log("request admin to play video " + video);
+      };
+    }
+
     return (
       <>
         <div className="flex flex-col bg-secondaryBackground w-full overflow-x-hidden">
@@ -485,6 +501,8 @@ class Channel extends Component {
                       this.scrollToSearch();
                     }
                   }}
+                  handleNothingPlaying={handleNothingPlaying}
+                  displayControls={displayControls}
                   playlist={this.state.queueList}
                   playerStatus={this.state.playerStatus}
                   classNames="pt-0"

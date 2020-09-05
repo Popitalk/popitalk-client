@@ -20,13 +20,10 @@ const mapStateToProps = (state, { channelId }) => {
   const viewers = viewerIds
     ? mapIdsToUsers(viewerIds, users, defaultAvatar)
     : [];
-  const ownId = state.self.id;
 
   return {
     viewers: viewers,
-    isInvitingAllowed: channel.type === "group",
-    displayControls:
-      channel.type === "channel" ? channel.admins.find(a => a === ownId) : ownId
+    isInvitingAllowed: channel.type === "group"
   };
 };
 
@@ -78,6 +75,7 @@ class VideoPanel extends Component {
           dispatchPause={this.props.dispatchPause}
           dispatchSkip={s => this.handleSkip(null, s)}
           dispatchPlayNextVideo={this.props.handlePlayNextVideo}
+          handleNothingPlaying={this.props.handleNothingPlaying}
         />
         {this.props.displayControls ? (
           <QueueSection
