@@ -6,7 +6,7 @@ export default function MessageContent({ message }) {
     <span
       className={
         //Break-all, because if we break by word, chat panel layout is broken by input withouth spaces.
-        `w-full break-all text-sm text-justify py-2px ${
+        `w-64 break-words text-sm text-justify py-2px ${
           message?.type?.toLowerCase() === "pending" ||
           message?.type?.toLowerCase() === "rejected"
             ? "text-secondaryText"
@@ -22,10 +22,17 @@ export default function MessageContent({ message }) {
           src={JSON.parse(message.content).images.fixed_height}
           alt={JSON.parse(message.content).title}
         />
+      ) : message.upload === "system" ? (
+        <div className="w-64 h-20 rounded-lg shadow-xs my-2 p-2px bg-gradient-tr-primary break-words select-none cursor-pointer">
+          <div className="flex flex-col justify-center items-center w-full h-full rounded-lg bg-primaryBackground space-y-1">
+            <p className="animate-bounce text-highlightText text-xs">
+              {message.content}
+            </p>
+            <p className="text-secondaryText text-xs">{message.createdAt}</p>
+          </div>
+        </div>
       ) : (
-        <Linkify>
-          <p className="break-words">{message.content}</p>
-        </Linkify>
+        <Linkify>{message.content}</Linkify>
       )}
     </span>
   );

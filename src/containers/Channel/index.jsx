@@ -108,8 +108,8 @@ const mapDispatchToProps = (dispatch, { match }) => {
         addMessage({
           id: uuidv4(),
           channelId,
-          content: "* Requested admin to play something fun! *",
-          upload: null,
+          content: "Asking the admin to play something fun!",
+          upload: "system",
           createdAt: Date.now(),
           author: {
             id: "",
@@ -462,9 +462,7 @@ class Channel extends Component {
       };
     } else {
       handleNothingPlaying = video => {
-        //TODO
         this.props.handleSend();
-        console.log("request admin to play video " + video);
       };
     }
 
