@@ -26,7 +26,8 @@ import {
   deleteVideo,
   swapVideos,
   setAlert,
-  getTrending
+  getTrending,
+  getComments
 } from "../../redux/actions";
 import ChannelHeader from "../../components/ChannelHeader";
 import VideoPanel from "./VideoPanel";
@@ -149,7 +150,8 @@ const mapDispatchToProps = (dispatch, { match }) => {
       dispatch(swapVideos({ channelId, oldIndex, newIndex })),
     handleGetChannel: () => dispatch(getChannel(channelId)),
     handleChannelNotFound: () =>
-      dispatch(setAlert("The channel / room you entered does not exist."))
+      dispatch(setAlert("The channel / room you entered does not exist.")),
+    handleGetComments: postId => dispatch(getComments(postId))
   };
 };
 
@@ -161,7 +163,8 @@ class Channel extends Component {
       queueList: this.props.playlist,
       playerStatus: this.props.startPlayerStatus,
       searchTerm: "",
-      scrollToSearch: false
+      scrollToSearch: false,
+      forceScroll: false
     };
 
     this.scrollRef = createRef();
@@ -304,6 +307,10 @@ class Channel extends Component {
     } else if (!this.state.playerStatus.channelId) {
       this.setPlayerStatus();
     }
+
+    this.setState({
+      forceScroll: true
+    });
   }
 
   componentDidUpdate(prevProps) {
@@ -347,7 +354,10 @@ class Channel extends Component {
       });
     }
 
-    if (prevProps.tab !== this.props.tab && this.scrollRef.current) {
+    if (
+      (prevProps.tab !== this.props.tab || this.state.forceScroll) &&
+      this.scrollRef.current
+    ) {
       const tab = this.props.tab;
 
       if (tab === VIDEO_TAB) {
@@ -367,6 +377,10 @@ class Channel extends Component {
           this.scrollRef.current.scrollTo({ top: 0 });
         }
       }
+
+      this.setState({
+        forceScroll: false
+      });
     }
   }
 
@@ -497,6 +511,7 @@ class Channel extends Component {
                     isMember={isMember}
                     handleUnfollow={this.props.handleUnfollow}
                     handleListAdmins={this.props.handleOpenAdminsList}
+                    handleGetComments={this.props.handleGetComments}
                     displayControls={displayControls}
                   />
                 )}

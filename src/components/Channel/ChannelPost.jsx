@@ -29,12 +29,13 @@ export default function ChannelPost({
   authorId,
   removePost,
   displayControls,
+  handleGetComments,
   isLoading = false
 }) {
   const [showNewComment, setShowNewComment] = useState(false);
   const [showComments, setShowComments] = useState(false);
   const [showMenu, setShowMenu] = useState(false);
-  const showNumComment = 2;
+  const showNumComment = 3;
   const menuRef = useRef(null);
   // Opening profile modal
   const dispatch = useDispatch();
@@ -55,8 +56,7 @@ export default function ChannelPost({
       setShowComments(true);
     }
   }, [showComments]);
-  // console.log("comments in channelPost", comments, comments?.length);
-  // console.log("ownId", ownId, "authorId", authorId);
+
   return (
     <>
       {isLoading ? (
@@ -149,21 +149,27 @@ export default function ChannelPost({
           </div>
           {/* Comment Section */}
           <div className="my-2 px-1 w-84 sm:w-102 lg:w-104 max-w-xl">
-            {!showComments && comments?.length > showNumComment && (
+            {((!showComments && commentCount > showNumComment) ||
+              comments?.length < commentCount) && (
               <Button
                 styleNone
                 styleNoneContent="View more comments"
                 className="text-secondaryText text-xs px-2"
-                onClick={() => setShowComments(!showComments)}
+                onClick={() => {
+                  setShowComments(true);
+                  if (comments?.length !== commentCount) {
+                    handleGetComments(id);
+                  }
+                }}
                 analyticsString="View more comments Button: ChannelPost"
               />
             )}
-            {showComments && comments?.length > showNumComment && (
+            {showComments && comments?.length === commentCount && (
               <Button
                 styleNone
                 styleNoneContent="Hide comments"
                 className="text-secondaryText text-xs px-2"
-                onClick={() => setShowComments(!showComments)}
+                onClick={() => setShowComments(false)}
                 analyticsString="Hide comments Button: ChannelPost"
               />
             )}

@@ -24,6 +24,7 @@ const ForumPanel = (
     isMember,
     handleUnfollow,
     handleListAdmins,
+    handleGetComments,
     displayControls
   },
   ref
@@ -62,6 +63,7 @@ const ForumPanel = (
         name={name}
         icon={icon}
         displayControls={displayControls}
+        handleGetComments={handleGetComments}
       />
     </div>
   );
