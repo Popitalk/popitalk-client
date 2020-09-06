@@ -54,10 +54,8 @@ phases:
 artifacts:
   files:
     - "**/*"
-# - location
-#name: $(date +%Y-%m-%d)
-discard-paths: yes
-base-directory: build
+  discard-paths: no
+  base-directory: build
 #cache:
 #paths:
 # - paths
