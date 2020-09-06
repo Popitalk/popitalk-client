@@ -33,7 +33,7 @@ const RouteWrapper = ({ leftPanel, children }) => {
 
 export default function App() {
   const validatedSession = useSelector(state => state.general.validatedSession);
-  const { loggedIn, wsConnected } = useSelector(state => state.general);
+  const { loggedIn } = useSelector(state => state.general);
   const dispatch = useDispatch();
 
   useEffect(() => {
