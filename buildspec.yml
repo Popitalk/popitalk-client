@@ -39,9 +39,9 @@ phases:
       - npm run build
       # - command
       # - command
-  post_build:
-    commands:
-      - aws s3 sync --recursive --acl public-read ./build s3://popitalk-client
+  #post_build:
+  #commands:
+  # - command
   # - command
 #reports:
 #report-name-or-arn:
@@ -56,8 +56,8 @@ artifacts:
     - "**/*"
 # - location
 #name: $(date +%Y-%m-%d)
-#discard-paths: yes
-#base-directory: location
+discard-paths: yes
+base-directory: build
 #cache:
 #paths:
 # - paths
