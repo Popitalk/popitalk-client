@@ -47,7 +47,8 @@ export default function App() {
     ReactGa.pageview(window.location.pathname + window.location.search);
   }, []);
 
-  if (!validatedSession) return <section className="App--container" />;
+  if (!validatedSession)
+    return <section className="App--container">Loading</section>;
 
   // if (!validatedSession || (loggedIn && !wsConnected))
   //   return <section className="App--container">loading spinner</section>;
