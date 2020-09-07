@@ -3,8 +3,9 @@ import FriendsPanel from "./FriendsPanel";
 import CollapsedPanel from "./CollapsedPanel";
 import ChannelsPanel from "./ChannelsPanel";
 import { Helmet } from "react-helmet";
-// import useSound from "use-sound";
-// import notificationSound from "../../assets/sounds/pop-sound.mp3";
+import useSound from "use-sound";
+import notificationSound from "../../assets/sounds/pop-sound.mp3";
+import { useInterval } from "react-use";
 
 export default function LeftPanel({
   yourChannels,
@@ -32,7 +33,20 @@ export default function LeftPanel({
   const size = useWindowSize();
   const [isCollapsedResponsive, setCollapsedResponsive] = useState();
   const [isFavicon, setFavicon] = useState();
-  // const [play] = useSound(notificationSound);
+  const [play] = useSound(notificationSound);
+  const [isRunning, setIsRunning] = useState(true);
+  const [checked, setChecked] = useState(false);
+
+  useInterval(
+    () => {
+      // Favicon changes depending on notification status
+      if (checked) {
+        play();
+        setIsRunning(false);
+      }
+    },
+    isRunning ? 50 : null
+  );
 
   useEffect(() => {
     if (size.width <= 1024) {
@@ -40,14 +54,15 @@ export default function LeftPanel({
     } else {
       setCollapsedResponsive(false);
     }
-    // Favicon changes depending on notification status
     if (numberOfNotifications !== 0) {
       setFavicon("https://i.ibb.co/JkKgxv9/favicon-notification.png");
-      // play();
+      setChecked(true);
     } else {
       setFavicon("https://i.ibb.co/wL0BpLN/favicon.png");
+      setChecked(false);
+      setIsRunning(true);
     }
-  }, [isCollapsed, numberOfNotifications, selectedPage, size.width]);
+  }, [isCollapsed, numberOfNotifications, play, selectedPage, size.width]);
 
   if ((isCollapsed === false) & (isCollapsedResponsive === true)) {
     isCollapsed = true;
