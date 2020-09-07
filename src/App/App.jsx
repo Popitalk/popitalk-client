@@ -48,7 +48,7 @@ export default function App() {
   }, []);
 
   if (!validatedSession)
-    return <section className="App--container">Loading</section>;
+    return <section className="App--container">Loading 123</section>;
 
   // if (!validatedSession || (loggedIn && !wsConnected))
   //   return <section className="App--container">loading spinner</section>;
