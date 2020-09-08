@@ -22,13 +22,15 @@ const AppFinal = () => (
 // const WithHotReload =
 //   process.env.NODE_ENV === "production" ? AppFinal : hot(AppFinal);
 
-Sentry.init({
-  dsn:
-    "https://bdb64d6f5f1642029a8da88bb764cbca@o433742.ingest.sentry.io/5389541",
-  release: "Popitalk" + process.env.npm_package_version,
-  integrations: [new ApmIntegrations.Tracing()],
-  tracesSampleRate: 1.0 // Be sure to lower this in production
-});
+if (process.env.NODE_ENV === "production") {
+  Sentry.init({
+    dsn:
+      "https://bdb64d6f5f1642029a8da88bb764cbca@o433742.ingest.sentry.io/5389541",
+    release: "Popitalk" + process.env.npm_package_version,
+    integrations: [new ApmIntegrations.Tracing()],
+    tracesSampleRate: 1.0 // Be sure to lower this in production
+  });
+}
 
 ReactDOM.render(<AppFinal />, document.getElementById("root"));
 // const WithHotReload =

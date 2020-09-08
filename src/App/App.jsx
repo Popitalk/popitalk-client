@@ -41,10 +41,12 @@ export default function App() {
   }, [dispatch]);
 
   useEffect(() => {
-    ReactGa.initialize("UA-175311766-1");
+    if (process.env.NODE_ENV === "production") {
+      ReactGa.initialize("UA-175311766-1");
 
-    //to report pageview
-    ReactGa.pageview(window.location.pathname + window.location.search);
+      //to report pageview
+      ReactGa.pageview(window.location.pathname + window.location.search);
+    }
   }, []);
 
   if (!validatedSession)
