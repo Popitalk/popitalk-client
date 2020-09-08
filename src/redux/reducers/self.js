@@ -36,6 +36,7 @@ const initialState = {
 };
 
 const R_selfInit = (state, { payload }) => {
+  console.log("aws test 2", payload);
   state.id = payload.id;
   state.firstName = payload.firstName;
   state.lastName = payload.lastName;
