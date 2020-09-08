@@ -1,66 +1,95 @@
-import React, { Fragment, useState } from "react";
-import Button from "../Controls/Button";
-import "./ChatOptionsButton.css";
+import React from "react";
+import PopupMenu from "../Controls/PopupMenu";
+import { withRouter } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { addMessage, openDeleteMessageModal } from "../../redux/actions";
+import { v4 as uuidv4 } from "uuid";
 
-export default function ChatOptionsButton({
-  conditions,
-  handleResend,
-  handleDelete,
-  message
-}) {
-  const [optionsClosed, setOptionsClosed] = useState(true);
-  if (optionsClosed) {
-    return (
-      <Fragment>
-        {conditions.displayButton ? (
-          <Button
-            styleNone
-            icon="ellipsis-v"
-            styleNoneIconClassName="text-secondaryText"
-            className="opacity-0 chat-options-button w-8 px-0 space-x-2 self-center mx-1"
-            onClick={() => {
-              setOptionsClosed(false);
-              setTimeout(() => setOptionsClosed(true), 3000);
-            }}
-            analyticsString="Chat Options Button: ChatOptionsButton"
-          />
-        ) : null}
-      </Fragment>
-    );
-  } else {
-    return (
-      <div className="w-10 h-4 px-0 space-x-2 rounded-full bg-gradient-br-cancel flex flex-row justify-center self-center mx-2">
-        {
-          // New feature, optional chaining. https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Optional_chaining
-          handleResend && conditions.messageRejected ? (
-            <Button
-              styleNone
-              icon="redo-alt"
-              styleNoneIconClassName="text-xs text-tertiaryText"
-              className="focus:outline-none flex items-center"
-              onClick={() => handleResend(message.content)}
-              analyticsString="Resend Button: ChatOptionsButton"
-            />
-          ) : (
-            <></>
-          )
-        }
-        {handleDelete &&
-        (conditions.messageRejected || conditions.messageAccepted) ? (
-          <Button
-            styleNone
-            icon="times"
-            styleNoneIconClassName="text-sm text-tertiaryText"
-            className="flex items-center"
-            onClick={() =>
-              handleDelete({ type: message?.type, id: message.id })
-            }
-            analyticsString="Chat Delete Button: ChatOptionsButton"
-          />
-        ) : (
-          <></>
-        )}
-      </div>
-    );
+function ChatOptionsButton2({ message, channel, ownId, match, hover }) {
+  const dispatch = useDispatch();
+  const currentUserUsername = useSelector(state => state.self.username);
+  const apiLoading = useSelector(state => state.api.addMessage.loading);
+  const userId = useSelector(state => state.self.id);
+  const channelId = match.params.roomId || match.params.channelId;
+  const handleSend = text => {
+    if (text && text.length > 0 && !apiLoading) {
+      dispatch(
+        addMessage({
+          id: uuidv4(),
+          userId,
+          channelId,
+          content: text,
+          upload: null,
+          createdAt: Date.now(),
+          author: {
+            id: "",
+            username: currentUserUsername,
+            avatar: null
+          }
+        })
+      );
+    }
+  };
+
+  const conditions = {
+    isMyMessage: message.userId === ownId,
+    isAdminOfChannel:
+      channel?.type === "channel" && channel.admins?.includes(ownId),
+    messageAccepted:
+      message?.status === undefined ||
+      message?.status?.toLowerCase() === "accepted",
+    messageRejected: message?.status?.toLowerCase() === "rejected",
+    messagePending: message?.status?.toLowerCase() === "pending"
+  };
+  // Function that generates options of the pop up depending if message is rejected/accepted
+  function getOptions() {
+    const options = [];
+    if (conditions.messageAccepted || conditions.messageRejected) {
+      options.push({
+        name: "Delete",
+        handler: () =>
+          dispatch(
+            openDeleteMessageModal({
+              channelId,
+              messageId: message.id
+            })
+          ),
+        danger: false
+      });
+    }
+    if (conditions.messageRejected) {
+      options.push({
+        name: "Resend",
+        handler: () => handleSend(message.content),
+        danger: false
+      });
+    }
+    return options;
   }
+  // deletedMessageId === message.id && deletedMessageApiLoading
+  // Returns the button only ((if you are the admin of the channel OR it is your own message) AND the message is not pending) OR the message is rejected.
+  // Doesn't test if you sent the rejected message, can't think of a posibility where you could see other peoples rejected messages.
+  // There is no ID generated if the message is rejected.
+  return (
+    <>
+      {((conditions.isMyMessage || conditions.isAdminOfChannel) &&
+        !conditions.messagePending) ||
+      conditions.messageRejected ? (
+        <div
+          className={`flex transition-opacity duration-100 w-4 px-0 space-x-2 self-center mx-2 ${
+            hover ? "opacity-100" : "opacity-0"
+          }`}
+        >
+          <PopupMenu
+            options={getOptions()}
+            type="message"
+            messageId={message.id}
+            disabled={false}
+          />
+        </div>
+      ) : null}
+    </>
+  );
 }
+
+export default withRouter(ChatOptionsButton2);

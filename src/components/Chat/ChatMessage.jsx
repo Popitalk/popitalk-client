@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import MessageAuthorAvatar from "./MessageAuthorAvatar";
 import MessageCreatedTime from "./MessageCreatedTime";
 import MessageAuthorUsername from "./MessageAuthorUsername";
 import MessageContent from "./MessageContent";
 import MessageHighlightSpan from "./MessageHighlightSpan";
-import ChatOptionsButton2 from "./ChatOptionsButton2";
+import ChatOptionsButton from "./ChatOptionsButton";
 import DateMessage from "./DateMessage";
 
 export default function ChatMessage({
@@ -14,6 +14,7 @@ export default function ChatMessage({
   clickedMessage,
   updateClickedMessage
 }) {
+  const [isHover, setHover] = useState(false);
   if (message.type === "date") return <DateMessage message={message} />;
   else if (
     message.type === "firstMessage" ||
@@ -35,14 +36,18 @@ export default function ChatMessage({
           </div>
           <MessageCreatedTime createdAt={message.createdAt} />
         </div>
-        <div className="flex mx-2 chat-options-button-parent">
+        <div
+          className="flex mx-2"
+          onPointerOver={() => setHover(true)}
+          onPointerOut={() => setHover(false)}
+        >
           <MessageHighlightSpan
             status={message.status}
             ownId={ownId}
             userId={message.userId}
           />
           <MessageContent message={message} />
-          <ChatOptionsButton2 ownId={ownId} message={message} />
+          <ChatOptionsButton ownId={ownId} message={message} hover={isHover} />
         </div>
       </div>
     );
@@ -64,7 +69,9 @@ export default function ChatMessage({
         <div
           role="button"
           onClick={() => updateClickedMessage(message.id)}
-          className="flex mx-2 bg-primaryBackground hover:bg-secondaryBackground rounded-md chat-options-button-parent cursor-text"
+          onPointerOver={() => setHover(true)}
+          onPointerOut={() => setHover(false)}
+          className="flex mx-2 bg-primaryBackground hover:bg-secondaryBackground rounded-md cursor-text"
           key={message.id}
         >
           <MessageHighlightSpan
@@ -73,7 +80,7 @@ export default function ChatMessage({
             userId={message.userId}
           />
           <MessageContent message={message} />
-          <ChatOptionsButton2 ownId={ownId} message={message} />
+          <ChatOptionsButton ownId={ownId} message={message} hover={isHover} />
         </div>
       </React.Fragment>
     );
