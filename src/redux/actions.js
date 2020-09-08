@@ -39,6 +39,7 @@ export const validateSession = createAsyncThunk(
   "general/validateSession",
   async () => {
     const response = await api.validateSession();
+    console.log("test", response);
     return response.data;
   }
 );
