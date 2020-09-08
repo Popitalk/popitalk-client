@@ -57,9 +57,8 @@ export default function ChannelHeader({
           <RoomIcon
             ids={[id]}
             images={[icon]}
-            // watching={videoStatus === "playing" ? true : false}
+            watching={videoStatus === "playing" ? true : false}
             size="sm"
-            watching={videoStatus}
             className="transition transform ease-in-out hover:scale-110 duration-100 cursor-pointer"
           />
           <p className="flex flex-shrink-0 text-md font-medium text-primaryText p-2 w-full truncate overflow-hidden">

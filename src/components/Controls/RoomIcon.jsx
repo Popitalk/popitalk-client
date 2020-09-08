@@ -64,7 +64,7 @@ export default function RoomIcon({
     "grid w-full h-full rounded-full overflow-hidden": true,
     "grid-cols-2": images.length !== 1,
     "border-imageBorder1": !watching,
-    "border-none bg-primaryBackground p-2px": watching
+    "border-none bg-secondaryBackground p-2px": watching
   });
   const avatarClasses = classnames({
     "border overflow-hidden": true,

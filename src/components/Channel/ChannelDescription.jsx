@@ -50,23 +50,12 @@ export default function ChannelDescription({
         )}
       </div>
       <div className="flex flex-row justify-center items-center bg-secondaryBackground">
-        {status === "playing" ? (
-          <div className="p-1 bg-gradient-r-primary rounded-circle">
-            <div className="p-1 bg-secondaryBackground rounded-circle">
-              <AvatarIcon
-                username={name}
-                avatar={icon}
-                className="img h-32 w-32 rounded-circle mx-px flex-shrink-0"
-              />
-            </div>
-          </div>
-        ) : (
-          <AvatarIcon
-            username={name}
-            avatar={icon}
-            className="img h-32 w-32 rounded-circle mx-px flex-shrink-0"
-          />
-        )}
+        <AvatarIcon
+          username={name}
+          avatar={icon}
+          watching={status === "playing" ? true : false}
+          className="img h-32 w-32 rounded-circle mx-px flex-shrink-0"
+        />
         <section className="mx-8">
           <p className="text-2xl font-bold truncate-2-lines">{name}</p>
           <p className="text-sm my-2">{description}</p>

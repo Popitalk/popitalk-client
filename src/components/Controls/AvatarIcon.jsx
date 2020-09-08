@@ -5,6 +5,7 @@ export default function AvatarIcon({
   username,
   imageClick,
   className = "",
+  watching,
   tooltip,
   tooltipPlace
 }) {
@@ -15,14 +16,18 @@ export default function AvatarIcon({
 
   const defaultClassName = "img w-12 h-12 rounded-circle";
   return (
-    <img
-      className={className ? className : defaultClassName}
-      role="button"
-      src={avatar}
-      alt={`${username}'s avatar`}
-      onClick={imageClick ? e => handleClick(e) : null}
-      data-tip={tooltip}
-      data-place={tooltipPlace}
-    />
+    <div className={watching && "p-1 bg-gradient-r-primary rounded-circle"}>
+      <div className="p-1 bg-secondaryBackground rounded-circle">
+        <img
+          className={className ? className : defaultClassName}
+          role="button"
+          src={avatar}
+          alt={`${username}'s avatar`}
+          onClick={imageClick ? e => handleClick(e) : null}
+          data-tip={tooltip}
+          data-place={tooltipPlace}
+        />
+      </div>
+    </div>
   );
 }

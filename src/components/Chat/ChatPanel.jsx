@@ -28,7 +28,7 @@ export default function ChatPanel({
           isGifsOpen={isGifsOpen}
         />
       ) : (
-        <p className="flex w-full h-full text-secondaryText text-sm items-center justify-center bg-highlightBackground">
+        <p className="flex w-full h-full text-secondaryText text-xs items-center justify-center">
           This is the start of the chat!
         </p>
       )}
