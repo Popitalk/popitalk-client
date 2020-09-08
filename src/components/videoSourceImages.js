@@ -1,13 +1,13 @@
-import YoutubeLogo from "../assets/youtube-logo.png";
+import YoutubeLogo from "../assets/sources/youtube-logo.png";
 // import VimeoLogo from "../assets/vimeo-logo.png";
-import CrunchyrollLogo from "../assets/crunchyroll-logo.png";
-import TwitchLogo from "../assets/twitch-logo.png";
-import InstagramLogo from "../assets/instagram-logo.png";
+import CrunchyrollLogo from "../assets/sources/crunchyroll-logo.png";
+import TwitchLogo from "../assets/sources/twitch-logo.png";
+import InstagramLogo from "../assets/sources/instagram-logo.png";
 // import HuluLogo from "../assets/hulu-logo.png";
-import GfycatLogo from "../assets/gfycat-logo.png";
-import FacebookLogo from "../assets/facebook-logo.png";
+import GfycatLogo from "../assets/sources/gfycat-logo.png";
+import FacebookLogo from "../assets/sources/facebook-logo.png";
 // import DailymotionLogo from "../assets/dailymotion-logo.png";
-import SpotifyLogo from "../assets/spotify-logo.png";
+import SpotifyLogo from "../assets/sources/spotify-logo.png";
 
 const sources = [
   { source: "Youtube", icon: YoutubeLogo, active: true },

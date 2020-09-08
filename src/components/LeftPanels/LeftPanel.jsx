@@ -6,6 +6,7 @@ import { Helmet } from "react-helmet";
 import useSound from "use-sound";
 import notificationSound from "../../assets/sounds/pop-sound.mp3";
 import { useInterval } from "react-use";
+import { useWindowSize } from "../../helpers/functions";
 
 export default function LeftPanel({
   yourChannels,
@@ -38,8 +39,8 @@ export default function LeftPanel({
   const [checked, setChecked] = useState(false);
 
   useInterval(
+    // Sound notifications are triggered.
     () => {
-      // Favicon changes depending on notification status
       if (checked) {
         play();
         setIsRunning(false);
@@ -49,11 +50,13 @@ export default function LeftPanel({
   );
 
   useEffect(() => {
+    // Triggers collapse when screen size reduces.
     if (size.width <= 1024) {
       setCollapsedResponsive(true);
     } else {
       setCollapsedResponsive(false);
     }
+    // Favicon changes state depending on notifications.
     if (numberOfNotifications !== 0) {
       setFavicon("https://i.ibb.co/JkKgxv9/favicon-notification.png");
       setChecked(true);
@@ -62,7 +65,7 @@ export default function LeftPanel({
       setChecked(false);
       setIsRunning(true);
     }
-  }, [isCollapsed, numberOfNotifications, play, selectedPage, size.width]);
+  }, [isCollapsed, numberOfNotifications, selectedPage, size.width]);
 
   if ((isCollapsed === false) & (isCollapsedResponsive === true)) {
     isCollapsed = true;
@@ -70,14 +73,14 @@ export default function LeftPanel({
 
   return (
     <Fragment>
+      <Helmet>
+        <link rel="icon" type="image/png" href={isFavicon} target="_blank" />
+      </Helmet>
       <div
         className={`${
           isCollapsed || isCollapsedResponsive ? "hidden" : ""
         } w-full md:w-auto shadow-md h-full`}
       >
-        <Helmet>
-          <link rel="icon" type="image/png" href={isFavicon} target="_blank" />
-        </Helmet>
         {selectedPage === "channels" ? (
           <ChannelsPanel
             yourChannels={yourChannels}
@@ -135,36 +138,4 @@ export default function LeftPanel({
       </div>
     </Fragment>
   );
-}
-
-// Hook
-function useWindowSize() {
-  // Initialize state with undefined width/height so server and client renders match
-  // Learn more here: https://joshwcomeau.com/react/the-perils-of-rehydration/
-  const [windowSize, setWindowSize] = useState({
-    width: undefined,
-    height: undefined
-  });
-
-  useEffect(() => {
-    // Handler to call on window resize
-    function handleResize() {
-      // Set window width/height to state
-      setWindowSize({
-        width: window.innerWidth,
-        height: window.innerHeight
-      });
-    }
-
-    // Add event listener
-    window.addEventListener("resize", handleResize);
-
-    // Call handler right away so state gets updated with initial window size
-    handleResize();
-
-    // Remove event listener on cleanup
-    return () => window.removeEventListener("resize", handleResize);
-  }, []); // Empty array ensures that effect is only run on mount
-
-  return windowSize;
 }
