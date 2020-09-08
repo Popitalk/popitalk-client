@@ -1,10 +1,9 @@
 import React from "react";
-import "./Spinner.css";
 
 export default function Spinner() {
   return (
-    <div className="ChatMessages--spinner">
-      <div className="ChatMessages--spinner--circle" />
+    <div className="flex items-end justify-center w-full h-4">
+      <div className="flex animate-ping h-2 w-2 bg-highlightText rounded-full" />
     </div>
   );
 }
