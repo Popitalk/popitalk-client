@@ -15,6 +15,26 @@ export default function ChatMessage({
   updateClickedMessage
 }) {
   const [isHover, setHover] = useState(false);
+
+  const messageComponent = (
+    <div
+      role="button"
+      onClick={() => updateClickedMessage(message.id)}
+      onPointerOver={() => setHover(true)}
+      onPointerOut={() => setHover(false)}
+      className="flex mx-2 bg-primaryBackground hover:bg-secondaryBackground rounded-md cursor-text"
+      key={message.id}
+    >
+      <MessageHighlightSpan
+        status={message.status}
+        ownId={ownId}
+        userId={message.userId}
+      />
+      <MessageContent message={message} />
+      <ChatOptionsButton ownId={ownId} message={message} hover={isHover} />
+    </div>
+  );
+
   if (message.type === "date") return <DateMessage message={message} />;
   else if (
     message.type === "firstMessage" ||
@@ -23,7 +43,7 @@ export default function ChatMessage({
     return (
       // Unfused message
       <div key={message.id}>
-        <div className="flex items-center space-x-2 text-xs m-3">
+        <div className="flex items-center space-x-2 text-xs m-3 mt-8">
           <div className="flex transition transform ease-in-out hover:scale-105 duration-100 items-center space-x-2 cursor-pointer select-none">
             <MessageAuthorAvatar
               defaultAvatar={defaultAvatar}
@@ -36,28 +56,9 @@ export default function ChatMessage({
           </div>
           <MessageCreatedTime createdAt={message.createdAt} />
         </div>
-        <div
-          className="flex mx-2"
-          onPointerOver={() => setHover(true)}
-          onPointerOut={() => setHover(false)}
-        >
-          <MessageHighlightSpan
-            status={message.status}
-            ownId={ownId}
-            userId={message.userId}
-          />
-          <MessageContent message={message} />
-          <ChatOptionsButton ownId={ownId} message={message} hover={isHover} />
-        </div>
-      </div>
-    );
-  } else if (message.type === "message" || message.type === "lastMessage") {
-    return (
-      // Fused Message
-      <React.Fragment>
         {clickedMessage === message.id ? (
           <div
-            className="flex items-center justify-center text-xs select-none"
+            className="flex items-center justify-center text-xs select-none py-1"
             onClick={() => updateClickedMessage(message.id)}
             role="button"
           >
@@ -66,22 +67,25 @@ export default function ChatMessage({
             </div>
           </div>
         ) : null}
-        <div
-          role="button"
-          onClick={() => updateClickedMessage(message.id)}
-          onPointerOver={() => setHover(true)}
-          onPointerOut={() => setHover(false)}
-          className="flex mx-2 bg-primaryBackground hover:bg-secondaryBackground rounded-md cursor-text"
-          key={message.id}
-        >
-          <MessageHighlightSpan
-            status={message.status}
-            ownId={ownId}
-            userId={message.userId}
-          />
-          <MessageContent message={message} />
-          <ChatOptionsButton ownId={ownId} message={message} hover={isHover} />
-        </div>
+        {messageComponent}
+      </div>
+    );
+  } else if (message.type === "message" || message.type === "lastMessage") {
+    return (
+      // Fused Message
+      <React.Fragment>
+        {clickedMessage === message.id ? (
+          <div
+            className="flex items-center justify-center text-xs select-none py-1"
+            onClick={() => updateClickedMessage(message.id)}
+            role="button"
+          >
+            <div className="items-center justify-center bg-secondaryBackground px-2 py-1 rounded-md transition transform ease-in-out hover:scale-105 duration-100">
+              <MessageCreatedTime createdAt={message.createdAt} />
+            </div>
+          </div>
+        ) : null}
+        {messageComponent}
       </React.Fragment>
     );
   }
