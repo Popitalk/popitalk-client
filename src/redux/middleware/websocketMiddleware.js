@@ -42,7 +42,7 @@ import { WS_EVENTS } from "../../helpers/constants";
 const wsUrl =
   process.env.NODE_ENV !== "production"
     ? "ws://localhost:5000/ws"
-    : `wss://${window.location.hostname}:${window.location.port}/ws/`;
+    : `wss://ws.popitalk.com/ws/`;
 
 let socket;
 let interval;
