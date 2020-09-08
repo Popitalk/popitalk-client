@@ -4,7 +4,7 @@ const axiosConfig =
   process.env.NODE_ENV !== "production"
     ? {}
     : {
-        baseURL: "http://api.popitalk.com"
+        baseURL: "https://api.popitalk.com"
       };
 
 const ax = axios.create(axiosConfig);
