@@ -50,18 +50,9 @@ export default function ChannelChat({
           );
         })}
       {(!posts || (posts && posts.length === 0)) && (
-        <ChannelPost
-          name={name}
-          avatar={icon}
-          timeFromPost={moment().locale(strings.location).fromNow()}
-          text={strings.channelWelcomePost}
-          saveComment={saveComment}
-          toggleLike={toggleLike}
-          ownId={ownId}
-        />
-        // <p className="text-secondaryText text-center text-sm py-32">
-        //   There are no posts yet
-        // </p>
+        <p className="text-secondaryText text-center text-sm py-32">
+          {strings.channelWelcomePost}
+        </p>
       )}
     </div>
   );

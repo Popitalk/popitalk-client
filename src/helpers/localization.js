@@ -72,7 +72,7 @@ let strings = new LocalizedStrings({
     deleteButton: "Delete",
     loadMoreButton: "Show more",
     backToTrendingButton: "Back to Trending",
-    sendFeedbackButton: "Our Team",
+    sendFeedbackButton: "About Popitalk",
     // Months
     jan: "January",
     feb: "February",

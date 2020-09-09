@@ -62,7 +62,7 @@ export default function VideoPanelCard({
     const timer = setInterval(() => {
       setDisableButton(false);
       setAddButtonIcon("plus");
-    }, 2000);
+    }, 5000);
     return () => clearTimeout(timer);
   }, []);
   useEffect(() => {
