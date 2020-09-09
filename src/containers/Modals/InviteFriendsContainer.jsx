@@ -58,7 +58,7 @@ export default function InviteFriendsContainer({ handleModalClose }) {
   const [selected, setSelected] = useState([]);
 
   const nameField = "username";
-  const currentRoomMembersIds = channels[channelId].members.filter(
+  const currentRoomMembersIds = channels[channelId]?.members?.filter(
     id => id !== ownId
   );
 

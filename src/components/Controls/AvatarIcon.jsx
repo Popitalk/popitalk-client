@@ -16,8 +16,14 @@ export default function AvatarIcon({
 
   const defaultClassName = "img w-12 h-12 rounded-circle";
   return (
-    <div className={watching && "p-1 bg-gradient-r-primary rounded-circle"}>
-      <div className="p-1 bg-secondaryBackground rounded-circle">
+    <div
+      className={`rounded-circle flex-shrink-0 ${
+        watching && "p-1 bg-gradient-r-primary"
+      }`}
+    >
+      <div
+        className={`rounded-circle ${watching && "p-1 bg-secondaryBackground"}`}
+      >
         <img
           className={className ? className : defaultClassName}
           role="button"
