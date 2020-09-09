@@ -240,7 +240,8 @@ export const addChannel = createAsyncThunk(
       formData.append("public", channelInfo.public);
       // formData.append("categories", channelInfo.categories);
       if (channelInfo.icon) {
-        formData.append("icon", channelInfo.icon);
+        const blob = await fetch(channelInfo.icon).then(r => r.blob());
+        formData.append("icon", blob);
       }
 
       const response = await api.createChannel(formData);
