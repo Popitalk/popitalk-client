@@ -23,6 +23,9 @@ const children = [
 ];
 
 module.exports = {
+  future: {
+    removeDeprecatedGapUtilities: true
+  },
   theme: {
     truncate: {
       lines: {

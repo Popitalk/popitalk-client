@@ -10,7 +10,7 @@ function VideoCardList({ videoList, isCollapsed, tabSelected, isLoading }) {
     <div className="mx-6 my-8">
       {isLoading ? (
         <div
-          className={`grid grid-cols-1 w-full gap-4 row-gap-12 lg:row-gap-16 md:row-gap-12 sm:row-gap-12 pb-5 ${
+          className={`grid grid-cols-1 w-full gap-4 gap-y-12 lg:gap-y-16 md:gap-y-12 sm:gap-y-12 pb-5 ${
             isCollapsed
               ? "sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5"
               : "sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
@@ -23,7 +23,7 @@ function VideoCardList({ videoList, isCollapsed, tabSelected, isLoading }) {
         </div>
       ) : (
         <div
-          className={`grid grid-cols-1 w-full gap-4 row-gap-12 lg:row-gap-16 md:row-gap-12 sm:row-gap-12 pb-5 ${
+          className={`grid grid-cols-1 w-full gap-4 gap-y-12 lg:gap-y-16 md:gap-y-12 sm:gap-y-12 pb-5 ${
             isCollapsed
               ? "sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5"
               : "sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"

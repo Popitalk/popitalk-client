@@ -4,7 +4,7 @@ import strings from "../helpers/localization";
 function Footer() {
   return (
     <footer className="w-full px-4 py-8 bg-gradient-r-primary text-tertiaryText sm:px-16">
-      <div className="grid grid-cols-1 row-gap-12 sm:flex sm:justify-start sm:space-x-20 sm:ml-10 sm:mt-6 my-8">
+      <div className="grid grid-cols-1 gap-y-12 sm:flex sm:justify-start sm:space-x-20 sm:ml-10 sm:mt-6 my-8">
         <div className="space-y-4 text-center">
           <span className="mb-6 text-md font-bold">{strings.company}</span>
           <ul className="space-y-2 sm:text-xs text-md">

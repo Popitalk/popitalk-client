@@ -36,12 +36,12 @@ export default function VideoResults({
 
   return (
     <div className="flex flex-col justify-center bg-secondaryBackground p-4">
-      {/* <div className="grid grid-cols-1 xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 row-gap-8 mb-8">
+      {/* <div className="grid grid-cols-1 xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 gap-y-8 mb-8">
         <VideoPanelCard loading />
         <VideoPanelCard loading />
         <VideoPanelCard loading />
       </div> */}
-      <div className="grid grid-cols-1 xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 row-gap-8">
+      <div className="grid grid-cols-1 xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 gap-y-8">
         {results.map((result, idx) => {
           if (idx <= currThreshold - 1) {
             return (
