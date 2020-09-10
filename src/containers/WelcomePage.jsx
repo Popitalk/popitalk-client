@@ -1,7 +1,6 @@
 import React from "react";
 import CreateNewAccountForm from "../components/Forms/CreateNewAccountForm";
 import Footer from "../components/Footer";
-import WelcomeVideo from "../assets/popitalkVideo.mp4";
 import Helmet from "react-helmet";
 import strings from "../helpers/localization";
 
@@ -35,7 +34,12 @@ function WelcomePage(props) {
                 }}
                 className="rounded-circle"
               >
-                <source src={WelcomeVideo} type="video/mp4" />
+                <source
+                  src="https://popitalk-s3.s3.us-east-2.amazonaws.com/popitalkVideo.mp4"
+                  type="video/mp4"
+                />
+                Your browser does not support the video tag. Please upgrade your
+                browser.
               </video>
             </div>
           </div>
