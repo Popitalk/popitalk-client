@@ -3,16 +3,13 @@ import Linkify from "react-linkify";
 
 export default function MessageContent({ message }) {
   return (
-    <span
-      className={
-        //Break-all, because if we break by word, chat panel layout is broken by input withouth spaces.
-        `w-64 break-words text-sm text-justify py-2px ${
-          message?.type?.toLowerCase() === "pending" ||
-          message?.type?.toLowerCase() === "rejected"
-            ? "text-secondaryText"
-            : "text-primaryText"
-        }`
-      }
+    <p
+      className={`w-64 break-words text-sm py-1 ${
+        message?.type?.toLowerCase() === "pending" ||
+        message?.type?.toLowerCase() === "rejected"
+          ? "text-secondaryText"
+          : "text-primaryText"
+      }`}
     >
       {message.upload === "gif" ? (
         // Gifs have to be of fixed height, if they're of fixed width and height
@@ -23,7 +20,7 @@ export default function MessageContent({ message }) {
           alt={JSON.parse(message.content).title}
         />
       ) : message.upload === "system" ? (
-        <div className="w-64 h-20 rounded-lg shadow-xs my-2 p-2px bg-gradient-tr-primary break-words select-none cursor-pointer">
+        <div className="w-68 h-20 rounded-lg shadow-xs my-2 p-2px bg-gradient-tr-primary break-words select-none cursor-pointer">
           <div className="flex flex-col justify-center items-center w-full h-full rounded-lg bg-primaryBackground space-y-1">
             <p className="animate-bounce text-highlightText text-xs">
               {message.content}
@@ -34,6 +31,6 @@ export default function MessageContent({ message }) {
       ) : (
         <Linkify>{message.content}</Linkify>
       )}
-    </span>
+    </p>
   );
 }

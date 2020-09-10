@@ -22,7 +22,7 @@ export default function ChatMessage({
       onClick={() => updateClickedMessage(message.id)}
       onPointerOver={() => setHover(true)}
       onPointerOut={() => setHover(false)}
-      className="flex mx-2 bg-primaryBackground hover:bg-secondaryBackground rounded-md cursor-text"
+      className="flex bg-primaryBackground hover:bg-secondaryBackground rounded-md cursor-text flex-wrap"
       key={message.id}
     >
       <MessageHighlightSpan
@@ -30,7 +30,9 @@ export default function ChatMessage({
         ownId={ownId}
         userId={message.userId}
       />
-      <MessageContent message={message} />
+      <div className="w-68 pl-2">
+        <MessageContent message={message} />
+      </div>
       <ChatOptionsButton ownId={ownId} message={message} hover={isHover} />
     </div>
   );
@@ -42,19 +44,28 @@ export default function ChatMessage({
   ) {
     return (
       // Unfused message
-      <div key={message.id}>
-        <div className="flex items-center space-x-2 text-xs m-3 mt-8">
-          <div className="flex transition transform ease-in-out hover:scale-105 duration-100 items-center space-x-2 cursor-pointer select-none">
-            <MessageAuthorAvatar
-              defaultAvatar={defaultAvatar}
-              message={message}
-            />
-            <MessageAuthorUsername
+      <div key={message.id} className="flex-col mt-8">
+        <div className="flex items-center">
+          <div className="flex h-12">
+            <MessageHighlightSpan
+              status={message.status}
+              ownId={ownId}
               userId={message.userId}
-              username={message.username}
             />
           </div>
-          <MessageCreatedTime createdAt={message.createdAt} />
+          <div className="flex items-center space-x-2 cursor-pointer select-none pb-1 text-xs cursor-text">
+            <div className="flex transition transform text-xs ease-in-out hover:scale-105 duration-100 items-center space-x-2 cursor-pointer">
+              <MessageAuthorAvatar
+                defaultAvatar={defaultAvatar}
+                message={message}
+              />
+              <MessageAuthorUsername
+                userId={message.userId}
+                username={message.username}
+              />
+            </div>
+            <MessageCreatedTime createdAt={message.createdAt} />
+          </div>
         </div>
         {clickedMessage === message.id ? (
           <div

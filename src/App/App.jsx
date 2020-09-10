@@ -50,7 +50,7 @@ export default function App() {
   }, []);
 
   if (!validatedSession)
-    return <section className="App--container">aws test 4</section>;
+    return <section className="App--container">{/* aws test 4 */}</section>;
 
   // if (!validatedSession || (loggedIn && !wsConnected))
   //   return <section className="App--container">loading spinner</section>;
