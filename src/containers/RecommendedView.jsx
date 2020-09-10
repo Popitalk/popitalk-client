@@ -66,15 +66,10 @@ function RecommendedChannels({ selectedPage }) {
           }
         }
       });
-    setChannelList(prevState => [
-      ...prevState,
-      { title: "Discover", channels: discoverChannels }
-    ]);
-    setChannelList(prevState => [
-      ...prevState,
+    setChannelList([
+      { title: "Discover", channels: discoverChannels },
       { title: "Trending", channels: trendingChannels }
     ]);
-
     // if (followingChannels.length > 0) {
     //   tabs = [{ tab: strings.following }, ...tabs];
     //   list.push({ title: "Following", channels: followingChannels });
