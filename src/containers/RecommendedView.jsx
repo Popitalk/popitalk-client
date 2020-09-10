@@ -36,7 +36,8 @@ function RecommendedChannels({ selectedPage }) {
   useEffect(() => {
     if (channelList.length > 0 && channelList[0].channels.length > 0)
       setTab(tabs[0].tab);
-  }, [channels, channelList, tabs]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [channels, channelList]);
   // Infinite scroll
   // search is the Input Value. query is the search term triggered in handleSearch
   const [search, setSearch] = useState("");
