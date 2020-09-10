@@ -67,6 +67,7 @@ function RecommendedChannels({ selectedPage }) {
         }
       });
     setChannelList([
+      { title: "Following", channels: followingChannels },
       { title: "Discover", channels: discoverChannels },
       { title: "Trending", channels: trendingChannels }
     ]);
