@@ -10,75 +10,29 @@ import Button from "../components/Controls/Button.jsx";
 import Helmet from "react-helmet";
 import strings from "../helpers/localization";
 import useBookSearch from "../helpers/useBookSearch";
+import useGetChannels from "../containers/hooks/useGetChannels";
 
 function RecommendedChannels({ selectedPage }) {
-  let tabs = [{ tab: strings.discover }, { tab: strings.trending }];
+  const tabs = [
+    { tab: strings.following },
+    { tab: strings.discover },
+    { tab: strings.trending }
+  ];
+  const [tabSelected, setTab] = useState("# Discover");
   const isCollapsed = useSelector(state => state.ui.isCollapsed);
   const alert = useSelector(state => state.ui.alert);
   const channels = useSelector(state => state.channels);
-  console.log(channels, "from selector");
   const { id: ownId, channelIds } = useSelector(state => state.self);
   const { defaultIcon } = useSelector(state => state.general);
 
   const [isLoading] = useState(false);
-  const [channelList, setChannelList] = useState([]);
-
-  useEffect(() => {
-    const allChannelIds = Object.keys(channels);
-    const discoverChannels = [];
-    const trendingChannels = [];
-    const followingChannels = [];
-    // Adds channels to "following"
-    channelIds
-      .map(channelId => ({
-        id: channelId,
-        ...channels[channelId],
-        icon: channels[channelId].icon || defaultIcon
-      }))
-      .forEach(channel => {
-        if (
-          channel.ownerId !== ownId &&
-          channel.owner_id !== ownId &&
-          channel.members
-        ) {
-          if (channel.members.includes(ownId)) {
-            followingChannels.push(channel);
-          }
-        }
-      });
-    // Adds channels to "trending" and "discover"
-    allChannelIds
-      .map(channelId => {
-        return {
-          id: channelId,
-          ...channels[channelId],
-          icon: channels[channelId].icon || defaultIcon
-        };
-      })
-      .forEach(channel => {
-        if (channel.type === "channel") {
-          if (Math.random() < 0.5) {
-            // if (channel.speciality === "discover")
-            discoverChannels.push(channel);
-          } else {
-            // else if (channel.speciality === "trending")
-            trendingChannels.push(channel);
-          }
-        }
-      });
-    setChannelList([
-      { title: "Following", channels: followingChannels },
-      { title: "Discover", channels: discoverChannels },
-      { title: "Trending", channels: trendingChannels }
-    ]);
-    // if (followingChannels.length > 0) {
-    //   tabs = [{ tab: strings.following }, ...tabs];
-    //   list.push({ title: "Following", channels: followingChannels });
-    //   initialTab = "# Following";
-    // }
-  }, [channelIds, channels, defaultIcon, ownId]);
-
-  const [tabSelected, setTab] = useState("# Discover");
+  // Gets all channels and seperates following, discover and trending.
+  const channelList = useGetChannels({
+    channelIds,
+    channels,
+    defaultIcon,
+    ownId
+  });
 
   // Infinite scroll
   // search is the Input Value. query is the search term triggered in handleSearch
