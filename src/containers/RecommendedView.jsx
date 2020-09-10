@@ -18,7 +18,7 @@ function RecommendedChannels({ selectedPage }) {
     { tab: strings.discover },
     { tab: strings.trending }
   ];
-  const [tabSelected, setTab] = useState("# Discover");
+  const [tabSelected, setTab] = useState(tabs[1].tab);
   const isCollapsed = useSelector(state => state.ui.isCollapsed);
   const alert = useSelector(state => state.ui.alert);
   const channels = useSelector(state => state.channels);
@@ -33,7 +33,10 @@ function RecommendedChannels({ selectedPage }) {
     defaultIcon,
     ownId
   });
-
+  useEffect(() => {
+    if (channelList.length > 0 && channelList[0].channels.length > 0)
+      setTab(tabs[0].tab);
+  }, [channels, channelList, tabs]);
   // Infinite scroll
   // search is the Input Value. query is the search term triggered in handleSearch
   const [search, setSearch] = useState("");
