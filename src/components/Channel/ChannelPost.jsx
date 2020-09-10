@@ -8,9 +8,9 @@ import useOnClickOutside from "use-onclickoutside";
 import PopupMenu from "../Controls/PopupMenu";
 import { openProfileModal } from "../../redux/actions";
 import { useDispatch } from "react-redux";
-import moment from "moment";
 import Button from "../Controls/Button";
 import strings from "../../helpers/localization";
+import { formatDistanceStrict } from "date-fns/esm";
 
 export default function ChannelPost({
   id,
@@ -183,9 +183,11 @@ export default function ChannelPost({
                     name={comment.author.username}
                     authorId={comment.author.id}
                     avatar={comment.author.avatar || defaultAvatar}
-                    timeFromPost={moment(comment.createdAt)
-                      .locale(strings.location)
-                      .fromNow()}
+                    timeFromPost={formatDistanceStrict(
+                      new Date(comment.createdAt),
+                      new Date(),
+                      { addSuffix: true }
+                    )}
                     text={comment.content}
                     toggleLike={toggleLike}
                     liked={comment.liked}
@@ -201,9 +203,11 @@ export default function ChannelPost({
                     name={comment.author.username}
                     authorId={comment.author.id}
                     avatar={comment.author.avatar || defaultAvatar}
-                    timeFromPost={moment(comment.createdAt)
-                      .locale(strings.location)
-                      .fromNow()}
+                    timeFromPost={formatDistanceStrict(
+                      new Date(comment.createdAt),
+                      new Date(),
+                      { addSuffix: true }
+                    )}
                     text={comment.content}
                     toggleLike={toggleLike}
                     liked={comment.liked}

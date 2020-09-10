@@ -28,7 +28,7 @@ export default function QueueSection({
       height={"100%"}
       distance={1}
     >
-      <VideoPanelCard handleFindMore={handleFindMore} />
+      <VideoPanelCard handleFindMore={handleFindMore} publishedAt={null} />
     </SortableList>
   );
 }

@@ -1,11 +1,9 @@
 import React from "react";
 import RoomIcon from "../Controls/RoomIcon";
 import InfoCard from "../InfoCards/InfoCard";
-import moment from "moment";
-import "moment/locale/ko";
-import "moment/locale/ru";
 import strings from "../../helpers/localization";
 import { channelHasNewMessage } from "../../util/channelHasNewMessage";
+import { formatDistanceStrict } from "date-fns";
 
 export default function RoomInfoCard({
   room,
@@ -24,11 +22,14 @@ export default function RoomInfoCard({
     JSON.parse(room.lastMessageContent);
     if (room.lastMessageContent.includes("/200.gif")) {
       subtitleAndDate =
-        moment(room.lastMessageAt).locale(strings.location).fromNow() +
-        " · GIF";
+        formatDistanceStrict(new Date(room.lastMessageAt), new Date(), {
+          addSuffix: true
+        }) + " · GIF";
     } else if (room.lastMessageContent) {
       subtitleAndDate =
-        moment(room.lastMessageAt).locale(strings.location).fromNow() +
+        formatDistanceStrict(new Date(room.lastMessageAt), new Date(), {
+          addSuffix: true
+        }) +
         " · " +
         room.lastMessageContent;
     } else {
@@ -37,7 +38,9 @@ export default function RoomInfoCard({
   } catch {
     subtitleAndDate =
       room.lastMessageContent &&
-      moment(room.lastMessageAt).locale(strings.location).fromNow() +
+      formatDistanceStrict(new Date(room.lastMessageAt), new Date(), {
+        addSuffix: true
+      }) +
         " · " +
         room.lastMessageContent;
   }

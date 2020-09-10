@@ -1,8 +1,8 @@
 import React from "react";
 import "../VideoStatus.css";
 import ChannelPost from "./ChannelPost";
-import moment from "moment";
 import strings from "../../helpers/localization";
+import { formatDistanceStrict } from "date-fns/esm";
 
 export default function ChannelChat({
   id,
@@ -30,9 +30,11 @@ export default function ChannelChat({
               id={post.id}
               name={post.author.username}
               avatar={post.author.avatar || defaultAvatar}
-              timeFromPost={moment(post.createdAt)
-                .locale(strings.location)
-                .fromNow()}
+              timeFromPost={formatDistanceStrict(
+                new Date(post.createdAt),
+                new Date(),
+                { addSuffix: true }
+              )}
               text={post.content}
               liked={post.liked}
               comments={postComments}

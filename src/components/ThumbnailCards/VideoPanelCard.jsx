@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import ReactTooltip from "react-tooltip";
 import classnames from "classnames";
-import moment from "moment";
 import Button from "../Controls/Button";
 import VideoStatus from "../VideoStatus";
 import strings from "../../helpers/localization";
+import { formatDistanceStrict } from "date-fns/esm";
 
 export default function VideoPanelCard({
   id,
@@ -24,8 +24,9 @@ export default function VideoPanelCard({
   size,
   className
 }) {
-  // const leftInfo = `${views}`;
-  const rightInfo = `${moment(publishedAt).locale(strings.location).fromNow()}`;
+  const rightInfo = formatDistanceStrict(new Date(publishedAt), new Date(), {
+    addSuffix: true
+  });
   const [disableButton, setDisableButton] = useState();
   const [addButtonIcon, setAddButtonIcon] = useState("plus");
   const [removeButtonIcon, setRemoveButtonIcon] = useState("minus");

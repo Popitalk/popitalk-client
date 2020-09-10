@@ -5,7 +5,6 @@ import Slider from "rc-slider";
 import screenfull from "screenfull";
 import ReactTooltip from "react-tooltip";
 import "rc-slider/assets/index.css";
-import moment from "moment";
 import VideoPlayerStatusCard from "./VideoPlayerStatusCard";
 import Ripples from "react-ripples";
 import Button from "./Controls/Button";
@@ -119,7 +118,8 @@ class VideoPlayer extends Component {
   }
 
   setCountDownTimer() {
-    const remainingTime = this.props.playerStatus.clockStartTime - moment();
+    const remainingTime =
+      this.props.playerStatus.clockStartTime - new Date().getTime();
     if (remainingTime > 0) {
       this.startCountDownTimer(remainingTime);
     } else {
@@ -157,7 +157,8 @@ class VideoPlayer extends Component {
     this.clearTimer(this.playTimer);
     this.clearTimer(this.countDownTimer);
 
-    const waitTime = this.props.playerStatus.clockStartTime - moment();
+    const waitTime =
+      this.props.playerStatus.clockStartTime - new Date().getTime();
     if (waitTime > 0 && this.props.playerStatus.status === "Playing") {
       this.playTimer = setInterval(() => {
         this.setState({

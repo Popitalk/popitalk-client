@@ -1,6 +1,6 @@
 import React from "react";
-import moment from "moment";
 import strings from "../../helpers/localization";
+import { formatDistanceStrict } from "date-fns/esm";
 
 export default function VideoCard({
   id,
@@ -12,8 +12,9 @@ export default function VideoCard({
   handleWatch,
   isLoading
 }) {
-  // const leftInfo = `${views}`;
-  const rightInfo = `${moment(publishedAt).locale(strings.location).fromNow()}`;
+  const rightInfo = formatDistanceStrict(new Date(publishedAt), new Date(), {
+    addSuffix: true
+  });
   return (
     <>
       {isLoading ? (
