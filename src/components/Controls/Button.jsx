@@ -75,10 +75,13 @@ export default function Button({
   //analyticsHander contains two functions: Google Analytics event function & button event funtion.
   const analyticsHandler = e => {
     //Google Analytics function
-    ReactGA.event({
-      category: "Button",
-      action: analyticsString
-    });
+    if (process.env.NODE_ENV === "production") {
+      ReactGA.event({
+        category: "Button",
+        action: analyticsString
+      });
+    }
+
     // Button function
     if (props.onClick) {
       props.onClick(e);
