@@ -79,7 +79,7 @@ export default function ChannelCard({
                 {name}
               </p>
             </div>
-            <VideoStatus status={status.toLowerCase()} type="text" />
+            <VideoStatus status={status?.toLowerCase()} type="text" />
           </div>
           {/* ChannelCard background image */}
           <div className="relative flex flex-grow justify-center pb-16/9">

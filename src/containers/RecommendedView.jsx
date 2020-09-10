@@ -11,65 +11,78 @@ import Helmet from "react-helmet";
 import strings from "../helpers/localization";
 import useBookSearch from "../helpers/useBookSearch";
 
-function RecommendedChannels({ list, selectedPage }) {
+function RecommendedChannels({ selectedPage }) {
+  let tabs = [{ tab: strings.discover }, { tab: strings.trending }];
   const isCollapsed = useSelector(state => state.ui.isCollapsed);
   const alert = useSelector(state => state.ui.alert);
   const channels = useSelector(state => state.channels);
+  console.log(channels, "from selector");
   const { id: ownId, channelIds } = useSelector(state => state.self);
   const { defaultIcon } = useSelector(state => state.general);
 
   const [isLoading] = useState(false);
+  const [channelList, setChannelList] = useState([]);
 
-  let followingChannels = [];
-  let discoverChannels = [];
-  let trendingChannels = [];
-  const allChannelIds = Object.keys(channels);
-
-  channelIds
-    .map(channelId => ({
-      id: channelId,
-      ...channels[channelId],
-      icon: channels[channelId].icon || defaultIcon
-    }))
-    .forEach(channel => {
-      if (
-        channel.ownerId !== ownId &&
-        channel.owner_id !== ownId &&
-        channel.members
-      ) {
-        if (channel.members.includes(ownId)) {
-          followingChannels.push(channel);
+  useEffect(() => {
+    const allChannelIds = Object.keys(channels);
+    const discoverChannels = [];
+    const trendingChannels = [];
+    const followingChannels = [];
+    // Adds channels to "following"
+    channelIds
+      .map(channelId => ({
+        id: channelId,
+        ...channels[channelId],
+        icon: channels[channelId].icon || defaultIcon
+      }))
+      .forEach(channel => {
+        if (
+          channel.ownerId !== ownId &&
+          channel.owner_id !== ownId &&
+          channel.members
+        ) {
+          if (channel.members.includes(ownId)) {
+            followingChannels.push(channel);
+          }
         }
-      }
-    });
+      });
+    // Adds channels to "trending" and "discover"
+    allChannelIds
+      .map(channelId => {
+        return {
+          id: channelId,
+          ...channels[channelId],
+          icon: channels[channelId].icon || defaultIcon
+        };
+      })
+      .forEach(channel => {
+        if (channel.type === "channel") {
+          if (Math.random() < 0.5) {
+            // if (channel.speciality === "discover")
+            discoverChannels.push(channel);
+          } else {
+            // else if (channel.speciality === "trending")
+            trendingChannels.push(channel);
+          }
+        }
+      });
+    setChannelList(prevState => [
+      ...prevState,
+      { title: "Discover", channels: discoverChannels }
+    ]);
+    setChannelList(prevState => [
+      ...prevState,
+      { title: "Trending", channels: trendingChannels }
+    ]);
 
-  allChannelIds
-    .map(channelId => ({
-      id: channelId,
-      ...channels[channelId],
-      icon: channels[channelId].icon || defaultIcon
-    }))
-    .forEach(channel => {
-      if (channel.speciality === "discover") {
-        discoverChannels.push(channel);
-      } else if (channel.speciality === "trending") {
-        trendingChannels.push(channel);
-      }
-    });
+    // if (followingChannels.length > 0) {
+    //   tabs = [{ tab: strings.following }, ...tabs];
+    //   list.push({ title: "Following", channels: followingChannels });
+    //   initialTab = "# Following";
+    // }
+  }, [channelIds, channels, defaultIcon, ownId]);
 
-  // removing the seeded and putting in the actual following list
-  list = [];
-  list.push({ title: "Discover", channels: discoverChannels });
-  list.push({ title: "Trending", channels: trendingChannels });
-  let tabs = [{ tab: strings.discover }, { tab: strings.trending }];
-  let initialTab = "# Discover";
-
-  if (followingChannels.length > 0) {
-    tabs = [{ tab: strings.following }, ...tabs];
-    list.push({ title: "Following", channels: followingChannels });
-    initialTab = "# Following";
-  }
-  const [tabSelected, setTab] = useState(initialTab);
+  const [tabSelected, setTab] = useState("# Discover");
 
   // Infinite scroll
   // search is the Input Value. query is the search term triggered in handleSearch
@@ -155,7 +168,7 @@ function RecommendedChannels({ list, selectedPage }) {
                 <ChannelCardList isLoading />
               ) : (
                 <ChannelCardList
-                  channelList={list}
+                  channelList={channelList}
                   isCollapsed={isCollapsed}
                   tabSelected={tabSelected}
                 />
@@ -168,7 +181,7 @@ function RecommendedChannels({ list, selectedPage }) {
                   <VideoCardList isLoading />
                 ) : (
                   <VideoCardList
-                    videoList={list}
+                    videoList={channelList}
                     isCollapsed={isCollapsed}
                     tabSelected={tabSelected}
                   />
