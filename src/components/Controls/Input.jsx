@@ -2,14 +2,11 @@ import React from "react";
 import classnames from "classnames";
 import Button from "./Button";
 import YoutubeLogo from "../../assets/sources/youtube-logo.png";
-import VimeoLogo from "../../assets/sources/vimeo-logo.png";
 import CrunchyrollLogo from "../../assets/sources/crunchyroll-logo.png";
 import TwitchLogo from "../../assets/sources/twitch-logo.png";
 import InstagramLogo from "../../assets/sources/instagram-logo.png";
-import HuluLogo from "../../assets/sources/hulu-logo.png";
 import GfycatLogo from "../../assets/sources/gfycat-logo.png";
 import FacebookLogo from "../../assets/sources/facebook-logo.png";
-import DailymotionLogo from "../../assets/sources/dailymotion-logo.png";
 import SpotifyLogo from "../../assets/sources/spotify-logo.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import ControlHeader from "./ControlHeader";
@@ -17,15 +14,11 @@ import { getTextClass, getInputClasses } from "../../helpers/functions";
 
 const sources = [
   { source: "Youtube", icon: YoutubeLogo },
-  { source: "Vimeo", icon: VimeoLogo },
   { source: "Crunchyroll", icon: CrunchyrollLogo },
   { source: "Twitch", icon: TwitchLogo },
   { source: "Instagram", icon: InstagramLogo },
-  { source: "Hulu", icon: HuluLogo },
   { source: "Gfycat", icon: GfycatLogo },
   { source: "Facebook", icon: FacebookLogo },
-  { source: "Dailymotion", icon: DailymotionLogo },
-  // { source: "Twitter", icon: TwitterLogo },
   { source: "Spotify", icon: SpotifyLogo }
 ];
 
