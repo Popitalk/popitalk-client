@@ -52,10 +52,6 @@ export default function ChannelComment({
       <aside className="flex items-center flex-shrink-0 text-secondaryText">
         <ToggleIcon
           icons={{ default: ["far", "heart"], toggle: ["fa", "heart"] }}
-          colors={{
-            default: "text-secondaryText",
-            toggle: "text-notificationsColor"
-          }}
           className={{ icon: "text-lg focus:outline-none" }}
           status={liked}
           toggleStatus={stat => toggleLike(id, "comment", stat)}

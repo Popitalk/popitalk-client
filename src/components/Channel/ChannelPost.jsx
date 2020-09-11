@@ -126,10 +126,6 @@ export default function ChannelPost({
             <footer className="flex text-secondaryText text-xl space-x-6 pb-2 items-center">
               <ToggleIcon
                 icons={{ default: ["far", "heart"], toggle: ["fa", "heart"] }}
-                colors={{
-                  default: "text-secondaryText",
-                  toggle: "text-notificationsColor"
-                }}
                 status={liked}
                 toggleStatus={stat => toggleLike(id, "post", stat)}
                 className="bg-highlightBackground"

@@ -39,20 +39,6 @@ export default function Button({
   ...props
 }) {
   if (selectedColor) background = selectedColor;
-  const backgrounds = {
-    primary: "bg-gradient-br-button",
-    secondary: "bg-gradient-br-search",
-    cancel: "bg-gradient-br-cancel",
-    bgColor: "bg-gradient-br-bgColor",
-    gradient: "bg-gradient-r-primary"
-  };
-
-  const shapes = {
-    regular: "rounded-lg",
-    pill: "rounded-pill",
-    circle: "rounded-circle",
-    none: "rounded-sm"
-  };
 
   const styleNoneClasses = classnames({
     "transition transform ease-in-out hover:scale-105 duration-100": hoverable,
@@ -62,9 +48,19 @@ export default function Button({
 
   const actionButtonClasses = classnames({
     btn: true,
-    [`btn-${size}`]: true,
-    [backgrounds[background]]: true,
-    [shapes[shape]]: true,
+    "btn-sm": size === "sm",
+    "btn-md": size === "md",
+    "btn-lg": size === "lg",
+    "btn-xl": size === "xl",
+    "bg-gradient-br-button": background === "primary",
+    "bg-gradient-br-search": background === "secondary",
+    "bg-gradient-br-cancel": background === "cancel",
+    "bg-gradient-br-bgColor": background === "bgColor",
+    "bg-gradient-r-primary": background === "gradient",
+    "rounded-lg": shape === "regular",
+    "rounded-pill": shape === "pill",
+    "rounded-circle": shape === "circle",
+    "rounded-sm": shape === "none",
     "transition transform ease-in-out hover:scale-105 duration-100": true,
     "text-secondaryText": background === "bgColor",
     "btn-icon": icon && !shape,

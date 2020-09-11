@@ -4,7 +4,6 @@ import Button from "./Button";
 
 export default function ToggleIcon({
   icons,
-  colors,
   className,
   children,
   status,
@@ -16,9 +15,10 @@ export default function ToggleIcon({
   };
 
   const colorChange = classnames({
-    [colors.default]: !status,
-    [colors.toggle]: status
+    "text-secondaryText": !status,
+    "text-notificationsColor": status
   });
+
   return (
     <Button
       styleNone

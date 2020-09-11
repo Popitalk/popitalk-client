@@ -30,13 +30,11 @@ export default function VideoPanelCard({
   const [disableButton, setDisableButton] = useState();
   const [addButtonIcon, setAddButtonIcon] = useState("plus");
   const [removeButtonIcon, setRemoveButtonIcon] = useState("minus");
-  const sizes = {
-    sm: "max-w-2xs",
-    md: "max-w-md",
-    lg: "max-w-lg"
-  };
+
   const cardClasses = classnames({
-    [sizes[size]]: true,
+    "max-w-2xs": size === "sm",
+    "max-w-md": size === "md",
+    "max-w-lg": size === "lg",
     "w-full flex-shrink-0 items-center": true,
     [className]: className
   });
