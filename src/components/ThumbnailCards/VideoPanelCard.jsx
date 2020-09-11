@@ -17,6 +17,7 @@ export default function VideoPanelCard({
   type = "cancel",
   handleSkip,
   handleAddVideo,
+  handleAddedVideo,
   handleDeleteVideo,
   handleFindMore,
   url,
@@ -56,6 +57,7 @@ export default function VideoPanelCard({
       sourceId: id,
       videoInfo: JSON.stringify(videoInfo)
     });
+    handleAddedVideo();
     setDisableButton(true);
   };
   useEffect(() => {

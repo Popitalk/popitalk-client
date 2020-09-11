@@ -4,7 +4,14 @@ import VideoResults from "./ThumbnailCardLists/VideoResults";
 import strings from "../helpers/localization";
 
 function VideoSearch(
-  { searchTerm, searchResults, totalResults, handleSearch, handleAddVideo },
+  {
+    searchTerm,
+    searchResults,
+    totalResults,
+    handleSearch,
+    handleAddVideo,
+    handleAddedVideo
+  },
   ref
 ) {
   return (
@@ -26,6 +33,7 @@ function VideoSearch(
           totalResults={totalResults}
           handleLoadMoreResults={handleSearch}
           handleAddVideo={handleAddVideo}
+          handleAddedVideo={handleAddedVideo}
         />
       </div>
     </div>

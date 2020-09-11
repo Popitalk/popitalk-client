@@ -557,6 +557,12 @@ class Channel extends Component {
                     totalResults={totalResults}
                     handleSearch={handleSearch}
                     handleAddVideo={handleAddVideo}
+                    handleAddedVideo={() =>
+                      this.scrollRef.current.scrollTo({
+                        top: 0,
+                        behavior: "smooth"
+                      })
+                    }
                   />
                 )}
               </>
@@ -571,6 +577,12 @@ class Channel extends Component {
                 totalResults={totalResults}
                 handleSearch={handleSearch}
                 handleAddVideo={handleAddVideo}
+                handleAddedVideo={() =>
+                  this.scrollRef.current.scrollTo({
+                    top: 0,
+                    behavior: "smooth"
+                  })
+                }
                 queue={this.state.queueList}
                 handleSwapVideos={handleSwapVideos}
                 handleDeleteVideo={handleDeleteVideo}
