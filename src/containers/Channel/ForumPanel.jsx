@@ -14,7 +14,7 @@ const ForumPanel = (
     comments,
     saveDraft,
     savePost,
-    removePost,
+    openDeletePostModal,
     saveComment,
     draft,
     defaultAvatar,
@@ -59,7 +59,7 @@ const ForumPanel = (
         defaultAvatar={defaultAvatar}
         toggleLike={toggleLike}
         ownId={ownId}
-        removePost={removePost}
+        openDeletePostModal={openDeletePostModal}
         name={name}
         icon={icon}
         displayControls={displayControls}

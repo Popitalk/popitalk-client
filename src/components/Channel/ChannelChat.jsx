@@ -11,7 +11,7 @@ export default function ChannelChat({
   defaultAvatar,
   toggleLike,
   ownId,
-  removePost,
+  openDeletePostModal,
   name,
   icon,
   displayControls,
@@ -42,7 +42,7 @@ export default function ChannelChat({
               commentCount={post.commentCount}
               authorId={post.author.id}
               ownId={ownId}
-              removePost={removePost}
+              openDeletePostModal={openDeletePostModal}
               displayControls={displayControls}
               handleGetComments={handleGetComments}
             />

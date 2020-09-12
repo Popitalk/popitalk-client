@@ -17,7 +17,7 @@ import {
   deleteAdmin,
   addBan,
   deleteBan,
-  deletePost,
+  openDeletePostModal,
   followChannel,
   unfollowChannel,
   openProfileModal,
@@ -153,7 +153,6 @@ const mapDispatchToProps = (dispatch, { match }) => {
     handleRemoveAdmin: userId => dispatch(deleteAdmin({ channelId, userId })),
     handleAddBan: bannedId => dispatch(addBan({ channelId, bannedId })),
     handleRemoveBan: bannedId => dispatch(deleteBan({ channelId, bannedId })),
-    handleRemovePost: postId => dispatch(deletePost({ postId })),
     handleFollow: () => dispatch(followChannel(channelId)),
     handleUnfollow: () => dispatch(unfollowChannel(channelId)),
     openProfileModal: id => dispatch(openProfileModal(id)),
@@ -170,6 +169,7 @@ const mapDispatchToProps = (dispatch, { match }) => {
       dispatch(swapVideos({ channelId, oldIndex, newIndex })),
     handleGetChannel: () => dispatch(getChannel(channelId)),
     openDeleteChannelModal: () => dispatch(openDeleteChannelModal(channelId)),
+    openDeletePostModal: postId => dispatch(openDeletePostModal(postId)),
     handleChannelNotFound: () =>
       dispatch(setAlert("The channel / room you entered does not exist.")),
     handleGetComments: postId => dispatch(getComments(postId))
@@ -543,7 +543,7 @@ class Channel extends Component {
                     posts={this.props.posts}
                     saveDraft={this.props.handleSaveDraft}
                     savePost={this.props.handleSavePost}
-                    removePost={this.props.handleRemovePost}
+                    openDeletePostModal={this.props.openDeletePostModal}
                     saveComment={this.props.handleSaveComment}
                     draft={this.props.drafts}
                     defaultAvatar={defaultAvatar}

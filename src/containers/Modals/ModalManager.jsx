@@ -10,6 +10,7 @@ import RoomExistsContainer from "./RoomExistsContainer";
 import DeleteMessageContainer from "./DeleteMessageContainer";
 import ListUsersContainer from "./ListUsersContainer";
 import DeleteChannelContainer from "./DeleteChannelContainer";
+import DeletePostContainer from "./DeletePostContainer.jsx";
 import {
   MODAL_PROFILE,
   MODAL_EDIT_USER_SETTINGS,
@@ -19,7 +20,8 @@ import {
   MODAL_ROOM_EXISTS,
   MODAL_DELETE_MESSAGE,
   MODAL_LIST,
-  MODAL_DELETE_CHANNEL
+  MODAL_DELETE_CHANNEL,
+  MODAL_DELETE_POST
 } from "../../helpers/constants";
 
 const ModalComponents = {
@@ -31,7 +33,8 @@ const ModalComponents = {
   [MODAL_ROOM_EXISTS]: RoomExistsContainer,
   [MODAL_DELETE_MESSAGE]: DeleteMessageContainer,
   [MODAL_LIST]: ListUsersContainer,
-  [MODAL_DELETE_CHANNEL]: DeleteChannelContainer
+  [MODAL_DELETE_CHANNEL]: DeleteChannelContainer,
+  [MODAL_DELETE_POST]: DeletePostContainer
 };
 
 export default function ModalManager() {

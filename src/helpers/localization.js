@@ -143,6 +143,9 @@ let strings = new LocalizedStrings({
     comments: "Comments",
     channelWelcomePost:
       "This is the start! Make an awesome channel and have fun watching together!",
+    deletePost: "Delete post",
+    deletePostSubtitle:
+      "Are you sure you want to delete this Post? You cannot undo this action.",
     //CreateChannel > ChannelForm, ChannelFormSubmit
     selectChannelIcon: "Select Channel Icon",
     changeChannelIcon: "Change Channel Icon",
@@ -326,6 +329,8 @@ let strings = new LocalizedStrings({
     comment: "댓글",
     comments: "댓글",
     channelWelcomePost: "채널을 개설했습니다!",
+    deletePost: "포스트 삭세",
+    deletePostSubtitle: "포스트를 삭제하면 복구할 수 없습니다.",
     //CreateChannel > ChannelForm, ChannelFormSubmit
     selectChannelIcon: "채널 프사 업로드",
     changeChannelIcon: "채널 프사 변경",

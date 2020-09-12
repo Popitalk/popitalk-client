@@ -25,6 +25,7 @@ import {
   MODAL_ACCOUNT_SETTINGS,
   MODAL_DELETE_ACCOUNT,
   MODAL_DELETE_CHANNEL,
+  MODAL_DELETE_POST,
   MODAL_ROOM_EXISTS,
   VIDEO_RESULTS_PER_PAGE
 } from "../helpers/constants";
@@ -790,6 +791,9 @@ export const openDeleteMessageModal = createAction(
 );
 export const openDeleteChannelModal = createAction("modal/open", channelId => ({
   payload: { component: MODAL_DELETE_CHANNEL, channelId }
+}));
+export const openDeletePostModal = createAction("modal/open", PostId => ({
+  payload: { component: MODAL_DELETE_POST, PostId }
 }));
 export const openWatchingModal = createAction("modal/open", () => ({
   payload: { component: MODAL_WATCHING }

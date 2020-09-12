@@ -26,7 +26,7 @@ export default function ChannelPost({
   commentCount,
   ownId,
   authorId,
-  removePost,
+  openDeletePostModal,
   displayControls,
   handleGetComments,
   isLoading = false
@@ -94,7 +94,9 @@ export default function ChannelPost({
               </header>
               {displayControls && (
                 <PopupMenu
-                  options={[{ name: "Delete", handler: () => removePost(id) }]}
+                  options={[
+                    { name: "Delete", handler: () => openDeletePostModal(id) }
+                  ]}
                   disabled={ownId !== authorId}
                   className="-mr-3"
                 />
