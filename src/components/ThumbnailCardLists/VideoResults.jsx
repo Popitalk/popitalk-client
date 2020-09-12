@@ -9,7 +9,6 @@ export default function VideoResults({
   totalResults,
   handleLoadMoreResults,
   handleAddVideo,
-  handleAddedVideo,
   threshold = VIDEO_RESULTS_PER_PAGE
 }) {
   const [currThreshold, setCurrThreshold] = useState(threshold);
@@ -51,7 +50,6 @@ export default function VideoResults({
                 {...result}
                 type="add"
                 handleAddVideo={handleAddVideo}
-                handleAddedVideo={handleAddedVideo}
               />
             );
           } else {

@@ -429,7 +429,13 @@ class Channel extends Component {
     const defaultIcon = this.props.defaultIcon;
     const defaultAvatar = this.props.defaultAvatar;
     const handleDeleteVideo = this.props.handleDeleteVideo;
-    const handleAddVideo = this.props.handleAddVideo;
+    const handleAddVideo = videoData => {
+      this.props.handleAddVideo(videoData);
+      this.scrollRef.current.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+    };
     const handleSwapVideos = this.props.handleSwapVideos;
 
     const admins = channel.admins
@@ -559,12 +565,6 @@ class Channel extends Component {
                     totalResults={totalResults}
                     handleSearch={handleSearch}
                     handleAddVideo={handleAddVideo}
-                    handleAddedVideo={() =>
-                      this.scrollRef.current.scrollTo({
-                        top: 0,
-                        behavior: "smooth"
-                      })
-                    }
                   />
                 )}
               </>
@@ -579,12 +579,6 @@ class Channel extends Component {
                 totalResults={totalResults}
                 handleSearch={handleSearch}
                 handleAddVideo={handleAddVideo}
-                handleAddedVideo={() =>
-                  this.scrollRef.current.scrollTo({
-                    top: 0,
-                    behavior: "smooth"
-                  })
-                }
                 queue={this.state.queueList}
                 handleSwapVideos={handleSwapVideos}
                 handleDeleteVideo={handleDeleteVideo}

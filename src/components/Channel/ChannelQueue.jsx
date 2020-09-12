@@ -14,8 +14,7 @@ function ChannelQueue(
     totalResults,
     handleSearch,
     handleFindMore,
-    handleAddVideo,
-    handleAddedVideo
+    handleAddVideo
   },
   ref
 ) {
@@ -38,7 +37,6 @@ function ChannelQueue(
         totalResults={totalResults}
         handleSearch={handleSearch}
         handleAddVideo={handleAddVideo}
-        handleAddedVideo={handleAddedVideo}
       />
     </div>
   );
