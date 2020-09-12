@@ -159,6 +159,8 @@ let strings = new LocalizedStrings({
     manageAdmins: "Manage Admins",
     manageBannedUsers: "Manage Banned Users",
     deleteChannel: "Delete Channel",
+    deleteChannelSubtitle:
+      "Are you sure you want to delete your channel? You cannot undo this action.",
     // ContainerHeader
     friendRequestHeader: "Friend Requests",
     notificationHeader: "Notification",
@@ -340,6 +342,7 @@ let strings = new LocalizedStrings({
     manageAdmins: "관리자 설정",
     manageBannedUsers: "차단 목록",
     deleteChannel: "채널 삭제",
+    deleteChannelSubtitle: "채널을 삭제하면 복구할 수 없습니다.",
     // ContainerHeader
     friendRequestHeader: "친구 추가",
     notificationHeader: "알림",

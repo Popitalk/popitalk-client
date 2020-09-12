@@ -5,7 +5,7 @@ import strings from "../../helpers/localization";
 
 export default function ChannelSettingsSidebar({
   buttons,
-  handleDeleteChannel
+  openDeleteChannelModal
 }) {
   return (
     <div className="h-full py-8 px-6 justify-center bg-secondaryBackground rounded-xl shadow-xs flex flex-col justify-between">
@@ -13,7 +13,7 @@ export default function ChannelSettingsSidebar({
       <MenuButton
         danger={true}
         text={strings.deleteChannel}
-        onClick={handleDeleteChannel}
+        onClick={openDeleteChannelModal}
       />
     </div>
   );

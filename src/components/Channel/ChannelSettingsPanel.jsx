@@ -9,7 +9,7 @@ export default function ChannelSettingsPanel({
   followers,
   admins,
   bannedUsers,
-  handleDeleteChannel,
+  openDeleteChannelModal,
   handleProfile,
   initialChannelForm,
   handleChannelFormSubmit,
@@ -108,7 +108,7 @@ export default function ChannelSettingsPanel({
       <div className="flex-none h-full p-4">
         <ChannelSettingsSidebar
           buttons={buttons}
-          handleDeleteChannel={handleDeleteChannel}
+          openDeleteChannelModal={openDeleteChannelModal}
         />
       </div>
       <div className="flex w-full justify-center text-primaryText">

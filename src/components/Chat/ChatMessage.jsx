@@ -44,7 +44,7 @@ export default function ChatMessage({
   ) {
     return (
       // Unfused message
-      <div key={message.id} className="flex-col mt-8">
+      <div key={message.id} className="flex-col mt-6">
         <div className="flex items-center">
           <div className="flex h-12">
             <MessageHighlightSpan

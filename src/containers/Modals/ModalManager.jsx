@@ -9,6 +9,7 @@ import InviteFriendsContainer from "./InviteFriendsContainer";
 import RoomExistsContainer from "./RoomExistsContainer";
 import DeleteMessageContainer from "./DeleteMessageContainer";
 import ListUsersContainer from "./ListUsersContainer";
+import DeleteChannelContainer from "./DeleteChannelContainer";
 import {
   MODAL_PROFILE,
   MODAL_EDIT_USER_SETTINGS,
@@ -17,7 +18,8 @@ import {
   MODAL_INVITE,
   MODAL_ROOM_EXISTS,
   MODAL_DELETE_MESSAGE,
-  MODAL_LIST
+  MODAL_LIST,
+  MODAL_DELETE_CHANNEL
 } from "../../helpers/constants";
 
 const ModalComponents = {
@@ -28,7 +30,8 @@ const ModalComponents = {
   [MODAL_INVITE]: InviteFriendsContainer,
   [MODAL_ROOM_EXISTS]: RoomExistsContainer,
   [MODAL_DELETE_MESSAGE]: DeleteMessageContainer,
-  [MODAL_LIST]: ListUsersContainer
+  [MODAL_LIST]: ListUsersContainer,
+  [MODAL_DELETE_CHANNEL]: DeleteChannelContainer
 };
 
 export default function ModalManager() {

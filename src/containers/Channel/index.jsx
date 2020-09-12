@@ -18,10 +18,10 @@ import {
   addBan,
   deleteBan,
   deletePost,
-  deleteChannel,
   followChannel,
   unfollowChannel,
   openProfileModal,
+  openDeleteChannelModal,
   openListModal,
   searchVideos,
   addVideo,
@@ -169,7 +169,7 @@ const mapDispatchToProps = (dispatch, { match }) => {
     handleSwapVideos: ({ oldIndex, newIndex }) =>
       dispatch(swapVideos({ channelId, oldIndex, newIndex })),
     handleGetChannel: () => dispatch(getChannel(channelId)),
-    handleDeleteChannel: () => dispatch(deleteChannel(channelId)),
+    openDeleteChannelModal: () => dispatch(openDeleteChannelModal(channelId)),
     handleChannelNotFound: () =>
       dispatch(setAlert("The channel / room you entered does not exist.")),
     handleGetComments: postId => dispatch(getComments(postId))
@@ -612,7 +612,7 @@ class Channel extends Component {
                 addBanHandler={this.props.handleAddBan}
                 removeBanHandler={this.props.handleRemoveBan}
                 handleProfile={id => this.props.openProfileModal(id)}
-                handleDeleteChannel={this.props.handleDeleteChannel}
+                openDeleteChannelModal={this.props.openDeleteChannelModal}
               />
             )}
           </div>
