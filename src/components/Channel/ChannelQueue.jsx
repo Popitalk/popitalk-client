@@ -1,5 +1,4 @@
 import React from "react";
-import "../VideoStatus.css";
 import VideoSearch from "../VideoSearch";
 import ChannelListQueue from "../ThumbnailCardLists/ChannelListQueue";
 import strings from "../../helpers/localization";

@@ -121,7 +121,7 @@ module.exports = {
     gradients: {
       primary: ["#76BDFF 20.56%", "#FF66FE 51.9%", "#FFC4AB 89.93%"],
       button: ["#5ABEFC 0%", "#009DFF 100%"],
-      bgColor: "#F5F5F5",
+      bgColor: ["#F5F5F5 0%", "#F5F5F5 100%"],
       search: ["#98E4FA 0%", "#00C3FF 100%"],
       cancel: ["#FC6D5A 0%", "#FA3535 100%"],
       upload: ["#03f5ff 0%", "#f500ff 100%"],

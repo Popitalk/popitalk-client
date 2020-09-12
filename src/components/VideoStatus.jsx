@@ -1,6 +1,5 @@
 import React from "react";
 import Button from "./Controls/Button";
-// import "./VideoStatus.css";
 import strings from "../helpers/localization";
 
 export default function VideoStatus({
@@ -29,7 +28,8 @@ export default function VideoStatus({
             actionButton
             size={size}
             shape={shape}
-            className="btn-paused shadow-md z-10"
+            className="shadow-md z-10"
+            background="bgColor"
           >
             {strings.paused}
           </Button>
@@ -39,7 +39,8 @@ export default function VideoStatus({
             actionButton
             size={size}
             shape={shape}
-            className="btn-paused shadow-md z-10"
+            className="shadow-md z-10"
+            background="bgColor"
           >
             {statusMessage}
           </Button>
@@ -51,7 +52,7 @@ export default function VideoStatus({
     return (
       <>
         {status === "playing" && (
-          <span className="bg-gradient-r-primary rounded-lg px-2 py-1 shadow-md text-tertiaryText text-xs font-semibold select-none z-10">
+          <span className="bg-gradient-r-primary rounded-md px-2 py-1 shadow-md text-tertiaryText text-xs font-semibold select-none z-10">
             {strings.playing}
           </span>
         )}

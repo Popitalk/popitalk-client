@@ -1,5 +1,4 @@
 import React, { useState, useRef, useEffect } from "react";
-import "../VideoStatus.css";
 import AvatarIcon from "../Controls/AvatarIcon";
 import ChannelComment from "./ChannelComment";
 import NewChannelComment from "./NewChannelComment";

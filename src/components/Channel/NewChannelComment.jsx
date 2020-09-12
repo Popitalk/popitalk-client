@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import "../VideoStatus.css";
 
 export default function NewChannelComment({
   postId,

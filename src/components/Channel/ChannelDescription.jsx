@@ -1,6 +1,5 @@
 import React from "react";
 import Button from "../Controls/Button";
-import "../VideoStatus.css";
 import AvatarIcon from "../Controls/AvatarIcon";
 import { openProfileModal } from "../../redux/actions";
 import { useDispatch } from "react-redux";

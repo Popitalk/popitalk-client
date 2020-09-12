@@ -1,5 +1,4 @@
 import React from "react";
-import "../VideoStatus.css";
 import ChannelPost from "./ChannelPost";
 import moment from "moment";
 import strings from "../../helpers/localization";
