@@ -3,7 +3,7 @@ import Linkify from "react-linkify";
 
 export default function MessageContent({ message }) {
   return (
-    <p
+    <div
       className={`w-64 break-words text-sm py-1 ${
         message?.type?.toLowerCase() === "pending" ||
         message?.type?.toLowerCase() === "rejected"
@@ -31,6 +31,6 @@ export default function MessageContent({ message }) {
       ) : (
         <Linkify>{message.content}</Linkify>
       )}
-    </p>
+    </div>
   );
 }
