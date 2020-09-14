@@ -4,6 +4,7 @@ import AvatarIcon from "../Controls/AvatarIcon";
 import { openProfileModal } from "../../redux/actions";
 import { useDispatch } from "react-redux";
 import strings from "../../helpers/localization";
+import { Helmet } from "react-helmet";
 
 export default function ChannelDescription({
   id,
@@ -22,6 +23,12 @@ export default function ChannelDescription({
   const dispatch = useDispatch();
   return (
     <div className="flex flex-col mb-12">
+      <Helmet>
+        <meta charSet="UFT-8" />
+        <title>{name} - Popitalk</title>
+        <meta name="description" content={description} />
+        <link rel="canonical" href={icon} />
+      </Helmet>
       <div className="flex justify-end my-4">
         {isMember ? (
           <Button

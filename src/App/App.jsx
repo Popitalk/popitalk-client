@@ -19,6 +19,7 @@ import Channel from "../containers/Channel";
 import "../components/ScrollBars.css";
 import ReactGa from "react-ga";
 import Helmet from "react-helmet";
+import logo from "../assets/logo.png";
 
 const RouteWrapper = ({ leftPanel, children }) => {
   return (
@@ -79,6 +80,7 @@ export default function App() {
           name="description"
           content="Popitalk is exactly what you need with your friends to watch together. We believe in making texting more fun and enjoyable."
         />
+        <link rel="canonical" href={logo} />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Helmet>
       <ModalManager />
