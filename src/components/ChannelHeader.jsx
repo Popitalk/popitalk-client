@@ -2,6 +2,7 @@ import React from "react";
 import RoomIcon from "./Controls/RoomIcon";
 import { Link, useLocation } from "react-router-dom";
 import strings from ".././helpers/localization";
+import Button from "./Controls/Button";
 
 export default function ChannelHeader({
   id,
@@ -10,7 +11,9 @@ export default function ChannelHeader({
   icon,
   videoStatus,
   type = "channel",
-  isLoading
+  isLoading,
+  handleFollow,
+  isMember
 }) {
   let navButtons = [
     { name: strings.video, endpoint: "video" },
@@ -67,7 +70,7 @@ export default function ChannelHeader({
         </div>
       )}
       {type === "channel" && (
-        <nav className="flex flex-shrink-0 truncate">
+        <nav className="flex flex-shrink-0 truncate items-center">
           {navButtons.map((button, idx) => {
             let className =
               "mx-1 font-semibold no-underline focus:outline-none p-2 hover:text-highlightText";
@@ -88,6 +91,18 @@ export default function ChannelHeader({
               </Link>
             );
           })}
+          {!isMember && (
+            <Button
+              actionButton
+              size="sm"
+              shape="pill"
+              className="mx-2 h-8"
+              onClick={handleFollow}
+              analyticsString="Follow Button: Channel Description"
+            >
+              {strings.followButton}
+            </Button>
+          )}
         </nav>
       )}
     </div>

@@ -498,6 +498,8 @@ class Channel extends Component {
               isAdmin={editor}
               name={this.pickRoomName()}
               icon={channel.icon || defaultIcon}
+              handleFollow={this.props.handleFollow}
+              isMember={isMember}
               videoStatus={this.state.playerStatus.status.toLowerCase()}
               type={type}
             />
