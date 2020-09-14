@@ -48,7 +48,7 @@ export default function VideoSection({
                   username={friend.username}
                   avatar={friend.avatar}
                   imageClick={() => openProfile(friend.id)}
-                  className="img h-8 w-8 rounded-circle transition transform ease-in-out hover:scale-110 duration-100"
+                  className="img h-8 w-8 rounded-circle transition transform ease-in-out hover:scale-110 duration-100 cursor-pointer"
                   tooltip={friend.username}
                   tooltipPlace="bottom"
                 />
