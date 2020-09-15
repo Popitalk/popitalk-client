@@ -7,10 +7,10 @@ let strings = new LocalizedStrings({
     // Moment.JS
     location: "en",
     // MataData & WelcomePage & SiteHeaderWelcome
-    loginPageTitle: "Popitalk - Log In or Sign Up",
+    loginPageTitle: "Popitalk - Watch together - Log In or Sign Up",
     loginPageDescription:
       "Create an account or log into Popitalk. It's FREE. Connect with friends, family and start watching together!",
-    title: "Popitalk",
+    title: "Popitalk - Watch together",
     description:
       "Watch together! Connect with friends, family and start watching together! We believe in making texting more fun and enjoyable.",
     createChannelTitle: "Create Channel - Popitalk",
