@@ -7,6 +7,7 @@ import useSound from "use-sound";
 import notificationSound from "../../assets/sounds/pop-sound.mp3";
 import { useInterval } from "react-use";
 import { useWindowSize } from "../../helpers/functions";
+import strings from "../../helpers/localization";
 
 export default function LeftPanel({
   yourChannels,
@@ -73,9 +74,6 @@ export default function LeftPanel({
 
   return (
     <Fragment>
-      <Helmet>
-        <link rel="icon" type="image/png" href={isFavicon} target="_blank" />
-      </Helmet>
       <div
         className={`${
           isCollapsed || isCollapsedResponsive ? "hidden" : ""
@@ -136,6 +134,13 @@ export default function LeftPanel({
           isCollapsedResponsive={isCollapsedResponsive}
         />
       </div>
+      <Helmet>
+        <meta charSet="UFT-8" />
+        <title>{strings.mainTitle}</title>
+        <meta name="description" content={strings.mainDescription} />
+        <link rel="icon" type="image/png" href={isFavicon} target="_blank" />
+        <meta name="keywords" content={strings.mainKeywords} />
+      </Helmet>
     </Fragment>
   );
 }

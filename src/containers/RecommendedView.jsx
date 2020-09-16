@@ -64,12 +64,6 @@ function RecommendedChannels({ selectedPage }) {
 
   return (
     <div className="relative py-4 mx-auto w-full max-w-screen-xl rounded-md bg-secondaryBackground">
-      <Helmet>
-        <meta charSet="UFT-8" />
-        <title>{strings.title}</title>
-        <meta name="description" content={strings.description} />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-      </Helmet>
       {/* Alert to indicate invalid channel URL */}
       <div className="fixed mx-2 -my-4 z-50">
         {!!alert && <Alert duration={3000}>{alert}</Alert>}
@@ -145,6 +139,12 @@ function RecommendedChannels({ selectedPage }) {
           )}
         </div>
       )}
+      <Helmet>
+        <meta charSet="UFT-8" />
+        <title>{strings.mainTitle}</title>
+        <meta name="description" content={strings.mainDescription} />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+      </Helmet>
     </div>
   );
 }

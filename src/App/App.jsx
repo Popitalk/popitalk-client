@@ -20,6 +20,7 @@ import "../components/ScrollBars.css";
 import ReactGa from "react-ga";
 import Helmet from "react-helmet";
 import logo from "../assets/logo.png";
+import strings from "../helpers/localization";
 
 const RouteWrapper = ({ leftPanel, children }) => {
   return (
@@ -73,20 +74,6 @@ export default function App() {
 
   return (
     <>
-      <Helmet>
-        <meta charSet="UFT-8" />
-        <title>Popitalk - Watch Together!</title>
-        <meta
-          name="description"
-          content="Popitalk is exactly what you need with your friends to watch together. We believe in making texting more fun and enjoyable."
-        />
-        <link rel="canonical" href={logo} />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta
-          name="keywords"
-          content="watch, together, with, friends, youtube, anime, videos, in, sync, at, the, same, time, chat, rabbit, w2g, watch2gether, watchtogether"
-        />
-      </Helmet>
       <ModalManager />
       <div className="h-screen flex flex-col bg-primaryBackground">
         <div className="h-auto">
@@ -142,6 +129,14 @@ export default function App() {
           <Redirect to="/channels" />
         </Switch>
       </div>
+      <Helmet>
+        <meta charSet="UFT-8" />
+        <title>{strings.mainTitle}</title>
+        <meta name="description" content={strings.mainDescription} />
+        <link rel="canonical" href={logo} />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="keywords" content={strings.mainKeywords} />
+      </Helmet>
     </>
   );
 }

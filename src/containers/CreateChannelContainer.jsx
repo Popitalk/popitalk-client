@@ -11,12 +11,6 @@ export default function CreateChannelContainer() {
 
   return (
     <>
-      <Helmet>
-        <meta charSet="UFT-8" />
-        <title>{strings.createChannelTitle}</title>
-        <meta name="description" content={strings.createChannelDescription} />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-      </Helmet>
       <ChannelForm
         initial={{
           name: "",
@@ -30,6 +24,12 @@ export default function CreateChannelContainer() {
         loading={addChannelApi.loading}
         error={addChannelApi.status === "error" ? addChannelApi.error : false}
       />
+      <Helmet>
+        <meta charSet="UFT-8" />
+        <title>{strings.createChannelTitle}</title>
+        <meta name="description" content={strings.createChannelDescription} />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+      </Helmet>
     </>
   );
 }

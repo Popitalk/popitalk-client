@@ -7,12 +7,6 @@ import strings from "../helpers/localization";
 function WelcomePage(props) {
   return (
     <div className="w-full h-full">
-      <Helmet>
-        <meta charSet="UFT-8" />
-        <title>{strings.loginPageTitle}</title>
-        <meta name="description" content={strings.loginPageDescription} />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-      </Helmet>
       <section
         className="sm:flex-row sm:py-0 sm:px-16
         // flex flex-col bg-primaryBackground justify-around items-center px-8 py-8 shadow-xl"
@@ -53,6 +47,13 @@ function WelcomePage(props) {
         </div>
       </section>
       <Footer />
+      <Helmet>
+        <meta charSet="UFT-8" />
+        <title>{strings.loginPageTitle}</title>
+        <meta name="description" content={strings.loginPageDescription} />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="keywords" content={strings.mainKeywords} />
+      </Helmet>
     </div>
   );
 }

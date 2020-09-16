@@ -45,6 +45,7 @@ import {
 } from "../../helpers/videoSyncing";
 import Helmet from "react-helmet";
 import { v4 as uuidv4 } from "uuid";
+import strings from "../../helpers/localization";
 
 const CHANNEL_TYPE = "channel";
 const ROOM_TYPE = "room";
@@ -477,20 +478,6 @@ class Channel extends Component {
     return (
       <>
         <div className="flex flex-col bg-secondaryBackground w-full overflow-x-hidden">
-          {/* Google Search Index & SEO */}
-          <Helmet>
-            <meta charSet="UFT-8" />
-            <title>{this.pickRoomName()} - Popitalk</title>
-            <meta
-              name="description"
-              content={type === CHANNEL_TYPE && channel.description}
-            />
-            {type === ROOM_TYPE && <meta name="robots" content="noindex" />}
-            <meta
-              name="viewport"
-              content="width=device-width, initial-scale=1"
-            />
-          </Helmet>
           {/* Channel & Room structure */}
           <div className="w-full h-12 bg-primaryBackground">
             <ChannelHeader
@@ -620,6 +607,18 @@ class Channel extends Component {
           </div>
         </div>
         {tab !== SETTINGS_TAB && <>{this.props.chatPanel}</>}
+        {/* Google Search Index & SEO */}
+        <Helmet>
+          <meta charSet="UFT-8" />
+          <title>
+            {this.pickRoomName()} · {strings.mainTitle}
+          </title>
+          <meta
+            name="description"
+            content={channel.description + " " + strings.mainDescription}
+          />
+          <meta name="viewport" content="width=device-width, initial-scale=1" />
+        </Helmet>
       </>
     );
   }

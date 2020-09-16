@@ -4,20 +4,23 @@ import LocalizedStrings from "react-localization";
 let strings = new LocalizedStrings({
   //  Default - English  //
   en: {
-    // Moment.JS
-    location: "en",
-    // MataData & WelcomePage & SiteHeaderWelcome
+    // SEO (MataData & WelcomePage & SiteHeaderWelcome)
+    mainTitle: "Popitalk - Watch together",
+    mainDescription:
+      "Watch youtube, twitch, anime, and cruncyroll together with friends on Popitalk. Watch at the same time in sync while chatting. Popitalk is exactly what you need with your friends to watch together. Create a free account, add friends and start watching together today!",
+    mainKeywords:
+      "watch, together, with, friends, youtube, anime, videos, in, sync, at, the, same, time, chat, rabbit, w2g, watch2gether, watchtogether",
     loginPageTitle: "Popitalk - Watch together - Log In or Sign Up",
     loginPageDescription:
-      "Create an account or log into Popitalk. It's FREE. Connect with friends, family and start watching together!",
-    title: "Popitalk - Watch together",
-    description:
-      "Watch together! Connect with friends, family and start watching together! We believe in making texting more fun and enjoyable.",
-    createChannelTitle: "Create Channel - Popitalk",
+      "Watch youtube, twitch, anime, and cruncyroll together with friends on Popitalk. Watch at the same time in sync while chatting. Popitalk is exactly what you need with your friends to watch together. Create a free account, add friends and start watching together today!",
+    createChannelTitle: "Create Channel - Popitalk - Watch together",
     createChannelDescription:
-      "Create your own channel on Popitalk. Add videos to up next and enjoy your time with followers! We believe in making texting more fun and enjoyable.",
+      "Create a channel on Popitalk. Watch youtube, twitch, anime, and cruncyroll together with friends on Popitalk. Watch at the same time in sync while chatting. Popitalk is exactly what you need with your friends to watch together. Create a free account, add friends and start watching together today!",
     loginUsername: "Username or email",
     loginPassword: "Password",
+
+    // Moment.JS
+    location: "en",
     // CreateNewAccountForm & EditInformationForm & EditBirthdayForm
     createNewAccountTitle: "Create a new account",
     createNewAccountSubtitle: "Get the full experience. It's FREE!",
@@ -192,12 +195,14 @@ let strings = new LocalizedStrings({
     // Moment.JS
     location: "ko",
     // WelcomePage & SiteHeaderWelcome
-    loginPageTitle: "Popitalk - 로그인 또는 회원가입",
+    mainTitle: "Popitalk - 같이보는 TV",
+    mainDescription:
+      "Popitalk으로 친구와 가족들과 유튜브 같이 시청하고 채팅해요. 새로운 채널을 구독하고 재미있는 영상을 시청하세요",
+    mainKeywords:
+      "watch, together, with, friends, youtube, anime, videos, in, sync, at, the, same, time, chat, rabbit, w2g, watch2gether, watchtogether",
+    loginPageTitle: "Popitalk - 같이보는 TV - 로그인 또는 회원가입",
     loginPageDescription:
       "Popitalk 계정을 만들거나 로그인하세요. 친구, 가족, 아는 사람들과 유튜브 같이 시청하고 채팅해요.",
-    title: "포피톡",
-    description:
-      "Popitalk으로 친구와 가족들과 유튜브 같이 시청하고 채팅해요. 새로운 채널을 구독하고 재미있는 영상을 시청하세요",
     createChannelTitle: "채널 만들기 - Popitalk",
     createChannelDescription:
       "포피톡에서 채널을 개설하세요. 재미있는 영상들을 재생하고 팔로워들과 소통하세요.",
