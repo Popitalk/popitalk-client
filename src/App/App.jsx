@@ -82,6 +82,10 @@ export default function App() {
         />
         <link rel="canonical" href={logo} />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta
+          name="keywords"
+          content="watch, together, with, friends, youtube, anime, videos, in, sync, at, the, same, time, chat, rabbit, w2g, watch2gether, watchtogether"
+        />
       </Helmet>
       <ModalManager />
       <div className="h-screen flex flex-col bg-primaryBackground">
