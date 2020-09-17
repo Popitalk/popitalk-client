@@ -6,9 +6,9 @@ export default function SignupSection({ id }) {
     <div className="w-full h-auto bg-gradient-r-primary pb-8">
       <div className="flex flex-col w-full h-full bg-primaryBackground shadow-lg rounded-b-lg p-20">
         <div className="flex flex-col w-full justify-center items-center my-8">
-          <h2 className="text-3xl font-bold text-primaryText sm:p-12 p-4">
+          <h1 className="text-3xl font-bold text-primaryText sm:p-12 p-4">
             Watch Videos and listen to Music, together.
-          </h2>
+          </h1>
           <div className="grid sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 w-full gap-4 gap-y-12 lg:gap-y-16 md:gap-y-12 sm:gap-y-12 py-8 px-0 md:px-20">
             <DescriptionCard
               title="Watch together"
