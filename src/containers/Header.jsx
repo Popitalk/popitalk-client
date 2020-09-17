@@ -68,7 +68,7 @@ export default function HeaderContainer() {
         deleteAccountHandler={deleteAccountDispatcher}
         logoutHandler={() => {
           dispatch(logout());
-          history.push("/welcome");
+          history.push("/");
         }}
       />
     );

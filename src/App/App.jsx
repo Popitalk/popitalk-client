@@ -80,14 +80,15 @@ export default function App() {
           <Header />
         </div>
         <Switch>
+          <Route exact path="/sitemap.xml" />
           {!loggedIn && (
             <>
-              <Route exact path="/welcome">
+              <Route exact path="/">
                 <div className="h-full overflow-y-auto">
                   <CreateNewAccountContainer component={WelcomePage} />
                 </div>
               </Route>
-              <Redirect to="/welcome" />
+              <Redirect to="/" />
             </>
           )}
           <Route exact path="/create">
