@@ -80,7 +80,6 @@ export default function App() {
           <Header />
         </div>
         <Switch>
-          <Route exact path="/sitemap.xml" />
           {!loggedIn && (
             <>
               <Route exact path="/">
