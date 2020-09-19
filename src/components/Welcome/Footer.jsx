@@ -90,6 +90,14 @@ function Footer() {
                 {strings.youtube}
               </a>
             </li>
+            <li>
+              <a
+                className="text-tertiaryText no-underline"
+                href="https://www.facebook.com/popitalk"
+              >
+                {strings.facebook}
+              </a>
+            </li>
           </ul>
         </div>
       </div>

@@ -2,7 +2,7 @@ import React from "react";
 import CreateNewAccountForm from "../components/Forms/CreateNewAccountForm";
 import Helmet from "react-helmet";
 import strings from "../helpers/localization";
-import SignupSection from "../components/Welcome/DescriptionSection";
+import DescriptionSection from "../components/Welcome/DescriptionSection";
 import WelcomeVideo from "../components/Welcome/WelcomeVideo";
 import Footer from "../components/Welcome/Footer";
 
@@ -21,7 +21,7 @@ function WelcomePage(props) {
           <CreateNewAccountForm {...props} />
         </div>
       </section>
-      <SignupSection />
+      <DescriptionSection />
       <Footer />
       <Helmet>
         <meta charSet="UFT-8" />

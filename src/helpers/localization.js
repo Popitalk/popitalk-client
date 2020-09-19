@@ -57,6 +57,7 @@ let strings = new LocalizedStrings({
     discord: "Discord",
     twitter: "Twitter",
     youtube: "Youtube",
+    facebook: "Facebook",
     // Buttons
     loginButton: "Log In",
     createNewAccountButton: "Sign Up",
@@ -246,6 +247,7 @@ let strings = new LocalizedStrings({
     discord: "디스코드",
     twitter: "트위터",
     youtube: "유튜브",
+    facebook: "페이스북",
     // Buttons
     loginButton: "로그인",
     createNewAccountButton: "가입하기",
