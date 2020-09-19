@@ -618,6 +618,7 @@ class Channel extends Component {
             content={channel.description + " " + strings.mainDescription}
           />
           <meta name="viewport" content="width=device-width, initial-scale=1" />
+          <meta name="keywords" content={strings.mainKeywords} />
         </Helmet>
       </>
     );

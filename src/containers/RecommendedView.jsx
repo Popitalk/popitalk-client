@@ -144,6 +144,7 @@ function RecommendedChannels({ selectedPage }) {
         <title>{strings.mainTitle}</title>
         <meta name="description" content={strings.mainDescription} />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="keywords" content={strings.mainKeywords} />
       </Helmet>
     </div>
   );

@@ -29,6 +29,7 @@ export default function CreateChannelContainer() {
         <title>{strings.createChannelTitle}</title>
         <meta name="description" content={strings.createChannelDescription} />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="keywords" content={strings.mainKeywords} />
       </Helmet>
     </>
   );
