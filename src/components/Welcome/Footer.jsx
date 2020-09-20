@@ -32,6 +32,9 @@ function Footer() {
                 {strings.contact}
               </a>
             </li>
+            <li>
+              <a href="https://www.saashub.com/popitalk-status">Status Page</a>
+            </li>
           </ul>
         </div>
         <div className="space-y-4 text-center">
