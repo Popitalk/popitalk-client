@@ -11,7 +11,8 @@ export default function ChatPanel({
   followersCount,
   isRoom,
   isGifsOpen,
-  updateGifsOpen
+  updateGifsOpen,
+  isMember
 }) {
   return (
     <div className="w-84 h-full bg-primaryBackground flex flex-col">
@@ -33,7 +34,13 @@ export default function ChatPanel({
         </p>
       )}
       {isGifsOpen ? <GifTable updateGifsOpen={updateGifsOpen} /> : null}
-      <ChatActions updateGifsOpen={updateGifsOpen} isGifsOpen={isGifsOpen} />
+      {isMember ? (
+        <ChatActions updateGifsOpen={updateGifsOpen} isGifsOpen={isGifsOpen} />
+      ) : (
+        <div>
+          <h1>You need to follow the channel to chat.</h1>
+        </div>
+      )}
     </div>
   );
 }
