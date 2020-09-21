@@ -128,10 +128,11 @@ let strings = new LocalizedStrings({
     unmute: "Unmute",
     fullScreen: "Full screen",
     playing: "Playing",
-    // Chat Header
+    // Chat Header & ChatAction
     roomMembers: "room members",
     followers: "followers",
     chatInput: "Type a message...",
+    chatDisabledText: "Follow the channel to send a message.",
     // SortableList & ChannelQueue & VideoMinimalQueueCard
     findMoreVideos: "Search for videos",
     manageUpNext: "Manage videos up next",
@@ -322,6 +323,7 @@ let strings = new LocalizedStrings({
     roomMembers: "대화상대",
     followers: "팔로워",
     chatInput: "메시지를 작성하세요...",
+    chatDisabledText: "팔로우를 해야 메시지를 보낼 수 있습니다.",
     // SortableList
     findMoreVideos: "더 많은 영상을 검색하세요",
     manageUpNext: "재생 목록을 관리하세요",

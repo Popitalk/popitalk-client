@@ -3,6 +3,7 @@ import ChatHeader from "./ChatHeader";
 import ChatMessages from "./ChatMessages";
 import ChatActions from "./ChatActions";
 import GifTable from "./GifTable";
+import strings from "../../helpers/localization";
 
 export default function ChatPanel({
   channelId,
@@ -37,8 +38,8 @@ export default function ChatPanel({
       {isMember ? (
         <ChatActions updateGifsOpen={updateGifsOpen} isGifsOpen={isGifsOpen} />
       ) : (
-        <div>
-          <h1>You need to follow the channel to chat.</h1>
+        <div className="h-18 w-full flex bg-secondaryBackground text-sm text-secondaryText items-center justify-center cursor-not-allowed select-none">
+          <h1>{strings.chatDisabledText}</h1>
         </div>
       )}
     </div>

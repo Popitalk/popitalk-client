@@ -33,7 +33,12 @@ function Footer() {
               </a>
             </li>
             <li>
-              <a href="https://www.saashub.com/popitalk-status">Status Page</a>
+              <a
+                className="text-tertiaryText no-underline"
+                href="https://www.saashub.com/popitalk-status"
+              >
+                Status Page
+              </a>
             </li>
           </ul>
         </div>
