@@ -84,7 +84,7 @@ export default function SiteHeaderWelcome({
                     onChange={e => setUsername(e.target.value)}
                     disabled={apiLoading}
                     onKeyDown={e => {
-                      if (e.keyCode === 13) {
+                      if (e.key === "Enter") {
                         handleLogin();
                       }
                     }}
@@ -107,7 +107,7 @@ export default function SiteHeaderWelcome({
                     onChange={e => setPassword(e.target.value)}
                     disabled={apiLoading}
                     onKeyDown={e => {
-                      if (e.keyCode === 13) {
+                      if (e.key === "Enter") {
                         handleLogin();
                       }
                     }}

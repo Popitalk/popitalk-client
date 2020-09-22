@@ -34,10 +34,10 @@ export default function TagInput({
   );
 
   const detectKeyPress = e => {
-    if (e.keyCode === 13) {
+    if (e.key === "Enter") {
       handleEnter();
       e.preventDefault();
-    } else if (e.keyCode === 8 && input.length === 0 && tags.length > 0) {
+    } else if (e.key === 8 && input.length === 0 && tags.length > 0) {
       handleCancel(tags[tags.length - 1].id);
     }
   };

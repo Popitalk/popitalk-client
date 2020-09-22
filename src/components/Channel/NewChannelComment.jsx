@@ -10,7 +10,7 @@ export default function NewChannelComment({
 
   const handleSubmit = e => {
     // submit on Enter and not when shift+Enter
-    if (e.keyCode === 13 && !e.shiftKey) {
+    if (e.key === "Enter" && !e.shiftKey) {
       e.preventDefault();
       saveComment(value, postId);
       setValue("");

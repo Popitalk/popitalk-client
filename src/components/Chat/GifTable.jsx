@@ -91,7 +91,7 @@ export default function GifTable({ updateGifsOpen }) {
           dispatch(getSearchGifs({ term: search, offset: 0 }));
         }}
         onKeyDown={e => {
-          if (e.keyCode === 13) {
+          if (e.key === "Enter") {
             dispatch(setDisplay(gifsDisplay.searchResults));
             dispatch(getSearchGifs({ term: search, offset: 0 }));
           }
