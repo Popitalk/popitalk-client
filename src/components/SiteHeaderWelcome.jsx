@@ -13,7 +13,8 @@ export default function SiteHeaderWelcome({
 
   const [signup, signupStatus] = useState(false);
 
-  const handleLogin = () => {
+  const handleLogin = e => {
+    if (e) e.preventDefault();
     dispatchLogin(username, password);
     setUsername("");
     setPassword("");
