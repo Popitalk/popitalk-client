@@ -83,10 +83,6 @@ export default function GifTable({ updateGifsOpen }) {
         placeholder={strings.searchGifInput}
         onChange={e => setSearch(e.target.value)}
         onClick={() => {
-          console.log(
-            "sends a call to the server to return gifs by using giphy search api endpoint with keywords: ",
-            search
-          );
           dispatch(setDisplay(gifsDisplay.searchResults));
           dispatch(getSearchGifs({ term: search, offset: 0 }));
         }}

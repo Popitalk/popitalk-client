@@ -45,7 +45,6 @@ function ChatActions(props) {
   };
 
   const handleChange = e => {
-    console.log(e.key);
     if (e.key === "Enter" && !e.shiftKey) {
       e.preventDefault();
       handleSend(e);
