@@ -45,10 +45,11 @@ const wsUrl =
     : `wss://ws.popitalk.com`;
 
 let socket;
-let interval;
 // Timeout for heartbeat(), if it runs out, the socket is closed.
 // Runs out if does not receive validateSession.fulfilled action in heartbeatInterval
 let timeout;
+let timeout2;
+let reconnectionCount = 0;
 
 const websocketMiddleware = () => store => next => action => {
   next(action);
@@ -62,17 +63,19 @@ const websocketMiddleware = () => store => next => action => {
       actionType === refreshSession.fulfilled.toString()) &&
     !store.getState().general.wsConnected
   ) {
+    clearTimeout(timeout);
+    clearTimeout(timeout2);
+    reconnectionCount = 0;
     const wsTicket = action.payload.wsTicket;
     socket = new WebSocket(wsUrl, wsTicket);
     console.log(action);
     // An event listener to be called when the connection is opened.
     socket.onopen = () => {
       console.log("OPENED");
+      reconnectionCount = 0;
+      clearTimeout(timeout2);
     };
-    // An event listener to be called when a message is received from the server.
-    socket.onmessage = ({ data: message }) => {
-      console.log("MESSAGE", message);
-    };
+
     // Logs an error if websocket is closed unexpectedly.
     socket.onerror = event => {
       console.log("event from onerror", event);
@@ -88,9 +91,6 @@ const websocketMiddleware = () => store => next => action => {
       }, store.getState().general.heartbeatInterval + 1000);
     };
 
-    socket.onopen = () => {
-      clearInterval(interval);
-    };
     // An event listener to be called when the connection is closed.
     socket.onclose = event => {
       console.log("Socket was closed");
@@ -103,14 +103,21 @@ const websocketMiddleware = () => store => next => action => {
       // sets state as disconnected.
       store.dispatch(wsDisconnect());
       // If socket has to reconnect, an interval for the session validations is set which tries to reconnect/validate session again.
-      if (!socket.dontReconnect) {
-        interval = setInterval(() => {
-          // Calls api.validateSession(), if it's fullfiled, sets validatedSession Redux state to true
+      if (!socket.dontReconnect && reconnectionCount < 20) {
+        // interval = setInterval(() => {
+        //   // Calls api.validateSession(), if it's fullfiled, sets validatedSession Redux state to true
+        //   store.dispatch(refreshSession());
+        // }, 10000);
+        timeout2 = setTimeout(() => {
+          reconnectionCount++;
           store.dispatch(refreshSession());
         }, 10000);
+      } else if (!socket.dontReconnect && reconnectionCount >= 20) {
+        store.dispatch(logout());
       }
     };
-    // When a message is received from the server
+
+    // An event listener to be called when a message is received from the server.
     socket.onmessage = ({ data: message }) => {
       // console logs for trying to find messages that don't arrive
       // console.log(JSON.parse(message));
