@@ -518,6 +518,7 @@ class Channel extends Component {
                   displayControls={displayControls}
                   playlist={this.state.queueList}
                   playerStatus={this.state.playerStatus}
+                  isChannel={type === CHANNEL_TYPE && true}
                   classNames="pt-0"
                 />
                 {type === CHANNEL_TYPE && (

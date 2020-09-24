@@ -17,12 +17,14 @@ import {
   MODAL_CHANGE_PASSWORD,
   MODAL_BLOCKED_USERS,
   MODAL_INVITE,
+  MODAL_SOCIAL_SHARE,
   MODAL_ROOM_EXISTS,
   MODAL_DELETE_MESSAGE,
   MODAL_LIST,
   MODAL_DELETE_CHANNEL,
   MODAL_DELETE_POST
 } from "../../helpers/constants";
+import SocialShareContainer from "./SocialShareContainer";
 
 const ModalComponents = {
   [MODAL_PROFILE]: ProfileModal,
@@ -30,6 +32,7 @@ const ModalComponents = {
   [MODAL_CHANGE_PASSWORD]: ChangePasswordContainer,
   [MODAL_BLOCKED_USERS]: BlockedUsersContainer,
   [MODAL_INVITE]: InviteFriendsContainer,
+  [MODAL_SOCIAL_SHARE]: SocialShareContainer,
   [MODAL_ROOM_EXISTS]: RoomExistsContainer,
   [MODAL_DELETE_MESSAGE]: DeleteMessageContainer,
   [MODAL_LIST]: ListUsersContainer,

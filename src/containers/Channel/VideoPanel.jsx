@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import {
   openInviteModal,
   openProfileModal,
+  openSocialShareModal,
   setPlaying,
   setPaused
 } from "../../redux/actions";
@@ -29,6 +30,7 @@ const mapStateToProps = (state, { channelId }) => {
 
 const mapDispatchToProps = (dispatch, { channelId }) => ({
   openInviteModal: () => dispatch(openInviteModal(channelId, false)),
+  openSocialShareModal: () => dispatch(openSocialShareModal(channelId, false)),
   openProfileModal: id => dispatch(openProfileModal(id)),
   dispatchPlay: (queueStartPosition, videoStartTime) =>
     dispatch(setPlaying({ channelId, queueStartPosition, videoStartTime })),
@@ -68,6 +70,7 @@ class VideoPanel extends Component {
           playerStatus={this.props.playerStatus}
           activeFriendViewers={this.props.viewers}
           inviteUsers={() => this.props.openInviteModal()}
+          socialShare={() => this.props.openSocialShareModal()}
           openProfile={id => this.props.openProfileModal(id)}
           isInvitingAllowed={this.props.isInvitingAllowed}
           displayControls={this.props.displayControls}
@@ -76,6 +79,7 @@ class VideoPanel extends Component {
           dispatchSkip={s => this.handleSkip(null, s)}
           dispatchPlayNextVideo={this.props.handlePlayNextVideo}
           handleNothingPlaying={this.props.handleNothingPlaying}
+          isChannel={this.props.isChannel}
         />
         {this.props.displayControls ? (
           <QueueSection
