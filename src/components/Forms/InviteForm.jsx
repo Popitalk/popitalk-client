@@ -1,20 +1,31 @@
 import React, { createRef, forwardRef } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faFacebookSquare,
-  faTwitter,
-  faReddit,
-  faSkype,
-  faVk,
-  faWhatsapp
-} from "@fortawesome/free-brands-svg-icons";
-import { faPaperPlane, faAt } from "@fortawesome/free-solid-svg-icons";
 import Input from "../Controls/Input";
 import Button from "../Controls/Button";
+import {
+  EmailShareButton,
+  FacebookShareButton,
+  LineShareButton,
+  RedditShareButton,
+  TelegramShareButton,
+  TwitterShareButton,
+  VKShareButton,
+  WhatsappShareButton,
+  EmailIcon,
+  FacebookIcon,
+  LineIcon,
+  RedditIcon,
+  TelegramIcon,
+  TwitterIcon,
+  VKIcon,
+  WhatsappIcon
+} from "react-share"; // More info on Props https://github.com/nygardk/react-share#readme
 
 export default function InviteForm({ link }) {
-  const faClassName = "text-xl";
   const ref = createRef();
+  const currentUrl = window.location.href;
+  const title = "Join me on Popitalk";
+  const iconClassname =
+    "focus:outline-none transform transition hover:scale-105 duration-75 ease-in-out";
 
   const copyHandler = () => {
     ref.current.select();
@@ -27,7 +38,7 @@ export default function InviteForm({ link }) {
   const InputRef = forwardRef((props, ref) => {
     return (
       <Input
-        value={link}
+        value={currentUrl}
         readOnly={true}
         interiorButton={
           <Button
@@ -40,6 +51,7 @@ export default function InviteForm({ link }) {
           </Button>
         }
         forwardedRef={ref}
+        className="w-full"
       />
     );
   });
@@ -47,21 +59,68 @@ export default function InviteForm({ link }) {
   InputRef.displayName = "InputRef";
 
   return (
-    <>
-      <div className="flex flex-col items-center pb-4">
-        <p variant="text1">Copy and share this link!</p>
-      </div>
+    <div className="flex flex-col items-center justify-center h-full w-full px-8 pt-14 pb-20">
+      <p className="text-sm text-secondaryText pb-4">
+        Copy and share this link
+      </p>
       <InputRef ref={ref} />
-      <div className="flex justify-center space-x-1 pt-4">
-        <FontAwesomeIcon icon={faFacebookSquare} className={faClassName} />
-        <FontAwesomeIcon icon={faWhatsapp} className={faClassName} />
-        <FontAwesomeIcon icon={faPaperPlane} className={faClassName} />
-        <FontAwesomeIcon icon={faAt} className={faClassName} />
-        <FontAwesomeIcon icon={faVk} className={faClassName} />
-        <FontAwesomeIcon icon={faSkype} className={faClassName} />
-        <FontAwesomeIcon icon={faTwitter} className={faClassName} />
-        <FontAwesomeIcon icon={faReddit} className={faClassName} />
+      <p className="text-sm text-secondaryText pt-4">
+        Or Share it on Social Media
+      </p>
+      <div className="flex justify-center space-x-2 pt-4">
+        <FacebookShareButton
+          url={currentUrl}
+          quote={title}
+          className={iconClassname}
+        >
+          <FacebookIcon size={32} borderRadius={12} />
+        </FacebookShareButton>
+        <WhatsappShareButton
+          url={currentUrl}
+          title={title}
+          className={iconClassname}
+        >
+          <WhatsappIcon size={32} borderRadius={12} />
+        </WhatsappShareButton>
+        <TelegramShareButton
+          url={currentUrl}
+          title={title}
+          className={iconClassname}
+        >
+          <TelegramIcon size={32} borderRadius={12} />
+        </TelegramShareButton>
+        <EmailShareButton
+          url={currentUrl}
+          subject={title}
+          className={iconClassname}
+        >
+          <EmailIcon size={32} borderRadius={12} />
+        </EmailShareButton>
+        <VKShareButton url={currentUrl} title={title} className={iconClassname}>
+          <VKIcon size={32} borderRadius={12} />
+        </VKShareButton>
+        <TwitterShareButton
+          url={currentUrl}
+          title={title}
+          className={iconClassname}
+        >
+          <TwitterIcon size={32} borderRadius={12} />
+        </TwitterShareButton>
+        <LineShareButton
+          url={currentUrl}
+          title={title}
+          className={iconClassname}
+        >
+          <LineIcon size={32} borderRadius={12} />
+        </LineShareButton>
+        <RedditShareButton
+          url={currentUrl}
+          title={title}
+          className={iconClassname}
+        >
+          <RedditIcon size={32} borderRadius={12} />
+        </RedditShareButton>
       </div>
-    </>
+    </div>
   );
 }

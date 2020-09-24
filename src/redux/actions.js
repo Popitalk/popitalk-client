@@ -27,6 +27,7 @@ import {
   MODAL_DELETE_CHANNEL,
   MODAL_DELETE_POST,
   MODAL_ROOM_EXISTS,
+  MODAL_SOCIAL_SHARE,
   VIDEO_RESULTS_PER_PAGE
 } from "../helpers/constants";
 import moment from "moment";
@@ -785,6 +786,9 @@ export const openInviteModal = createAction(
     payload: { component: MODAL_INVITE, channelId, isCreatingNewRoom }
   })
 );
+export const openSocialShareModal = createAction("modal/open", () => ({
+  payload: { component: MODAL_SOCIAL_SHARE }
+}));
 export const openCreateRoomModal = createAction("modal/open", () => ({
   payload: { component: MODAL_CREATE_ROOM }
 }));

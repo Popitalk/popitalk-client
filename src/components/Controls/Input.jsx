@@ -97,7 +97,7 @@ export default function Input({
           {...rest}
         />
         {interiorButton && (
-          <div className="absolute right-0 mr-4 transition transform ease-in-out hover:scale-110 duration-100">
+          <div className="absolute right-0 mr-2 transition transform ease-in-out hover:scale-105 duration-100">
             {interiorButton}
           </div>
         )}

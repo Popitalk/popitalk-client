@@ -12,8 +12,10 @@ export default function VideoSection({
   sourceChannelName,
   activeFriendViewers,
   inviteUsers,
+  socialShare,
   openProfile,
   isInvitingAllowed,
+  isChannel,
   playerStatus,
   dispatchPlay,
   dispatchPause,
@@ -34,13 +36,13 @@ export default function VideoSection({
         handleNothingPlaying={handleNothingPlaying}
       />
       <div className="flex flex-col pt-4 px-4">
-        <div className="flex items-center h-8 space-x-2">
-          <VideoStatus
-            status={playerStatus.status.toLowerCase()}
-            type="text"
-            string
-          />
-          <div className="flex flex-row left-0 space-x-1">
+        <div className="flex items-center justify-between h-8 space-x-2">
+          <div className="flex items-center flex-row left-0 space-x-1">
+            <VideoStatus
+              status={playerStatus.status.toLowerCase()}
+              type="text"
+              string
+            />
             {activeFriendViewers.map((friend, idx) => {
               return (
                 <AvatarIcon
@@ -54,16 +56,27 @@ export default function VideoSection({
                 />
               );
             })}
-            {isInvitingAllowed && (
-              <Button
-                actionButton
-                icon="user-plus"
-                size="sm"
-                onClick={inviteUsers}
-                analyticsString="Invite User Button: VideoSection"
-              />
-            )}
           </div>
+          {isInvitingAllowed ? (
+            <Button
+              actionButton
+              icon="user-plus"
+              size="sm"
+              onClick={inviteUsers}
+              analyticsString="Invite User Button: VideoSection"
+            />
+          ) : isChannel ? (
+            <Button
+              actionButton
+              size="sm"
+              onClick={socialShare}
+              analyticsString="Invite User Button: VideoSection"
+            >
+              Invite
+            </Button>
+          ) : (
+            <div />
+          )}
         </div>
         {url ? (
           <div>
