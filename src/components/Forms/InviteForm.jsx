@@ -59,7 +59,7 @@ export default function InviteForm({ link }) {
   InputRef.displayName = "InputRef";
 
   return (
-    <div className="flex flex-col items-center justify-center h-full w-full pt-12 pb-20">
+    <div className="flex flex-col items-center justify-center h-full w-full px-8 pt-14 pb-20">
       <p className="text-sm text-secondaryText pb-4">
         Copy and share this link
       </p>
