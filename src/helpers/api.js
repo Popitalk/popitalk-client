@@ -94,6 +94,10 @@ export const getChannel = channelId => {
   return ax.get(`/channels/${channelId}`);
 };
 
+export const leaveChannel = channelId => {
+  return ax.post(`/channels/${channelId}/leave`);
+};
+
 export const createChannel = channelInfo => {
   return ax.post("/channels", channelInfo);
 };

@@ -5,6 +5,7 @@ import { Redirect, withRouter } from "react-router-dom";
 import {
   addMessage,
   getChannel,
+  leaveChannel,
   setPostDraft,
   addPost,
   addComment,
@@ -169,6 +170,7 @@ const mapDispatchToProps = (dispatch, { match }) => {
     handleSwapVideos: ({ oldIndex, newIndex }) =>
       dispatch(swapVideos({ channelId, oldIndex, newIndex })),
     handleGetChannel: () => dispatch(getChannel(channelId)),
+    handleLeaveChannel: () => dispatch(leaveChannel(channelId)),
     openDeleteChannelModal: () => dispatch(openDeleteChannelModal(channelId)),
     openDeletePostModal: postId => dispatch(openDeletePostModal(postId)),
     handleChannelNotFound: () =>

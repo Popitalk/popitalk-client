@@ -315,6 +315,12 @@ const websocketMiddleware = () => store => next => action => {
         },
         [WS_EVENTS.VIDEO_CONTROL.REORDER_QUEUE]() {
           store.dispatch(swapVideosWs(messagePayload));
+        },
+        [WS_EVENTS.CHANNEL.ADD_VIEWER]() {
+          console.log("ADD VIEWER", messagePayload);
+        },
+        [WS_EVENTS.CHANNEL.DELETE_VIEWER]() {
+          console.log("DELETE VIEWER");
         }
       };
       // If commandHandler.[computedPropertyMessageType] is defined, then this function is executed.

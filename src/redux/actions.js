@@ -231,6 +231,14 @@ export const getChannel = createAsyncThunk(
   }
 );
 
+export const leaveChannel = createAsyncThunk(
+  "channels/leaveChannel",
+  async channelId => {
+    const response = await api.leaveChannel(channelId);
+    return response.data;
+  }
+);
+
 export const addChannel = createAsyncThunk(
   "channels/addChannel",
   async channelInfo => {
