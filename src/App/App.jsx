@@ -35,7 +35,7 @@ const RouteWrapper = ({ leftPanel, children }) => {
 
 export default function App() {
   const validatedSession = useSelector(state => state.general.validatedSession);
-  const { loggedIn } = useSelector(state => state.general);
+  const { loggedIn, wsConnected } = useSelector(state => state.general);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -51,11 +51,8 @@ export default function App() {
     }
   }, []);
 
-  if (!validatedSession)
-    return <section className="App--container">{/* aws test 4 */}</section>;
-
-  // if (!validatedSession || (loggedIn && !wsConnected))
-  //   return <section className="App--container">loading spinner</section>;
+  if (!validatedSession || (loggedIn && !wsConnected))
+    return <section className="App--container" />;
 
   const chatPanel = (
     <div className="md:flex sm:w-dropdown // hidden">
