@@ -30,11 +30,7 @@ export default function ChannelsList({
           <InfoCard
             avatar={roomIcon}
             title={channel.name}
-            subtitle={`
-              ${channel.numOnline || 1 * (selected === channel.id)} ${
-              strings.online
-            }
-              `}
+            subtitle={`${channel.viewers.length} ${strings.online}`}
             subtitleSize="xs"
             backgroundColor={
               selected === channel.id ? "highlight" : "transparent"
