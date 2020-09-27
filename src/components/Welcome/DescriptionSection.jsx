@@ -4,7 +4,7 @@ import DescriptionCard from "./DescriptionCard";
 export default function SignupSection({ id }) {
   return (
     <div className="w-full h-auto bg-gradient-r-primary pb-8">
-      <div className="flex flex-col w-full h-full bg-primaryBackground shadow-lg rounded-b-lg p-20">
+      <div className="flex flex-col w-full h-full bg-primaryBackground shadow-lg rounded-b-lg sm:p-20 p-4">
         <div className="flex flex-col w-full justify-center items-center my-8">
           <h1 className="text-3xl font-bold text-primaryText sm:p-12 p-4">
             Watch Videos and listen to Music, together.
@@ -32,7 +32,6 @@ export default function SignupSection({ id }) {
             />
           </div>
         </div>
-
         <div className="flex flex-col w-full justify-center items-center my-8 mb-20">
           <h2 className="text-3xl font-bold text-primaryText sm:p-12 p-4">
             Why use Popitalk.

@@ -29,7 +29,8 @@ import {
   faVolumeUp,
   faVolumeMute,
   faCompress,
-  faCheck
+  faCheck,
+  faArrowLeft
 } from "@fortawesome/free-solid-svg-icons";
 import {
   faSmile as farSmile,
@@ -75,5 +76,6 @@ library.add(
   faVolumeUp,
   faVolumeMute,
   faCompress,
-  faCheck
+  faCheck,
+  faArrowLeft
 );

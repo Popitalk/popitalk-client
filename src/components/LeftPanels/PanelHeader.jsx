@@ -14,16 +14,16 @@ export default function PanelHeader({
         hoverable
         styleNone
         icon="bars"
-        className="p-4 ml-2 rounded-full text-secondaryText hover:text-highlightText"
+        className="hidden sm:block p-4 ml-2 rounded-full text-secondaryText hover:text-highlightText"
         onClick={handleCollapse}
         analyticsString="Collapse Button: PanelHeader"
       />
       <nav
-        className={`text-xl px-2 p-1 focus:outline-none hover:bg-secondaryBackground rounded-xl transition transform ease-in-out hover:scale-105 duration-100 ${
+        className={`text-xl px-2 p-3 focus:outline-none hover:bg-secondaryBackground rounded-xl transition transform ease-in-out hover:scale-105 duration-100 ${
           selectedPage === "channels"
             ? "rainbow-text cursor-default font-semibold"
             : "text-secondaryText cursor-pointer font-regular"
-        } `}
+        }`}
         onClick={() => updateSelectedPage("channels")}
       >
         {strings.channels}

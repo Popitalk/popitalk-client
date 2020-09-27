@@ -3,7 +3,7 @@ import Button from "./Controls/Button";
 
 function TabNavMobile({ selectedPage, updateSelectedPage }) {
   return (
-    <div className="flex fixed bg-primaryBackground w-full justify-around z-50 bottom-0 md:hidden">
+    <div className="flex fixed bg-primaryBackground w-full justify-around z-50 bottom-0 sm:hidden">
       <Button
         styleNone
         icon="tv"

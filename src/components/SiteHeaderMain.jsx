@@ -93,7 +93,7 @@ export default function SiteHeaderMain({
     dropdownList.length > 0 ? dropdownList[dropdownList.length - 1] : 0;
 
   return (
-    <header className="sm:px-6 // relative flex items-center justify-between h-12 px-4 z-30 bg-primaryBackground select-none">
+    <header className="sm:px-6 // relative flex items-center justify-between h-12 px-2 z-30 bg-primaryBackground select-none">
       <Link
         to="/channels"
         className="flex flex-shrink-0 items-center justify-center"
@@ -106,78 +106,108 @@ export default function SiteHeaderMain({
           hoverable
         />
       </Link>
-      <ul className="sm:space-x-6 // flex items-center space-x-2">
-        <li className="flex items-center">
-          <Button
-            hoverable
-            imageButton
-            imageButtonSrc={avatar}
-            imageButtonSpan={username}
-            imageButtonClassName="w-8 h-8 mr-2 rounded-full object-cover"
-            onClick={() => openProfileHandler(userID)}
-            analyticsString="My Profile Button: SiteHeaderMain"
-          />
-        </li>
-        <li>
-          <DropDownControls
-            icon="user-plus"
-            hasNotification={friendRequests.length > 0}
-          >
-            <FriendRequests
-              friendRequests={friendRequests}
-              handleProfile={openProfileHandler}
-            />
-          </DropDownControls>
-        </li>
-        {/* <li>
-          <DropDownControls
-            icon="bell"
-            className="relative"
-            hasNotification={notifications.length > 0}
-          >
-            <Notifications
-              notifications={notifications}
-              handleProfile={openProfileHandler}
-              handleClear={clearNotificationsHandler}
-            />
-          </DropDownControls>
-        </li> */}
-        <li>
-          <DropDownControls
-            icon="cog"
-            onClick={toggleSettings}
-            onClose={() => setDropdownList([])}
-          >
-            {settingsDropdown === SETTINGS ? (
-              <DropDownMenu
-                title={strings.settingsHeader}
-                buttons={settingsButtons}
+      <div className="sm:space-x-6 // flex items-center space-x-2">
+        <Button
+          hoverable
+          imageButton
+          imageButtonSrc={avatar}
+          imageButtonSpan={username}
+          imageButtonClassName="w-8 h-8 mr-2 rounded-full object-cover"
+          imageButtonSpanClassName="hidden sm:block text-sm"
+          onClick={() => openProfileHandler(userID)}
+          analyticsString="My Profile Button: SiteHeaderMain"
+          className="flex "
+        />
+        <ul className="sm:space-x-6 // flex items-center space-x-2">
+          <li>
+            <DropDownControls
+              icon="user-plus"
+              hasNotification={friendRequests.length > 0}
+            >
+              <FriendRequests
+                friendRequests={friendRequests}
+                handleProfile={openProfileHandler}
               />
-            ) : settingsDropdown === ACCOUNT_SETTINGS ? (
-              <DropDownMenu
-                title={strings.accountSettings}
-                buttons={accountSettingsButtons}
-                handleBack={popDropdown}
+            </DropDownControls>
+          </li>
+          {/* <li>
+            <DropDownControls
+              icon="bell"
+              className="relative"
+              hasNotification={notifications.length > 0}
+            >
+              <Notifications
+                notifications={notifications}
+                handleProfile={openProfileHandler}
+                handleClear={clearNotificationsHandler}
               />
-            ) : settingsDropdown === DELETE_ACCOUNT ? (
-              <DeleteAccountDropDown
-                handleDelete={deleteAccountHandler}
-                handleBack={popDropdown}
-              />
-            ) : (
-              <></>
-            )}
-          </DropDownControls>
-        </li>
-        <li>
-          <DropDownControls
-            icon="info-circle"
-            analyticsString="To about.popitalk Button: SiteHeaderMain"
-          >
-            <FeedbackDropDown />
-          </DropDownControls>
-        </li>
-      </ul>
+            </DropDownControls>
+          </li> */}
+          <li className="hidden lg:block">
+            <DropDownControls
+              icon="cog"
+              onClick={toggleSettings}
+              onClose={() => setDropdownList([])}
+            >
+              {settingsDropdown === SETTINGS ? (
+                <DropDownMenu
+                  title={strings.settingsHeader}
+                  buttons={settingsButtons}
+                />
+              ) : settingsDropdown === ACCOUNT_SETTINGS ? (
+                <DropDownMenu
+                  title={strings.accountSettings}
+                  buttons={accountSettingsButtons}
+                  handleBack={popDropdown}
+                />
+              ) : settingsDropdown === DELETE_ACCOUNT ? (
+                <DeleteAccountDropDown
+                  handleDelete={deleteAccountHandler}
+                  handleBack={popDropdown}
+                />
+              ) : (
+                <></>
+              )}
+            </DropDownControls>
+          </li>
+          <li className="hidden lg:block">
+            <DropDownControls
+              icon="info-circle"
+              analyticsString="To about.popitalk Button: SiteHeaderMain"
+            >
+              <FeedbackDropDown />
+            </DropDownControls>
+          </li>
+          <li className="block lg:hidden">
+            <DropDownControls
+              icon="bars"
+              onClick={toggleSettings}
+              onClose={() => setDropdownList([])}
+            >
+              <FeedbackDropDown />
+              {settingsDropdown === SETTINGS ? (
+                <DropDownMenu
+                  title={strings.settingsHeader}
+                  buttons={settingsButtons}
+                />
+              ) : settingsDropdown === ACCOUNT_SETTINGS ? (
+                <DropDownMenu
+                  title={strings.accountSettings}
+                  buttons={accountSettingsButtons}
+                  handleBack={popDropdown}
+                />
+              ) : settingsDropdown === DELETE_ACCOUNT ? (
+                <DeleteAccountDropDown
+                  handleDelete={deleteAccountHandler}
+                  handleBack={popDropdown}
+                />
+              ) : (
+                <></>
+              )}
+            </DropDownControls>
+          </li>
+        </ul>
+      </div>
     </header>
   );
 }
