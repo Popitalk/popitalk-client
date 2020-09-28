@@ -14,7 +14,6 @@ import history from "../history";
 import { mapIdsToUsers, setRelationshipHandlers } from "../helpers/functions";
 import { orderBy } from "lodash";
 import { channelHasNewMessage } from "../util/channelHasNewMessage";
-import { useGetYourandFollowingChannels } from "../containers/hooks/useGetYourandFollowingChannels";
 
 export default function LeftPanelContainer() {
   let match = useRouteMatch("/channels/:channelId");
@@ -53,12 +52,29 @@ export default function LeftPanelContainer() {
 
   const blocks = relationships.blockers.length + relationships.blocked.length;
 
-  const { yourChannels, followingChannels } = useGetYourandFollowingChannels({
-    channelIds,
-    channels,
-    defaultIcon,
-    ownId
-  });
+  let yourChannels = [];
+  let followingChannels = [];
+  channelIds
+    .map(channelId => ({
+      id: channelId,
+      ...channels[channelId],
+      icon: channels[channelId].icon || defaultIcon
+    }))
+    .forEach(channel => {
+      if (channel.ownerId === ownId || channel.owner_id === ownId) {
+        yourChannels.push(channel);
+      } else {
+        if (
+          channel.ownerId !== ownId &&
+          channel.owner_id !== ownId &&
+          channel.members
+        ) {
+          if (channel.members.includes(ownId)) {
+            followingChannels.push(channel);
+          }
+        }
+      }
+    });
 
   const rooms = orderBy(
     roomIds.map(roomId => {
