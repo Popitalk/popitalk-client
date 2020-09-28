@@ -19,7 +19,7 @@ function RecommendedChannels({ selectedPage }) {
     { tab: strings.discover },
     { tab: strings.trending }
   ];
-  const [tabSelected, setTab] = useState(tabs[0].tab);
+  const [tabSelected, setTab] = useState(tabs[1].tab);
   const isCollapsed = useSelector(state => state.ui.isCollapsed);
   const alert = useSelector(state => state.ui.alert);
   const channels = useSelectChannels();
@@ -35,13 +35,10 @@ function RecommendedChannels({ selectedPage }) {
     ownId
   });
   useEffect(() => {
-    if (
-      channelList[0].channels.channels &&
-      channelList[0].channels.channels.length < 1
-    )
-      setTab(tabs[1].tab);
+    if (channelList.length > 0 && channelList[0].channels.length > 0)
+      setTab(tabs[0].tab);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [channelList]);
+  }, [channels, channelList]);
   // Infinite scroll
   // search is the Input Value. query is the search term triggered in handleSearch
   const [search, setSearch] = useState("");

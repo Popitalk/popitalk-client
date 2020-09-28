@@ -654,7 +654,7 @@ export const searchVideos = createAsyncThunk(
   "videoSearch/searchVideos",
   async (searchInfo, { getState }) => {
     const { source, next, terms, channelId } = searchInfo;
-    const { page, terms: prevTerms } = getState().channels.channels[
+    const { page, terms: prevTerms } = getState().channels[
       channelId
     ].videoSearch;
 

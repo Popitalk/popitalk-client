@@ -159,11 +159,8 @@ const mapDispatchToProps = (dispatch, { match }) => {
     handleUnfollow: () => dispatch(unfollowChannel(channelId)),
     openProfileModal: id => dispatch(openProfileModal(id)),
     handleOpenAdminsList: () => dispatch(openListModal(channelId, "admins")),
-    handleSearch: (terms, next = false) => {
-      console.log("alive");
-      console.log({ channelId, source: "youtube", terms, next });
-      dispatch(searchVideos({ channelId, source: "youtube", terms, next }));
-    },
+    handleSearch: (terms, next = false) =>
+      dispatch(searchVideos({ channelId, source: "youtube", terms, next })),
     handleGetTrending: next =>
       dispatch(getTrending({ next, source: "youtube" })),
     handleAddVideo: videoInfo =>
