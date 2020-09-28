@@ -4,10 +4,6 @@ import { withRouter } from "react-router-dom";
 import ChatPanel from "../components/Chat/ChatPanel";
 import { openListModal } from "../redux/actions";
 import useIsMember from "../containers/hooks/useIsMember";
-import {
-  useSelectChannel,
-  useSelectChannelFollowerCount
-} from "../containers/selectors/selectChannels";
 
 function ChatPanelContainer(props) {
   const channelId = props.match.params.roomId || props.match.params.channelId;
@@ -15,9 +11,11 @@ function ChatPanelContainer(props) {
   const dispatch = useDispatch();
   const openFollowersList = () =>
     dispatch(openListModal(channelId, "followers"));
-  const channel = useSelectChannel(channelId);
+  const channel = useSelector(state => state.channels[channelId]);
   const ownId = useSelector(state => state.self.id);
-  const followersCount = useSelectChannelFollowerCount(channelId);
+  const followersCount = useSelector(
+    state => state.channels[channelId]?.members?.length
+  );
   const isRoom = !!props.match.params.roomId;
   const [isGifsOpen, setIsGifsOpen] = useState(false);
   const updateGifsOpen = () => {

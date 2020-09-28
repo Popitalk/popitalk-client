@@ -452,9 +452,7 @@ export const addMessage = createAsyncThunk(
     };
     const response = await api.addMessage(infoObject);
     const payload = response.data;
-    const { capacity } = getState().channels.channels[
-      payload.channelId
-    ].chatSettings;
+    const { capacity } = getState().channels[payload.channelId].chatSettings;
     return { ...payload, capacity };
   }
 );

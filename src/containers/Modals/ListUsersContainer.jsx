@@ -16,10 +16,10 @@ export default function ListUsersContainer({ handleModalClose }) {
   const list = useSelector(state => {
     if (content === "followers") {
       title = "Following";
-      return state.channels.channels[channelId].members;
+      return state.channels[channelId].members;
     } else if (content === "admins") {
       title = "Admins";
-      return state.channels.channels[channelId].admins;
+      return state.channels[channelId].admins;
     }
   });
   const users = useSelector(state => state.users);

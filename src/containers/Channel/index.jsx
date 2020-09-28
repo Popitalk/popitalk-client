@@ -63,7 +63,7 @@ const mapStateToProps = (state, { match }) => {
   const finalId = channelId || roomId;
 
   const { defaultIcon, defaultAvatar } = state.general;
-  const channel = state.channels.channels[finalId];
+  const channel = state.channels[finalId];
   const channelApi = state.api.channel;
   const drafts = state.postDrafts[finalId];
   const posts = state.posts[finalId];

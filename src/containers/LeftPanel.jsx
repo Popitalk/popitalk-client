@@ -15,7 +15,6 @@ import { mapIdsToUsers, setRelationshipHandlers } from "../helpers/functions";
 import { orderBy } from "lodash";
 import { channelHasNewMessage } from "../util/channelHasNewMessage";
 import { useGetYourandFollowingChannels } from "../containers/hooks/useGetYourandFollowingChannels";
-import { useSelectChannels } from "../containers/selectors/selectChannels";
 
 export default function LeftPanelContainer() {
   let match = useRouteMatch("/channels/:channelId");
@@ -31,11 +30,11 @@ export default function LeftPanelContainer() {
   );
   const [friendsSearchFocus, setFriendsSearchFocus] = useState(false);
 
-  const channels = useSelectChannels();
+  const channels = useSelector(state => state.channels);
   const numberOfNotifications = useSelector(state => {
     let counter = 0;
-    const channels = Object.keys(state.channels.channels).map(key => {
-      return state.channels.channels[key];
+    const channels = Object.keys(state.channels).map(key => {
+      return state.channels[key];
     });
     channels.forEach(channel => {
       if (channelHasNewMessage(channel)) counter++;
@@ -60,6 +59,7 @@ export default function LeftPanelContainer() {
     defaultIcon,
     ownId
   });
+
   const rooms = orderBy(
     roomIds.map(roomId => {
       const members = mapIdsToUsers(

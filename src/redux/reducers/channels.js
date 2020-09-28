@@ -75,50 +75,42 @@ const defaultVideoSearch = {
 };
 
 const R_initChannels = (state, { payload }) => {
-  if (payload.channels.channels) {
+  if (payload.channels) {
     let newChannels = {};
 
-    Object.entries(payload.channels.channels).forEach(
-      ([channelId, channel]) => {
-        newChannels[channelId] = {
-          queue: [],
-          ...channel,
-          chatSettings: {
-            capacity: 50,
-            initialScroll: null
-          },
-          videoSearch: {
-            source: "youtube",
-            terms: "",
-            results: [],
-            totalResults: 1,
-            page: 1,
-            searched: false
-          }
-        };
-      }
-    );
+    Object.entries(payload.channels).forEach(([channelId, channel]) => {
+      newChannels[channelId] = {
+        queue: [],
+        ...channel,
+        chatSettings: {
+          capacity: 50,
+          initialScroll: null
+        },
+        videoSearch: {
+          source: "youtube",
+          terms: "",
+          results: [],
+          totalResults: 1,
+          page: 1,
+          searched: false
+        }
+      };
+    });
 
-    return {
-      channels: newChannels,
-      discoverChannels: payload.channels.discoverChannels,
-      trendingChannels: payload.channels.trendingChannels
-    };
+    return newChannels;
   } else {
     return {};
   }
 };
 
 const R_refreshChannels = (state, { payload }) => {
-  if (payload.channels.channels) {
-    Object.entries(payload.channels.channels).forEach(
-      ([channelId, channel]) => {
-        state.channels[channelId] = {
-          ...state.channels[channelId],
-          ...channel
-        };
-      }
-    );
+  if (payload.channels) {
+    Object.entries(payload.channels).forEach(([channelId, channel]) => {
+      state[channelId] = {
+        ...state[channelId],
+        ...channel
+      };
+    });
   }
 };
 
@@ -126,8 +118,8 @@ const R_addChannel = (state, { payload }) => {
   const channelId = payload.id || payload.channelId;
   let { channel, queue } = payload;
 
-  state.channels[channelId] = {
-    ...state.channels[channelId],
+  state[channelId] = {
+    ...state[channelId],
     ...channel,
     queue: queue ? queue : [],
     loaded: true,
@@ -142,143 +134,141 @@ const R_addChannel = (state, { payload }) => {
 const R_updateChannel = (state, { payload }) => {
   const channelId = payload.id || payload.channelId;
 
-  state.channels[channelId] = {
-    ...state.channels[channelId],
+  state[channelId] = {
+    ...state[channelId],
     ...payload.updatedChannel
   };
 };
 
 const R_setLastMessageSeen = (state, { payload }) => {
-  if (state.channels[payload.channelId].lastMessageIsNew)
-    state.channels[payload.channelId].lastMessageIsNew = false;
-  if (state.channels[payload.channelId].chatNotifications)
-    state.channels[payload.channelId].chatNotifications = null;
+  if (state[payload.channelId].lastMessageIsNew)
+    state[payload.channelId].lastMessageIsNew = false;
+  if (state[payload.channelId].chatNotifications)
+    state[payload.channelId].chatNotifications = null;
 };
 
 const R_updateLastMessageInfoPending = (state, { meta }) => {
-  state.channels[meta.arg.channelId].lastMessageReceivedByServer = false;
+  state[meta.arg.channelId].lastMessageReceivedByServer = false;
 };
 
 const R_updateLastMessageInfo = (state, { payload }) => {
-  if (!state.channels[payload.channelId].firstMessageId) {
-    state.channels[payload.channelId].firstMessageId = payload.id;
+  if (!state[payload.channelId].firstMessageId) {
+    state[payload.channelId].firstMessageId = payload.id;
   }
-  state.channels[payload.channelId].lastMessageId = payload.id;
-  state.channels[payload.channelId].lastMessageAt = payload.createdAt;
-  state.channels[payload.channelId].lastMessageUsername =
-    payload.author.username;
-  state.channels[payload.channelId].lastMessageContent = payload.content;
-  state.channels[payload.channelId].lastMessageReceivedByServer = true;
-  state.channels[payload.channelId].lastMessagesUpdateByWebsockets = false;
-  state.channels[payload.channelId].initialScroll = null;
+  state[payload.channelId].lastMessageId = payload.id;
+  state[payload.channelId].lastMessageAt = payload.createdAt;
+  state[payload.channelId].lastMessageUsername = payload.author.username;
+  state[payload.channelId].lastMessageContent = payload.content;
+  state[payload.channelId].lastMessageReceivedByServer = true;
+  state[payload.channelId].lastMessagesUpdateByWebsockets = false;
+  state[payload.channelId].initialScroll = null;
 };
 const R_updateLastMessageInfoWs = (state, { payload }) => {
-  if (!state.channels[payload.channelId].firstMessageId) {
-    state.channels[payload.channelId].firstMessageId = payload.id;
+  if (!state[payload.channelId].firstMessageId) {
+    state[payload.channelId].firstMessageId = payload.id;
   }
-  state.channels[payload.channelId].lastMessageId = payload.id;
-  state.channels[payload.channelId].lastMessageAt = payload.createdAt;
-  state.channels[payload.channelId].lastMessageUsername =
-    payload.author.username;
-  state.channels[payload.channelId].lastMessageContent = payload.content;
-  state.channels[payload.channelId].lastMessageIsNew = true;
-  state.channels[payload.channelId].lastMessageReceivedByServer = true;
-  state.channels[payload.channelId].lastMessagesUpdateByWebsockets = true;
-  state.channels[payload.channelId].initialScroll = null;
+  state[payload.channelId].lastMessageId = payload.id;
+  state[payload.channelId].lastMessageAt = payload.createdAt;
+  state[payload.channelId].lastMessageUsername = payload.author.username;
+  state[payload.channelId].lastMessageContent = payload.content;
+  state[payload.channelId].lastMessageIsNew = true;
+  state[payload.channelId].lastMessageReceivedByServer = true;
+  state[payload.channelId].lastMessagesUpdateByWebsockets = true;
+  state[payload.channelId].initialScroll = null;
 };
 
 const R_updateLastMessageUpdate = (state, { payload }) => {
-  state.channels[payload.channelId].lastMessagesUpdateByWebsockets = false;
+  state[payload.channelId].lastMessagesUpdateByWebsockets = false;
 };
 const R_updateLastMessageUpdateLatest = (state, { payload }) => {
-  state.channels[payload.channelId].lastMessagesUpdateByWebsockets = false;
-  state.channels[payload.channelId] = {
+  state[payload.channelId].lastMessagesUpdateByWebsockets = false;
+  state[payload.channelId] = {
     capacity: 50,
     initialScroll: null
   };
 };
 
 const R_deletedMessageUpdate = (state, { payload }) => {
-  state.channels[payload.channelId].firstMessageId = payload.firstMessageId;
-  state.channels[payload.channelId].lastMessageId = payload.lastMessageId;
-  state.channels[payload.channelId].lastMessageAt = payload.lastMessageAt;
+  state[payload.channelId].firstMessageId = payload.firstMessageId;
+  state[payload.channelId].lastMessageId = payload.lastMessageId;
+  state[payload.channelId].lastMessageAt = payload.lastMessageAt;
 };
 
 const R_deletedPostUpdate = (state, { payload }) => {
-  state.channels[payload.channelId].firstPostId = payload.firstPostId;
-  state.channels[payload.channelId].lastPostId = payload.lastPostId;
-  state.channels[payload.channelId].lastPostAt = payload.lastPostAt;
+  state[payload.channelId].firstPostId = payload.firstPostId;
+  state[payload.channelId].lastPostId = payload.lastPostId;
+  state[payload.channelId].lastPostAt = payload.lastPostAt;
 };
 
 const R_updatePostInfo = (state, { payload }) => {
-  if (!state.channels[payload.channelId].firstPostId) {
-    state.channels[payload.channelId].firstPostId = payload.id;
+  if (!state[payload.channelId].firstPostId) {
+    state[payload.channelId].firstPostId = payload.id;
   }
-  state.channels[payload.channelId].lastPostId = payload.id;
-  state.channels[payload.channelId].lastPostAt = payload.createdAt;
+  state[payload.channelId].lastPostId = payload.id;
+  state[payload.channelId].lastPostAt = payload.createdAt;
 };
 
 const R_addMember = (state, { payload }) => {
-  state.channels[payload.channelId].members.push(payload.userId);
+  state[payload.channelId].members.push(payload.userId);
 };
 
 const R_addMembers = (state, { payload }) => {
-  state.channels[payload.channel.id].members = payload.channel.members;
+  state[payload.channel.id].members = payload.channel.members;
 };
 
 const R_deleteMember = (state, { payload }) => {
-  state.channels[payload.channelId].members = state.channels[
-    payload.channelId
-  ].members.filter(userId => userId !== payload.userId);
+  state[payload.channelId].members = state[payload.channelId].members.filter(
+    userId => userId !== payload.userId
+  );
 };
 
 const R_addAdmin = (state, { payload }) => {
-  state.channels[payload.channelId].admins.push(payload.userId);
+  state[payload.channelId].admins.push(payload.userId);
 };
 
 const R_addAdminWs = (state, { payload }) => {
-  state.channels[payload.channelId].admins.push(payload.userId);
+  state[payload.channelId].admins.push(payload.userId);
 
   if (payload.banned) {
-    state.channels[payload.channelId].banned = payload.banned;
+    state[payload.channelId].banned = payload.banned;
   }
 };
 
 const R_deleteAdmin = (state, { payload }) => {
-  state.channels[payload.channelId].admins = state.channels[
-    payload.channelId
-  ].admins.filter(userId => userId !== payload.userId);
+  state[payload.channelId].admins = state[payload.channelId].admins.filter(
+    userId => userId !== payload.userId
+  );
 };
 
 const R_addBan = (state, { payload }) => {
-  state.channels[payload.channelId].members = state.channels[
-    payload.channelId
-  ].members.filter(userId => userId !== payload.userId);
-  state.channels[payload.channelId].admins = state.channels[
-    payload.channelId
-  ].admins.filter(userId => userId !== payload.userId);
-  state.channels[payload.channelId].banned.push(payload.userId);
+  state[payload.channelId].members = state[payload.channelId].members.filter(
+    userId => userId !== payload.userId
+  );
+  state[payload.channelId].admins = state[payload.channelId].admins.filter(
+    userId => userId !== payload.userId
+  );
+  state[payload.channelId].banned.push(payload.userId);
 };
 
 const R_deleteBan = (state, { payload }) => {
-  state.channels[payload.channelId].banned = state.channels[
-    payload.channelId
-  ].banned.filter(userId => userId !== payload.userId);
+  state[payload.channelId].banned = state[payload.channelId].banned.filter(
+    userId => userId !== payload.userId
+  );
 };
 
 const R_deleteChannel = (state, { payload }) => {
   const channelId = payload.id || payload.channelId;
 
   if (channelId) {
-    delete state.channels[channelId];
+    delete state[channelId];
   }
 };
 
 const R_updateChannelInitialScroll = (state, { payload }) => {
-  if (state.channels[payload.channelId]) {
-    state.channels[payload.channelId].capacity =
+  if (state[payload.channelId]) {
+    state[payload.channelId].capacity =
       payload.initialScroll === null ? 50 : extendedCapacity;
-    state.channels[payload.channelId].initialScroll = payload.initialScroll;
+    state[payload.channelId].initialScroll = payload.initialScroll;
   }
 };
 
@@ -286,14 +276,14 @@ const R_updateSearchedVideos = (state, { payload }) => {
   let results = [];
   if (payload.next) {
     results = [
-      ...state.channels[payload.channelId].videoSearch.results,
+      ...state[payload.channelId].videoSearch.results,
       ...payload.results
     ];
   } else {
     results = [...payload.results];
   }
 
-  state.channels[payload.channelId].videoSearch = {
+  state[payload.channelId].videoSearch = {
     source: payload.source,
     terms: payload.terms,
     results: results,
@@ -304,24 +294,24 @@ const R_updateSearchedVideos = (state, { payload }) => {
 };
 
 const R_updateFriendRoomToOnline = (state, { payload }) => {
-  state.channels[payload.channelId].online = true;
+  state[payload.channelId].online = true;
 };
 
 const R_updateFriendRoomToOffline = (state, { payload }) => {
-  state.channels[payload.channelId].online = false;
+  state[payload.channelId].online = false;
 };
 
 const R_resetState = () => initialState;
 
 const R_addVideo = (state, { payload }) => {
-  state.channels[payload.channelId].queue.push({
+  state[payload.channelId].queue.push({
     ...payload.video,
     channelId: payload.channelId
   });
 };
 
 const R_deleteVideo = (state, { payload }) => {
-  state.channels[payload.channelId].queue.splice(payload.queuePosition, 1);
+  state[payload.channelId].queue.splice(payload.queuePosition, 1);
 
   R_updateChannel(state, { payload });
 };
@@ -329,8 +319,8 @@ const R_deleteVideo = (state, { payload }) => {
 const R_swapVideos = (state, { payload }) => {
   const channelId = payload.channelId;
 
-  state.channels[channelId].queue = arrayMove(
-    state.channels[channelId].queue,
+  state[channelId].queue = arrayMove(
+    state[channelId].queue,
     payload.oldIndex,
     payload.newIndex
   );

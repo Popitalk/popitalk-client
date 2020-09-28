@@ -44,10 +44,10 @@ const R_selfInit = (state, { payload }) => {
   state.avatar = payload.avatar !== undefined ? payload.avatar : null;
   state.email = payload.email;
   state.emailVerified = payload.emailVerified;
-  state.roomIds = Object.entries(payload.channels.channels)
+  state.roomIds = Object.entries(payload.channels)
     .filter(([channelId, channel]) => channel.type !== "channel")
     .map(([channelId, channel]) => channelId);
-  state.channelIds = Object.entries(payload.channels.channels)
+  state.channelIds = Object.entries(payload.channels)
     .filter(([channelId, channel]) => channel.type === "channel")
     .map(([channelId, channel]) => channelId);
 };

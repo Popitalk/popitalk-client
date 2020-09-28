@@ -16,6 +16,7 @@ export default function ChannelCard({
   queue,
   queueStartPosition,
   members,
+  handleFollow,
   isLoading
 }) {
   const users = useSelector(state => state.users);
