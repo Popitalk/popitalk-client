@@ -16,7 +16,8 @@ import {
   addBlockerWs,
   acceptFriendRequest,
   addFriendWs,
-  createRoom
+  createRoom,
+  addChannel
 } from "../actions";
 
 const initialState = {};
@@ -183,5 +184,6 @@ export default createReducer(initialState, {
   [addBlockerWs]: R_deleteChannelMessages,
   [logout.fulfilled]: R_resetState,
   [deleteAccount.fulfilled]: R_resetState,
-  [createRoom.fulfilled]: R_messagesInit
+  [createRoom.fulfilled]: R_messagesInit,
+  [addChannel.fulfilled]: R_messagesInit
 });
