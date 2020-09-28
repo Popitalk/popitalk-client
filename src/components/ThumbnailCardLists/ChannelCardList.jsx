@@ -4,10 +4,11 @@ import ChannelCard from "../ThumbnailCards/ChannelCard";
 
 function ChannelCardList({ channelList, isCollapsed, tabSelected, isLoading }) {
   const currentChannelList = [];
-
   channelList.forEach(type => {
     if (type.title === tabSelected.slice(2)) {
-      currentChannelList.push(...type.channels);
+      for (const cid in type.channels.channels) {
+        currentChannelList.push({ id: cid, ...type.channels.channels[cid] });
+      }
     }
   });
 
@@ -34,9 +35,14 @@ function ChannelCardList({ channelList, isCollapsed, tabSelected, isLoading }) {
               : "sm:grid-cols-2 md:grid-cols-3"
           }`}
         >
-          {currentChannelList.map(channel => (
-            <ChannelCard key={channel.id} {...channel} />
-          ))}
+          {currentChannelList.map(channel => {
+            return (
+              <ChannelCard
+                key={`${channel.id} + ${tabSelected}`}
+                {...channel}
+              />
+            );
+          })}
         </div>
       )}
     </div>

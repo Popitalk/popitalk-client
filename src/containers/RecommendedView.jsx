@@ -11,6 +11,7 @@ import Helmet from "react-helmet";
 import strings from "../helpers/localization";
 import useBookSearch from "../helpers/useBookSearch";
 import useGetChannels from "../containers/hooks/useGetChannels";
+import { useSelectChannels } from "../containers/selectors/selectChannels";
 
 function RecommendedChannels({ selectedPage }) {
   const tabs = [
@@ -21,7 +22,7 @@ function RecommendedChannels({ selectedPage }) {
   const [tabSelected, setTab] = useState(tabs[1].tab);
   const isCollapsed = useSelector(state => state.ui.isCollapsed);
   const alert = useSelector(state => state.ui.alert);
-  const channels = useSelector(state => state.channels);
+  const channels = useSelectChannels();
   const { id: ownId, channelIds } = useSelector(state => state.self);
   const { defaultIcon } = useSelector(state => state.general);
 

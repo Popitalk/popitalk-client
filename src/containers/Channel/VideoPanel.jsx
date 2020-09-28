@@ -15,7 +15,7 @@ import ScrollableCardList from "../../components/ThumbnailCardLists/ScrollableCa
 
 const mapStateToProps = (state, { channelId }) => {
   const { defaultAvatar } = state.general;
-  const channel = state.channels[channelId];
+  const channel = state.channels.channels[channelId];
   const viewerIds = channel.viewers;
   const users = state.users;
   const viewers = viewerIds

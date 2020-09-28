@@ -11,6 +11,10 @@ import { createSelector } from "reselect";
 import { getMessages, setInitialScroll } from "../../redux/actions";
 import messagesFormatter2 from "../../util/messagesFormatter2";
 import useHasMoreBottom from "../../containers/hooks/useHasMoreBottom";
+import {
+  useSelectChannel,
+  useSelectChannelInitialScroll
+} from "../../containers/selectors/selectChannels";
 
 import InfiniteScroller from "./InfiniteScroller";
 import ChatMessage from "./ChatMessage";
@@ -47,13 +51,11 @@ export default function ChatMessages({
   const containerRef = useRef(null);
   const oldScrollTop = useRef(null);
   const scrolling = useScrolling(containerRef);
-  const channel = useSelector(state => state.channels[channelId]);
+  const channel = useSelectChannel(channelId);
   const hasMoreBottom = useHasMoreBottom(channel, channelMessages);
   const previousChannelId = usePrevious(channelId);
   const { defaultAvatar } = useSelector(state => state.general);
-  const initialScroll = useSelector(state => {
-    return state.channels[channelId].initialScroll || "bottom";
-  });
+  const initialScroll = useSelectChannelInitialScroll(channelId);
   const hasMoreTop =
     channel?.firstMessageId &&
     channel.firstMessageId !== channelMessages[0]?.id;

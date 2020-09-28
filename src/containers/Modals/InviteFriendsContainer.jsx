@@ -19,13 +19,15 @@ import {
 import sortBy from "lodash/sortBy";
 import _ from "lodash";
 
+import { useSelectChannels } from "../selectors/selectChannels";
+
 export default function InviteFriendsContainer({ handleModalClose }) {
   const { isCreatingNewRoom } = useSelector(state => state.modal);
   const { channelId } = useSelector(state => state.modal);
   const { friends } = useSelector(state => state.relationships);
   const { defaultAvatar } = useSelector(state => state.general);
   const users = useSelector(state => state.users);
-  const channels = useSelector(state => state.channels);
+  const channels = useSelectChannels();
   const { roomIds, id: ownId } = useSelector(state => state.self);
   const rooms = sortBy(
     roomIds.map(roomId => {

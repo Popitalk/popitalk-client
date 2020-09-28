@@ -1,4 +1,8 @@
 import { useEffect, useState } from "react";
+import {
+  useSelectTrendingChannels,
+  useSelectDiscoverChannels
+} from "../selectors/selectChannels";
 
 export default function useGetChannels({
   channelIds,
@@ -6,19 +10,20 @@ export default function useGetChannels({
   defaultIcon,
   ownId
 }) {
+  const trendingChannels = useSelectTrendingChannels();
+  const discoverChannels = useSelectDiscoverChannels();
   const [channelList, setChannelList] = useState([]);
   useEffect(() => {
-    const allChannelIds = Object.keys(channels);
-    const discoverChannels = [];
-    const trendingChannels = [];
     const followingChannels = [];
     // Adds channels to "following"
     channelIds
-      .map(channelId => ({
-        id: channelId,
-        ...channels[channelId],
-        icon: channels[channelId].icon || defaultIcon
-      }))
+      .map(channelId => {
+        return {
+          id: channelId,
+          ...channels[channelId],
+          icon: channels[channelId].icon || defaultIcon
+        };
+      })
       .forEach(channel => {
         if (
           channel.ownerId !== ownId &&
@@ -30,30 +35,13 @@ export default function useGetChannels({
           }
         }
       });
-    // Adds channels to "trending" and "discover"
-    allChannelIds
-      .map(channelId => {
-        return {
-          id: channelId,
-          ...channels[channelId],
-          icon: channels[channelId].icon || defaultIcon
-        };
-      })
-      .forEach(channel => {
-        // Replace these conditions when channels are returned from the server
-        if (channel.type === "channel") {
-          if (channel.speciality === "discover") {
-            discoverChannels.push(channel);
-          } else if (channel.speciality === "trending") {
-            trendingChannels.push(channel);
-          }
-        }
-      });
     setChannelList([
-      { title: "Following", channels: followingChannels },
-      { title: "Discover", channels: discoverChannels },
-      { title: "Trending", channels: trendingChannels }
+      { title: "Following", channels: { channels: followingChannels } }
     ]);
   }, [channelIds, channels, defaultIcon, ownId]);
-  return channelList;
+  return [
+    ...channelList,
+    { title: "Trending", channels: trendingChannels },
+    { title: "Discover", channels: discoverChannels }
+  ];
 }

@@ -11,6 +11,7 @@ import {
 import ModalContainer from "../../components/Modals/ModalContainer";
 import ProfileModal from "../../components/Modals/ProfileModal";
 import { setRelationshipHandlers } from "../../helpers/functions";
+import { useSelectChannels } from "../selectors/selectChannels";
 
 export default function ProfileModalContainer({ handleModalClose }) {
   const { userId } = useSelector(state => state.modal);
@@ -26,7 +27,7 @@ export default function ProfileModalContainer({ handleModalClose }) {
   const { defaultAvatar } = useSelector(state => state.general);
   const relationships = useSelector(state => state.relationships);
   const updateUserApi = useSelector(state => state.api.userUpdateApi);
-  const channels = useSelector(state => state.channels);
+  const channels = useSelectChannels();
 
   let followingChannelsCount = 0;
   channelIds

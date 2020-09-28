@@ -184,7 +184,7 @@ const websocketMiddleware = () => store => next => action => {
           //   }
           // }
 
-          const { capacity } = store.getState().channels[
+          const { capacity } = store.getState().channels.channels[
             messagePayload.channelId
           ].chatSettings;
           store.dispatch(
