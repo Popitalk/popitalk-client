@@ -58,7 +58,7 @@ export default function ChannelCard({
           onClick={handleSelect}
         >
           {/* Channel Description*/}
-          <div className="flex flex-row items-center justify-between w-full py-2">
+          <div className="flex flex-row items-center justify-between w-full py-4">
             <div className="flex flex-row items-center">
               <RoomIcon
                 ids={[id]}
@@ -83,22 +83,20 @@ export default function ChannelCard({
               <img
                 src={videoThumbnail}
                 alt={"channel"}
-                className="absolute img top-0 h-full rounded-lg bg-secondaryBackground object-cover pt-px"
+                className="absolute img top-0 h-full rounded-md bg-secondaryBackground object-cover pt-px"
               />
             ) : (
               <img
                 src={channelPlaceholder}
                 alt={"channel"}
-                className="absolute img top-0 h-full rounded-lg bg-primaryBackground"
+                className="absolute img top-0 h-full rounded-md bg-primaryBackground"
               />
             )}
           </div>
           {/* Video Description & Avatar Deck */}
-          <div className="w-full my-2 flex flex-col justify-between items-between items-center space-y-2">
+          <div className="w-full my-4 flex flex-col justify-between items-between items-center space-y-2">
             <p
-              className={`text-sm flex-shrink-1 font-bold w-full truncate-2-lines ml-2  ${
-                videoThumbnail ? "text-primaryText" : "text-secondaryText"
-              }`}
+              className="text-sm flex-shrink-1 font-bold w-full truncate-2-lines ml-2 text-primaryText"
               dangerouslySetInnerHTML={{ __html: videoTitle }}
             />
             <div className="flex w-full text-sm">
