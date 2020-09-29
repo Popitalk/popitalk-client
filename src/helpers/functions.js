@@ -154,7 +154,7 @@ export const mapIdsToUsers = (userIds, users, defaultAvatar) => {
   return userIds.map(userId => ({
     id: userId,
     ...users[userId],
-    avatar: users[userId].avatar || defaultAvatar
+    avatar: users[userId]?.avatar || defaultAvatar
   }));
 };
 
