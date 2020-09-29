@@ -10,10 +10,13 @@ const initialState = {
 };
 
 const R_addSearchedChannels = (state, { payload }) => {
-  if (state.page === null) {
+  if (state.channelName !== payload.channelName) {
     state.channels = payload.channels;
     state.users = payload.users;
-  } else if (state.page < payload.page) {
+  } else if (
+    state.channelName === payload.channelName &&
+    state.page < payload.page
+  ) {
     state.channels = {
       ...state.channels,
       ...payload.channels
