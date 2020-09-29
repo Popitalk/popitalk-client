@@ -926,3 +926,39 @@ export const saveOffset = createAction("gifs/offset", offset => {
 export const setDisplay = createAction("gifs/display", display => {
   return { payload: { display } };
 });
+
+/* -------------------------------------------------------------------------- */
+/*                                  MainPage                                  */
+/* -------------------------------------------------------------------------- */
+
+export const getTrendingChannels = createAsyncThunk(
+  "trendingChannels/getTrendingChannels",
+  async () => {
+    const response = await api.getTrendingChannels();
+    return response.data;
+  }
+);
+
+export const getDiscoverChannels = createAsyncThunk(
+  "discoverChannels/getDiscoverChannels",
+  async () => {
+    const response = await api.getDiscoverChannels();
+    return response.data;
+  }
+);
+
+export const getFollowingChannels = createAsyncThunk(
+  "followingChannels/getFollowingChannels",
+  async () => {
+    const response = await api.getFollowingChannels();
+    return response.data;
+  }
+);
+
+export const searchChannels = createAsyncThunk(
+  "searchChannels/getSearchChannels",
+  async searchInfo => {
+    const response = await api.searchChannels(searchInfo);
+    return response.data;
+  }
+);

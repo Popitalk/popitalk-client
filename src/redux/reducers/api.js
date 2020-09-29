@@ -33,7 +33,11 @@ import {
   followChannel,
   unfollowChannel,
   getUserInfo,
-  getUserInfoModal
+  getUserInfoModal,
+  getFollowingChannels,
+  getDiscoverChannels,
+  getTrendingChannels,
+  searchChannels
 } from "../actions";
 
 const formatType = type => type.split("/").slice(0, 2).join("/");
@@ -76,7 +80,12 @@ const idsOfActions = {
   [formatType(likeComment.fulfilled.type)]: "comment",
   [formatType(unlikeComment.fulfilled.type)]: "comment",
   [formatType(getUserInfo.fulfilled.type)]: "userPage",
-  [formatType(getUserInfoModal.fulfilled.type)]: "userPageModal"
+  [formatType(getUserInfoModal.fulfilled.type)]: "userPageModal",
+  // MAINPAGE
+  [formatType(getFollowingChannels.fulfilled.type)]: "followingChannels",
+  [formatType(getDiscoverChannels.fulfilled.type)]: "discoverChannels",
+  [formatType(getTrendingChannels.fulfilled.type)]: "trendingChannels",
+  [formatType(searchChannels.fulfilled.type)]: "channelSearch"
 };
 
 const initialState = Object.values(idsOfActions)

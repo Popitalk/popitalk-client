@@ -284,3 +284,25 @@ export const getTrendingGifs = offset => {
 export const getSearchGifs = info => {
   return ax.get(`/gifs/search/${info.offset}?searchTerm=${info.term}`);
 };
+
+// Mainpage (Trending, Discover, Following, Channel Search)
+
+export const getTrendingChannels = () => {
+  return ax.get("/channels/trending");
+};
+
+export const getDiscoverChannels = () => {
+  return ax.get("/channels/discover");
+};
+
+export const getFollowingChannels = () => {
+  return ax.get("/channels/following");
+};
+
+export const searchChannels = ({ channelName, page }) => {
+  if (!page) {
+    return ax.get(`/channels/search?channelName=${channelName}`);
+  } else {
+    return ax.get(`/channels/search?channelName=${channelName}&page=${page}`);
+  }
+};

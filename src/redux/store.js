@@ -19,6 +19,10 @@ import userSearchReducer from "./reducers/userSearch";
 import inviteReducer from "./reducers/invite";
 import relationshipsReducer from "./reducers/relationships";
 import userProfileReducer from "./reducers/userProfile";
+import trendingChannelsReducer from "./reducers/trendingChannels";
+import discoverChannelsReducer from "./reducers/discoverChannels";
+import followingChannelsReducer from "./reducers/followingChannels";
+import channelSearchReducer from "./reducers/channelSearch";
 import uiReducer from "./reducers/ui";
 import localstorageMiddleware from "./middleware/localstorageMiddleware";
 import routingMiddleware from "./middleware/routingMiddleware";
@@ -43,7 +47,11 @@ const reducer = combineReducers({
   userSearch: userSearchReducer,
   invite: inviteReducer,
   userProfile: userProfileReducer,
-  ui: uiReducer
+  ui: uiReducer,
+  trendingChannels: trendingChannelsReducer,
+  discoverChannels: discoverChannelsReducer,
+  followingChannels: followingChannelsReducer,
+  channelSearch: channelSearchReducer
 });
 
 const middleware = [
