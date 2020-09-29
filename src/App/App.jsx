@@ -5,12 +5,7 @@ import { Redirect } from "react-router-dom";
 import WelcomePage from "../containers/WelcomePage";
 import Header from "../containers/Header";
 import ModalManager from "../containers/Modals/ModalManager";
-import {
-  validateSession,
-  getDiscoverChannels,
-  searchChannels,
-  getFollowingChannels
-} from "../redux/actions";
+import { validateSession } from "../redux/actions";
 import "../styles/app.css";
 import "./App.css";
 import "../helpers/initIcons";
@@ -45,13 +40,6 @@ export default function App() {
 
   useEffect(() => {
     dispatch(validateSession());
-    setTimeout(() => {
-      dispatch(
-        searchChannels({
-          channelName: "chan"
-        })
-      );
-    }, 2000);
   }, [dispatch]);
 
   useEffect(() => {
