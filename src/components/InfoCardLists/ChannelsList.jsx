@@ -13,7 +13,6 @@ export default function ChannelsList({
   ...rest
 }) {
   const itemRenderer = channel => {
-    console.log(channel);
     const roomIcon = (
       <RoomIcon
         ids={[channel.id]}

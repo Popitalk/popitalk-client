@@ -1,6 +1,7 @@
 import { useSelector } from "react-redux";
 
 export default function useGetChannels() {
+  let channelList = [];
   const followedChannels = useSelector(state => {
     return state.followingChannels.channels;
   });
@@ -11,9 +12,11 @@ export default function useGetChannels() {
     return state.discoverChannels.channels;
   });
 
-  return [
+  channelList = [
     { title: "Following", channels: followedChannels },
     { title: "Discover", channels: discoverChannels },
     { title: "Trending", channels: trendingChannels }
   ];
+
+  return channelList;
 }
