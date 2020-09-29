@@ -226,16 +226,16 @@ export const deleteBlockerWs = createAction("relationships/deleteBlocker/ws");
 
 export const getChannel = createAsyncThunk(
   "channels/getChannel",
-  async channelId => {
-    const response = await api.getChannel(channelId);
+  async channelInfo => {
+    const response = await api.getChannel(channelInfo);
     return response.data;
   }
 );
 
-export const leaveChannel = createAsyncThunk(
-  "channels/leaveChannel",
-  async channelId => {
-    const response = await api.leaveChannel(channelId);
+export const visitAndLeaveChannel = createAsyncThunk(
+  "channels/visitAndLeaveChannel",
+  async visitAndLeaveInfo => {
+    const response = await api.visitAndLeaveChannel(visitAndLeaveInfo);
     return response.data;
   }
 );

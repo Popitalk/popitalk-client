@@ -90,12 +90,29 @@ export const updateChannel = (channelId, updateInfo) => {
   return ax.put(`/channels/${channelId}`, updateInfo);
 };
 
-export const getChannel = channelId => {
-  return ax.get(`/channels/${channelId}`);
+export const getChannel = ({ channelId, leave }) => {
+  if (leave) {
+    return ax.get(`/channels/channel?channelId=${channelId}&leave=${leave}`);
+  } else {
+    return ax.get(`/channels/channel?channelId=${channelId}`);
+  }
 };
 
-export const leaveChannel = channelId => {
-  return ax.post(`/channels/${channelId}/leave`);
+export const visitAndLeaveChannel = ({ visit, leave }) => {
+  if (visit && !leave) {
+    return ax.post("/channels/visitAndLeave", {
+      visit
+    });
+  } else if (!visit && leave) {
+    return ax.post("/channels/visitAndLeave", {
+      leave
+    });
+  } else if (visit && leave) {
+    return ax.post("/channels/visitAndLeave", {
+      visit,
+      leave
+    });
+  }
 };
 
 export const createChannel = channelInfo => {

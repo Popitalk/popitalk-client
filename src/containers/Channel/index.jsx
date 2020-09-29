@@ -5,7 +5,7 @@ import { Redirect, withRouter } from "react-router-dom";
 import {
   addMessage,
   getChannel,
-  leaveChannel,
+  visitAndLeaveChannel,
   setPostDraft,
   addPost,
   addComment,
@@ -169,8 +169,9 @@ const mapDispatchToProps = (dispatch, { match }) => {
       dispatch(deleteVideo({ channelId, channelVideoId })),
     handleSwapVideos: ({ oldIndex, newIndex }) =>
       dispatch(swapVideos({ channelId, oldIndex, newIndex })),
-    handleGetChannel: () => dispatch(getChannel(channelId)),
-    handleLeaveChannel: () => dispatch(leaveChannel(channelId)),
+    handleGetChannel: leave => dispatch(getChannel({ channelId, leave })),
+    handleVisitAndLeave: visitAndLeaveInfo =>
+      dispatch(visitAndLeaveChannel(visitAndLeaveInfo)),
     openDeleteChannelModal: () => dispatch(openDeleteChannelModal(channelId)),
     openDeletePostModal: postId => dispatch(openDeletePostModal(postId)),
     handleChannelNotFound: () =>
@@ -330,10 +331,19 @@ class Channel extends Component {
       this.props.handleGetChannel();
     } else if (!this.state.playerStatus.channelId) {
       this.setPlayerStatus();
+      this.props.handleVisitAndLeave({
+        visit: this.props.channelId
+      });
     }
 
     this.setState({
       forceScroll: true
+    });
+  }
+
+  componentWillUnmount() {
+    this.props.handleVisitAndLeave({
+      leave: this.props.channelId
     });
   }
 
@@ -353,7 +363,7 @@ class Channel extends Component {
       prevProps.channelId !== this.props.channelId &&
       !this.props.channel?.loaded
     ) {
-      this.props.handleGetChannel();
+      this.props.handleGetChannel(prevProps.channelId);
     } else if (
       (!prevProps.channel && this.props.channel) ||
       (!prevProps.channel.loaded && this.props.channel.loaded) ||
@@ -404,6 +414,17 @@ class Channel extends Component {
 
       this.setState({
         forceScroll: false
+      });
+    }
+
+    if (
+      this.props.channelId !== prevProps.channelId &&
+      this.props.channel?.loaded &&
+      prevProps.channel?.loaded
+    ) {
+      this.props.handleVisitAndLeave({
+        leave: prevProps.channelId,
+        visit: this.props.channelId
       });
     }
   }
