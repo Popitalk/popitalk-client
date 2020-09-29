@@ -13,30 +13,26 @@ export default function ChannelCard({
   name,
   icon,
   status,
-  queue,
-  queueStartPosition,
-  members,
+  videoInfo,
+  viewers,
   handleFollow,
   isLoading
 }) {
   const users = useSelector(state => state.users);
-  const { defaultAvatar } = useSelector(state => state.general);
-  const viewers = members ? mapIdsToUsers(members, users, defaultAvatar) : [];
-  const avatars = viewers.map(viewer => viewer.avatar);
+  const { defaultAvatar, defaultIcon } = useSelector(state => state.general);
+  const viewerInfoObject = viewers
+    ? mapIdsToUsers(viewers, users, defaultAvatar)
+    : [];
+  const avatars = viewerInfoObject.map(viewer => viewer.avatar);
   const handleSelect = () => {
     history.push(`/channels/${id}/video`);
   };
   let videoThumbnail = "";
   let videoTitle = strings.nothingPlaying;
 
-  if (queue.length > 0) {
-    try {
-      videoThumbnail = queue[queueStartPosition].thumbnail;
-      videoTitle = queue[queueStartPosition].title;
-    } catch {
-      videoThumbnail = queue[0].thumbnail;
-      videoTitle = queue[0].title;
-    }
+  if (videoInfo) {
+    videoThumbnail = videoInfo.thumbnail;
+    videoTitle = videoInfo.title;
   }
   return (
     <>
@@ -66,7 +62,7 @@ export default function ChannelCard({
             <div className="flex flex-row items-center">
               <RoomIcon
                 ids={[id]}
-                images={[icon]}
+                images={[icon || defaultIcon]}
                 // watching={status}
                 size="sm"
                 className="mr-2 w-10 h-10"

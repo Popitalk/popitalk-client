@@ -7,7 +7,9 @@ function ChannelCardList({ channelList, isCollapsed, tabSelected, isLoading }) {
 
   channelList.forEach(type => {
     if (type.title === tabSelected.slice(2)) {
-      currentChannelList.push(...type.channels);
+      for (let cid in type.channels) {
+        currentChannelList.push({ id: cid, ...type.channels[cid] });
+      }
     }
   });
 
@@ -34,9 +36,9 @@ function ChannelCardList({ channelList, isCollapsed, tabSelected, isLoading }) {
               : "sm:grid-cols-2 md:grid-cols-3"
           }`}
         >
-          {currentChannelList.map(channel => (
-            <ChannelCard key={channel.id} {...channel} />
-          ))}
+          {currentChannelList.map(channel => {
+            return <ChannelCard key={channel.id} {...channel} />;
+          })}
         </div>
       )}
     </div>
