@@ -4,39 +4,36 @@ import ChannelSearchCard from "../ThumbnailCards/ChannelSearchCard.jsx";
 import strings from "../../helpers/localization.js";
 
 function ChannelSearchList({ channelList }) {
+  function mapChannels(channels) {
+    let channelSearchCards = [];
+    for (let cid in channels) {
+      channelSearchCards.push(
+        <ChannelSearchCard key={cid} id={cid} {...channels[cid]} />
+      );
+    }
+    return channelSearchCards;
+  }
   return (
     <div className="my-8">
-      {channelList !== [] ? (
-        <div>
-          {channelList.length !== 0 ? (
-            <div>
-              {channelList.map(channel => (
-                <ChannelSearchCard key={channel.id} {...channel} />
-              ))}
-            </div>
-          ) : (
-            <div className="flex items-center justify-center text-secondaryText w-full h-32">
-              {strings.nothingToShow}
-            </div>
-          )}
-        </div>
-      ) : (
-        <>
-          <ChannelSearchCard loading />
-          <ChannelSearchCard loading />
-          <ChannelSearchCard loading />
-        </>
-      )}
+      <div>
+        {Object.keys(channelList).length > 0 ? (
+          <div>{mapChannels(channelList)}</div>
+        ) : (
+          <div className="flex items-center justify-center text-secondaryText w-full h-32">
+            {strings.nothingToShow}
+          </div>
+        )}
+      </div>
     </div>
   );
 }
 
 ChannelSearchList.propTypes = {
-  channelList: PropTypes.array
+  channelList: PropTypes.object
 };
 
 ChannelSearchList.defaultProps = {
-  channelList: []
+  channelList: {}
 };
 
 export default ChannelSearchList;

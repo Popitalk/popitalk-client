@@ -6,39 +6,35 @@ import VideoStatus from "../VideoStatus";
 import strings from "../../helpers/localization";
 import history from "../../history";
 import channelPlaceholder from "../../assets/default/channelPlaceholder1.png";
+import { mapIdsToUsers } from "../../helpers/functions";
 
 export default function ChannelCard({
   id,
   name,
   icon,
-  live,
   description,
-  videoSource,
-  members,
-  handleFollow,
-  playerStatus,
+  viewers,
   queueStartPosition,
-  avatars,
   queue,
-  status,
-  loading
+  playbackStatus,
+  loading,
+  videoInfo
 }) {
+  const { defaultAvatar } = useSelector(state => state.general);
+  const users = useSelector(state => state.users);
+  const viewerInfoObject = viewers
+    ? mapIdsToUsers(viewers, users, defaultAvatar)
+    : [];
+  const avatars = viewerInfoObject.map(viewer => viewer.avatar);
   const handleSelect = () => {
     history.push(`/channels/${id}/video`);
   };
   let videoThumbnail = "";
   let videoTitle = strings.nothingPlaying;
-  const { defaultAvatar } = useSelector(state => state.general);
-  avatars = avatars.map(avatar => avatar.avatar || defaultAvatar);
 
-  if (queue.length > 0) {
-    try {
-      videoThumbnail = queue[queueStartPosition].thumbnail;
-      videoTitle = queue[queueStartPosition].title;
-    } catch {
-      videoThumbnail = queue[0].thumbnail;
-      videoTitle = queue[0].title;
-    }
+  if (videoInfo) {
+    videoThumbnail = videoInfo.thumbnail;
+    videoTitle = videoInfo.title;
   }
   return (
     <>
@@ -85,7 +81,7 @@ export default function ChannelCard({
             <div className="flex flex-col justify-start max-w-lg px-4">
               {/* Video Title & Video Status & Viewer list */}
               <div className="flex text-lg font-bold w-full truncate-2-lines text-primaryText">
-                <VideoStatus status={status.toLowerCase()} type="text" string />
+                <VideoStatus status={playbackStatus} type="text" string />
                 <p dangerouslySetInnerHTML={{ __html: videoTitle }} />
               </div>
               {avatars.length > 0 && (

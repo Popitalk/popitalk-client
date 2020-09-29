@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from "react";
 import PropTypes from "prop-types";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import ChannelCardList from "../components/ThumbnailCardLists/ChannelCardList.jsx";
 import ChannelSearchList from "../components/ThumbnailCardLists/ChannelSearchList.jsx";
 import VideoCardList from "../components/ThumbnailCardLists/VideoCardList.jsx";
@@ -9,8 +9,13 @@ import Alert from "../components/Alert";
 import Button from "../components/Controls/Button.jsx";
 import Helmet from "react-helmet";
 import strings from "../helpers/localization";
-import useBookSearch from "../helpers/useBookSearch";
 import useGetChannels from "../containers/hooks/useGetChannels";
+import {
+  getDiscoverChannels,
+  getTrendingChannels,
+  getFollowingChannels,
+  searchChannels
+} from "../redux/actions";
 
 function RecommendedChannels({ selectedPage }) {
   const tabs = [
@@ -22,33 +27,48 @@ function RecommendedChannels({ selectedPage }) {
   const isCollapsed = useSelector(state => state.ui.isCollapsed);
   const alert = useSelector(state => state.ui.alert);
   const channels = useSelector(state => state.channels);
-  const { id: ownId, channelIds } = useSelector(state => state.self);
-  const { defaultIcon } = useSelector(state => state.general);
+  const followedChannelsLoading = useSelector(
+    state => state.api.followingChannels.loading
+  );
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getDiscoverChannels());
+    dispatch(getTrendingChannels());
+    dispatch(getFollowingChannels());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [channels]);
 
   const [isLoading] = useState(false);
   // Gets all channels and seperates following, discover and trending.
-  const channelList = useGetChannels({
-    channelIds,
-    channels,
-    defaultIcon,
-    ownId
-  });
+  const channelList = useGetChannels();
+  // Fetches channels
   useEffect(() => {
-    if (channelList.length > 0 && channelList[0].channels.length > 0)
+    if (
+      Object.keys(channelList[0].channels).length > 0 &&
+      !followedChannelsLoading
+    )
       setTab(tabs[0].tab);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [channels, channelList]);
+  }, [followedChannelsLoading]);
   // Infinite scroll
   // search is the Input Value. query is the search term triggered in handleSearch
   const [search, setSearch] = useState("");
-  const [query, setQuery] = useState("");
-  const [pageNumber, setPageNumber] = useState(1);
-  const { books } = useBookSearch(query, pageNumber);
+  const [isSearchForChannels, setIsSearchForChannels] = useState(false);
+  // TODO replace with useSelector
+  const searchResultChannels = useSelector(state => {
+    return state.channelSearch.channels;
+  });
+
+  useEffect(() => {
+    if (search === "") setIsSearchForChannels(false);
+  }, [search]);
 
   const handleSearch = useCallback(() => {
-    setQuery(search);
-    setPageNumber(1);
-  }, [search]);
+    setIsSearchForChannels(true);
+    dispatch(searchChannels({ channelName: search }));
+  }, [search, dispatch]);
 
   useEffect(() => {
     const listener = event => {
@@ -60,7 +80,7 @@ function RecommendedChannels({ selectedPage }) {
     return () => {
       document.removeEventListener("keydown", listener);
     };
-  }, [handleSearch, query]);
+  }, [handleSearch, search]);
 
   return (
     <div className="relative py-4 mx-auto w-full max-w-screen-xl rounded-md bg-secondaryBackground">
@@ -82,9 +102,9 @@ function RecommendedChannels({ selectedPage }) {
           onClick={handleSearch}
         />
       </div>
-      {query !== "" ? (
+      {isSearchForChannels ? (
         <div>
-          <ChannelSearchList channelList={books} />
+          <ChannelSearchList channelList={searchResultChannels} />
         </div>
       ) : (
         <div>
@@ -103,7 +123,9 @@ function RecommendedChannels({ selectedPage }) {
                       ? "text-highlightText cursor-default"
                       : "text-secondaryText cursor-pointer"
                   }`}
-                  onClick={() => setTab(img.tab)}
+                  onClick={() => {
+                    setTab(img.tab);
+                  }}
                   analyticsString={`${img.tab} Button: RecommendedView`}
                 />
               );
