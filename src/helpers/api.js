@@ -235,7 +235,7 @@ export const deleteMessage = messageId => {
 // Notifications
 
 export const deleteNotification = channelId => {
-  return ax.delete(`/messages/notifications?channelId=${channelId}`);
+  return ax.delete(`/notifications/${channelId}`);
 };
 
 // POSTS
