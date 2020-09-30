@@ -298,8 +298,8 @@ export const getTrendingGifs = offset => {
   return ax.get(`/gifs/trending/${offset}`);
 };
 
-export const getSearchGifs = info => {
-  return ax.get(`/gifs/search/${info.offset}?searchTerm=${info.term}`);
+export const getSearchGifs = ({ term, offset }) => {
+  return ax.get(`/gifs/search?searchTerm=${term}&offset=${offset}`);
 };
 
 // Mainpage (Trending, Discover, Following, Channel Search)

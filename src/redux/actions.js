@@ -897,6 +897,14 @@ export const setPaused = createAsyncThunk(
 /*                              GIFS                                          */
 /* -------------------------------------------------------------------------- */
 
+export const initTrendingGifs = createAsyncThunk(
+  "gifs/initTrending",
+  async () => {
+    const response = await api.getTrendingGifs(0);
+    return response.data;
+  }
+);
+
 export const getTrendingGifs = createAsyncThunk(
   "gifs/getTrending",
   async offset => {
@@ -904,17 +912,11 @@ export const getTrendingGifs = createAsyncThunk(
     return response.data;
   }
 );
+
 export const getSearchGifs = createAsyncThunk(
   "gifs/getSearchGifs",
   async (term, offset) => {
     const response = await api.getSearchGifs(term, offset);
-    return response.data;
-  }
-);
-export const initTrendingGifs = createAsyncThunk(
-  "gifs/initTrending",
-  async () => {
-    const response = await api.getTrendingGifs(0);
     return response.data;
   }
 );

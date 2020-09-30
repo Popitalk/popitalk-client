@@ -34,11 +34,7 @@ export default function GifTable({ updateGifsOpen }) {
         content: JSON.stringify({
           id: gif.id,
           title: gif.title,
-          still: gif.embed_url,
-          images: {
-            downsized_medium: gif.images.fixed_height.url,
-            fixed_height: gif.images.fixed_height.url
-          }
+          image: gif.image
         }),
         upload: "gif",
         createdAt: Date.now(),
@@ -67,7 +63,7 @@ export default function GifTable({ updateGifsOpen }) {
         >
           <img
             className="w-full max-h-none p-1 rounded-md"
-            src={gif.images.fixed_height_downsampled.url}
+            src={gif.image}
             alt={gif.title}
           />
         </li>

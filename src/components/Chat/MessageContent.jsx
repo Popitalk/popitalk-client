@@ -16,7 +16,7 @@ export default function MessageContent({ message }) {
         // is dynamic, chat container can not precalculate the height of it, and we cant scroll accordingly.
         <img
           className="h-32"
-          src={JSON.parse(message.content).images.fixed_height}
+          src={JSON.parse(message.content).image}
           alt={JSON.parse(message.content).title}
         />
       ) : message.upload === "system" ? (
