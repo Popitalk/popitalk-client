@@ -211,6 +211,25 @@ const R_updateLastMessageInfoWs = (state, { payload }) => {
 
 const R_updateLastMessageUpdate = (state, { payload }) => {
   state[payload.channelId].lastMessagesUpdateByWebsockets = false;
+
+  // state.messages
+  // if (payload.direction === "bottom") {
+  //   state[payload.channelId] = state[payload.channelId]
+  //     ? _.uniqBy([...state[payload.channelId], ...payload.messages], "id")
+  //     : payload.messages;
+
+  //   if (state[payload.channelId].length > extendedCapacity) {
+  //     state[payload.channelId] = state[payload.channelId].slice(-100);
+  //   }
+  // } else if (payload.direction === "top") {
+  //   state[payload.channelId] = state[payload.channelId]
+  //     ? _.uniqBy([...payload.messages, ...state[payload.channelId]], "id")
+  //     : payload.messages;
+
+  //   if (state[payload.channelId].length > extendedCapacity) {
+  //     state[payload.channelId] = state[payload.channelId].slice(0, 100);
+  //   }
+  // }
 };
 const R_updateLastMessageUpdateLatest = (state, { payload }) => {
   state[payload.channelId].lastMessagesUpdateByWebsockets = false;

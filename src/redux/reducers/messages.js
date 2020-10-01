@@ -46,7 +46,10 @@ const R_messagesInit = (state, { payload }) => {
 };
 
 const R_addMessages = (state, { payload }) => {
-  console.log("payt", payload);
+  state = {
+    ...state,
+    ...payload.messages
+  };
   // state.messages
   // if (payload.direction === "bottom") {
   //   state[payload.channelId] = state[payload.channelId]

@@ -423,8 +423,7 @@ export const getMessages = createAsyncThunk(
     const response = await api.getMessages(messagesInfo);
 
     return {
-      channelId: messagesInfo.channelId,
-      messages: response.data,
+      ...response.data,
       direction: messagesInfo.afterMessageId ? "bottom" : "top"
     };
   }
@@ -435,8 +434,7 @@ export const getLatestMessages = createAsyncThunk(
     const response = await api.getMessages(messagesInfo);
 
     return {
-      channelId: messagesInfo.channelId,
-      messages: response.data,
+      ...response.data,
       direction: messagesInfo.afterMessageId ? "bottom" : "top"
     };
   }
