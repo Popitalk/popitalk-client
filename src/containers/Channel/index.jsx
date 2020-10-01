@@ -28,6 +28,7 @@ import {
   addVideo,
   deleteVideo,
   swapVideos,
+  setPlaying,
   setAlert,
   getTrending,
   getComments
@@ -176,7 +177,9 @@ const mapDispatchToProps = (dispatch, { match }) => {
     openDeletePostModal: postId => dispatch(openDeletePostModal(postId)),
     handleChannelNotFound: () =>
       dispatch(setAlert("The channel / room you entered does not exist.")),
-    handleGetComments: postId => dispatch(getComments(postId))
+    handleGetComments: postId => dispatch(getComments(postId)),
+    dispatchPlay: (queueStartPosition, videoStartTime) =>
+      dispatch(setPlaying({ channelId, queueStartPosition, videoStartTime }))
   };
 };
 
@@ -471,6 +474,9 @@ class Channel extends Component {
     const handleDeleteVideo = this.props.handleDeleteVideo;
     const handleAddVideo = videoData => {
       this.props.handleAddVideo(videoData);
+      if (this.props.playlist.length === 0) {
+        this.props.dispatchPlay(0, 0);
+      }
       this.scrollRef.current.scrollTo({
         top: 0,
         behavior: "smooth"
@@ -538,6 +544,7 @@ class Channel extends Component {
               <>
                 <VideoPanel
                   channelId={channelId}
+                  dispatchPlay={this.props.dispatchPlay}
                   handleDeleteVideo={handleDeleteVideo}
                   handleSwapVideos={handleSwapVideos}
                   handlePlayNextVideo={this.playNextVideo}
