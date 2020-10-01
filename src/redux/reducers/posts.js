@@ -25,17 +25,11 @@ import {
 const initialState = {};
 
 const R_postsInit = (state, { payload }) => {
-  if (payload.channel?.type === "channel") {
-    if (!state[payload.channelId]) {
-      state[payload.channelId] = [];
-    }
-
-    if (payload.posts && state[payload.channelId].length < 7) {
-      state[payload.channelId] = _.uniqBy(
-        [...payload.posts, ...state[payload.channelId]],
-        "id"
-      );
-    }
+  if (payload.type === "channel") {
+    return {
+      ...state,
+      ...payload.posts
+    };
   }
 };
 

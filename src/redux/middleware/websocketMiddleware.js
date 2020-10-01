@@ -143,67 +143,11 @@ const websocketMiddleware = () => store => next => action => {
           heartbeat();
         },
         [WS_EVENTS.CHANNEL.ADD_MESSAGE]() {
-          // let addMessage = true;
-
-          // let messagesState = store.getState().messages;
-          // let channelsState = store.getState().channels;
-
-          // const channelHasMessages =
-          //   messagesState[messagePayload.channelId]?.length !== 0;
-
-          // if (channelHasMessages) {
-          //   const lastMessageIdInChannel =
-          //     channelsState[messagePayload.channelId].lastMessageId;
-
-          //   if (!lastMessageIdInChannel) {
-          //     addMessage = true;
-          //   } else {
-          //     // Last message ID in channel has to be a non pending message
-          //     let lastMessageIdInMessages = "";
-
-          //     function findFirstNonPendingMessage(index) {
-          //       if (
-          //         messagesState[messagePayload.channelId][index].status ===
-          //           "accepted" ||
-          //         messagesState[messagePayload.channelId][index].status ===
-          //           undefined
-          //       ) {
-          //         lastMessageIdInMessages =
-          //           messagesState[messagePayload.channelId][index].id;
-          //       } else if (index < 1) {
-          //         return false;
-          //       } else {
-          //         findFirstNonPendingMessage(index - 1);
-          //       }
-          //     }
-          //     findFirstNonPendingMessage(
-          //       messagesState[messagePayload.channelId].length - 1
-          //     );
-
-          //     addMessage = lastMessageIdInChannel === lastMessageIdInMessages;
-          //   }
-          // }
-
+          console.log("WS", messagePayload);
           const { capacity } = store.getState().channels[
             messagePayload.channelId
           ].chatSettings;
-          store.dispatch(
-            addMessageWs({
-              ...messagePayload.message,
-              capacity
-            })
-          );
-          //       if (addMessage) {
-          // } else {
-          //   store.dispatch(
-          //     updateChannelWs({
-          //       channelId: messagePayload.channelId,
-          //       updatedChannel: {
-          //         lastMessageId: messagePayload.message.id
-          //       }
-          //     })
-          //   );
-          // }
+          store.dispatch(addMessageWs({ ...messagePayload, capacity }));
         },
         [WS_EVENTS.CHANNEL.DELETE_MESSAGE]() {
           store.dispatch(deleteMessageWs(messagePayload));

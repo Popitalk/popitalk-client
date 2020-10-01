@@ -31,12 +31,12 @@ import Spinner from "../Spinner";
 //   dispatch(getLatestMessages({ channelId }));
 // };
 
-const selectFormattedMessages = createSelector(
-  state => state.messages,
-  (_, channelId) => channelId,
-  (messages, channelId) =>
-    messages[channelId] ? messagesFormatter2(messages[channelId]) : []
-);
+// const selectFormattedMessages = createSelector(
+//   state => state.messages,
+//   (_, channelId) => channelId,
+//   (messages, channelId) =>
+//     messages[channelId] ? messagesFormatter2(messages[channelId]) : []
+// );
 
 export default function ChatMessages({
   channelId,
@@ -48,7 +48,8 @@ export default function ChatMessages({
   const oldScrollTop = useRef(null);
   const scrolling = useScrolling(containerRef);
   const channel = useSelector(state => state.channels[channelId]);
-  const hasMoreBottom = useHasMoreBottom(channel, channelMessages);
+  const hasMoreBottom = false;
+  // const hasMoreBottom = useHasMoreBottom(channel, channelMessages);
   const previousChannelId = usePrevious(channelId);
   const { defaultAvatar } = useSelector(state => state.general);
   const initialScroll = useSelector(state => {
@@ -57,9 +58,10 @@ export default function ChatMessages({
   const hasMoreTop =
     channel?.firstMessageId &&
     channel.firstMessageId !== channelMessages[0]?.id;
-  const messages = useSelector(state =>
-    selectFormattedMessages(state, channelId)
-  );
+  // const messages = useSelector(state =>
+  //   selectFormattedMessages(state, channelId)
+  // );
+  const messages = messagesFormatter2(channelMessages) || [];
   const apiLoading = useSelector(state => state.api.messages.loading);
   // const apiError = useSelector(state => state.api.messages.error);
 
@@ -115,7 +117,7 @@ export default function ChatMessages({
     if (channelId !== previousChannelId) return;
     if (!channel.lastMessagesUpdateByWebsockets) return;
 
-    if (messages[messages.length - 1].userId === ownId) {
+    if (messages[messages.length - 1]?.userId === ownId) {
       containerRef.current.scrollTo({
         top: containerRef.current.scrollHeight,
         behavior: "auto"
@@ -150,6 +152,8 @@ export default function ChatMessages({
       })
     );
   };
+
+  console.log("XXX");
 
   return (
     // <div className="ChatMessages--container" ref={scrollRef}>

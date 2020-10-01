@@ -3,11 +3,27 @@ import { useSelector, useDispatch } from "react-redux";
 import { withRouter } from "react-router-dom";
 import ChatPanel from "../components/Chat/ChatPanel";
 import { openListModal } from "../redux/actions";
+import { createSelector } from "reselect";
 import useIsMember from "../containers/hooks/useIsMember";
+
+const selectChannelMessages = createSelector(
+  (state, channelId) => state.channels[channelId].messages,
+  (state, _) => state.messages,
+  (messageIds, messages) => messageIds.map(msgId => messages[msgId])
+);
+
+// const messages = useSelector(state =>
+//   selectFormattedMessages(state, channelId)
+// );
 
 function ChatPanelContainer(props) {
   const channelId = props.match.params.roomId || props.match.params.channelId;
-  const channelMessages = useSelector(state => state.messages[channelId]);
+  const channelMessages = useSelector(state =>
+    selectChannelMessages(state, channelId)
+  );
+  // const channelMessages = useSelector(
+  //   state => state.channels[channelId].messages
+  // );
   const dispatch = useDispatch();
   const openFollowersList = () =>
     dispatch(openListModal(channelId, "followers"));

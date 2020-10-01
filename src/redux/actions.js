@@ -456,17 +456,20 @@ export const addMessage = createAsyncThunk(
     return { ...payload, capacity };
   }
 );
+
 export const addMessageWs = createAction("messages/addMessage/ws");
 
 export const deleteMessage = createAsyncThunk(
   "messages/deleteMessage",
   async ({ status, id, channelId }) => {
-    if (status === undefined || status === "accepted") {
-      const response = await api.deleteMessage(id);
-      return response.data;
-    } else {
-      return { status, id, channelId };
-    }
+    const response = await api.deleteMessage(id);
+    return response.data;
+    // if (status === undefined || status === "accepted") {
+    //   const response = await api.deleteMessage(id);
+    //   return response.data;
+    // } else {
+    //   return { status, id, channelId };
+    // }
   }
 );
 export const deleteMessageWs = createAction("messages/deleteMessage/ws");

@@ -10,9 +10,7 @@ export default function DeleteMessageContainer({ handleModalClose }) {
   const channelId = useSelector(state => state.modal.channelId);
   const { id: ownId } = useSelector(state => state.self);
   const { defaultAvatar } = useSelector(state => state.general);
-  const message = useSelector(state =>
-    state.messages[channelId].find(m => m.id === messageId)
-  );
+  const message = useSelector(state => state.messages[messageId]);
   const dispatch = useDispatch();
   const handleDelete = () => {
     dispatch(

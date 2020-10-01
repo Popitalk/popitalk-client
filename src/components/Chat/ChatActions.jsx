@@ -24,7 +24,8 @@ function ChatActions(props) {
 
   const handleSend = () => {
     const text = textareaRef.current.value.trim();
-    if (text.length > 0)
+    if (text.length > 0) {
+      console.log("SENDING");
       dispatch(
         addMessage({
           id: uuidv4(),
@@ -40,6 +41,8 @@ function ChatActions(props) {
           }
         })
       );
+    }
+
     textareaRef.current.value = "";
     textareaRef.current.style.height = "38px";
   };
