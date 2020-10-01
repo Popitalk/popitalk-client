@@ -266,13 +266,28 @@ class Channel extends Component {
   }
 
   playNextVideo() {
-    const nextPosition = this.state.playerStatus.queueStartPosition + 1;
+    let nextPosition = this.state.playerStatus.queueStartPosition + 1;
+    if (nextPosition === this.props.playlist.length) {
+      // Force all channels to loop
+      nextPosition = 0;
+    }
+
     if (this.props.playlist.length > nextPosition) {
-      let newQueueList = [...this.state.queueList];
-      newQueueList[
-        nextPosition
-      ].status = this.state.playerStatus.status.toLowerCase();
-      newQueueList[nextPosition - 1].status = "ended";
+      let newQueueList = null;
+      if (nextPosition === 0) {
+        // Reset video statuses when restarting playlist from beginning
+        newQueueList = this.mapVideoStatuses(
+          this.props.playlist,
+          nextPosition,
+          this.state.playerStatus.status
+        );
+      } else {
+        newQueueList = [...this.state.queueList];
+        newQueueList[
+          nextPosition
+        ].status = this.state.playerStatus.status.toLowerCase();
+        newQueueList[nextPosition - 1].status = "ended";
+      }
 
       const nextPlayerStatus = calculateNextPlayerStatus(
         this.props.startPlayerStatus,
@@ -288,6 +303,7 @@ class Channel extends Component {
         queueList: newQueueList
       });
     } else {
+      // End the stream if the channel doesn't loop
       let newQueueList = [...this.state.queueList];
       newQueueList[nextPosition - 1].status = "ended";
 

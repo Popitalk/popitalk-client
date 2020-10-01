@@ -223,6 +223,32 @@ class VideoPlayer extends Component {
     const showPlay =
       !this.state.playing && this.state.videoStatus.currSeconds === 0;
 
+    const videoStatusCard = (
+      <>
+        <ReactTooltip
+          effect="solid"
+          backgroundColor="#F2F2F2"
+          textColor="black"
+          className="shadow-lg rounded-md py-1 px-3"
+          arrowColor="transparent"
+        />
+        {/* VideoPlayerStatusCard */}
+        <div className="absolute flex items-center justify-center w-full h-full">
+          {!this.state.playing && this.state.videoStatus.currSeconds === 0 && (
+            <VideoPlayerStatusCard
+              systemMessage={strings.paused}
+              icon="pause"
+            />
+          )}
+          {this.state.videoStatus.currSeconds > 0 && (
+            <VideoPlayerStatusCard
+              systemMessage={`${strings.startingIn} ${this.state.videoStatus.currSeconds}`}
+            />
+          )}
+        </div>
+      </>
+    );
+
     return (
       <>
         {/* When nothing is in the queue, it should hide the VideoPlayer for both admin & followers (and show the default placeholder). 
@@ -274,36 +300,19 @@ class VideoPlayer extends Component {
                 }
               >
                 {/* Click background to play or pause the video - with ripple animation */}
-                {this.props.displayControls && (
+                {this.props.displayControls ? (
                   <Ripples
                     className="bg-transparent w-full h-full focus:outline-none cursor-pointer"
                     onClick={() => this.setBothPlaying()}
                     role="button"
                     during={2200}
                   >
-                    <ReactTooltip
-                      effect="solid"
-                      backgroundColor="#F2F2F2"
-                      textColor="black"
-                      className="shadow-lg rounded-md py-1 px-3"
-                      arrowColor="transparent"
-                    />
-                    {/* VideoPlayerStatusCard */}
-                    <div className="absolute flex items-center justify-center w-full h-full">
-                      {!this.state.playing &&
-                        this.state.videoStatus.currSeconds === 0 && (
-                          <VideoPlayerStatusCard
-                            systemMessage={strings.paused}
-                            icon="pause"
-                          />
-                        )}
-                      {this.state.videoStatus.currSeconds > 0 && (
-                        <VideoPlayerStatusCard
-                          systemMessage={`${strings.startingIn} ${this.state.videoStatus.currSeconds}`}
-                        />
-                      )}
-                    </div>
+                    {videoStatusCard}
                   </Ripples>
+                ) : (
+                  <div className="bg-transparent w-full h-full focus:outline-none cursor-default">
+                    {videoStatusCard}
+                  </div>
                 )}
                 <div className="flex flex-col px-2 w-full">
                   <div // Set the mouse hovering state
