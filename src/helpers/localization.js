@@ -117,7 +117,7 @@ let strings = new LocalizedStrings({
     // ChannelHeader
     video: "Video",
     posts: "Posts",
-    upNext: "Up Next",
+    upNext: "Playlist",
     settings: "Settings",
     // VideoPlayer & VideoStatus
     paused: "Paused",
@@ -135,7 +135,7 @@ let strings = new LocalizedStrings({
     chatDisabledText: "Follow the channel to send a message.",
     // SortableList & ChannelQueue & VideoMinimalQueueCard
     findMoreVideos: "Search for videos",
-    manageUpNext: "Manage videos up next",
+    manageUpNext: "Manage Playlist",
     upNextSubtitle:
       "Add, delete or change the orders of the videos. You can add up to 30 videos.",
     searchAddVideos: "Search and add more videos below!",
@@ -487,7 +487,7 @@ let strings = new LocalizedStrings({
     // ChannelHeader
     video: "Видео",
     posts: "Посты",
-    upNext: "Up Next",
+    upNext: "Playlist",
     settings: "Настройки",
     // VideoPlayer & VideoStatus
     paused: "Приостановлено",
