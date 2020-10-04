@@ -43,7 +43,8 @@ import { mapIdsToUsers } from "../../helpers/functions";
 import {
   calculatePlayerStatus,
   calculateNextPlayerStatus,
-  defaultPlayerStatus
+  defaultPlayerStatus,
+  LOOP
 } from "../../helpers/videoSyncing";
 import Helmet from "react-helmet";
 import { v4 as uuidv4 } from "uuid";
@@ -270,8 +271,7 @@ class Channel extends Component {
 
   playNextVideo() {
     let nextPosition = this.state.playerStatus.queueStartPosition + 1;
-    if (nextPosition === this.props.playlist.length) {
-      // Force all channels to loop
+    if (nextPosition === this.props.playlist.length && LOOP) {
       nextPosition = 0;
     }
 
