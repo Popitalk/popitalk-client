@@ -53,7 +53,7 @@ export default function ChannelCard({
         </div>
       ) : (
         <div
-          className="p-2 my-4 mx-2 rounded-lg duration-100 cursor-pointer"
+          className="p-2 mx-2 rounded-lg duration-100 cursor-pointer"
           role={handleSelect ? "button" : null}
           onClick={handleSelect}
         >

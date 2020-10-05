@@ -404,6 +404,8 @@ const R_addVideo = (state, { payload }) => {
     ...payload.video,
     channelId: payload.channelId
   });
+
+  R_updateChannel(state, { payload });
 };
 
 const R_deleteVideo = (state, { payload }) => {

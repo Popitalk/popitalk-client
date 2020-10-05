@@ -34,6 +34,7 @@ const R_openModal = (state, { payload }) => {
   state.room = payload.room || null;
   state.selectedIds = payload.selectedIds || null;
   state.content = payload.content || null;
+  state.postId = payload.postId || null;
   state.closing = false;
 };
 

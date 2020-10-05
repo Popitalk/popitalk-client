@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import "emoji-mart/css/emoji-mart.css";
 import { Picker } from "emoji-mart";
 import Button from "../Controls/Button";
@@ -12,23 +12,43 @@ export default function NewChannelPost({
   savePost
 }) {
   const [pickerOpen, setPickerOpen] = useState(false);
+  const [chosenEmoji, setChosenEmoji] = useState("");
   const textareaRef = useRef();
+
+  // Hanldes emoji's in chat
+  useEffect(() => {
+    textareaRef.current.value += chosenEmoji;
+    setChosenEmoji("");
+  }, [chosenEmoji]);
+
+  // Sets post input value equal to draft if one exists
+  // Saves a draft when user navigates away
+  useEffect(() => {
+    textareaRef.current.value = draft || "";
+    return () => {
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+      saveDraft(textareaRef.current.value?.trim());
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const handleSubmit = e => {
     e.preventDefault();
-    savePost(draft?.trim());
+    savePost(textareaRef.current.value?.trim());
+    textareaRef.current.value = "";
     saveDraft("");
     textareaRef.current.style.height = "39px";
-    console.log("submit", draft?.trim());
   };
   const handleEmot = e => {
     setPickerOpen(!pickerOpen);
   };
   const handleChange = e => {
-    e.target.style.height = "39px";
-    e.target.style.height = `${Math.min(e.target.scrollHeight, 168)}px`;
-    saveDraft(e.target.value);
-    console.log("save draft", e.target.value, draft);
+    if (e.key === "Enter" && !e.shiftKey) {
+      e.preventDefault();
+      handleSubmit(e);
+    }
+    e.target.style.height = "38px";
+    e.target.style.height = `${Math.min(e.target.scrollHeight + 2, 168)}px`;
   };
 
   return (
@@ -51,19 +71,18 @@ export default function NewChannelPost({
           className="flex w-full h-10 py-2 px-3 text-start overflow-hidden rounded-lg resize-none bg-primaryBackground shadow-sm hover:shadow-md focus:outline-none text-primaryText text-sm transition transform ease-in-out hover:scale-102 duration-100"
           rows={1}
           maxLength={2000}
-          value={draft}
-          onChange={handleChange}
+          onKeyDown={handleChange}
           ref={textareaRef}
         />
         {/* GIF BUTTON */}
-        <Button
+        {/* <Button
           hoverable
           styleNone
           styleNoneContent="GIF"
           styleNoneContentClassName="text-highlightText font-bold"
           className="w-10 h-10 p-2 mx-2 rounded-lg bg-secondaryBackground select-none hover:bg-highlightBackground"
           analyticsString="GIF Button: NewChannelPost"
-        />
+        /> */}
         {/* SEND BUTTON */}
         <Button
           hoverable
@@ -78,11 +97,11 @@ export default function NewChannelPost({
       {pickerOpen && (
         <div
           className="absolute top-0 left-0 ml-8 mt-12 mr-8 z-50"
-          onBlur={() => {
-            setTimeout(() => {
-              setPickerOpen(false);
-            }, 250);
-          }}
+          // onBlur={() => {
+          //   setTimeout(() => {
+          //     setPickerOpen(false);
+          //   }, 250);
+          // }}
         >
           <Picker
             perLine={8}
@@ -101,15 +120,7 @@ export default function NewChannelPost({
             // But then they have to be downloaded.
             native={true}
             onClick={e => {
-              console.log("info draft and symbol", draft, e.native);
-              // A fix to undefined error but not sure if this is a good approach -- Andrew
-              if (typeof draft === "undefined") {
-                draft = "";
-              }
-              saveDraft(`${draft} ${e.native}`);
-              setPickerOpen(false);
-              textareaRef.current.focus();
-              console.log("selected");
+              setChosenEmoji(e.native);
             }}
             exclude={["flags"]}
           />

@@ -5,6 +5,7 @@ import strings from "../../helpers/localization";
 
 export default function ChannelChat({
   id,
+  isMember,
   posts,
   // comments,
   saveComment,

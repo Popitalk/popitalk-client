@@ -23,7 +23,7 @@ function RecommendedChannels({ selectedPage }) {
     { tab: strings.discover },
     { tab: strings.trending }
   ];
-  const [tabSelected, setTab] = useState(tabs[1].tab);
+  const [tabSelected, setTab] = useState(tabs[2].tab);
   const isCollapsed = useSelector(state => state.ui.isCollapsed);
   const alert = useSelector(state => state.ui.alert);
   const channels = useSelector(state => state.channels);

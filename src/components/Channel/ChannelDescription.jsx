@@ -15,39 +15,42 @@ export default function ChannelDescription({
   status,
   handleFollow,
   isMember,
+  isOwner,
   handleUnfollow,
   handleListAdmins
 }) {
+  function chooseButton() {
+    if (isOwner) return;
+    return isMember ? (
+      <Button
+        actionButton
+        size="sm"
+        shape="pill"
+        className="ml-auto bg-disabledBackground shadow-xs hover:shadow-none text-secondaryText"
+        background="bgColor"
+        onClick={handleUnfollow}
+        analyticsString="Following Button: Channel Description"
+      >
+        {strings.followingButton}
+      </Button>
+    ) : (
+      <Button
+        actionButton
+        size="sm"
+        shape="pill"
+        className="ml-auto"
+        onClick={handleFollow}
+        analyticsString="Follow Button: Channel Description"
+      >
+        {strings.followButton}
+      </Button>
+    );
+  }
   // Opening profile modal
   const dispatch = useDispatch();
   return (
     <div className="flex flex-col mb-12">
-      <div className="flex justify-end my-4">
-        {isMember ? (
-          <Button
-            actionButton
-            size="sm"
-            shape="pill"
-            className="ml-auto bg-disabledBackground shadow-xs hover:shadow-none text-secondaryText"
-            background="bgColor"
-            onClick={handleUnfollow}
-            analyticsString="Following Button: Channel Description"
-          >
-            {strings.followingButton}
-          </Button>
-        ) : (
-          <Button
-            actionButton
-            size="sm"
-            shape="pill"
-            className="ml-auto"
-            onClick={handleFollow}
-            analyticsString="Follow Button: Channel Description"
-          >
-            {strings.followButton}
-          </Button>
-        )}
-      </div>
+      <div className="flex justify-end my-4">{chooseButton()}</div>
       <div className="flex flex-row justify-center items-center bg-secondaryBackground">
         <AvatarIcon
           username={name}

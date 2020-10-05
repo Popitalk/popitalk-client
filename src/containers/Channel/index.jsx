@@ -29,6 +29,7 @@ import {
   addVideo,
   deleteVideo,
   swapVideos,
+  setPlaying,
   setAlert,
   getTrending,
   getComments
@@ -43,7 +44,8 @@ import { mapIdsToUsers } from "../../helpers/functions";
 import {
   calculatePlayerStatus,
   calculateNextPlayerStatus,
-  defaultPlayerStatus
+  defaultPlayerStatus,
+  LOOP
 } from "../../helpers/videoSyncing";
 import Helmet from "react-helmet";
 import { v4 as uuidv4 } from "uuid";
@@ -184,7 +186,9 @@ const mapDispatchToProps = (dispatch, { match }) => {
     openDeletePostModal: postId => dispatch(openDeletePostModal(postId)),
     handleChannelNotFound: () =>
       dispatch(setAlert("The channel / room you entered does not exist.")),
-    handleGetComments: commentInfo => dispatch(getComments(commentInfo))
+    handleGetComments: commentInfo => dispatch(getComments(commentInfo)),
+    dispatchPlay: (queueStartPosition, videoStartTime) =>
+      dispatch(setPlaying({ channelId, queueStartPosition, videoStartTime }))
   };
 };
 
@@ -274,13 +278,27 @@ class Channel extends Component {
   }
 
   playNextVideo() {
-    const nextPosition = this.state.playerStatus.queueStartPosition + 1;
+    let nextPosition = this.state.playerStatus.queueStartPosition + 1;
+    if (nextPosition === this.props.playlist.length && LOOP) {
+      nextPosition = 0;
+    }
+
     if (this.props.playlist.length > nextPosition) {
-      let newQueueList = [...this.state.queueList];
-      newQueueList[
-        nextPosition
-      ].status = this.state.playerStatus.status.toLowerCase();
-      newQueueList[nextPosition - 1].status = "ended";
+      let newQueueList = null;
+      if (nextPosition === 0) {
+        // Reset video statuses when restarting playlist from beginning
+        newQueueList = this.mapVideoStatuses(
+          this.props.playlist,
+          nextPosition,
+          this.state.playerStatus.status
+        );
+      } else {
+        newQueueList = [...this.state.queueList];
+        newQueueList[
+          nextPosition
+        ].status = this.state.playerStatus.status.toLowerCase();
+        newQueueList[nextPosition - 1].status = "ended";
+      }
 
       const nextPlayerStatus = calculateNextPlayerStatus(
         this.props.startPlayerStatus,
@@ -296,6 +314,7 @@ class Channel extends Component {
         queueList: newQueueList
       });
     } else {
+      // End the stream if the channel doesn't loop
       let newQueueList = [...this.state.queueList];
       newQueueList[nextPosition - 1].status = "ended";
 
@@ -463,6 +482,9 @@ class Channel extends Component {
     const handleDeleteVideo = this.props.handleDeleteVideo;
     const handleAddVideo = videoData => {
       this.props.handleAddVideo(videoData);
+      if (this.props.playlist.length === 0) {
+        this.props.dispatchPlay(0, 0);
+      }
       this.scrollRef.current.scrollTo({
         top: 0,
         behavior: "smooth"
@@ -477,6 +499,7 @@ class Channel extends Component {
 
     const editor =
       channel.ownerId === ownId || admins.find(a => a.id === ownId);
+    const isOwner = channel.ownerId === ownId;
     const isMember = channel.members
       ? !!channel.members.filter(memberId => memberId === ownId).length
       : null;
@@ -530,6 +553,7 @@ class Channel extends Component {
               <>
                 <VideoPanel
                   channelId={channelId}
+                  dispatchPlay={this.props.dispatchPlay}
                   handleDeleteVideo={handleDeleteVideo}
                   handleSwapVideos={handleSwapVideos}
                   handlePlayNextVideo={this.playNextVideo}
@@ -576,6 +600,7 @@ class Channel extends Component {
                     handleListAdmins={this.props.handleOpenAdminsList}
                     handleGetComments={this.props.handleGetComments}
                     displayControls={displayControls}
+                    isOwner={isOwner}
                   />
                 )}
                 {type === ROOM_TYPE && (

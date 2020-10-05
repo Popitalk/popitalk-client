@@ -36,7 +36,8 @@ export default function ChannelPost({
   openDeletePostModal,
   displayControls,
   handleGetComments,
-  isLoading = false
+  isLoading = false,
+  isMember
 }) {
   const [showNewComment, setShowNewComment] = useState(false);
   const [showComments, setShowComments] = useState(false);
@@ -49,8 +50,7 @@ export default function ChannelPost({
   const dispatch = useDispatch();
 
   const handleComment = () => {
-    setShowNewComment(!showNewComment);
-    console.log("clicked comment", showNewComment);
+    if (isMember) setShowNewComment(!showNewComment);
   };
 
   useOnClickOutside(menuRef, () => {
@@ -104,7 +104,10 @@ export default function ChannelPost({
               {displayControls && (
                 <PopupMenu
                   options={[
-                    { name: "Delete", handler: () => openDeletePostModal(id) }
+                    {
+                      name: "Delete",
+                      handler: () => openDeletePostModal(id)
+                    }
                   ]}
                   disabled={ownId !== authorId}
                   className="-mr-3"
@@ -133,25 +136,27 @@ export default function ChannelPost({
               </span>
             </section>
             {/* Like and Comment buttons */}
-            <footer className="flex text-secondaryText text-xl space-x-6 pb-2 items-center">
-              <ToggleIcon
-                icons={{ default: ["far", "heart"], toggle: ["fa", "heart"] }}
-                status={liked}
-                toggleStatus={stat => toggleLike(id, "post", stat)}
-                className="bg-highlightBackground"
-              >
-                {strings.like}
-              </ToggleIcon>
-              <Button
-                styleNone
-                icon={["far", "comment"]}
-                styleNoneContent={strings.comment}
-                styleNoneContentClassName="text-sm font-bold ml-2"
-                className="flex p-2 hover:filter-brightness-9"
-                onClick={handleComment}
-                analyticsString="Comment Button: ChannelPost"
-              />
-            </footer>
+            {isMember ? (
+              <footer className="flex text-secondaryText text-xl space-x-6 pb-2 items-center">
+                <ToggleIcon
+                  icons={{ default: ["far", "heart"], toggle: ["fa", "heart"] }}
+                  status={liked}
+                  toggleStatus={stat => toggleLike(id, "post", stat)}
+                  className="bg-highlightBackground"
+                >
+                  {strings.like}
+                </ToggleIcon>
+                <Button
+                  styleNone
+                  icon={["far", "comment"]}
+                  styleNoneContent={strings.comment}
+                  styleNoneContentClassName="text-sm font-bold ml-2"
+                  className="flex p-2 hover:filter-brightness-9"
+                  onClick={handleComment}
+                  analyticsString="Comment Button: ChannelPost"
+                />
+              </footer>
+            ) : null}
           </div>
           {/* Comment Section */}
           <div className="my-2 px-1 w-84 sm:w-102 lg:w-104 max-w-xl">
@@ -222,7 +227,11 @@ export default function ChannelPost({
               }
             })}
             {showNewComment && (
-              <NewChannelComment postId={id} saveComment={saveComment} />
+              <NewChannelComment
+                isMember={isMember}
+                postId={id}
+                saveComment={saveComment}
+              />
             )}
           </div>
         </div>

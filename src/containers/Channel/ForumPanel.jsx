@@ -25,7 +25,8 @@ const ForumPanel = (
     handleUnfollow,
     handleListAdmins,
     handleGetComments,
-    displayControls
+    displayControls,
+    isOwner
   },
   ref
 ) => {
@@ -42,6 +43,7 @@ const ForumPanel = (
         status={status}
         handleFollow={handleFollow}
         isMember={isMember}
+        isOwner={isOwner}
         handleUnfollow={handleUnfollow}
         handleListAdmins={handleListAdmins}
       />
@@ -53,6 +55,7 @@ const ForumPanel = (
         />
       )}
       <ChannelChat
+        isMember={isMember}
         comments={comments}
         posts={posts}
         saveComment={saveComment}

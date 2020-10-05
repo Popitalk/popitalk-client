@@ -4,7 +4,6 @@ import {
   openInviteModal,
   openProfileModal,
   openSocialShareModal,
-  setPlaying,
   setPaused
 } from "../../redux/actions";
 import { mapIdsToUsers } from "../../helpers/functions";
@@ -32,8 +31,6 @@ const mapDispatchToProps = (dispatch, { channelId }) => ({
   openInviteModal: () => dispatch(openInviteModal(channelId, false)),
   openSocialShareModal: () => dispatch(openSocialShareModal(channelId, false)),
   openProfileModal: id => dispatch(openProfileModal(id)),
-  dispatchPlay: (queueStartPosition, videoStartTime) =>
-    dispatch(setPlaying({ channelId, queueStartPosition, videoStartTime })),
   dispatchPause: (queueStartPosition, videoStartTime) =>
     dispatch(setPaused({ channelId, queueStartPosition, videoStartTime }))
 });
