@@ -5,6 +5,7 @@ import strings from "../../helpers/localization";
 
 export default function ChannelChat({
   id,
+  isMember,
   posts,
   comments,
   saveComment,
@@ -33,6 +34,7 @@ export default function ChannelChat({
                 .fromNow()}
               text={post.content}
               liked={post.liked}
+              isMember={isMember}
               comments={postComments}
               saveComment={saveComment}
               defaultAvatar={defaultAvatar}

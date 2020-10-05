@@ -55,6 +55,7 @@ const ForumPanel = (
         />
       )}
       <ChannelChat
+        isMember={isMember}
         comments={comments}
         posts={posts}
         saveComment={saveComment}

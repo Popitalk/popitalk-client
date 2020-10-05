@@ -75,14 +75,14 @@ export default function NewChannelPost({
           ref={textareaRef}
         />
         {/* GIF BUTTON */}
-        <Button
+        {/* <Button
           hoverable
           styleNone
           styleNoneContent="GIF"
           styleNoneContentClassName="text-highlightText font-bold"
           className="w-10 h-10 p-2 mx-2 rounded-lg bg-secondaryBackground select-none hover:bg-highlightBackground"
           analyticsString="GIF Button: NewChannelPost"
-        />
+        /> */}
         {/* SEND BUTTON */}
         <Button
           hoverable
