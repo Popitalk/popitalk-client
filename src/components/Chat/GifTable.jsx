@@ -22,6 +22,7 @@ export default function GifTable({ updateGifsOpen }) {
   const params = useParams();
   const channelId = params.channelId || params.roomId;
   const userId = useSelector(state => state.self.id);
+  const avatar = useSelector(state => state.self.avatar);
   const currentUserUsername = useSelector(state => state.self.username);
   const dispatch = useDispatch();
   const [search, setSearch] = useState("");
@@ -37,11 +38,11 @@ export default function GifTable({ updateGifsOpen }) {
           image: gif.image
         }),
         upload: "gif",
-        createdAt: Date.now(),
+        createdAt: new Date().toString(),
         author: {
           id: "",
           username: currentUserUsername,
-          avatar: null
+          avatar: avatar
         }
       })
     );

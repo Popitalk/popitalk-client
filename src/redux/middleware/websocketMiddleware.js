@@ -145,7 +145,6 @@ const websocketMiddleware = () => store => next => action => {
           heartbeat();
         },
         [WS_EVENTS.CHANNEL.ADD_MESSAGE]() {
-          console.log("WS", messagePayload);
           const { capacity } = store.getState().channels[
             messagePayload.channelId
           ].chatSettings;

@@ -20,12 +20,10 @@ export default function ChannelChat({
   return (
     <div className="flex flex-col h-auto">
       {posts &&
-        posts.map((post, idx) => {
-          // const postComments = comments[post.id];
-
+        posts.map(post => {
           return (
             <ChannelPost
-              key={idx}
+              key={post.id}
               id={post.id}
               name={post.author.username}
               avatar={post.author.avatar || defaultAvatar}

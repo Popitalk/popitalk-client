@@ -46,33 +46,17 @@ const R_messagesInit = (state, { payload }) => {
 };
 
 const R_addMessages = (state, { payload }) => {
-  state = {
+  return {
     ...state,
     ...payload.messages
   };
-  // state.messages
-  // if (payload.direction === "bottom") {
-  //   state[payload.channelId] = state[payload.channelId]
-  //     ? _.uniqBy([...state[payload.channelId], ...payload.messages], "id")
-  //     : payload.messages;
-
-  //   if (state[payload.channelId].length > extendedCapacity) {
-  //     state[payload.channelId] = state[payload.channelId].slice(-100);
-  //   }
-  // } else if (payload.direction === "top") {
-  //   state[payload.channelId] = state[payload.channelId]
-  //     ? _.uniqBy([...payload.messages, ...state[payload.channelId]], "id")
-  //     : payload.messages;
-
-  //   if (state[payload.channelId].length > extendedCapacity) {
-  //     state[payload.channelId] = state[payload.channelId].slice(0, 100);
-  //   }
-  // }
 };
-const R_addMessage = (state, { payload }) => {
+const R_addMessage = (state, { payload, meta }) => {
   const { message } = payload;
 
   state[message.id] = message;
+
+  delete state[meta.arg.id];
 
   // const { capacity, ...message } = payload;
   // // Removes pending message
@@ -115,53 +99,71 @@ const R_addMessageWs = (state, { payload }) => {
 };
 
 const R_addPendingMessage = (state, { meta }) => {
-  const tempMessage = {
+  state[meta.arg.id] = {
     status: "pending",
     id: meta.arg.id,
     userId: meta.arg.userId,
     channelId: meta.arg.channelId,
     content: meta.arg.content,
     upload: meta.arg.upload,
-    createdAt: Date.now(),
+    createdAt: new Date().toString(),
     author: {
       id: "",
       username: meta.arg.author.username,
       avatar: null
     }
   };
-  if (state[meta.arg.channelId].length < extendedCapacity) {
-    state[meta.arg.channelId].push(tempMessage);
-  }
+  // const tempMessage = {
+  //   status: "pending",
+  //   id: meta.arg.id,
+  //   userId: meta.arg.userId,
+  //   channelId: meta.arg.channelId,
+  //   content: meta.arg.content,
+  //   upload: meta.arg.upload,
+  //   createdAt: Date.now(),
+  //   author: {
+  //     id: "",
+  //     username: meta.arg.author.username,
+  //     avatar: null
+  //   }
+  // };
+  // if (state[meta.arg.channelId].length < extendedCapacity) {
+  //   state[meta.arg.channelId].push(tempMessage);
+  // }
 };
 const R_addRejectedMessage = (state, { meta }) => {
+  if (state[meta.arg.id]) {
+    state[meta.arg.id].status = "rejected";
+  }
+
   // Removes pending message
-  let notFound = true;
-  let index = state[meta.arg.channelId].length - 1;
-  while (notFound && index >= 0) {
-    if (state[meta.arg.channelId][index].status === "pending") {
-      state[meta.arg.channelId].splice(index, 1);
-      notFound = false;
-    } else {
-      index -= 1;
-    }
-  }
-  const tempMessage = {
-    status: "rejected",
-    id: meta.arg.id,
-    userId: meta.arg.userId,
-    channelId: meta.arg.channelId,
-    content: meta.arg.content,
-    upload: null,
-    createdAt: Date.now(),
-    author: {
-      id: "",
-      username: meta.arg.author.username,
-      avatar: null
-    }
-  };
-  if (state[meta.arg.channelId].length < extendedCapacity) {
-    state[meta.arg.channelId].push(tempMessage);
-  }
+  // let notFound = true;
+  // let index = state[meta.arg.channelId].length - 1;
+  // while (notFound && index >= 0) {
+  //   if (state[meta.arg.channelId][index].status === "pending") {
+  //     state[meta.arg.channelId].splice(index, 1);
+  //     notFound = false;
+  //   } else {
+  //     index -= 1;
+  //   }
+  // }
+  // const tempMessage = {
+  //   status: "rejected",
+  //   id: meta.arg.id,
+  //   userId: meta.arg.userId,
+  //   channelId: meta.arg.channelId,
+  //   content: meta.arg.content,
+  //   upload: null,
+  //   createdAt: Date.now(),
+  //   author: {
+  //     id: "",
+  //     username: meta.arg.author.username,
+  //     avatar: null
+  //   }
+  // };
+  // if (state[meta.arg.channelId].length < extendedCapacity) {
+  //   state[meta.arg.channelId].push(tempMessage);
+  // }
 };
 const R_deleteMessage = (state, { payload }) => {
   delete state[payload.messageId];
@@ -190,8 +192,8 @@ export default createReducer(initialState, {
   [addFriendWs]: R_messagesInit,
   [getMessages.fulfilled]: R_addMessages,
   [addMessage.fulfilled]: R_addMessage,
-  // [addMessage.pending]: R_addPendingMessage,
-  // [addMessage.rejected]: R_addRejectedMessage,
+  [addMessage.pending]: R_addPendingMessage,
+  [addMessage.rejected]: R_addRejectedMessage,
   [addMessageWs]: R_addMessageWs,
   [getLatestMessages.fulfilled]: R_replaceMessages,
   [deleteMessage.fulfilled]: R_deleteMessage,

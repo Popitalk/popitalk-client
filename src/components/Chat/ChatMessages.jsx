@@ -7,7 +7,6 @@ import {
   useScrolling,
   useDebounce
 } from "react-use";
-import { createSelector } from "reselect";
 import { getMessages, setInitialScroll } from "../../redux/actions";
 import messagesFormatter2 from "../../util/messagesFormatter2";
 import useHasMoreBottom from "../../containers/hooks/useHasMoreBottom";
@@ -48,8 +47,7 @@ export default function ChatMessages({
   const oldScrollTop = useRef(null);
   const scrolling = useScrolling(containerRef);
   const channel = useSelector(state => state.channels[channelId]);
-  const hasMoreBottom = false;
-  // const hasMoreBottom = useHasMoreBottom(channel, channelMessages);
+  const hasMoreBottom = useHasMoreBottom(channel, channelMessages);
   const previousChannelId = usePrevious(channelId);
   const { defaultAvatar } = useSelector(state => state.general);
   const initialScroll = useSelector(state => {
@@ -58,9 +56,6 @@ export default function ChatMessages({
   const hasMoreTop =
     channel?.firstMessageId &&
     channel.firstMessageId !== channelMessages[0]?.id;
-  // const messages = useSelector(state =>
-  //   selectFormattedMessages(state, channelId)
-  // );
   const messages = messagesFormatter2(channelMessages) || [];
   const apiLoading = useSelector(state => state.api.messages.loading);
   // const apiError = useSelector(state => state.api.messages.error);

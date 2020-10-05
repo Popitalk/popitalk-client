@@ -121,7 +121,7 @@ const mapDispatchToProps = (dispatch, { match }) => {
           channelId,
           content: "Asking the admin to play something fun!",
           upload: "system",
-          createdAt: Date.now(),
+          createdAt: new Date().toString(),
           author: {
             id: "",
             username: "this.props.ownUsername",

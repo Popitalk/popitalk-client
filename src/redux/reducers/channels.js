@@ -142,9 +142,24 @@ const R_setLastMessageSeen = (state, { payload }) => {
 
 const R_updateLastMessageInfoPending = (state, { meta }) => {
   state[meta.arg.channelId].lastMessageReceivedByServer = false;
+
+  // if (!state[meta.arg.channelId].firstMessageId) {
+  //   state[meta.arg.channelId].firstMessageId = meta.arg.id;
+  // }
+  // state[meta.arg.channelId].lastMessageId = meta.arg.id;
+  // state[meta.arg.channelId].lastMessageAt = meta.arg.createdAt;
+  // state[meta.arg.channelId].lastMessageUsername = meta.arg.author.username;
+  // state[meta.arg.channelId].lastMessageContent = meta.arg.content;
+  // state[meta.arg.channelId].initialScroll = null;
+
+  if (!state[meta.arg.channelId].messages) {
+    state[meta.arg.channelId].messages = [meta.arg.id];
+  } else {
+    state[meta.arg.channelId].messages.push(meta.arg.id);
+  }
 };
 
-const R_updateLastMessageInfo = (state, { payload }) => {
+const R_updateLastMessageInfo = (state, { payload, meta }) => {
   const { channelId, message, capacity } = payload;
 
   if (!state[channelId].firstMessageId) {
@@ -159,16 +174,10 @@ const R_updateLastMessageInfo = (state, { payload }) => {
   state[channelId].initialScroll = null;
 
   // // Removes pending message
-  // let notFound = true;
-  // let index = state[payload.channelId].length - 1;
-  // while (notFound && index >= 0) {
-  //   if (state[payload.channelId][index].status === "pending") {
-  //     state[payload.channelId].splice(index, 1);
-  //     notFound = false;
-  //   } else {
-  //     index -= 1;
-  //   }
-  // }
+  state[channelId].messages = state[channelId].messages.filter(
+    msgId => msgId !== meta.arg.id
+  );
+
   if (!state[payload.channelId].messages) {
     state[payload.channelId].messages = [message.id];
   } else if (state[payload.channelId].messages.length < extendedCapacity) {
@@ -209,10 +218,34 @@ const R_updateLastMessageInfoWs = (state, { payload }) => {
   }
 };
 
-const R_updateLastMessageUpdate = (state, { payload }) => {
+const R_addMessages = (state, { payload }) => {
   state[payload.channelId].lastMessagesUpdateByWebsockets = false;
 
   // state.messages
+  if (payload.direction === "bottom") {
+    state[payload.channelId].messages = [
+      ...state[payload.channelId].messages,
+      ...Object.keys(payload.messages)
+    ];
+
+    if (state[payload.channelId].messages.length > extendedCapacity) {
+      state[payload.channelId].messages = state[
+        payload.channelId
+      ].messages.slice(-100);
+    }
+  } else if (payload.direction === "top") {
+    state[payload.channelId].messages = [
+      ...Object.keys(payload.messages),
+      ...state[payload.channelId].messages
+    ];
+
+    if (state[payload.channelId].messages.length > extendedCapacity) {
+      state[payload.channelId].messages = state[
+        payload.channelId
+      ].messages.slice(0, 100);
+    }
+  }
+
   // if (payload.direction === "bottom") {
   //   state[payload.channelId] = state[payload.channelId]
   //     ? _.uniqBy([...state[payload.channelId], ...payload.messages], "id")
@@ -432,10 +465,9 @@ export default createReducer(initialState, {
   [deleteBanWs]: R_deleteBan,
   [addMessage.pending]: R_updateLastMessageInfoPending,
   [addMessage.fulfilled]: R_updateLastMessageInfo,
-  [addMessageWs.pending]: R_updateLastMessageInfoPending,
   [addMessageWs]: R_updateLastMessageInfoWs,
   [setLastMessageSeen]: R_setLastMessageSeen,
-  [getMessages.fulfilled]: R_updateLastMessageUpdate,
+  [getMessages.fulfilled]: R_addMessages,
   [getLatestMessages.fulfilled]: R_updateLastMessageUpdateLatest,
   [deleteMessage.fulfilled]: R_deletedMessageUpdate,
   [deleteMessageWs]: R_deletedMessageUpdate,
