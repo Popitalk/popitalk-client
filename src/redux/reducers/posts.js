@@ -109,6 +109,7 @@ const R_incrementChannelCommentCount = (state, { payload }) => {
       post => post.id === payload.postId
     );
 
+    // If post contains comment, increment the count
     if (indexOfPost !== -1) {
       state[payload.channelId][indexOfPost].commentCount =
         Number(state[payload.channelId][indexOfPost].commentCount) + 1;

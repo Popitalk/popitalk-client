@@ -8,7 +8,8 @@ import {
   getComments,
   likeComment,
   unlikeComment,
-  flushPosts
+  flushPosts,
+  incrementCommentCountWs
 } from "../actions";
 
 const initialState = {};
@@ -81,6 +82,7 @@ const R_resetState = () => initialState;
 export default createReducer(initialState, {
   [getChannel.fulfilled]: R_commentsInit,
   [addComment.fulfilled]: R_addComment,
+  [incrementCommentCountWs]: R_addComment,
   [deleteComment.fulfilled]: R_deleteComment,
   [getComments.fulfilled]: R_replaceComments,
   [likeComment.fulfilled]: R_likeComment,
