@@ -25,7 +25,8 @@ const ForumPanel = (
     handleUnfollow,
     handleListAdmins,
     handleGetComments,
-    displayControls
+    displayControls,
+    isAdmin
   },
   ref
 ) => {
@@ -42,6 +43,7 @@ const ForumPanel = (
         status={status}
         handleFollow={handleFollow}
         isMember={isMember}
+        isAdmin={isAdmin}
         handleUnfollow={handleUnfollow}
         handleListAdmins={handleListAdmins}
       />

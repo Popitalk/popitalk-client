@@ -591,6 +591,7 @@ class Channel extends Component {
                     handleListAdmins={this.props.handleOpenAdminsList}
                     handleGetComments={this.props.handleGetComments}
                     displayControls={displayControls}
+                    isAdmin={editor}
                   />
                 )}
                 {type === ROOM_TYPE && (
