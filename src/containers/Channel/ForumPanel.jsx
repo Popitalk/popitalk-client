@@ -26,7 +26,7 @@ const ForumPanel = (
     handleListAdmins,
     handleGetComments,
     displayControls,
-    isAdmin
+    isOwner
   },
   ref
 ) => {
@@ -43,7 +43,7 @@ const ForumPanel = (
         status={status}
         handleFollow={handleFollow}
         isMember={isMember}
-        isAdmin={isAdmin}
+        isOwner={isOwner}
         handleUnfollow={handleUnfollow}
         handleListAdmins={handleListAdmins}
       />

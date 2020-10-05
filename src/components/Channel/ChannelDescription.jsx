@@ -15,12 +15,12 @@ export default function ChannelDescription({
   status,
   handleFollow,
   isMember,
-  isAdmin,
+  isOwner,
   handleUnfollow,
   handleListAdmins
 }) {
   function chooseButton() {
-    if (isAdmin) return;
+    if (isOwner) return;
     return isMember ? (
       <Button
         actionButton

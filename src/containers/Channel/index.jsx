@@ -491,6 +491,7 @@ class Channel extends Component {
 
     const editor =
       channel.ownerId === ownId || admins.find(a => a.id === ownId);
+    const isOwner = channel.ownerId === ownId;
     const isMember = channel.members
       ? !!channel.members.filter(memberId => memberId === ownId).length
       : null;
@@ -591,7 +592,7 @@ class Channel extends Component {
                     handleListAdmins={this.props.handleOpenAdminsList}
                     handleGetComments={this.props.handleGetComments}
                     displayControls={displayControls}
-                    isAdmin={editor}
+                    isOwner={isOwner}
                   />
                 )}
                 {type === ROOM_TYPE && (
