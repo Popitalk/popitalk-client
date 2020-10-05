@@ -6,7 +6,7 @@ import strings from "../../helpers/localization";
 export default function ChannelChat({
   id,
   posts,
-  comments,
+  // comments,
   saveComment,
   defaultAvatar,
   toggleLike,
@@ -21,7 +21,7 @@ export default function ChannelChat({
     <div className="flex flex-col h-auto">
       {posts &&
         posts.map((post, idx) => {
-          const postComments = comments[post.id];
+          // const postComments = comments[post.id];
 
           return (
             <ChannelPost
@@ -34,7 +34,6 @@ export default function ChannelChat({
                 .fromNow()}
               text={post.content}
               liked={post.liked}
-              comments={postComments}
               saveComment={saveComment}
               defaultAvatar={defaultAvatar}
               toggleLike={toggleLike}

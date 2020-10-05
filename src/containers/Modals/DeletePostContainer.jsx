@@ -8,7 +8,7 @@ export default function DeleteChannelContainer({ handleModalClose }) {
   const dispatch = useDispatch();
   const postId = useSelector(state => state.modal.postId);
   const handleDelete = () => {
-    dispatch(deletePost({ postId }));
+    dispatch(deletePost(postId));
   };
 
   return (

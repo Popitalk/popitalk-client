@@ -153,8 +153,6 @@ export default function ChatMessages({
     );
   };
 
-  console.log("XXX");
-
   return (
     // <div className="ChatMessages--container" ref={scrollRef}>
     // InfiniteScroller has to have h-screen, because h-full recalculates/repaints all messages on every key stroke in ChatActions

@@ -12,8 +12,10 @@ import {
   deletePostWs,
   likePostWs,
   unlikePostWs,
-  incrementCommentCountWs,
-  decrementCommentCountWs,
+  addCommentWs,
+  deleteCommentWs,
+  likeCommentWs,
+  unlikeCommentWs,
   addMemberWs,
   addMembersWs,
   deleteMemberWs,
@@ -159,40 +161,22 @@ const websocketMiddleware = () => store => next => action => {
           store.dispatch(deletePostWs(messagePayload));
         },
         [WS_EVENTS.CHANNEL.ADD_POST_LIKE]() {
-          const { id: ownId } = store.getState().self;
-          store.dispatch(
-            likePostWs({
-              ownId,
-              ...messagePayload
-            })
-          );
+          store.dispatch(likePostWs(messagePayload));
         },
         [WS_EVENTS.CHANNEL.DELETE_POST_LIKE]() {
-          const { id: ownId } = store.getState().self;
-          store.dispatch(
-            unlikePostWs({
-              ownId,
-              ...messagePayload
-            })
-          );
+          store.dispatch(unlikePostWs(messagePayload));
         },
         [WS_EVENTS.CHANNEL.ADD_COMMENT]() {
-          const { id: ownId } = store.getState().self;
-          store.dispatch(
-            incrementCommentCountWs({
-              ownId,
-              ...messagePayload
-            })
-          );
+          store.dispatch(addCommentWs(messagePayload));
+        },
+        [WS_EVENTS.CHANNEL.DELETE_COMMENT]() {
+          store.dispatch(deleteCommentWs(messagePayload));
+        },
+        [WS_EVENTS.CHANNEL.ADD_COMMENT_LIKE]() {
+          store.dispatch(likeCommentWs(messagePayload));
         },
         [WS_EVENTS.CHANNEL.DELETE_COMMENT_LIKE]() {
-          const { id: ownId } = store.getState().self;
-          store.dispatch(
-            decrementCommentCountWs({
-              ownId,
-              ...messagePayload
-            })
-          );
+          store.dispatch(unlikeCommentWs(messagePayload));
         },
         [WS_EVENTS.CHANNEL.ADD_MEMBER]() {
           store.dispatch(addMemberWs(messagePayload));

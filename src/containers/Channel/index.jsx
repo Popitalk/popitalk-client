@@ -1,5 +1,6 @@
 import React, { createRef, Component } from "react";
 import { connect } from "react-redux";
+import { createSelector } from "reselect";
 import sortBy from "lodash/sortBy";
 import { Redirect, withRouter } from "react-router-dom";
 import {
@@ -58,6 +59,12 @@ const SETTINGS_TAB = "settings";
 
 const HEADER_HEIGHT = 96; // The height of the website header + channel header
 
+const selectChannelPosts = createSelector(
+  (state, channelId) => state.channels[channelId].posts,
+  (state, _) => state.posts,
+  (postIds, posts) => postIds?.map(pstId => posts[pstId]) || []
+);
+
 const mapStateToProps = (state, { match }) => {
   const { channelId, roomId, tab } = match.params;
   const finalId = channelId || roomId;
@@ -66,7 +73,8 @@ const mapStateToProps = (state, { match }) => {
   const channel = state.channels[finalId];
   const channelApi = state.api.channel;
   const drafts = state.postDrafts[finalId];
-  const posts = state.posts[finalId];
+  const posts = selectChannelPosts(state, finalId);
+  // const posts = state.posts[finalId];
   const { id: ownId, username: ownUsername } = state.self;
   const users = state.users;
   const comments = state.comments;
@@ -176,7 +184,7 @@ const mapDispatchToProps = (dispatch, { match }) => {
     openDeletePostModal: postId => dispatch(openDeletePostModal(postId)),
     handleChannelNotFound: () =>
       dispatch(setAlert("The channel / room you entered does not exist.")),
-    handleGetComments: postId => dispatch(getComments(postId))
+    handleGetComments: commentInfo => dispatch(getComments(commentInfo))
   };
 };
 

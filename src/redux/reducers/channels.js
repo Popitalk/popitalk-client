@@ -249,17 +249,26 @@ const R_deletedMessageUpdate = (state, { payload }) => {
 };
 
 const R_deletedPostUpdate = (state, { payload }) => {
-  state[payload.channelId].firstPostId = payload.firstPostId;
-  state[payload.channelId].lastPostId = payload.lastPostId;
-  state[payload.channelId].lastPostAt = payload.lastPostAt;
+  const { channelId, postId, firstPostId, lastPostId, lastPostAt } = payload;
+
+  state[channelId].firstPostId = firstPostId;
+  state[channelId].lastPostId = lastPostId;
+  state[channelId].lastPostAt = lastPostAt;
+  state[channelId].posts = state[channelId].posts.filter(
+    pstId => pstId !== postId
+  );
 };
 
 const R_updatePostInfo = (state, { payload }) => {
-  if (!state[payload.channelId].firstPostId) {
-    state[payload.channelId].firstPostId = payload.id;
+  const { channelId, post } = payload;
+
+  if (!state[channelId].firstPostId) {
+    state[channelId].firstPostId = post.id;
   }
-  state[payload.channelId].lastPostId = payload.id;
-  state[payload.channelId].lastPostAt = payload.createdAt;
+  state[channelId].lastPostId = post.id;
+  state[channelId].lastPostAt = post.createdAt;
+
+  state[channelId].posts = [post.id, ...state[channelId].posts].slice(-20);
 };
 
 const R_addMember = (state, { payload }) => {
