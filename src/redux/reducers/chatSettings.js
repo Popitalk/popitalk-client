@@ -35,8 +35,8 @@ const R_initChatSettings = (state, { payload }) => {
 };
 
 const R_addChatSettings = (state, { payload }) => {
-  if (payload.public || payload.isMember) {
-    state[payload.id] = {
+  if (payload.isPublic || payload.isMember) {
+    state[payload.channelId] = {
       capacity: 50,
       initialScroll: null
     };

@@ -34,9 +34,9 @@ function RecommendedChannels({ selectedPage }) {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getDiscoverChannels());
-    dispatch(getTrendingChannels());
-    dispatch(getFollowingChannels());
+    // dispatch(getDiscoverChannels());
+    // dispatch(getTrendingChannels());
+    // dispatch(getFollowingChannels());
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [channels]);
 

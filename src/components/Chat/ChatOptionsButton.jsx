@@ -10,6 +10,7 @@ function ChatOptionsButton2({ message, channel, ownId, match, hover }) {
   const currentUserUsername = useSelector(state => state.self.username);
   const apiLoading = useSelector(state => state.api.addMessage.loading);
   const userId = useSelector(state => state.self.id);
+  const avatar = useSelector(state => state.self.avatar);
   const channelId = match.params.roomId || match.params.channelId;
   const handleSend = text => {
     if (text && text.length > 0 && !apiLoading) {
@@ -20,11 +21,11 @@ function ChatOptionsButton2({ message, channel, ownId, match, hover }) {
           channelId,
           content: text,
           upload: null,
-          createdAt: Date.now(),
+          createdAt: new Date().toString(),
           author: {
             id: "",
             username: currentUserUsername,
-            avatar: null
+            avatar: avatar
           }
         })
       );

@@ -15,40 +15,38 @@ import {
   deletePost,
   deletePostWs,
   addComment,
+  addCommentWs,
   deleteComment,
-  incrementCommentCountWs,
-  decrementCommentCountWs,
+  deleteCommentWs,
   flushPosts,
-  getPosts
+  getPosts,
+  getComments
 } from "../actions";
 
 const initialState = {};
 
 const R_postsInit = (state, { payload }) => {
-  if (payload.channel?.type === "channel") {
-    if (!state[payload.channelId]) {
-      state[payload.channelId] = [];
-    }
-
-    if (payload.posts && state[payload.channelId].length < 7) {
-      state[payload.channelId] = _.uniqBy(
-        [...payload.posts, ...state[payload.channelId]],
-        "id"
-      );
-    }
+  if (payload.type === "channel") {
+    return {
+      ...state,
+      ...payload.posts
+    };
   }
 };
 
 const R_addPost = (state, { payload }) => {
-  if (!state[payload.channelId]) {
-    state[payload.channelId] = [payload];
-  } else {
-    state[payload.channelId] = [payload, ...state[payload.channelId]];
+  const { post } = payload;
 
-    // if (state[payload.channelId].length === 7) {
-    //   state[payload.channelId] = state[payload.channelId].slice(-7);
-    // }
-  }
+  state[post.id] = post;
+  // if (!state[payload.channelId]) {
+  //   state[payload.channelId] = [payload];
+  // } else {
+  //   state[payload.channelId] = [payload, ...state[payload.channelId]];
+
+  //   // if (state[payload.channelId].length === 7) {
+  //   //   state[payload.channelId] = state[payload.channelId].slice(-7);
+  //   // }
+  // }
 };
 const R_addPosts = (state, { payload }) => {
   if (!state[payload.channelId]) {
@@ -59,11 +57,7 @@ const R_addPosts = (state, { payload }) => {
 };
 
 const R_deletePost = (state, { payload }) => {
-  if (state[payload.channelId]) {
-    state[payload.channelId] = state[payload.channelId].filter(
-      post => post.id !== payload.id
-    );
-  }
+  delete state[payload.postId];
 };
 const R_flushPosts = (state, { payload }) => {
   if (state[payload.channelId]) {
@@ -72,94 +66,86 @@ const R_flushPosts = (state, { payload }) => {
 };
 
 const R_likePost = (state, { payload }) => {
-  if (state[payload.channelId]) {
-    const indexOfPost = state[payload.channelId].findIndex(post => {
-      return post.id === payload.postId;
-    });
+  if (state[payload.postId]) {
+    state[payload.postId].likeCount++;
 
-    if (indexOfPost !== -1) {
-      state[payload.channelId][indexOfPost].likeCount =
-        Number(state[payload.channelId][indexOfPost].likeCount) + 1;
-
-      if (payload.userId === payload.ownId) {
-        state[payload.channelId][indexOfPost].liked = true;
-      }
+    if (payload.userId === payload.ownId) {
+      state[payload.postId].liked = true;
     }
   }
 };
 const R_unlikePost = (state, { payload }) => {
-  if (state[payload.channelId]) {
-    const indexOfPost = state[payload.channelId].findIndex(
-      post => post.id === payload.postId
-    );
+  if (state[payload.postId]) {
+    state[payload.postId].likeCount--;
 
-    if (indexOfPost !== -1) {
-      state[payload.channelId][indexOfPost].likeCount =
-        Number(state[payload.channelId][indexOfPost].likeCount) - 1;
-
-      if (payload.userId === payload.ownId) {
-        state[payload.channelId][indexOfPost].liked = false;
-      }
-    }
-  }
-};
-const R_incrementChannelCommentCount = (state, { payload }) => {
-  if (state[payload.channelId]) {
-    const indexOfPost = state[payload.channelId].findIndex(
-      post => post.id === payload.postId
-    );
-
-    // If post contains comment, increment the count
-    if (indexOfPost !== -1) {
-      state[payload.channelId][indexOfPost].commentCount =
-        Number(state[payload.channelId][indexOfPost].commentCount) + 1;
-    }
-  }
-};
-
-const R_decrementChannelCommentCount = (state, { payload }) => {
-  if (state[payload.channelId]) {
-    const indexOfPost = state[payload.channelId].findIndex(
-      post => post.id === payload.postId
-    );
-
-    if (indexOfPost !== -1) {
-      state[payload.channelId][indexOfPost].commentCount =
-        Number(state[payload.channelId][indexOfPost].commentCount) - 1;
+    if (payload.userId === payload.ownId) {
+      state[payload.postId].liked = false;
     }
   }
 };
 
 const R_addedCommentUpdate = (state, { payload }) => {
-  const indexOfPost = state[payload.channelId].findIndex(
-    post => post.id === payload.postId
-  );
+  const { postId, comment, ownId } = payload;
 
-  if (indexOfPost !== -1) {
-    if (!state[payload.channelId][indexOfPost].firstCommentId) {
-      state[payload.channelId][indexOfPost].firstCommentId = payload.id;
+  if (state[postId]) {
+    state[postId].comments.push(comment.id);
+
+    if (!state[postId].firstCommentId) {
+      state[postId].firstCommentId = comment.id;
     }
+    state[postId].lastCommentId = comment.id;
+    state[postId].commentCount++;
 
-    state[payload.channelId][indexOfPost].lastCommentId = payload.id;
-    state[payload.channelId][indexOfPost].selfCommentCount =
-      payload.selfCommentCount;
+    if (ownId === comment.userId) {
+      state[postId].selfCommentCount++;
+    } else {
+      state[postId].comments = state[postId].comments.slice(
+        state[postId].comments.length % 3
+      );
+    }
+  }
+};
 
-    state[payload.channelId][indexOfPost].commentCount =
-      Number(state[payload.channelId][indexOfPost].commentCount) + 1;
+const R_addComments = (state, { payload }) => {
+  const { postId, afterCommentId, beforeCommentId, comments } = payload;
+
+  if (state[postId]) {
+    if (!afterCommentId && !beforeCommentId) {
+      state[postId].comments.push(...Object.keys(comments));
+    } else if (afterCommentId && !beforeCommentId) {
+      state[postId].comments.push(...Object.keys(comments));
+    } else if (!afterCommentId && beforeCommentId) {
+      state[postId].comments = [
+        ...Object.keys(comments),
+        ...state[postId].comments
+      ];
+    } else if (afterCommentId && beforeCommentId) {
+      console.log(":(");
+    }
   }
 };
 
 const R_deletedCommentUpdate = (state, { payload }) => {
-  const indexOfPost = state[payload.channelId].findIndex(
-    post => post.id === payload.postId
-  );
+  const {
+    commentId,
+    postId,
+    userId,
+    ownId,
+    firstCommentId,
+    lastCommentId
+  } = payload;
+  if (state[postId]) {
+    state[postId].firstCommentId = firstCommentId;
+    state[postId].lastCommentId = lastCommentId;
+    state[postId].commentCount--;
 
-  if (indexOfPost !== -1) {
-    state[payload.channelId][indexOfPost].firstCommentId =
-      payload.firstCommentId;
-    state[payload.channelId][indexOfPost].lastCommentId = payload.lastCommentId;
-    state[payload.channelId][indexOfPost].selfCommentCount =
-      payload.selfCommentCount;
+    if (ownId === userId) {
+      state[postId].selfCommentCount--;
+    }
+
+    state[postId].comments = state[postId].comments.filter(
+      cmntId => cmntId !== commentId
+    );
   }
 };
 
@@ -180,9 +166,10 @@ export default createReducer(initialState, {
   [unlikePost.fulfilled]: R_unlikePost,
   [unlikePostWs]: R_unlikePost,
   [addComment.fulfilled]: R_addedCommentUpdate,
+  [addCommentWs]: R_addedCommentUpdate,
+  [getComments.fulfilled]: R_addComments,
   [deleteComment.fulfilled]: R_deletedCommentUpdate,
-  [incrementCommentCountWs]: R_incrementChannelCommentCount,
-  [decrementCommentCountWs]: R_decrementChannelCommentCount,
+  [deleteCommentWs]: R_deletedCommentUpdate,
   [logout.fulfilled]: R_resetState,
   [deleteAccount.fulfilled]: R_resetState
 });

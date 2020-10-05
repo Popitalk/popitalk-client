@@ -244,12 +244,19 @@ export const addPost = postInfo => {
   return ax.post("/posts", postInfo);
 };
 
-export const getPosts = ({ channelId, beforePostId }) => {
-  if (!beforePostId) {
+export const getPosts = ({ channelId, afterPostId, beforePostId }) => {
+  if (!afterPostId && !beforePostId) {
     return ax.get(`/posts/${channelId}`);
   }
-
-  return ax.get(`/posts/${channelId}?beforePostId=${beforePostId}`);
+  if (afterPostId && !beforePostId) {
+    return ax.get(`/posts/${channelId}?afterPostId=${afterPostId}`);
+  }
+  if (!afterPostId && beforePostId) {
+    return ax.get(`/posts/${channelId}?beforePostId=${beforePostId}`);
+  }
+  return ax.get(
+    `/posts/${channelId}?afterPostId=${afterPostId}&beforePostId=${beforePostId}`
+  );
 };
 
 export const deletePost = postId => {
@@ -266,12 +273,19 @@ export const deleteComment = commentId => {
   return ax.delete(`/comments/${commentId}`);
 };
 
-export const getComments = ({ postId, limit }) => {
-  if (!limit) {
+export const getComments = ({ postId, afterCommentId, beforeCommentId }) => {
+  if (!afterCommentId && !beforeCommentId) {
     return ax.get(`/comments/${postId}`);
   }
-
-  return ax.get(`/comments/${postId}?limit=${limit}`);
+  if (afterCommentId && !beforeCommentId) {
+    return ax.get(`/comments/${postId}?afterCommentId=${afterCommentId}`);
+  }
+  if (!afterCommentId && beforeCommentId) {
+    return ax.get(`/comments/${postId}?beforeCommentId=${beforeCommentId}`);
+  }
+  return ax.get(
+    `/comments/${postId}?afterCommentId=${afterCommentId}&beforeCommentId=${beforeCommentId}`
+  );
 };
 
 // LIKES

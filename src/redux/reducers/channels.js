@@ -61,7 +61,8 @@ import {
   swapVideosWs
 } from "../actions";
 
-import { extendedCapacity } from "./messages";
+// import { extendedCapacity } from "./messages";
+const extendedCapacity = 150;
 
 const initialState = {};
 
@@ -80,20 +81,13 @@ const R_initChannels = (state, { payload }) => {
 
     Object.entries(payload.channels).forEach(([channelId, channel]) => {
       newChannels[channelId] = {
-        queue: [],
+        // queue: [],
         ...channel,
         chatSettings: {
           capacity: 50,
           initialScroll: null
         },
-        videoSearch: {
-          source: "youtube",
-          terms: "",
-          results: [],
-          totalResults: 1,
-          page: 1,
-          searched: false
-        }
+        videoSearch: defaultVideoSearch
       };
     });
 
@@ -116,12 +110,11 @@ const R_refreshChannels = (state, { payload }) => {
 
 const R_addChannel = (state, { payload }) => {
   const channelId = payload.id || payload.channelId;
-  let { channel, queue } = payload;
+  let { channels } = payload;
 
   state[channelId] = {
     ...state[channelId],
-    ...channel,
-    queue: queue ? queue : [],
+    ...channels[channelId],
     loaded: true,
     chatSettings: {
       capacity: 50,
@@ -149,36 +142,127 @@ const R_setLastMessageSeen = (state, { payload }) => {
 
 const R_updateLastMessageInfoPending = (state, { meta }) => {
   state[meta.arg.channelId].lastMessageReceivedByServer = false;
+
+  // if (!state[meta.arg.channelId].firstMessageId) {
+  //   state[meta.arg.channelId].firstMessageId = meta.arg.id;
+  // }
+  // state[meta.arg.channelId].lastMessageId = meta.arg.id;
+  // state[meta.arg.channelId].lastMessageAt = meta.arg.createdAt;
+  // state[meta.arg.channelId].lastMessageUsername = meta.arg.author.username;
+  // state[meta.arg.channelId].lastMessageContent = meta.arg.content;
+  // state[meta.arg.channelId].initialScroll = null;
+
+  if (!state[meta.arg.channelId].messages) {
+    state[meta.arg.channelId].messages = [meta.arg.id];
+  } else {
+    state[meta.arg.channelId].messages.push(meta.arg.id);
+  }
 };
 
-const R_updateLastMessageInfo = (state, { payload }) => {
-  if (!state[payload.channelId].firstMessageId) {
-    state[payload.channelId].firstMessageId = payload.id;
+const R_updateLastMessageInfo = (state, { payload, meta }) => {
+  const { channelId, message, capacity } = payload;
+
+  if (!state[channelId].firstMessageId) {
+    state[channelId].firstMessageId = message.id;
   }
-  state[payload.channelId].lastMessageId = payload.id;
-  state[payload.channelId].lastMessageAt = payload.createdAt;
-  state[payload.channelId].lastMessageUsername = payload.author.username;
-  state[payload.channelId].lastMessageContent = payload.content;
-  state[payload.channelId].lastMessageReceivedByServer = true;
-  state[payload.channelId].lastMessagesUpdateByWebsockets = false;
-  state[payload.channelId].initialScroll = null;
+  state[channelId].lastMessageId = message.id;
+  state[channelId].lastMessageAt = message.createdAt;
+  state[channelId].lastMessageUsername = message.author.username;
+  state[channelId].lastMessageContent = message.content;
+  state[channelId].lastMessageReceivedByServer = true;
+  state[channelId].lastMessagesUpdateByWebsockets = false;
+  state[channelId].initialScroll = null;
+
+  // // Removes pending message
+  state[channelId].messages = state[channelId].messages.filter(
+    msgId => msgId !== meta.arg.id
+  );
+
+  if (!state[payload.channelId].messages) {
+    state[payload.channelId].messages = [message.id];
+  } else if (state[payload.channelId].messages.length < extendedCapacity) {
+    state[payload.channelId].messages.push(message.id);
+
+    if (capacity === 50) {
+      state[payload.channelId].messages = state[
+        payload.channelId
+      ].messages.slice(-50);
+    }
+  }
 };
 const R_updateLastMessageInfoWs = (state, { payload }) => {
-  if (!state[payload.channelId].firstMessageId) {
-    state[payload.channelId].firstMessageId = payload.id;
+  const { channelId, message, capacity } = payload;
+
+  if (!state[channelId].firstMessageId) {
+    state[channelId].firstMessageId = message.id;
   }
-  state[payload.channelId].lastMessageId = payload.id;
-  state[payload.channelId].lastMessageAt = payload.createdAt;
-  state[payload.channelId].lastMessageUsername = payload.author.username;
-  state[payload.channelId].lastMessageContent = payload.content;
-  state[payload.channelId].lastMessageIsNew = true;
-  state[payload.channelId].lastMessageReceivedByServer = true;
-  state[payload.channelId].lastMessagesUpdateByWebsockets = true;
-  state[payload.channelId].initialScroll = null;
+  state[channelId].lastMessageId = message.id;
+  state[channelId].lastMessageAt = message.createdAt;
+  state[channelId].lastMessageUsername = message.author.username;
+  state[channelId].lastMessageContent = message.content;
+  state[channelId].lastMessageIsNew = true;
+  state[channelId].lastMessageReceivedByServer = true;
+  state[channelId].lastMessagesUpdateByWebsockets = true;
+  state[channelId].initialScroll = null;
+
+  if (!state[payload.channelId].messages) {
+    state[payload.channelId].messages = [message.id];
+  } else if (state[payload.channelId].messages.length < extendedCapacity) {
+    state[payload.channelId].messages.push(message.id);
+
+    if (capacity === 50) {
+      state[payload.channelId].messages = state[
+        payload.channelId
+      ].messages.slice(-50);
+    }
+  }
 };
 
-const R_updateLastMessageUpdate = (state, { payload }) => {
+const R_addMessages = (state, { payload }) => {
   state[payload.channelId].lastMessagesUpdateByWebsockets = false;
+
+  // state.messages
+  if (payload.direction === "bottom") {
+    state[payload.channelId].messages = [
+      ...state[payload.channelId].messages,
+      ...Object.keys(payload.messages)
+    ];
+
+    if (state[payload.channelId].messages.length > extendedCapacity) {
+      state[payload.channelId].messages = state[
+        payload.channelId
+      ].messages.slice(-100);
+    }
+  } else if (payload.direction === "top") {
+    state[payload.channelId].messages = [
+      ...Object.keys(payload.messages),
+      ...state[payload.channelId].messages
+    ];
+
+    if (state[payload.channelId].messages.length > extendedCapacity) {
+      state[payload.channelId].messages = state[
+        payload.channelId
+      ].messages.slice(0, 100);
+    }
+  }
+
+  // if (payload.direction === "bottom") {
+  //   state[payload.channelId] = state[payload.channelId]
+  //     ? _.uniqBy([...state[payload.channelId], ...payload.messages], "id")
+  //     : payload.messages;
+
+  //   if (state[payload.channelId].length > extendedCapacity) {
+  //     state[payload.channelId] = state[payload.channelId].slice(-100);
+  //   }
+  // } else if (payload.direction === "top") {
+  //   state[payload.channelId] = state[payload.channelId]
+  //     ? _.uniqBy([...payload.messages, ...state[payload.channelId]], "id")
+  //     : payload.messages;
+
+  //   if (state[payload.channelId].length > extendedCapacity) {
+  //     state[payload.channelId] = state[payload.channelId].slice(0, 100);
+  //   }
+  // }
 };
 const R_updateLastMessageUpdateLatest = (state, { payload }) => {
   state[payload.channelId].lastMessagesUpdateByWebsockets = false;
@@ -189,23 +273,35 @@ const R_updateLastMessageUpdateLatest = (state, { payload }) => {
 };
 
 const R_deletedMessageUpdate = (state, { payload }) => {
+  state[payload.channelId].messages = state[payload.channelId].messages.filter(
+    msgId => msgId !== payload.messageId
+  );
   state[payload.channelId].firstMessageId = payload.firstMessageId;
   state[payload.channelId].lastMessageId = payload.lastMessageId;
   state[payload.channelId].lastMessageAt = payload.lastMessageAt;
 };
 
 const R_deletedPostUpdate = (state, { payload }) => {
-  state[payload.channelId].firstPostId = payload.firstPostId;
-  state[payload.channelId].lastPostId = payload.lastPostId;
-  state[payload.channelId].lastPostAt = payload.lastPostAt;
+  const { channelId, postId, firstPostId, lastPostId, lastPostAt } = payload;
+
+  state[channelId].firstPostId = firstPostId;
+  state[channelId].lastPostId = lastPostId;
+  state[channelId].lastPostAt = lastPostAt;
+  state[channelId].posts = state[channelId].posts.filter(
+    pstId => pstId !== postId
+  );
 };
 
 const R_updatePostInfo = (state, { payload }) => {
-  if (!state[payload.channelId].firstPostId) {
-    state[payload.channelId].firstPostId = payload.id;
+  const { channelId, post } = payload;
+
+  if (!state[channelId].firstPostId) {
+    state[channelId].firstPostId = post.id;
   }
-  state[payload.channelId].lastPostId = payload.id;
-  state[payload.channelId].lastPostAt = payload.createdAt;
+  state[channelId].lastPostId = post.id;
+  state[channelId].lastPostAt = post.createdAt;
+
+  state[channelId].posts = [post.id, ...state[channelId].posts].slice(-20);
 };
 
 const R_addMember = (state, { payload }) => {
@@ -371,10 +467,9 @@ export default createReducer(initialState, {
   [deleteBanWs]: R_deleteBan,
   [addMessage.pending]: R_updateLastMessageInfoPending,
   [addMessage.fulfilled]: R_updateLastMessageInfo,
-  [addMessageWs.pending]: R_updateLastMessageInfoPending,
   [addMessageWs]: R_updateLastMessageInfoWs,
   [setLastMessageSeen]: R_setLastMessageSeen,
-  [getMessages.fulfilled]: R_updateLastMessageUpdate,
+  [getMessages.fulfilled]: R_addMessages,
   [getLatestMessages.fulfilled]: R_updateLastMessageUpdateLatest,
   [deleteMessage.fulfilled]: R_deletedMessageUpdate,
   [deleteMessageWs]: R_deletedMessageUpdate,
@@ -397,56 +492,3 @@ export default createReducer(initialState, {
   [swapVideos.fulfilled]: R_swapVideos,
   [swapVideosWs]: R_swapVideos
 });
-
-// import * as actions from "../actions";
-// export default createReducer(initialState, {
-//   [actions.validateSession.fulfilled]: R_initChannels,
-//   [actions.login.fulfilled]: R_initChannels,
-//   [actions.getChannel.fulfilled]: R_addChannel,
-//   [actions.addChannel.fulfilled]: R_addChannel,
-//   [actions.createRoom.fulfilled]: R_addChannel,
-//   [actions.acceptFriendRequest.fulfilled]: R_addChannel,
-//   [actions.addFriendWs]: R_addChannel,
-//   [actions.addChannelWs]: R_addChannel,
-//   [actions.updateChannel.fulfilled]: R_updateChannel,
-//   [actions.updateRoom.fulfilled]: R_updateChannel,
-//   [actions.updateChannelWs]: R_updateChannel,
-//   [actions.deleteChannel.fulfilled]: R_deleteChannel,
-//   [actions.deleteChannelWs]: R_deleteChannel,
-//   [actions.leaveRoom.fulfilled]: R_deleteChannel,
-//   [actions.deleteChannelWs]: R_deleteChannel,
-//   [actions.deleteFriend.fulfilled]: R_deleteChannel,
-//   [actions.deleteFriendWs]: R_deleteChannel,
-//   [actions.blockUser.fulfilled]: R_deleteChannel,
-//   [actions.addBlockerWs]: R_deleteChannel,
-//   [actions.inviteFriends.fulfilled]: R_addMembers,
-//   [actions.addMembersWs]: R_addMembers,
-//   [actions.followChannel.fulfilled]: R_addMember,
-//   [actions.addMemberWs]: R_addMember,
-//   [actions.unfollowChannel.fulfilled]: R_deleteMember,
-//   [actions.deleteMemberWs]: R_deleteMember,
-//   [actions.addAdmin.fulfilled]: R_addAdmin,
-//   [actions.addAdminWs]: R_addAdminWs,
-//   [actions.deleteAdmin.fulfilled]: R_deleteAdmin,
-//   [actions.deleteAdminWs]: R_deleteAdmin,
-//   [actions.addBan.fulfilled]: R_addBan,
-//   [actions.addBanWs]: R_addBan,
-//   [actions.deleteBan.fulfilled]: R_deleteBan,
-//   [actions.deleteBanWs]: R_deleteBan,
-//   [actions.addMessage.fulfilled]: R_updateLastMessageInfo,
-//   [actions.addMessageWs]: R_updateLastMessageInfoWs,
-//   [actions.getMessages.fulfilled]: R_updateLastMessageUpdate,
-//   [actions.getLatestMessages.fulfilled]: R_updateLastMessageUpdateLatest,
-//   [actions.deleteMessage.fulfilled]: R_deletedMessageUpdate,
-//   [actions.deleteMessageWs]: R_deletedMessageUpdate,
-//   [actions.addPost.fulfilled]: R_updatePostInfo,
-//   [actions.addPostWs]: R_updatePostInfo,
-//   [actions.deletePost.fulfilled]: R_deletedPostUpdate,
-//   [actions.deletePostWs]: R_deletedPostUpdate,
-//   [actions.setInitialScroll]: R_updateChannelInitialScroll,
-//   [actions.searchVideos.fulfilled]: R_updateSearchedVideos,
-//   [actions.friendOnlineWs]: R_updateFriendRoomToOnline,
-//   [actions.friendOfflineWs]: R_updateFriendRoomToOffline,
-//   [actions.logout.fulfilled]: R_resetState,
-//   [actions.deleteAccount.fulfilled]: R_resetState
-// });

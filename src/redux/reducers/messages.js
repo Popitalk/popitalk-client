@@ -27,129 +27,149 @@ const initialState = {};
 export const extendedCapacity = 150;
 
 const R_messagesInit = (state, { payload }) => {
-  if (payload.messages) {
-    if (!state[payload.channelId]) {
-      state[payload.channelId] = [];
-    }
+  return {
+    ...state,
+    ...payload.messages
+  };
+  // if (payload.messages) {
+  //   if (!state[payload.channelId]) {
+  //     state[payload.channelId] = [];
+  //   }
 
-    if (state[payload.channelId].length < 50) {
-      state[payload.channelId] = _.uniqBy(
-        [...payload.messages, ...state[payload.channelId]],
-        "id"
-      );
-    }
-  }
+  //   if (state[payload.channelId].length < 50) {
+  //     state[payload.channelId] = _.uniqBy(
+  //       [...payload.messages, ...state[payload.channelId]],
+  //       "id"
+  //     );
+  //   }
+  // }
 };
 
 const R_addMessages = (state, { payload }) => {
-  if (payload.direction === "bottom") {
-    state[payload.channelId] = state[payload.channelId]
-      ? _.uniqBy([...state[payload.channelId], ...payload.messages], "id")
-      : payload.messages;
-
-    if (state[payload.channelId].length > extendedCapacity) {
-      state[payload.channelId] = state[payload.channelId].slice(-100);
-    }
-  } else if (payload.direction === "top") {
-    state[payload.channelId] = state[payload.channelId]
-      ? _.uniqBy([...payload.messages, ...state[payload.channelId]], "id")
-      : payload.messages;
-
-    if (state[payload.channelId].length > extendedCapacity) {
-      state[payload.channelId] = state[payload.channelId].slice(0, 100);
-    }
-  }
+  return {
+    ...state,
+    ...payload.messages
+  };
 };
-const R_addMessage = (state, { payload }) => {
-  const { capacity, ...message } = payload;
-  // Removes pending message
-  let notFound = true;
-  let index = state[payload.channelId].length - 1;
-  while (notFound && index >= 0) {
-    if (state[payload.channelId][index].status === "pending") {
-      state[payload.channelId].splice(index, 1);
-      notFound = false;
-    } else {
-      index -= 1;
-    }
-  }
-  if (!state[payload.channelId]) {
-    state[payload.channelId] = [message];
-  } else if (state[payload.channelId].length < extendedCapacity) {
-    state[payload.channelId].push(message);
+const R_addMessage = (state, { payload, meta }) => {
+  const { message } = payload;
 
-    if (capacity === 50) {
-      state[payload.channelId] = state[payload.channelId].slice(-50);
-    }
-  }
+  state[message.id] = message;
+
+  delete state[meta.arg.id];
+
+  // const { capacity, ...message } = payload;
+  // // Removes pending message
+  // let notFound = true;
+  // let index = state[payload.channelId].length - 1;
+  // while (notFound && index >= 0) {
+  //   if (state[payload.channelId][index].status === "pending") {
+  //     state[payload.channelId].splice(index, 1);
+  //     notFound = false;
+  //   } else {
+  //     index -= 1;
+  //   }
+  // }
+  // if (!state[payload.channelId]) {
+  //   state[payload.channelId] = [message];
+  // } else if (state[payload.channelId].length < extendedCapacity) {
+  //   state[payload.channelId].push(message);
+
+  //   if (capacity === 50) {
+  //     state[payload.channelId] = state[payload.channelId].slice(-50);
+  //   }
+  // }
 };
 
 const R_addMessageWs = (state, { payload }) => {
-  const { capacity, ...message } = payload;
-  if (!state[payload.channelId]) {
-    state[payload.channelId] = [message];
-  } else if (state[payload.channelId].length < extendedCapacity) {
-    state[payload.channelId].push(message);
+  const { message } = payload;
 
-    if (capacity === 50) {
-      state[payload.channelId] = state[payload.channelId].slice(-50);
-    }
-  }
+  state[message.id] = message;
+
+  // const { capacity, ...message } = payload;
+  // if (!state[payload.channelId]) {
+  //   state[payload.channelId] = [message];
+  // } else if (state[payload.channelId].length < extendedCapacity) {
+  //   state[payload.channelId].push(message);
+
+  //   if (capacity === 50) {
+  //     state[payload.channelId] = state[payload.channelId].slice(-50);
+  //   }
+  // }
 };
 
 const R_addPendingMessage = (state, { meta }) => {
-  const tempMessage = {
+  state[meta.arg.id] = {
     status: "pending",
     id: meta.arg.id,
     userId: meta.arg.userId,
     channelId: meta.arg.channelId,
     content: meta.arg.content,
     upload: meta.arg.upload,
-    createdAt: Date.now(),
+    createdAt: new Date().toString(),
     author: {
       id: "",
       username: meta.arg.author.username,
       avatar: null
     }
   };
-  if (state[meta.arg.channelId].length < extendedCapacity) {
-    state[meta.arg.channelId].push(tempMessage);
-  }
+  // const tempMessage = {
+  //   status: "pending",
+  //   id: meta.arg.id,
+  //   userId: meta.arg.userId,
+  //   channelId: meta.arg.channelId,
+  //   content: meta.arg.content,
+  //   upload: meta.arg.upload,
+  //   createdAt: Date.now(),
+  //   author: {
+  //     id: "",
+  //     username: meta.arg.author.username,
+  //     avatar: null
+  //   }
+  // };
+  // if (state[meta.arg.channelId].length < extendedCapacity) {
+  //   state[meta.arg.channelId].push(tempMessage);
+  // }
 };
 const R_addRejectedMessage = (state, { meta }) => {
+  if (state[meta.arg.id]) {
+    state[meta.arg.id].status = "rejected";
+  }
+
   // Removes pending message
-  let notFound = true;
-  let index = state[meta.arg.channelId].length - 1;
-  while (notFound && index >= 0) {
-    if (state[meta.arg.channelId][index].status === "pending") {
-      state[meta.arg.channelId].splice(index, 1);
-      notFound = false;
-    } else {
-      index -= 1;
-    }
-  }
-  const tempMessage = {
-    status: "rejected",
-    id: meta.arg.id,
-    userId: meta.arg.userId,
-    channelId: meta.arg.channelId,
-    content: meta.arg.content,
-    upload: null,
-    createdAt: Date.now(),
-    author: {
-      id: "",
-      username: meta.arg.author.username,
-      avatar: null
-    }
-  };
-  if (state[meta.arg.channelId].length < extendedCapacity) {
-    state[meta.arg.channelId].push(tempMessage);
-  }
+  // let notFound = true;
+  // let index = state[meta.arg.channelId].length - 1;
+  // while (notFound && index >= 0) {
+  //   if (state[meta.arg.channelId][index].status === "pending") {
+  //     state[meta.arg.channelId].splice(index, 1);
+  //     notFound = false;
+  //   } else {
+  //     index -= 1;
+  //   }
+  // }
+  // const tempMessage = {
+  //   status: "rejected",
+  //   id: meta.arg.id,
+  //   userId: meta.arg.userId,
+  //   channelId: meta.arg.channelId,
+  //   content: meta.arg.content,
+  //   upload: null,
+  //   createdAt: Date.now(),
+  //   author: {
+  //     id: "",
+  //     username: meta.arg.author.username,
+  //     avatar: null
+  //   }
+  // };
+  // if (state[meta.arg.channelId].length < extendedCapacity) {
+  //   state[meta.arg.channelId].push(tempMessage);
+  // }
 };
 const R_deleteMessage = (state, { payload }) => {
-  state[payload.channelId] = state[payload.channelId].filter(
-    message => message.id !== payload.id
-  );
+  delete state[payload.messageId];
+  // state[payload.channelId] = state[payload.channelId].filter(
+  //   message => message.id !== payload.id
+  // );
 };
 
 const R_replaceMessages = (state, { payload }) => {

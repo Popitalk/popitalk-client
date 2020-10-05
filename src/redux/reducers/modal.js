@@ -17,6 +17,7 @@ const initialState = {
   channelId: null,
   userId: null,
   messageId: null,
+  postId: null,
   isCreatingNewRoom: null,
   room: null,
   selectedIds: null,
@@ -28,6 +29,7 @@ const R_openModal = (state, { payload }) => {
   state.channelId = payload.channelId || null;
   state.userId = payload.userId || null;
   state.messageId = payload.messageId || null;
+  state.postId = payload.postId || null;
   state.isCreatingNewRoom = payload.isCreatingNewRoom || null;
   state.room = payload.room || null;
   state.selectedIds = payload.selectedIds || null;

@@ -423,8 +423,7 @@ export const getMessages = createAsyncThunk(
     const response = await api.getMessages(messagesInfo);
 
     return {
-      channelId: messagesInfo.channelId,
-      messages: response.data,
+      ...response.data,
       direction: messagesInfo.afterMessageId ? "bottom" : "top"
     };
   }
@@ -435,8 +434,7 @@ export const getLatestMessages = createAsyncThunk(
     const response = await api.getMessages(messagesInfo);
 
     return {
-      channelId: messagesInfo.channelId,
-      messages: response.data,
+      ...response.data,
       direction: messagesInfo.afterMessageId ? "bottom" : "top"
     };
   }
@@ -456,17 +454,20 @@ export const addMessage = createAsyncThunk(
     return { ...payload, capacity };
   }
 );
+
 export const addMessageWs = createAction("messages/addMessage/ws");
 
 export const deleteMessage = createAsyncThunk(
   "messages/deleteMessage",
   async ({ status, id, channelId }) => {
-    if (status === undefined || status === "accepted") {
-      const response = await api.deleteMessage(id);
-      return response.data;
-    } else {
-      return { status, id, channelId };
-    }
+    const response = await api.deleteMessage(id);
+    return response.data;
+    // if (status === undefined || status === "accepted") {
+    //   const response = await api.deleteMessage(id);
+    //   return response.data;
+    // } else {
+    //   return { status, id, channelId };
+    // }
   }
 );
 export const deleteMessageWs = createAction("messages/deleteMessage/ws");
@@ -506,14 +507,10 @@ export const addPost = createAsyncThunk("posts/addPost", async postInfo => {
 });
 export const addPostWs = createAction("posts/addPost/ws");
 
-export const deletePost = createAsyncThunk(
-  "posts/deletePost",
-  async postInfo => {
-    const { postId } = postInfo;
-    const response = await api.deletePost(postId);
-    return response.data;
-  }
-);
+export const deletePost = createAsyncThunk("posts/deletePost", async postId => {
+  const response = await api.deletePost(postId);
+  return response.data;
+});
 export const deletePostWs = createAction("posts/deletePost/ws");
 
 export const flushPosts = createAction("posts/flushPosts");
@@ -551,33 +548,29 @@ export const decrementCommentCountWs = createAction(
 /* -------------------------------------------------------------------------- */
 export const getComments = createAsyncThunk(
   "comments/getComments",
-  async (postId, { getState }) => {
-    const comments = getState().comments[postId];
-    const limit = Math.floor(comments.length / 3) * 3 + 3;
+  async commentsInfo => {
+    const response = await api.getComments(commentsInfo);
 
-    const response = await api.getComments({
-      postId,
-      limit
-    });
-
-    return { postId, comments: response.data };
+    return response.data;
   }
 );
 
 export const addComment = createAsyncThunk(
   "comments/addComment",
-  async commentInfo => {
+  async (commentInfo, { getState }) => {
+    const ownId = getState().self.id;
     const response = await api.addComment(commentInfo);
-    return response.data;
+    return { ...response.data, ownId };
   }
 );
 
 export const deleteComment = createAsyncThunk(
   "comments/deleteComment",
-  async commentInfo => {
+  async (commentInfo, { getState }) => {
+    const ownId = getState().self.id;
     const { commentId } = commentInfo;
     const response = await api.deleteComment(commentId);
-    return response.data;
+    return { ...response.data, ownId };
   }
 );
 
@@ -600,6 +593,12 @@ export const unlikeComment = createAsyncThunk(
     return { ...response.data, ownId };
   }
 );
+
+export const addCommentWs = createAction("comments/addComment/ws");
+export const deleteCommentWs = createAction("comments/deleteComment/ws");
+
+export const likeCommentWs = createAction("comments/likeComment/ws");
+export const unlikeCommentWs = createAction("comments/unlikeComment/ws");
 /* -------------------------------------------------------------------------- */
 /*                                   DRAFTS                                   */
 /* -------------------------------------------------------------------------- */
@@ -804,9 +803,9 @@ export const openDeleteMessageModal = createAction(
 export const openDeleteChannelModal = createAction("modal/open", channelId => ({
   payload: { component: MODAL_DELETE_CHANNEL, channelId }
 }));
-export const openDeletePostModal = createAction("modal/open", postId => ({
-  payload: { component: MODAL_DELETE_POST, postId }
-}));
+export const openDeletePostModal = createAction("modal/open", postId => {
+  return { payload: { component: MODAL_DELETE_POST, postId } };
+});
 export const openWatchingModal = createAction("modal/open", () => ({
   payload: { component: MODAL_WATCHING }
 }));

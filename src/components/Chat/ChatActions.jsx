@@ -21,10 +21,11 @@ function ChatActions(props) {
   const draft = useSelector(state => state.chatDrafts[channelId]);
   const currentUserUsername = useSelector(state => state.self.username);
   const userId = useSelector(state => state.self.id);
+  const avatar = useSelector(state => state.self.avatar);
 
   const handleSend = () => {
     const text = textareaRef.current.value.trim();
-    if (text.length > 0)
+    if (text.length > 0) {
       dispatch(
         addMessage({
           id: uuidv4(),
@@ -32,14 +33,16 @@ function ChatActions(props) {
           channelId,
           content: text,
           upload: null,
-          createdAt: Date.now(),
+          createdAt: new Date().toString(),
           author: {
             id: "",
             username: currentUserUsername,
-            avatar: null
+            avatar: avatar
           }
         })
       );
+    }
+
     textareaRef.current.value = "";
     textareaRef.current.style.height = "38px";
   };

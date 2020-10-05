@@ -7,7 +7,6 @@ import {
   useScrolling,
   useDebounce
 } from "react-use";
-import { createSelector } from "reselect";
 import { getMessages, setInitialScroll } from "../../redux/actions";
 import messagesFormatter2 from "../../util/messagesFormatter2";
 import useHasMoreBottom from "../../containers/hooks/useHasMoreBottom";
@@ -31,12 +30,12 @@ import Spinner from "../Spinner";
 //   dispatch(getLatestMessages({ channelId }));
 // };
 
-const selectFormattedMessages = createSelector(
-  state => state.messages,
-  (_, channelId) => channelId,
-  (messages, channelId) =>
-    messages[channelId] ? messagesFormatter2(messages[channelId]) : []
-);
+// const selectFormattedMessages = createSelector(
+//   state => state.messages,
+//   (_, channelId) => channelId,
+//   (messages, channelId) =>
+//     messages[channelId] ? messagesFormatter2(messages[channelId]) : []
+// );
 
 export default function ChatMessages({
   channelId,
@@ -57,9 +56,7 @@ export default function ChatMessages({
   const hasMoreTop =
     channel?.firstMessageId &&
     channel.firstMessageId !== channelMessages[0]?.id;
-  const messages = useSelector(state =>
-    selectFormattedMessages(state, channelId)
-  );
+  const messages = messagesFormatter2(channelMessages) || [];
   const apiLoading = useSelector(state => state.api.messages.loading);
   // const apiError = useSelector(state => state.api.messages.error);
 
@@ -115,7 +112,7 @@ export default function ChatMessages({
     if (channelId !== previousChannelId) return;
     if (!channel.lastMessagesUpdateByWebsockets) return;
 
-    if (messages[messages.length - 1].userId === ownId) {
+    if (messages[messages.length - 1]?.userId === ownId) {
       containerRef.current.scrollTo({
         top: containerRef.current.scrollHeight,
         behavior: "auto"

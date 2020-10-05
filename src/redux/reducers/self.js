@@ -19,7 +19,8 @@ import {
   addBlockerWs,
   acceptFriendRequest,
   addFriendWs,
-  leaveRoom
+  leaveRoom,
+  getChannel
 } from "../actions";
 
 const initialState = {
@@ -32,7 +33,8 @@ const initialState = {
   email: "",
   emailVerified: null,
   roomIds: [],
-  channelIds: []
+  channelIds: [],
+  loadedChannels: []
 };
 
 const R_selfInit = (state, { payload }) => {
@@ -87,6 +89,10 @@ const R_deleteBannedChannel = (state, { payload }) => {
   }
 };
 
+const R_setLoadedChannels = (state, { payload }) => {
+  state.loadedChannels.push(payload.channelId);
+};
+
 const R_resetState = () => initialState;
 
 export default createReducer(initialState, {
@@ -108,6 +114,7 @@ export default createReducer(initialState, {
   [deleteFriendWs]: R_deleteChannel,
   [blockUser.fulfilled]: R_deleteChannel,
   [addBlockerWs]: R_deleteChannel,
+  [getChannel.fulfilled]: R_setLoadedChannels,
   [logout.fulfilled]: R_resetState,
   [deleteAccount.fulfilled]: R_resetState
 });

@@ -1,4 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
+import { createSelector } from "reselect";
+import { useSelector, useDispatch } from "react-redux";
 import AvatarIcon from "../Controls/AvatarIcon";
 import ChannelComment from "./ChannelComment";
 import NewChannelComment from "./NewChannelComment";
@@ -6,10 +8,15 @@ import ToggleIcon from "../Controls/ToggleIcon";
 import useOnClickOutside from "use-onclickoutside";
 import PopupMenu from "../Controls/PopupMenu";
 import { openProfileModal } from "../../redux/actions";
-import { useDispatch } from "react-redux";
 import moment from "moment";
 import Button from "../Controls/Button";
 import strings from "../../helpers/localization";
+
+const selectPostComments = createSelector(
+  (state, postId) => state.posts[postId].comments,
+  (state, _) => state.comments,
+  (commentIds, comments) => commentIds?.map(cmntId => comments[cmntId]) || []
+);
 
 export default function ChannelPost({
   id,
@@ -17,7 +24,7 @@ export default function ChannelPost({
   avatar,
   timeFromPost,
   text,
-  comments,
+  // comments,
   liked,
   saveComment,
   defaultAvatar,
@@ -35,6 +42,8 @@ export default function ChannelPost({
   const [showNewComment, setShowNewComment] = useState(false);
   const [showComments, setShowComments] = useState(false);
   const [showMenu, setShowMenu] = useState(false);
+  const comments = useSelector(state => selectPostComments(state, id));
+  const firstCommentId = useSelector(state => state.posts[id].firstCommentId);
   const showNumComment = 3;
   const menuRef = useRef(null);
   // Opening profile modal
@@ -159,8 +168,11 @@ export default function ChannelPost({
                 className="text-secondaryText text-xs px-2"
                 onClick={() => {
                   setShowComments(true);
-                  if (comments?.length !== commentCount) {
-                    handleGetComments(id);
+                  if (firstCommentId !== comments[0].id) {
+                    handleGetComments({
+                      postId: id,
+                      beforeCommentId: comments[0].id
+                    });
                   }
                 }}
                 analyticsString="View more comments Button: ChannelPost"
