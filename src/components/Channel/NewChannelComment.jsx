@@ -4,7 +4,8 @@ export default function NewChannelComment({
   postId,
   handleUploadImg,
   handleEmot,
-  saveComment
+  saveComment,
+  isMember
 }) {
   const [value, setValue] = useState("");
 
@@ -35,22 +36,26 @@ export default function NewChannelComment({
       onSubmit={handleSend}
       className="flex flex-row justify-center bg-secondaryBackground content-center py-2"
     >
-      <textarea
-        type="text"
-        placeholder="Add a comment"
-        className="rounded-lg mx-2 w-full px-6 py-2 h-10 shadow text-sm resize-none overflow-hidden focus:outline-none"
-        row={1}
-        value={value}
-        maxLength={120}
-        onChange={handleChange}
-        onKeyDown={handleSubmit}
-        autoFocus
-      />
-      <input
-        type="submit"
-        value="Post"
-        className="mx-2 bg-transparent text-highlightText font-bold mr-3 cursor-pointer outline-none"
-      />
+      {isMember ? (
+        <React.Fragment>
+          <textarea
+            type="text"
+            placeholder="Add a comment"
+            className="rounded-lg mx-2 w-full px-6 py-2 h-10 shadow text-sm resize-none overflow-hidden focus:outline-none"
+            row={1}
+            value={value}
+            maxLength={120}
+            onChange={handleChange}
+            onKeyDown={handleSubmit}
+            autoFocus
+          />
+          <input
+            type="submit"
+            value="Post"
+            className="mx-2 bg-transparent text-highlightText font-bold mr-3 cursor-pointer outline-none"
+          />
+        </React.Fragment>
+      ) : null}
     </form>
   );
 }

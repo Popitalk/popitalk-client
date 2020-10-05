@@ -41,8 +41,7 @@ export default function ChannelPost({
   const dispatch = useDispatch();
 
   const handleComment = () => {
-    setShowNewComment(!showNewComment);
-    console.log("clicked comment", showNewComment);
+    if (isMember) setShowNewComment(!showNewComment);
   };
 
   useOnClickOutside(menuRef, () => {
@@ -216,7 +215,11 @@ export default function ChannelPost({
               }
             })}
             {showNewComment && (
-              <NewChannelComment postId={id} saveComment={saveComment} />
+              <NewChannelComment
+                isMember={isMember}
+                postId={id}
+                saveComment={saveComment}
+              />
             )}
           </div>
         </div>
