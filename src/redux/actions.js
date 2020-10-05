@@ -804,8 +804,8 @@ export const openDeleteMessageModal = createAction(
 export const openDeleteChannelModal = createAction("modal/open", channelId => ({
   payload: { component: MODAL_DELETE_CHANNEL, channelId }
 }));
-export const openDeletePostModal = createAction("modal/open", PostId => ({
-  payload: { component: MODAL_DELETE_POST, PostId }
+export const openDeletePostModal = createAction("modal/open", postId => ({
+  payload: { component: MODAL_DELETE_POST, postId }
 }));
 export const openWatchingModal = createAction("modal/open", () => ({
   payload: { component: MODAL_WATCHING }

@@ -8,7 +8,8 @@ import {
   createRoom,
   deleteMessage,
   deleteChannel,
-  addRoomMembers
+  addRoomMembers,
+  openDeletePostModal
 } from "../actions";
 
 const initialState = {
@@ -46,6 +47,12 @@ const R_closeModalFinal = state => {
   state.closing = false;
 };
 
+const R_addPostInfo = (state, { payload }) => {
+  console.log(payload);
+  state.postId = payload.postId;
+  state.components = [...state.components, payload.component];
+};
+
 export default createReducer(initialState, {
   "modal/open": R_openModal,
   [closeModal]: R_closeModal,
@@ -56,5 +63,6 @@ export default createReducer(initialState, {
   [deleteChannel.fulfilled]: R_closeAllModals,
   [createRoom.fulfilled]: R_closeModal,
   [addRoomMembers.fulfilled]: R_closeModal,
-  [deleteMessage.fulfilled]: R_closeModal
+  [deleteMessage.fulfilled]: R_closeModal,
+  [openDeletePostModal]: R_addPostInfo
 });

@@ -95,7 +95,10 @@ export default function ChannelPost({
               {displayControls && (
                 <PopupMenu
                   options={[
-                    { name: "Delete", handler: () => openDeletePostModal(id) }
+                    {
+                      name: "Delete",
+                      handler: () => openDeletePostModal(id)
+                    }
                   ]}
                   disabled={ownId !== authorId}
                   className="-mr-3"

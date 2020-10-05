@@ -22,7 +22,6 @@ export default function ChannelChat({
       {posts &&
         posts.map((post, idx) => {
           const postComments = comments[post.id];
-
           return (
             <ChannelPost
               key={idx}
