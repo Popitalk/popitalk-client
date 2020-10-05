@@ -40,6 +40,7 @@ export default function ChannelChat({
               commentCount={post.commentCount}
               authorId={post.author.id}
               ownId={ownId}
+              isMember={isMember}
               openDeletePostModal={openDeletePostModal}
               displayControls={displayControls}
               handleGetComments={handleGetComments}

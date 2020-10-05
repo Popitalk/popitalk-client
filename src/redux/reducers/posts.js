@@ -98,7 +98,7 @@ const R_addedCommentUpdate = (state, { payload }) => {
 
     if (ownId === comment.userId) {
       state[postId].selfCommentCount++;
-    } else {
+    } else if (state[postId].comments.length >= 3) {
       state[postId].comments = state[postId].comments.slice(
         state[postId].comments.length % 3
       );
