@@ -3,15 +3,15 @@ import PropTypes from "prop-types";
 import ChannelCard from "../ThumbnailCards/ChannelCard";
 
 function ChannelCardList({ channelList, isCollapsed, tabSelected, isLoading }) {
-  const currentChannelList = [];
+  // const currentChannelList = [];
 
-  channelList.forEach(type => {
-    if (type.title === tabSelected.slice(2)) {
-      for (let cid in type.channels) {
-        currentChannelList.push({ id: cid, ...type.channels[cid] });
-      }
-    }
-  });
+  // channelList.forEach(type => {
+  //   if (type.title === tabSelected.slice(2)) {
+  //     for (let cid in type.channels) {
+  //       currentChannelList.push({ id: cid, ...type.channels[cid] });
+  //     }
+  //   }
+  // });
 
   return (
     <div className="mx-4">
@@ -36,7 +36,7 @@ function ChannelCardList({ channelList, isCollapsed, tabSelected, isLoading }) {
               : "sm:grid-cols-2 md:grid-cols-3"
           }`}
         >
-          {currentChannelList.map(channel => {
+          {channelList.map(channel => {
             return <ChannelCard key={channel.id} {...channel} />;
           })}
         </div>

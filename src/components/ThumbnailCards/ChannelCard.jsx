@@ -18,12 +18,7 @@ export default function ChannelCard({
   handleFollow,
   isLoading
 }) {
-  const users = useSelector(state => state.users);
-  const { defaultAvatar, defaultIcon } = useSelector(state => state.general);
-  const viewerInfoObject = viewers
-    ? mapIdsToUsers(viewers, users, defaultAvatar)
-    : [];
-  const avatars = viewerInfoObject.map(viewer => viewer.avatar);
+  const { defaultIcon } = useSelector(state => state.general);
   const handleSelect = () => {
     history.push(`/channels/${id}/video`);
   };
@@ -62,7 +57,7 @@ export default function ChannelCard({
             <div className="flex flex-row items-center">
               <RoomIcon
                 ids={[id]}
-                images={[icon || defaultIcon]}
+                images={[icon]}
                 // watching={status}
                 size="sm"
                 className="mr-2 w-10 h-10"
@@ -101,7 +96,7 @@ export default function ChannelCard({
             />
             <div className="flex w-full text-sm">
               <AvatarDeck
-                avatars={avatars}
+                avatars={viewers}
                 size="md"
                 className="img w-8 h-8 flex-shrink-0"
                 threshold={10}

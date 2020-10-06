@@ -17,6 +17,8 @@ import {
   searchChannels
 } from "../redux/actions";
 
+const moreThanTwoMinutesAgo = date => new Date(date) < new Date() - 120000;
+
 function RecommendedChannels({ selectedPage }) {
   const tabs = [
     { tab: strings.following },
@@ -26,32 +28,28 @@ function RecommendedChannels({ selectedPage }) {
   const [tabSelected, setTab] = useState(tabs[2].tab);
   const isCollapsed = useSelector(state => state.ui.isCollapsed);
   const alert = useSelector(state => state.ui.alert);
-  const channels = useSelector(state => state.channels);
-  const followedChannelsLoading = useSelector(
-    state => state.api.followingChannels.loading
+  const followingChannels = useSelector(state => state.followingChannels);
+  const discoverChannels = useSelector(state => state.discoverChannels);
+  const trendingChannels = useSelector(state => state.trendingChannels);
+  const { defaultAvatar, defaultIcon } = useSelector(state => state.general);
+
+  const getChannels = useCallback(channels =>
+    Object.entries(channels.channels).map(([chanId, chan]) => ({
+      id: chanId,
+      name: chan.name,
+      icon: chan.icon || defaultIcon,
+      status: chan.playbackStatus,
+      videoInfo: chan.videoInfo,
+      viewers: chan.viewers.map(
+        viewerId => channels.users[viewerId].avatar || defaultAvatar
+      )
+    }))
   );
 
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    // dispatch(getDiscoverChannels());
-    // dispatch(getTrendingChannels());
-    // dispatch(getFollowingChannels());
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [channels]);
-
   const [isLoading] = useState(false);
-  // Gets all channels and seperates following, discover and trending.
-  const channelList = useGetChannels();
-  // Fetches channels
-  useEffect(() => {
-    if (
-      Object.keys(channelList[0].channels).length > 0 &&
-      !followedChannelsLoading
-    )
-      setTab(tabs[0].tab);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [followedChannelsLoading]);
+  const [channelList, setChannelList] = useState([]);
   // Infinite scroll
   // search is the Input Value. query is the search term triggered in handleSearch
   const [search, setSearch] = useState("");
@@ -64,6 +62,36 @@ function RecommendedChannels({ selectedPage }) {
   useEffect(() => {
     if (search === "") setIsSearchForChannels(false);
   }, [search]);
+
+  const tabHandler = tab => {
+    if (tab === tabs[0].tab) {
+      if (
+        !followingChannels.lastRequestAt ||
+        moreThanTwoMinutesAgo(followingChannels.lastRequestAt)
+      ) {
+        dispatch(getFollowingChannels());
+      }
+      setChannelList(getChannels(followingChannels));
+    } else if (tab === tabs[1].tab) {
+      if (
+        !discoverChannels.lastRequestAt ||
+        moreThanTwoMinutesAgo(discoverChannels.lastRequestAt)
+      ) {
+        dispatch(getDiscoverChannels());
+      }
+      setChannelList(getChannels(discoverChannels));
+    } else if (tab === tabs[2].tab) {
+      if (
+        !trendingChannels.lastRequestAt ||
+        moreThanTwoMinutesAgo(trendingChannels.lastRequestAt)
+      ) {
+        dispatch(getTrendingChannels());
+      }
+      setChannelList(getChannels(trendingChannels));
+    }
+
+    setTab(tab);
+  };
 
   const handleSearch = useCallback(() => {
     setIsSearchForChannels(true);
@@ -81,6 +109,26 @@ function RecommendedChannels({ selectedPage }) {
       document.removeEventListener("keydown", listener);
     };
   }, [handleSearch, search]);
+
+  useEffect(() => {
+    dispatch(getTrendingChannels());
+  }, [dispatch]);
+
+  useEffect(() => {
+    setChannelList(getChannels(followingChannels));
+  }, [followingChannels, getChannels]);
+
+  useEffect(() => {
+    setChannelList(getChannels(discoverChannels));
+  }, [discoverChannels, getChannels]);
+
+  useEffect(() => {
+    setChannelList(getChannels(trendingChannels));
+  }, [getChannels, trendingChannels]);
+
+  // useEffect(() => {
+  //   console.log("CHANLIST CHANGING");
+  // }, [channelList]);
 
   return (
     <div className="relative py-4 mx-auto w-full max-w-screen-xl rounded-md bg-secondaryBackground">
@@ -123,9 +171,7 @@ function RecommendedChannels({ selectedPage }) {
                       ? "text-highlightText cursor-default"
                       : "text-secondaryText cursor-pointer"
                   }`}
-                  onClick={() => {
-                    setTab(img.tab);
-                  }}
+                  onClick={() => tabHandler(img.tab)}
                   analyticsString={`${img.tab} Button: RecommendedView`}
                 />
               );
