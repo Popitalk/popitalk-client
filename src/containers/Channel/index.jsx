@@ -75,7 +75,8 @@ const mapStateToProps = (state, { match }) => {
   const channel = state.channels[finalId];
   const channelApi = state.api.channel;
   const drafts = state.postDrafts[finalId];
-  const posts = selectChannelPosts(state, finalId);
+  console.log("CHANNEL", channel);
+  const posts = channel?.id ? selectChannelPosts(state, finalId) : [];
   // const posts = state.posts[finalId];
   const { id: ownId, username: ownUsername } = state.self;
   const users = state.users;

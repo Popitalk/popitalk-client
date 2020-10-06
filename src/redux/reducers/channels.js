@@ -110,11 +110,11 @@ const R_refreshChannels = (state, { payload }) => {
 
 const R_addChannel = (state, { payload }) => {
   const channelId = payload.id || payload.channelId;
-  let { channels } = payload;
+  let { channel } = payload;
 
   state[channelId] = {
     ...state[channelId],
-    ...channels[channelId],
+    ...channel,
     loaded: true,
     chatSettings: {
       capacity: 50,
