@@ -9,7 +9,7 @@ import Alert from "../components/Alert";
 import Button from "../components/Controls/Button.jsx";
 import Helmet from "react-helmet";
 import strings from "../helpers/localization";
-import useGetChannels from "../containers/hooks/useGetChannels";
+// import useGetChannels from "../containers/hooks/useGetChannels";
 import {
   getDiscoverChannels,
   getTrendingChannels,
@@ -116,15 +116,18 @@ function RecommendedChannels({ selectedPage }) {
 
   useEffect(() => {
     setChannelList(getChannels(followingChannels));
-  }, [followingChannels, getChannels]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [followingChannels]);
 
   useEffect(() => {
     setChannelList(getChannels(discoverChannels));
-  }, [discoverChannels, getChannels]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [discoverChannels]);
 
   useEffect(() => {
     setChannelList(getChannels(trendingChannels));
-  }, [getChannels, trendingChannels]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [trendingChannels]);
 
   // useEffect(() => {
   //   console.log("CHANLIST CHANGING");
