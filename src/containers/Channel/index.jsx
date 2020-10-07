@@ -482,9 +482,6 @@ class Channel extends Component {
     const handleDeleteVideo = this.props.handleDeleteVideo;
     const handleAddVideo = videoData => {
       this.props.handleAddVideo(videoData);
-      if (this.props.playlist.length === 0) {
-        this.props.dispatchPlay(0, 0);
-      }
       this.scrollRef.current.scrollTo({
         top: 0,
         behavior: "smooth"
