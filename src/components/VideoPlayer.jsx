@@ -23,10 +23,9 @@ class VideoPlayer extends Component {
       progress: this.props.playerStatus.videoStartTime,
       ready: false,
       duration: 0,
-      //TODO: Re-add local storage functionality
       volume: {
         volume: 1,
-        muted: true //This should be set to false on deployment
+        muted: true
       },
       videoStatus: {
         currSeconds: 0
@@ -47,7 +46,9 @@ class VideoPlayer extends Component {
   }
 
   handleVolumeSliderChange(v) {
-    this.setState({ volume: { volume: v, muted: false } });
+    if (this.state.isHoveringVolume) {
+      this.setState({ volume: { volume: v, muted: false } });
+    }
   }
 
   handleFullScreen() {
@@ -69,8 +70,8 @@ class VideoPlayer extends Component {
   }
 
   toggleMute() {
-    if (this.state.volume === 0) {
-      this.setState({ volume: { volume: 0.1, muted: false } });
+    if (this.state.volume.volume === 0) {
+      this.setState({ volume: { volume: 1, muted: false } });
       return;
     }
 
