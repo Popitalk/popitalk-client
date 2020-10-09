@@ -4,8 +4,7 @@ export default function NewChannelComment({
   postId,
   handleUploadImg,
   handleEmot,
-  saveComment,
-  isMember
+  sendComment
 }) {
   const [value, setValue] = useState("");
 
@@ -13,7 +12,7 @@ export default function NewChannelComment({
     // submit on Enter and not when shift+Enter
     if (e.key === "Enter" && !e.shiftKey) {
       e.preventDefault();
-      saveComment(value, postId);
+      sendComment(value, postId);
       setValue("");
       console.log("submit");
     }
@@ -21,7 +20,7 @@ export default function NewChannelComment({
   const handleSend = e => {
     // submit on Enter and not when shift+Enter
     e.preventDefault();
-    saveComment(value, postId);
+    sendComment(value, postId);
     setValue("");
     console.log("submit");
   };
@@ -36,26 +35,22 @@ export default function NewChannelComment({
       onSubmit={handleSend}
       className="flex flex-row justify-center bg-secondaryBackground content-center py-2"
     >
-      {isMember ? (
-        <React.Fragment>
-          <textarea
-            type="text"
-            placeholder="Add a comment"
-            className="rounded-lg mx-2 w-full px-6 py-2 h-10 shadow text-sm resize-none overflow-hidden focus:outline-none"
-            row={1}
-            value={value}
-            maxLength={120}
-            onChange={handleChange}
-            onKeyDown={handleSubmit}
-            autoFocus
-          />
-          <input
-            type="submit"
-            value="Post"
-            className="mx-2 bg-transparent text-highlightText font-bold mr-3 cursor-pointer outline-none"
-          />
-        </React.Fragment>
-      ) : null}
+      <textarea
+        type="text"
+        placeholder="Add a comment"
+        className="rounded-lg mx-2 w-full px-6 py-2 h-10 shadow text-sm resize-none overflow-hidden focus:outline-none"
+        row={1}
+        value={value}
+        maxLength={120}
+        onChange={handleChange}
+        onKeyDown={handleSubmit}
+        autoFocus
+      />
+      <input
+        type="submit"
+        value="Post"
+        className="mx-2 bg-transparent text-highlightText font-bold mr-3 cursor-pointer outline-none"
+      />
     </form>
   );
 }

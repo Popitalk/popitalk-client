@@ -1,49 +1,18 @@
 import React from "react";
-import ChannelPost from "./ChannelPost";
-import moment from "moment";
+import PostContainer from "../../containers/PostContainer";
 import strings from "../../helpers/localization";
 
-export default function ChannelChat({
-  id,
-  isMember,
-  posts,
-  // comments,
-  saveComment,
-  defaultAvatar,
-  toggleLike,
-  ownId,
-  openDeletePostModal,
-  name,
-  icon,
-  displayControls,
-  handleGetComments
-}) {
+export default function ChannelChat({ isMember, posts, displayControls }) {
   return (
     <div className="flex flex-col h-auto">
       {posts &&
         posts.map(post => {
           return (
-            <ChannelPost
+            <PostContainer
               key={post.id}
-              id={post.id}
-              name={post.author.username}
-              avatar={post.author.avatar || defaultAvatar}
-              timeFromPost={moment(post.createdAt)
-                .locale(strings.location)
-                .fromNow()}
-              text={post.content}
-              liked={post.liked}
-              saveComment={saveComment}
-              defaultAvatar={defaultAvatar}
-              toggleLike={toggleLike}
-              likeCount={post.likeCount}
-              commentCount={post.commentCount}
-              authorId={post.author.id}
-              ownId={ownId}
+              postId={post.id}
               isMember={isMember}
-              openDeletePostModal={openDeletePostModal}
               displayControls={displayControls}
-              handleGetComments={handleGetComments}
             />
           );
         })}

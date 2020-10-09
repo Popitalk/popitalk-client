@@ -9,17 +9,11 @@ import {
   visitAndLeaveChannel,
   setPostDraft,
   addPost,
-  addComment,
-  unlikePost,
-  likePost,
-  unlikeComment,
-  likeComment,
   updateChannel,
   makeAdmin,
   deleteAdmin,
   addBan,
   deleteBan,
-  openDeletePostModal,
   followChannel,
   unfollowChannel,
   openProfileModal,
@@ -31,8 +25,7 @@ import {
   swapVideos,
   setPlaying,
   setAlert,
-  getTrending,
-  getComments
+  getTrending
 } from "../../redux/actions";
 import ChannelHeader from "../../components/ChannelHeader";
 import VideoPanel from "./VideoPanel";
@@ -61,12 +54,6 @@ const SETTINGS_TAB = "settings";
 
 const HEADER_HEIGHT = 96; // The height of the website header + channel header
 
-const selectChannelPosts = createSelector(
-  (state, channelId) => state.channels[channelId].posts,
-  (state, _) => state.posts,
-  (postIds, posts) => postIds?.map(pstId => posts[pstId]) || []
-);
-
 const mapStateToProps = (state, { match }) => {
   const { channelId, roomId, tab } = match.params;
   const finalId = channelId || roomId;
@@ -75,11 +62,8 @@ const mapStateToProps = (state, { match }) => {
   const channel = state.channels[finalId];
   const channelApi = state.api.channel;
   const drafts = state.postDrafts[finalId];
-  const posts = channel?.id ? selectChannelPosts(state, finalId) : [];
-  // const posts = state.posts[finalId];
   const { id: ownId, username: ownUsername } = state.self;
   const users = state.users;
-  const comments = state.comments;
 
   const validTabs = [VIDEO_TAB, POSTS_TAB, QUEUE_TAB, SETTINGS_TAB];
 
@@ -102,11 +86,9 @@ const mapStateToProps = (state, { match }) => {
     trendingResults: state.general.trendingResults,
     channelApi,
     drafts,
-    posts,
     ownId,
     ownUsername,
     users,
-    comments,
     tab: tab && validTabs.includes(tab) ? tab : VIDEO_TAB,
     type: channelId ? CHANNEL_TYPE : ROOM_TYPE
   };
@@ -137,28 +119,6 @@ const mapDispatchToProps = (dispatch, { match }) => {
         dispatch(addPost({ channelId, content: text }));
       }
     },
-    handleSaveComment: (text, postId) => {
-      if (text && text.length > 0) {
-        dispatch(addComment({ postId, content: text }));
-      }
-    },
-    handleToggleLike: (id, type, liked) => {
-      if (type === "post") {
-        if (liked) {
-          dispatch(unlikePost({ postId: id }));
-        } else {
-          dispatch(likePost({ postId: id }));
-        }
-      }
-
-      if (type === "comment") {
-        if (liked) {
-          dispatch(unlikeComment({ commentId: id }));
-        } else {
-          dispatch(likeComment({ commentId: id }));
-        }
-      }
-    },
     handleChannelFormSubmit: values =>
       dispatch(updateChannel({ channelId, ...values })),
     handleAddAdmin: userId => dispatch(makeAdmin({ channelId, userId })),
@@ -183,10 +143,8 @@ const mapDispatchToProps = (dispatch, { match }) => {
     handleVisitAndLeave: visitAndLeaveInfo =>
       dispatch(visitAndLeaveChannel(visitAndLeaveInfo)),
     openDeleteChannelModal: () => dispatch(openDeleteChannelModal(channelId)),
-    openDeletePostModal: postId => dispatch(openDeletePostModal(postId)),
     handleChannelNotFound: () =>
       dispatch(setAlert("The channel / room you entered does not exist.")),
-    handleGetComments: commentInfo => dispatch(getComments(commentInfo)),
     dispatchPlay: (queueStartPosition, videoStartTime) =>
       dispatch(setPlaying({ channelId, queueStartPosition, videoStartTime }))
   };
@@ -500,6 +458,8 @@ class Channel extends Component {
     const isMember = channel.members
       ? !!channel.members.filter(memberId => memberId === ownId).length
       : null;
+    const isAdmin =
+      channel.type !== "channel" ? false : channel.admins.includes(ownId);
 
     const handleSearch = this.handleSearch;
     let searchResults = this.props.trendingResults.results;
@@ -581,23 +541,16 @@ class Channel extends Component {
                     icon={channel.icon || defaultIcon}
                     adminList={admins}
                     status={this.state.playerStatus.status.toLowerCase()}
-                    comments={this.props.comments}
-                    posts={this.props.posts}
                     saveDraft={this.props.handleSaveDraft}
                     savePost={this.props.handleSavePost}
-                    openDeletePostModal={this.props.openDeletePostModal}
-                    saveComment={this.props.handleSaveComment}
                     draft={this.props.drafts}
-                    defaultAvatar={defaultAvatar}
-                    toggleLike={this.props.handleToggleLike}
-                    ownId={ownId}
                     handleFollow={this.props.handleFollow}
                     isMember={isMember}
+                    isAdmin={isAdmin}
+                    isOwner={isOwner}
                     handleUnfollow={this.props.handleUnfollow}
                     handleListAdmins={this.props.handleOpenAdminsList}
-                    handleGetComments={this.props.handleGetComments}
-                    displayControls={displayControls}
-                    isOwner={isOwner}
+                    channelId={this.props.channelId}
                   />
                 )}
                 {type === ROOM_TYPE && (

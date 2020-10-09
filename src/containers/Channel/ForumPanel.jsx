@@ -1,7 +1,7 @@
 import React from "react";
 import ChannelDescription from "../../components/Channel/ChannelDescription";
-import ChannelChat from "../../components/Channel/ChannelChat";
 import NewChannelPost from "../../components/Channel/NewChannelPost";
+import PostsListContainer from "../PostsListContainer";
 
 const ForumPanel = (
   {
@@ -10,23 +10,16 @@ const ForumPanel = (
     description,
     adminList,
     status,
-    posts,
-    comments,
     saveDraft,
     savePost,
-    openDeletePostModal,
-    saveComment,
     draft,
-    defaultAvatar,
-    toggleLike,
-    ownId,
     handleFollow,
     isMember,
+    isAdmin,
+    isOwner,
     handleUnfollow,
     handleListAdmins,
-    handleGetComments,
-    displayControls,
-    isOwner
+    channelId
   },
   ref
 ) => {
@@ -47,26 +40,17 @@ const ForumPanel = (
         handleUnfollow={handleUnfollow}
         handleListAdmins={handleListAdmins}
       />
-      {displayControls && (
+      {isAdmin && (
         <NewChannelPost
           saveDraft={saveDraft}
           savePost={savePost}
           draft={draft}
         />
       )}
-      <ChannelChat
+      <PostsListContainer
+        channelId={channelId}
         isMember={isMember}
-        comments={comments}
-        posts={posts}
-        saveComment={saveComment}
-        defaultAvatar={defaultAvatar}
-        toggleLike={toggleLike}
-        ownId={ownId}
-        openDeletePostModal={openDeletePostModal}
-        name={name}
-        icon={icon}
-        displayControls={displayControls}
-        handleGetComments={handleGetComments}
+        isAdmin={isAdmin}
       />
     </div>
   );
