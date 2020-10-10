@@ -1,14 +1,11 @@
 import React, { createRef, Component } from "react";
 import { connect } from "react-redux";
-import { createSelector } from "reselect";
 import sortBy from "lodash/sortBy";
 import { Redirect, withRouter } from "react-router-dom";
 import {
   addMessage,
   getChannel,
   visitAndLeaveChannel,
-  setPostDraft,
-  addPost,
   updateChannel,
   makeAdmin,
   deleteAdmin,
@@ -27,7 +24,8 @@ import {
   setAlert,
   getTrending
 } from "../../redux/actions";
-import ChannelHeader from "../../components/ChannelHeader";
+// import ChannelHeader from "../../components/ChannelHeader";
+import ChannelHeaderContainer from "./ChannelHeaderContainer";
 import VideoPanel from "./VideoPanel";
 import ForumPanel from "./ForumPanel";
 import ChannelSettingsPanel from "../../components/Channel/ChannelSettingsPanel";
@@ -61,7 +59,6 @@ const mapStateToProps = (state, { match }) => {
   const { defaultIcon, defaultAvatar } = state.general;
   const channel = state.channels[finalId];
   const channelApi = state.api.channel;
-  const drafts = state.postDrafts[finalId];
   const { id: ownId, username: ownUsername } = state.self;
   const users = state.users;
 
@@ -85,7 +82,6 @@ const mapStateToProps = (state, { match }) => {
     playlist: channel ? channel.queue : [],
     trendingResults: state.general.trendingResults,
     channelApi,
-    drafts,
     ownId,
     ownUsername,
     users,
@@ -113,12 +109,6 @@ const mapDispatchToProps = (dispatch, { match }) => {
           }
         })
       ),
-    handleSaveDraft: text => dispatch(setPostDraft({ channelId, draft: text })),
-    handleSavePost: text => {
-      if (text && text.length > 0) {
-        dispatch(addPost({ channelId, content: text }));
-      }
-    },
     handleChannelFormSubmit: values =>
       dispatch(updateChannel({ channelId, ...values })),
     handleAddAdmin: userId => dispatch(makeAdmin({ channelId, userId })),
@@ -491,15 +481,11 @@ class Channel extends Component {
         <div className="flex flex-col bg-secondaryBackground w-full overflow-x-hidden">
           {/* Channel & Room structure */}
           <div className="w-full h-12 bg-primaryBackground">
-            <ChannelHeader
-              id={channelId}
-              isAdmin={editor}
-              name={this.pickRoomName()}
-              icon={channel.icon || defaultIcon}
-              handleFollow={this.props.handleFollow}
+            <ChannelHeaderContainer
+              channelId={channelId}
               isMember={isMember}
-              videoStatus={this.state.playerStatus.status.toLowerCase()}
-              type={type}
+              isAdmin={isAdmin}
+              status={this.state.playerStatus.status.toLowerCase()}
             />
           </div>
           <div
@@ -536,21 +522,11 @@ class Channel extends Component {
                 {type === CHANNEL_TYPE && (
                   <ForumPanel
                     ref={this.channelRef}
-                    name={channel.name}
-                    description={channel.description}
-                    icon={channel.icon || defaultIcon}
-                    adminList={admins}
-                    status={this.state.playerStatus.status.toLowerCase()}
-                    saveDraft={this.props.handleSaveDraft}
-                    savePost={this.props.handleSavePost}
-                    draft={this.props.drafts}
-                    handleFollow={this.props.handleFollow}
+                    channelId={this.props.channelId}
                     isMember={isMember}
                     isAdmin={isAdmin}
                     isOwner={isOwner}
-                    handleUnfollow={this.props.handleUnfollow}
-                    handleListAdmins={this.props.handleOpenAdminsList}
-                    channelId={this.props.channelId}
+                    status={this.state.playerStatus.status.toLowerCase()}
                   />
                 )}
                 {type === ROOM_TYPE && (

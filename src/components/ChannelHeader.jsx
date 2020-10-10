@@ -15,6 +15,8 @@ export default function ChannelHeader({
   handleFollow,
   isMember
 }) {
+  const location = useLocation();
+
   let navButtons = [
     { name: strings.video, endpoint: "video" },
     { name: strings.posts, endpoint: "channel" }
@@ -24,30 +26,6 @@ export default function ChannelHeader({
     navButtons.push({ name: strings.settings, endpoint: "settings" });
   }
 
-  // const channel = useSelector(state => state.channels[id]);
-
-  const location = useLocation();
-  // const channelRef = useRef(null);
-  // const scrollRef = useRef(null);
-  // const { id: ownId } = useSelector(state => state.self);
-  // const loading = useSelector(state => !state.channels[id]?.loaded);
-
-  // console.log(
-  //   "match",
-  //   match,
-  //   "location",
-  //   location
-  //   // "channelRef",
-  //   // channelRef,
-  //   // "scrollRef",
-  //   // scrollRef,
-  //   // // "id",
-  //   // // ownId,
-  //   // "loading",
-  //   // loading,
-  //   // "channel",
-  //   // channel
-  // );
   return (
     <div className="flex w-full h-12 bg-secondaryBackground justify-between items-center px-4 py-1 z-20 rounded-t-md">
       {isLoading ? (
