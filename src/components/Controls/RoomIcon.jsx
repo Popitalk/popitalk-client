@@ -2,21 +2,6 @@ import React from "react";
 import classnames from "classnames";
 import strings from "../../helpers/localization";
 
-const corners = [
-  "rounded-tl-full",
-  "rounded-tr-full",
-  "rounded-bl-full",
-  "rounded-br-full"
-];
-
-const cornerRadius = (index, length) => {
-  if (length === 1) return "rounded-full";
-  if (length === 2 && index === 0) return "rounded-l-full";
-  if (length === 2 && index === 1) return "rounded-r-full";
-  if (length === 3 && index === 1) return "row-span-2 rounded-r-full";
-  return corners[index];
-};
-
 export default function RoomIcon({
   ids,
   images,
@@ -26,6 +11,7 @@ export default function RoomIcon({
   notifications,
   size = "md",
   className,
+  displayName,
   tooltip,
   tooltipPlace,
   isLoading
@@ -50,21 +36,26 @@ export default function RoomIcon({
   };
 
   const container1Classes = classnames({
-    "flex flex-shrink-0 items-center justify-center relative rounded-full rounded-circle": true,
+    "flex flex-shrink-0 h-auto items-center justify-center": true,
+    "w-8": size === "sm",
+    "w-12": size === "md",
+    "w-14": size === "lg",
+    "w-16": size === "xl",
+    "w-20": size === "2xl",
+    // "bg-imageBorder1": !watching,
+    // "bg-gradient-r-primary p-2px": watching,
+    [className]: className
+  });
+  const container2Classes = classnames({
+    "grid w-full overflow-hidden relative": true,
     "h-8 w-8": size === "sm",
     "h-12 w-12": size === "md",
     "h-14 w-14": size === "lg",
     "h-16 w-16": size === "xl",
     "h-20 w-20": size === "2xl",
-    "bg-imageBorder1": !watching,
-    "bg-gradient-r-primary p-2px": watching,
-    [className]: className
-  });
-  const container2Classes = classnames({
-    "grid w-full h-full rounded-full overflow-hidden": true,
-    "grid-cols-2": images.length !== 1,
-    "border-imageBorder1": !watching,
-    "border-none bg-secondaryBackground p-2px": watching
+    "grid-cols-2": images.length !== 1
+    // "border-imageBorder1": !watching,
+    // "border-none bg-secondaryBackground p-2px": watching
   });
   const avatarClasses = classnames({
     "border overflow-hidden": true,
@@ -88,43 +79,42 @@ export default function RoomIcon({
       {isLoading ? (
         <div className="animate-pulse bg-gray-200 grid w-full h-full rounded-full overflow-hidden" />
       ) : (
-        <>
-          <div className={container2Classes}>
-            {images.slice(0, 4).map((image, index) => (
-              <div
-                key={ids?.[index] || index}
-                className={classnames(
-                  avatarClasses,
-                  cornerRadius(index, images.length <= 4 ? images.length : 4)
-                )}
-              >
-                <img
-                  className="img h-full"
-                  src={image}
-                  alt="dogo"
-                  data-tip={tooltip}
-                  data-place={tooltipPlace}
-                />
-              </div>
-            ))}
-          </div>
-          {online && (
-            <div className={onlineFriendClasses} style={OnlineFriendStyle} />
-          )}
-          {self && (
-            <p
-              className="font-bold text-xs absolute bottom-0 left-0 truncate
+        <div className="flex flex-col items-center justify-center w-full h-full space-y-1">
+          <div className="w-full h-full">
+            <div className={container2Classes}>
+              {images.slice(0, 4).map((image, index) => (
+                <div key={ids?.[index] || index} className={avatarClasses}>
+                  <img
+                    className="img h-full rounded-circle"
+                    src={image}
+                    alt="img"
+                    data-tip={tooltip}
+                    data-place={tooltipPlace}
+                  />
+                </div>
+              ))}
+              {self && (
+                <p
+                  className="font-bold text-xs absolute bottom-0 left-0 truncate
             text-highlightText bg-primaryBackground rounded-xl p-1 flex items-center justify-center select-none"
-            >
-              {strings.myRoom}
-            </p>
+                >
+                  {strings.myRoom}
+                </p>
+              )}
+            </div>
+            {online && (
+              <div className={onlineFriendClasses} style={OnlineFriendStyle} />
+            )}
+            {notifications && (
+              <p className={notificationsClasses}>
+                {notifications >= 100 ? "99+" : notifications}
+              </p>
+            )}
+          </div>
+          {displayName && (
+            <div className="text-xs w-16 truncate">{displayName}</div>
           )}
-          {notifications && (
-            <p className={notificationsClasses}>
-              {notifications >= 100 ? "99+" : notifications}
-            </p>
-          )}
-        </>
+        </div>
       )}
     </div>
   );

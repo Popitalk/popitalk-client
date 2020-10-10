@@ -29,17 +29,15 @@ export default function ChannelsPanel({
         numberOfNotifications={numberOfNotifications}
       />
       <div className="flex-col h-full overflow-y-scroll">
-        <div className="mx-4">
-          <MiniFriendsList
-            friends={friends}
-            handleSelectRoom={handleSelectRoom}
-            handleFindFriends={() => {
-              setFriendsSearchFocus(true);
-              updateSelectedPage("friends");
-            }}
-            isLoading={false}
-          />
-        </div>
+        <MiniFriendsList
+          friends={friends}
+          handleSelectRoom={handleSelectRoom}
+          handleFindFriends={() => {
+            setFriendsSearchFocus(true);
+            updateSelectedPage("friends");
+          }}
+          isLoading={false}
+        />
         <div className="flex flex-col items-start bg-primaryBackground">
           <div className="flex items-center m-4 space-x-2">
             <h4 className="text-md font-semibold text-secondaryText">

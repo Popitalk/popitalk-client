@@ -11,10 +11,10 @@ export default function MiniFriendsList({
   room,
   isLoading
 }) {
-  const finalFriends = friends.slice(0, 4);
+  const finalFriends = friends.slice(0, 5);
 
   return (
-    <div className="flex flex-row items-center w-full select-none overflow-hidden">
+    <div className="flex flex-row items-center w-full select-none overflow-x-scroll py-2 px-4 mb-1 shadow-xs space-x-3">
       {finalFriends.map(room => {
         const images = room.members.map(m => m.avatar);
         const name = room.members.map(m => " " + m.username).join();
@@ -26,9 +26,8 @@ export default function MiniFriendsList({
             watching={room.watching}
             notifications={channelHasNewMessage(room)}
             size="lg"
-            tooltip={name}
-            tooltipPlace="bottom"
             isLoading={isLoading}
+            displayName={name}
           />
         );
         return (
@@ -37,13 +36,13 @@ export default function MiniFriendsList({
             hoverable
             key={room.id}
             styleNoneContent={roomIcon}
-            className="rounded-circle py-2 px-2px focus:outline-none"
+            className="rounded-circle px-2px focus:outline-none"
             onClick={() => handleSelectRoom(room.id)}
             analyticsString="Room Icon Button: MiniFriendsList"
           />
         );
       })}
-      <div className="px-1">
+      <div className="px-1 pr-4">
         <Button
           actionButton
           icon="user-plus"
