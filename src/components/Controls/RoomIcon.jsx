@@ -101,10 +101,13 @@ export default function RoomIcon({
                   {strings.myRoom}
                 </p>
               )}
+              {online && (
+                <div
+                  className={onlineFriendClasses}
+                  style={OnlineFriendStyle}
+                />
+              )}
             </div>
-            {online && (
-              <div className={onlineFriendClasses} style={OnlineFriendStyle} />
-            )}
             {notifications && (
               <p className={notificationsClasses}>
                 {notifications >= 100 ? "99+" : notifications}

@@ -53,14 +53,14 @@ export default function ChannelCard({
           onClick={handleSelect}
         >
           {/* Channel Description*/}
-          <div className="flex flex-row items-center justify-between w-full py-4">
+          <div className="flex flex-row items-center justify-between w-full py-3">
             <div className="flex flex-row items-center">
               <RoomIcon
                 ids={[id]}
                 images={[icon]}
                 // watching={status}
                 size="sm"
-                className="mr-2 w-10 h-10"
+                className="mr-2"
               />
               <p
                 className={`pr-2 flex-shrink-1 text-sm font-semibold truncate-2-lines ${
