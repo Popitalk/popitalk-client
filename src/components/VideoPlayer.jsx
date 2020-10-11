@@ -23,10 +23,6 @@ class VideoPlayer extends Component {
       progress: this.props.playerStatus.videoStartTime,
       ready: false,
       duration: 0,
-      volume: {
-        volume: 1,
-        muted: true
-      },
       videoStatus: {
         currSeconds: 0
       }
@@ -47,7 +43,7 @@ class VideoPlayer extends Component {
 
   handleVolumeSliderChange(v) {
     if (this.state.isHoveringVolume) {
-      this.setState({ volume: { volume: v, muted: false } });
+      this.props.setVolume({ volume: v, muted: false });
     }
   }
 
@@ -70,17 +66,12 @@ class VideoPlayer extends Component {
   }
 
   toggleMute() {
-    if (this.state.volume.volume === 0) {
-      this.setState({ volume: { volume: 1, muted: false } });
+    if (this.props.volume.volume === 0) {
+      this.props.setVolume({ volume: 1, muted: false });
       return;
     }
 
-    this.setState({
-      volume: {
-        volume: this.state.volume.volume,
-        muted: !this.state.volume.muted
-      }
-    });
+    this.props.setVolume({ muted: !this.props.volume.muted });
   }
 
   // formats seconds into HH:MM:SS string
@@ -269,8 +260,8 @@ class VideoPlayer extends Component {
                 height="100%"
                 className="absolute t-0 l-0"
                 playing={this.state.playing}
-                volume={this.state.volume.volume}
-                muted={this.state.volume.muted}
+                volume={this.props.volume.volume}
+                muted={this.props.volume.muted}
                 onReady={() => {
                   this.reactPlayer.current.seekTo(
                     this.props.playerStatus.videoStartTime,
@@ -409,8 +400,8 @@ class VideoPlayer extends Component {
                         <Button
                           styleNone
                           icon={
-                            this.state.volume.volume === 0 ||
-                            this.state.volume.muted
+                            this.props.volume.volume === 0 ||
+                            this.props.volume.muted
                               ? "volume-mute"
                               : "volume-up"
                           }
@@ -419,7 +410,7 @@ class VideoPlayer extends Component {
                           hoverable
                           onClick={() => this.toggleMute()}
                           data-tip={
-                            this.state.volume.muted
+                            this.props.volume.muted
                               ? strings.unmute
                               : strings.mute
                           }
@@ -437,9 +428,9 @@ class VideoPlayer extends Component {
                           <Slider
                             max={100}
                             value={
-                              this.state.volume.muted
+                              this.props.volume.muted
                                 ? 0
-                                : this.state.volume.volume * 100
+                                : this.props.volume.volume * 100
                             }
                             onChange={v =>
                               this.handleVolumeSliderChange(v / 100)

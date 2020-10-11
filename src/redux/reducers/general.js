@@ -6,6 +6,7 @@ import {
   deleteAccount,
   wsConnect,
   wsDisconnect,
+  setVolume,
   getTrending
 } from "../actions";
 import channelDefault from "../../assets/default/channel-default.png";
@@ -20,6 +21,10 @@ const initialState = {
   groupRoomMemberLimit: 8,
   wsConnected: false,
   heartbeatInterval: null,
+  volume: {
+    volume: 1,
+    muted: true
+  },
   trendingResults: {
     source: "",
     results: [],
@@ -39,6 +44,13 @@ const R_validatedSession = state => {
 
 const R_logout = state => {
   state.loggedIn = false;
+};
+
+const R_setVolume = (state, { payload }) => {
+  state.volume = {
+    ...state.volume,
+    ...payload
+  };
 };
 
 const R_setTrending = (state, { payload }) => {
@@ -73,5 +85,6 @@ export default createReducer(initialState, {
   },
   [logout.fulfilled]: R_logout,
   [deleteAccount.fulfilled]: R_logout,
+  [setVolume]: R_setVolume,
   [getTrending.fulfilled]: R_setTrending
 });

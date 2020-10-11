@@ -892,6 +892,8 @@ export const setPaused = createAsyncThunk(
   }
 );
 
+export const setVolume = createAction("video/setVolume");
+
 /* -------------------------------------------------------------------------- */
 /*                              GIFS                                          */
 /* -------------------------------------------------------------------------- */

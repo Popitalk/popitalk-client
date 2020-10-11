@@ -4,7 +4,8 @@ import {
   openInviteModal,
   openProfileModal,
   openSocialShareModal,
-  setPaused
+  setPaused,
+  setVolume
 } from "../../redux/actions";
 import { mapIdsToUsers } from "../../helpers/functions";
 import VideoSection from "../../components/VideoSection";
@@ -13,7 +14,7 @@ import VideoPanelCard from "../../components/ThumbnailCards/VideoPanelCard";
 import ScrollableCardList from "../../components/ThumbnailCardLists/ScrollableCardList";
 
 const mapStateToProps = (state, { channelId }) => {
-  const { defaultAvatar } = state.general;
+  const { defaultAvatar, volume } = state.general;
   const channel = state.channels[channelId];
   const viewerIds = channel.viewers;
   const users = state.users;
@@ -23,7 +24,8 @@ const mapStateToProps = (state, { channelId }) => {
 
   return {
     viewers: viewers,
-    isInvitingAllowed: channel.type === "group"
+    isInvitingAllowed: channel.type === "group",
+    volume: volume
   };
 };
 
@@ -32,7 +34,8 @@ const mapDispatchToProps = (dispatch, { channelId }) => ({
   openSocialShareModal: () => dispatch(openSocialShareModal(channelId, false)),
   openProfileModal: id => dispatch(openProfileModal(id)),
   dispatchPause: (queueStartPosition, videoStartTime) =>
-    dispatch(setPaused({ channelId, queueStartPosition, videoStartTime }))
+    dispatch(setPaused({ channelId, queueStartPosition, videoStartTime })),
+  setVolume: volume => dispatch(setVolume(volume))
 });
 
 class VideoPanel extends Component {
@@ -71,6 +74,8 @@ class VideoPanel extends Component {
           openProfile={id => this.props.openProfileModal(id)}
           isInvitingAllowed={this.props.isInvitingAllowed}
           displayControls={this.props.displayControls}
+          volume={this.props.volume}
+          setVolume={this.props.setVolume}
           dispatchPlay={this.props.dispatchPlay}
           dispatchPause={this.props.dispatchPause}
           dispatchSkip={s => this.handleSkip(null, s)}

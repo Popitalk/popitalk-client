@@ -17,6 +17,8 @@ export default function VideoSection({
   isInvitingAllowed,
   isChannel,
   playerStatus,
+  volume,
+  setVolume,
   dispatchPlay,
   dispatchPause,
   dispatchSkip,
@@ -29,6 +31,8 @@ export default function VideoSection({
         url={url}
         displayControls={displayControls}
         playerStatus={playerStatus}
+        volume={volume}
+        setVolume={setVolume}
         dispatchPlay={dispatchPlay}
         dispatchPause={dispatchPause}
         dispatchSkip={dispatchSkip}
