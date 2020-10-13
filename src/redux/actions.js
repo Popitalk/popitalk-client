@@ -476,10 +476,10 @@ export const deleteMessageWs = createAction("messages/deleteMessage/ws");
 /* -------------------------------------------------------------------------- */
 
 export const setLastMessageSeen = createAction(
-  "messages/setLastMessageSeen/ws",
-  args => {
-    api.deleteNotification(args.channelId);
-    return { payload: { channelId: args.channelId } };
+  "messages/setLastMessageSeen",
+  async messageInfo => {
+    const response = await api.deleteNotification(messageInfo.channelId);
+    return response.data;
   }
 );
 

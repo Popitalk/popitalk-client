@@ -468,7 +468,7 @@ export default createReducer(initialState, {
   [addMessage.pending]: R_updateLastMessageInfoPending,
   [addMessage.fulfilled]: R_updateLastMessageInfo,
   [addMessageWs]: R_updateLastMessageInfoWs,
-  [setLastMessageSeen]: R_setLastMessageSeen,
+  [setLastMessageSeen.fulfilled]: R_setLastMessageSeen,
   [getMessages.fulfilled]: R_addMessages,
   [getLatestMessages.fulfilled]: R_updateLastMessageUpdateLatest,
   [deleteMessage.fulfilled]: R_deletedMessageUpdate,

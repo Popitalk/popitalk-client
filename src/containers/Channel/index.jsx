@@ -11,11 +11,8 @@ import {
   deleteAdmin,
   addBan,
   deleteBan,
-  followChannel,
-  unfollowChannel,
   openProfileModal,
   openDeleteChannelModal,
-  openListModal,
   searchVideos,
   addVideo,
   deleteVideo,
@@ -115,10 +112,7 @@ const mapDispatchToProps = (dispatch, { match }) => {
     handleRemoveAdmin: userId => dispatch(deleteAdmin({ channelId, userId })),
     handleAddBan: bannedId => dispatch(addBan({ channelId, bannedId })),
     handleRemoveBan: bannedId => dispatch(deleteBan({ channelId, bannedId })),
-    handleFollow: () => dispatch(followChannel(channelId)),
-    handleUnfollow: () => dispatch(unfollowChannel(channelId)),
     openProfileModal: id => dispatch(openProfileModal(id)),
-    handleOpenAdminsList: () => dispatch(openListModal(channelId, "admins")),
     handleSearch: (terms, next = false) =>
       dispatch(searchVideos({ channelId, source: "youtube", terms, next })),
     handleGetTrending: next =>

@@ -21,9 +21,6 @@ function ChatPanelContainer(props) {
   const channelMessages = useSelector(state =>
     selectChannelMessages(state, channelId)
   );
-  // const channelMessages = useSelector(
-  //   state => state.channels[channelId].messages
-  // );
   const dispatch = useDispatch();
   const openFollowersList = () =>
     dispatch(openListModal(channelId, "followers"));
