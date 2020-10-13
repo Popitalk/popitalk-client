@@ -53,6 +53,9 @@ export default function ChatMessages({
   const initialScroll = useSelector(state => {
     return state.channels[channelId].initialScroll || "bottom";
   });
+  const messageIds = useSelector(state => {
+    return state.channels[channelId].messages;
+  });
   const hasMoreTop =
     channel?.firstMessageId &&
     channel.firstMessageId !== channelMessages[0]?.id;
@@ -110,6 +113,14 @@ export default function ChatMessages({
 
   useUpdateEffect(() => {
     if (channelId !== previousChannelId) return;
+
+    if (messages[messages.length - 1]?.userId === ownId) {
+      containerRef.current.scrollTo({
+        top: containerRef.current.scrollHeight,
+        behavior: "auto"
+      });
+    }
+
     if (!channel.lastMessagesUpdateByWebsockets) return;
 
     if (messages[messages.length - 1]?.userId === ownId) {
@@ -120,8 +131,9 @@ export default function ChatMessages({
     } else if (
       containerRef.current.scrollHeight -
         (containerRef.current.scrollTop + containerRef.current.clientHeight) <
-      100
+      250
     ) {
+      console.log("SCROLLING");
       containerRef.current.scrollTo({
         top: containerRef.current.scrollHeight,
         behavior: "auto"
@@ -129,7 +141,8 @@ export default function ChatMessages({
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [messages]);
+  }, [messageIds]);
+  // }, [messages]);
 
   const onTopView = () => {
     dispatch(

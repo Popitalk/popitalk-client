@@ -141,7 +141,8 @@ const R_setLastMessageSeen = (state, { payload }) => {
 };
 
 const R_updateLastMessageInfoPending = (state, { meta }) => {
-  state[meta.arg.channelId].lastMessageReceivedByServer = false;
+  state[meta.arg.channelId].initialScroll = null;
+  // state[meta.arg.channelId].lastMessageReceivedByServer = false;
 
   // if (!state[meta.arg.channelId].firstMessageId) {
   //   state[meta.arg.channelId].firstMessageId = meta.arg.id;
@@ -362,6 +363,9 @@ const R_deleteChannel = (state, { payload }) => {
 
 const R_updateChannelInitialScroll = (state, { payload }) => {
   if (state[payload.channelId]) {
+    // state[payload.channelId].chatSettings.capacity =
+    //   payload.initialScroll === null ? 50 : extendedCapacity;
+    // state[payload.channelId].chatSettings.initialScroll = payload.initialScroll;
     state[payload.channelId].capacity =
       payload.initialScroll === null ? 50 : extendedCapacity;
     state[payload.channelId].initialScroll = payload.initialScroll;
