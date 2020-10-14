@@ -6,6 +6,8 @@ import GfycatLogo from "../assets/sources/gfycat-logo.png";
 import FacebookLogo from "../assets/sources/facebook-logo.png";
 import SpotifyLogo from "../assets/sources/spotify-logo.png";
 
+export const DEFAULT_SOURCE = "Youtube";
+
 const sources = [
   { source: "Youtube", icon: YoutubeLogo, active: true },
   { source: "Crunchyroll", icon: CrunchyrollLogo, active: false },

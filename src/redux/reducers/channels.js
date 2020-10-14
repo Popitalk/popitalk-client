@@ -67,7 +67,7 @@ const extendedCapacity = 150;
 const initialState = {};
 
 const defaultVideoSearch = {
-  source: "youtube",
+  source: "",
   terms: "",
   results: [],
   totalResults: 1,

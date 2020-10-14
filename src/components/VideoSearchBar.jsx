@@ -1,12 +1,17 @@
 import React, { useState } from "react";
-import sources from "./videoSourceImages";
+import sources, { DEFAULT_SOURCE } from "../helpers/videoSourceImages";
 import Input from "./Controls/Input";
 import Button from "./Controls/Button";
 import strings from "../helpers/localization";
 
 export default function VideoSearchBar({ className, onClick }) {
-  const [source, setSource] = useState("Youtube");
+  const [source, setSource] = useState(DEFAULT_SOURCE);
   const [value, setValue] = useState("");
+
+  const handleChangeSource = source => {
+    setSource(source);
+    onClick(value, source);
+  };
 
   return (
     <div className="bg-secondaryBackground px-4 py-4">
@@ -21,7 +26,7 @@ export default function VideoSearchBar({ className, onClick }) {
           value={value}
           onChange={e => setValue(e.target.value)}
           videoSource={source}
-          onClick={() => onClick(value)}
+          onClick={() => onClick(value, source)}
           className="w-full md:w-3/4"
         />
       </form>
@@ -47,7 +52,7 @@ export default function VideoSearchBar({ className, onClick }) {
                   ? "bg-secondaryBackground cursor-disable"
                   : "w-10"
               } w-10 h-10 rounded-full focus:outline-none`}
-              onClick={() => setSource(img.source)}
+              onClick={() => handleChangeSource(img.source)}
               analyticsString={`${source} Source Button: VideoSearchBar`}
               disabled={img.active === true ? false : true}
             />

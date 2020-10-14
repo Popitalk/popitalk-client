@@ -28,7 +28,7 @@ export default function VideoResults({
 
   const handleLoad = () => {
     setCurrThreshold(setNextThreshold);
-    handleLoadMoreResults(null, true);
+    handleLoadMoreResults(null, null, true);
   };
 
   const highestResults =

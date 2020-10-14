@@ -1,6 +1,8 @@
 import React, { createRef, Component } from "react";
 import { connect } from "react-redux";
 import sortBy from "lodash/sortBy";
+import Helmet from "react-helmet";
+import { v4 as uuidv4 } from "uuid";
 import { Redirect, withRouter } from "react-router-dom";
 import {
   addMessage,
@@ -35,9 +37,8 @@ import {
   defaultPlayerStatus,
   LOOP
 } from "../../helpers/videoSyncing";
-import Helmet from "react-helmet";
-import { v4 as uuidv4 } from "uuid";
 import strings from "../../helpers/localization";
+import { DEFAULT_SOURCE } from "../../helpers/videoSourceImages";
 
 const CHANNEL_TYPE = "channel";
 const ROOM_TYPE = "room";
@@ -113,10 +114,10 @@ const mapDispatchToProps = (dispatch, { match }) => {
     handleAddBan: bannedId => dispatch(addBan({ channelId, bannedId })),
     handleRemoveBan: bannedId => dispatch(deleteBan({ channelId, bannedId })),
     openProfileModal: id => dispatch(openProfileModal(id)),
-    handleSearch: (terms, next = false) =>
-      dispatch(searchVideos({ channelId, source: "youtube", terms, next })),
-    handleGetTrending: next =>
-      dispatch(getTrending({ next, source: "youtube" })),
+    handleSearch: (terms, source, next = false) =>
+      dispatch(searchVideos({ channelId, source, terms, next })),
+    handleGetTrending: (next, source) =>
+      dispatch(getTrending({ next, source })),
     handleAddVideo: videoInfo =>
       dispatch(addVideo({ channelId, ...videoInfo })),
     handleDeleteVideo: channelVideoId =>
@@ -142,6 +143,7 @@ class Channel extends Component {
       queueList: this.props.playlist,
       playerStatus: this.props.startPlayerStatus,
       searchTerm: "",
+      source: DEFAULT_SOURCE.toLowerCase(),
       scrollToSearch: false,
       forceScroll: false
     };
@@ -154,7 +156,13 @@ class Channel extends Component {
     this.handleSearch = this.handleSearch.bind(this);
   }
 
-  handleSearch(term, next) {
+  handleSearch(term, source, next) {
+    source = source ? source : this.state.source;
+    source = source.toLowerCase();
+    if (source !== this.state.source) {
+      this.setState({ source });
+    }
+
     if (term !== null) {
       this.setState({
         searchTerm: term.trim()
@@ -164,9 +172,9 @@ class Channel extends Component {
     }
 
     if (term !== "") {
-      this.props.handleSearch(term, next);
+      this.props.handleSearch(term, source, next);
     } else {
-      this.props.handleGetTrending(next);
+      this.props.handleGetTrending(next, source);
     }
   }
 
@@ -291,7 +299,7 @@ class Channel extends Component {
     });
 
     if (this.props.trendingResults.results.length === 0) {
-      this.props.handleGetTrending(false);
+      this.props.handleGetTrending(false, this.state.source);
     }
   }
 

@@ -651,20 +651,25 @@ export const searchVideos = createAsyncThunk(
   "videoSearch/searchVideos",
   async (searchInfo, { getState }) => {
     const { source, next, terms, channelId } = searchInfo;
-    const { page, terms: prevTerms } = getState().channels[
+    const { page, source: currSource, terms: prevTerms } = getState().channels[
       channelId
     ].videoSearch;
 
-    let finalTerms = next ? prevTerms : terms.trim();
+    const finalTerms = next ? prevTerms : terms.trim();
+    const finalSource = source ? source : currSource;
 
     let response = null;
     if (finalTerms && finalTerms !== "") {
-      response = await api.searchVideos(source, finalTerms, next ? page : null);
+      response = await api.searchVideos(
+        finalSource,
+        finalTerms,
+        next ? page : null
+      );
     }
 
     return {
       channelId,
-      source,
+      source: finalSource,
       next,
       terms: response ? finalTerms : "",
       page: response ? response.data.nextPageToken : 1,
@@ -684,22 +689,23 @@ export const getTrending = createAsyncThunk(
       results
     } = getState().general.trendingResults;
 
+    const finalSource = source ? source : currSource;
     let finalPage = page;
-    if (!next || page === 1 || currSource !== source) {
+    if (!next || page === 1 || currSource !== finalSource) {
       finalPage = null;
     }
 
     if (
       !next &&
       results.length <= VIDEO_RESULTS_PER_PAGE &&
-      source === currSource
+      finalSource === currSource
     ) {
       return null;
     } else {
-      const response = await api.searchVideos(source, null, finalPage);
+      const response = await api.searchVideos(finalSource, null, finalPage);
 
       return {
-        source,
+        source: finalSource,
         next,
         page: response ? response.data.nextPageToken : 1,
         totalResults: response ? response.data.totalResults : 1,
