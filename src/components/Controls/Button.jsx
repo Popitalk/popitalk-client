@@ -120,7 +120,7 @@ export default function Button({
           {...props}
         >
           <div
-            className={`flex items-center ${
+            className={` items-center justify-center ${
               verticalPlacement && `flex-col space-y-1`
             }`}
           >
