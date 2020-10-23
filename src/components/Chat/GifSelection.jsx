@@ -1,24 +1,13 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { initTrendingGifs } from "../../redux/actions";
 
 export default function GifSelection({ updateGifsOpen, isGifsOpen }) {
-  const dispatch = useDispatch();
   const [isGifSelected, setGifSelected] = useState(false);
   const onGifClick = () => {
     setGifSelected(!isGifSelected);
   };
   return (
     <div>
-      <div
-        onClick={() => {
-          if (!isGifsOpen) {
-            dispatch(initTrendingGifs());
-          }
-          updateGifsOpen();
-        }}
-        role="button"
-      >
+      <div onClick={() => updateGifsOpen()} role="button">
         <div
           onClick={onGifClick}
           role="button"
