@@ -1,5 +1,3 @@
-// abc
-
 import { createAction, createAsyncThunk } from "@reduxjs/toolkit";
 import * as api from "../helpers/api";
 import {
@@ -901,6 +899,42 @@ export const setPaused = createAsyncThunk(
 );
 
 export const setVolume = createAction("video/setVolume");
+
+/* -------------------------------------------------------------------------- */
+/*                              GIFS                                          */
+/* -------------------------------------------------------------------------- */
+
+export const initTrendingGifs = createAsyncThunk(
+  "gifs/initTrending",
+  async () => {
+    const response = await api.getTrendingGifs(0);
+    return response.data;
+  }
+);
+
+export const getTrendingGifs = createAsyncThunk(
+  "gifs/getTrending",
+  async offset => {
+    const response = await api.getTrendingGifs(offset);
+    return response.data;
+  }
+);
+
+export const getSearchGifs = createAsyncThunk(
+  "gifs/getSearchGifs",
+  async (term, offset) => {
+    const response = await api.getSearchGifs(term, offset);
+    return response.data;
+  }
+);
+
+export const saveOffset = createAction("gifs/offset", offset => {
+  return { payload: { offset } };
+});
+
+export const setDisplay = createAction("gifs/display", display => {
+  return { payload: { display } };
+});
 
 /* -------------------------------------------------------------------------- */
 /*                                  MainPage                                  */
