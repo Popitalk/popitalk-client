@@ -11,7 +11,6 @@ import postsReducer from "./reducers/posts";
 import commentsReducer from "./reducers/comments";
 import usersReducer from "./reducers/users";
 import messagesReducer from "./reducers/messages";
-import gifsReducer from "./reducers/gifs";
 import chatDraftsReducer from "./reducers/chatDrafts";
 import postDraftsReducer from "./reducers/postDrafts";
 import modalReducer from "./reducers/modal";
@@ -38,7 +37,6 @@ const reducer = combineReducers({
   channels: channelsReducer,
   users: usersReducer,
   messages: messagesReducer,
-  gifs: gifsReducer,
   posts: postsReducer,
   comments: commentsReducer,
   chatDrafts: chatDraftsReducer,

@@ -206,7 +206,3 @@ export const WS_EVENTS = {
     REORDER_QUEUE: "REORDER_QUEUE"
   }
 };
-
-// Gifs
-
-export const gifsDisplay = { trending: 0, searchResults: 1 };
