@@ -264,3 +264,10 @@ export function useWindowSize() {
 
   return windowSize;
 }
+
+export function imageLoader(src, cb) {
+  const image = new Image();
+
+  image.src = src;
+  image.onload = cb;
+}
