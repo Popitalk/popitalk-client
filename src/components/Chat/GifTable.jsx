@@ -23,7 +23,7 @@ export default function GifTable({ updateGifsOpen }) {
         userId,
         channelId,
         content: gif.images.fixed_height_downsampled.url,
-        upload: "gif",
+        upload: null,
         createdAt: new Date().toString(),
         author: {
           id: "",
