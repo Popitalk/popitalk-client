@@ -8,13 +8,6 @@ import {
   addMessage,
   getChannel,
   visitAndLeaveChannel,
-  updateChannel,
-  makeAdmin,
-  deleteAdmin,
-  addBan,
-  deleteBan,
-  openProfileModal,
-  openDeleteChannelModal,
   searchVideos,
   addVideo,
   deleteVideo,
@@ -27,10 +20,9 @@ import {
 import ChannelHeaderContainer from "./ChannelHeaderContainer";
 import VideoPanel from "./VideoPanel";
 import ForumPanel from "./ForumPanel";
-import ChannelSettingsPanel from "../../components/Channel/ChannelSettingsPanel";
+import ChannelSettingsContainer from "./ChannelSettingsContainer";
 import ChannelQueue from "../../components/Channel/ChannelQueue";
 import VideoSearch from "../../components/VideoSearch";
-import { mapIdsToUsers } from "../../helpers/functions";
 import {
   calculatePlayerStatus,
   calculateNextPlayerStatus,
@@ -54,7 +46,7 @@ const mapStateToProps = (state, { match }) => {
   const { channelId, roomId, tab } = match.params;
   const finalId = channelId || roomId;
 
-  const { defaultIcon, defaultAvatar } = state.general;
+  const { defaultIcon } = state.general;
   const channel = state.channels[finalId];
   const channelApi = state.api.channel;
   const { id: ownId, username: ownUsername } = state.self;
@@ -74,7 +66,6 @@ const mapStateToProps = (state, { match }) => {
   return {
     channelId: finalId,
     defaultIcon,
-    defaultAvatar,
     channel: channel ? channel : {},
     startPlayerStatus: startPlayerStatus,
     playlist: channel ? channel.queue : [],
@@ -107,13 +98,6 @@ const mapDispatchToProps = (dispatch, { match }) => {
           }
         })
       ),
-    handleChannelFormSubmit: values =>
-      dispatch(updateChannel({ channelId, ...values })),
-    handleAddAdmin: userId => dispatch(makeAdmin({ channelId, userId })),
-    handleRemoveAdmin: userId => dispatch(deleteAdmin({ channelId, userId })),
-    handleAddBan: bannedId => dispatch(addBan({ channelId, bannedId })),
-    handleRemoveBan: bannedId => dispatch(deleteBan({ channelId, bannedId })),
-    openProfileModal: id => dispatch(openProfileModal(id)),
     handleSearch: (terms, source, next = false) =>
       dispatch(searchVideos({ channelId, source, terms, next })),
     handleGetTrending: (next, source) =>
@@ -127,7 +111,6 @@ const mapDispatchToProps = (dispatch, { match }) => {
     handleGetChannel: leave => dispatch(getChannel({ channelId, leave })),
     handleVisitAndLeave: visitAndLeaveInfo =>
       dispatch(visitAndLeaveChannel(visitAndLeaveInfo)),
-    openDeleteChannelModal: () => dispatch(openDeleteChannelModal(channelId)),
     handleChannelNotFound: () =>
       dispatch(setAlert("The channel / room you entered does not exist.")),
     dispatchPlay: (queueStartPosition, videoStartTime) =>
@@ -428,7 +411,6 @@ class Channel extends Component {
     const ownId = this.props.ownId;
     const type = this.props.type;
     const defaultIcon = this.props.defaultIcon;
-    const defaultAvatar = this.props.defaultAvatar;
     const handleDeleteVideo = this.props.handleDeleteVideo;
     const handleAddVideo = videoData => {
       this.props.handleAddVideo(videoData);
@@ -439,13 +421,6 @@ class Channel extends Component {
     };
     const handleSwapVideos = this.props.handleSwapVideos;
 
-    const admins = channel.admins
-      ? mapIdsToUsers(channel.admins, this.props.users, defaultAvatar)
-      : [];
-    const users = this.props.users;
-
-    const editor =
-      channel.ownerId === ownId || admins.find(a => a.id === ownId);
     const isOwner = channel.ownerId === ownId;
     const isMember = channel.members
       ? !!channel.members.filter(memberId => memberId === ownId).length
@@ -560,34 +535,7 @@ class Channel extends Component {
               />
             )}
             {tab === SETTINGS_TAB && (
-              <ChannelSettingsPanel
-                ownerId={channel.ownerId}
-                followers={mapIdsToUsers(channel.members, users, defaultAvatar)}
-                admins={admins}
-                bannedUsers={mapIdsToUsers(
-                  channel.banned,
-                  users,
-                  defaultAvatar
-                )}
-                initialChannelForm={{
-                  ...channel,
-                  private: !channel.public,
-                  category: ""
-                }}
-                handleChannelFormSubmit={values =>
-                  this.props.handleChannelFormSubmit(values)
-                }
-                channelFormLoading={channelApi.loading}
-                channelFormError={
-                  channelApi.status === "error" ? channelApi.error : false
-                }
-                addAdminHandler={this.props.handleAddAdmin}
-                removeAdminHandler={this.props.handleRemoveAdmin}
-                addBanHandler={this.props.handleAddBan}
-                removeBanHandler={this.props.handleRemoveBan}
-                handleProfile={id => this.props.openProfileModal(id)}
-                openDeleteChannelModal={this.props.openDeleteChannelModal}
-              />
+              <ChannelSettingsContainer channelId={channel.id} />
             )}
           </div>
         </div>
