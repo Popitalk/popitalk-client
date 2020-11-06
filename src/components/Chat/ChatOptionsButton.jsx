@@ -5,13 +5,20 @@ import { useDispatch, useSelector } from "react-redux";
 import { addMessage, openDeleteMessageModal } from "../../redux/actions";
 import { v4 as uuidv4 } from "uuid";
 
-function ChatOptionsButton2({ message, channel, ownId, match, hover }) {
+function ChatOptionsButton2({
+  message,
+  ownId,
+  match,
+  hover,
+  channelId,
+  channel
+}) {
   const dispatch = useDispatch();
   const currentUserUsername = useSelector(state => state.self.username);
   const apiLoading = useSelector(state => state.api.addMessage.loading);
   const userId = useSelector(state => state.self.id);
   const avatar = useSelector(state => state.self.avatar);
-  const channelId = match.params.roomId || match.params.channelId;
+
   const handleSend = text => {
     if (text && text.length > 0 && !apiLoading) {
       dispatch(

@@ -12,7 +12,9 @@ export default function ChatMessage({
   ownId,
   defaultAvatar,
   clickedMessage,
-  updateClickedMessage
+  updateClickedMessage,
+  channelId,
+  channel
 }) {
   const [isHover, setHover] = useState(false);
 
@@ -33,7 +35,13 @@ export default function ChatMessage({
       <div className="w-68 pl-2">
         <MessageContent message={message} />
       </div>
-      <ChatOptionsButton ownId={ownId} message={message} hover={isHover} />
+      <ChatOptionsButton
+        ownId={ownId}
+        message={message}
+        hover={isHover}
+        channelId={channelId}
+        channel={channel}
+      />
     </div>
   );
 

@@ -188,6 +188,8 @@ export default function ChatMessages({
               ownId={ownId}
               clickedMessage={clickedMessage}
               updateClickedMessage={updateClickedMessage}
+              channelId={channelId}
+              channel={channel}
             />
           );
         })}
