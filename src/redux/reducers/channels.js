@@ -13,7 +13,7 @@ import {
   updateChannelWs,
   deleteChannel,
   deleteChannelWs,
-  addAdmin,
+  makeAdmin,
   addAdminWs,
   deleteAdmin,
   deleteAdminWs,
@@ -324,10 +324,12 @@ const R_addAdmin = (state, { payload }) => {
 };
 
 const R_addAdminWs = (state, { payload }) => {
-  state[payload.channelId].admins.push(payload.userId);
+  const channel = state[payload.channelId];
+  channel.admins.push(payload.userId);
+  channel.banned = [];
 
   if (payload.banned) {
-    state[payload.channelId].banned = payload.banned;
+    channel.banned = payload.banned;
   }
 };
 
@@ -461,7 +463,7 @@ export default createReducer(initialState, {
   [addMemberWs]: R_addMember,
   [unfollowChannel.fulfilled]: R_deleteMember,
   [deleteMemberWs]: R_deleteMember,
-  [addAdmin.fulfilled]: R_addAdmin,
+  [makeAdmin.fulfilled]: R_addAdmin,
   [addAdminWs]: R_addAdminWs,
   [deleteAdmin.fulfilled]: R_deleteAdmin,
   [deleteAdminWs]: R_deleteAdmin,
