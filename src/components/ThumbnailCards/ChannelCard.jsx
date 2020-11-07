@@ -98,7 +98,7 @@ export default function ChannelCard({
               <AvatarDeck
                 avatars={viewers}
                 size="md"
-                className="img w-8 h-8 flex-shrink-0"
+                className="img flex-shrink-0"
                 threshold={10}
               />
             </div>

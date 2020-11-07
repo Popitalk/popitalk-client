@@ -31,7 +31,6 @@ export default function Button({
   styleNoneContentClassName,
   styleNoneImage,
   styleNoneIconClassName,
-  verticalPlacement,
   // Button Tooltip
   tooltip,
   tooltipPlace = "bottom",
@@ -44,7 +43,6 @@ export default function Button({
   const styleNoneClasses = classnames({
     "transition transform ease-in-out hover:scale-105 duration-100": hoverable,
     "focus:outline-none": true,
-    "flex-col": verticalPlacement,
     [className]: className
   });
 
@@ -119,18 +117,10 @@ export default function Button({
           onClick={analyticsHandler}
           {...props}
         >
-          <div
-            className={`flex items-center ${
-              verticalPlacement && `flex-col space-y-1`
-            }`}
-          >
-            {icon && (
-              <FontAwesomeIcon className={styleNoneIconClassName} icon={icon} />
-            )}
-            <span className={styleNoneContentClassName}>
-              {styleNoneContent}
-            </span>
-          </div>
+          {icon && (
+            <FontAwesomeIcon className={styleNoneIconClassName} icon={icon} />
+          )}
+          <span className={styleNoneContentClassName}>{styleNoneContent}</span>
         </button>
       )}
 

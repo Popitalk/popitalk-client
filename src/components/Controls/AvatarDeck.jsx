@@ -42,9 +42,10 @@ export default function AvatarDeck({
               <Button
                 hoverable
                 styleNone
+                styleNoneContentClassName="text-xs text-primaryText"
                 styleNoneContent={`+${totalLeft}`}
                 key={ids?.[index] || index}
-                className={`${avatarClasses} bg-disabledBackground text-xs order-first z-10`}
+                className={`${avatarClasses} flex bg-secondaryBackground order-first z-10`}
                 analyticsString="View More Users Button: AvatarDeck"
               />
             );

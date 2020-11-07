@@ -57,6 +57,22 @@ export default function RoomIcon({
     // "border-imageBorder1": !watching,
     // "border-none bg-secondaryBackground p-2px": watching
   });
+
+  const corners = [
+    "rounded-tl-full",
+    "rounded-tr-full",
+    "rounded-bl-full",
+    "rounded-br-full"
+  ];
+
+  const cornerRadius = (index, length) => {
+    if (length === 1) return "rounded-full";
+    if (length === 2 && index === 0) return "rounded-l-full";
+    if (length === 2 && index === 1) return "rounded-r-full";
+    if (length === 3 && index === 1) return "row-span-2 rounded-r-full";
+    return corners[index];
+  };
+
   const avatarClasses = classnames({
     "border overflow-hidden": true,
     "border-imageBorder1": !watching,
@@ -83,9 +99,15 @@ export default function RoomIcon({
           <div className="w-full h-full">
             <div className={container2Classes}>
               {images.slice(0, 4).map((image, index) => (
-                <div key={ids?.[index] || index} className={avatarClasses}>
+                <div
+                  key={ids?.[index] || index}
+                  className={classnames(
+                    avatarClasses,
+                    cornerRadius(index, images.length <= 4 ? images.length : 4)
+                  )}
+                >
                   <img
-                    className="img h-full rounded-circle"
+                    className="img h-full"
                     src={image}
                     alt="img"
                     data-tip={tooltip}
