@@ -45,7 +45,7 @@ export default function AvatarDeck({
                 styleNoneContentClassName="text-xs text-primaryText"
                 styleNoneContent={`+${totalLeft}`}
                 key={ids?.[index] || index}
-                className={`${avatarClasses} flex bg-secondaryBackground order-first z-10`}
+                className={`${avatarClasses} bg-secondaryBackground order-first z-10`}
                 analyticsString="View More Users Button: AvatarDeck"
               />
             );
