@@ -40,12 +40,11 @@ export default function AvatarDeck({
             const totalLeft = avatars.length - threshold;
             return (
               <Button
-                hoverable
                 styleNone
                 styleNoneContentClassName="text-xs text-primaryText"
                 styleNoneContent={`+${totalLeft}`}
                 key={ids?.[index] || index}
-                className={`${avatarClasses} bg-secondaryBackground order-first z-10`}
+                className={`${avatarClasses} bg-secondaryBackground order-first flex-shrink-0 z-10`}
                 analyticsString="View More Users Button: AvatarDeck"
               />
             );
