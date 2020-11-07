@@ -340,19 +340,20 @@ const R_deleteAdmin = (state, { payload }) => {
 };
 
 const R_addBan = (state, { payload }) => {
-  state[payload.channelId].members = state[payload.channelId].members.filter(
-    userId => userId !== payload.userId
-  );
-  state[payload.channelId].admins = state[payload.channelId].admins.filter(
-    userId => userId !== payload.userId
-  );
-  state[payload.channelId].banned.push(payload.userId);
+  const channel = state[payload.channelId];
+  channel.members = channel.members.filter(userId => userId !== payload.userId);
+  channel.admins = channel.admins.filter(userId => userId !== payload.userId);
+
+  channel.banned && channel.banned.push(payload.userId);
 };
 
 const R_deleteBan = (state, { payload }) => {
-  state[payload.channelId].banned = state[payload.channelId].banned.filter(
-    userId => userId !== payload.userId
-  );
+  const channel = state[payload.channelId];
+  channel.banned =
+    channel.banned &&
+    channel.banned.filter(userId => userId !== payload.userId);
+
+  channel.members.push(payload.userId);
 };
 
 const R_deleteChannel = (state, { payload }) => {
