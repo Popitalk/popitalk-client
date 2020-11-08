@@ -89,7 +89,7 @@ export default function ChannelCard({
                   <AvatarDeck
                     avatars={avatars}
                     size="md"
-                    className="img w-8 h-8"
+                    className="img"
                     threshold={6}
                   />
                 </div>
