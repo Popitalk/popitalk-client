@@ -256,7 +256,10 @@ class Channel extends Component {
         nextPosition
       );
 
-      if (this.props.channel.ownerId === this.props.ownId) {
+      // Note, this condition needs to be reworked so that only the owner or one of the admins
+      // triggers the action to update the channel
+      if (this.props.channel.admins.includes(this.props.ownId)) {
+        console.log("here");
         this.props.dispatchPlay(
           nextPlayerStatus.queueStartPosition,
           nextPlayerStatus.videoStartTime
