@@ -256,6 +256,13 @@ class Channel extends Component {
         nextPosition
       );
 
+      if (this.props.channel.ownerId === this.props.ownId) {
+        this.props.dispatchPlay(
+          nextPlayerStatus.queueStartPosition,
+          nextPlayerStatus.videoStartTime
+        );
+      }
+
       this.setState({
         playerStatus: {
           ...this.state.playerStatus,
