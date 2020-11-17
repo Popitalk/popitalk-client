@@ -3,9 +3,10 @@ import classnames from "classnames";
 
 export default function MenuButton({ selected, danger, text, onClick }) {
   const buttonClasses = classnames(
-    "flex justify-center hover:bg-background-highlight rounded-lg px-6 py-2 select-none",
+    "flex justify-center hover:bg-hover-highlight rounded-lg px-6 py-2 select-none",
     {
-      "bg-background-highlight": selected
+      "bg-hover-highlight text-copy-primary": selected,
+      "text-copy-secondary": !selected
     }
   );
 

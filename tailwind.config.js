@@ -67,7 +67,7 @@ module.exports = {
     colors: {
       transparent: "transparent",
 
-      /* == BACKGROUND COLOR == */
+      /* == BACKGROUND COLOR. EX) className="bg-background-primary" == */
       background: {
         primary: "var(--color-bg-primary)",
         secondary: "var(--color-bg-secondary)",
@@ -77,7 +77,7 @@ module.exports = {
         highlight: "var(--color-bg-highlight)"
       },
 
-      /* == TEXT COLOR == */
+      /* == TEXT COLOR. EX) className="text-copy-primary" == */
       copy: {
         primary: "var(--color-text-primary)",
         secondary: "var(--color-text-secondary)",
@@ -88,13 +88,14 @@ module.exports = {
         disabled: "var(--color-text-disabled)"
       },
 
-      /* == BORDER COLOR == */
+      /* == BORDER COLOR. EX) className="border-outline-primary" == */
       outline: {
         primary: "var(--color-border-primary)",
         image1: "var(--color-border-image1)",
         image2: "var(--color-border-image2)"
       },
 
+      /* == HOVER COLOR. EX) className="hover:bg-hover-highlight" == */
       hover: {
         highlight: "var(--color-hover-highlight)",
         selected: "var(--color-hover-selected)"

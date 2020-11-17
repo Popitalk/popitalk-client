@@ -19,20 +19,20 @@ export default function PanelHeader({
         analyticsString="Collapse Button: PanelHeader"
       />
       <nav
-        className={`text-xl px-2 p-3 focus:outline-none hover:bg-background-secondary rounded-xl transition transform ease-in-out hover:scale-105 duration-100 ${
+        className={`flex text-xl px-2 p-1 focus:outline-none hover:bg-background-secondary rounded-xl transition transform ease-in-out hover:scale-105 duration-100 cursor-pointer ${
           selectedPage === "channels"
-            ? "rainbow-text cursor-default font-semibold"
-            : "text-copy-secondary cursor-pointer font-regular"
+            ? "rainbow-text font-semibold"
+            : "text-copy-secondary font-regular"
         }`}
         onClick={() => updateSelectedPage("channels")}
       >
         {strings.channels}
       </nav>
       <nav
-        className={`flex text-xl px-2 p-1 focus:outline-none hover:bg-background-secondary rounded-xl transition transform ease-in-out hover:scale-105 duration-100 ${
+        className={`flex text-xl px-2 p-1 focus:outline-none hover:bg-background-secondary rounded-xl transition transform ease-in-out hover:scale-105 duration-100 cursor-pointer ${
           selectedPage === "friends"
-            ? "rainbow-text cursor-default font-semibold"
-            : "text-copy-secondary cursor-pointer font-regular"
+            ? "rainbow-text font-semibold"
+            : "text-copy-secondary font-regular"
         } `}
         onClick={() => updateSelectedPage("friends")}
       >

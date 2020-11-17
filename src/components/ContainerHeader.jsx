@@ -10,7 +10,7 @@ export default function ContainerHeader({ title, handleBack }) {
       <Button
         styleNone
         icon="arrow-left"
-        styleNoneIconClassName="font-bold text-copy-tertiary"
+        styleNoneIconClassName="font-bold text-copy-primary"
         className="p-2 inline-block"
         onClick={() => handleBack()}
       />
@@ -20,9 +20,9 @@ export default function ContainerHeader({ title, handleBack }) {
   );
 
   return (
-    <div className="inset-x-0 top-0 bg-copy-highlight h-10 flex flex-row items-center justify-between">
+    <div className="inset-x-0 top-0 bg-background-primary rounded-xl h-10 flex flex-row items-center justify-between">
       {backButton}
-      <div className="text-sm font-bold text-copy-tertiary inline-block">
+      <div className="text-sm font-bold text-copy-primary inline-block">
         {title}
       </div>
       {<div className={width}></div>}

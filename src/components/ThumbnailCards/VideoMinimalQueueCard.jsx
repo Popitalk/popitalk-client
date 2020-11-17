@@ -19,7 +19,7 @@ export default function VideoMinimalQueueCard({
           styleNone
           styleNoneContent={strings.searchAddVideos}
           styleNoneContentClassName="text-center text-copy-secondary text-sm"
-          className="h-12 w-full bg-background-tertiary hover:shadow-sm hover:bg-background-highlight transition duration-100 rounded-lg"
+          className="h-12 w-full bg-background-primary hover:shadow-sm hover:bg-hover-highlight transition duration-100 rounded-lg"
           analyticsString="Direct to search Button: VideoMinimalQueueCard"
           onClick={handleFindMore}
         />
@@ -38,7 +38,7 @@ export default function VideoMinimalQueueCard({
             />
             <p className="text-sm text-copy-secondary">{duration}</p>
             <p
-              className="text-sm w-full mx-2 truncate"
+              className="text-sm text-copy-primary w-full mx-2 truncate"
               dangerouslySetInnerHTML={{ __html: title }}
             />
           </div>

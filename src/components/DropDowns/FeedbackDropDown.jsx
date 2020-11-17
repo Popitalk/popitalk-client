@@ -14,7 +14,7 @@ export default function FriendRequests({ friendRequests, ...rest }) {
             styleNone
             styleNoneContent={strings.twitter}
             styleNoneContentClassName="text-copy-primary text-sm"
-            className="py-2 hover:bg-background-highlight rounded-lg duration-75 w-full"
+            className="py-2 hover:bg-hover-highlight rounded-lg duration-75 w-full"
           />
         </a>
         <a
@@ -25,7 +25,7 @@ export default function FriendRequests({ friendRequests, ...rest }) {
             styleNone
             styleNoneContent={strings.youtube}
             styleNoneContentClassName="text-copy-primary text-sm"
-            className="py-2 hover:bg-background-highlight rounded-lg duration-75 w-full"
+            className="py-2 hover:bg-hover-highlight rounded-lg duration-75 w-full"
           />
         </a>
         <a href="https://discord.gg/hdFfgg7" className="w-full px-4">
@@ -33,7 +33,7 @@ export default function FriendRequests({ friendRequests, ...rest }) {
             styleNone
             styleNoneContent={strings.discord}
             styleNoneContentClassName="text-copy-primary text-sm"
-            className="py-2 hover:bg-background-highlight rounded-lg duration-75 w-full"
+            className="py-2 hover:bg-hover-highlight rounded-lg duration-75 w-full"
           />
         </a>
         <a href="https://about.popitalk.com/" className="w-full px-4">
@@ -41,7 +41,7 @@ export default function FriendRequests({ friendRequests, ...rest }) {
             styleNone
             styleNoneContent={strings.sendFeedbackButton}
             styleNoneContentClassName="text-copy-primary text-sm"
-            className="py-2 hover:bg-background-highlight rounded-lg duration-75 w-full"
+            className="py-2 hover:bg-hover-highlight rounded-lg duration-75 w-full"
           />
         </a>
       </div>

@@ -61,7 +61,7 @@ function CollapsedPanel({
         />
       )}
       <div className="flex-col h-full overflow-y-scroll">
-        {/* CHANNELS */}
+        {/* == CHANNELS == */}
         <div className="bg-background-primary rounded-xl">
           <Button
             actionButton
@@ -110,7 +110,7 @@ function CollapsedPanel({
             </div>
           </section>
         </div>
-        {/* FRIENDS */}
+        {/* == FRIENDS == */}
         <div className="bg-background-primary rounded-xl mb-4">
           <Button
             actionButton
