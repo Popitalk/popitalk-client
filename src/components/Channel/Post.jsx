@@ -81,7 +81,7 @@ export default function Post({
               className="img w-10 h-10 rounded-circle transition transform ease-in-out hover:scale-110 duration-100"
             />
             <div className="flex flex-col w-84">
-              <span className="truncate">{username}</span>
+              <span className="truncate text-copy-primary">{username}</span>
               <span className="text-copy-secondary text-xs">{timeAgo}</span>
             </div>
           </header>

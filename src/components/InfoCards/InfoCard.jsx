@@ -38,8 +38,8 @@ export default function InfoCard({
       "border border-copy-highlight": addBorder,
       "bg-background-primary": backgroundColor === "white",
       "bg-background-secondary": backgroundColor === "gray",
-      "bg-background-highlight": backgroundColor === "highlight",
-      "hover:bg-background-highlight duration-75": hoverable
+      "bg-hover-highlight": backgroundColor === "highlight",
+      "hover:bg-hover-highlight duration-75": hoverable
     }
   );
 

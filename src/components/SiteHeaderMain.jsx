@@ -113,7 +113,7 @@ export default function SiteHeaderMain({
           imageButtonSrc={avatar}
           imageButtonSpan={username}
           imageButtonClassName="w-8 h-8 mr-2 rounded-full object-cover"
-          imageButtonSpanClassName="hidden sm:block text-sm"
+          imageButtonSpanClassName="hidden sm:block text-sm text-copy-primary"
           onClick={() => openProfileHandler(userID)}
           analyticsString="My Profile Button: SiteHeaderMain"
           className="flex "

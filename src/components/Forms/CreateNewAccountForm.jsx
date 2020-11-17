@@ -60,10 +60,10 @@ export default function CreateNewAccountForm({ handleSubmit, error, loading }) {
         }) => (
           <form onSubmit={handleSubmit}>
             <div className="flex flex-col items-center w-full">
-              <p className="text-center text-3xl font-bold">
+              <p className="text-center text-3xl font-bold text-copy-primary">
                 {strings.createNewAccountTitle}
               </p>
-              <p className="pb-8 text-center account-form-par">
+              <p className="pb-8 text-center account-form-par text-copy-primary">
                 {strings.createNewAccountSubtitle}
               </p>
               <EditInformationForm loading={loading} />
@@ -76,7 +76,7 @@ export default function CreateNewAccountForm({ handleSubmit, error, loading }) {
                 onBlur={handleBlur}
                 value={values.username}
                 error={touched.username && errors.username}
-                className="w-full px-2"
+                className="w-full px-2 text-copy-primary"
               />
               <Input
                 header={strings.createNewAccountPassword}
@@ -87,10 +87,10 @@ export default function CreateNewAccountForm({ handleSubmit, error, loading }) {
                 onBlur={handleBlur}
                 value={values.password}
                 error={touched.password && errors.password}
-                className="w-full pt-2 px-2"
+                className="w-full pt-2 px-2 text-copy-primary"
               />
               <EditBirthdayForm loading={loading} />
-              <p className="pt-8 text-center text-xs account-form-par">
+              <p className="pt-8 text-center text-xs account-form-par text-copy-primary">
                 {strings.createNewAccountTerms}{" "}
                 <a
                   className="no-underline"

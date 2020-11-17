@@ -21,7 +21,7 @@ export function getInputClasses(shape, error) {
   return classnames(
     "outline-none border focus:border-copy-highlight disabled:cursor-not-allowed disabled:bg-background-disabled w-full",
     {
-      "border-primaryBorder": !error,
+      "border-outline-primary": !error,
       "rounded-lg": shape === "regular"
     }
   );

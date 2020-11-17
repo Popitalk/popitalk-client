@@ -17,7 +17,7 @@ export default function AvatarDeck({
     [className]: className
   });
   const avatarClasses = classnames({
-    "img inline-block rounded-circle text-white border-2 border-imageBorder2": true,
+    "img inline-block rounded-circle text-white border-2 border-outline-image2": true,
     "h-6 w-6": size === "sm",
     "h-8 w-8": size === "md",
     "h-10 w-10": size === "lg"

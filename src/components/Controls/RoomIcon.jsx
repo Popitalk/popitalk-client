@@ -42,7 +42,7 @@ export default function RoomIcon({
     "w-14": size === "lg",
     "w-16": size === "xl",
     "w-20": size === "2xl",
-    // "bg-imageBorder1": !watching,
+    // "bg-outline-image1": !watching,
     // "bg-gradient-r-primary p-2px": watching,
     [className]: className
   });
@@ -54,7 +54,7 @@ export default function RoomIcon({
     "h-16 w-16": size === "xl",
     "h-20 w-20": size === "2xl",
     "grid-cols-2": images.length !== 1
-    // "border-imageBorder1": !watching,
+    // "border-outline-image1": !watching,
     // "border-none bg-background-secondary p-2px": watching
   });
 
@@ -75,12 +75,12 @@ export default function RoomIcon({
 
   const avatarClasses = classnames({
     "border overflow-hidden": true,
-    "border-imageBorder1": !watching,
+    "border-outline-image1": !watching,
     "border-none": watching
   });
   const onlineFriendClasses = classnames({
-    "h-4 w-4 rounded-full border border-imageBorder2 bg-onlineColor absolute": true,
-    "border-imageBorder1": !watching,
+    "h-4 w-4 rounded-full border border-outline-image2 bg-onlineColor absolute": true,
+    "border-outline-image1": !watching,
     "border-background-primary": watching
   });
   const notificationsClasses = classnames({

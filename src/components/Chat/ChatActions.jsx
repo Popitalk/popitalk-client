@@ -97,15 +97,15 @@ function ChatActions(props) {
           styleNone
           icon={["far", "smile"]}
           styleNoneIconClassName={`text-xl ${
-            emojiIsOpen ? "text-copy-tertiary" : "text-copy-highlight"
+            emojiIsOpen ? "text-hover-highlight" : "text-copy-highlight"
           }`}
           onClick={() => setEmojiIsOpen(!emojiIsOpen)}
           className={`${
             emojiIsOpen
               ? "bg-copy-highlight"
-              : "bg-background-secondary hover:bg-background-highlight"
+              : "bg-background-secondary hover:bg-hover-highlight"
           } w-10 h-10 p-2 text-center rounded-lg`}
-          analyticsString="GIF Button: ChatActions"
+          analyticsString="Emoji Button: ChatActions"
         />
         {emojiIsOpen ? (
           <div className="absolute bottom-0 mb-16">

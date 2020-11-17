@@ -17,7 +17,7 @@ function EditInformationForm({ loading, formik }) {
             onBlur={formik.handleBlur}
             value={formik.values.firstName}
             error={formik.touched.firstName && formik.errors.firstName}
-            className=""
+            className="text-copy-primary"
           />
         </div>
         <div className="w-full flex-1 md:flex-1 md:pl-2 pr-2">
@@ -30,7 +30,7 @@ function EditInformationForm({ loading, formik }) {
             onBlur={formik.handleBlur}
             value={formik.values.lastName}
             error={formik.touched.lastName && formik.errors.lastName}
-            className=""
+            className="text-copy-primary"
           />
         </div>
       </div>
@@ -44,7 +44,7 @@ function EditInformationForm({ loading, formik }) {
           onBlur={formik.handleBlur}
           value={formik.values.email}
           error={formik.touched.email && formik.errors.email}
-          className=""
+          className="text-copy-primary"
         />
       </div>
     </>

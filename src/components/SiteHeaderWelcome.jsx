@@ -25,7 +25,7 @@ export default function SiteHeaderWelcome({
       {/* Mobile header shown in Signup */}
       <div
         className={`${signup ? "" : "hidden"} sm:hidden
-        // flex flex-row items-center justify-between w-full h-16 px-6 border-b border-primaryBorder bg-background-primary`}
+        // flex flex-row items-center justify-between w-full h-16 px-6 border-b border-outline-primary bg-background-primary`}
       >
         <Button
           imageButton
@@ -47,8 +47,8 @@ export default function SiteHeaderWelcome({
       <div
         className={`${
           signup ? "hidden" : ""
-        } sm:flex sm:flex-row sm:h-full sm:w-screen sm:px-16 sm:py-3 sm:justify-between sm:items-start 
-        // flex flex-col h-screen justify-start px-12 border-b border-primaryBorder bg-background-highlight`}
+        } sm:flex sm:flex-row sm:h-full sm:w-screen sm:px-16 sm:py-3 sm:justify-between sm:items-start sm:bg-background-primary
+        // flex flex-col h-screen justify-start px-12 border-b border-outline-primary bg-background-highlight`}
       >
         <div
           className="sm:justify-start sm:py-3 sm:mt-0
@@ -59,7 +59,7 @@ export default function SiteHeaderWelcome({
             imageButtonSrc={Logo}
             imageButtonClassName="w-12 h-12 hover:scale-105"
             imageButtonSpan="Popitalk"
-            imageButtonSpanClassName="md:ml-2 md:text-2xl // sm:text-xl sm:ml-1 // flex ml-1 text-2xl"
+            imageButtonSpanClassName="md:ml-2 md:text-2xl // sm:text-xl sm:ml-1 // flex ml-1 text-2xl text-copy-primary"
             analyticsString="Logo Button: SiteHeaderWelcome"
           />
         </div>
@@ -76,7 +76,7 @@ export default function SiteHeaderWelcome({
                   </label>
                   <input
                     className="sm:h-8 sm:text-sm
-                    // h-10 py-2 px-4 text-md border rounded-lg bg-tertiaryBackground border-primaryBorder focus:outline-none text-copy-primary"
+                    // h-10 py-2 px-4 text-md border rounded-lg bg-background-secondary border-outline-primary focus:outline-none text-copy-primary"
                     type="text"
                     value={username}
                     size="sm"
@@ -100,7 +100,7 @@ export default function SiteHeaderWelcome({
                   </label>
                   <input
                     className="sm:h-8 sm:text-sm
-                    // h-10 py-2 px-4 text-md border rounded-lg bg-tertiaryBackground border-primaryBorder focus:outline-none text-copy-primary"
+                    // h-10 py-2 px-4 text-md border rounded-lg bg-background-secondary border-outline-primary focus:outline-none text-copy-primary"
                     type="password"
                     id="password"
                     value={password}

@@ -53,10 +53,12 @@ export default function ChannelDescription({
           className="img h-32 w-32 rounded-circle mx-px flex-shrink-0"
         />
         <section className="mx-8">
-          <p className="text-2xl font-bold truncate-2-lines">{name}</p>
-          <p className="text-sm my-2">{description}</p>
+          <p className="text-2xl font-bold text-copy-primary truncate-2-lines">
+            {name}
+          </p>
+          <p className="text-sm my-2 text-copy-primary">{description}</p>
           <div className="flex flex-row items-center mt-4">
-            <p className="text-xs mr-2">{strings.admins}</p>
+            <p className="text-xs mr-2 text-copy-primary">{strings.admins}</p>
             {adminIds.slice(0, threshold).map(adminId => (
               <div
                 key={adminId}

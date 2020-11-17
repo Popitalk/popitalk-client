@@ -53,18 +53,18 @@ export default function NewChannelPost({
 
   return (
     <div className="relative flex w-full justify-center items-center">
-      <div className="flex flex-around justify-center bg-background-secondary content-center py-2 sm:w-102 md:w-102 lg:w-104 max-w-xla">
-        {/* EMOJI BUTTON */}
+      <div className="flex space-x-2 justify-center bg-background-secondary content-center py-2 sm:w-102 md:w-102 lg:w-104 max-w-xl">
+        {/* == EMOJI BUTTON == */}
         <Button
           hoverable
           styleNone
           icon={["far", "smile"]}
-          styleNoneIconClassName="mb-2 text-2xl text-copy-highlight"
+          styleNoneIconClassName="text-2xl text-copy-highlight"
           onClick={handleEmot}
-          className="w-10 h-10 p-2 mx-2 rounded-lg bg-background-secondary hover:bg-background-highlight"
+          className="w-10 h-10 p-2 mx-2 rounded-lg bg-background-secondary hover:bg-hover-highlight"
           analyticsString="Emoji Button: NewChannelPost"
         />
-        {/* INPUT */}
+        {/* == INPUT == */}
         <textarea
           type="text"
           placeholder={strings.postInput}
@@ -74,7 +74,7 @@ export default function NewChannelPost({
           onKeyDown={handleChange}
           ref={textareaRef}
         />
-        {/* GIF BUTTON */}
+        {/* == GIF BUTTON == */}
         {/* <Button
           hoverable
           styleNone
@@ -83,26 +83,19 @@ export default function NewChannelPost({
           className="w-10 h-10 p-2 mx-2 rounded-lg bg-background-secondary select-none hover:bg-background-highlight"
           analyticsString="GIF Button: NewChannelPost"
         /> */}
-        {/* SEND BUTTON */}
+        {/* == SEND BUTTON == */}
         <Button
           hoverable
           styleNone
           icon="paper-plane"
           styleNoneIconClassName="text-lg"
           onClick={handleSubmit}
-          className="w-10 h-10 font-bold text-copy-highlight pr-2 text-md"
+          className="w-10 h-10 font-bold text-copy-highlight px-2 text-md"
           analyticsString="Post Button: NewChannelPost"
         />
       </div>
       {pickerOpen && (
-        <div
-          className="absolute top-0 left-0 ml-8 mt-12 mr-8 z-50"
-          // onBlur={() => {
-          //   setTimeout(() => {
-          //     setPickerOpen(false);
-          //   }, 250);
-          // }}
-        >
+        <div className="absolute top-0 left-0 ml-8 mt-12 mr-8 z-50">
           <Picker
             perLine={8}
             style={{ position: "flex", bottom: "0", right: "-5rem" }}

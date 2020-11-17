@@ -14,13 +14,13 @@ export default function GifSelection({ updateGifsOpen, isGifsOpen }) {
           className={`${
             isGifSelected
               ? "bg-copy-highlight text-copy-tertiary"
-              : "bg-background-secondary hover:bg-background-highlight"
+              : "bg-background-secondary hover:bg-hover-highlight"
           } w-10 h-10 p-2 rounded-lg transition transform ease-in-out hover:scale-110 duration-100 select-none`}
         >
           <p
             className={
               isGifSelected
-                ? "text-copy-tertiary font-bold"
+                ? "text-hover-highlight font-bold"
                 : "text-copy-highlight font-bold"
             }
           >

@@ -113,9 +113,9 @@ class FriendsPanel extends Component {
             className="my-1 mx-3"
           />
           {this.state.open && (
-            <div className="rounded-md bg-background-secondary shadow-inner border border-primaryBorder mx-3 m-2">
+            <div className="rounded-md bg-background-secondary shadow-inner border border-outline-primary mx-3 m-2">
               <div className="flex flex-row items-center justify-between px-4 py-1">
-                <p className="text-xs">
+                <p className="text-xs text-copy-primary">
                   {strings.searchResult} &quot;{this.state.search}&quot;
                 </p>
                 <Button

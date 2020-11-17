@@ -79,25 +79,30 @@ module.exports = {
 
       /* == TEXT COLOR == */
       copy: {
-        primary: "#323232",
-        secondary: "#979797",
-        tertiary: "#FFFFFF",
-        highlight: "#1DA4FE",
-        link: "#1DA4FE",
-        error: "#FF4040",
-        disabled: "#a5a5a5"
+        primary: "var(--color-text-primary)",
+        secondary: "var(--color-text-secondary)",
+        tertiary: "var(--color-text-tertiary)",
+        highlight: "var(--color-text-highlight)",
+        link: "var(--color-text-link)",
+        error: "var(--color-text-error)",
+        disabled: "var(--color-text-disabled)"
+      },
+
+      /* == BORDER COLOR == */
+      outline: {
+        primary: "var(--color-border-primary)",
+        image1: "var(--color-border-image1)",
+        image2: "var(--color-border-image2)"
+      },
+
+      hover: {
+        highlight: "var(--color-hover-highlight)",
+        selected: "var(--color-hover-selected)"
       },
 
       /** BUTTON TEXT */
       primaryButtonText: "#FFFFFF",
       secondaryButtonText: "#A5A5A5",
-
-      /** BORDER */
-      primaryBorder: "#e2e2e2",
-      secondaryBorder: "#D9D9D9",
-      tertiaryBorder: "#A5A5A5",
-      imageBorder1: "transparent",
-      imageBorder2: "#FFFFFF",
 
       /** OTHERS */
       pink: "#F966F8",

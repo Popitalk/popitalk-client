@@ -16,7 +16,7 @@ function WelcomePage(props) {
         <WelcomeVideo />
         <div
           className="sm:w-102 sm:rounded-lg sm:shadow-xs sm:hover:shadow-channel sm:mx-4 sm:my-8 
-          // w-full bg-background-primary px-4 py-8 my-16 duration-100"
+          // w-full bg-background-secondary px-4 py-8 my-16 duration-100"
         >
           <CreateNewAccountForm {...props} />
         </div>

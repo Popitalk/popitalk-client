@@ -33,12 +33,12 @@ export default function NewChannelComment({
   return (
     <form
       onSubmit={handleSend}
-      className="flex flex-row justify-center bg-background-secondary content-center py-2"
+      className="flex flex-row justify-center bg-background-secondary content-center py-2 space-x-2"
     >
       <textarea
         type="text"
         placeholder="Add a comment"
-        className="rounded-lg mx-2 w-full px-6 py-2 h-10 shadow text-sm resize-none overflow-hidden focus:outline-none"
+        className="rounded-lg w-full px-6 py-2 h-10 shadow text-sm resize-none overflow-hidden focus:outline-none bg-background-primary text-copy-primary"
         row={1}
         value={value}
         maxLength={120}
@@ -49,7 +49,7 @@ export default function NewChannelComment({
       <input
         type="submit"
         value="Post"
-        className="mx-2 bg-transparent text-copy-highlight font-bold mr-3 cursor-pointer outline-none"
+        className="rounded-lg bg-background-primary px-3 text-copy-highlight font-bold mr-3 cursor-pointer focus:outline-none"
       />
     </form>
   );

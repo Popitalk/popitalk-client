@@ -22,7 +22,7 @@ export default function ChatMessage({
       onClick={() => updateClickedMessage(message.id)}
       onPointerOver={() => setHover(true)}
       onPointerOut={() => setHover(false)}
-      className="flex bg-background-primary hover:bg-background-secondary rounded-md cursor-text flex-wrap"
+      className="flex bg-background-primary hover:bg-hover-highlight rounded-md cursor-text flex-wrap"
       key={message.id}
     >
       <MessageHighlightSpan

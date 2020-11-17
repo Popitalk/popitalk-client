@@ -48,14 +48,14 @@ export default function Input({
 
   const inputClasses = classnames(
     getInputClasses(shape, error),
-    "relative bottom-0 py-2 px-4 rounded-md hover:shadow-md transition duration-100",
+    "relative bottom-0 py-2 px-4 rounded-md hover:shadow-md transition duration-100 text-copy-primary bg-background-primary",
     textClasses,
     {
-      "border-primaryBorder": error,
+      "border-outline-primary": error,
       "rounded-md px-3": shape === "pill",
       "pl-12 pr-12 rounded-md": variant === "video",
       "pl-3 pr-12 bg-background-secondary": variant === "user",
-      "pl-3 pr-12": variant === "channel",
+      "pl-3 pr-12 bg-background-primary": variant === "channel",
       "pr-20": variant === "counter" || variant === "textarea",
       "resize-none overflow-hidden h-32 pt-1": variant === "textarea",
       "pl-10": variant === "filter" || variant === "filterModal",

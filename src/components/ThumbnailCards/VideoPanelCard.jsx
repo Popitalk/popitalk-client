@@ -84,15 +84,14 @@ export default function VideoPanelCard({
               role="button"
               onClick={handleFindMore}
             >
-              <div className="relative cursor-pointer pb-16/9 w-full rounded-md shadow-xs hover:shadow-md transition-all ease-in-out duration-100 bg-background-disabled hover:bg-background-highlight focus:outline-none">
+              <div className="relative cursor-pointer pb-16/9 w-full rounded-md shadow-xs hover:shadow-md transition-all ease-in-out duration-100 bg-background-disabled hover:bg-hover-highlight focus:outline-none">
                 <div className="absolute flex items-center justify-center w-full h-full">
                   <Button
                     styleNone
                     styleNoneContent={strings.findMoreVideos}
                     icon="search"
-                    styleNoneContentClassName="mx-2 text-copy-secondary text-sm"
-                    styleNoneIconClassName="text-copy-secondary"
-                    className="hover:filter-brightness-9"
+                    styleNoneContentClassName="mx-2 text-sm"
+                    className="text-copy-secondary"
                     analyticsString="Direct to Search Button: VideoPanelCard"
                   />
                 </div>

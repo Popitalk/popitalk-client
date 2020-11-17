@@ -33,14 +33,14 @@ export default function Comment({
       <article className="flex-shrink flex flex-col mr-2 w-full">
         <main>
           <span
-            className="font-bold text-sm pr-1"
+            className="font-bold text-sm pr-1 text-copy-primary"
             onClick={() => openProfileModal(authorId)}
             role="button"
           >
             {username}{" "}
           </span>
           <span
-            className={`text-sm ${
+            className={`text-sm text-copy-primary ${
               content.split(" ").length > 1 ? "break-words" : "break-all"
             }`}
           >

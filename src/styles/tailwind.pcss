@@ -1,17 +1,36 @@
 @tailwind base;
 
 :root {
-  @apply .light;
+  @apply .dark;
 }
 
 .dark {
   /* === BACKGROUND === */
-  --color-bg-primary: #2d3748;
-  --color-bg-secondary: #283141;
+  --color-bg-primary: #34363E;
+  --color-bg-secondary: #232429;
   --color-bg-tertiary: #878683;
-  --color-bg-quaternary: #e0e0e0;
-  --color-bg-disabled: #bebebe;
+  --color-bg-quaternary: #E0E0E0;
+  --color-bg-disabled: #34363E;
   --color-bg-highlight: #F2F2F2;
+
+  /* === TEXT === */
+  --color-text-primary: #F6F5F6;
+  --color-text-secondary: #979797;
+  --color-text-tertiary: #FFFFFF;
+  --color-text-highlight: #FFFFFF;
+  --color-text-link: #1DA4FE;
+  --color-text-error: #FF4040;
+  --color-text-disabled: #A5A5A5;
+
+  /* === BORDER === */
+  --color-border-primary: #2A2C2D;
+  --color-border-image1: transparent;
+  --color-border-image2: #2A2C2D;
+
+  /* === HOVER === */
+  --color-hover-highlight: #3A3C45;
+  --color-hover-selected: #75777D;
+
 }
 
 .light {
@@ -22,6 +41,24 @@
   --color-bg-quaternary: #e0e0e0;
   --color-bg-disabled: #F4F4F4;
   --color-bg-highlight: #D3ECFF;
+
+  /* === TEXT === */
+  --color-text-primary: #323232;
+  --color-text-secondary: #979797;
+  --color-text-tertiary: #FFFFFF;
+  --color-text-highlight: #1DA4FE;
+  --color-text-link: #1DA4FE;
+  --color-text-error: #FF4040;
+  --color-text-disabled: #a5a5a5;
+
+  /* === BORDER === */
+  --color-border-primary: #E2E2E2;
+  --color-border-image1: transparent;
+  --color-border-image2: #FFFFFF;
+
+  /* === HOVER === */
+  --color-hover-highlight: #D3ECFF;
+  --color-hover-selected: #D3ECFF;
 }
 
 a {
