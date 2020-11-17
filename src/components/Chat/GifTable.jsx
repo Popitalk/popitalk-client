@@ -40,7 +40,7 @@ export default function GifTable({ updateGifsOpen }) {
     : offset => giphyFetch.trending({ offset, limit: 10 });
 
   return (
-    <div className="flex flex-col giftable relative bg-secondaryBackground rounded-md w-84 h-64">
+    <div className="flex flex-col giftable relative bg-background-secondary rounded-md w-84 h-64">
       <Input
         variant="user"
         size="sm"

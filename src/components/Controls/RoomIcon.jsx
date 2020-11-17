@@ -55,7 +55,7 @@ export default function RoomIcon({
     "h-20 w-20": size === "2xl",
     "grid-cols-2": images.length !== 1
     // "border-imageBorder1": !watching,
-    // "border-none bg-secondaryBackground p-2px": watching
+    // "border-none bg-background-secondary p-2px": watching
   });
 
   const corners = [
@@ -81,7 +81,7 @@ export default function RoomIcon({
   const onlineFriendClasses = classnames({
     "h-4 w-4 rounded-full border border-imageBorder2 bg-onlineColor absolute": true,
     "border-imageBorder1": !watching,
-    "border-primaryBackground": watching
+    "border-background-primary": watching
   });
   const notificationsClasses = classnames({
     "font-regular text-primaryButtonText text-xs bg-gradient-r-cancel h-2 w-2 animate-bounce rounded-lg absolute right-0 top-0 flex items-center justify-center select-none": true
@@ -93,7 +93,7 @@ export default function RoomIcon({
   return (
     <div className={container1Classes}>
       {isLoading ? (
-        <div className="animate-pulse bg-gray-200 grid w-full h-full rounded-full overflow-hidden" />
+        <div className="animate-pulse bg-background-quaternary grid w-full h-full rounded-full overflow-hidden" />
       ) : (
         <div className="flex flex-col items-center justify-center w-full h-full space-y-1">
           <div className="w-full h-full">
@@ -118,7 +118,7 @@ export default function RoomIcon({
               {self && (
                 <p
                   className="font-bold text-xs absolute bottom-0 left-0 truncate
-            text-highlightText bg-primaryBackground rounded-xl p-1 flex items-center justify-center select-none"
+            text-copy-highlight bg-background-primary rounded-xl p-1 flex items-center justify-center select-none"
                 >
                   {strings.myRoom}
                 </p>

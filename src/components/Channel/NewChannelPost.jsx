@@ -53,22 +53,22 @@ export default function NewChannelPost({
 
   return (
     <div className="relative flex w-full justify-center items-center">
-      <div className="flex flex-around justify-center bg-secondaryBackground content-center py-2 sm:w-102 md:w-102 lg:w-104 max-w-xla">
+      <div className="flex flex-around justify-center bg-background-secondary content-center py-2 sm:w-102 md:w-102 lg:w-104 max-w-xla">
         {/* EMOJI BUTTON */}
         <Button
           hoverable
           styleNone
           icon={["far", "smile"]}
-          styleNoneIconClassName="mb-2 text-2xl text-highlightText"
+          styleNoneIconClassName="mb-2 text-2xl text-copy-highlight"
           onClick={handleEmot}
-          className="w-10 h-10 p-2 mx-2 rounded-lg bg-secondaryBackground hover:bg-highlightBackground"
+          className="w-10 h-10 p-2 mx-2 rounded-lg bg-background-secondary hover:bg-background-highlight"
           analyticsString="Emoji Button: NewChannelPost"
         />
         {/* INPUT */}
         <textarea
           type="text"
           placeholder={strings.postInput}
-          className="flex w-full h-10 py-2 px-3 text-start overflow-hidden rounded-lg resize-none bg-primaryBackground shadow-sm hover:shadow-md focus:outline-none text-primaryText text-sm transition transform ease-in-out hover:scale-102 duration-100"
+          className="flex w-full h-10 py-2 px-3 text-start overflow-hidden rounded-lg resize-none bg-background-primary shadow-sm hover:shadow-md focus:outline-none text-copy-primary text-sm transition transform ease-in-out hover:scale-102 duration-100"
           rows={1}
           maxLength={2000}
           onKeyDown={handleChange}
@@ -79,8 +79,8 @@ export default function NewChannelPost({
           hoverable
           styleNone
           styleNoneContent="GIF"
-          styleNoneContentClassName="text-highlightText font-bold"
-          className="w-10 h-10 p-2 mx-2 rounded-lg bg-secondaryBackground select-none hover:bg-highlightBackground"
+          styleNoneContentClassName="text-copy-highlight font-bold"
+          className="w-10 h-10 p-2 mx-2 rounded-lg bg-background-secondary select-none hover:bg-background-highlight"
           analyticsString="GIF Button: NewChannelPost"
         /> */}
         {/* SEND BUTTON */}
@@ -90,7 +90,7 @@ export default function NewChannelPost({
           icon="paper-plane"
           styleNoneIconClassName="text-lg"
           onClick={handleSubmit}
-          className="w-10 h-10 font-bold text-highlightText pr-2 text-md"
+          className="w-10 h-10 font-bold text-copy-highlight pr-2 text-md"
           analyticsString="Post Button: NewChannelPost"
         />
       </div>

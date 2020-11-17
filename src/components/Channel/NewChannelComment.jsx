@@ -33,7 +33,7 @@ export default function NewChannelComment({
   return (
     <form
       onSubmit={handleSend}
-      className="flex flex-row justify-center bg-secondaryBackground content-center py-2"
+      className="flex flex-row justify-center bg-background-secondary content-center py-2"
     >
       <textarea
         type="text"
@@ -49,7 +49,7 @@ export default function NewChannelComment({
       <input
         type="submit"
         value="Post"
-        className="mx-2 bg-transparent text-highlightText font-bold mr-3 cursor-pointer outline-none"
+        className="mx-2 bg-transparent text-copy-highlight font-bold mr-3 cursor-pointer outline-none"
       />
     </form>
   );

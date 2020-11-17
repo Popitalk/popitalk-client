@@ -51,14 +51,14 @@ export default function Post({
 
   if (isLoading) {
     return (
-      <div className="bg-primaryBackground rounded-md p-4 my-8 max-w-md h-48 w-full mx-auto">
+      <div className="bg-background-primary rounded-md p-4 my-8 max-w-md h-48 w-full mx-auto">
         <div className="animate-pulse flex space-x-4">
-          <div className="rounded-full bg-gray-200 h-12 w-12" />
+          <div className="rounded-full bg-background-quaternary h-12 w-12" />
           <div className="flex-1 space-y-4 py-1">
-            <div className="h-3 bg-gray-200 rounded w-3/4" />
+            <div className="h-3 bg-background-quaternary rounded w-3/4" />
             <div className="space-y-2">
-              <div className="h-3 bg-gray-200 rounded" />
-              <div className="h-3 bg-gray-200 rounded w-5/6" />
+              <div className="h-3 bg-background-quaternary rounded" />
+              <div className="h-3 bg-background-quaternary rounded w-5/6" />
             </div>
           </div>
         </div>
@@ -68,7 +68,7 @@ export default function Post({
 
   return (
     <div className="flex flex-col justify-center items-center">
-      <div className="flex flex-col rounded-lg px-8 pt-4 mt-8 bg-primaryBackground shadow-sm hover:shadow-md cursor-pointer w-84 sm:w-102 lg:w-104">
+      <div className="flex flex-col rounded-lg px-8 pt-4 mt-8 bg-background-primary shadow-sm hover:shadow-md cursor-pointer w-84 sm:w-102 lg:w-104">
         <div className="flex justify-between items-start w-full">
           <header
             className="flex items-center w-full space-x-2"
@@ -82,7 +82,7 @@ export default function Post({
             />
             <div className="flex flex-col w-84">
               <span className="truncate">{username}</span>
-              <span className="text-secondaryText text-xs">{timeAgo}</span>
+              <span className="text-copy-secondary text-xs">{timeAgo}</span>
             </div>
           </header>
           {(isAdmin || authorId === ownId) && (
@@ -99,7 +99,7 @@ export default function Post({
           )}
         </div>
         <div
-          className="text-primaryText text-lg py-4 px-2 break-words"
+          className="text-copy-primary text-lg py-4 px-2 break-words"
           onClick={handleComment}
           role="button"
         >
@@ -107,7 +107,7 @@ export default function Post({
         </div>
         {/* 0 Likes 0 Comments */}
         <section
-          className="flex justify-start text-xs py-1 space-x-2 text-secondaryText"
+          className="flex justify-start text-xs py-1 space-x-2 text-copy-secondary"
           onClick={handleComment}
           role="button"
         >
@@ -121,12 +121,12 @@ export default function Post({
         </section>
         {/* Like and Comment buttons */}
         {isMember && (
-          <footer className="flex text-secondaryText text-xl space-x-6 pb-2 items-center">
+          <footer className="flex text-copy-secondary text-xl space-x-6 pb-2 items-center">
             <ToggleIcon
               icons={{ default: ["far", "heart"], toggle: ["fa", "heart"] }}
               status={liked}
               toggleStatus={stat => toggleLike(id, stat)}
-              className="bg-highlightBackground"
+              className="bg-background-highlight"
             >
               {strings.like}
             </ToggleIcon>

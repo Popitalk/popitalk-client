@@ -94,7 +94,7 @@ class FriendsPanel extends Component {
 
   render() {
     return (
-      <div className="flex flex-col w-84 h-full bg-primaryBackground select-none">
+      <div className="flex flex-col w-84 h-full bg-background-primary select-none">
         <PanelHeader
           handleCollapse={this.props.handleCollapse}
           updateSelectedPage={this.props.updateSelectedPage}
@@ -113,7 +113,7 @@ class FriendsPanel extends Component {
             className="my-1 mx-3"
           />
           {this.state.open && (
-            <div className="rounded-md bg-secondaryBackground shadow-inner border border-primaryBorder mx-3 m-2">
+            <div className="rounded-md bg-background-secondary shadow-inner border border-primaryBorder mx-3 m-2">
               <div className="flex flex-row items-center justify-between px-4 py-1">
                 <p className="text-xs">
                   {strings.searchResult} &quot;{this.state.search}&quot;
@@ -121,7 +121,7 @@ class FriendsPanel extends Component {
                 <Button
                   styleNone
                   styleNoneContent={strings.searchFriendsClose}
-                  className="flex text-xs font-bold text-highlightText px-2 py-1 rounded-xl transition-all hover:bg-highlightBackground duration-100"
+                  className="flex text-xs font-bold text-copy-highlight px-2 py-1 rounded-xl transition-all hover:bg-background-highlight duration-100"
                   onClick={() => this.syncSearch("")}
                   analyticsString="Close Friend Search Button: FriendsPanel"
                 />
@@ -135,7 +135,7 @@ class FriendsPanel extends Component {
               </div>
             </div>
           )}
-          <div className="bg-primaryBackground pb-8">
+          <div className="bg-background-primary pb-8">
             <RoomsList
               rooms={this.state.rooms}
               selected={this.props.selectedRoom}

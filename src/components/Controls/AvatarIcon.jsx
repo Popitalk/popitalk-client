@@ -22,7 +22,9 @@ export default function AvatarIcon({
       }`}
     >
       <div
-        className={`rounded-circle ${watching && "p-1 bg-secondaryBackground"}`}
+        className={`rounded-circle ${
+          watching && "p-1 bg-background-secondary"
+        }`}
       >
         <img
           className={className ? className : defaultClassName}

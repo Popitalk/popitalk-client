@@ -63,11 +63,11 @@ export default function EditInformationModal({
                 <EditBirthdayForm loading={loading} />
               </div>
               {informationUpdated && (
-                <p className="text-linkText text-sm">
+                <p className="text-copy-link text-sm">
                   You have successfully updated your information!
                 </p>
               )}
-              {error && <p className="text-errorText text-sm">{error}</p>}
+              {error && <p className="text-copy-error text-sm">{error}</p>}
               <div className="pt-4">
                 <Button
                   actionButton

@@ -19,7 +19,7 @@ export function getTextClass(size) {
 
 export function getInputClasses(shape, error) {
   return classnames(
-    "outline-none border focus:border-highlightText disabled:cursor-not-allowed disabled:bg-disabledBackground w-full",
+    "outline-none border focus:border-copy-highlight disabled:cursor-not-allowed disabled:bg-background-disabled w-full",
     {
       "border-primaryBorder": !error,
       "rounded-lg": shape === "regular"

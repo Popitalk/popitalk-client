@@ -47,7 +47,7 @@ function CollapsedPanel({
     }
   }, [isCollapsed, setFollowingExpanded, setDiscoverExpanded, selectedPage]);
   return (
-    <div className="flex flex-col bg-primaryBackground px-2 items-center w-20 h-full select-none overflow-x-hidden">
+    <div className="flex flex-col bg-background-primary px-2 items-center w-20 h-full select-none overflow-x-hidden">
       {isCollapsedResponsive ? (
         <div className="h-2" />
       ) : (
@@ -55,17 +55,17 @@ function CollapsedPanel({
           styleNone
           hoverable
           icon="bars"
-          className="flex items-center justify-center py-5 w-full rounded-full text-secondaryText hover:text-highlightText"
+          className="flex items-center justify-center py-5 w-full rounded-full text-copy-secondary hover:text-copy-highlight"
           onClick={handleCollapse}
           analyticsString="LeftPanel Expand Button: CollapsedPanel"
         />
       )}
       <div className="flex-col h-full overflow-y-scroll">
         {/* CHANNELS */}
-        <div className="bg-primaryBackground rounded-xl">
+        <div className="bg-background-primary rounded-xl">
           <Button
             actionButton
-            className="flex h-12 w-20 bg-secondaryBackground shadow-none"
+            className="flex h-12 w-20 bg-background-secondary shadow-none"
             shape="none"
             background="bgColor"
             selectedColor={isFollowingExpanded ? true : false}
@@ -111,10 +111,10 @@ function CollapsedPanel({
           </section>
         </div>
         {/* FRIENDS */}
-        <div className="bg-primaryBackground rounded-xl mb-4">
+        <div className="bg-background-primary rounded-xl mb-4">
           <Button
             actionButton
-            className="flex h-12 w-20 mb-1 bg-secondaryBackground shadow-none"
+            className="flex h-12 w-20 mb-1 bg-background-secondary shadow-none"
             shape="none"
             background="bgColor"
             selectedColor={isDiscoverExpanded ? true : false}

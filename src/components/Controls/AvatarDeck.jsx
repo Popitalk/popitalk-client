@@ -41,10 +41,10 @@ export default function AvatarDeck({
             return (
               <Button
                 styleNone
-                styleNoneContentClassName="text-xs text-primaryText"
+                styleNoneContentClassName="text-xs text-copy-primary"
                 styleNoneContent={`+${totalLeft}`}
                 key={ids?.[index] || index}
-                className={`${avatarClasses} bg-secondaryBackground order-first flex-shrink-0 z-10`}
+                className={`${avatarClasses} bg-background-secondary order-first flex-shrink-0 z-10`}
                 analyticsString="View More Users Button: AvatarDeck"
               />
             );

@@ -1,7 +1,31 @@
 @tailwind base;
 
+:root {
+  @apply .light;
+}
+
+.dark {
+  /* === BACKGROUND === */
+  --color-bg-primary: #2d3748;
+  --color-bg-secondary: #283141;
+  --color-bg-tertiary: #878683;
+  --color-bg-quaternary: #e0e0e0;
+  --color-bg-disabled: #bebebe;
+  --color-bg-highlight: #F2F2F2;
+}
+
+.light {
+  /* === BACKGROUND === */
+  --color-bg-primary: #ffffff;
+  --color-bg-secondary: #F5F5F5;
+  --color-bg-tertiary: #F2F2F2;
+  --color-bg-quaternary: #e0e0e0;
+  --color-bg-disabled: #F4F4F4;
+  --color-bg-highlight: #D3ECFF;
+}
+
 a {
-  @apply text-linkText underline
+  @apply text-copy-link underline
 }
 
 .rainbow-text {
@@ -48,7 +72,7 @@ a {
   &:disabled {
     background: none;
 
-    @apply bg-disabledBackground text-disabledText cursor-not-allowed;
+    @apply bg-background-disabled text-copy-disabled cursor-not-allowed;
 
     &:hover {
       filter: none;

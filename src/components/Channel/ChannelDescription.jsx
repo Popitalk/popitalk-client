@@ -29,7 +29,7 @@ export default function ChannelDescription({
               shape="pill"
               className={
                 isMember
-                  ? "ml-auto bg-disabledBackground shadow-xs hover:shadow-none text-secondaryText"
+                  ? "ml-auto bg-background-disabled shadow-xs hover:shadow-none text-copy-secondary"
                   : "ml-auto"
               }
               background={isMember ? "bgColor" : "primary"}
@@ -45,7 +45,7 @@ export default function ChannelDescription({
           }
         </div>
       )}
-      <div className="flex flex-row justify-center items-center bg-secondaryBackground">
+      <div className="flex flex-row justify-center items-center bg-background-secondary">
         <AvatarIcon
           username={name}
           avatar={icon}
@@ -74,7 +74,7 @@ export default function ChannelDescription({
               <Button
                 styleNone
                 styleNoneContent={`+${adminIds.length - threshold}`}
-                className="img h-8 w-8 rounded-circle mx-px bg-primaryBackground text-xs shadow-md"
+                className="img h-8 w-8 rounded-circle mx-px bg-background-primary text-xs shadow-md"
                 onClick={handleListAdmins}
                 analyticsString="Followers List Button: ChannelDescription"
               />

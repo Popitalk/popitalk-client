@@ -46,7 +46,7 @@ export default function CommentSection({
           styleNoneContent={
             hasMoreComments ? "View more comments" : "Hide comments"
           }
-          className="text-secondaryText text-xs px-2"
+          className="text-copy-secondary text-xs px-2"
           onClick={
             hasMoreComments ? handleViewMoreComments : handleHideComments
           }

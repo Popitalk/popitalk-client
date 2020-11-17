@@ -72,7 +72,7 @@ export default function App() {
   return (
     <>
       <ModalManager />
-      <div className="h-screen flex flex-col bg-primaryBackground">
+      <div className="h-screen flex flex-col bg-background-primary">
         <div className="h-auto">
           <Header />
         </div>
@@ -89,7 +89,7 @@ export default function App() {
           )}
           <Route exact path="/create">
             <RouteWrapper leftPanel={leftPanel}>
-              <div className="flex justify-center py-12 px-10 md:px-36 lg:px-48 bg-secondaryBackground w-full overflow-auto select-none">
+              <div className="flex justify-center py-12 px-10 md:px-36 lg:px-48 bg-background-secondary w-full overflow-auto select-none">
                 <CreateChannelContainer />
               </div>
             </RouteWrapper>
@@ -105,7 +105,7 @@ export default function App() {
           <Route exact path="/channels">
             <RouteWrapper leftPanel={leftPanel}>
               <div
-                className={`rounded-md bg-secondaryBackground ${searchClasses}`}
+                className={`rounded-md bg-background-secondary ${searchClasses}`}
               >
                 <RecommendedView selectedPage="channels" />
               </div>
@@ -114,7 +114,7 @@ export default function App() {
           <Route exact path="/friends">
             <RouteWrapper leftPanel={leftPanel}>
               <div
-                className={`rounded-md bg-secondaryBackground ${searchClasses}`}
+                className={`rounded-md bg-background-secondary ${searchClasses}`}
               >
                 <RecommendedView selectedPage="channels" />
               </div>

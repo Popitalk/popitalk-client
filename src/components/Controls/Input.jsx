@@ -54,12 +54,12 @@ export default function Input({
       "border-primaryBorder": error,
       "rounded-md px-3": shape === "pill",
       "pl-12 pr-12 rounded-md": variant === "video",
-      "pl-3 pr-12 bg-secondaryBackground": variant === "user",
+      "pl-3 pr-12 bg-background-secondary": variant === "user",
       "pl-3 pr-12": variant === "channel",
       "pr-20": variant === "counter" || variant === "textarea",
       "resize-none overflow-hidden h-32 pt-1": variant === "textarea",
       "pl-10": variant === "filter" || variant === "filterModal",
-      "bg-secondaryBackground": variant === "filterModal"
+      "bg-background-secondary": variant === "filterModal"
     }
   );
 
@@ -67,13 +67,13 @@ export default function Input({
     "text-sm": size === "sm",
     "text-base": size === "md",
     "text-lg": size === "lg",
-    "text-secondaryText": value.length < maxLength,
-    "text-primaryText": value.length >= maxLength,
+    "text-copy-secondary": value.length < maxLength,
+    "text-copy-primary": value.length >= maxLength,
     "bottom-0 mb-2": variant === "textarea"
   });
 
   const iconClasses = classnames(
-    "absolute left-0 ml-3 text-secondaryText z-10",
+    "absolute left-0 ml-3 text-copy-secondary z-10",
     textClasses
   );
 

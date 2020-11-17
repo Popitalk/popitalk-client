@@ -15,8 +15,8 @@ export default function ModalContainer({
   children
 }) {
   const modalClasses = classnames("rounded-xl shadow-xl outline-none", {
-    "bg-primaryBackground": background === "white",
-    "bg-secondaryBackground": background === "gray",
+    "bg-background-primary": background === "white",
+    "bg-background-secondary": background === "gray",
     "w-full sm:w-100": width === "sm",
     "w-full sm:w-modal": width === "md",
     "w-full md:w-3/4 lg:w-1/2": width === "lg"

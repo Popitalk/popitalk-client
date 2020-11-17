@@ -22,7 +22,7 @@ export default function ChatMessage({
       onClick={() => updateClickedMessage(message.id)}
       onPointerOver={() => setHover(true)}
       onPointerOut={() => setHover(false)}
-      className="flex bg-primaryBackground hover:bg-secondaryBackground rounded-md cursor-text flex-wrap"
+      className="flex bg-background-primary hover:bg-background-secondary rounded-md cursor-text flex-wrap"
       key={message.id}
     >
       <MessageHighlightSpan
@@ -73,7 +73,7 @@ export default function ChatMessage({
             onClick={() => updateClickedMessage(message.id)}
             role="button"
           >
-            <div className="items-center justify-center bg-secondaryBackground px-2 py-1 rounded-md transition transform ease-in-out hover:scale-105 duration-100">
+            <div className="items-center justify-center bg-background-secondary px-2 py-1 rounded-md transition transform ease-in-out hover:scale-105 duration-100">
               <MessageCreatedTime createdAt={message.createdAt} />
             </div>
           </div>
@@ -91,7 +91,7 @@ export default function ChatMessage({
             onClick={() => updateClickedMessage(message.id)}
             role="button"
           >
-            <div className="items-center justify-center bg-secondaryBackground px-2 py-1 rounded-md transition transform ease-in-out hover:scale-105 duration-100">
+            <div className="items-center justify-center bg-background-secondary px-2 py-1 rounded-md transition transform ease-in-out hover:scale-105 duration-100">
               <MessageCreatedTime createdAt={message.createdAt} />
             </div>
           </div>

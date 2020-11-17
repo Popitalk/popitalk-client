@@ -21,7 +21,7 @@ export default function ChannelsPanel({
   numberOfNotifications
 }) {
   return (
-    <div className="flex flex-col w-84 h-full bg-primaryBackground select-none">
+    <div className="flex flex-col w-84 h-full bg-background-primary select-none">
       <PanelHeader
         handleCollapse={handleCollapse}
         updateSelectedPage={updateSelectedPage}
@@ -38,9 +38,9 @@ export default function ChannelsPanel({
           }}
           isLoading={false}
         />
-        <div className="flex flex-col items-start bg-primaryBackground">
+        <div className="flex flex-col items-start bg-background-primary">
           <div className="flex items-center m-4 space-x-2">
-            <h4 className="text-md font-semibold text-secondaryText">
+            <h4 className="text-md font-semibold text-copy-secondary">
               {strings.yourChannels}
             </h4>
             <Button
@@ -62,7 +62,7 @@ export default function ChannelsPanel({
             emptyMessage={strings.yourChannelsPlaceholder}
             isLoading={false}
           />
-          <h4 className="m-4 text-md font-semibold text-secondaryText">
+          <h4 className="m-4 text-md font-semibold text-copy-secondary">
             {strings.followingChannels}
           </h4>
           <ChannelsList

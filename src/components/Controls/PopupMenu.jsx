@@ -36,8 +36,8 @@ export default function PopupMenu({
   const iconClasses = classnames(
     "flex items-center justify-center text-md font-bold select-none w-6 h-6",
     {
-      "text-secondaryText group-hover:filter-brightness-9": !open,
-      "text-highlightText": open
+      "text-copy-secondary group-hover:filter-brightness-9": !open,
+      "text-copy-highlight": open
     }
   );
 
@@ -58,12 +58,12 @@ export default function PopupMenu({
         />
       )}
       {open && (
-        <div className="absolute z-10 bottom-0 right-0 mr-0 mr-6 flex items-center justify-center flex-shrink-0 bg-primaryBackground shadow-channel rounded-md">
+        <div className="absolute z-10 bottom-0 right-0 mr-0 mr-6 flex items-center justify-center flex-shrink-0 bg-background-primary shadow-channel rounded-md">
           {options.map((option, index) => {
             const optionClasses = classnames(
-              "w-full h-full duration-100 hover:bg-highlightBackground select-none py-1 px-6 text-center text-sm rounded-md",
+              "w-full h-full duration-100 hover:bg-background-highlight select-none py-1 px-6 text-center text-sm rounded-md",
               {
-                "text-errorText": option.danger
+                "text-copy-error": option.danger
               }
             );
             return (

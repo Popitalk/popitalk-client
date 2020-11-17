@@ -16,7 +16,7 @@ export default function ScrollableCardList({
 
   return (
     <div className="py-4">
-      <p className="px-4 text-lg text-primaryText select-none">
+      <p className="px-4 text-lg text-copy-primary select-none">
         {strings.upNext}
       </p>
       <div className={scrollableClasses}>{children}</div>

@@ -3,13 +3,13 @@ import Button from "./Controls/Button";
 
 function TabNavMobile({ selectedPage, updateSelectedPage }) {
   return (
-    <div className="flex fixed bg-primaryBackground w-full justify-around z-50 bottom-0 sm:hidden">
+    <div className="flex fixed bg-background-primary w-full justify-around z-50 bottom-0 sm:hidden">
       <Button
         styleNone
         icon="tv"
         styleNoneIconClassName={`fa-2x ${
           selectedPage === "channels"
-            ? "text-highlightText"
+            ? "text-copy-highlight"
             : "text-secondaryButtonText"
         }`}
         onClick={() => updateSelectedPage("channels")}
@@ -21,7 +21,7 @@ function TabNavMobile({ selectedPage, updateSelectedPage }) {
         icon="globe"
         styleNoneIconClassName={`fa-2x ${
           selectedPage === "main"
-            ? "text-highlightText"
+            ? "text-copy-highlight"
             : "text-secondaryButtonText"
         }`}
         onClick={() => updateSelectedPage("main")}
@@ -33,7 +33,7 @@ function TabNavMobile({ selectedPage, updateSelectedPage }) {
         icon="user-friends"
         styleNoneIconClassName={`fa-2x ${
           selectedPage === "friends"
-            ? "text-highlightText"
+            ? "text-copy-highlight"
             : "text-secondaryButtonText"
         }`}
         onClick={() => updateSelectedPage("friends")}

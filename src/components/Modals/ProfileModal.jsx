@@ -61,15 +61,15 @@ export default function ProfileModal({
         )}
         <div className="flex flex-col justify-start items-center">
           <div className="flex flex-row w-full items-center justify-start py-2">
-            <p className="text-2xl font-semibold text-primaryText">
+            <p className="text-2xl font-semibold text-copy-primary">
               {user.username}
             </p>
             <FriendRequestButtons user={user} tooltipPlace="bottom" size="sm" />
           </div>
-          <div className="text-secondaryText w-full">
+          <div className="text-copy-secondary w-full">
             {`${user.firstName} ${user.lastName}`}
           </div>
-          <div className="flex space-x-8 my-4 text-primaryText">
+          <div className="flex space-x-8 my-4 text-copy-primary">
             <Button
               styleNone
               styleNoneContent={`${following} ${strings.followingChannels}`}
@@ -93,7 +93,7 @@ export default function ProfileModal({
       </div>
       {updateUserApi.error && (
         <div className="flex justify-center">
-          <p className="text-errorText text-sm">{updateUserApi.error}</p>
+          <p className="text-copy-error text-sm">{updateUserApi.error}</p>
         </div>
       )}
       {options ? (
@@ -110,7 +110,7 @@ export default function ProfileModal({
         className="shadow-md rounded-md py-1 px-3 opacity-100"
         arrowColor="transparent"
       />
-      {/* <div className="text-md font-bold pb-4 text-primaryText">
+      {/* <div className="text-md font-bold pb-4 text-copy-primary">
         {myProfile
           ? "Videos You Watched"
           : `Videos You and ${user.username} Watched`}
@@ -118,7 +118,7 @@ export default function ProfileModal({
       {/* <div className="flex">
         <ChannelCardList channelList={recentVideos} />
       </div>
-      <div className="text-md font-bold pb-8 text-primaryText">
+      <div className="text-md font-bold pb-8 text-copy-primary">
         {myProfile
           ? "Channels You Follow"
           : `Channels You and ${user.username} Follow`}

@@ -17,7 +17,7 @@ export default function ControlHeader({ header, error, size, bold = true }) {
         <h4 className={headerClasses}>
           {header}{" "}
           {error && (
-            <span className="text-errorText text-xs font-bold">{error}</span>
+            <span className="text-copy-error text-xs font-bold">{error}</span>
           )}
         </h4>
       )}

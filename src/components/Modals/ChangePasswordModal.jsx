@@ -75,12 +75,12 @@ export default function ChangePasswordModal({
             error={touched.confirmPassword && errors.confirmPassword}
           />
           {passwordUpdated && (
-            <p className="text-linkText text-xs py-2 pt-4 text-center">
+            <p className="text-copy-link text-xs py-2 pt-4 text-center">
               You have successfully updated your password!
             </p>
           )}
           {error && (
-            <p className="text-errorText text-xs py-2 pt-4 text-center">
+            <p className="text-copy-error text-xs py-2 pt-4 text-center">
               {error}
             </p>
           )}

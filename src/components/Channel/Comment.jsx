@@ -18,7 +18,7 @@ export default function Comment({
   const timeAgo = formatDistanceToNow(new Date(createdAt));
 
   return (
-    <div className="flex flex-row bg-secondaryBackground p-2">
+    <div className="flex flex-row bg-background-secondary p-2">
       <aside
         className="flex-shrink-0 pr-2"
         onClick={() => openProfileModal(authorId)}
@@ -47,9 +47,9 @@ export default function Comment({
             {content}
           </span>
         </main>
-        <span className="text-xs text-secondaryText">{timeAgo}</span>
+        <span className="text-xs text-copy-secondary">{timeAgo}</span>
       </article>
-      <aside className="flex items-center flex-shrink-0 text-secondaryText">
+      <aside className="flex items-center flex-shrink-0 text-copy-secondary">
         <ToggleIcon
           icons={{ default: ["far", "heart"], toggle: ["fa", "heart"] }}
           className={{ icon: "text-lg focus:outline-none" }}

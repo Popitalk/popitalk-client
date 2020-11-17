@@ -110,7 +110,7 @@ export default function CreateNewAccountForm({ handleSubmit, error, loading }) {
                 </Button>
               </div>
               {error ? (
-                <p className="text-errorText text-sm pt-4">{error}</p>
+                <p className="text-copy-error text-sm pt-4">{error}</p>
               ) : (
                 <></>
               )}
