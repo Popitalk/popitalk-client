@@ -2,7 +2,10 @@ const tailwind = require("tailwindcss");
 const autoprefixer = require("autoprefixer");
 const postcssNesting = require("postcss-nesting");
 const purgecss = require("@fullhuman/postcss-purgecss")({
-  content: ["./src/**/*.jsx", "./public/index.html"],
+  content: ["./src/**/*.jsx", "./src/**/*.js", "./public/index.html"],
+  options: {
+    whitelist: ["dark", "light"]
+  },
 
   // defaultExtractor: content => content.match(/[A-Za-z0-9-_:/]+/g) || []
   defaultExtractor: content => {
