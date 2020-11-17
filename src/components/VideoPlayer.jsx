@@ -294,7 +294,7 @@ class VideoPlayer extends Component {
                 {/* Click background to play or pause the video - with ripple animation */}
                 {this.props.displayControls ? (
                   <Ripples
-                    className="bg-transparent w-full h-full focus:outline-none cursor-pointer"
+                    className="w-full h-full focus:outline-none cursor-pointer"
                     onClick={() => this.setBothPlaying()}
                     role="button"
                     during={2200}
@@ -302,7 +302,7 @@ class VideoPlayer extends Component {
                     {videoStatusCard}
                   </Ripples>
                 ) : (
-                  <div className="bg-transparent w-full h-full focus:outline-none cursor-default">
+                  <div className="w-full h-full focus:outline-none cursor-default">
                     {videoStatusCard}
                   </div>
                 )}

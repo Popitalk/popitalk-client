@@ -164,7 +164,7 @@ export default function ChannelForm({
                 onBlur={handleBlur}
                 value={values.name}
                 error={touched.name && errors.name}
-                className="mb-8"
+                className="mb-8 text-copy-primary"
               />
               <Input
                 variant="textarea"
@@ -178,7 +178,7 @@ export default function ChannelForm({
                 value={values.description}
                 error={touched.description && errors.description}
                 maxLength={150}
-                className="mb-8"
+                className="mb-8 text-copy-primary"
               />
               {/* --UNCOMMENT FOR CHANNEL CATEGORY */}
               {/* <ControlHeader

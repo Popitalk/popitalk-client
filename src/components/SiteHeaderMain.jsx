@@ -9,6 +9,7 @@ import FeedbackDropDown from "./DropDowns/FeedbackDropDown";
 import DropDownControls from "./DropDowns/DropDownControls";
 import Button from "./Controls/Button";
 import strings from "../helpers/localization";
+import { Toggle } from "../App/ThemeContext";
 
 const SETTINGS = 1;
 const ACCOUNT_SETTINGS = 2;
@@ -206,6 +207,7 @@ export default function SiteHeaderMain({
               )}
             </DropDownControls>
           </li>
+          <Toggle></Toggle>
         </ul>
       </div>
     </header>

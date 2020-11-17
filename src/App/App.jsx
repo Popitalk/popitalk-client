@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { ThemeProvider } from "./ThemeContext";
 import { useSelector, useDispatch } from "react-redux";
 import { Switch, Route } from "react-router";
 import { Redirect } from "react-router-dom";
@@ -70,7 +71,7 @@ export default function App() {
     "flex-grow block overflow-auto w-full mozilla-thin-scrollbar";
 
   return (
-    <>
+    <ThemeProvider>
       <ModalManager />
       <div className="h-screen flex flex-col bg-background-primary">
         <div className="h-auto">
@@ -134,6 +135,6 @@ export default function App() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="keywords" content={strings.mainKeywords} />
       </Helmet>
-    </>
+    </ThemeProvider>
   );
 }

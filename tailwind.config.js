@@ -65,8 +65,7 @@ module.exports = {
       ]
     },
     colors: {
-      transparent: "transparent",
-
+      /* == COLOR VALUES CAN BE EDITED IN `tailwind.pcss` == */
       /* == BACKGROUND COLOR. EX) className="bg-background-primary" == */
       background: {
         primary: "var(--color-bg-primary)",
@@ -108,6 +107,7 @@ module.exports = {
       /** OTHERS */
       pink: "#F966F8",
       black: "#000000",
+      yellow: "#FFFF00",
       onlineColor: "#00E14D",
       notificationsColor: "#FF0000",
       playerControlsHover: "rgba(255, 255, 255, 0.2)"
