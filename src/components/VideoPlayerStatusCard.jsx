@@ -15,14 +15,14 @@ export default function VideoPlayerStatusCard({
         <>
           <AvatarIcon avatar={avatar} className="w-10 h-10 rounded-full" />
           {/* Andrew skipped to 0:11 */}
-          <p className="text-tertiaryText text-2xl">
+          <p className="text-copy-tertiary text-2xl">
             {username} {message}
           </p>
           <p>|</p>
         </>
       )}
       {/* Starting in 10s */}
-      <div className="flex items-center justify-center text-tertiaryText opacity-75 text-2xl font-bold space-x-4">
+      <div className="flex items-center justify-center text-copy-tertiary opacity-75 text-2xl font-bold space-x-4">
         {icon && <FontAwesomeIcon icon={icon} />}
         <p>{systemMessage}</p>
       </div>

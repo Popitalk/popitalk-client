@@ -7,7 +7,7 @@ const ForumPanel = ({ channelId, isMember, isAdmin, isOwner, status }, ref) => {
   return (
     <div
       ref={ref}
-      className="px-2 py-32 sm:px-8 md:px-16 lg:px-32 bg-secondaryBackground justify-center"
+      className="px-2 py-32 sm:px-8 md:px-16 lg:px-32 bg-background-secondary justify-center"
     >
       <ChannelDescriptionContainer
         channelId={channelId}

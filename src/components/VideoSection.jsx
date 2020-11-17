@@ -86,10 +86,10 @@ export default function VideoSection({
           <div>
             <div className="py-2">
               <p
-                className="text-lg text-primaryText font-semibold truncate-2-lines overflow-hidden"
+                className="text-lg text-copy-primary font-semibold truncate-2-lines overflow-hidden"
                 dangerouslySetInnerHTML={{ __html: title }}
               />
-              <p className="text-sm text-secondaryText py-2">
+              <p className="text-sm text-copy-secondary py-2">
                 {sourceChannelName} {url}
               </p>
             </div>

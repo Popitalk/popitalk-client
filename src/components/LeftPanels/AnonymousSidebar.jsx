@@ -3,12 +3,12 @@ import InviteForm from "../Forms/InviteForm";
 import CreateNewAccountForm from "../Forms/CreateNewAccountForm";
 
 export default function AnonymousSidebar({ link, ...rest }) {
-  const headerClasses = "text-sm font-bold text-secondaryText pb-1 pt-4 pl-2";
+  const headerClasses = "text-sm font-bold text-copy-secondary pb-1 pt-4 pl-2";
   const containerClasses =
-    "p-4 w-full object-center bg-primaryBackground rounded-xl shadow-xl";
+    "p-4 w-full object-center bg-background-primary rounded-xl shadow-xl";
 
   return (
-    <div className="bg-secondaryBackground p-2">
+    <div className="bg-background-secondary p-2">
       <div className={headerClasses}>Invite friends to watch with you</div>
       <div className={containerClasses}>
         <InviteForm link={link} />

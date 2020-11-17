@@ -4,9 +4,9 @@ import DescriptionCard from "./DescriptionCard";
 export default function SignupSection({ id }) {
   return (
     <div className="w-full h-auto bg-gradient-r-primary pb-8">
-      <div className="flex flex-col w-full h-full bg-primaryBackground shadow-lg rounded-b-lg sm:p-20 p-4">
+      <div className="flex flex-col w-full h-full bg-background-primary shadow-lg rounded-b-lg sm:p-20 p-4">
         <div className="flex flex-col w-full justify-center items-center my-8">
-          <h1 className="text-3xl font-bold text-primaryText sm:p-12 p-4">
+          <h1 className="text-3xl font-bold text-copy-primary sm:p-12 p-4">
             Watch Videos and listen to Music, together.
           </h1>
           <div className="grid sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 w-full gap-4 gap-y-12 lg:gap-y-16 md:gap-y-12 sm:gap-y-12 py-8 px-0 md:px-20">
@@ -33,7 +33,7 @@ export default function SignupSection({ id }) {
           </div>
         </div>
         <div className="flex flex-col w-full justify-center items-center my-8 mb-20">
-          <h2 className="text-3xl font-bold text-primaryText sm:p-12 p-4">
+          <h2 className="text-3xl font-bold text-copy-primary sm:p-12 p-4">
             Why use Popitalk.
           </h2>
           <div className="grid sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 w-full gap-4 gap-y-12 lg:gap-y-16 md:gap-y-12 sm:gap-y-12 p-8 px-0 md:px-20">
@@ -74,7 +74,7 @@ export default function SignupSection({ id }) {
               description="You create videos and want to release your newest creation with a sweet event and see the reactions of your viewers as they happen? Upload your video to YouTube and flag it as hidden. You can add it to the playlist with the video link and invite your fans to the room. Hit play when you are ready to start your very own premiere!"
             />
           </div>
-          <p className="w-full h-auto flex justify-end text-secondaryText text-sm px-0 md:px-16">
+          <p className="w-full h-auto flex justify-end text-copy-secondary text-sm px-0 md:px-16">
             Icon made by Freepik from www.flaticon.com
           </p>
         </div>

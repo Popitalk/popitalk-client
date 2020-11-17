@@ -7,7 +7,7 @@ export default function MessageAuthorUsername({ userId, username }) {
   return (
     <span
       role="button"
-      className="font-bold"
+      className="font-bold text-copy-primary"
       onClick={() => dispatch(openProfileModal(userId))}
     >
       {username}

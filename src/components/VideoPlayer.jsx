@@ -294,7 +294,7 @@ class VideoPlayer extends Component {
                 {/* Click background to play or pause the video - with ripple animation */}
                 {this.props.displayControls ? (
                   <Ripples
-                    className="bg-transparent w-full h-full focus:outline-none cursor-pointer"
+                    className="w-full h-full focus:outline-none cursor-pointer"
                     onClick={() => this.setBothPlaying()}
                     role="button"
                     during={2200}
@@ -302,7 +302,7 @@ class VideoPlayer extends Component {
                     {videoStatusCard}
                   </Ripples>
                 ) : (
-                  <div className="bg-transparent w-full h-full focus:outline-none cursor-default">
+                  <div className="w-full h-full focus:outline-none cursor-default">
                     {videoStatusCard}
                   </div>
                 )}
@@ -372,7 +372,7 @@ class VideoPlayer extends Component {
                         <Ripples className="transition transform hover:scale-110 duration-100 p-px rounded-full">
                           <Button
                             styleNone
-                            styleNoneIconClassName="text-tertiaryText"
+                            styleNoneIconClassName="text-copy-tertiary"
                             hoverable
                             icon={showPlay ? "play" : "pause"}
                             className={`w-8 p-1 rounded-full ${
@@ -405,7 +405,7 @@ class VideoPlayer extends Component {
                               ? "volume-mute"
                               : "volume-up"
                           }
-                          styleNoneIconClassName="flex text-tertiaryText text-lg items-center"
+                          styleNoneIconClassName="flex text-copy-tertiary text-lg items-center"
                           className="w-8 p-1 rounded-full"
                           hoverable
                           onClick={() => this.toggleMute()}
@@ -449,7 +449,7 @@ class VideoPlayer extends Component {
                         </div>
                       </div>
 
-                      <span className="text-tertiaryText text-xs">
+                      <span className="text-copy-tertiary text-xs">
                         {/* Video timestamp */}
                         {this.generateTimestamp()}
                       </span>
@@ -458,7 +458,7 @@ class VideoPlayer extends Component {
                     <Button
                       styleNone
                       icon="compress"
-                      styleNoneIconClassName="text-tertiaryText"
+                      styleNoneIconClassName="text-copy-tertiary"
                       hoverable
                       className="w-8 p-1 rounded-full hover:bg-playerControlsHover"
                       onClick={() => this.handleFullScreen()}
@@ -479,10 +479,10 @@ class VideoPlayer extends Component {
             <div className="absolute flex space-x-4 items-center justify-center bg-black h-full w-full">
               <FontAwesomeIcon
                 icon="info-circle"
-                className="text-secondaryText text-4xl sm:text-6xl"
+                className="text-copy-secondary text-4xl sm:text-6xl"
               />
               <div className="flex flex-col space-y-2">
-                <p className="text-tertiaryText text-xl sm:text-2xl font-bold">
+                <p className="text-copy-tertiary text-xl sm:text-2xl font-bold">
                   {strings.nothingPlaying}
                 </p>
                 <Button

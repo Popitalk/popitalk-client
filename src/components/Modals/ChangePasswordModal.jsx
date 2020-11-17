@@ -43,7 +43,10 @@ export default function ChangePasswordModal({
         isValid,
         dirty
       }) => (
-        <form onSubmit={handleSubmit} className="p-6">
+        <form
+          onSubmit={handleSubmit}
+          className="p-6 text-copy-primary space-y-2"
+        >
           <Input
             header="Old Password"
             name="oldPassword"
@@ -75,12 +78,12 @@ export default function ChangePasswordModal({
             error={touched.confirmPassword && errors.confirmPassword}
           />
           {passwordUpdated && (
-            <p className="text-linkText text-xs py-2 pt-4 text-center">
+            <p className="text-copy-link text-xs py-2 pt-4 text-center">
               You have successfully updated your password!
             </p>
           )}
           {error && (
-            <p className="text-errorText text-xs py-2 pt-4 text-center">
+            <p className="text-copy-error text-xs py-2 pt-4 text-center">
               {error}
             </p>
           )}

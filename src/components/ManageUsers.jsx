@@ -40,7 +40,7 @@ export default function ManageUsers({
           />
         </div>
       ) : (
-        <h2 className="text-secondaryText font-semibold text-sm flex-grow flex justify-center items-center">
+        <h2 className="text-copy-secondary font-semibold text-sm flex-grow flex justify-center items-center">
           No Users Found
         </h2>
       )}

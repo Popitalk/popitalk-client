@@ -9,15 +9,17 @@ export default function DeleteChannelModal({ handleCancel, handleDelete }) {
   };
   return (
     <div className="px-8 py-4">
-      <p className="text-lg font-bold text-primaryText">{strings.deletePost}</p>
-      <p className="text-sm text-secondaryText my-8">
+      <p className="text-lg font-bold text-copy-primary">
+        {strings.deletePost}
+      </p>
+      <p className="text-sm text-copy-secondary my-8">
         {strings.deletePostSubtitle}
       </p>
       <div className="flex justify-end items-center space-x-6">
         <Button
           styleNone
           styleNoneContent={strings.cancelButton}
-          styleNoneContentClassName="text-secondaryText text-sm select-none"
+          styleNoneContentClassName="text-copy-secondary text-sm select-none"
           onClick={handleCancel}
         />
         <Button

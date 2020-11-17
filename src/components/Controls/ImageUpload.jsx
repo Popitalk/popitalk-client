@@ -58,7 +58,7 @@ export default function ImageUpload({
     }
   );
   const filterClasses = classnames(
-    "absolute flex justify-center items-center text-tertiaryText text-sm font-bold rounded-full z-20 bg-black bg-opacity-25 transition-opacity opacity-0 group-hover:opacity-100 duration-100",
+    "absolute flex justify-center items-center text-copy-tertiary text-sm font-bold rounded-full z-20 bg-black bg-opacity-25 transition-opacity opacity-0 group-hover:opacity-100 duration-100",
     {
       "h-32 w-32": size === "sm",
       "h-48 w-48": size === "md"
@@ -85,7 +85,7 @@ export default function ImageUpload({
             className="relative img h-full w-full rounded-circle p-px z-10"
           />
         ) : (
-          <p className="relative flex flex-row justify-center items-center bg-primaryBackground rounded-circle w-full h-full relative">
+          <p className="relative flex flex-row justify-center items-center bg-background-primary rounded-circle w-full h-full relative">
             <img
               src={defaultImage}
               alt="icon"
@@ -104,7 +104,7 @@ export default function ImageUpload({
           onClick={onRemove}
           disabled={disabled}
         >
-          <p className="text-secondaryText text-sm font-regular">Remove</p>
+          <p className="text-copy-secondary text-sm font-regular">Remove</p>
         </Button>
       )} */}
     </div>

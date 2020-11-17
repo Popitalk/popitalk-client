@@ -12,10 +12,10 @@ export default function DeleteMessageModal({
 }) {
   return (
     <div className="px-8 py-4">
-      <p className="text-lg font-bold text-primaryText">
+      <p className="text-lg font-bold text-copy-primary">
         {strings.deleteMessageTitle}
       </p>
-      <p className="text-sm text-secondaryText mt-1 mb-4">
+      <p className="text-sm text-copy-secondary mt-1 mb-4">
         {strings.deleteMessageSubtitle}
       </p>
       <div className="pointer-events-none select-none rounded-xl pb-4 mb-4 border">
@@ -30,7 +30,7 @@ export default function DeleteMessageModal({
         <Button
           styleNone
           styleNoneContent={strings.cancelButton}
-          styleNoneContentClassName="text-secondaryText text-sm select-none"
+          styleNoneContentClassName="text-copy-secondary text-sm select-none"
           onClick={handleCancel}
         />
         <Button

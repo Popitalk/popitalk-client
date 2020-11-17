@@ -55,7 +55,7 @@ export default function ForgotPasswordModal({
               className="w-full"
             />
             {confirmEmailSent ? (
-              <p className="text-linkText py-2">
+              <p className="text-copy-link py-2">
                 An email has been sent to reset your password!
               </p>
             ) : (

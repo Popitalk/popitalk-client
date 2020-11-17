@@ -9,10 +9,10 @@ function VideoSearch(
 ) {
   return (
     <div className="my-4" ref={ref}>
-      <h2 className="text-lg text-primaryText px-4">
+      <h2 className="text-lg text-copy-primary px-4">
         {strings.findMoreVideos}
       </h2>
-      <div className="flex flex-col bg-secondaryBackground">
+      <div className="flex flex-col bg-background-secondary">
         <VideoSearchBar onClick={handleSearch} />
         <div className="px-4">
           <span className="text-md rainbow-text font-bold">

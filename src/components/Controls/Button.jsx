@@ -24,7 +24,7 @@ export default function Button({
   imageButtonSrc,
   imageButtonSpan,
   imageButtonClassName,
-  imageButtonSpanClassName = "text-primaryText font-bold",
+  imageButtonSpanClassName = "text-copy-primary font-bold",
   // For buttons that only contains icons.
   styleNone,
   styleNoneContent,
@@ -62,7 +62,7 @@ export default function Button({
     "rounded-circle": shape === "circle",
     "rounded-sm": shape === "none",
     "transition transform ease-in-out hover:scale-105 duration-100": true,
-    "text-secondaryText": background === "bgColor",
+    "text-copy-secondary": background === "bgColor",
     "btn-icon": icon && !shape,
     "btn-text": variant === "text",
     [className]: className

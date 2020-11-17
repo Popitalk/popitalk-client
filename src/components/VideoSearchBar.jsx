@@ -14,7 +14,7 @@ export default function VideoSearchBar({ className, onClick }) {
   };
 
   return (
-    <div className="bg-secondaryBackground px-4 py-4">
+    <div className="bg-background-secondary px-4 py-4">
       <form
         className={className ? className : "mb-2"}
         onSubmit={e => e.preventDefault()}
@@ -38,18 +38,18 @@ export default function VideoSearchBar({ className, onClick }) {
               imageButton
               imageButtonSrc={img.icon}
               imageButtonSpan={img.active === true ? "" : "Coming soon"}
-              imageButtonSpanClassName="absolute text-xs text-secondaryText"
+              imageButtonSpanClassName="absolute text-xs text-copy-secondary"
               imageButtonClassName={`h-6 ${
                 img.active === false && "opacity-25"
               }`}
               className={`relative flex justify-center mr-6 items-center flex-shrink-0 my-2 ${
                 source === img.source && img.active === true
                   ? "bg-gradient-r-button shadow-md"
-                  : "bg-primaryBackground cursor-default"
+                  : "bg-background-primary cursor-default"
               } 
               ${
                 img.active === false
-                  ? "bg-secondaryBackground cursor-disable"
+                  ? "bg-background-secondary cursor-disable"
                   : "w-10"
               } w-10 h-10 rounded-full focus:outline-none`}
               onClick={() => handleChangeSource(img.source)}

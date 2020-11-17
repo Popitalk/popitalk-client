@@ -18,10 +18,10 @@ function ChannelQueue(
   ref
 ) {
   return (
-    <div className="flex flex-col bg-secondaryBackground">
+    <div className="flex flex-col bg-background-secondary">
       <div className="px-4 my-4">
-        <h2 className="text-2xl text-primaryText">{strings.manageUpNext}</h2>
-        <p className="text-sm text-secondaryText">{strings.upNextSubtitle}</p>
+        <h2 className="text-2xl text-copy-primary">{strings.manageUpNext}</h2>
+        <p className="text-sm text-copy-secondary">{strings.upNextSubtitle}</p>
       </div>
       <ChannelListQueue
         playlist={queue}

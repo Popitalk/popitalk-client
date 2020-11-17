@@ -36,7 +36,7 @@ export default function MiniFriendsList({
             hoverable
             key={room.id}
             styleNoneContent={roomIcon}
-            className="rounded-circle px-2px focus:outline-none"
+            className="rounded-circle px-2px focus:outline-none text-copy-primary"
             onClick={() => handleSelectRoom(room.id)}
             analyticsString="Room Icon Button: MiniFriendsList"
           />

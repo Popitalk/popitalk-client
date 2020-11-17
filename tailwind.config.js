@@ -23,9 +23,6 @@ const children = [
 ];
 
 module.exports = {
-  future: {
-    removeDeprecatedGapUtilities: true
-  },
   theme: {
     truncate: {
       lines: {
@@ -68,52 +65,49 @@ module.exports = {
       ]
     },
     colors: {
-      transparent: "transparent",
-
-      /** BACKGROUNDS */
-      primaryBackground: "#FFFFFF",
-      secondaryBackground: "#F5F5F5",
-      tertiaryBackground: "#F2F2F2",
-      quaternaryBackground: "#1DA4FE",
-      disabledBackground: "#F2F2F2",
-      highlightBackground: "#D3ECFF",
-      liveBackground: "#DE0000",
-      gray: {
-        100: "#f5f5f5",
-        200: "#eeeeee",
-        300: "#e0e0e0",
-        400: "#bdbdbd",
-        500: "#9e9e9e",
-        600: "#757575",
-        700: "#616161",
-        800: "#424242",
-        900: "#212121"
+      /* == COLOR VALUES CAN BE EDITED IN `tailwind.pcss` == */
+      /* == BACKGROUND COLOR. EX) className="bg-background-primary" == */
+      background: {
+        primary: "var(--color-bg-primary)",
+        secondary: "var(--color-bg-secondary)",
+        tertiary: "var(--color-bg-tertiary)",
+        quaternary: "var(--color-bg-quaternary)",
+        disabled: "var(--color-bg-disabled)",
+        highlight: "var(--color-bg-highlight)"
       },
 
-      /** TEXTS */
-      primaryText: "#323232",
-      secondaryText: "#979797",
-      tertiaryText: "#FFFFFF",
-      liveText: "#FFFFFF",
-      highlightText: "#1DA4FE",
-      linkText: "#1DA4FE",
-      errorText: "#FF4040",
-      disabledText: "#a5a5a5",
+      /* == TEXT COLOR. EX) className="text-copy-primary" == */
+      copy: {
+        primary: "var(--color-text-primary)",
+        secondary: "var(--color-text-secondary)",
+        tertiary: "var(--color-text-tertiary)",
+        highlight: "var(--color-text-highlight)",
+        link: "var(--color-text-link)",
+        error: "var(--color-text-error)",
+        disabled: "var(--color-text-disabled)"
+      },
+
+      /* == BORDER COLOR. EX) className="border-outline-primary" == */
+      outline: {
+        primary: "var(--color-border-primary)",
+        image1: "var(--color-border-image1)",
+        image2: "var(--color-border-image2)"
+      },
+
+      /* == HOVER COLOR. EX) className="hover:bg-hover-highlight" == */
+      hover: {
+        highlight: "var(--color-hover-highlight)",
+        selected: "var(--color-hover-selected)"
+      },
 
       /** BUTTON TEXT */
       primaryButtonText: "#FFFFFF",
       secondaryButtonText: "#A5A5A5",
 
-      /** BORDER */
-      primaryBorder: "#e2e2e2",
-      secondaryBorder: "#D9D9D9",
-      tertiaryBorder: "#A5A5A5",
-      imageBorder1: "transparent",
-      imageBorder2: "#FFFFFF",
-
       /** OTHERS */
       pink: "#F966F8",
       black: "#000000",
+      yellow: "#FFFF00",
       onlineColor: "#00E14D",
       notificationsColor: "#FF0000",
       playerControlsHover: "rgba(255, 255, 255, 0.2)"

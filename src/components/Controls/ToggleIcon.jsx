@@ -15,7 +15,7 @@ export default function ToggleIcon({
   };
 
   const colorChange = classnames({
-    "text-secondaryText": !status,
+    "text-copy-secondary": !status,
     "text-notificationsColor": status
   });
 

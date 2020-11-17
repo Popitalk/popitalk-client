@@ -480,9 +480,9 @@ class Channel extends Component {
 
     return (
       <>
-        <div className="flex flex-col bg-secondaryBackground w-full overflow-x-hidden">
+        <div className="flex flex-col bg-background-secondary w-full overflow-x-hidden">
           {/* Channel & Room structure */}
-          <div className="w-full h-12 bg-primaryBackground">
+          <div className="w-full h-12 bg-background-primary">
             <ChannelHeaderContainer
               channelId={channelId}
               isMember={isMember}

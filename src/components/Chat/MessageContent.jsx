@@ -7,8 +7,8 @@ export default function MessageContent({ message }) {
       className={`w-64 break-words text-sm py-1 ${
         message?.type?.toLowerCase() === "pending" ||
         message?.type?.toLowerCase() === "rejected"
-          ? "text-secondaryText"
-          : "text-primaryText"
+          ? "text-copy-secondary"
+          : "text-copy-primary"
       }`}
     >
       {message.upload === "gif" ? (
@@ -17,11 +17,11 @@ export default function MessageContent({ message }) {
         <Embeddify text={message.content} />
       ) : message.upload === "system" ? (
         <div className="w-68 h-20 rounded-lg shadow-xs my-2 p-2px bg-gradient-tr-primary break-words select-none cursor-pointer">
-          <div className="flex flex-col justify-center items-center w-full h-full rounded-lg bg-primaryBackground space-y-1">
-            <p className="animate-bounce text-highlightText text-xs">
+          <div className="flex flex-col justify-center items-center w-full h-full rounded-lg bg-background-primary space-y-1">
+            <p className="animate-bounce text-copy-highlight text-xs">
               {message.content}
             </p>
-            <p className="text-secondaryText text-xs">{message.createdAt}</p>
+            <p className="text-copy-secondary text-xs">{message.createdAt}</p>
           </div>
         </div>
       ) : (

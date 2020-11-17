@@ -70,10 +70,10 @@ export default function VideoPanelCard({
     <>
       {loading ? (
         <div className="animate-pulse flex-shrink-0">
-          <div className="flex shadow-xs rounded-md pb-16/9 my-4 items-between bg-gray-300" />
+          <div className="flex shadow-xs rounded-md pb-16/9 my-4 items-between bg-background-quaternary" />
           <div className="flex-1 space-y-2 w-full">
-            <div className="h-4 bg-gray-300 rounded" />
-            <div className="h-4 bg-gray-300 rounded w-5/6" />
+            <div className="h-4 bg-background-quaternary rounded" />
+            <div className="h-4 bg-background-quaternary rounded w-5/6" />
           </div>
         </div>
       ) : (
@@ -84,15 +84,14 @@ export default function VideoPanelCard({
               role="button"
               onClick={handleFindMore}
             >
-              <div className="relative cursor-pointer pb-16/9 w-full rounded-md shadow-xs hover:shadow-md transition-all ease-in-out duration-100 bg-disabledBackground hover:bg-highlightBackground focus:outline-none">
+              <div className="relative cursor-pointer pb-16/9 w-full rounded-md shadow-xs hover:shadow-md transition-all ease-in-out duration-100 bg-background-disabled hover:bg-hover-highlight focus:outline-none">
                 <div className="absolute flex items-center justify-center w-full h-full">
                   <Button
                     styleNone
                     styleNoneContent={strings.findMoreVideos}
                     icon="search"
-                    styleNoneContentClassName="mx-2 text-secondaryText text-sm"
-                    styleNoneIconClassName="text-secondaryText"
-                    className="hover:filter-brightness-9"
+                    styleNoneContentClassName="mx-2 text-sm"
+                    className="text-copy-secondary"
                     analyticsString="Direct to Search Button: VideoPanelCard"
                   />
                 </div>
@@ -111,7 +110,7 @@ export default function VideoPanelCard({
                     {type === "cancel" && (
                       <Button
                         actionButton
-                        className="absolute right-0 flex z-10 bg-highlightBackground"
+                        className="absolute right-0 flex z-10 bg-background-highlight"
                         onClick={removeButtonPressed}
                         analyticsString="Remove Video: VideoPanelCard"
                         onMouseLeave={() => setRemoveButtonIcon("minus")}
@@ -126,7 +125,7 @@ export default function VideoPanelCard({
                       <Button
                         actionButton
                         disabled={disableButton}
-                        className="flex z-10 bg-highlightBackground"
+                        className="flex z-10 bg-background-highlight"
                         onClick={addButtonPressed}
                         analyticsString="Add Video Button: VideoPanelCard"
                         icon={addButtonIcon}
@@ -146,11 +145,11 @@ export default function VideoPanelCard({
               </div>
               <div className="w-full pt-2 px-0">
                 <p
-                  className="text-sm font-semibold truncate-2-lines overflow-hidden text-primaryText break-words"
+                  className="text-sm font-semibold truncate-2-lines overflow-hidden text-copy-primary break-words"
                   dangerouslySetInnerHTML={{ __html: title }}
                 />
                 <div className="flex items-end">
-                  <p className="text-xs pt-2 text-secondaryText items-end ">
+                  <p className="text-xs pt-2 text-copy-secondary items-end ">
                     {/* {leftInfo} &middot; {rightInfo} */}
                     {"YouTube"} &middot; {rightInfo}
                   </p>

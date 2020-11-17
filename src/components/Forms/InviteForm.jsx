@@ -60,11 +60,11 @@ export default function InviteForm({ link }) {
 
   return (
     <div className="flex flex-col items-center justify-center h-full w-full px-8 pt-14 pb-20">
-      <p className="text-sm text-secondaryText pb-4">
+      <p className="text-sm text-copy-secondary pb-4">
         Copy and share this link
       </p>
       <InputRef ref={ref} />
-      <p className="text-sm text-secondaryText pt-4">
+      <p className="text-sm text-copy-secondary pt-4">
         Or Share it on Social Media
       </p>
       <div className="flex justify-center space-x-2 pt-4">
