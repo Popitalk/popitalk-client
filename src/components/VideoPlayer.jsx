@@ -149,8 +149,11 @@ class VideoPlayer extends Component {
     this.clearTimer(this.playTimer);
     this.clearTimer(this.countDownTimer);
 
-    const waitTime = this.props.playerStatus.clockStartTime - moment();
-    if (waitTime > 0 && this.props.playerStatus.status === "Playing") {
+    let waitTime = this.props.playerStatus.clockStartTime - moment();
+
+    waitTime = waitTime > 0 ? waitTime : BUFFER_TIME + waitTime;
+
+    if (this.props.playerStatus.status === "Playing") {
       this.playTimer = setInterval(() => {
         this.setState({
           playing: true
