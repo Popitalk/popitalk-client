@@ -137,7 +137,7 @@ let strings = new LocalizedStrings({
     findMoreVideos: "Search for videos",
     manageUpNext: "Manage Playlist",
     upNextSubtitle:
-      "Add, delete or change the orders of the videos. You can add up to 30 videos.",
+      "Videos on your playlist will be deleted once it is done playing.",
     searchAddVideos: "Search and add more videos below!",
     //ChannelDescription & NewChannelPost & ChannelPost
     admins: "Admins",

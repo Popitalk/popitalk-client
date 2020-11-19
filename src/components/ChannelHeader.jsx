@@ -22,7 +22,6 @@ export default function ChannelHeader({
     { name: strings.posts, endpoint: "channel" }
   ];
   if (isAdmin) {
-    navButtons.push({ name: strings.upNext, endpoint: "queue" });
     navButtons.push({ name: strings.settings, endpoint: "settings" });
   }
 
