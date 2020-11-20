@@ -27,7 +27,7 @@ export default function ScrollableCardList({
           />
           <p className="text-xs text-copy-secondary">
             {checked
-              ? "Your channel will loop your playlist from the beginning when the last video ends"
+              ? "Your playlist will loop to the first video when the last video ends."
               : strings.upNextSubtitle}
           </p>
         </div>

@@ -136,8 +136,7 @@ let strings = new LocalizedStrings({
     // SortableList & ChannelQueue & VideoMinimalQueueCard
     findMoreVideos: "Visit Manage Playlist above!",
     manageUpNext: "Manage Playlist",
-    upNextSubtitle:
-      "Videos on your playlist will be deleted once it is done playing.",
+    upNextSubtitle: "Videos that ended will be removed from your playlist.",
     searchAddVideos: "Search and add more videos below!",
     //ChannelDescription & NewChannelPost & ChannelPost
     admins: "Admins",
