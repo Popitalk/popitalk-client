@@ -84,7 +84,7 @@ export default function VideoPanelCard({
               role="button"
               // onClick={handleFindMore}
             >
-              <div className="relative cursor-pointer pb-16/9 w-full rounded-md shadow-xs hover:shadow-md transition-all ease-in-out duration-100 bg-background-disabled hover:bg-hover-highlight focus:outline-none">
+              <div className="relative cursor-pointer pb-16/9 w-full rounded-sm shadow-xs hover:shadow-md transition-all ease-in-out duration-100 bg-background-disabled hover:bg-hover-highlight focus:outline-none">
                 <div className="absolute flex items-center justify-center w-full h-full">
                   <Button
                     styleNone

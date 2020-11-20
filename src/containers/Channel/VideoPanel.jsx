@@ -89,25 +89,28 @@ class VideoPanel extends Component {
           handleNothingPlaying={this.props.handleNothingPlaying}
           isChannel={this.props.isChannel}
         />
-        <div className="flex px-4 mt-4 space-x-4">
+        <div className="flex items-center px-4 mt-4 space-x-4">
           <p className="text-lg text-copy-primary select-none font-bold">
             {strings.upNext}
           </p>
           {this.props.displayControls && (
-            <Button
-              styleNone
-              styleNoneContent={
-                this.state.check === true
-                  ? "Save and return"
-                  : strings.manageUpNext
-              }
-              styleNoneContentClassName="text-copy-highlight text-sm underline"
-              onClick={e =>
-                this.setState(prevState => ({
-                  check: !prevState.check
-                }))
-              }
-            />
+            <>
+              <Button
+                styleNone
+                styleNoneContent={
+                  this.state.check === true
+                    ? "Save and Return"
+                    : strings.manageUpNext
+                }
+                styleNoneContentClassName="text-copy-highlight font-bold text-sm"
+                onClick={e =>
+                  this.setState(prevState => ({
+                    check: !prevState.check
+                  }))
+                }
+                className="py-2 px-3 bg-background-primary rounded-md shadow-sm"
+              />
+            </>
           )}
         </div>
         {this.props.displayControls ? (
