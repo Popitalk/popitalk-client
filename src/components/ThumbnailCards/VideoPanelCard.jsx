@@ -110,7 +110,6 @@ export default function VideoPanelCard({
                     actionButton
                     icon={addButtonIcon}
                     disabled={disableButton}
-                    onClick={addButtonPressed}
                     styleNoneContentClassName="text-copy-primary"
                     styleNoneIconClassName="text-copy-primary"
                     size="sm"
