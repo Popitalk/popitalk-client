@@ -112,6 +112,7 @@ export default function Button({
       {styleNone && (
         <button
           className={styleNoneClasses}
+          disabled={disabled}
           data-tip={tooltip}
           data-place={tooltipPlace}
           onClick={analyticsHandler}

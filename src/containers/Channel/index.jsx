@@ -427,10 +427,10 @@ class Channel extends Component {
     const handleDeleteVideo = this.props.handleDeleteVideo;
     const handleAddVideo = videoData => {
       this.props.handleAddVideo(videoData);
-      this.scrollRef.current.scrollTo({
-        top: 0,
-        behavior: "smooth"
-      });
+      // this.scrollRef.current.scrollTo({
+      //   top: 0,
+      //   behavior: "smooth"
+      // });
     };
     const handleSwapVideos = this.props.handleSwapVideos;
 

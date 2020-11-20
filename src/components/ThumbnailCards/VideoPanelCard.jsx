@@ -60,7 +60,7 @@ export default function VideoPanelCard({
     const timer = setInterval(() => {
       setDisableButton(false);
       setAddButtonIcon("plus");
-    }, 5000);
+    }, 100000);
     return () => clearTimeout(timer);
   }, []);
   useEffect(() => {
@@ -99,10 +99,27 @@ export default function VideoPanelCard({
             </div>
           )}
           {title && (
-            <div className={cardClasses}>
+            <div
+              className={`relative opacity-100 hover:opacity-75 cursor-pointer ${cardClasses}`}
+              onClick={type === "add" && addButtonPressed}
+              role="button"
+            >
+              {type === "add" && (
+                <div className="absolute flex justify-end p-1 items-start w-full h-full z-50">
+                  <Button
+                    actionButton
+                    icon={addButtonIcon}
+                    disabled={disableButton}
+                    onClick={addButtonPressed}
+                    styleNoneContentClassName="text-copy-primary"
+                    styleNoneIconClassName="text-copy-primary"
+                    size="sm"
+                  />
+                </div>
+              )}
               <div className="relative flex justify-center flex-grow pb-16/9 w-full rounded-md shadow-xs hover:shadow-md transition-all ease-in-out duration-100">
-                <div className="absolute top-0 left-0 w-full h-full p-2 rounded-b-xl">
-                  <div className="relative flex justify-between">
+                <div className="absolute top-0 left-0 w-full h-full rounded-b-xl">
+                  <div className="relative flex justify-between p-1">
                     <VideoStatus
                       status={status}
                       statusMessage={statusMessage}
@@ -110,7 +127,7 @@ export default function VideoPanelCard({
                     {type === "cancel" && (
                       <Button
                         actionButton
-                        className="absolute right-0 flex z-10 bg-background-highlight"
+                        className="absolute right-0 mr-1 flex z-10 bg-background-highlight"
                         onClick={removeButtonPressed}
                         analyticsString="Remove Video: VideoPanelCard"
                         onMouseLeave={() => setRemoveButtonIcon("minus")}
@@ -121,36 +138,26 @@ export default function VideoPanelCard({
                         tooltipPlace="left"
                       />
                     )}
-                    {type === "add" && (
-                      <Button
-                        actionButton
-                        disabled={disableButton}
-                        className="flex z-10 bg-background-highlight"
-                        onClick={addButtonPressed}
-                        analyticsString="Add Video Button: VideoPanelCard"
-                        icon={addButtonIcon}
-                        size="sm"
-                        tooltip="Add to queue"
-                        tooltipPlace="left"
-                      />
-                    )}
                   </div>
                 </div>
                 <img
                   src={thumbnail}
                   alt="video-thumbnail"
-                  className="absolute top-0 w-full pb-px h-full img rounded-md object-cover"
+                  className="absolute top-0 w-full h-full img rounded-sm object-cover"
                   onClick={handleSkip && (() => handleSkip(id))}
                 />
               </div>
-              <div className="w-full pt-2 px-0">
+              <div
+                className="w-full pt-2"
+                role="button"
+                onClick={addButtonPressed}
+              >
                 <p
                   className="text-sm font-semibold truncate-2-lines overflow-hidden text-copy-primary break-words"
                   dangerouslySetInnerHTML={{ __html: title }}
                 />
                 <div className="flex items-end">
                   <p className="text-xs pt-2 text-copy-secondary items-end ">
-                    {/* {leftInfo} &middot; {rightInfo} */}
                     {"YouTube"} &middot; {rightInfo}
                   </p>
                 </div>
