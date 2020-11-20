@@ -12,7 +12,8 @@ function ChannelQueue(
     totalResults,
     handleSearch,
     handleFindMore,
-    handleAddVideo
+    handleAddVideo,
+    isChannel
   },
   ref
 ) {
@@ -24,14 +25,16 @@ function ChannelQueue(
         handleDeleteVideo={handleDeleteVideo}
         handleFindMore={handleFindMore}
       />
-      <VideoSearch
-        ref={ref}
-        searchTerm={searchTerm}
-        searchResults={searchResults}
-        totalResults={totalResults}
-        handleSearch={handleSearch}
-        handleAddVideo={handleAddVideo}
-      />
+      {isChannel === true && (
+        <VideoSearch
+          ref={ref}
+          searchTerm={searchTerm}
+          searchResults={searchResults}
+          totalResults={totalResults}
+          handleSearch={handleSearch}
+          handleAddVideo={handleAddVideo}
+        />
+      )}
     </div>
   );
 }

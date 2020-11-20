@@ -134,7 +134,7 @@ let strings = new LocalizedStrings({
     chatInput: "Type a message...",
     chatDisabledText: "Follow the channel to send a message.",
     // SortableList & ChannelQueue & VideoMinimalQueueCard
-    findMoreVideos: "Search for videos",
+    findMoreVideos: "Visit Manage Playlist above!",
     manageUpNext: "Manage Playlist",
     upNextSubtitle:
       "Videos on your playlist will be deleted once it is done playing.",

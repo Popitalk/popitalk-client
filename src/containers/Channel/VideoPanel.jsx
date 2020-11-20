@@ -125,6 +125,7 @@ class VideoPanel extends Component {
                 queue={this.props.queue}
                 handleSwapVideos={this.props.handleSwapVideos}
                 handleDeleteVideo={this.props.handleDeleteVideo}
+                isChannel={this.props.isChannel}
                 // handleFindMore={() => this.scrollToSearch()}
               />
             ) : (
