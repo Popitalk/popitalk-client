@@ -36,11 +36,6 @@ export default function VideoResults({
 
   return (
     <div className="flex flex-col justify-center bg-background-secondary p-4">
-      {/* <div className="grid grid-cols-1 xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 gap-y-8 mb-8">
-        <VideoPanelCard loading />
-        <VideoPanelCard loading />
-        <VideoPanelCard loading />
-      </div> */}
       <div className="grid grid-cols-1 xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 gap-y-8">
         {results.map((result, idx) => {
           if (idx <= currThreshold - 1) {
@@ -65,7 +60,7 @@ export default function VideoResults({
             styleNoneContent={strings.loadMoreButton}
             styleNoneContentClassName="text-copy-highlight text-sm font-bold"
             hoverable
-            className="w-24 hover:bg-background-highlight h-10 mx-2 rounded-xl"
+            className="w-24 hover:bg-hover-highlight h-10 mx-2 rounded-xl"
             onClick={handleLoad}
             analyticsString="Show More Video: Video Results"
             // onClick={currThreshold >= results.length ? handleClick : handleLoad}

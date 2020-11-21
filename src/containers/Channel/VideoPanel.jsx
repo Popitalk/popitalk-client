@@ -12,6 +12,9 @@ import VideoSection from "../../components/VideoSection";
 import QueueSection from "../../components/ThumbnailCardLists/QueueSection";
 import VideoPanelCard from "../../components/ThumbnailCards/VideoPanelCard";
 import ScrollableCardList from "../../components/ThumbnailCardLists/ScrollableCardList";
+import ChannelQueue from "../../components/Channel/ChannelQueue";
+import strings from "../../helpers/localization";
+import Button from "../../components/Controls/Button";
 
 const mapStateToProps = (state, { channelId }) => {
   const { defaultAvatar, volume } = state.general;
@@ -56,12 +59,24 @@ class VideoPanel extends Component {
       this.props.dispatchPause(index, s);
     }
   }
+  state = {
+    check: false // initial value
+  };
 
   render() {
     let video = null;
     if (this.props.playerStatus.channelId === this.props.channelId) {
       video = this.props.playlist[this.props.playerStatus.queueStartPosition];
     }
+    const handleNothingPlaying = videoData => {
+      if (this.props.displayControls) {
+        this.setState(prevState => ({
+          check: true
+        }));
+      } else {
+        this.props.handleNothingPlaying();
+      }
+    };
 
     return (
       <div className={this.props.classNames}>
@@ -80,17 +95,64 @@ class VideoPanel extends Component {
           dispatchPause={this.props.dispatchPause}
           dispatchSkip={s => this.handleSkip(null, s)}
           dispatchPlayNextVideo={this.props.handlePlayNextVideo}
-          handleNothingPlaying={this.props.handleNothingPlaying}
+          handleNothingPlaying={handleNothingPlaying}
           isChannel={this.props.isChannel}
         />
+        <div className="flex items-center px-4 mt-4 space-x-4">
+          <p className="text-lg text-copy-primary select-none font-bold">
+            {strings.upNext}
+          </p>
+          {this.props.displayControls && (
+            <>
+              <Button
+                styleNone
+                styleNoneContent={
+                  this.state.check === true
+                    ? "Save and Return"
+                    : strings.manageUpNext
+                }
+                styleNoneContentClassName="text-copy-highlight font-bold text-sm"
+                onClick={e =>
+                  this.setState(prevState => ({
+                    check: !prevState.check
+                  }))
+                }
+                className="py-2 px-3 bg-background-primary rounded-md shadow-sm"
+              />
+            </>
+          )}
+        </div>
         {this.props.displayControls ? (
-          <QueueSection
-            queueList={this.props.playlist}
-            handlerChange={this.props.handleSwapVideos}
-            handleSkip={this.handleSkip}
-            handleDeleteVideo={this.props.handleDeleteVideo}
-            handleFindMore={this.props.handleFindMore}
-          />
+          <>
+            {this.state.check === true ? (
+              <ChannelQueue
+                ref={this.props.ref}
+                name={this.props.name}
+                icon={this.props.icon || this.props.defaultIcon}
+                searchTerm={this.props.searchTerm}
+                searchResults={this.props.searchResults}
+                totalResults={this.props.totalResults}
+                handleSearch={this.props.handleSearch}
+                handleAddVideo={this.props.handleAddVideo}
+                queue={this.props.queue}
+                handleSwapVideos={this.props.handleSwapVideos}
+                handleDeleteVideo={this.props.handleDeleteVideo}
+                isChannel={this.props.isChannel}
+              />
+            ) : (
+              <QueueSection
+                queueList={this.props.playlist}
+                handlerChange={this.props.handleSwapVideos}
+                handleSkip={this.handleSkip}
+                handleDeleteVideo={this.props.handleDeleteVideo}
+                handleFindMore={e =>
+                  this.setState(prevState => ({
+                    check: !prevState.check
+                  }))
+                }
+              />
+            )}
+          </>
         ) : (
           <ScrollableCardList axis="x">
             {this.props.playlist.map(value => (

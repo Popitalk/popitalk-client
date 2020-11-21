@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import strings from "../../helpers/localization";
 import classnames from "classnames";
 
@@ -7,6 +7,8 @@ export default function ScrollableCardList({
   displayControls,
   children
 }) {
+  const [checked, setChecked] = useState(false);
+
   const scrollableClasses = classnames({
     "flex-row": axis === "x",
     "flex-col": axis !== "x",
@@ -16,9 +18,21 @@ export default function ScrollableCardList({
 
   return (
     <div className="py-4">
-      <p className="px-4 text-lg text-copy-primary select-none">
-        {strings.upNext}
-      </p>
+      {/* === Uncomment for loop design ===*/}
+      {/* {displayControls && (
+        <div className="flex items-center px-4 space-x-2">
+          <p className="text-sm text-copy-primary font-bold">Loop Playlist</p>
+          <input
+            type="checkbox"
+            onChange={e => setChecked(checked => !checked)}
+          />
+          <p className="text-xs text-copy-secondary">
+            {checked
+              ? "Your playlist will loop to the first video when the last video ends."
+              : strings.upNextSubtitle}
+          </p>
+        </div>
+      )} */}
       <div className={scrollableClasses}>{children}</div>
     </div>
   );

@@ -134,10 +134,9 @@ let strings = new LocalizedStrings({
     chatInput: "Type a message...",
     chatDisabledText: "Follow the channel to send a message.",
     // SortableList & ChannelQueue & VideoMinimalQueueCard
-    findMoreVideos: "Search for videos",
-    manageUpNext: "Manage Playlist",
-    upNextSubtitle:
-      "Add, delete or change the orders of the videos. You can add up to 30 videos.",
+    findMoreVideos: "Search and Add Videos",
+    manageUpNext: "Add Videos & Manage Playlist",
+    upNextSubtitle: "Videos that ended will be removed from your playlist.",
     searchAddVideos: "Search and add more videos below!",
     //ChannelDescription & NewChannelPost & ChannelPost
     admins: "Admins",
