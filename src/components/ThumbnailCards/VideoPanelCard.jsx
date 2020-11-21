@@ -27,6 +27,7 @@ export default function VideoPanelCard({
   // const leftInfo = `${views}`;
   const rightInfo = `${moment(publishedAt).locale(strings.location).fromNow()}`;
   const [disableButton, setDisableButton] = useState();
+  const [hoverCard, setHoverCard] = useState(false);
   const [addButtonIcon, setAddButtonIcon] = useState("plus");
   const [removeButtonIcon, setRemoveButtonIcon] = useState("minus");
 
@@ -60,7 +61,7 @@ export default function VideoPanelCard({
     const timer = setInterval(() => {
       setDisableButton(false);
       setAddButtonIcon("plus");
-    }, 100000);
+    }, 10000);
     return () => clearTimeout(timer);
   }, []);
   useEffect(() => {
@@ -82,7 +83,7 @@ export default function VideoPanelCard({
             <div
               className="flex w-full flex-shrink-0 max-w-2xs items-center pr-2"
               role="button"
-              // onClick={handleFindMore}
+              onClick={handleFindMore}
             >
               <div className="relative cursor-pointer pb-16/9 w-full rounded-sm shadow-xs hover:shadow-md transition-all ease-in-out duration-100 bg-background-disabled hover:bg-hover-highlight focus:outline-none">
                 <div className="absolute flex items-center justify-center w-full h-full">
@@ -103,6 +104,8 @@ export default function VideoPanelCard({
               className={`relative opacity-100 hover:opacity-75 cursor-pointer ${cardClasses}`}
               onClick={type === "add" && addButtonPressed}
               role="button"
+              onMouseEnter={() => setHoverCard(true)}
+              onMouseLeave={() => setHoverCard(false)}
             >
               {type === "add" && (
                 <div className="absolute flex justify-end p-1 items-start w-full h-full z-50">
@@ -123,7 +126,7 @@ export default function VideoPanelCard({
                       status={status}
                       statusMessage={statusMessage}
                     />
-                    {type === "cancel" && (
+                    {type === "cancel" && hoverCard === true && (
                       <Button
                         actionButton
                         className="absolute right-0 mr-1 flex z-10 bg-background-highlight"

@@ -68,6 +68,15 @@ class VideoPanel extends Component {
     if (this.props.playerStatus.channelId === this.props.channelId) {
       video = this.props.playlist[this.props.playerStatus.queueStartPosition];
     }
+    const handleNothingPlaying = videoData => {
+      if (this.props.displayControls) {
+        this.setState(prevState => ({
+          check: true
+        }));
+      } else {
+        this.props.handleNothingPlaying();
+      }
+    };
 
     return (
       <div className={this.props.classNames}>
@@ -86,7 +95,7 @@ class VideoPanel extends Component {
           dispatchPause={this.props.dispatchPause}
           dispatchSkip={s => this.handleSkip(null, s)}
           dispatchPlayNextVideo={this.props.handlePlayNextVideo}
-          handleNothingPlaying={this.props.handleNothingPlaying}
+          handleNothingPlaying={handleNothingPlaying}
           isChannel={this.props.isChannel}
         />
         <div className="flex items-center px-4 mt-4 space-x-4">
@@ -129,7 +138,6 @@ class VideoPanel extends Component {
                 handleSwapVideos={this.props.handleSwapVideos}
                 handleDeleteVideo={this.props.handleDeleteVideo}
                 isChannel={this.props.isChannel}
-                // handleFindMore={() => this.scrollToSearch()}
               />
             ) : (
               <QueueSection
@@ -137,7 +145,11 @@ class VideoPanel extends Component {
                 handlerChange={this.props.handleSwapVideos}
                 handleSkip={this.handleSkip}
                 handleDeleteVideo={this.props.handleDeleteVideo}
-                handleFindMore={this.props.handleFindMore}
+                handleFindMore={e =>
+                  this.setState(prevState => ({
+                    check: !prevState.check
+                  }))
+                }
               />
             )}
           </>

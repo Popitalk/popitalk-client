@@ -141,7 +141,6 @@ class Channel extends Component {
       playerStatus: this.props.startPlayerStatus,
       searchTerm: "",
       source: DEFAULT_SOURCE.toLowerCase(),
-      scrollToSearch: false,
       forceScroll: false
     };
 
@@ -173,16 +172,6 @@ class Channel extends Component {
     } else {
       this.props.handleGetTrending(next, source);
     }
-  }
-
-  scrollToSearch() {
-    this.scrollRef.current.scrollTo({
-      top: this.searchRef.current.offsetTop - HEADER_HEIGHT,
-      behavior: "smooth"
-    });
-    this.setState({
-      scrollToSearch: false
-    });
   }
 
   pickRoomName() {
@@ -376,12 +365,8 @@ class Channel extends Component {
           top: this.channelRef.current.offsetTop + 6,
           behavior: "smooth"
         });
-      } else if (tab === SETTINGS_TAB) {
-        if (this.state.scrollToSearch) {
-          this.scrollToSearch();
-        } else {
-          this.scrollRef.current.scrollTo({ top: 0 });
-        }
+      } else {
+        this.scrollRef.current.scrollTo({ top: 0 });
       }
 
       this.setState({
@@ -427,10 +412,6 @@ class Channel extends Component {
     const handleDeleteVideo = this.props.handleDeleteVideo;
     const handleAddVideo = videoData => {
       this.props.handleAddVideo(videoData);
-      // this.scrollRef.current.scrollTo({
-      //   top: 0,
-      //   behavior: "smooth"
-      // });
     };
     const handleSwapVideos = this.props.handleSwapVideos;
 
@@ -461,9 +442,7 @@ class Channel extends Component {
         : ownId;
 
     let handleNothingPlaying = null;
-    if (type === ROOM_TYPE) {
-      handleNothingPlaying = () => this.scrollToSearch();
-    } else {
+    if (type !== ROOM_TYPE) {
       handleNothingPlaying = video => {
         this.props.handleSend();
       };
@@ -493,9 +472,6 @@ class Channel extends Component {
                   handleDeleteVideo={handleDeleteVideo}
                   handleSwapVideos={handleSwapVideos}
                   handlePlayNextVideo={this.playNextVideo}
-                  handleFindMore={() => {
-                    this.scrollToSearch();
-                  }}
                   handleNothingPlaying={handleNothingPlaying}
                   displayControls={displayControls}
                   playlist={this.state.queueList}

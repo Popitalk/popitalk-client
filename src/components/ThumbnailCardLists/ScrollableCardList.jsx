@@ -18,7 +18,8 @@ export default function ScrollableCardList({
 
   return (
     <div className="py-4">
-      {displayControls && (
+      {/* === Uncomment for loop design ===*/}
+      {/* {displayControls && (
         <div className="flex items-center px-4 space-x-2">
           <p className="text-sm text-copy-primary font-bold">Loop Playlist</p>
           <input
@@ -31,7 +32,7 @@ export default function ScrollableCardList({
               : strings.upNextSubtitle}
           </p>
         </div>
-      )}
+      )} */}
       <div className={scrollableClasses}>{children}</div>
     </div>
   );
