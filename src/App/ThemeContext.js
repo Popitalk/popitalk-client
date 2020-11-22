@@ -70,8 +70,8 @@ export const Toggle = () => {
         className="hidden"
       />
       <FontAwesomeIcon
-        className={`text-2xl cursor-pointer transition transform ease-in-out hover:scale-105 duration-100 ${
-          theme === "dark" ? "text-yellow" : "text-copy-secondary"
+        className={`text-xl cursor-pointer transition transform ease-in-out hover:scale-105 duration-100 ${
+          theme === "dark" ? "text-copy-highlight" : "text-copy-secondary"
         }`}
         icon={theme === "dark" ? ["fa", "moon"] : ["far", "moon"]}
       />
