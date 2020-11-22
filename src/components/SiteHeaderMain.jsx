@@ -117,7 +117,7 @@ export default function SiteHeaderMain({
           imageButtonSpanClassName="hidden sm:block text-sm text-copy-primary"
           onClick={() => openProfileHandler(userID)}
           analyticsString="My Profile Button: SiteHeaderMain"
-          className="flex "
+          className="flex"
         />
         <ul className="sm:space-x-6 // flex items-center space-x-2">
           <li>
