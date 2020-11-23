@@ -1,5 +1,6 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
+import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+
 import {
   openInviteModal,
   openProfileModal,
@@ -13,100 +14,92 @@ import QueueSection from "../../components/ThumbnailCardLists/QueueSection";
 import VideoPanelCard from "../../components/ThumbnailCards/VideoPanelCard";
 import ScrollableCardList from "../../components/ThumbnailCardLists/ScrollableCardList";
 
-const mapStateToProps = (state, { channelId }) => {
-  const { defaultAvatar, volume } = state.general;
-  const channel = state.channels[channelId];
+export default function VideoPanel({
+  channelId,
+  dispatchPlay,
+  handleDeleteVideo,
+  handleSwapVideos,
+  handlePlayNextVideo,
+  handleFindMore,
+  handleNothingPlaying,
+  displayControls,
+  playlist,
+  playerStatus,
+  classNames,
+  isChannel
+}) {
+  const dispatch = useDispatch();
+
+  const { defaultAvatar, volume } = useSelector(state => state.general);
+  const channel = useSelector(state => state.channels[channelId]);
   const viewerIds = channel.viewers;
-  const users = state.users;
+  const users = useSelector(state => state.users);
   const viewers = viewerIds
     ? mapIdsToUsers(viewerIds, users, defaultAvatar)
     : [];
+  const isInvitingAllowed = channel.type === "group";
 
-  return {
-    viewers: viewers,
-    isInvitingAllowed: channel.type === "group",
-    volume: volume
-  };
-};
+  const dispatchPause = (queueStartPosition, videoStartTime) =>
+    dispatch(setPaused({ channelId, queueStartPosition, videoStartTime }));
 
-const mapDispatchToProps = (dispatch, { channelId }) => ({
-  openInviteModal: () => dispatch(openInviteModal(channelId, false)),
-  openSocialShareModal: () => dispatch(openSocialShareModal(channelId, false)),
-  openProfileModal: id => dispatch(openProfileModal(id)),
-  dispatchPause: (queueStartPosition, videoStartTime) =>
-    dispatch(setPaused({ channelId, queueStartPosition, videoStartTime })),
-  setVolume: volume => dispatch(setVolume(volume))
-});
-
-class VideoPanel extends Component {
-  constructor(props) {
-    super(props);
-
-    this.handleSkip = this.handleSkip.bind(this);
-  }
-
-  handleSkip(id = null, s = 0) {
+  const handleSkip = (id = null, s = 0) => {
     const index = id
-      ? this.props.playlist.findIndex(v => v.id === id)
-      : this.props.playerStatus.queueStartPosition;
+      ? playlist.findIndex(v => v.id === id)
+      : playerStatus.queueStartPosition;
 
-    if (this.props.playerStatus.status === "Playing") {
-      this.props.dispatchPlay(index, s);
+    if (playerStatus.status === "Playing") {
+      dispatchPlay(index, s);
     } else {
-      this.props.dispatchPause(index, s);
+      dispatchPause(index, s);
     }
-  }
+  };
 
-  render() {
-    let video = null;
-    if (this.props.playerStatus.channelId === this.props.channelId) {
-      video = this.props.playlist[this.props.playerStatus.queueStartPosition];
-    }
+  let video =
+    playerStatus.channelId === channelId
+      ? playlist[playerStatus.queueStartPosition]
+      : null;
 
-    return (
-      <div className={this.props.classNames}>
-        <VideoSection
-          {...video}
-          playerStatus={this.props.playerStatus}
-          activeFriendViewers={this.props.viewers}
-          inviteUsers={() => this.props.openInviteModal()}
-          socialShare={() => this.props.openSocialShareModal()}
-          openProfile={id => this.props.openProfileModal(id)}
-          isInvitingAllowed={this.props.isInvitingAllowed}
-          displayControls={this.props.displayControls}
-          volume={this.props.volume}
-          setVolume={this.props.setVolume}
-          dispatchPlay={this.props.dispatchPlay}
-          dispatchPause={this.props.dispatchPause}
-          dispatchSkip={s => this.handleSkip(null, s)}
-          dispatchPlayNextVideo={this.props.handlePlayNextVideo}
-          handleNothingPlaying={this.props.handleNothingPlaying}
-          isChannel={this.props.isChannel}
+  return (
+    <div className={classNames}>
+      <VideoSection
+        {...video}
+        playerStatus={playerStatus}
+        activeFriendViewers={viewers}
+        inviteUsers={() => dispatch(openInviteModal(channelId, false))}
+        socialShare={() => dispatch(openSocialShareModal(channelId, false))}
+        openProfile={id => dispatch(openProfileModal(id))}
+        isInvitingAllowed={isInvitingAllowed}
+        displayControls={displayControls}
+        volume={volume}
+        setVolume={volume => dispatch(setVolume(volume))}
+        dispatchPlay={dispatchPlay}
+        dispatchPause={dispatchPause}
+        dispatchSkip={s => handleSkip(null, s)}
+        dispatchPlayNextVideo={handlePlayNextVideo}
+        handleNothingPlaying={handleNothingPlaying}
+        isChannel={isChannel}
+      />
+      {displayControls ? (
+        <QueueSection
+          queueList={playlist}
+          handlerChange={handleSwapVideos}
+          handleSkip={handleSkip}
+          handleDeleteVideo={handleDeleteVideo}
+          handleFindMore={handleFindMore}
         />
-        {this.props.displayControls ? (
-          <QueueSection
-            queueList={this.props.playlist}
-            handlerChange={this.props.handleSwapVideos}
-            handleSkip={this.handleSkip}
-            handleDeleteVideo={this.props.handleDeleteVideo}
-            handleFindMore={this.props.handleFindMore}
-          />
-        ) : (
-          <ScrollableCardList axis="x">
-            {this.props.playlist.map(value => (
-              <VideoPanelCard
-                {...value}
-                key={value.id}
-                size="sm"
-                type="none"
-                className="mr-2"
-              />
-            ))}
-          </ScrollableCardList>
-        )}
-      </div>
-    );
-  }
+      ) : (
+        <ScrollableCardList axis="x">
+          {playlist.map(value => (
+            <VideoPanelCard
+              {...value}
+              key={value.id}
+              size="sm"
+              type="none"
+              className="mr-2"
+            />
+          ))}
+        </ScrollableCardList>
+      )}
+    </div>
+  );
 }
-
-export default connect(mapStateToProps, mapDispatchToProps)(VideoPanel);
