@@ -41,6 +41,8 @@ function ChatOptionsButton2({
 
   const conditions = {
     isMyMessage: message.userId === ownId,
+    isOwnerOfChannel:
+      channel?.type === "channel" && channel.ownerId === message.userId,
     isAdminOfChannel:
       channel?.type === "channel" && channel.admins?.includes(ownId),
     messageAccepted:
@@ -49,9 +51,11 @@ function ChatOptionsButton2({
     messageRejected: message?.status?.toLowerCase() === "rejected",
     messagePending: message?.status?.toLowerCase() === "pending"
   };
+
   // Function that generates options of the pop up depending if message is rejected/accepted
-  function getOptions() {
+  const getOptions = () => {
     const options = [];
+
     if (conditions.messageAccepted || conditions.messageRejected) {
       options.push({
         name: "Delete",
@@ -65,6 +69,7 @@ function ChatOptionsButton2({
         danger: false
       });
     }
+
     if (conditions.messageRejected) {
       options.push({
         name: "Resend",
@@ -72,17 +77,31 @@ function ChatOptionsButton2({
         danger: false
       });
     }
+
     return options;
-  }
+  };
+
   // deletedMessageId === message.id && deletedMessageApiLoading
   // Returns the button only ((if you are the admin of the channel OR it is your own message) AND the message is not pending) OR the message is rejected.
-  // Doesn't test if you sent the rejected message, can't think of a posibility where you could see other peoples rejected messages.
+  // Doesn't test if you sent the rejected message, can't think of a possibility where you could see other peoples rejected messages.
   // There is no ID generated if the message is rejected.
+
+  const {
+    isMyMessage,
+    isAdminOfChannel,
+    isOwnerOfChannel,
+    messagePending,
+    messageRejected
+  } = conditions;
+
+  const showPopup =
+    ((isMyMessage || (isAdminOfChannel && !isOwnerOfChannel)) &&
+      !messagePending) ||
+    messageRejected;
+
   return (
     <>
-      {((conditions.isMyMessage || conditions.isAdminOfChannel) &&
-        !conditions.messagePending) ||
-      conditions.messageRejected ? (
+      {showPopup ? (
         <div
           className={`flex transition-opacity duration-100 w-4 px-0 space-x-2 self-center mx-2 ${
             hover ? "opacity-100" : "opacity-0"
