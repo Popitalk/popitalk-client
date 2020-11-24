@@ -102,7 +102,11 @@ export default function VideoPanelCard({
           {title && (
             <div
               className={`relative opacity-100 hover:opacity-75 cursor-pointer ${cardClasses}`}
-              onClick={type === "add" && addButtonPressed}
+              onClick={() => {
+                if (type === "add") {
+                  addButtonPressed();
+                }
+              }}
               role="button"
               onMouseEnter={() => setHoverCard(true)}
               onMouseLeave={() => setHoverCard(false)}

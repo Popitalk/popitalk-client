@@ -45,7 +45,7 @@ const VIDEO_TAB = "video";
 const POSTS_TAB = "channel";
 const SETTINGS_TAB = "settings";
 
-const HEADER_HEIGHT = 96; // The height of the website header + channel header
+// const HEADER_HEIGHT = 96; // The height of the website header + channel header
 
 const mapStateToProps = (state, { match }) => {
   const { channelId, roomId, tab } = match.params;
@@ -198,16 +198,16 @@ class Channel extends Component {
   }
 
   mapVideoStatuses(playlist, currPosition, status) {
-    return playlist.map((v, i) => {
-      let videoStatus = "queued";
-      if (i < currPosition) {
-        videoStatus = "ended";
-      } else if (i === currPosition) {
-        videoStatus = status.toLowerCase();
-      }
+    return playlist.map((video, position) => {
+      const videoStatus =
+        position < currPosition
+          ? "ended"
+          : position > currPosition
+          ? "queued"
+          : status.toLowerCase();
 
       return {
-        ...v,
+        ...video,
         status: videoStatus
       };
     });
@@ -267,35 +267,51 @@ class Channel extends Component {
   }
 
   setPlayerStatus() {
-    const playerStatus = calculatePlayerStatus(
-      this.props.startPlayerStatus,
-      this.props.playlist
-    );
+    const {
+      startPlayerStatus,
+      playlist,
+      channelId,
+      trendingResults,
+      handleGetTrending
+    } = this.props;
+
+    const { source } = this.state;
+
+    const playerStatus = calculatePlayerStatus(startPlayerStatus, playlist);
 
     this.setState({
       playerStatus: {
-        channelId: this.props.channelId,
+        channelId,
         ...playerStatus
       },
       queueList: this.mapVideoStatuses(
-        this.props.playlist,
+        playlist,
         playerStatus.queueStartPosition,
         playerStatus.status
       )
     });
 
-    if (this.props.trendingResults.results.length === 0) {
-      this.props.handleGetTrending(false, this.state.source);
+    if (trendingResults.results.length === 0) {
+      handleGetTrending(false, source);
     }
   }
 
   componentDidMount() {
-    if (!this.props.channel?.loaded) {
-      this.props.handleGetChannel();
-    } else if (!this.state.playerStatus.channelId) {
+    const {
+      channel,
+      channelId,
+      handleGetChannel,
+      handleVisitAndLeave
+    } = this.props;
+
+    const { playerStatus } = this.state;
+
+    if (!channel?.loaded) {
+      handleGetChannel();
+    } else if (!playerStatus.channelId) {
       this.setPlayerStatus();
-      this.props.handleVisitAndLeave({
-        visit: this.props.channelId
+      handleVisitAndLeave({
+        visit: channelId
       });
     }
 
@@ -387,41 +403,63 @@ class Channel extends Component {
   }
 
   render() {
-    const channelApi = this.props.channelApi;
-    const channel = this.props.channel;
-    const tab = this.props.tab;
+    const {
+      channelId,
+      channelApi,
+      channel,
+      tab,
+      handleChannelNotFound
+    } = this.props;
 
-    if (
+    const channelNotFound =
       channelApi.status !== "loading" &&
       channelApi.status !== "initial" &&
-      !channel
-    ) {
-      this.props.handleChannelNotFound();
+      !channel;
+
+    if (channelNotFound) {
+      handleChannelNotFound(); // needs to be fixed
       return <Redirect to="/channels" />;
     }
 
     const loading = channel?.loaded ? false : true;
-    if (loading || this.state.playerStatus.channelId !== this.props.channelId) {
+
+    if (loading || this.state.playerStatus.channelId !== channelId) {
       return <></>;
     }
-    const channelId = this.props.channelId;
-    const ownId = this.props.ownId;
-    const type = this.props.type;
-    const defaultIcon = this.props.defaultIcon;
-    const defaultAvatar = this.props.defaultAvatar;
-    const handleDeleteVideo = this.props.handleDeleteVideo;
+
+    const {
+      ownId,
+      type,
+      defaultIcon,
+      defaultAvatar,
+      handleDeleteVideo,
+      handleSwapVideos,
+      users,
+      trendingResults,
+      handleSend,
+      dispatchPlay,
+      handleChannelFormSubmit,
+      handleAddAdmin,
+      handleRemoveAdmin,
+      handleAddBan,
+      handleRemoveBan,
+      openProfileModal,
+      openDeleteChannelModal
+    } = this.props;
+
+    const handleSearch = this.handleSearch;
+
     const handleAddVideo = videoData => {
       this.props.handleAddVideo(videoData);
     };
-    const handleSwapVideos = this.props.handleSwapVideos;
 
     const admins = channel.admins
-      ? mapIdsToUsers(channel.admins, this.props.users, defaultAvatar)
+      ? mapIdsToUsers(channel.admins, users, defaultAvatar)
       : [];
-    const users = this.props.users;
 
-    const editor =
-      channel.ownerId === ownId || admins.find(a => a.id === ownId);
+    // const editor =
+    //   channel.ownerId === ownId || admins.find(a => a.id === ownId);
+
     const isOwner = channel.ownerId === ownId;
     const isMember = channel.members
       ? !!channel.members.filter(memberId => memberId === ownId).length
@@ -429,22 +467,23 @@ class Channel extends Component {
     const isAdmin =
       channel.type !== "channel" ? false : channel.admins.includes(ownId);
 
-    const handleSearch = this.handleSearch;
-    let searchResults = this.props.trendingResults.results;
-    let totalResults = this.props.trendingResults.totalResults;
-    if (this.state.searchTerm !== "") {
-      searchResults = channel.videoSearch.results;
-      totalResults = channel.videoSearch.totalResults;
-    }
+    const isSearchTerm = this.state.searchTerm !== "";
+    const searchResults = isSearchTerm
+      ? channel.videoSearch.results
+      : trendingResults.results;
+    const totalResults = isSearchTerm
+      ? channel.videoSearch.totalResults
+      : trendingResults.totalResults;
+
     const displayControls =
       channel.type === "channel"
-        ? channel.admins.find(a => a === ownId)
+        ? channel.admins.find(adminId => adminId === ownId)
         : ownId;
 
     let handleNothingPlaying = null;
     if (type !== ROOM_TYPE) {
       handleNothingPlaying = video => {
-        this.props.handleSend();
+        handleSend();
       };
     }
 
@@ -468,7 +507,7 @@ class Channel extends Component {
               <>
                 <VideoPanel
                   channelId={channelId}
-                  dispatchPlay={this.props.dispatchPlay}
+                  dispatchPlay={dispatchPlay}
                   handleDeleteVideo={handleDeleteVideo}
                   handleSwapVideos={handleSwapVideos}
                   handlePlayNextVideo={this.playNextVideo}
@@ -479,7 +518,7 @@ class Channel extends Component {
                   isChannel={type === CHANNEL_TYPE && true}
                   classNames="pt-0"
                   // Below is for ChannelQueue
-                  ref={this.searchRef}
+                  searchRef={this.searchRef}
                   name={channel.name}
                   icon={channel.icon || defaultIcon}
                   searchTerm={this.state.searchTerm}
@@ -493,7 +532,7 @@ class Channel extends Component {
                 {type === CHANNEL_TYPE && (
                   <ForumPanel
                     ref={this.channelRef}
-                    channelId={this.props.channelId}
+                    channelId={channelId}
                     isMember={isMember}
                     isAdmin={isAdmin}
                     isOwner={isOwner}
@@ -528,18 +567,18 @@ class Channel extends Component {
                   category: ""
                 }}
                 handleChannelFormSubmit={values =>
-                  this.props.handleChannelFormSubmit(values)
+                  handleChannelFormSubmit(values)
                 }
                 channelFormLoading={channelApi.loading}
                 channelFormError={
                   channelApi.status === "error" ? channelApi.error : false
                 }
-                addAdminHandler={this.props.handleAddAdmin}
-                removeAdminHandler={this.props.handleRemoveAdmin}
-                addBanHandler={this.props.handleAddBan}
-                removeBanHandler={this.props.handleRemoveBan}
-                handleProfile={id => this.props.openProfileModal(id)}
-                openDeleteChannelModal={this.props.openDeleteChannelModal}
+                addAdminHandler={handleAddAdmin}
+                removeAdminHandler={handleRemoveAdmin}
+                addBanHandler={handleAddBan}
+                removeBanHandler={handleRemoveBan}
+                handleProfile={id => openProfileModal(id)}
+                openDeleteChannelModal={openDeleteChannelModal}
               />
             )}
           </div>
