@@ -1,4 +1,5 @@
 import React from "react";
+import strings from "../../helpers/localization";
 import DescriptionCard from "./DescriptionCard";
 
 export default function SignupSection({ id }) {
@@ -7,71 +8,69 @@ export default function SignupSection({ id }) {
       <div className="flex flex-col w-full h-full bg-background-primary shadow-lg rounded-b-lg sm:p-20 p-4">
         <div className="flex flex-col w-full justify-center items-center my-8">
           <h1 className="text-3xl font-bold text-copy-primary sm:p-12 p-4">
-            Watch Videos and listen to Music, together.
+            {strings.descriptionHeader1}
           </h1>
           <div className="grid sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 w-full gap-4 gap-y-12 lg:gap-y-16 md:gap-y-12 sm:gap-y-12 py-8 px-0 md:px-20">
             <DescriptionCard
-              title="Watch together"
+              title={strings.descriptionCardTitle1}
               src="https://i.ibb.co/y5bfPpL/watch-Together.png"
-              alt="Watch together"
-              description="Enjoy the internet in sync with your friends. Watch videos and
-									listen to music together on Popitalk."
+              alt={strings.descriptionCardTitle1}
+              description={strings.descriptionCardBody1}
             />
             <DescriptionCard
-              title="Chat"
+              title={strings.descriptionCardTitle2}
               src="https://i.ibb.co/X5BHwwZ/chat.png"
-              alt="Chat"
-              description="Watch content from YouTube together. Vimeo, Crunchyroll anime,
-								Twitch and SoundCloud are coming soon."
+              alt={strings.descriptionCardTitle2}
+              description={strings.descriptionCardBody2}
             />
             <DescriptionCard
-              title="Public Channels"
+              title={strings.descriptionCardTitle3}
               src="https://i.ibb.co/PYv5D1N/public-Channels.png"
-              alt="Public Channels"
-              description="Create your own channel and share your video playlist with everyone. Get followers and become the biggest channel!"
+              alt={strings.descriptionCardTitle3}
+              description={strings.descriptionCardBody3}
             />
           </div>
         </div>
         <div className="flex flex-col w-full justify-center items-center my-8 mb-20">
           <h2 className="text-3xl font-bold text-copy-primary sm:p-12 p-4">
-            Why use Popitalk.
+            {strings.descriptionHeader2}
           </h2>
           <div className="grid sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 w-full gap-4 gap-y-12 lg:gap-y-16 md:gap-y-12 sm:gap-y-12 p-8 px-0 md:px-20">
             <DescriptionCard
-              title="Binge-Watching"
+              title={strings.descriptionCardTitle4}
               src="https://i.ibb.co/gVvhdM9/binge-Watch.png"
-              alt="Binge-Watching"
-              description="Popitalk is great for binge-watching your favorite web series or Let's Play with friends or other fans! Either fill the playlist with all episodes or let people vote on their favorite episodes!"
+              alt={strings.descriptionCardTitle4}
+              description={strings.descriptionCardBody4}
             />
             <DescriptionCard
-              title="Internet DJ"
+              title={strings.descriptionCardTitle5}
               src="https://i.ibb.co/C7qhQdt/internet-Dj.png"
-              alt="Internet DJ"
-              description="Ever dreamed of being a DJ? You know the latest and greatest indie tracks on Soundcloud? Fire up your own room and build a playlist that people will remember for weeks. You don't know any good music? No problem, just leave the voting enabled and collaborate with your friends!"
+              alt={strings.descriptionCardTitle5}
+              description={strings.descriptionCardBody5}
             />
             <DescriptionCard
-              title="Long-Distance Relationships"
+              title={strings.descriptionCardTitle6}
               src="https://i.ibb.co/WxrND8X/long-Distance-Relationship.png"
-              alt="Long-Distance Relationships"
-              description="Long-Distance Relationships are hard and Popitalk cannot fix that. But many couples use Popitalk to watch videos together and have a movie night even when you're apart. Don't forget to mark your room as private to keep creepy strangers out."
+              alt={strings.descriptionCardTitle6}
+              description={strings.descriptionCardBody6}
             />
             <DescriptionCard
-              title="Hanging Out"
+              title={strings.descriptionCardTitle7}
               src="https://i.ibb.co/NpwYhK8/hanging-Out.png"
-              alt="Hanging Out"
-              description="Create a room just for you and your friends where you meet after school and watch the latest cat videos while you chat how your day went. With permanent room you always know where to find each other."
+              alt={strings.descriptionCardTitle7}
+              description={strings.descriptionCardBody7}
             />
             <DescriptionCard
-              title="Your Own Channel"
+              title={strings.descriptionCardTitle8}
               src="https://i.ibb.co/M9HQpqz/your-Own-Channel.png"
-              alt="Your Own Channel"
-              description="Our users came up with pretty awesome ideas so far. Just try yours out and see if it works! Channels are very configurable and should fit your needs. Create interesting channels and try to become the biggest Channel on Popitalk!"
+              alt={strings.descriptionCardTitle8}
+              description={strings.descriptionCardBody8}
             />
             <DescriptionCard
-              title="Video Premieres"
+              title={strings.descriptionCardTitle9}
               src="https://i.ibb.co/KzztpLw/video-Premiere.png"
-              alt="Video Premieres"
-              description="You create videos and want to release your newest creation with a sweet event and see the reactions of your viewers as they happen? Upload your video to YouTube and flag it as hidden. You can add it to the playlist with the video link and invite your fans to the room. Hit play when you are ready to start your very own premiere!"
+              alt={strings.descriptionCardTitle9}
+              description={strings.descriptionCardBody9}
             />
           </div>
           <p className="w-full h-auto flex justify-end text-copy-secondary text-sm px-0 md:px-16">

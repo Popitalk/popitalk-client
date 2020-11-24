@@ -108,7 +108,7 @@ class VideoPanel extends Component {
                 styleNone
                 styleNoneContent={
                   this.state.check === true
-                    ? "Save and Return"
+                    ? strings.saveAndReturn
                     : strings.manageUpNext
                 }
                 styleNoneContentClassName="text-copy-highlight font-bold text-sm"
@@ -117,7 +117,7 @@ class VideoPanel extends Component {
                     check: !prevState.check
                   }))
                 }
-                className="py-2 px-3 bg-background-primary rounded-md shadow-sm"
+                className="py-2 px-3 bg-background-primary hover:bg-hover-highlight rounded-md shadow-sm"
               />
             </>
           )}

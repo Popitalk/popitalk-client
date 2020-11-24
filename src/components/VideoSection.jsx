@@ -4,6 +4,7 @@ import AvatarIcon from "./Controls/AvatarIcon";
 import VideoStatus from "./VideoStatus";
 import VideoPlayer from "./VideoPlayer";
 import ReactTooltip from "react-tooltip";
+import strings from "../helpers/localization";
 
 export default function VideoSection({
   title,
@@ -76,7 +77,7 @@ export default function VideoSection({
               onClick={socialShare}
               analyticsString="Invite User Button: VideoSection"
             >
-              Invite
+              {strings.invite}
             </Button>
           ) : (
             <div />

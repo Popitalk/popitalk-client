@@ -37,7 +37,7 @@ function Footer() {
                 className="text-copy-tertiary no-underline"
                 href="https://www.saashub.com/popitalk-status"
               >
-                Status Page
+                {strings.StatusPage}
               </a>
             </li>
           </ul>

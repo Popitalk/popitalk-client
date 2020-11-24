@@ -166,7 +166,7 @@ function RecommendedChannels({ selectedPage }) {
                 <Button
                   styleNone
                   styleNoneContent={img.tab}
-                  styleNoneContentClassName="font-bold text-lg"
+                  styleNoneContentClassName="font-bold text-md"
                   hoverable
                   key={idx}
                   className={`h-full p-4 ${
