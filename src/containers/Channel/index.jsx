@@ -8,13 +8,6 @@ import {
   addMessage,
   getChannel,
   visitAndLeaveChannel,
-  updateChannel,
-  makeAdmin,
-  deleteAdmin,
-  addBan,
-  deleteBan,
-  openProfileModal,
-  openDeleteChannelModal,
   searchVideos,
   addVideo,
   deleteVideo,
@@ -26,9 +19,8 @@ import {
 import ChannelHeaderContainer from "./ChannelHeaderContainer";
 import VideoPanel from "./VideoPanel";
 import ForumPanel from "./ForumPanel";
-import ChannelSettingsPanel from "../../components/Channel/ChannelSettingsPanel";
+import ChannelSettingsContainer from "./ChannelSettingsContainer";
 import VideoSearch from "../../components/VideoSearch";
-import { mapIdsToUsers } from "../../helpers/functions";
 import {
   calculatePlayerStatus,
   calculateNextPlayerStatus,
@@ -51,7 +43,7 @@ const mapStateToProps = (state, { match }) => {
   const { channelId, roomId, tab } = match.params;
   const finalId = channelId || roomId;
 
-  const { defaultIcon, defaultAvatar } = state.general;
+  const { defaultIcon } = state.general;
   const channel = state.channels[finalId];
   const channelApi = state.api.channel;
   const { id: ownId, username: ownUsername } = state.self;
@@ -71,7 +63,6 @@ const mapStateToProps = (state, { match }) => {
   return {
     channelId: finalId,
     defaultIcon,
-    defaultAvatar,
     channel: channel ? channel : {},
     startPlayerStatus: startPlayerStatus,
     playlist: channel ? channel.queue : [],
@@ -104,13 +95,6 @@ const mapDispatchToProps = (dispatch, { match }) => {
           }
         })
       ),
-    handleChannelFormSubmit: values =>
-      dispatch(updateChannel({ channelId, ...values })),
-    handleAddAdmin: userId => dispatch(makeAdmin({ channelId, userId })),
-    handleRemoveAdmin: userId => dispatch(deleteAdmin({ channelId, userId })),
-    handleAddBan: bannedId => dispatch(addBan({ channelId, bannedId })),
-    handleRemoveBan: bannedId => dispatch(deleteBan({ channelId, bannedId })),
-    openProfileModal: id => dispatch(openProfileModal(id)),
     handleSearch: (terms, source, next = false) =>
       dispatch(searchVideos({ channelId, source, terms, next })),
     handleGetTrending: (next, source) =>
@@ -124,7 +108,6 @@ const mapDispatchToProps = (dispatch, { match }) => {
     handleGetChannel: leave => dispatch(getChannel({ channelId, leave })),
     handleVisitAndLeave: visitAndLeaveInfo =>
       dispatch(visitAndLeaveChannel(visitAndLeaveInfo)),
-    openDeleteChannelModal: () => dispatch(openDeleteChannelModal(channelId)),
     handleChannelNotFound: () =>
       dispatch(setAlert("The channel / room you entered does not exist.")),
     dispatchPlay: (queueStartPosition, videoStartTime) =>
@@ -431,31 +414,17 @@ class Channel extends Component {
       ownId,
       type,
       defaultIcon,
-      defaultAvatar,
       handleDeleteVideo,
       handleSwapVideos,
-      users,
       trendingResults,
       handleSend,
-      dispatchPlay,
-      handleChannelFormSubmit,
-      handleAddAdmin,
-      handleRemoveAdmin,
-      handleAddBan,
-      handleRemoveBan,
-      openProfileModal,
-      openDeleteChannelModal
+      dispatchPlay
     } = this.props;
 
     const handleSearch = this.handleSearch;
-
     const handleAddVideo = videoData => {
       this.props.handleAddVideo(videoData);
     };
-
-    const admins = channel.admins
-      ? mapIdsToUsers(channel.admins, users, defaultAvatar)
-      : [];
 
     // const editor =
     //   channel.ownerId === ownId || admins.find(a => a.id === ownId);
@@ -552,34 +521,7 @@ class Channel extends Component {
               </>
             )}
             {tab === SETTINGS_TAB && (
-              <ChannelSettingsPanel
-                ownerId={channel.ownerId}
-                followers={mapIdsToUsers(channel.members, users, defaultAvatar)}
-                admins={admins}
-                bannedUsers={mapIdsToUsers(
-                  channel.banned,
-                  users,
-                  defaultAvatar
-                )}
-                initialChannelForm={{
-                  ...channel,
-                  private: !channel.public,
-                  category: ""
-                }}
-                handleChannelFormSubmit={values =>
-                  handleChannelFormSubmit(values)
-                }
-                channelFormLoading={channelApi.loading}
-                channelFormError={
-                  channelApi.status === "error" ? channelApi.error : false
-                }
-                addAdminHandler={handleAddAdmin}
-                removeAdminHandler={handleRemoveAdmin}
-                addBanHandler={handleAddBan}
-                removeBanHandler={handleRemoveBan}
-                handleProfile={id => openProfileModal(id)}
-                openDeleteChannelModal={openDeleteChannelModal}
-              />
+              <ChannelSettingsContainer channelId={channel.id} />
             )}
           </div>
         </div>

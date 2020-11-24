@@ -8,7 +8,8 @@ export default function ManageUsers({
   category,
   users,
   options,
-  handleProfile
+  handleProfile,
+  admins
 }) {
   const [input, setInput] = useState("");
   const filteredUsers = users.filter(user =>
@@ -37,6 +38,7 @@ export default function ManageUsers({
             users={filteredUsers}
             options={options}
             handleProfile={handleProfile}
+            admins={admins}
           />
         </div>
       ) : (

@@ -10,10 +10,15 @@ export default function ManageUsersList({
   ownerId,
   ...rest
 }) {
+  const { admins } = rest;
+  const adminsIds = admins ? admins.map(({ id }) => id) : [];
+
   const itemRenderer = a => {
     const control =
       a.id === ownerId ? (
         <p className="text-copy-secondary text-sm mr-2">Owner</p>
+      ) : adminsIds.includes(a.id) ? (
+        <p className="text-copy-secondary text-sm mr-2">Admin</p>
       ) : (
         <PopupMenu id={a.id} options={options} className="ml-auto" />
       );

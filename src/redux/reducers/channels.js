@@ -13,7 +13,7 @@ import {
   updateChannelWs,
   deleteChannel,
   deleteChannelWs,
-  addAdmin,
+  makeAdmin,
   addAdminWs,
   deleteAdmin,
   deleteAdminWs,
@@ -324,10 +324,12 @@ const R_addAdmin = (state, { payload }) => {
 };
 
 const R_addAdminWs = (state, { payload }) => {
-  state[payload.channelId].admins.push(payload.userId);
+  const channel = state[payload.channelId];
+  channel.admins.push(payload.userId);
+  channel.banned = [];
 
   if (payload.banned) {
-    state[payload.channelId].banned = payload.banned;
+    channel.banned = payload.banned;
   }
 };
 
@@ -338,19 +340,20 @@ const R_deleteAdmin = (state, { payload }) => {
 };
 
 const R_addBan = (state, { payload }) => {
-  state[payload.channelId].members = state[payload.channelId].members.filter(
-    userId => userId !== payload.userId
-  );
-  state[payload.channelId].admins = state[payload.channelId].admins.filter(
-    userId => userId !== payload.userId
-  );
-  state[payload.channelId].banned.push(payload.userId);
+  const channel = state[payload.channelId];
+  channel.members = channel.members.filter(userId => userId !== payload.userId);
+  channel.admins = channel.admins.filter(userId => userId !== payload.userId);
+
+  channel.banned && channel.banned.push(payload.userId);
 };
 
 const R_deleteBan = (state, { payload }) => {
-  state[payload.channelId].banned = state[payload.channelId].banned.filter(
-    userId => userId !== payload.userId
-  );
+  const channel = state[payload.channelId];
+  channel.banned =
+    channel.banned &&
+    channel.banned.filter(userId => userId !== payload.userId);
+
+  channel.members.push(payload.userId);
 };
 
 const R_deleteChannel = (state, { payload }) => {
@@ -461,7 +464,7 @@ export default createReducer(initialState, {
   [addMemberWs]: R_addMember,
   [unfollowChannel.fulfilled]: R_deleteMember,
   [deleteMemberWs]: R_deleteMember,
-  [addAdmin.fulfilled]: R_addAdmin,
+  [makeAdmin.fulfilled]: R_addAdmin,
   [addAdminWs]: R_addAdminWs,
   [deleteAdmin.fulfilled]: R_deleteAdmin,
   [deleteAdminWs]: R_deleteAdmin,

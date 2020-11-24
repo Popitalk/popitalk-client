@@ -70,6 +70,7 @@ export default function ChannelSettingsPanel({
           users={followers}
           options={options}
           handleProfile={handleProfile}
+          admins={admins}
         />
       </div>
     );
