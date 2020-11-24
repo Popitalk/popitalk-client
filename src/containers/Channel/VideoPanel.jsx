@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import {
@@ -13,6 +13,9 @@ import VideoSection from "../../components/VideoSection";
 import QueueSection from "../../components/ThumbnailCardLists/QueueSection";
 import VideoPanelCard from "../../components/ThumbnailCards/VideoPanelCard";
 import ScrollableCardList from "../../components/ThumbnailCardLists/ScrollableCardList";
+import ChannelQueue from "../../components/Channel/ChannelQueue";
+import strings from "../../helpers/localization";
+import Button from "../../components/Controls/Button";
 
 export default function VideoPanel({
   channelId,
@@ -20,14 +23,25 @@ export default function VideoPanel({
   handleDeleteVideo,
   handleSwapVideos,
   handlePlayNextVideo,
-  handleFindMore,
   handleNothingPlaying,
   displayControls,
   playlist,
   playerStatus,
   classNames,
-  isChannel
+  isChannel,
+  searchRef,
+  name,
+  icon,
+  searchTerm,
+  searchResults,
+  totalResults,
+  handleSearch,
+  handleAddVideo,
+  queue,
+  isMember
 }) {
+  const [check, setCheck] = useState(false);
+
   const dispatch = useDispatch();
 
   const { defaultAvatar, volume } = useSelector(state => state.general);
@@ -54,7 +68,15 @@ export default function VideoPanel({
     }
   };
 
-  let video =
+  const nothingPlayingHandler = videoData => {
+    if (displayControls) {
+      setCheck(true);
+    } else {
+      handleNothingPlaying();
+    }
+  };
+
+  const video =
     playerStatus.channelId === channelId
       ? playlist[playerStatus.queueStartPosition]
       : null;
@@ -76,17 +98,54 @@ export default function VideoPanel({
         dispatchPause={dispatchPause}
         dispatchSkip={s => handleSkip(null, s)}
         dispatchPlayNextVideo={handlePlayNextVideo}
-        handleNothingPlaying={handleNothingPlaying}
+        handleNothingPlaying={nothingPlayingHandler}
         isChannel={isChannel}
       />
+      <div className="flex items-center px-4 mt-4 space-x-4">
+        <p className="text-lg text-copy-primary select-none font-bold">
+          {strings.upNext}
+        </p>
+        {displayControls && (
+          <>
+            <Button
+              styleNone
+              styleNoneContent={
+                check === true ? strings.saveAndReturn : strings.manageUpNext
+              }
+              styleNoneContentClassName="text-copy-highlight font-bold text-sm"
+              onClick={e => setCheck(checked => !checked)}
+              className="py-2 px-3 bg-background-primary hover:bg-hover-highlight rounded-md shadow-sm"
+            />
+          </>
+        )}
+      </div>
       {displayControls ? (
-        <QueueSection
-          queueList={playlist}
-          handlerChange={handleSwapVideos}
-          handleSkip={handleSkip}
-          handleDeleteVideo={handleDeleteVideo}
-          handleFindMore={handleFindMore}
-        />
+        <>
+          {check === true ? (
+            <ChannelQueue
+              ref={searchRef}
+              name={name}
+              icon={icon}
+              searchTerm={searchTerm}
+              searchResults={searchResults}
+              totalResults={totalResults}
+              handleSearch={handleSearch}
+              handleAddVideo={handleAddVideo}
+              queue={queue}
+              handleSwapVideos={handleSwapVideos}
+              handleDeleteVideo={handleDeleteVideo}
+              isChannel={isChannel}
+            />
+          ) : (
+            <QueueSection
+              queueList={playlist}
+              handlerChange={handleSwapVideos}
+              handleSkip={handleSkip}
+              handleDeleteVideo={handleDeleteVideo}
+              handleFindMore={e => setCheck(checked => !checked)}
+            />
+          )}
+        </>
       ) : (
         <ScrollableCardList axis="x">
           {playlist.map(value => (

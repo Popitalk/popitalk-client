@@ -64,12 +64,18 @@ function CollapsedPanel({
         {/* == CHANNELS == */}
         <div className="bg-background-primary rounded-xl">
           <Button
-            actionButton
-            className="flex h-12 w-20 bg-background-secondary shadow-none"
-            shape="none"
-            background="bgColor"
-            selectedColor={isFollowingExpanded ? true : false}
-            size="sm"
+            styleNone
+            className={`flex items-center justify-center h-12 w-20 shadow-none hover:bg-hover-highlight ${
+              isFollowingExpanded
+                ? "bg-background-primary"
+                : "bg-background-secondary"
+            }`}
+            styleNoneContent={strings.channels}
+            styleNoneContentClassName={`font-bold text-sm ${
+              isFollowingExpanded
+                ? "text-copy-highlight"
+                : "text-copy-secondary"
+            }`}
             analyticsString="Channels Collapse Button: CollapsedPanel"
             // updateSelectedPage here updates which tab of the panel will be open when the panel is expanded.
             {...getTogglePropsFollowing({
@@ -78,9 +84,7 @@ function CollapsedPanel({
                 updateSelectedPage("channels");
               }
             })}
-          >
-            {strings.channels}
-          </Button>
+          />
           <section {...getCollapsePropsFollowing()}>
             <div className="flex flex-col w-full items-center my-2">
               {channels.map(channel => {
@@ -113,11 +117,16 @@ function CollapsedPanel({
         {/* == FRIENDS == */}
         <div className="bg-background-primary rounded-xl mb-4">
           <Button
-            actionButton
-            className="flex h-12 w-20 mb-1 bg-background-secondary shadow-none"
-            shape="none"
-            background="bgColor"
-            selectedColor={isDiscoverExpanded ? true : false}
+            styleNone
+            className={`flex items-center justify-center h-12 w-20 mb-1 shadow-none hover:bg-hover-highlight  ${
+              isDiscoverExpanded
+                ? "bg-background-primary"
+                : "bg-background-secondary"
+            }`}
+            styleNoneContent={strings.friends}
+            styleNoneContentClassName={`font-bold text-sm ${
+              isDiscoverExpanded ? "text-copy-highlight" : "text-copy-secondary"
+            }`}
             analyticsString="Friends Expand Button: CollapsedPanel"
             // updateSelectedPage here updates which tab of the panel will be open when the panel is expanded.
             {...getTogglePropsDiscover({
@@ -126,10 +135,8 @@ function CollapsedPanel({
                 updateSelectedPage("friends");
               }
             })}
-            size="sm"
           >
             <div className="flex">
-              {strings.friends}
               {numberOfNotifications !== 0 && (
                 <span className="flex bg-gradient-r-cancel rounded-full w-2 h-2 animate-bounce ml-1">
                   {/* {numberOfNotifications} */}

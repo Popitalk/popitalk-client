@@ -19,7 +19,7 @@ export default function VideoMinimalQueueCard({
           styleNone
           styleNoneContent={strings.searchAddVideos}
           styleNoneContentClassName="text-center text-copy-secondary text-sm"
-          className="h-12 w-full bg-background-primary hover:shadow-sm hover:bg-hover-highlight transition duration-100 rounded-lg"
+          className="h-12 w-full bg-background-primary my-1 hover:shadow-sm hover:bg-hover-highlight transition duration-100 rounded-lg"
           analyticsString="Direct to search Button: VideoMinimalQueueCard"
           onClick={handleFindMore}
         />

@@ -494,6 +494,7 @@ class VideoPlayer extends Component {
                   analyticsString="Request Admin Button: VideoPlayer"
                   onClick={this.props.handleNothingPlaying}
                 >
+                  {console.log(this.props.handleNothingPlaying)}
                   {this.props.displayControls
                     ? strings.manageUpNext
                     : strings.requestVideoButton}

@@ -23,12 +23,10 @@ import {
   setAlert,
   getTrending
 } from "../../redux/actions";
-// import ChannelHeader from "../../components/ChannelHeader";
 import ChannelHeaderContainer from "./ChannelHeaderContainer";
 import VideoPanel from "./VideoPanel";
 import ForumPanel from "./ForumPanel";
 import ChannelSettingsPanel from "../../components/Channel/ChannelSettingsPanel";
-import ChannelQueue from "../../components/Channel/ChannelQueue";
 import VideoSearch from "../../components/VideoSearch";
 import { mapIdsToUsers } from "../../helpers/functions";
 import {
@@ -45,10 +43,9 @@ const ROOM_TYPE = "room";
 
 const VIDEO_TAB = "video";
 const POSTS_TAB = "channel";
-const QUEUE_TAB = "queue";
 const SETTINGS_TAB = "settings";
 
-const HEADER_HEIGHT = 96; // The height of the website header + channel header
+// const HEADER_HEIGHT = 96; // The height of the website header + channel header
 
 const mapStateToProps = (state, { match }) => {
   const { channelId, roomId, tab } = match.params;
@@ -60,7 +57,7 @@ const mapStateToProps = (state, { match }) => {
   const { id: ownId, username: ownUsername } = state.self;
   const users = state.users;
 
-  const validTabs = [VIDEO_TAB, POSTS_TAB, QUEUE_TAB, SETTINGS_TAB];
+  const validTabs = [VIDEO_TAB, POSTS_TAB, SETTINGS_TAB];
 
   const startPlayerStatus = channel
     ? {
@@ -144,7 +141,6 @@ class Channel extends Component {
       playerStatus: this.props.startPlayerStatus,
       searchTerm: "",
       source: DEFAULT_SOURCE.toLowerCase(),
-      scrollToSearch: false,
       forceScroll: false
     };
 
@@ -176,16 +172,6 @@ class Channel extends Component {
     } else {
       this.props.handleGetTrending(next, source);
     }
-  }
-
-  scrollToSearch() {
-    this.scrollRef.current.scrollTo({
-      top: this.searchRef.current.offsetTop - HEADER_HEIGHT,
-      behavior: "smooth"
-    });
-    this.setState({
-      scrollToSearch: false
-    });
   }
 
   pickRoomName() {
@@ -343,9 +329,7 @@ class Channel extends Component {
   componentDidUpdate(prevProps) {
     const loadChannel =
       prevProps.channelId !== this.props.channelId ||
-      ((prevProps.tab === QUEUE_TAB || prevProps.tab === SETTINGS_TAB) &&
-        this.props.tab !== QUEUE_TAB &&
-        this.props.tab !== SETTINGS_TAB);
+      (prevProps.tab === SETTINGS_TAB && this.props.tab !== SETTINGS_TAB);
     if (loadChannel) {
       this.setState({
         searchTerm: ""
@@ -397,12 +381,8 @@ class Channel extends Component {
           top: this.channelRef.current.offsetTop + 6,
           behavior: "smooth"
         });
-      } else if (tab === SETTINGS_TAB || tab === QUEUE_TAB) {
-        if (tab === QUEUE_TAB && this.state.scrollToSearch) {
-          this.scrollToSearch();
-        } else {
-          this.scrollRef.current.scrollTo({ top: 0 });
-        }
+      } else {
+        this.scrollRef.current.scrollTo({ top: 0 });
       }
 
       this.setState({
@@ -471,10 +451,6 @@ class Channel extends Component {
 
     const handleAddVideo = videoData => {
       this.props.handleAddVideo(videoData);
-      this.scrollRef.current.scrollTo({
-        top: 0,
-        behavior: "smooth"
-      });
     };
 
     const admins = channel.admins
@@ -504,16 +480,11 @@ class Channel extends Component {
         ? channel.admins.find(adminId => adminId === ownId)
         : ownId;
 
-    // needs some refactoring
     let handleNothingPlaying = null;
-    if (type === ROOM_TYPE) {
-      handleNothingPlaying = () => this.scrollToSearch();
-    } else if (displayControls) {
-      handleNothingPlaying = () => {
-        this.props.history.push(`/channels/${channelId}/${QUEUE_TAB}`);
+    if (type !== ROOM_TYPE) {
+      handleNothingPlaying = video => {
+        handleSend();
       };
-    } else {
-      handleNothingPlaying = video => handleSend();
     }
 
     return (
@@ -540,24 +511,23 @@ class Channel extends Component {
                   handleDeleteVideo={handleDeleteVideo}
                   handleSwapVideos={handleSwapVideos}
                   handlePlayNextVideo={this.playNextVideo}
-                  handleFindMore={() => {
-                    if (type === CHANNEL_TYPE) {
-                      this.props.history.push(
-                        `/channels/${channelId}/${QUEUE_TAB}`
-                      );
-                      this.setState({
-                        scrollToSearch: true
-                      });
-                    } else {
-                      this.scrollToSearch();
-                    }
-                  }}
                   handleNothingPlaying={handleNothingPlaying}
                   displayControls={displayControls}
                   playlist={this.state.queueList}
                   playerStatus={this.state.playerStatus}
                   isChannel={type === CHANNEL_TYPE && true}
                   classNames="pt-0"
+                  // Below is for ChannelQueue
+                  searchRef={this.searchRef}
+                  name={channel.name}
+                  icon={channel.icon || defaultIcon}
+                  searchTerm={this.state.searchTerm}
+                  searchResults={searchResults}
+                  totalResults={totalResults}
+                  handleSearch={handleSearch}
+                  handleAddVideo={handleAddVideo}
+                  queue={this.state.queueList}
+                  isMember={isMember}
                 />
                 {type === CHANNEL_TYPE && (
                   <ForumPanel
@@ -580,22 +550,6 @@ class Channel extends Component {
                   />
                 )}
               </>
-            )}
-            {tab === QUEUE_TAB && (
-              <ChannelQueue
-                ref={this.searchRef}
-                name={channel.name}
-                icon={channel.icon || defaultIcon}
-                searchTerm={this.state.searchTerm}
-                searchResults={searchResults}
-                totalResults={totalResults}
-                handleSearch={handleSearch}
-                handleAddVideo={handleAddVideo}
-                queue={this.state.queueList}
-                handleSwapVideos={handleSwapVideos}
-                handleDeleteVideo={handleDeleteVideo}
-                handleFindMore={() => this.scrollToSearch()}
-              />
             )}
             {tab === SETTINGS_TAB && (
               <ChannelSettingsPanel

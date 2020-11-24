@@ -19,6 +19,7 @@ import {
   VKIcon,
   WhatsappIcon
 } from "react-share"; // More info on Props https://github.com/nygardk/react-share#readme
+import strings from "../../helpers/localization";
 
 export default function InviteForm({ link }) {
   const ref = createRef();
@@ -47,7 +48,7 @@ export default function InviteForm({ link }) {
             onClick={copyHandler}
             analyticsString="Copy Button: InviteForm"
           >
-            Copy
+            {strings.copyButton}
           </Button>
         }
         forwardedRef={ref}
@@ -60,12 +61,10 @@ export default function InviteForm({ link }) {
 
   return (
     <div className="flex flex-col items-center justify-center h-full w-full px-8 pt-14 pb-20">
-      <p className="text-sm text-copy-secondary pb-4">
-        Copy and share this link
-      </p>
+      <p className="text-sm text-copy-secondary pb-4">{strings.copyUrl}</p>
       <InputRef ref={ref} />
       <p className="text-sm text-copy-secondary pt-4">
-        Or Share it on Social Media
+        {strings.shareToSocialMedia}
       </p>
       <div className="flex justify-center space-x-2 pt-4">
         <FacebookShareButton
