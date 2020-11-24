@@ -17,7 +17,7 @@ export default function VideoStatus({
             actionButton
             size={size}
             shape={shape}
-            className="text-tertiaryText font-bold shadow-md z-10"
+            className="text-copy-tertiary font-bold shadow-md z-10"
             background="gradient"
           >
             {strings.playing}
@@ -52,17 +52,17 @@ export default function VideoStatus({
     return (
       <>
         {status === "playing" && (
-          <span className="bg-gradient-r-primary rounded-md px-2 py-1 shadow-md text-tertiaryText text-xs font-semibold select-none z-10">
+          <span className="bg-gradient-r-primary rounded-md px-2 py-1 shadow-md text-copy-tertiary text-xs font-semibold select-none z-10">
             {strings.playing}
           </span>
         )}
         {status === "paused" && (
-          <span className="text-secondaryText text-xs font-semibold select-none z-10">
+          <span className="text-copy-secondary text-xs font-semibold select-none z-10">
             {strings.paused}
           </span>
         )}
         {(status === "queued" || status === "ended") && statusMessage && (
-          <span className="text-secondaryText text-xs font-semibold select-none z-10">
+          <span className="text-copy-secondary text-xs font-semibold select-none z-10">
             {statusMessage}
           </span>
         )}

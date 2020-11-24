@@ -14,7 +14,7 @@ export default function PostsList({ postIds, isMember, isAdmin }) {
         />
       ))}
       {postIds.length === 0 && (
-        <p className="text-secondaryText text-center text-sm py-32">
+        <p className="text-copy-secondary text-center text-sm py-32">
           {strings.channelWelcomePost}
         </p>
       )}

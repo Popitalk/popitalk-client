@@ -1,7 +1,6 @@
 import React from "react";
 import VideoSearch from "../VideoSearch";
 import ChannelListQueue from "../ThumbnailCardLists/ChannelListQueue";
-import strings from "../../helpers/localization";
 
 function ChannelQueue(
   {
@@ -13,30 +12,29 @@ function ChannelQueue(
     totalResults,
     handleSearch,
     handleFindMore,
-    handleAddVideo
+    handleAddVideo,
+    isChannel
   },
   ref
 ) {
   return (
-    <div className="flex flex-col bg-secondaryBackground">
-      <div className="px-4 my-4">
-        <h2 className="text-2xl text-primaryText">{strings.manageUpNext}</h2>
-        <p className="text-sm text-secondaryText">{strings.upNextSubtitle}</p>
-      </div>
+    <div className="flex flex-col bg-background-secondary">
       <ChannelListQueue
         playlist={queue}
         handleChange={handleSwapVideos}
         handleDeleteVideo={handleDeleteVideo}
         handleFindMore={handleFindMore}
       />
-      <VideoSearch
-        ref={ref}
-        searchTerm={searchTerm}
-        searchResults={searchResults}
-        totalResults={totalResults}
-        handleSearch={handleSearch}
-        handleAddVideo={handleAddVideo}
-      />
+      {isChannel === true && (
+        <VideoSearch
+          ref={ref}
+          searchTerm={searchTerm}
+          searchResults={searchResults}
+          totalResults={totalResults}
+          handleSearch={handleSearch}
+          handleAddVideo={handleAddVideo}
+        />
+      )}
     </div>
   );
 }

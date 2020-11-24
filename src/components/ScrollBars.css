@@ -1,29 +1,15 @@
-/* ::-webkit-scrollbar {
-  height: 6px;
-  width: 6px;
-  background-color: black;
-} */
-
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
 }
-
-/* Track */
-::-webkit-scrollbar-track {
-  background: #f1f1f1;
-  border-radius: 16px;
-}
-
 /* Handle */
 ::-webkit-scrollbar-thumb {
   border-radius: 16px;
-  background: #d1d1d1;
+  background: #5c5c5c;
 }
-
 /* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-  background: #a9a9a9;
+.light::-webkit-scrollbar-thumb:hover {
+  background: #5e5e5e;
 }
 
 /* Firefox */

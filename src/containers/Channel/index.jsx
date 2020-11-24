@@ -16,12 +16,10 @@ import {
   setAlert,
   getTrending
 } from "../../redux/actions";
-// import ChannelHeader from "../../components/ChannelHeader";
 import ChannelHeaderContainer from "./ChannelHeaderContainer";
 import VideoPanel from "./VideoPanel";
 import ForumPanel from "./ForumPanel";
 import ChannelSettingsContainer from "./ChannelSettingsContainer";
-import ChannelQueue from "../../components/Channel/ChannelQueue";
 import VideoSearch from "../../components/VideoSearch";
 import {
   calculatePlayerStatus,
@@ -37,10 +35,9 @@ const ROOM_TYPE = "room";
 
 const VIDEO_TAB = "video";
 const POSTS_TAB = "channel";
-const QUEUE_TAB = "queue";
 const SETTINGS_TAB = "settings";
 
-const HEADER_HEIGHT = 96; // The height of the website header + channel header
+// const HEADER_HEIGHT = 96; // The height of the website header + channel header
 
 const mapStateToProps = (state, { match }) => {
   const { channelId, roomId, tab } = match.params;
@@ -52,7 +49,7 @@ const mapStateToProps = (state, { match }) => {
   const { id: ownId, username: ownUsername } = state.self;
   const users = state.users;
 
-  const validTabs = [VIDEO_TAB, POSTS_TAB, QUEUE_TAB, SETTINGS_TAB];
+  const validTabs = [VIDEO_TAB, POSTS_TAB, SETTINGS_TAB];
 
   const startPlayerStatus = channel
     ? {
@@ -127,7 +124,6 @@ class Channel extends Component {
       playerStatus: this.props.startPlayerStatus,
       searchTerm: "",
       source: DEFAULT_SOURCE.toLowerCase(),
-      scrollToSearch: false,
       forceScroll: false
     };
 
@@ -161,16 +157,6 @@ class Channel extends Component {
     }
   }
 
-  scrollToSearch() {
-    this.scrollRef.current.scrollTo({
-      top: this.searchRef.current.offsetTop - HEADER_HEIGHT,
-      behavior: "smooth"
-    });
-    this.setState({
-      scrollToSearch: false
-    });
-  }
-
   pickRoomName() {
     const room = this.props.channel;
     const users = this.props.users;
@@ -195,16 +181,16 @@ class Channel extends Component {
   }
 
   mapVideoStatuses(playlist, currPosition, status) {
-    return playlist.map((v, i) => {
-      let videoStatus = "queued";
-      if (i < currPosition) {
-        videoStatus = "ended";
-      } else if (i === currPosition) {
-        videoStatus = status.toLowerCase();
-      }
+    return playlist.map((video, position) => {
+      const videoStatus =
+        position < currPosition
+          ? "ended"
+          : position > currPosition
+          ? "queued"
+          : status.toLowerCase();
 
       return {
-        ...v,
+        ...video,
         status: videoStatus
       };
     });
@@ -264,35 +250,51 @@ class Channel extends Component {
   }
 
   setPlayerStatus() {
-    const playerStatus = calculatePlayerStatus(
-      this.props.startPlayerStatus,
-      this.props.playlist
-    );
+    const {
+      startPlayerStatus,
+      playlist,
+      channelId,
+      trendingResults,
+      handleGetTrending
+    } = this.props;
+
+    const { source } = this.state;
+
+    const playerStatus = calculatePlayerStatus(startPlayerStatus, playlist);
 
     this.setState({
       playerStatus: {
-        channelId: this.props.channelId,
+        channelId,
         ...playerStatus
       },
       queueList: this.mapVideoStatuses(
-        this.props.playlist,
+        playlist,
         playerStatus.queueStartPosition,
         playerStatus.status
       )
     });
 
-    if (this.props.trendingResults.results.length === 0) {
-      this.props.handleGetTrending(false, this.state.source);
+    if (trendingResults.results.length === 0) {
+      handleGetTrending(false, source);
     }
   }
 
   componentDidMount() {
-    if (!this.props.channel?.loaded) {
-      this.props.handleGetChannel();
-    } else if (!this.state.playerStatus.channelId) {
+    const {
+      channel,
+      channelId,
+      handleGetChannel,
+      handleVisitAndLeave
+    } = this.props;
+
+    const { playerStatus } = this.state;
+
+    if (!channel?.loaded) {
+      handleGetChannel();
+    } else if (!playerStatus.channelId) {
       this.setPlayerStatus();
-      this.props.handleVisitAndLeave({
-        visit: this.props.channelId
+      handleVisitAndLeave({
+        visit: channelId
       });
     }
 
@@ -310,9 +312,7 @@ class Channel extends Component {
   componentDidUpdate(prevProps) {
     const loadChannel =
       prevProps.channelId !== this.props.channelId ||
-      ((prevProps.tab === QUEUE_TAB || prevProps.tab === SETTINGS_TAB) &&
-        this.props.tab !== QUEUE_TAB &&
-        this.props.tab !== SETTINGS_TAB);
+      (prevProps.tab === SETTINGS_TAB && this.props.tab !== SETTINGS_TAB);
     if (loadChannel) {
       this.setState({
         searchTerm: ""
@@ -364,12 +364,8 @@ class Channel extends Component {
           top: this.channelRef.current.offsetTop + 6,
           behavior: "smooth"
         });
-      } else if (tab === SETTINGS_TAB || tab === QUEUE_TAB) {
-        if (tab === QUEUE_TAB && this.state.scrollToSearch) {
-          this.scrollToSearch();
-        } else {
-          this.scrollRef.current.scrollTo({ top: 0 });
-        }
+      } else {
+        this.scrollRef.current.scrollTo({ top: 0 });
       }
 
       this.setState({
@@ -390,36 +386,48 @@ class Channel extends Component {
   }
 
   render() {
-    const channelApi = this.props.channelApi;
-    const channel = this.props.channel;
-    const tab = this.props.tab;
+    const {
+      channelId,
+      channelApi,
+      channel,
+      tab,
+      handleChannelNotFound
+    } = this.props;
 
-    if (
+    const channelNotFound =
       channelApi.status !== "loading" &&
       channelApi.status !== "initial" &&
-      !channel
-    ) {
-      this.props.handleChannelNotFound();
+      !channel;
+
+    if (channelNotFound) {
+      handleChannelNotFound(); // needs to be fixed
       return <Redirect to="/channels" />;
     }
 
     const loading = channel?.loaded ? false : true;
-    if (loading || this.state.playerStatus.channelId !== this.props.channelId) {
+
+    if (loading || this.state.playerStatus.channelId !== channelId) {
       return <></>;
     }
-    const channelId = this.props.channelId;
-    const ownId = this.props.ownId;
-    const type = this.props.type;
-    const defaultIcon = this.props.defaultIcon;
-    const handleDeleteVideo = this.props.handleDeleteVideo;
+
+    const {
+      ownId,
+      type,
+      defaultIcon,
+      handleDeleteVideo,
+      handleSwapVideos,
+      trendingResults,
+      handleSend,
+      dispatchPlay
+    } = this.props;
+
+    const handleSearch = this.handleSearch;
     const handleAddVideo = videoData => {
       this.props.handleAddVideo(videoData);
-      this.scrollRef.current.scrollTo({
-        top: 0,
-        behavior: "smooth"
-      });
     };
-    const handleSwapVideos = this.props.handleSwapVideos;
+
+    // const editor =
+    //   channel.ownerId === ownId || admins.find(a => a.id === ownId);
 
     const isOwner = channel.ownerId === ownId;
     const isMember = channel.members
@@ -428,36 +436,31 @@ class Channel extends Component {
     const isAdmin =
       channel.type !== "channel" ? false : channel.admins.includes(ownId);
 
-    const handleSearch = this.handleSearch;
-    let searchResults = this.props.trendingResults.results;
-    let totalResults = this.props.trendingResults.totalResults;
-    if (this.state.searchTerm !== "") {
-      searchResults = channel.videoSearch.results;
-      totalResults = channel.videoSearch.totalResults;
-    }
+    const isSearchTerm = this.state.searchTerm !== "";
+    const searchResults = isSearchTerm
+      ? channel.videoSearch.results
+      : trendingResults.results;
+    const totalResults = isSearchTerm
+      ? channel.videoSearch.totalResults
+      : trendingResults.totalResults;
+
     const displayControls =
       channel.type === "channel"
-        ? channel.admins.find(a => a === ownId)
+        ? channel.admins.find(adminId => adminId === ownId)
         : ownId;
 
     let handleNothingPlaying = null;
-    if (type === ROOM_TYPE) {
-      handleNothingPlaying = () => this.scrollToSearch();
-    } else if (displayControls) {
-      handleNothingPlaying = () => {
-        this.props.history.push(`/channels/${channelId}/${QUEUE_TAB}`);
-      };
-    } else {
+    if (type !== ROOM_TYPE) {
       handleNothingPlaying = video => {
-        this.props.handleSend();
+        handleSend();
       };
     }
 
     return (
       <>
-        <div className="flex flex-col bg-secondaryBackground w-full overflow-x-hidden">
+        <div className="flex flex-col bg-background-secondary w-full overflow-x-hidden">
           {/* Channel & Room structure */}
-          <div className="w-full h-12 bg-primaryBackground">
+          <div className="w-full h-12 bg-background-primary">
             <ChannelHeaderContainer
               channelId={channelId}
               isMember={isMember}
@@ -473,33 +476,32 @@ class Channel extends Component {
               <>
                 <VideoPanel
                   channelId={channelId}
-                  dispatchPlay={this.props.dispatchPlay}
+                  dispatchPlay={dispatchPlay}
                   handleDeleteVideo={handleDeleteVideo}
                   handleSwapVideos={handleSwapVideos}
                   handlePlayNextVideo={this.playNextVideo}
-                  handleFindMore={() => {
-                    if (type === CHANNEL_TYPE) {
-                      this.props.history.push(
-                        `/channels/${channelId}/${QUEUE_TAB}`
-                      );
-                      this.setState({
-                        scrollToSearch: true
-                      });
-                    } else {
-                      this.scrollToSearch();
-                    }
-                  }}
                   handleNothingPlaying={handleNothingPlaying}
                   displayControls={displayControls}
                   playlist={this.state.queueList}
                   playerStatus={this.state.playerStatus}
                   isChannel={type === CHANNEL_TYPE && true}
                   classNames="pt-0"
+                  // Below is for ChannelQueue
+                  searchRef={this.searchRef}
+                  name={channel.name}
+                  icon={channel.icon || defaultIcon}
+                  searchTerm={this.state.searchTerm}
+                  searchResults={searchResults}
+                  totalResults={totalResults}
+                  handleSearch={handleSearch}
+                  handleAddVideo={handleAddVideo}
+                  queue={this.state.queueList}
+                  isMember={isMember}
                 />
                 {type === CHANNEL_TYPE && (
                   <ForumPanel
                     ref={this.channelRef}
-                    channelId={this.props.channelId}
+                    channelId={channelId}
                     isMember={isMember}
                     isAdmin={isAdmin}
                     isOwner={isOwner}
@@ -517,22 +519,6 @@ class Channel extends Component {
                   />
                 )}
               </>
-            )}
-            {tab === QUEUE_TAB && (
-              <ChannelQueue
-                ref={this.searchRef}
-                name={channel.name}
-                icon={channel.icon || defaultIcon}
-                searchTerm={this.state.searchTerm}
-                searchResults={searchResults}
-                totalResults={totalResults}
-                handleSearch={handleSearch}
-                handleAddVideo={handleAddVideo}
-                queue={this.state.queueList}
-                handleSwapVideos={handleSwapVideos}
-                handleDeleteVideo={handleDeleteVideo}
-                handleFindMore={() => this.scrollToSearch()}
-              />
             )}
             {tab === SETTINGS_TAB && (
               <ChannelSettingsContainer channelId={channel.id} />

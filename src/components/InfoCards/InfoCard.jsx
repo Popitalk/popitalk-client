@@ -17,13 +17,13 @@ export default function InfoCard({
   isLoading,
   badge = false
 }) {
-  const titleClasses = classnames("text-sm text-primaryText truncate", {
+  const titleClasses = classnames("text-sm text-copy-primary truncate", {
     "font-bold": boldFont
   });
 
   const subtitleClasses = classnames("truncate", {
-    "text-secondaryText": subtitleColor === "gray",
-    "text-primaryText": subtitleColor === "black",
+    "text-copy-secondary": subtitleColor === "gray",
+    "text-copy-primary": subtitleColor === "black",
     "font-bold": boldFont,
     "text-sm": subtitleSize === "sm",
     "text-xs": subtitleSize === "xs"
@@ -35,11 +35,11 @@ export default function InfoCard({
       "py-2": padding === "sm",
       "py-1": padding === "xs",
       "py-0": padding === "none",
-      "border border-highlightText": addBorder,
-      "bg-primaryBackground": backgroundColor === "white",
-      "bg-secondaryBackground": backgroundColor === "gray",
-      "bg-highlightBackground": backgroundColor === "highlight",
-      "hover:bg-highlightBackground duration-75": hoverable
+      "border border-copy-highlight": addBorder,
+      "bg-background-primary": backgroundColor === "white",
+      "bg-background-secondary": backgroundColor === "gray",
+      "bg-hover-highlight": backgroundColor === "highlight",
+      "hover:bg-hover-highlight duration-75": hoverable
     }
   );
 
@@ -48,10 +48,10 @@ export default function InfoCard({
       {isLoading === true ? (
         <div className="flex items-center rounded-lg px-2">
           <div className="flex animate-pulse space-x-4 w-full items-center">
-            <div className="flex-shrink-0 rounded-full bg-gray-200 h-12 w-12" />
+            <div className="flex-shrink-0 rounded-full bg-background-quaternary h-12 w-12" />
             <div className="flex flex-col w-full space-y-2">
-              <div className="h-4 bg-gray-200 rounded w-11/12"></div>
-              <div className="h-4 bg-gray-200 rounded w-2/4"></div>
+              <div className="h-4 bg-background-quaternary rounded w-11/12"></div>
+              <div className="h-4 bg-background-quaternary rounded w-2/4"></div>
             </div>
           </div>
         </div>

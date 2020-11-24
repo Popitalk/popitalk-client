@@ -9,6 +9,7 @@ import FeedbackDropDown from "./DropDowns/FeedbackDropDown";
 import DropDownControls from "./DropDowns/DropDownControls";
 import Button from "./Controls/Button";
 import strings from "../helpers/localization";
+import { Toggle } from "../App/ThemeContext";
 
 const SETTINGS = 1;
 const ACCOUNT_SETTINGS = 2;
@@ -93,7 +94,7 @@ export default function SiteHeaderMain({
     dropdownList.length > 0 ? dropdownList[dropdownList.length - 1] : 0;
 
   return (
-    <header className="sm:px-6 // relative flex items-center justify-between h-12 px-2 z-30 bg-primaryBackground select-none">
+    <header className="sm:px-6 // relative flex items-center justify-between h-12 bg-background-primary px-2 z-30 select-none">
       <Link
         to="/channels"
         className="flex flex-shrink-0 items-center justify-center"
@@ -113,10 +114,10 @@ export default function SiteHeaderMain({
           imageButtonSrc={avatar}
           imageButtonSpan={username}
           imageButtonClassName="w-8 h-8 mr-2 rounded-full object-cover"
-          imageButtonSpanClassName="hidden sm:block text-sm"
+          imageButtonSpanClassName="hidden sm:block text-sm text-copy-primary"
           onClick={() => openProfileHandler(userID)}
           analyticsString="My Profile Button: SiteHeaderMain"
-          className="flex "
+          className="flex"
         />
         <ul className="sm:space-x-6 // flex items-center space-x-2">
           <li>
@@ -206,6 +207,7 @@ export default function SiteHeaderMain({
               )}
             </DropDownControls>
           </li>
+          <Toggle></Toggle>
         </ul>
       </div>
     </header>

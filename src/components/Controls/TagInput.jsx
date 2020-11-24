@@ -29,7 +29,7 @@ export default function TagInput({
   ...rest
 }) {
   const fakeInputClasses = classnames(
-    "bg-primaryBackground flex items-start overflow-y-auto max-h-32",
+    "bg-background-primary flex items-start overflow-y-auto max-h-32",
     getInputClasses("regular")
   );
 
@@ -45,7 +45,10 @@ export default function TagInput({
   return (
     <div className={fakeInputClasses}>
       <div className="w-8 h-8 mt-2 ml-2 self-start">
-        <FontAwesomeIcon icon="search" className="text-sm text-secondaryText" />
+        <FontAwesomeIcon
+          icon="search"
+          className="text-sm text-copy-secondary"
+        />
       </div>
       <div className="flex flex-wrap items-center content-start w-full">
         {tags.map(t => (

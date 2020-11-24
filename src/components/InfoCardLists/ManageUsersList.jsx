@@ -16,9 +16,9 @@ export default function ManageUsersList({
   const itemRenderer = a => {
     const control =
       a.id === ownerId ? (
-        <p className="text-secondaryText text-sm mr-2">Owner</p>
+        <p className="text-copy-secondary text-sm mr-2">Owner</p>
       ) : adminsIds.includes(a.id) ? (
-        <p className="text-secondaryText text-sm mr-2">Admin</p>
+        <p className="text-copy-secondary text-sm mr-2">Admin</p>
       ) : (
         <PopupMenu id={a.id} options={options} className="ml-auto" />
       );

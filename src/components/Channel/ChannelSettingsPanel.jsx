@@ -105,14 +105,14 @@ export default function ChannelSettingsPanel({
   }
 
   return (
-    <div className="h-full w-full bg-secondaryBackground flex items-center md:flex-row md:items-stretch overflow-auto">
+    <div className="h-full w-full bg-background-secondary flex items-center md:flex-row md:items-stretch overflow-auto">
       <div className="flex-none h-full p-4">
         <ChannelSettingsSidebar
           buttons={buttons}
           openDeleteChannelModal={openDeleteChannelModal}
         />
       </div>
-      <div className="flex w-full justify-center text-primaryText">
+      <div className="flex w-full justify-center text-copy-primary">
         {paneContent}
       </div>
     </div>

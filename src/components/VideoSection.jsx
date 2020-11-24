@@ -4,6 +4,7 @@ import AvatarIcon from "./Controls/AvatarIcon";
 import VideoStatus from "./VideoStatus";
 import VideoPlayer from "./VideoPlayer";
 import ReactTooltip from "react-tooltip";
+import strings from "../helpers/localization";
 
 export default function VideoSection({
   title,
@@ -76,7 +77,7 @@ export default function VideoSection({
               onClick={socialShare}
               analyticsString="Invite User Button: VideoSection"
             >
-              Invite
+              {strings.invite}
             </Button>
           ) : (
             <div />
@@ -86,10 +87,10 @@ export default function VideoSection({
           <div>
             <div className="py-2">
               <p
-                className="text-lg text-primaryText font-semibold truncate-2-lines overflow-hidden"
+                className="text-lg text-copy-primary font-semibold truncate-2-lines overflow-hidden"
                 dangerouslySetInnerHTML={{ __html: title }}
               />
-              <p className="text-sm text-secondaryText py-2">
+              <p className="text-sm text-copy-secondary py-2">
                 {sourceChannelName} {url}
               </p>
             </div>

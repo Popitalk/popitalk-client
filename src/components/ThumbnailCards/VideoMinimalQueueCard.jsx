@@ -18,17 +18,17 @@ export default function VideoMinimalQueueCard({
         <Button
           styleNone
           styleNoneContent={strings.searchAddVideos}
-          styleNoneContentClassName="text-center text-secondaryText text-sm"
-          className="h-12 w-full bg-tertiaryBackground hover:shadow-sm hover:bg-highlightBackground transition duration-100 rounded-lg"
+          styleNoneContentClassName="text-center text-copy-secondary text-sm"
+          className="h-12 w-full bg-background-primary my-1 hover:shadow-sm hover:bg-hover-highlight transition duration-100 rounded-lg"
           analyticsString="Direct to search Button: VideoMinimalQueueCard"
           onClick={handleFindMore}
         />
       )}
       {title && (
-        <div className="relative px-4 rounded-lg h-12 my-1 w-full hover:shadow-md flex items-center justify-between bg-primaryBackground cursor-pointer">
+        <div className="relative px-4 rounded-lg h-12 my-1 w-full hover:shadow-md flex items-center justify-between bg-background-primary cursor-pointer">
           <FontAwesomeIcon
             icon="bars"
-            className="text-secondaryText cursor-move mr-4"
+            className="text-copy-secondary cursor-move mr-4"
           />
           <div className="flex flex-row w-full justify-between items-center space-x-2">
             <VideoStatus
@@ -36,9 +36,9 @@ export default function VideoMinimalQueueCard({
               type="text"
               statusMessage={statusMessage}
             />
-            <p className="text-sm text-secondaryText">{duration}</p>
+            <p className="text-sm text-copy-secondary">{duration}</p>
             <p
-              className="text-sm w-full mx-2 truncate"
+              className="text-sm text-copy-primary w-full mx-2 truncate"
               dangerouslySetInnerHTML={{ __html: title }}
             />
           </div>

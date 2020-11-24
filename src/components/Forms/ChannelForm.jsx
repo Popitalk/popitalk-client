@@ -164,7 +164,7 @@ export default function ChannelForm({
                 onBlur={handleBlur}
                 value={values.name}
                 error={touched.name && errors.name}
-                className="mb-8"
+                className="mb-8 text-copy-primary"
               />
               <Input
                 variant="textarea"
@@ -178,7 +178,7 @@ export default function ChannelForm({
                 value={values.description}
                 error={touched.description && errors.description}
                 maxLength={150}
-                className="mb-8"
+                className="mb-8 text-copy-primary"
               />
               {/* --UNCOMMENT FOR CHANNEL CATEGORY */}
               {/* <ControlHeader
@@ -202,7 +202,7 @@ export default function ChannelForm({
                     />
                     <h4 className="text-lg font-bold">Private Group</h4>
                   </div>
-                  <p className="text-secondaryText max-w-xs">
+                  <p className="text-copy-secondary max-w-xs">
                     Users will have to request to follow your group in order to
                     see your content
                   </p>
@@ -221,7 +221,7 @@ export default function ChannelForm({
             </div>
           </div>
           {error ? (
-            <p className="text-errorText text-sm pt-4">{error}</p>
+            <p className="text-copy-error text-sm pt-4">{error}</p>
           ) : (
             <></>
           )}

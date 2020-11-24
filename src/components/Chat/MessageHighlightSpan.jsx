@@ -5,8 +5,8 @@ export default function MessageHighlightSpan({ ownId, userId, status }) {
     <span
       className={`w-0.2 mr-4 ${
         userId !== ownId || status === "rejected" || status === "pending"
-          ? "bg-highlightBackground"
-          : "bg-highlightText"
+          ? "bg-background-highlight"
+          : "bg-copy-highlight"
       }`}
     ></span>
   );

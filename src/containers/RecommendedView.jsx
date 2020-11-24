@@ -134,7 +134,7 @@ function RecommendedChannels({ selectedPage }) {
   // }, [channelList]);
 
   return (
-    <div className="relative py-4 mx-auto w-full max-w-screen-xl rounded-md bg-secondaryBackground">
+    <div className="relative py-4 mx-auto w-full max-w-screen-xl rounded-md bg-background-secondary">
       {/* Alert to indicate invalid channel URL */}
       <div className="fixed mx-2 -my-4 z-50">
         {!!alert && <Alert duration={3000}>{alert}</Alert>}
@@ -166,13 +166,13 @@ function RecommendedChannels({ selectedPage }) {
                 <Button
                   styleNone
                   styleNoneContent={img.tab}
-                  styleNoneContentClassName="font-bold text-lg"
+                  styleNoneContentClassName="font-bold text-md"
                   hoverable
                   key={idx}
                   className={`h-full p-4 ${
                     tabSelected === img.tab
-                      ? "text-highlightText cursor-default"
-                      : "text-secondaryText cursor-pointer"
+                      ? "text-copy-highlight cursor-default"
+                      : "text-copy-secondary cursor-pointer"
                   }`}
                   onClick={() => tabHandler(img.tab)}
                   analyticsString={`${img.tab} Button: RecommendedView`}

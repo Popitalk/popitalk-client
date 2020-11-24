@@ -3,14 +3,14 @@ import strings from "../../helpers/localization";
 
 function Footer() {
   return (
-    <footer className="w-full px-4 py-8 bg-gradient-r-primary text-tertiaryText sm:px-16">
+    <footer className="w-full px-4 py-8 bg-gradient-r-primary text-copy-tertiary sm:px-16">
       <div className="grid grid-cols-1 gap-y-12 sm:flex sm:justify-start sm:space-x-20 sm:ml-10 sm:mt-6 my-8">
         <div className="space-y-4 text-center">
           <span className="mb-6 text-md font-bold">{strings.company}</span>
           <ul className="space-y-2 sm:text-xs text-md">
             <li>
               <a
-                className="text-tertiaryText no-underline"
+                className="text-copy-tertiary no-underline"
                 href="https://about.popitalk.com/"
               >
                 {strings.aboutPopitalk}
@@ -18,7 +18,7 @@ function Footer() {
             </li>
             <li>
               <a
-                className="text-tertiaryText no-underline"
+                className="text-copy-tertiary no-underline"
                 href="https://medium.com/popitalk"
               >
                 {strings.blog}
@@ -26,7 +26,7 @@ function Footer() {
             </li>
             <li>
               <a
-                className="text-tertiaryText no-underline"
+                className="text-copy-tertiary no-underline"
                 href="https://about.popitalk.com/"
               >
                 {strings.contact}
@@ -34,20 +34,20 @@ function Footer() {
             </li>
             <li>
               <a
-                className="text-tertiaryText no-underline"
+                className="text-copy-tertiary no-underline"
                 href="https://www.saashub.com/popitalk-status"
               >
-                Status Page
+                {strings.StatusPage}
               </a>
             </li>
           </ul>
         </div>
         <div className="space-y-4 text-center">
           <span className="mb-4 text-md font-bold">{strings.legal}</span>
-          <ul className="space-y-2  sm:text-xs text-md text-tertiaryText no-underline">
+          <ul className="space-y-2  sm:text-xs text-md text-copy-tertiary no-underline">
             <li>
               <a
-                className="text-tertiaryText no-underline"
+                className="text-copy-tertiary no-underline"
                 href="https://medium.com/popitalk/end-user-license-agreement-and-terms-of-service-dc8a25c0f5d2?source=friends_link&sk=2150df3f6e097d60599c30a5d3e8942a"
               >
                 {strings.termsOfUse}
@@ -55,7 +55,7 @@ function Footer() {
             </li>
             <li>
               <a
-                className="text-tertiaryText no-underline"
+                className="text-copy-tertiary no-underline"
                 href="https://medium.com/popitalk/privacy-policy-ab89684edca6?source=friends_link&sk=555c056e49c784af16481f96f8dcbfe3"
               >
                 {strings.privacyPolicy}
@@ -63,7 +63,7 @@ function Footer() {
             </li>
             <li>
               <a
-                className="text-tertiaryText no-underline"
+                className="text-copy-tertiary no-underline"
                 href="https://medium.com/popitalk/copyright-policy-872f41dd7856?sk=38c4ab2d90555ed5ee6fe85373e06584"
               >
                 {strings.copyright}
@@ -76,7 +76,7 @@ function Footer() {
           <ul className="space-y-2  sm:text-xs text-md">
             <li>
               <a
-                className="text-tertiaryText no-underline"
+                className="text-copy-tertiary no-underline"
                 href="https://discord.gg/hdFfgg7"
               >
                 {strings.discord}
@@ -84,7 +84,7 @@ function Footer() {
             </li>
             <li>
               <a
-                className="text-tertiaryText no-underline"
+                className="text-copy-tertiary no-underline"
                 href="https://twitter.com/PopitalkT"
               >
                 {strings.twitter}
@@ -92,7 +92,7 @@ function Footer() {
             </li>
             <li>
               <a
-                className="text-tertiaryText no-underline"
+                className="text-copy-tertiary no-underline"
                 href="https://www.youtube.com/channel/UCJSjPolz6SiYKvVxFmK-Z1A"
               >
                 {strings.youtube}
@@ -100,7 +100,7 @@ function Footer() {
             </li>
             <li>
               <a
-                className="text-tertiaryText no-underline"
+                className="text-copy-tertiary no-underline"
                 href="https://www.facebook.com/popitalk"
               >
                 {strings.facebook}

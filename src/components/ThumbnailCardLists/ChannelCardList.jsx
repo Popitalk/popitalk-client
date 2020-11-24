@@ -15,32 +15,17 @@ function ChannelCardList({ channelList, isCollapsed, tabSelected, isLoading }) {
 
   return (
     <div className="mx-4">
-      {/* For loading: Placeholder */}
-      {isLoading === true ? (
-        <div
-          className={`grid grid-cols-1 w-full my-8 ${
-            isCollapsed
-              ? "sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
-              : "sm:grid-cols-2 md:grid-cols-3"
-          }`}
-        >
-          <ChannelCard isLoading />
-          <ChannelCard isLoading />
-          <ChannelCard isLoading />
-        </div>
-      ) : (
-        <div
-          className={`grid grid-cols-1 w-full ${
-            isCollapsed
-              ? "sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
-              : "sm:grid-cols-2 md:grid-cols-3"
-          }`}
-        >
-          {channelList.map(channel => {
-            return <ChannelCard key={channel.id} {...channel} />;
-          })}
-        </div>
-      )}
+      <div
+        className={`grid grid-cols-1 w-full ${
+          isCollapsed
+            ? "sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
+            : "sm:grid-cols-2 md:grid-cols-3"
+        }`}
+      >
+        {channelList.map(channel => {
+          return <ChannelCard key={channel.id} {...channel} />;
+        })}
+      </div>
     </div>
   );
 }

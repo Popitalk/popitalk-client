@@ -10,7 +10,7 @@ export default function ChannelFormSubmit({
   className
 }) {
   const classes = classnames(
-    "flex flex-row items-center justify-center py-2 px-6 bg-secondaryBackground rounded-xl text-sm text-primaryText",
+    "flex flex-row items-center justify-center py-2 px-6 bg-background-secondary rounded-xl text-sm text-copy-primary",
     { [className]: className }
   );
   return (
@@ -29,7 +29,7 @@ export default function ChannelFormSubmit({
             disabled={disabled}
             onClick={handleReset}
             analyticsString="Channel Reset Button: ChannelFormSubmit"
-            className="text-secondaryText"
+            className="text-copy-secondary"
           >
             {strings.resetButton}
           </Button>

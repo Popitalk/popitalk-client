@@ -12,7 +12,6 @@ export default function SortableList({
   height = "100%"
 }) {
   const SortableItem = SortableElement(({ value }) => itemRenderer(value));
-
   const SortableList = SortableContainer(({ items }) => {
     return (
       <ScrollableCardList axis={axis} displayControls>
@@ -22,6 +21,7 @@ export default function SortableList({
             index={index}
             value={value}
             distance={1}
+            disabled={axis === "x" ? true : undefined}
           />
         ))}
         {children}

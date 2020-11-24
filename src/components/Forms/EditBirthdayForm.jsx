@@ -26,7 +26,7 @@ function EditBirthdayForm({ loading, formik }) {
 
   return (
     <>
-      <div className="w-full pt-2 px-2">
+      <div className="w-full pt-2 px-2 text-copy-primary">
         <ControlHeader
           header={strings.createNewAccountBirthday}
           error={
@@ -97,7 +97,7 @@ function EditBirthdayForm({ loading, formik }) {
             formik.setFieldTouched("month", true, false);
             formik.setFieldTouched("year", true, false);
           }}
-          className="w-32 p-0 text-sm"
+          className="w-32 text-sm"
         />
       </div>
     </>

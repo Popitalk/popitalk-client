@@ -22,16 +22,15 @@ export default function ChannelHeader({
     { name: strings.posts, endpoint: "channel" }
   ];
   if (isAdmin) {
-    navButtons.push({ name: strings.upNext, endpoint: "queue" });
     navButtons.push({ name: strings.settings, endpoint: "settings" });
   }
 
   return (
-    <div className="flex w-full h-12 bg-secondaryBackground justify-between items-center px-4 py-1 z-20 rounded-t-md">
+    <div className="flex w-full h-12 bg-background-secondary justify-between items-center px-4 py-1 z-20 rounded-t-md">
       {isLoading ? (
         <div className="flex flex-row items-center w-full h-full space-x-2">
           <RoomIcon ids={[id]} images={""} size="sm" loading />
-          <div className="animate-pulse w-1/2 h-4 bg-gray-300 rounded" />
+          <div className="animate-pulse w-1/2 h-4 bg-background-quaternary rounded" />
         </div>
       ) : (
         <div className="flex items-center">
@@ -42,7 +41,7 @@ export default function ChannelHeader({
             size="sm"
             className="transition transform ease-in-out hover:scale-110 duration-100 cursor-pointer"
           />
-          <p className="flex flex-shrink-0 text-md font-medium text-primaryText p-2 w-full truncate overflow-hidden">
+          <p className="flex flex-shrink-0 text-md font-medium text-copy-primary p-2 w-full truncate overflow-hidden">
             {name}
           </p>
         </div>
@@ -51,13 +50,13 @@ export default function ChannelHeader({
         <nav className="flex flex-shrink-0 truncate items-center">
           {navButtons.map((button, idx) => {
             let className =
-              "mx-1 font-semibold no-underline focus:outline-none p-2 hover:text-highlightText";
+              "mx-1 font-semibold no-underline focus:outline-none p-2 hover:text-copy-highlight";
             if (
               location.pathname.startsWith(`/channels/${id}/${button.endpoint}`)
             ) {
               className = `${className} rainbow-text`;
             } else {
-              className = `${className} text-secondaryText`;
+              className = `${className} text-copy-secondary`;
             }
             return (
               <Link

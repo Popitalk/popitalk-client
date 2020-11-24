@@ -30,14 +30,16 @@ import {
   faVolumeMute,
   faCompress,
   faCheck,
-  faArrowLeft
+  faArrowLeft,
+  faMoon
 } from "@fortawesome/free-solid-svg-icons";
 import {
   faSmile as farSmile,
   faImages as farImages,
   faBell as farBell,
   faHeart as farHeart,
-  faComment as farComment
+  faComment as farComment,
+  faMoon as farMoon
 } from "@fortawesome/free-regular-svg-icons";
 // import { fab } from "@fortawesome/free-brands-svg-icons";
 
@@ -77,5 +79,7 @@ library.add(
   faVolumeMute,
   faCompress,
   faCheck,
-  faArrowLeft
+  faArrowLeft,
+  faMoon,
+  farMoon
 );

@@ -2,8 +2,11 @@ import LocalizedStrings from "react-localization";
 
 // To add more supported languages, add the Country Key (eg.English -> en). Keys can be found here https://material-ui.com/guides/localization/.
 let strings = new LocalizedStrings({
-  //  Default - English  //
+  // === Default - English === //
   en: {
+    // Moment.JS
+    location: "en",
+
     // SEO (MataData & WelcomePage & SiteHeaderWelcome)
     mainTitle: "Popitalk - Watch together",
     mainDescription:
@@ -19,8 +22,37 @@ let strings = new LocalizedStrings({
     loginUsername: "Username or email",
     loginPassword: "Password",
 
-    // Moment.JS
-    location: "en",
+    // DescriptionSection.jsx
+    descriptionHeader1: "Watch Videos and listen to Music, together.",
+    descriptionHeader2: "Why use Popitalk.",
+    descriptionCardTitle1: "Watch together",
+    descriptionCardBody1:
+      "Enjoy the internet in sync with your friends. Watch videos and listen to music together on Popitalk.",
+    descriptionCardTitle2: "Chat",
+    descriptionCardBody2:
+      "Watch content from YouTube together. Vimeo, Crunchyroll anime, Twitch and SoundCloud are coming soon.",
+    descriptionCardTitle3: "Public Channels",
+    descriptionCardBody3:
+      "Create your own channel and share your video playlist with everyone. Get followers and become the biggest channel!",
+    descriptionCardTitle4: "Binge-Watching",
+    descriptionCardBody4:
+      "Popitalk is great for binge-watching your favorite web series or Let's Play with friends or other fans! Either fill the playlist with all episodes or let people vote on their favorite episodes!",
+    descriptionCardTitle5: "Internet DJ",
+    descriptionCardBody5:
+      "Ever dreamed of being a DJ? You know the latest and greatest indie tracks on Soundcloud? Fire up your own room and build a playlist that people will remember for weeks. You don't know any good music? No problem, just leave the voting enabled and collaborate with your friends!",
+    descriptionCardTitle6: "Long-Distance Relationships",
+    descriptionCardBody6:
+      "Long-Distance Relationships are hard and Popitalk cannot fix that. But many couples use Popitalk to watch videos together and have a movie night even when you're apart. Don't forget to mark your room as private to keep creepy strangers out.",
+    descriptionCardTitle7: "Hanging Out",
+    descriptionCardBody7:
+      "Create a room just for you and your friends where you meet after school and watch the latest cat videos while you chat how your day went. With permanent room you always know where to find each other.",
+    descriptionCardTitle8: "Your Own Channel",
+    descriptionCardBody8:
+      "Our users came up with pretty awesome ideas so far. Just try yours out and see if it works! Channels are very configurable and should fit your needs. Create interesting channels and try to become the biggest Channel on Popitalk!",
+    descriptionCardTitle9: "Video Premieres",
+    descriptionCardBody9:
+      "You create videos and want to release your newest creation with a sweet event and see the reactions of your viewers as they happen? Upload your video to YouTube and flag it as hidden. You can add it to the playlist with the video link and invite your fans to the room. Hit play when you are ready to start your very own premiere!",
+
     // CreateNewAccountForm & EditInformationForm & EditBirthdayForm
     createNewAccountTitle: "Create a new account",
     createNewAccountSubtitle: "Get the full experience. It's FREE!",
@@ -32,6 +64,7 @@ let strings = new LocalizedStrings({
     createNewAccountBirthday: "Birthday",
     createNewAccountTerms: "By clicking Sign Up, you agree to the",
     createNewAccountTerms1: "Terms and Policy.",
+
     // functions.js input errors
     inputTextTooShort: "Too short *",
     inputTextTooLong: "Too long *",
@@ -44,6 +77,7 @@ let strings = new LocalizedStrings({
     upperCaseRequired: "At least one uppercase letter needed *",
     numberRequired: "Password should have at least one number.",
     newPasswordRequirement: "It must be different from your old password.",
+
     // Footer
     company: "Company",
     aboutPopitalk: "About Popitalk",
@@ -58,7 +92,9 @@ let strings = new LocalizedStrings({
     twitter: "Twitter",
     youtube: "Youtube",
     facebook: "Facebook",
-    // Buttons
+    StatusPage: "Status Page",
+
+    // == Buttons == //
     loginButton: "Log In",
     createNewAccountButton: "Sign Up",
     createChannelButton: "Create",
@@ -77,6 +113,8 @@ let strings = new LocalizedStrings({
     loadMoreButton: "Show more",
     backToTrendingButton: "Back to Trending",
     sendFeedbackButton: "About Popitalk",
+    copyButton: "Copy",
+
     // Months
     jan: "January",
     feb: "February",
@@ -90,9 +128,11 @@ let strings = new LocalizedStrings({
     oct: "October",
     nov: "November",
     dec: "December",
+
     // PanelHeader & MiniFriendsList
     channels: "Channels",
     friends: "Chat",
+
     // ChannelsPanel & FriendsPanel
     yourChannels: "Your Channels",
     yourChannelsPlaceholder: "Create your own public Channel!",
@@ -100,6 +140,7 @@ let strings = new LocalizedStrings({
     followingChannelsPlaceholder: "Discover and Follow Channels!",
     searchFriendsInput: "Search Username",
     searchResult: "Results for",
+
     // RoomIcon
     myRoom: "You",
     // ChannelsList
@@ -119,6 +160,8 @@ let strings = new LocalizedStrings({
     posts: "Posts",
     upNext: "Playlist",
     settings: "Settings",
+
+    // == VideoPanel == //
     // VideoPlayer & VideoStatus
     paused: "Paused",
     startingIn: "Starting in",
@@ -128,19 +171,15 @@ let strings = new LocalizedStrings({
     unmute: "Unmute",
     fullScreen: "Full screen",
     playing: "Playing",
-    // Chat Header & ChatAction
-    roomMembers: "room members",
-    followers: "followers",
-    chatInput: "Type a message...",
-    chatDisabledText: "Follow the channel to send a message.",
+    saveAndReturn: "Save and Return",
     // SortableList & ChannelQueue & VideoMinimalQueueCard
-    findMoreVideos: "Search for videos",
-    manageUpNext: "Manage Playlist",
-    upNextSubtitle:
-      "Add, delete or change the orders of the videos. You can add up to 30 videos.",
+    findMoreVideos: "Search and Add Videos",
+    manageUpNext: "Add Videos & Manage Playlist",
+    upNextSubtitle: "Videos that ended will be removed from your playlist.",
     searchAddVideos: "Search and add more videos below!",
     //ChannelDescription & NewChannelPost & ChannelPost
     admins: "Admins",
+    invite: "Invite",
     postInput: "Post something...",
     like: "Like",
     likes: "Likes",
@@ -151,6 +190,18 @@ let strings = new LocalizedStrings({
     deletePost: "Delete post",
     deletePostSubtitle:
       "Are you sure you want to delete this Post? You cannot undo this action.",
+    // Invite Modal
+    inviteModalHeader: "Invite Friends to this channel",
+    // InviteForm
+    copyUrl: "Copy and share this link",
+    shareToSocialMedia: "Or Share it on Social Media",
+
+    // Chat Header & ChatAction
+    roomMembers: "room members",
+    followers: "followers",
+    chatInput: "Type a message...",
+    chatDisabledText: "Follow the channel to send a message.",
+
     //CreateChannel > ChannelForm, ChannelFormSubmit
     selectChannelIcon: "Select Channel Icon",
     changeChannelIcon: "Change Channel Icon",
@@ -192,11 +243,12 @@ let strings = new LocalizedStrings({
     friendsText: "Friends"
   },
 
-  //  KOREAN  //
+  // === KOREAN === //
   ko: {
     // Moment.JS
     location: "ko",
-    // WelcomePage & SiteHeaderWelcome
+
+    // SEO (MataData & WelcomePage & SiteHeaderWelcome)
     mainTitle: "Popitalk - 같이보는 TV",
     mainDescription:
       "Popitalk으로 친구와 가족들과 유튜브 같이 시청하고 채팅해요. 새로운 채널을 구독하고 재미있는 영상을 시청하세요",
@@ -207,9 +259,41 @@ let strings = new LocalizedStrings({
       "Popitalk 계정을 만들거나 로그인하세요. 친구, 가족, 아는 사람들과 유튜브 같이 시청하고 채팅해요.",
     createChannelTitle: "채널 만들기 - Popitalk",
     createChannelDescription:
-      "포피톡에서 채널을 개설하세요. 재미있는 영상들을 재생하고 팔로워들과 소통하세요.",
+      "뽀삐톡에서 채널을 개설하세요. 재미있는 영상들을 재생하고 팔로워들과 소통하세요.",
     loginUsername: "이메일 또는 아이디",
     loginPassword: "비밀번호",
+
+    // DescriptionSection.jsx
+    descriptionHeader1: "꿀잼인 동영상과 음악을 같이 시청해요.",
+    descriptionHeader2: "Popitalk 을 사용하는 이유.",
+    descriptionCardTitle1: "같이 시청해요",
+    descriptionCardBody1:
+      "인터넷상에서 같은 시간 다른 장소에서 같이 시청할 수 있어요. 뽀삐톡으로 꿀잼인 동영상, 드라마, 영화나 음악도 같이 듣고 감상이 가능해요. ",
+    descriptionCardTitle2: "채팅 기능",
+    descriptionCardBody2:
+      "유튜브 영상을 같이 보면서 채팅도 가능해요. 친구랑 채팅하면서 같은 영상을 같이보는 재미를 아시나요?",
+    descriptionCardTitle3: "공개된 채널",
+    descriptionCardBody3:
+      "채널을 만들어서 인기채널이 되어보세요. 영상 편성표를 만들면 누구나 나의 채널을 팔로우하고 채팅을 할 수 있어요.",
+    descriptionCardTitle4: "빈지-워치",
+    descriptionCardBody4:
+      "TV 프로그램 등 콘텐츠를 몰아서 봐요. 친구나 애인, 가족과 옆에 없다면 같이 볼 수 있는 뽀삐톡을 이용해보세요.",
+    descriptionCardTitle5: "인터넷 DJ",
+    descriptionCardBody5:
+      "DJ에 재능이 있으세요? 시청자들이 좋아할 만한 프로그램으로 편성표를 짜고 널리 알려보세요. 매주 가장 인기 많은 채널은 사이트 앞에 리스팅 됩니다. 방송, 음악, 게임등 여러 카테고리의 채널을 개설해보세요!",
+    descriptionCardTitle6: "장거리 연애 꿀팁",
+    descriptionCardBody6:
+      "장거리 연애가 힘들긴하죠. 뽀삐톡으로 그나마 연인과 같이 시간을 보낼 수 있습니다. 많은 커플들이 뽀삐톡으로 같이 드라마나 유튜브 시청을 같이 합니다. 멀리 떨어져 있어도 시간은 같이 보낼 수 있게요. 친추를 보내고 DM으로 같이 볼 수 있어요.",
+    descriptionCardTitle7: "같이 놀자!",
+    descriptionCardBody7:
+      "요즘 비대면도 많고 갈 곳도 많지 않네요ㅠㅠ. 학교 끝나고 집에서 모임을 뽀삐톡으로 해보세요. 집에서 심심할 땐 친구들이 어디 있는지 항상 알 수 있도록 말이죠!",
+    descriptionCardTitle8: "나만의 채널",
+    descriptionCardBody8:
+      "DM으로 친구와 비공개로 영상 시청을 할 수 있지만 공개된 채널도 만들 수 있습니다. 채널 주인은 여러가지 설정을 할 수 있습니다. 유저 관리, 관리자 설정, 알림, 메세지 권리등 여러가지를 설정해서 사용하세요",
+    descriptionCardTitle9: "영상 프리미어",
+    descriptionCardBody9:
+      "이제 곧 여러분이 직접 영상을 올릴 수 있게 만들 예정입니다. 편성표에 자신만의 영상을 올리면 그제야 자신의 채널을 색다롭게 꾸밀 수 있겠지요!",
+
     // CreateNewAccountForm & EditInformationForm & EditBirthdayForm
     createNewAccountTitle: "가입하기",
     createNewAccountSubtitle:
@@ -235,6 +319,7 @@ let strings = new LocalizedStrings({
     upperCaseRequired: "대문자가 최소한 1개가 필요합니다.",
     numberRequired: "최소한 숫자 1개가 필요합니다.",
     newPasswordRequirement: "전 비밀번호와 다르게 설정해주세요.",
+
     // Footer
     company: "회사소개",
     aboutPopitalk: "Popitalk에 대해서",
@@ -249,7 +334,9 @@ let strings = new LocalizedStrings({
     twitter: "트위터",
     youtube: "유튜브",
     facebook: "페이스북",
-    // Buttons
+    StatusPage: "서버 상태",
+
+    // == Buttons == //
     loginButton: "로그인",
     createNewAccountButton: "가입하기",
     createChannelButton: "만들기",
@@ -267,7 +354,9 @@ let strings = new LocalizedStrings({
     deleteButton: "삭제",
     loadMoreButton: "더 보기",
     backToTrendingButton: "처음으로",
-    sendFeedbackButton: "포피톡 팀",
+    sendFeedbackButton: "뽀삐톡 팀",
+    copyButton: "복사하기",
+
     // Months
     jan: "1월",
     feb: "2월",
@@ -310,6 +399,8 @@ let strings = new LocalizedStrings({
     posts: "프로필",
     upNext: "재생 목록",
     settings: "설정",
+
+    // == VideoPanel == //
     // VideoPlayer & VideoStatus
     paused: "일시정지",
     startingIn: "곧 재생됩니다",
@@ -319,19 +410,16 @@ let strings = new LocalizedStrings({
     unmute: "음소거 해제",
     fullScreen: "전체화면",
     playing: "재생중",
-    // ChatHeader & ChatActions
-    roomMembers: "대화상대",
-    followers: "팔로워",
-    chatInput: "메시지를 작성하세요...",
-    chatDisabledText: "팔로우를 해야 메시지를 보낼 수 있습니다.",
     // SortableList
     findMoreVideos: "더 많은 영상을 검색하세요",
     manageUpNext: "재생 목록을 관리하세요",
+    saveAndReturn: "저장 후 돌아가기",
     upNextSubtitle:
       "동영상을 재생 목록에 추가, 삭제 혹은 이동할 수 있습니다. 최대 30개까지 추가가능 합니다.",
     searchAddVideos: "밑에서 동영상을 검색하고 추가하세요!",
     //ChannelDescription & NewChannelPost & ChannelPost & ChannelChat
     admins: "관리자",
+    invite: "초대하기",
     postInput: "게시글을 입력하세요...",
     like: "좋아요",
     likes: "좋아요",
@@ -340,6 +428,18 @@ let strings = new LocalizedStrings({
     channelWelcomePost: "채널을 개설했습니다!",
     deletePost: "포스트 삭세",
     deletePostSubtitle: "포스트를 삭제하면 복구할 수 없습니다.",
+    // Invite Modal
+    inviteModalHeader: "친구들을 이 채널로 초대해요",
+    // InviteForm
+    copyUrl: "아래의 링크를 복사하세요",
+    shareToSocialMedia: "또는 SNS에 공유하세요",
+
+    // ChatHeader & ChatActions
+    roomMembers: "대화상대",
+    followers: "팔로워",
+    chatInput: "메시지를 작성하세요...",
+    chatDisabledText: "팔로우를 해야 메시지를 보낼 수 있습니다.",
+
     //CreateChannel > ChannelForm, ChannelFormSubmit
     selectChannelIcon: "채널 프사 업로드",
     changeChannelIcon: "채널 프사 변경",

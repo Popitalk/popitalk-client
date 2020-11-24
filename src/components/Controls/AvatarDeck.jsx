@@ -17,7 +17,7 @@ export default function AvatarDeck({
     [className]: className
   });
   const avatarClasses = classnames({
-    "img inline-block rounded-circle text-white border-2 border-imageBorder2": true,
+    "img inline-block rounded-circle text-white border-2 border-outline-image2": true,
     "h-6 w-6": size === "sm",
     "h-8 w-8": size === "md",
     "h-10 w-10": size === "lg"
@@ -40,11 +40,11 @@ export default function AvatarDeck({
             const totalLeft = avatars.length - threshold;
             return (
               <Button
-                hoverable
                 styleNone
+                styleNoneContentClassName="text-xs text-copy-primary"
                 styleNoneContent={`+${totalLeft}`}
                 key={ids?.[index] || index}
-                className={`${avatarClasses} bg-disabledBackground text-xs order-first z-10`}
+                className={`${avatarClasses} bg-background-secondary order-first flex-shrink-0 z-10`}
                 analyticsString="View More Users Button: AvatarDeck"
               />
             );

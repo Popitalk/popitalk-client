@@ -9,36 +9,36 @@ export default function PanelHeader({
   numberOfNotifications
 }) {
   return (
-    <div className="flex bg-primaryBackground items-center w-full select-none space-x-4">
+    <div className="flex bg-background-primary items-center w-full select-none space-x-4">
       <Button
         hoverable
         styleNone
         icon="bars"
-        className="hidden sm:block p-4 ml-2 rounded-full text-secondaryText hover:text-highlightText"
+        className="hidden sm:block p-4 ml-2 rounded-full text-copy-secondary hover:text-copy-highlight"
         onClick={handleCollapse}
         analyticsString="Collapse Button: PanelHeader"
       />
       <nav
-        className={`text-xl px-2 p-3 focus:outline-none hover:bg-secondaryBackground rounded-xl transition transform ease-in-out hover:scale-105 duration-100 ${
+        className={`flex text-xl px-2 p-1 focus:outline-none hover:bg-background-secondary rounded-xl transition transform ease-in-out hover:scale-105 duration-100 cursor-pointer ${
           selectedPage === "channels"
-            ? "rainbow-text cursor-default font-semibold"
-            : "text-secondaryText cursor-pointer font-regular"
+            ? "text-copy-highlight font-semibold"
+            : "text-copy-secondary font-regular"
         }`}
         onClick={() => updateSelectedPage("channels")}
       >
         {strings.channels}
       </nav>
       <nav
-        className={`flex text-xl px-2 p-1 focus:outline-none hover:bg-secondaryBackground rounded-xl transition transform ease-in-out hover:scale-105 duration-100 ${
+        className={`flex text-xl px-2 p-1 focus:outline-none hover:bg-background-secondary rounded-xl transition transform ease-in-out hover:scale-105 duration-100 cursor-pointer ${
           selectedPage === "friends"
-            ? "rainbow-text cursor-default font-semibold"
-            : "text-secondaryText cursor-pointer font-regular"
+            ? "text-copy-highlight font-semibold"
+            : "text-copy-secondary font-regular"
         } `}
         onClick={() => updateSelectedPage("friends")}
       >
         {strings.friends}
         {numberOfNotifications !== 0 && (
-          <span className="flex items-center justify-center bg-gradient-r-cancel rounded-full w-2 h-2 animate-bounce text-xs text-tertiaryText font-bold ml-2 mt-1" />
+          <span className="flex items-center justify-center bg-gradient-r-cancel rounded-full w-2 h-2 animate-bounce text-xs text-copy-tertiary font-bold ml-2 mt-1" />
         )}
       </nav>
     </div>

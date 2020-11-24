@@ -18,10 +18,10 @@ export default function VideoCard({
     <>
       {isLoading ? (
         <div className="animate-pulse max-w-lg">
-          <div className="flex shadow-xs rounded-md pb-16/9 my-4 items-between bg-gray-300" />
+          <div className="flex shadow-xs rounded-md pb-16/9 my-4 items-between bg-background-quaternary" />
           <div className="flex-1 space-y-2 w-full">
-            <div className="h-4 bg-gray-300 rounded" />
-            <div className="h-4 bg-gray-300 rounded w-5/6" />
+            <div className="h-4 bg-background-quaternary rounded" />
+            <div className="h-4 bg-background-quaternary rounded w-5/6" />
           </div>
         </div>
       ) : (
@@ -34,7 +34,7 @@ export default function VideoCard({
             />
             <div
               className="flex absolute w-full h-full top-0 left-0 rounded-md justify-center items-center 
-            text-tertiaryText text-md font-bold bg-black bg-opacity-25 transition-opacity opacity-0 hover:opacity-100 duration-100"
+            text-copy-tertiary text-md font-bold bg-black bg-opacity-25 transition-opacity opacity-0 hover:opacity-100 duration-100"
             >
               <p className="transition transform ease-in-out hover:scale-105 duration-100">
                 {strings.watch}
@@ -43,11 +43,11 @@ export default function VideoCard({
           </div>
           <div className="w-full pt-2 px-1">
             <p
-              className="text-sm font-semibold truncate-2-lines overflow-hidden text-primaryText break-words"
+              className="text-sm font-semibold truncate-2-lines overflow-hidden text-copy-primary break-words"
               dangerouslySetInnerHTML={{ __html: title }}
             />
             <div className="flex items-end">
-              <p className="text-xs pt-2 text-secondaryText items-end">
+              <p className="text-xs pt-2 text-copy-secondary items-end">
                 {"Youtube"} &middot; {rightInfo}
               </p>
             </div>

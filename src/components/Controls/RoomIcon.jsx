@@ -42,7 +42,7 @@ export default function RoomIcon({
     "w-14": size === "lg",
     "w-16": size === "xl",
     "w-20": size === "2xl",
-    // "bg-imageBorder1": !watching,
+    // "bg-outline-image1": !watching,
     // "bg-gradient-r-primary p-2px": watching,
     [className]: className
   });
@@ -54,18 +54,34 @@ export default function RoomIcon({
     "h-16 w-16": size === "xl",
     "h-20 w-20": size === "2xl",
     "grid-cols-2": images.length !== 1
-    // "border-imageBorder1": !watching,
-    // "border-none bg-secondaryBackground p-2px": watching
+    // "border-outline-image1": !watching,
+    // "border-none bg-background-secondary p-2px": watching
   });
+
+  const corners = [
+    "rounded-tl-full",
+    "rounded-tr-full",
+    "rounded-bl-full",
+    "rounded-br-full"
+  ];
+
+  const cornerRadius = (index, length) => {
+    if (length === 1) return "rounded-full";
+    if (length === 2 && index === 0) return "rounded-l-full";
+    if (length === 2 && index === 1) return "rounded-r-full";
+    if (length === 3 && index === 1) return "row-span-2 rounded-r-full";
+    return corners[index];
+  };
+
   const avatarClasses = classnames({
     "border overflow-hidden": true,
-    "border-imageBorder1": !watching,
+    "border-outline-image1": !watching,
     "border-none": watching
   });
   const onlineFriendClasses = classnames({
-    "h-4 w-4 rounded-full border border-imageBorder2 bg-onlineColor absolute": true,
-    "border-imageBorder1": !watching,
-    "border-primaryBackground": watching
+    "h-4 w-4 rounded-full border border-outline-image2 bg-onlineColor absolute": true,
+    "border-outline-image1": !watching,
+    "border-background-primary": watching
   });
   const notificationsClasses = classnames({
     "font-regular text-primaryButtonText text-xs bg-gradient-r-cancel h-2 w-2 animate-bounce rounded-lg absolute right-0 top-0 flex items-center justify-center select-none": true
@@ -77,15 +93,21 @@ export default function RoomIcon({
   return (
     <div className={container1Classes}>
       {isLoading ? (
-        <div className="animate-pulse bg-gray-200 grid w-full h-full rounded-full overflow-hidden" />
+        <div className="animate-pulse bg-background-quaternary grid w-full h-full rounded-full overflow-hidden" />
       ) : (
         <div className="flex flex-col items-center justify-center w-full h-full space-y-1">
           <div className="w-full h-full">
             <div className={container2Classes}>
               {images.slice(0, 4).map((image, index) => (
-                <div key={ids?.[index] || index} className={avatarClasses}>
+                <div
+                  key={ids?.[index] || index}
+                  className={classnames(
+                    avatarClasses,
+                    cornerRadius(index, images.length <= 4 ? images.length : 4)
+                  )}
+                >
                   <img
-                    className="img h-full rounded-circle"
+                    className="img h-full"
                     src={image}
                     alt="img"
                     data-tip={tooltip}
@@ -96,7 +118,7 @@ export default function RoomIcon({
               {self && (
                 <p
                   className="font-bold text-xs absolute bottom-0 left-0 truncate
-            text-highlightText bg-primaryBackground rounded-xl p-1 flex items-center justify-center select-none"
+            text-copy-highlight bg-background-primary rounded-xl p-1 flex items-center justify-center select-none"
                 >
                   {strings.myRoom}
                 </p>

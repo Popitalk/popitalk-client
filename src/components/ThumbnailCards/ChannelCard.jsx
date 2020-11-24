@@ -35,12 +35,12 @@ export default function ChannelCard({
         <div className="flex shadow-xs rounded-lg px-3 py-4 max-w-lg items-between animate-pulse mx-2">
           <div className="relative w-full pb-5/4">
             <div className="absolute w-full h-full flex flex-col justify-between">
-              <div className="h-4 bg-gray-300 rounded w-full"></div>
+              <div className="h-4 bg-background-quaternary rounded w-full"></div>
               <div className="flex w-full space-x-2">
-                <div className="rounded-full bg-gray-300 h-12 w-12"></div>
+                <div className="rounded-full bg-background-quaternary h-12 w-12"></div>
                 <div className="flex-1 space-y-2 py-1">
-                  <div className="h-4 bg-gray-300 rounded"></div>
-                  <div className="h-4 bg-gray-300 rounded w-5/6"></div>
+                  <div className="h-4 bg-background-quaternary rounded"></div>
+                  <div className="h-4 bg-background-quaternary rounded w-5/6"></div>
                 </div>
               </div>
             </div>
@@ -52,7 +52,7 @@ export default function ChannelCard({
           role={handleSelect ? "button" : null}
           onClick={handleSelect}
         >
-          {/* Channel Description*/}
+          {/* Channel Description */}
           <div className="flex flex-row items-center justify-between w-full py-3">
             <div className="flex flex-row items-center">
               <RoomIcon
@@ -62,11 +62,7 @@ export default function ChannelCard({
                 size="sm"
                 className="mr-2"
               />
-              <p
-                className={`pr-2 flex-shrink-1 text-sm font-semibold truncate-2-lines ${
-                  videoThumbnail ? "text-primaryText" : "text-primaryText"
-                }`}
-              >
+              <p className="pr-2 flex-shrink-1 text-sm font-semibold truncate-2-lines text-copy-primary">
                 {name}
               </p>
             </div>
@@ -78,27 +74,27 @@ export default function ChannelCard({
               <img
                 src={videoThumbnail}
                 alt={"channel"}
-                className="absolute img top-0 h-full rounded-md bg-secondaryBackground object-cover pt-px"
+                className="absolute img top-0 h-full rounded-md bg-background-secondary object-cover pt-px"
               />
             ) : (
               <img
                 src={channelPlaceholder}
                 alt={"channel"}
-                className="absolute img top-0 h-full rounded-md bg-primaryBackground"
+                className="absolute img top-0 h-full rounded-md bg-background-primary"
               />
             )}
           </div>
           {/* Video Description & Avatar Deck */}
           <div className="w-full my-4 flex flex-col justify-between items-between items-center space-y-2">
             <p
-              className="text-sm flex-shrink-1 font-bold w-full truncate-2-lines ml-2 text-primaryText"
+              className="text-sm flex-shrink-1 font-bold w-full truncate-2-lines ml-2 text-copy-primary"
               dangerouslySetInnerHTML={{ __html: videoTitle }}
             />
             <div className="flex w-full text-sm">
               <AvatarDeck
                 avatars={viewers}
                 size="md"
-                className="img w-8 h-8 flex-shrink-0"
+                className="img flex-shrink-0"
                 threshold={10}
               />
             </div>
