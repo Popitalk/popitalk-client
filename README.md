@@ -1,6 +1,6 @@
 # popitalk-client
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 ## Info
@@ -57,6 +57,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <table>
   <tr>
     <td align="center"><a href="https://github.com/AhmedSafi97"><img src="https://avatars1.githubusercontent.com/u/50768052?v=4" width="100px;" alt=""/><br /><sub><b>Ahmed Safi</b></sub></a><br /><a href="https://github.com/Popitalk/popitalk-client/commits?author=AhmedSafi97" title="Code">💻</a></td>
+    <td align="center"><a href="http://substance.io"><img src="https://avatars1.githubusercontent.com/u/2931?v=4" width="100px;" alt=""/><br /><sub><b>Michael Aufreiter</b></sub></a><br /><a href="https://github.com/Popitalk/popitalk-client/commits?author=Michael" title="Code">💻</a></td>
   </tr>
 </table>
 
