@@ -13,6 +13,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "Michael",
+      "name": "Michael Aufreiter",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/2931?v=4",
+      "profile": "http://substance.io",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,
