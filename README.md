@@ -1,6 +1,6 @@
 # popitalk-client
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-5-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-6-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 ## Info
@@ -61,6 +61,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="http://www.popitalk.com"><img src="https://avatars1.githubusercontent.com/u/25209058?v=4" width="100px;" alt=""/><br /><sub><b>Andrew Jang</b></sub></a><br /><a href="https://github.com/Popitalk/popitalk-client/commits?author=Andrew-Jang" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/silentfuzzle"><img src="https://avatars1.githubusercontent.com/u/5070376?v=4" width="100px;" alt=""/><br /><sub><b>Emily Palmieri</b></sub></a><br /><a href="https://github.com/Popitalk/popitalk-client/commits?author=silentfuzzle" title="Code">💻</a></td>
     <td align="center"><a href="http://ksimo.com"><img src="https://avatars0.githubusercontent.com/u/61392752?v=4" width="100px;" alt=""/><br /><sub><b>SKaralius</b></sub></a><br /><a href="https://github.com/Popitalk/popitalk-client/commits?author=SKaralius" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/Michael-Xie"><img src="https://avatars2.githubusercontent.com/u/6239834?v=4" width="100px;" alt=""/><br /><sub><b>Michael-Xie</b></sub></a><br /><a href="https://github.com/Popitalk/popitalk-client/commits?author=Michael-Xie" title="Code">💻</a></td>
   </tr>
 </table>
 
