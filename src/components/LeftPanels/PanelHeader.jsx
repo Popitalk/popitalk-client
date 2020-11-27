@@ -1,6 +1,7 @@
 import React from "react";
 import Button from "../Controls/Button";
 import strings from "../../helpers/localization";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default function PanelHeader({
   handleCollapse,
@@ -9,7 +10,7 @@ export default function PanelHeader({
   numberOfNotifications
 }) {
   return (
-    <div className="flex bg-background-primary items-center w-full select-none space-x-4">
+    <div className="flex bg-background-primary items-center w-full select-none space-x-4 px-2">
       <Button
         hoverable
         styleNone
@@ -18,29 +19,33 @@ export default function PanelHeader({
         onClick={handleCollapse}
         analyticsString="Collapse Button: PanelHeader"
       />
-      <nav
-        className={`flex text-xl px-2 p-1 focus:outline-none hover:bg-background-secondary rounded-xl transition transform ease-in-out hover:scale-105 duration-100 cursor-pointer ${
-          selectedPage === "channels"
-            ? "text-copy-highlight font-semibold"
-            : "text-copy-secondary font-regular"
-        }`}
-        onClick={() => updateSelectedPage("channels")}
-      >
-        {strings.channels}
-      </nav>
-      <nav
-        className={`flex text-xl px-2 p-1 focus:outline-none hover:bg-background-secondary rounded-xl transition transform ease-in-out hover:scale-105 duration-100 cursor-pointer ${
-          selectedPage === "friends"
-            ? "text-copy-highlight font-semibold"
-            : "text-copy-secondary font-regular"
-        } `}
-        onClick={() => updateSelectedPage("friends")}
-      >
-        {strings.friends}
-        {numberOfNotifications !== 0 && (
-          <span className="flex items-center justify-center bg-gradient-r-cancel rounded-full w-2 h-2 animate-bounce text-xs text-copy-tertiary font-bold ml-2 mt-1" />
-        )}
-      </nav>
+      <div className="flex space-x-2">
+        <nav
+          className={`flex items-center space-x-2 px-2 p-1 focus:outline-none hover:bg-background-secondary rounded-xl transition transform ease-in-out hover:scale-105 duration-100 cursor-pointer ${
+            selectedPage === "channels"
+              ? "text-copy-highlight font-semibold"
+              : "text-copy-secondary font-regular"
+          }`}
+          onClick={() => updateSelectedPage("channels")}
+        >
+          <FontAwesomeIcon icon="tv" />
+          <div>{strings.channels}</div>
+        </nav>
+        <nav
+          className={`flex items-center space-x-2  px-2 p-1 focus:outline-none hover:bg-background-secondary rounded-xl transition transform ease-in-out hover:scale-105 duration-100 cursor-pointer ${
+            selectedPage === "friends"
+              ? "text-copy-highlight font-semibold"
+              : "text-copy-secondary font-regular"
+          } `}
+          onClick={() => updateSelectedPage("friends")}
+        >
+          <FontAwesomeIcon icon="paper-plane" />
+          <div>{strings.friends}</div>
+          {numberOfNotifications !== 0 && (
+            <span className="flex items-center justify-center bg-gradient-r-cancel rounded-full w-2 h-2 animate-bounce text-xs text-copy-tertiary font-bold ml-2 mt-1" />
+          )}
+        </nav>
+      </div>
     </div>
   );
 }

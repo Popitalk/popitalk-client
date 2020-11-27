@@ -58,7 +58,7 @@ export default function TagInput({
         ))}
         <input
           onKeyDown={detectKeyPress}
-          className="flex flex-grow outline-none border-none py-2 px-2 text-sm"
+          className="flex flex-grow outline-none border-none py-2 px-2 text-sm bg-background-primary"
           {...rest}
         />
       </div>

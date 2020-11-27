@@ -39,8 +39,8 @@ export default function ChannelsPanel({
           isLoading={false}
         />
         <div className="flex flex-col items-start bg-background-primary">
-          <div className="flex items-center m-4 space-x-2">
-            <h4 className="text-md font-semibold text-copy-secondary">
+          <div className="flex items-center mx-4 my-2 space-x-2">
+            <h4 className="text-sm font-semibold text-copy-secondary">
               {strings.yourChannels}
             </h4>
             <Button
@@ -62,7 +62,7 @@ export default function ChannelsPanel({
             emptyMessage={strings.yourChannelsPlaceholder}
             isLoading={false}
           />
-          <h4 className="m-4 text-md font-semibold text-copy-secondary">
+          <h4 className="mx-4 my-2 text-sm font-semibold text-copy-secondary">
             {strings.followingChannels}
           </h4>
           <ChannelsList
