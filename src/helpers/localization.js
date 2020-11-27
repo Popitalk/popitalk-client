@@ -131,7 +131,7 @@ let strings = new LocalizedStrings({
 
     // PanelHeader & MiniFriendsList
     channels: "Channels",
-    friends: "Chat",
+    friends: "Friends",
 
     // ChannelsPanel & FriendsPanel
     yourChannels: "Your Channels",
@@ -148,9 +148,9 @@ let strings = new LocalizedStrings({
     // RecommendedView
     channelSearchInput: "Search for a channel",
     videoSearchInput: "Search for a video",
-    following: "# Following",
-    discover: "# Discover",
-    trending: "# Trending",
+    following: "Following",
+    discover: "Discover",
+    trending: "Trending",
     // ChannelCard
     nothingPlaying: "Nothing is playing at this moment",
     // VideoCard
@@ -372,7 +372,7 @@ let strings = new LocalizedStrings({
     dec: "12월",
     // PanelHeader & MiniFriendsList
     channels: "티비채널",
-    friends: "채팅",
+    friends: "친구",
     // ChannelsPanel & FriendsPanel
     yourChannels: "내 채널",
     yourChannelsPlaceholder: "나만의 채널을 만들어 보세요!",
@@ -387,9 +387,9 @@ let strings = new LocalizedStrings({
     // RecommendedView
     channelSearchInput: "채널 검색",
     videoSearchInput: "동영상 검색",
-    following: "# 팔로잉",
-    discover: "# 추천",
-    trending: "# 인기",
+    following: "팔로잉",
+    discover: "추천",
+    trending: "인기",
     // ChannelCard
     nothingPlaying: "재생되고 있는 영상이 없습니다",
     // VideoCard
@@ -577,9 +577,9 @@ let strings = new LocalizedStrings({
     // RecommendedView
     channelSearchInput: "Поиск канала",
     videoSearchInput: "Поиск видео",
-    following: "# Подписчики",
-    discover: "# Найти",
-    trending: "# В тренде",
+    following: "Подписчики",
+    discover: "Найти",
+    trending: "В тренде",
     // ChannelCard
     nothingPlaying: "В данный момент ничего не играет",
     // VideoCard

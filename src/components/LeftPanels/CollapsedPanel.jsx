@@ -70,8 +70,8 @@ function CollapsedPanel({
                 ? "bg-background-primary"
                 : "bg-background-secondary"
             }`}
-            styleNoneContent={strings.channels}
-            styleNoneContentClassName={`font-bold text-sm ${
+            icon="tv"
+            styleNoneIconClassName={`text-lg ${
               isFollowingExpanded
                 ? "text-copy-highlight"
                 : "text-copy-secondary"
@@ -118,13 +118,13 @@ function CollapsedPanel({
         <div className="bg-background-primary rounded-xl mb-4">
           <Button
             styleNone
-            className={`flex items-center justify-center h-12 w-20 mb-1 shadow-none hover:bg-hover-highlight  ${
+            className={`flex items-center justify-center h-12 w-20 shadow-none hover:bg-hover-highlight ${
               isDiscoverExpanded
                 ? "bg-background-primary"
                 : "bg-background-secondary"
             }`}
-            styleNoneContent={strings.friends}
-            styleNoneContentClassName={`font-bold text-sm ${
+            icon="paper-plane"
+            styleNoneIconClassName={`text-lg ${
               isDiscoverExpanded ? "text-copy-highlight" : "text-copy-secondary"
             }`}
             analyticsString="Friends Expand Button: CollapsedPanel"

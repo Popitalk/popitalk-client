@@ -31,7 +31,9 @@ import {
   faCompress,
   faCheck,
   faArrowLeft,
-  faMoon
+  faMoon,
+  faHome,
+  faFire
 } from "@fortawesome/free-solid-svg-icons";
 import {
   faSmile as farSmile,
@@ -81,5 +83,7 @@ library.add(
   faCheck,
   faArrowLeft,
   faMoon,
-  farMoon
+  farMoon,
+  faHome,
+  faFire
 );

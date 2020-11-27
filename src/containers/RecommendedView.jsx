@@ -21,9 +21,9 @@ const moreThanTwoMinutesAgo = date => new Date(date) < new Date() - 120000;
 
 function RecommendedChannels({ selectedPage }) {
   const tabs = [
-    { tab: strings.following },
-    { tab: strings.discover },
-    { tab: strings.trending }
+    { tab: strings.following, icon: "home" },
+    { tab: strings.discover, icon: "globe" },
+    { tab: strings.trending, icon: "fire" }
   ];
   const [tabSelected, setTab] = useState(tabs[2].tab);
   const isCollapsed = useSelector(state => state.ui.isCollapsed);
@@ -64,6 +64,7 @@ function RecommendedChannels({ selectedPage }) {
   }, [search]);
 
   const tabHandler = tab => {
+    setIsSearchForChannels(false);
     if (tab === tabs[0].tab) {
       if (
         !followingChannels.lastRequestAt ||
@@ -139,7 +140,7 @@ function RecommendedChannels({ selectedPage }) {
       <div className="fixed mx-2 -my-4 z-50">
         {!!alert && <Alert duration={3000}>{alert}</Alert>}
       </div>
-      <div className="mx-2 pt-6 mx-auto w-3/4 sm:w-1/2">
+      <div className="py-4 mx-auto w-3/4 sm:w-1/2">
         <Input
           variant="channel"
           size="sm"
@@ -152,6 +153,28 @@ function RecommendedChannels({ selectedPage }) {
           onChange={e => setSearch(e.target.value)}
           onClick={handleSearch}
         />
+        {/* OPTION TABS */}
+        <div className="flex justify-center h-auto">
+          {tabs.map((img, idx) => {
+            return (
+              <Button
+                styleNone
+                styleNoneContent={img.tab}
+                icon={img.icon}
+                styleNoneContentClassName="font-bold text-sm"
+                hoverable
+                key={idx}
+                className={`h-full p-4 space-x-2 ${
+                  tabSelected === img.tab
+                    ? "text-copy-highlight"
+                    : "text-copy-secondary"
+                }`}
+                onClick={() => tabHandler(img.tab)}
+                analyticsString={`${img.tab} Button: RecommendedView`}
+              />
+            );
+          })}
+        </div>
       </div>
       {isSearchForChannels ? (
         <div>
@@ -159,27 +182,6 @@ function RecommendedChannels({ selectedPage }) {
         </div>
       ) : (
         <div>
-          {/* OPTION TABS */}
-          <div className="flex justify-start px-6 mt-4 h-auto">
-            {tabs.map((img, idx) => {
-              return (
-                <Button
-                  styleNone
-                  styleNoneContent={img.tab}
-                  styleNoneContentClassName="font-bold text-md"
-                  hoverable
-                  key={idx}
-                  className={`h-full p-4 ${
-                    tabSelected === img.tab
-                      ? "text-copy-highlight cursor-default"
-                      : "text-copy-secondary cursor-pointer"
-                  }`}
-                  onClick={() => tabHandler(img.tab)}
-                  analyticsString={`${img.tab} Button: RecommendedView`}
-                />
-              );
-            })}
-          </div>
           {/* CARDS */}
           {selectedPage === "channels" ? (
             <>
