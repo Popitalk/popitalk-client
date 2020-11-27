@@ -1,27 +1,30 @@
 import React, { useEffect } from "react";
-import { ThemeProvider } from "./ThemeContext";
 import { useSelector, useDispatch } from "react-redux";
 import { Switch, Route } from "react-router";
 import { Redirect } from "react-router-dom";
+import Helmet from "react-helmet";
+
+import { ThemeProvider } from "./ThemeContext";
 import WelcomePage from "../containers/WelcomePage";
 import Header from "../containers/Header";
+import LeftPanel from "../containers/LeftPanel";
+import RecommendedView from "../containers/RecommendedView";
 import ModalManager from "../containers/Modals/ModalManager";
+import ChatPanel from "../containers/ChatPanel";
+import Channel from "../containers/Channel";
+import CreateChannelContainer from "../containers/CreateChannelContainer";
+import AnonymousSidebar from "../components/LeftPanels/AnonymousSidebar";
+import CreateNewAccountContainer from "../containers/CreateNewAccountContainer";
+import ReactGa from "react-ga";
+import logo from "../assets/logo.png";
+import strings from "../helpers/localization";
 import { validateSession } from "../redux/actions";
+import { PublicRoute, GeneralRoute, PrivateRoute } from "../components/Routers";
+
 import "../styles/app.css";
 import "./App.css";
 import "../helpers/initIcons";
-import LeftPanel from "../containers/LeftPanel";
-import RecommendedView from "../containers/RecommendedView";
-import ChatPanel from "../containers/ChatPanel";
-import AnonymousSidebar from "../components/LeftPanels/AnonymousSidebar";
-import CreateNewAccountContainer from "../containers/CreateNewAccountContainer";
-import CreateChannelContainer from "../containers/CreateChannelContainer";
-import Channel from "../containers/Channel";
 import "../components/ScrollBars.css";
-import ReactGa from "react-ga";
-import Helmet from "react-helmet";
-import logo from "../assets/logo.png";
-import strings from "../helpers/localization";
 
 const RouteWrapper = ({ leftPanel, children }) => {
   return (
@@ -78,32 +81,38 @@ export default function App() {
           <Header />
         </div>
         <Switch>
-          {!loggedIn && (
-            <>
-              <Route exact path="/">
-                <div className="h-full overflow-y-auto">
-                  <CreateNewAccountContainer component={WelcomePage} />
-                </div>
-              </Route>
-              <Redirect to="/" />
-            </>
-          )}
-          <Route exact path="/create">
+          <PublicRoute exact path="/">
+            <div className="h-full overflow-y-auto">
+              <CreateNewAccountContainer component={WelcomePage} />
+            </div>
+          </PublicRoute>
+          <GeneralRoute exact path="/channels/:channelId/:tab">
+            <RouteWrapper leftPanel={leftPanel}>
+              <Channel chatPanel={chatPanel} />
+            </RouteWrapper>
+          </GeneralRoute>
+          <GeneralRoute exact path="/channels">
+            <RouteWrapper leftPanel={leftPanel}>
+              <div
+                className={`rounded-md bg-background-secondary ${searchClasses}`}
+              >
+                <RecommendedView selectedPage="channels" />
+              </div>
+            </RouteWrapper>
+          </GeneralRoute>
+          <PrivateRoute exact path="/create">
             <RouteWrapper leftPanel={leftPanel}>
               <div className="flex justify-center py-12 px-10 md:px-36 lg:px-48 bg-background-secondary w-full overflow-auto select-none">
                 <CreateChannelContainer />
               </div>
             </RouteWrapper>
-          </Route>
-          <Route
-            exact
-            path={["/channels/:channelId/:tab", "/rooms/:roomId/video"]}
-          >
+          </PrivateRoute>
+          <PrivateRoute exact path="/rooms/:roomId/video">
             <RouteWrapper leftPanel={leftPanel}>
               <Channel chatPanel={chatPanel} />
             </RouteWrapper>
-          </Route>
-          <Route exact path="/channels">
+          </PrivateRoute>
+          <PrivateRoute exact path="/friends">
             <RouteWrapper leftPanel={leftPanel}>
               <div
                 className={`rounded-md bg-background-secondary ${searchClasses}`}
@@ -111,20 +120,13 @@ export default function App() {
                 <RecommendedView selectedPage="channels" />
               </div>
             </RouteWrapper>
-          </Route>
-          <Route exact path="/friends">
-            <RouteWrapper leftPanel={leftPanel}>
-              <div
-                className={`rounded-md bg-background-secondary ${searchClasses}`}
-              >
-                <RecommendedView selectedPage="channels" />
-              </div>
-            </RouteWrapper>
-          </Route>
-          <Route exact path="/users/:userId">
+          </PrivateRoute>
+          <PrivateRoute exact path="/users/:userId">
             <RouteWrapper leftPanel={leftPanel} />
+          </PrivateRoute>
+          <Route path="*">
+            <Redirect to={loggedIn ? "/channels" : "/"} />
           </Route>
-          <Redirect to="/channels" />
         </Switch>
       </div>
       <Helmet>
