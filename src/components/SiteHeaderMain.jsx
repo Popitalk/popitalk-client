@@ -102,24 +102,16 @@ export default function SiteHeaderMain({
         <Button
           imageButton
           imageButtonSrc={Logo}
-          imageButtonClassName="w-10 h-10"
+          imageButtonClassName="w-8 h-8"
           analyticsString="Main Logo Button: SiteHeaderMain"
           hoverable
         />
       </Link>
       <div className="sm:space-x-6 // flex items-center space-x-2">
-        <Button
-          hoverable
-          imageButton
-          imageButtonSrc={avatar}
-          imageButtonSpan={username}
-          imageButtonClassName="w-8 h-8 mr-2 rounded-full object-cover"
-          imageButtonSpanClassName="hidden sm:block text-sm text-copy-primary"
-          onClick={() => openProfileHandler(userID)}
-          analyticsString="My Profile Button: SiteHeaderMain"
-          className="flex"
-        />
         <ul className="sm:space-x-6 // flex items-center space-x-2">
+          <li>
+            <Toggle></Toggle>
+          </li>
           <li>
             <DropDownControls
               icon="user-plus"
@@ -207,8 +199,17 @@ export default function SiteHeaderMain({
               )}
             </DropDownControls>
           </li>
-          <Toggle></Toggle>
         </ul>
+        <Button
+          hoverable
+          imageButton
+          imageButtonSrc={avatar}
+          imageButtonSpan={username}
+          imageButtonClassName="w-6 h-6 mx-2 rounded-full object-cover"
+          imageButtonSpanClassName="hidden sm:block text-xs text-copy-primary"
+          onClick={() => openProfileHandler(userID)}
+          analyticsString="My Profile Button: SiteHeaderMain"
+        />
       </div>
     </header>
   );

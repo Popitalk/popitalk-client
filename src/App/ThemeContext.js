@@ -61,7 +61,7 @@ export const Toggle = () => {
   }
 
   return (
-    <label>
+    <label className="px-2 cursor-pointer">
       <input
         // id="checkbox-element"
         type="checkbox"
