@@ -61,15 +61,20 @@ export default function SiteHeaderMain({
   const settingsButtons = [
     {
       text: strings.accountSettings,
-      onClick: () => setDropdownList([...dropdownList, ACCOUNT_SETTINGS])
+      leftIcon: "user-circle",
+      onClick: () => setDropdownList([...dropdownList, ACCOUNT_SETTINGS]),
+      rightIcon: "angle-right"
     },
     {
       text: strings.blockedUsers,
+      leftIcon: "user-alt-slash",
       onClick: openBlockedUsersModal
     },
     {
       text: strings.aboutPopitalk,
-      onClick: () => setDropdownList([...dropdownList, INFORMATION])
+      leftIcon: "info-circle",
+      onClick: () => setDropdownList([...dropdownList, INFORMATION]),
+      rightIcon: "angle-right"
     },
     {
       text: "Dark mode",
@@ -77,6 +82,7 @@ export default function SiteHeaderMain({
     },
     {
       text: strings.logOut,
+      leftIcon: "sign-out-alt",
       onClick: logoutHandler,
       danger: true
     }
@@ -85,11 +91,13 @@ export default function SiteHeaderMain({
   const accountSettingsButtons = [
     {
       text: strings.editUserInformation,
-      onClick: openEditInformationModal
+      onClick: openEditInformationModal,
+      leftIcon: "user-edit"
     },
     {
       text: strings.changePassword,
-      onClick: openChangePasswordModal
+      onClick: openChangePasswordModal,
+      leftIcon: "unlock-alt"
     } /*,
     {
       text: "Delete Account",
@@ -102,22 +110,26 @@ export default function SiteHeaderMain({
     {
       text: strings.twitter,
       href: "https://twitter.com/PopitalkT",
-      redirect: true
+      redirect: true,
+      rightIcon: "external-link-alt"
     },
     {
       text: strings.youtube,
       href: "https://www.youtube.com/channel/UCJSjPolz6SiYKvVxFmK-Z1A",
-      redirect: true
+      redirect: true,
+      rightIcon: "external-link-alt"
     },
     {
       text: strings.discord,
       href: "https://twitter.com/PopitalkT",
-      redirect: true
+      redirect: true,
+      rightIcon: "external-link-alt"
     },
     {
       text: strings.sendFeedbackButton,
       href: "https://about.popitalk.com/",
-      redirect: true
+      redirect: true,
+      rightIcon: "external-link-alt"
     }
   ];
 

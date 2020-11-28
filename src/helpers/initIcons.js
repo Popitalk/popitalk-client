@@ -33,7 +33,14 @@ import {
   faArrowLeft,
   faMoon,
   faHome,
-  faFire
+  faFire,
+  faUserCircle,
+  faUserAltSlash,
+  faSignOutAlt,
+  faAngleRight,
+  faUserEdit,
+  faUnlockAlt,
+  faExternalLinkAlt
 } from "@fortawesome/free-solid-svg-icons";
 import {
   faSmile as farSmile,
@@ -85,5 +92,12 @@ library.add(
   faMoon,
   farMoon,
   faHome,
-  faFire
+  faFire,
+  faUserCircle,
+  faUserAltSlash,
+  faSignOutAlt,
+  faAngleRight,
+  faUserEdit,
+  faUnlockAlt,
+  faExternalLinkAlt
 );
