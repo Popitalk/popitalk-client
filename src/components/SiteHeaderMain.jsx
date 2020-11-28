@@ -72,6 +72,10 @@ export default function SiteHeaderMain({
       onClick: () => setDropdownList([...dropdownList, INFORMATION])
     },
     {
+      text: "Dark mode",
+      display: true
+    },
+    {
       text: strings.logOut,
       onClick: logoutHandler,
       danger: true
@@ -136,9 +140,6 @@ export default function SiteHeaderMain({
       </Link>
       <div className="sm:space-x-6 // flex items-center space-x-2">
         <ul className="sm:space-x-6 // flex items-center space-x-2">
-          <li>
-            <Toggle></Toggle>
-          </li>
           <li>
             <DropDownControls
               icon="user-plus"
