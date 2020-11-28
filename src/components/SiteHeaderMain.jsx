@@ -121,7 +121,7 @@ export default function SiteHeaderMain({
     },
     {
       text: strings.discord,
-      href: "https://twitter.com/PopitalkT",
+      href: "https://discord.gg/hdFfgg7",
       redirect: true,
       rightIcon: "external-link-alt"
     },
