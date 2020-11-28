@@ -16,7 +16,7 @@ export default function MenuButton({
   hasNext
 }) {
   const buttonClasses = classnames(
-    "flex justify-between items-center hover:bg-hover-highlight rounded-md px-6 py-3 w-full h-full select-none",
+    "flex justify-between items-center hover:bg-hover-highlight rounded-md px-6 py-3 w-full h-full select-none cursor-pointer",
     {
       "bg-hover-highlight text-copy-primary": selected,
       "text-copy-secondary": !selected,
@@ -24,7 +24,7 @@ export default function MenuButton({
     }
   );
   const redirectClasses = classnames(
-    "flex items-center w-full h-full space-x-2 no-underline select-none",
+    "flex items-center w-full h-full space-x-2 no-underline select-none cursor-pointer",
     {
       "bg-hover-highlight text-copy-primary": selected,
       "text-copy-secondary": !selected
@@ -38,7 +38,7 @@ export default function MenuButton({
     <>
       {redirect ? (
         <div role="button" onClick={onClick} className={buttonClasses}>
-          <div className="flex justify-start items-center space-x-2">
+          <div className="flex justify-start items-center space-x-2 w-full h-full">
             <FontAwesomeIcon
               className="text-lg cursor-pointer"
               icon={leftIcon}
