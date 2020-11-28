@@ -1,21 +1,21 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import Logo from "../assets/logo.png";
-import DropDownMenu from "./DropDowns/DropDownMenu";
-import DeleteAccountDropDown from "./DropDowns/DeleteAccountDropDown";
-import FriendRequests from "./DropDowns/FriendRequests";
+import Logo from "../../assets/logo.png";
+import DropDownMenu from "../DropDowns/DropDownMenu";
+import DeleteAccountDropDown from "../DropDowns/DeleteAccountDropDown";
+import FriendRequests from "../DropDowns/FriendRequests";
 // import Notifications from "./DropDowns/Notifications";
-import FeedbackDropDown from "./DropDowns/FeedbackDropDown";
-import DropDownControls from "./DropDowns/DropDownControls";
-import Button from "./Controls/Button";
-import strings from "../helpers/localization";
-import { Toggle } from "../App/ThemeContext";
+import FeedbackDropDown from "../DropDowns/FeedbackDropDown";
+import DropDownControls from "../DropDowns/DropDownControls";
+import Button from "../Controls/Button";
+import strings from "../../helpers/localization";
+import { Toggle } from "../../App/ThemeContext";
 
 const SETTINGS = 1;
 const ACCOUNT_SETTINGS = 2;
 const DELETE_ACCOUNT = 3;
 
-export default function SiteHeaderMain({
+const SiteHeaderMain = ({
   userID,
   username,
   avatar,
@@ -28,7 +28,7 @@ export default function SiteHeaderMain({
   clearNotificationsHandler,
   deleteAccountHandler,
   logoutHandler
-}) {
+}) => {
   const [dropdownList, setDropdownList] = useState([]);
 
   const toggleSettings = () => {
@@ -213,4 +213,6 @@ export default function SiteHeaderMain({
       </div>
     </header>
   );
-}
+};
+
+export default SiteHeaderMain;
