@@ -1,5 +1,15 @@
 import { library } from "@fortawesome/fontawesome-svg-core";
 import {
+  faTwitter as fabTwitter,
+  faYoutube as fabYoutube,
+  faDiscord as fabDiscord,
+  faTwitch as fabTwitch,
+  faInstagram as fabInstagram,
+  faTiktok as fabTiktok,
+  faFacebook as fabFacebook,
+  faSpotify as fabSpotify
+} from "@fortawesome/free-brands-svg-icons";
+import {
   faGlobeAmericas,
   faUserPlus,
   faUserCheck,
@@ -99,5 +109,14 @@ library.add(
   faAngleRight,
   faUserEdit,
   faUnlockAlt,
-  faExternalLinkAlt
+  faExternalLinkAlt,
+  // == Logos == //
+  fabTwitter,
+  fabYoutube,
+  fabDiscord,
+  fabTwitch,
+  fabInstagram,
+  fabTiktok,
+  fabFacebook,
+  fabSpotify
 );

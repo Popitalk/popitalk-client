@@ -8,7 +8,6 @@ import FriendRequests from "./DropDowns/FriendRequests";
 import DropDownControls from "./DropDowns/DropDownControls";
 import Button from "./Controls/Button";
 import strings from "../helpers/localization";
-import { Toggle } from "../App/ThemeContext";
 
 const SETTINGS = 1;
 const ACCOUNT_SETTINGS = 2;
@@ -110,18 +109,21 @@ export default function SiteHeaderMain({
     {
       text: strings.twitter,
       href: "https://twitter.com/PopitalkT",
+      leftIcon: "twitter",
       redirect: true,
       rightIcon: "external-link-alt"
     },
     {
       text: strings.youtube,
       href: "https://www.youtube.com/channel/UCJSjPolz6SiYKvVxFmK-Z1A",
+      leftIcon: "youtube",
       redirect: true,
       rightIcon: "external-link-alt"
     },
     {
       text: strings.discord,
       href: "https://discord.gg/hdFfgg7",
+      leftIcon: "discord",
       redirect: true,
       rightIcon: "external-link-alt"
     },
@@ -215,9 +217,10 @@ export default function SiteHeaderMain({
           imageButton
           imageButtonSrc={avatar}
           imageButtonSpan={username}
-          imageButtonClassName="w-6 h-6 mx-2 rounded-full object-cover"
-          imageButtonSpanClassName="hidden sm:block text-xs font-bold text-copy-primary"
+          imageButtonClassName="w-6 h-6 rounded-full object-cover"
+          imageButtonSpanClassName="hidden sm:block text-xs font-bold text-copy-primary ml-2"
           onClick={() => openProfileHandler(userID)}
+          className="p-2 hover:bg-hover-highlight rounded-md"
           analyticsString="My Profile Button: SiteHeaderMain"
         />
       </div>
