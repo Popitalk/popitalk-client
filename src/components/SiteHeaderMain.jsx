@@ -188,12 +188,14 @@ export default function SiteHeaderMain({
                 <DropDownMenu
                   title={strings.settingsHeader}
                   buttons={settingsButtons}
+                  icon="cog"
                 />
               ) : settingsDropdown === ACCOUNT_SETTINGS ? (
                 <DropDownMenu
                   title={strings.accountSettings}
                   buttons={accountSettingsButtons}
                   handleBack={popDropdown}
+                  icon="user-circle"
                 />
               ) : settingsDropdown === DELETE_ACCOUNT ? (
                 <DeleteAccountDropDown
@@ -205,6 +207,7 @@ export default function SiteHeaderMain({
                   title={strings.aboutPopitalk}
                   buttons={informationButtons}
                   handleBack={popDropdown}
+                  icon="info-circle"
                 />
               ) : (
                 <></>

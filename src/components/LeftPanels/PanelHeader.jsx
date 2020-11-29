@@ -21,7 +21,7 @@ export default function PanelHeader({
       />
       <div className="flex space-x-2">
         <nav
-          className={`flex items-center space-x-2 px-2 p-1 focus:outline-none hover:bg-background-secondary rounded-xl transition transform ease-in-out hover:scale-105 duration-100 cursor-pointer ${
+          className={`flex items-center space-x-2 px-3 p-2 focus:outline-none hover:bg-hover-highlight rounded-xl transition transform ease-in-out hover:scale-105 duration-100 cursor-pointer ${
             selectedPage === "channels"
               ? "text-copy-highlight font-semibold"
               : "text-copy-secondary font-regular"
@@ -32,7 +32,7 @@ export default function PanelHeader({
           <div>{strings.channels}</div>
         </nav>
         <nav
-          className={`flex items-center space-x-2  px-2 p-1 focus:outline-none hover:bg-background-secondary rounded-xl transition transform ease-in-out hover:scale-105 duration-100 cursor-pointer ${
+          className={`flex items-center space-x-2  px-3 p-2 focus:outline-none hover:bg-hover-highlight rounded-xl transition transform ease-in-out hover:scale-105 duration-100 cursor-pointer ${
             selectedPage === "friends"
               ? "text-copy-highlight font-semibold"
               : "text-copy-secondary font-regular"

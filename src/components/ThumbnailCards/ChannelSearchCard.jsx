@@ -39,7 +39,7 @@ export default function ChannelCard({
   return (
     <>
       {loading ? (
-        <div className="shadow-sm rounded-md p-4 max-w-xl w-full mx-auto my-4">
+        <div className="shadow-sm rounded-md p-4 max-w-xl w-full mx-auto">
           <div className="animate-pulse flex space-x-4">
             <div className="rounded-full bg-background-quaternary h-12 w-12"></div>
             <div className="flex-1 space-y-4 py-1">
@@ -53,7 +53,7 @@ export default function ChannelCard({
         </div>
       ) : (
         <div
-          className="flex flex-row w-full h-68 items-center px-0 sm:px-8 md:px-16 my-4"
+          className="flex flex-row w-full items-center px-0 sm:px-8 md:px-16 py-2"
           role={handleSelect ? "button" : null}
           onClick={handleSelect}
         >

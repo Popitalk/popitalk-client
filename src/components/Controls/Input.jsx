@@ -109,7 +109,7 @@ export default function Input({
               icon="search"
               size="sm"
               background="secondary"
-              className="absolute right-0 mr-2 hover:scale-110 shadow-none"
+              className="absolute right-0 mr-2 shadow-none"
               onClick={onClick}
               analyticsString="Search Button: Input"
             />

@@ -27,7 +27,9 @@ export default function EditUserSettingsModal({ handleModalClose }) {
     <ModalContainer
       isOpen={true}
       handleModalClose={closeModalAndClearError}
-      header={<ContainerHeader title="Edit Your Information" />}
+      header={
+        <ContainerHeader title="Edit Your Information" icon="user-edit" />
+      }
     >
       <EditInformationModal
         username={username}

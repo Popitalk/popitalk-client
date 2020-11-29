@@ -50,7 +50,6 @@ export default function ChannelsPanel({
               background="primaryButton"
               onClick={handleCreateChannel}
               analyticsString="Create Channel Button: ChannelsPanel"
-              className="hover:scale-110"
               tooltip={strings.createChannelButton}
             />
           </div>
