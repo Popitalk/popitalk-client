@@ -6,7 +6,7 @@ function TabNavMobile({ selectedPage, updateSelectedPage }) {
     <div className="flex fixed bg-background-primary w-full justify-around z-50 bottom-0 sm:hidden">
       <Button
         styleNone
-        icon="tv"
+        icon="globe-americas"
         styleNoneIconClassName={`fa-2x ${
           selectedPage === "channels"
             ? "text-copy-highlight"

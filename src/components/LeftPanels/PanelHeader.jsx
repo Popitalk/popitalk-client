@@ -28,7 +28,7 @@ export default function PanelHeader({
           }`}
           onClick={() => updateSelectedPage("channels")}
         >
-          <FontAwesomeIcon icon="tv" />
+          <FontAwesomeIcon icon="globe-americas" />
           <div>{strings.channels}</div>
         </nav>
         <nav

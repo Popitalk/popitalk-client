@@ -70,7 +70,7 @@ function CollapsedPanel({
                 ? "bg-background-primary"
                 : "bg-background-secondary"
             }`}
-            icon="tv"
+            icon="globe-americas"
             styleNoneIconClassName={`text-lg ${
               isFollowingExpanded
                 ? "text-copy-highlight"

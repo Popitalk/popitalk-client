@@ -1,3 +1,8 @@
+// If you don't see an icon that you need, you can search it here https://fontawesome.com/
+// Make sure to import the icon, and add it to the library.{}
+// Usage Example 1: faTwitter -> icon={twitter}
+// Usage Exmaple 2: faGlobleAmericas -> icon={globe-americas}
+
 import { library } from "@fortawesome/fontawesome-svg-core";
 import {
   faTwitter as fabTwitter,
@@ -33,7 +38,6 @@ import {
   faSmile as fasSmile,
   faUsers,
   faRedoAlt,
-  faTv,
   faImage,
   faHeart,
   faVolumeUp,
@@ -60,7 +64,6 @@ import {
   faComment as farComment,
   faMoon as farMoon
 } from "@fortawesome/free-regular-svg-icons";
-// import { fab } from "@fortawesome/free-brands-svg-icons";
 
 library.add(
   faGlobeAmericas,
@@ -70,7 +73,6 @@ library.add(
   faPlus,
   faMinus,
   faSearch,
-  faTv,
   faPaperPlane,
   faShare,
   faTimes,
