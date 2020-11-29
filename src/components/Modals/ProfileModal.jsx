@@ -5,15 +5,11 @@ import ImageUpload from "../Controls/ImageUpload";
 import Button from "../Controls/Button";
 import ReactTooltip from "react-tooltip";
 import strings from "../../helpers/localization";
-// import ChannelCardList from "../ThumbnailCardLists/ChannelCardList";
 
 export default function ProfileModal({
   user,
   following,
-  followers,
   friends,
-  recentVideos,
-  followedChannels,
   unfriendHandler,
   blockHandler,
   updateAvatar,
@@ -37,8 +33,16 @@ export default function ProfileModal({
   }
 
   return (
-    <div className="flex items-start justify-center p-4 py-8 overflow-auto">
-      <div className="flex justify-start items-center space-x-8 py-6 px-12">
+    <div className="relative flex justify-center p-4 py-8 overflow-auto">
+      <div className="absolute flex items-center space-x-2 top-0 right-0 m-4">
+        <FriendRequestButtons user={user} tooltipPlace="left" size="sm" />
+        {options && (
+          <div>
+            <PopupMenu id={user.id} options={options} />
+          </div>
+        )}
+      </div>
+      <div className="relative flex flex-col justify-center items-center space-y-4 py-4 px-6">
         {myProfile ? (
           <ImageUpload
             name="avatar"
@@ -59,50 +63,34 @@ export default function ProfileModal({
             alt={`${user.username}'s avatar`}
           />
         )}
-        <div className="flex flex-col justify-start items-center">
-          <div className="flex flex-row w-full items-center justify-start py-2">
-            <p className="text-2xl font-semibold text-copy-primary">
-              {user.username}
-            </p>
-            <FriendRequestButtons user={user} tooltipPlace="bottom" size="sm" />
+        {updateUserApi.error && (
+          <div className="flex justify-center">
+            <p className="text-copy-error text-xs">{updateUserApi.error}</p>
           </div>
-          <div className="text-copy-secondary w-full">
+        )}
+        <div className="flex flex-col justify-center space-y-1">
+          <p className="text-2xl font-semibold flex justify-center text-copy-primary">
+            {user.username}
+          </p>
+          <p className="flex justify-center text-copy-secondary">
             {`${user.firstName} ${user.lastName}`}
-          </div>
-          <div className="flex space-x-8 my-4 text-copy-primary">
+          </p>
+          <div className="flex space-x-8 py-8 text-copy-primary">
             <Button
               styleNone
               styleNoneContent={`${following} ${strings.followingChannels}`}
-              className="text-sm font-semibold"
+              className="text-sm text-bold font-semibold"
               analyticsString="Show following list Button: ProfileModal"
             />
-            {/* <Button
-              styleNone
-              styleNoneContent={`${followers} Followers`}
-              className="text-sm font-semibold"
-              analyticsString="Show followers list Button: ProfileModal"
-            /> */}
             <Button
               styleNone
               styleNoneContent={`${friends} ${strings.friendsText}`}
-              className="text-sm font-semibold"
+              className="text-sm text-bold font-semibold"
               analyticsString="Show friends list Button: ProfileModal"
             />
           </div>
         </div>
       </div>
-      {updateUserApi.error && (
-        <div className="flex justify-center">
-          <p className="text-copy-error text-sm">{updateUserApi.error}</p>
-        </div>
-      )}
-      {options ? (
-        <div className="flex">
-          <PopupMenu id={user.id} options={options} />
-        </div>
-      ) : (
-        <></>
-      )}
       <ReactTooltip
         effect="solid"
         backgroundColor="#F2F2F2"
@@ -110,22 +98,6 @@ export default function ProfileModal({
         className="shadow-md rounded-md py-1 px-3 opacity-100"
         arrowColor="transparent"
       />
-      {/* <div className="text-md font-bold pb-4 text-copy-primary">
-        {myProfile
-          ? "Videos You Watched"
-          : `Videos You and ${user.username} Watched`}
-      </div> */}
-      {/* <div className="flex">
-        <ChannelCardList channelList={recentVideos} />
-      </div>
-      <div className="text-md font-bold pb-8 text-copy-primary">
-        {myProfile
-          ? "Channels You Follow"
-          : `Channels You and ${user.username} Follow`}
-      </div>
-      <div className="flex">
-        <ChannelCardList channelList={followedChannels} />
-      </div> */}
     </div>
   );
 }

@@ -75,7 +75,11 @@ export default function ProfileModalContainer({ handleModalClose }) {
   };
 
   return (
-    <ModalContainer isOpen={true} handleModalClose={closeModalAndClearError}>
+    <ModalContainer
+      isOpen={true}
+      handleModalClose={closeModalAndClearError}
+      width="sm"
+    >
       <ProfileModal
         user={user}
         following={followingChannelsCount}
