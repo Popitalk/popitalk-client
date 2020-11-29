@@ -41,7 +41,7 @@ export default function MenuButton({
           <div className="flex justify-start items-center space-x-2 w-full h-full">
             <FontAwesomeIcon
               className="text-lg cursor-pointer"
-              icon={leftIcon}
+              icon={["fab", leftIcon]}
             />
             <a href={href} className={redirectClasses}>
               {text}

@@ -30,28 +30,30 @@ export default function VideoSearchBar({ className, onClick }) {
           className="w-full md:w-3/4"
         />
       </form>
-      <div className="flex flex-shrink-0 overflow-x-auto my-2 grid-cols-services">
+      <div className="flex flex-shrink-0 overflow-x-auto my-2 grid-cols-services space-x-4">
         {sources.map((img, idx) => {
           return (
             <Button
               key={idx}
-              imageButton
-              imageButtonSrc={img.icon}
-              imageButtonSpan={img.active === true ? "" : "Coming soon"}
-              imageButtonSpanClassName="absolute text-xs text-copy-secondary"
-              imageButtonClassName={`h-6 ${
-                img.active === false && "opacity-25"
+              styleNone
+              icon={img.icon}
+              styleNoneContent={img.active === true ? "" : "Coming soon"}
+              styleNoneContentClassName="absolute text-xs text-copy-secondary"
+              styleNoneIconClassName={`text-lg ${
+                img.active === false
+                  ? "text-copy-secondary opacity-50"
+                  : "text-copy-tertiary"
               }`}
-              className={`relative flex justify-center mr-6 items-center flex-shrink-0 my-2 ${
+              className={`relative flex justify-center items-center flex-shrink-0 my-2 ${
                 source === img.source && img.active === true
                   ? "bg-gradient-r-button shadow-md"
                   : "bg-background-primary cursor-default"
               } 
               ${
                 img.active === false
-                  ? "bg-background-secondary cursor-disable"
+                  ? "bg-background-primary cursor-disable"
                   : "w-10"
-              } w-10 h-10 rounded-full focus:outline-none`}
+              } w-10 h-10 rounded-lg`}
               onClick={() => handleChangeSource(img.source)}
               analyticsString={`${source} Source Button: VideoSearchBar`}
               disabled={img.active === true ? false : true}

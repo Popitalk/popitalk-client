@@ -2,11 +2,14 @@ import React, { useState } from "react";
 import Resizer from "react-image-file-resizer";
 import classnames from "classnames";
 import defaultImage from "../../assets/default/user-default.png";
+import defaultChannelImage from "../../assets/default/channel-default.png";
+
 // import Button from "./Button";
 
 export default function ImageUpload({
   name,
   icon,
+  channelPlaceholder,
   size = "md",
   onUpload,
   onRemove,
@@ -87,7 +90,7 @@ export default function ImageUpload({
         ) : (
           <p className="relative flex flex-row justify-center items-center bg-background-primary rounded-circle w-full h-full relative">
             <img
-              src={defaultImage}
+              src={channelPlaceholder ? defaultChannelImage : defaultImage}
               alt="icon"
               className="img h-full w-full rounded-circle"
             />
