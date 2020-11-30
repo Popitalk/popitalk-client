@@ -141,10 +141,7 @@ const SiteHeaderMain = ({
 
   return (
     <header className="sm:px-6 // relative flex items-center justify-between h-12 bg-background-primary px-2 z-30 select-none">
-      <Link
-        to="/channels"
-        className="flex flex-shrink-0 items-center justify-center"
-      >
+      <Link to="/" className="flex flex-shrink-0 items-center justify-center">
         <Button
           imageButton
           imageButtonSrc={Logo}

@@ -401,7 +401,7 @@ class Channel extends Component {
 
     if (channelNotFound) {
       handleChannelNotFound(); // needs to be fixed
-      return <Redirect to="/channels" />;
+      return <Redirect to="/" />;
     }
 
     const loading = channel?.loaded ? false : true;

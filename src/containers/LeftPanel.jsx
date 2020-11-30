@@ -108,7 +108,7 @@ export default function LeftPanelContainer() {
 
   const updateSelectedPageAndMain = page => {
     const pages = {
-      channels: "/channels",
+      channels: "/",
       friends: "/friends"
     };
     if (pages[page]) {
@@ -147,7 +147,7 @@ export default function LeftPanelContainer() {
 
   return (
     <Switch>
-      <Route exact path="/channels">
+      <Route exact path="/">
         <LeftPanel
           yourChannels={yourChannels}
           followingChannels={followingChannels}

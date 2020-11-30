@@ -6,11 +6,7 @@ import { Route } from "react-router";
 const PrivateRoute = ({ path, children }) => {
   const { loggedIn } = useSelector(state => state.general);
 
-  return loggedIn ? (
-    <Route path={path}>{children}</Route>
-  ) : (
-    <Redirect to="/channels" />
-  );
+  return loggedIn ? <Route path={path}>{children}</Route> : <Redirect to="/" />;
 };
 
 export default PrivateRoute;

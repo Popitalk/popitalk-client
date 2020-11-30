@@ -32,7 +32,7 @@ const HeaderContainer = () => {
   const { receivedFriendRequests, sentFriendRequests } = relationships;
 
   useEffect(() => {
-    if (status === "success") history.push("/channels");
+    if (status === "success") history.push("/");
   }, [history, status]);
 
   const setUserRelationships = user =>
@@ -58,12 +58,15 @@ const HeaderContainer = () => {
         deleteAccountHandler={() => dispatch(deleteAccount())}
         logoutHandler={() => {
           dispatch(logout());
-          history.push("/channels");
+          history.push("/");
         }}
       />
     );
 
-  const viewer = pathname.includes("channels") || pathname.includes("friends");
+  const viewer =
+    pathname.includes("channels") ||
+    pathname.includes("friends") ||
+    pathname === "/";
 
   if (viewer) return <SiteHeaderViewers />;
 

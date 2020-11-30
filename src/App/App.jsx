@@ -66,7 +66,10 @@ export default function App() {
     </div>
   );
 
-  const viewer = pathname.includes("channels") || pathname.includes("friends");
+  const viewer =
+    pathname.includes("channels") ||
+    pathname.includes("friends") ||
+    pathname === "/";
 
   const leftPanel =
     loggedIn || viewer ? (
@@ -91,7 +94,7 @@ export default function App() {
               <CreateNewAccountContainer component={WelcomePage} />
             </div>
           </PublicRoute>
-          <GeneralRoute exact path="/channels">
+          <GeneralRoute exact path="/">
             <RouteWrapper leftPanel={leftPanel}>
               <div
                 className={`rounded-md bg-background-secondary ${searchClasses}`}
@@ -130,7 +133,7 @@ export default function App() {
             <RouteWrapper leftPanel={leftPanel} />
           </PrivateRoute>
           <Route path="*">
-            <Redirect to="/channels" />
+            <Redirect to="/" />
           </Route>
         </Switch>
       </div>
