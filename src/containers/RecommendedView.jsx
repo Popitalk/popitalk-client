@@ -1,13 +1,15 @@
 import React, { useState, useEffect, useCallback } from "react";
 import PropTypes from "prop-types";
 import { useSelector, useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
+import Helmet from "react-helmet";
+
 import ChannelCardList from "../components/ThumbnailCardLists/ChannelCardList.jsx";
 import ChannelSearchList from "../components/ThumbnailCardLists/ChannelSearchList.jsx";
 import VideoCardList from "../components/ThumbnailCardLists/VideoCardList.jsx";
 import Input from "../components/Controls/Input.jsx";
 import Alert from "../components/Alert";
 import Button from "../components/Controls/Button.jsx";
-import Helmet from "react-helmet";
 import strings from "../helpers/localization";
 // import useGetChannels from "../containers/hooks/useGetChannels";
 import {
@@ -20,8 +22,14 @@ import {
 const moreThanTwoMinutesAgo = date => new Date(date) < new Date() - 120000;
 
 function RecommendedChannels({ selectedPage }) {
+  const loggedIn = useSelector(state => state.general.loggedIn);
+  const history = useHistory();
+
   const tabs = [
-    { tab: strings.following, icon: "home" },
+    {
+      tab: loggedIn ? strings.following : strings.friends,
+      icon: loggedIn ? "home" : "paper-plane"
+    },
     { tab: strings.discover, icon: "globe" },
     { tab: strings.trending, icon: "fire" }
   ];
@@ -66,7 +74,9 @@ function RecommendedChannels({ selectedPage }) {
   const tabHandler = tab => {
     setIsSearchForChannels(false);
     if (tab === tabs[0].tab) {
-      if (
+      if (!loggedIn) {
+        history.push("/friends");
+      } else if (
         !followingChannels.lastRequestAt ||
         moreThanTwoMinutesAgo(followingChannels.lastRequestAt)
       ) {

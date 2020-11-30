@@ -1,4 +1,6 @@
 import React from "react";
+import { useSelector } from "react-redux";
+
 import ChatHeader from "./ChatHeader";
 import ChatMessages from "./ChatMessages";
 import ChatActions from "./ChatActions";
@@ -15,6 +17,8 @@ export default function ChatPanel({
   updateGifsOpen,
   isMember
 }) {
+  const { loggedIn } = useSelector(state => state.general);
+
   return (
     <div className="w-84 h-full bg-background-primary flex flex-col">
       <ChatHeader
@@ -39,7 +43,7 @@ export default function ChatPanel({
         <ChatActions updateGifsOpen={updateGifsOpen} isGifsOpen={isGifsOpen} />
       ) : (
         <div className="h-18 w-full flex bg-background-secondary text-sm text-copy-secondary items-center justify-center cursor-not-allowed select-none">
-          <h1>{strings.chatDisabledText}</h1>
+          <h1>{loggedIn ? strings.chatDisabledText : "Sign in to chat!"}</h1>
         </div>
       )}
     </div>
