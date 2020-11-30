@@ -23,17 +23,19 @@ const moreThanTwoMinutesAgo = date => new Date(date) < new Date() - 120000;
 
 function RecommendedChannels({ selectedPage }) {
   const loggedIn = useSelector(state => state.general.loggedIn);
-  const history = useHistory();
 
-  const tabs = [
-    {
-      tab: loggedIn ? strings.following : strings.friends,
-      icon: loggedIn ? "home" : "paper-plane"
-    },
-    { tab: strings.discover, icon: "globe" },
-    { tab: strings.trending, icon: "fire" }
-  ];
-  const [tabSelected, setTab] = useState(tabs[2].tab);
+  const followingTab = {
+    tab: strings.following,
+    icon: "home"
+  };
+  const discoverTab = { tab: strings.discover, icon: "globe" };
+  const trendingTab = { tab: strings.trending, icon: "fire" };
+
+  const tabs = loggedIn
+    ? [followingTab, discoverTab, trendingTab]
+    : [discoverTab, trendingTab];
+
+  const [tabSelected, setTab] = useState(trendingTab.tab);
   const isCollapsed = useSelector(state => state.ui.isCollapsed);
   const alert = useSelector(state => state.ui.alert);
   const followingChannels = useSelector(state => state.followingChannels);
@@ -41,17 +43,19 @@ function RecommendedChannels({ selectedPage }) {
   const trendingChannels = useSelector(state => state.trendingChannels);
   const { defaultAvatar, defaultIcon } = useSelector(state => state.general);
 
-  const getChannels = useCallback(channels =>
-    Object.entries(channels.channels).map(([chanId, chan]) => ({
-      id: chanId,
-      name: chan.name,
-      icon: chan.icon || defaultIcon,
-      status: chan.playbackStatus,
-      videoInfo: chan.videoInfo,
-      viewers: chan.viewers.map(
-        viewerId => channels.users[viewerId].avatar || defaultAvatar
-      )
-    }))
+  const getChannels = useCallback(
+    channels =>
+      Object.entries(channels.channels).map(([chanId, chan]) => ({
+        id: chanId,
+        name: chan.name,
+        icon: chan.icon || defaultIcon,
+        status: chan.playbackStatus,
+        videoInfo: chan.videoInfo,
+        viewers: chan.viewers.map(
+          viewerId => channels.users[viewerId].avatar || defaultAvatar
+        )
+      })),
+    [defaultIcon, defaultAvatar]
   );
 
   const dispatch = useDispatch();
@@ -73,17 +77,16 @@ function RecommendedChannels({ selectedPage }) {
 
   const tabHandler = tab => {
     setIsSearchForChannels(false);
-    if (tab === tabs[0].tab) {
-      if (!loggedIn) {
-        history.push("/friends");
-      } else if (
+
+    if (loggedIn && tab === followingTab.tab) {
+      const isOutDated =
         !followingChannels.lastRequestAt ||
-        moreThanTwoMinutesAgo(followingChannels.lastRequestAt)
-      ) {
+        moreThanTwoMinutesAgo(followingChannels.lastRequestAt);
+      if (isOutDated) {
         dispatch(getFollowingChannels());
       }
       setChannelList(getChannels(followingChannels));
-    } else if (tab === tabs[1].tab) {
+    } else if (tab === discoverTab.tab) {
       if (
         !discoverChannels.lastRequestAt ||
         moreThanTwoMinutesAgo(discoverChannels.lastRequestAt)
@@ -91,7 +94,7 @@ function RecommendedChannels({ selectedPage }) {
         dispatch(getDiscoverChannels());
       }
       setChannelList(getChannels(discoverChannels));
-    } else if (tab === tabs[2].tab) {
+    } else if (tab === trendingTab.tab) {
       if (
         !trendingChannels.lastRequestAt ||
         moreThanTwoMinutesAgo(trendingChannels.lastRequestAt)

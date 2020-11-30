@@ -81,7 +81,7 @@ export default function ChannelsPanel({
         </div>
       ) : (
         <div className="px-6">
-          <p className="text-copy-primary text-sm mb-6">
+          <p className="text-copy-primary text-sm my-6">
             Sign in to add and chat with friends. You can also create, follow,
             comment on a channel.
           </p>
