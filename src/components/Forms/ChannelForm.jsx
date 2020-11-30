@@ -149,6 +149,7 @@ export default function ChannelForm({
               className="mb-8"
               selectMessage={strings.selectChannelIcon}
               changeMessage={strings.changeChannelIcon}
+              channelPlaceholder
             />
             <div className="">
               <Input

@@ -8,13 +8,15 @@ export default function ChannelSettingsSidebar({
   openDeleteChannelModal
 }) {
   return (
-    <div className="h-full py-8 px-6 justify-center bg-background-primary rounded-xl shadow-xs flex flex-col justify-between">
+    <div className="py-8 px-6 bg-background-primary rounded-xl shadow-sm flex flex-col justify-between">
       <ButtonsList buttons={buttons} />
-      <MenuButton
-        danger={true}
-        text={strings.deleteChannel}
-        onClick={openDeleteChannelModal}
-      />
+      <div className="mt-1">
+        <MenuButton
+          danger={true}
+          text={strings.deleteChannel}
+          onClick={openDeleteChannelModal}
+        />
+      </div>
     </div>
   );
 }

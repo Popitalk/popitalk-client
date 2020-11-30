@@ -69,13 +69,14 @@ export default function ChannelsPanel({
             <h4 className="mx-4 my-2 text-sm font-semibold text-copy-secondary">
               {strings.followingChannels}
             </h4>
-            <ChannelsList
-              channels={followingChannels}
-              selected={selectedChannel}
-              handleSelect={handleSelectChannel}
-              fullHeight={true}
-              emptyMessage={strings.followingChannelsPlaceholder}
-              isLoading={false}
+            <Button
+              actionButton
+              size="sm"
+              icon="plus"
+              background="primaryButton"
+              onClick={handleCreateChannel}
+              analyticsString="Create Channel Button: ChannelsPanel"
+              tooltip={strings.createChannelButton}
             />
           </div>
         </div>

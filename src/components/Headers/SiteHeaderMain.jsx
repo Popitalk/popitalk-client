@@ -1,19 +1,19 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+
 import Logo from "../../assets/logo.png";
 import DropDownMenu from "../DropDowns/DropDownMenu";
 import DeleteAccountDropDown from "../DropDowns/DeleteAccountDropDown";
 import FriendRequests from "../DropDowns/FriendRequests";
 // import Notifications from "./DropDowns/Notifications";
-import FeedbackDropDown from "../DropDowns/FeedbackDropDown";
 import DropDownControls from "../DropDowns/DropDownControls";
 import Button from "../Controls/Button";
 import strings from "../../helpers/localization";
-import { Toggle } from "../../App/ThemeContext";
 
 const SETTINGS = 1;
 const ACCOUNT_SETTINGS = 2;
 const DELETE_ACCOUNT = 3;
+const INFORMATION = 4;
 
 const SiteHeaderMain = ({
   userID,
@@ -61,14 +61,28 @@ const SiteHeaderMain = ({
   const settingsButtons = [
     {
       text: strings.accountSettings,
-      onClick: () => setDropdownList([...dropdownList, ACCOUNT_SETTINGS])
+      leftIcon: "user-circle",
+      onClick: () => setDropdownList([...dropdownList, ACCOUNT_SETTINGS]),
+      rightIcon: "angle-right"
     },
     {
       text: strings.blockedUsers,
+      leftIcon: "user-alt-slash",
       onClick: openBlockedUsersModal
     },
     {
+      text: strings.aboutPopitalk,
+      leftIcon: "info-circle",
+      onClick: () => setDropdownList([...dropdownList, INFORMATION]),
+      rightIcon: "angle-right"
+    },
+    {
+      text: "Dark mode",
+      display: true
+    },
+    {
       text: strings.logOut,
+      leftIcon: "sign-out-alt",
       onClick: logoutHandler,
       danger: true
     }
@@ -77,17 +91,49 @@ const SiteHeaderMain = ({
   const accountSettingsButtons = [
     {
       text: strings.editUserInformation,
-      onClick: openEditInformationModal
+      onClick: openEditInformationModal,
+      leftIcon: "user-edit"
     },
     {
       text: strings.changePassword,
-      onClick: openChangePasswordModal
+      onClick: openChangePasswordModal,
+      leftIcon: "unlock-alt"
     } /*,
     {
       text: "Delete Account",
       onClick: () => setDropdownList([...dropdownList, DELETE_ACCOUNT]),
       danger: true
     }*/
+  ];
+
+  const informationButtons = [
+    {
+      text: strings.twitter,
+      href: "https://twitter.com/PopitalkT",
+      leftIcon: "twitter",
+      redirect: true,
+      rightIcon: "external-link-alt"
+    },
+    {
+      text: strings.youtube,
+      href: "https://www.youtube.com/channel/UCJSjPolz6SiYKvVxFmK-Z1A",
+      leftIcon: "youtube",
+      redirect: true,
+      rightIcon: "external-link-alt"
+    },
+    {
+      text: strings.discord,
+      href: "https://discord.gg/hdFfgg7",
+      leftIcon: "discord",
+      redirect: true,
+      rightIcon: "external-link-alt"
+    },
+    {
+      text: strings.sendFeedbackButton,
+      href: "https://about.popitalk.com/",
+      redirect: true,
+      rightIcon: "external-link-alt"
+    }
   ];
 
   const settingsDropdown =
@@ -109,9 +155,6 @@ const SiteHeaderMain = ({
       </Link>
       <div className="sm:space-x-6 // flex items-center space-x-2">
         <ul className="sm:space-x-6 // flex items-center space-x-2">
-          <li>
-            <Toggle></Toggle>
-          </li>
           <li>
             <DropDownControls
               icon="user-plus"
@@ -136,7 +179,7 @@ const SiteHeaderMain = ({
               />
             </DropDownControls>
           </li> */}
-          <li className="hidden lg:block">
+          <li>
             <DropDownControls
               icon="cog"
               onClick={toggleSettings}
@@ -146,53 +189,26 @@ const SiteHeaderMain = ({
                 <DropDownMenu
                   title={strings.settingsHeader}
                   buttons={settingsButtons}
+                  icon="cog"
                 />
               ) : settingsDropdown === ACCOUNT_SETTINGS ? (
                 <DropDownMenu
                   title={strings.accountSettings}
                   buttons={accountSettingsButtons}
                   handleBack={popDropdown}
+                  icon="user-circle"
                 />
               ) : settingsDropdown === DELETE_ACCOUNT ? (
                 <DeleteAccountDropDown
                   handleDelete={deleteAccountHandler}
                   handleBack={popDropdown}
                 />
-              ) : (
-                <></>
-              )}
-            </DropDownControls>
-          </li>
-          <li className="hidden lg:block">
-            <DropDownControls
-              icon="info-circle"
-              analyticsString="To about.popitalk Button: SiteHeaderMain"
-            >
-              <FeedbackDropDown />
-            </DropDownControls>
-          </li>
-          <li className="block lg:hidden">
-            <DropDownControls
-              icon="bars"
-              onClick={toggleSettings}
-              onClose={() => setDropdownList([])}
-            >
-              <FeedbackDropDown />
-              {settingsDropdown === SETTINGS ? (
+              ) : settingsDropdown === INFORMATION ? (
                 <DropDownMenu
-                  title={strings.settingsHeader}
-                  buttons={settingsButtons}
-                />
-              ) : settingsDropdown === ACCOUNT_SETTINGS ? (
-                <DropDownMenu
-                  title={strings.accountSettings}
-                  buttons={accountSettingsButtons}
+                  title={strings.aboutPopitalk}
+                  buttons={informationButtons}
                   handleBack={popDropdown}
-                />
-              ) : settingsDropdown === DELETE_ACCOUNT ? (
-                <DeleteAccountDropDown
-                  handleDelete={deleteAccountHandler}
-                  handleBack={popDropdown}
+                  icon="info-circle"
                 />
               ) : (
                 <></>
@@ -205,9 +221,10 @@ const SiteHeaderMain = ({
           imageButton
           imageButtonSrc={avatar}
           imageButtonSpan={username}
-          imageButtonClassName="w-6 h-6 mx-2 rounded-full object-cover"
-          imageButtonSpanClassName="hidden sm:block text-xs text-copy-primary"
+          imageButtonClassName="w-6 h-6 rounded-full object-cover"
+          imageButtonSpanClassName="hidden sm:block text-xs font-bold text-copy-primary ml-2"
           onClick={() => openProfileHandler(userID)}
+          className="p-2 hover:bg-hover-highlight rounded-md"
           analyticsString="My Profile Button: SiteHeaderMain"
         />
       </div>

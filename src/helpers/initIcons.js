@@ -1,4 +1,19 @@
+// If you don't see an icon that you need, you can search it here https://fontawesome.com/
+// Make sure to import the icon, and add it to the library.{}
+// Usage Example 1: faTwitter -> icon={twitter}
+// Usage Exmaple 2: faGlobleAmericas -> icon={globe-americas}
+
 import { library } from "@fortawesome/fontawesome-svg-core";
+import {
+  faTwitter as fabTwitter,
+  faYoutube as fabYoutube,
+  faDiscord as fabDiscord,
+  faTwitch as fabTwitch,
+  faInstagram as fabInstagram,
+  faTiktok as fabTiktok,
+  faFacebook as fabFacebook,
+  faSpotify as fabSpotify
+} from "@fortawesome/free-brands-svg-icons";
 import {
   faGlobeAmericas,
   faUserPlus,
@@ -23,7 +38,6 @@ import {
   faSmile as fasSmile,
   faUsers,
   faRedoAlt,
-  faTv,
   faImage,
   faHeart,
   faVolumeUp,
@@ -33,7 +47,14 @@ import {
   faArrowLeft,
   faMoon,
   faHome,
-  faFire
+  faFire,
+  faUserCircle,
+  faUserAltSlash,
+  faSignOutAlt,
+  faAngleRight,
+  faUserEdit,
+  faUnlockAlt,
+  faExternalLinkAlt
 } from "@fortawesome/free-solid-svg-icons";
 import {
   faSmile as farSmile,
@@ -43,7 +64,6 @@ import {
   faComment as farComment,
   faMoon as farMoon
 } from "@fortawesome/free-regular-svg-icons";
-// import { fab } from "@fortawesome/free-brands-svg-icons";
 
 library.add(
   faGlobeAmericas,
@@ -53,7 +73,6 @@ library.add(
   faPlus,
   faMinus,
   faSearch,
-  faTv,
   faPaperPlane,
   faShare,
   faTimes,
@@ -85,5 +104,21 @@ library.add(
   faMoon,
   farMoon,
   faHome,
-  faFire
+  faFire,
+  faUserCircle,
+  faUserAltSlash,
+  faSignOutAlt,
+  faAngleRight,
+  faUserEdit,
+  faUnlockAlt,
+  faExternalLinkAlt,
+  // == Logos == //
+  fabTwitter,
+  fabYoutube,
+  fabDiscord,
+  fabTwitch,
+  fabInstagram,
+  fabTiktok,
+  fabFacebook,
+  fabSpotify
 );

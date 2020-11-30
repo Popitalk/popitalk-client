@@ -61,20 +61,20 @@ export const Toggle = () => {
   }
 
   return (
-    <label className="px-2 cursor-pointer">
+    <label className="flex items-center space-x-2 p-1 pr-3 cursor-pointer bg-background-primary rounded-md transition transform ease-in-out hover:scale-105 duration-100 shadow-sm">
       <input
-        // id="checkbox-element"
         type="checkbox"
         checked={isDark()}
         onChange={e => setTheme(e.target.checked ? "dark" : "light")}
         className="hidden"
       />
       <FontAwesomeIcon
-        className={`text-xl cursor-pointer transition transform ease-in-out hover:scale-105 duration-100 ${
+        className={`text-lg cursor-pointer ${
           theme === "dark" ? "text-copy-highlight" : "text-copy-secondary"
         }`}
         icon={theme === "dark" ? ["fa", "moon"] : ["far", "moon"]}
       />
+      <div>{theme === "dark" ? "On" : "Off"}</div>
     </label>
   );
 };

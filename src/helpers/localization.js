@@ -112,7 +112,7 @@ let strings = new LocalizedStrings({
     deleteButton: "Delete",
     loadMoreButton: "Show more",
     backToTrendingButton: "Back to Trending",
-    sendFeedbackButton: "About Popitalk",
+    sendFeedbackButton: "Popitalk Team",
     copyButton: "Copy",
 
     // Months
@@ -230,7 +230,7 @@ let strings = new LocalizedStrings({
     editUserInformation: "Edit User Information",
     changePassword: "Change Password",
     // InfoCardList
-    nothingToShow: "Nothing to show :(",
+    nothingToShow: "Nothing to show.",
     // SearchResults
     noVideosFound: "No videos found",
     // GifTable

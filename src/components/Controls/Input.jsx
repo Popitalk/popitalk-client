@@ -1,26 +1,10 @@
 import React from "react";
 import classnames from "classnames";
 import Button from "./Button";
-import YoutubeLogo from "../../assets/sources/youtube-logo.png";
-import CrunchyrollLogo from "../../assets/sources/crunchyroll-logo.png";
-import TwitchLogo from "../../assets/sources/twitch-logo.png";
-import InstagramLogo from "../../assets/sources/instagram-logo.png";
-import GfycatLogo from "../../assets/sources/gfycat-logo.png";
-import FacebookLogo from "../../assets/sources/facebook-logo.png";
-import SpotifyLogo from "../../assets/sources/spotify-logo.png";
+import sources from "../../helpers/videoSourceImages";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import ControlHeader from "./ControlHeader";
 import { getTextClass, getInputClasses } from "../../helpers/functions";
-
-const sources = [
-  { source: "Youtube", icon: YoutubeLogo },
-  { source: "Crunchyroll", icon: CrunchyrollLogo },
-  { source: "Twitch", icon: TwitchLogo },
-  { source: "Instagram", icon: InstagramLogo },
-  { source: "Gfycat", icon: GfycatLogo },
-  { source: "Facebook", icon: FacebookLogo },
-  { source: "Spotify", icon: SpotifyLogo }
-];
 
 const sourcesObj = {};
 
@@ -103,17 +87,16 @@ export default function Input({
         )}
         {variant === "video" && (
           <>
-            <img
-              src={sourcesObj[videoSource]}
-              alt={videoSource}
-              className="img absolute left-0 ml-3 w-6 h-6 object-contain"
+            <FontAwesomeIcon
+              icon={sourcesObj[videoSource]}
+              className="absolute left-0 ml-4 object-contain text-copy-error"
             />
             <Button
               actionButton
               icon="search"
               size="sm"
               background="secondary"
-              className="absolute right-0 mr-3 hover:scale-110 shadow-none"
+              className="absolute right-0 mr-2 shadow-none"
               onClick={onClick}
               analyticsString="Search Button: Input"
             />
@@ -126,7 +109,7 @@ export default function Input({
               icon="search"
               size="sm"
               background="secondary"
-              className="absolute right-0 mr-2 hover:scale-110 shadow-none"
+              className="absolute right-0 mr-2 shadow-none"
               onClick={onClick}
               analyticsString="Search Button: Input"
             />

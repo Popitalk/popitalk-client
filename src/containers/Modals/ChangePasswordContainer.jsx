@@ -19,7 +19,7 @@ export default function ChangePasswordContainer({ handleModalClose }) {
       isOpen={true}
       width="sm"
       handleModalClose={closeModalAndClearError}
-      header={<ContainerHeader title="Change Password" />}
+      header={<ContainerHeader title="Change Password" icon="unlock-alt" />}
     >
       <ChangePasswordModal
         passwordUpdated={updateUserApi.status === "success"}
