@@ -1,11 +1,13 @@
 import React, { Fragment, useState, useEffect } from "react";
+import { useSelector } from "react-redux";
+import { Helmet } from "react-helmet";
+import useSound from "use-sound";
+import { useInterval } from "react-use";
+
 import FriendsPanel from "./FriendsPanel";
 import CollapsedPanel from "./CollapsedPanel";
 import ChannelsPanel from "./ChannelsPanel";
-import { Helmet } from "react-helmet";
-import useSound from "use-sound";
 import notificationSound from "../../assets/sounds/pop-sound.mp3";
-import { useInterval } from "react-use";
 import { useWindowSize } from "../../helpers/functions";
 import strings from "../../helpers/localization";
 
@@ -31,6 +33,8 @@ export default function LeftPanel({
   setFriendsSearchFocus,
   numberOfNotifications
 }) {
+  const { loggedIn } = useSelector(state => state.general);
+
   const channels = [...yourChannels, ...followingChannels];
   const size = useWindowSize();
   const [isCollapsedResponsive, setCollapsedResponsive] = useState();
@@ -93,6 +97,7 @@ export default function LeftPanel({
             handleCollapse={handleCollapse}
             setFriendsSearchFocus={setFriendsSearchFocus}
             numberOfNotifications={numberOfNotifications}
+            loggedIn={loggedIn}
           />
         ) : (
           <FriendsPanel
@@ -111,6 +116,7 @@ export default function LeftPanel({
             friendsSearchFocus={friendsSearchFocus}
             setFriendsSearchFocus={setFriendsSearchFocus}
             numberOfNotifications={numberOfNotifications}
+            loggedIn={loggedIn}
           />
         )}
       </div>
@@ -132,6 +138,7 @@ export default function LeftPanel({
           setFriendsSearchFocus={setFriendsSearchFocus}
           numberOfNotifications={numberOfNotifications}
           isCollapsedResponsive={isCollapsedResponsive}
+          loggedIn={loggedIn}
         />
       </div>
       <Helmet>
