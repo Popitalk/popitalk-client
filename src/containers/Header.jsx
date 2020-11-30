@@ -56,7 +56,10 @@ const HeaderContainer = () => {
         openChangePasswordHandler={() => dispatch(openChangePasswordModal())}
         clearNotificationsHandler={() => console.log("clear notifications")}
         deleteAccountHandler={() => dispatch(deleteAccount())}
-        logoutHandler={() => dispatch(logout())}
+        logoutHandler={() => {
+          dispatch(logout());
+          history.push("/channels");
+        }}
       />
     );
 
