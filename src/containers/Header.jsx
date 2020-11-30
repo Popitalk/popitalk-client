@@ -20,7 +20,7 @@ import {
 
 const HeaderContainer = () => {
   const history = useHistory();
-  const location = useLocation();
+  const { pathname } = useLocation();
   const dispatch = useDispatch();
 
   const { loggedIn, defaultAvatar } = useSelector(state => state.general);
@@ -60,7 +60,7 @@ const HeaderContainer = () => {
       />
     );
 
-  const viewer = location.pathname.includes("channels");
+  const viewer = pathname.includes("channels") || pathname.includes("friends");
 
   if (viewer) return <SiteHeaderViewers />;
 

@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Switch, Route } from "react-router";
+import { Switch, Route, useLocation } from "react-router";
 import { Redirect } from "react-router-dom";
 import Helmet from "react-helmet";
 
@@ -40,7 +40,9 @@ const RouteWrapper = ({ leftPanel, children }) => {
 export default function App() {
   const validatedSession = useSelector(state => state.general.validatedSession);
   const { loggedIn, wsConnected } = useSelector(state => state.general);
+
   const dispatch = useDispatch();
+  const { pathname } = useLocation();
 
   useEffect(() => {
     dispatch(validateSession());
@@ -64,11 +66,14 @@ export default function App() {
     </div>
   );
 
-  const leftPanel = loggedIn ? (
-    <LeftPanel />
-  ) : (
-    <CreateNewAccountContainer component={AnonymousSidebar} />
-  );
+  const viewer = pathname.includes("channels") || pathname.includes("friends");
+
+  const leftPanel =
+    loggedIn || viewer ? (
+      <LeftPanel />
+    ) : (
+      <CreateNewAccountContainer component={AnonymousSidebar} />
+    );
 
   const searchClasses =
     "flex-grow block overflow-auto w-full mozilla-thin-scrollbar";
@@ -86,12 +91,21 @@ export default function App() {
               <CreateNewAccountContainer component={WelcomePage} />
             </div>
           </PublicRoute>
+          <GeneralRoute exact path="/channels">
+            <RouteWrapper leftPanel={leftPanel}>
+              <div
+                className={`rounded-md bg-background-secondary ${searchClasses}`}
+              >
+                <RecommendedView selectedPage="channels" />
+              </div>
+            </RouteWrapper>
+          </GeneralRoute>
           <GeneralRoute exact path="/channels/:channelId/:tab">
             <RouteWrapper leftPanel={leftPanel}>
               <Channel chatPanel={chatPanel} />
             </RouteWrapper>
           </GeneralRoute>
-          <GeneralRoute exact path="/channels">
+          <GeneralRoute exact path="/friends">
             <RouteWrapper leftPanel={leftPanel}>
               <div
                 className={`rounded-md bg-background-secondary ${searchClasses}`}
@@ -110,15 +124,6 @@ export default function App() {
           <PrivateRoute exact path="/rooms/:roomId/video">
             <RouteWrapper leftPanel={leftPanel}>
               <Channel chatPanel={chatPanel} />
-            </RouteWrapper>
-          </PrivateRoute>
-          <PrivateRoute exact path="/friends">
-            <RouteWrapper leftPanel={leftPanel}>
-              <div
-                className={`rounded-md bg-background-secondary ${searchClasses}`}
-              >
-                <RecommendedView selectedPage="channels" />
-              </div>
             </RouteWrapper>
           </PrivateRoute>
           <PrivateRoute exact path="/users/:userId">
