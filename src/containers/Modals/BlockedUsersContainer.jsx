@@ -30,6 +30,7 @@ export default function BlockedUsersContainer({ handleModalClose }) {
           }
           items={blockedMap}
           buildInput={buildSearchInput}
+          icon="user-alt-slash"
         />
       }
     >

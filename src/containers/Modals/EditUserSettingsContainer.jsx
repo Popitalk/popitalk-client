@@ -30,6 +30,7 @@ export default function EditUserSettingsModal({ handleModalClose }) {
       header={
         <ContainerHeader title="Edit Your Information" icon="user-edit" />
       }
+      width="md"
     >
       <EditInformationModal
         username={username}

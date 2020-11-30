@@ -1,3 +1,4 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { Component } from "react";
 import Input from "./Controls/Input";
 
@@ -51,9 +52,10 @@ class SearchHeader extends Component {
 
   render() {
     return (
-      <div className="inset-x-0 top-0 bg-background-secondary rounded-t-xl flex flex-col items-center py-2 px-4">
-        <h4 className="text-sm text-copy-primary font-bold py-2">
-          {this.props.title}
+      <div className="inset-x-0 top-0 bg-background-secondary rounded-t-lg flex flex-col items-center py-2 px-4">
+        <h4 className="flex items-center space-x-2 text-sm text-copy-secondary font-bold py-2">
+          <FontAwesomeIcon icon={this.props.icon} />
+          <p>{this.props.title}</p>
         </h4>
         {this.props.buildInput(
           this.state.input,

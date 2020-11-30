@@ -21,7 +21,7 @@ export default function ContainerHeader({ title, handleBack, icon }) {
   return (
     <div className="inset-x-0 px-2 bg-background-primary rounded-xl h-10 flex flex-row items-center justify-between">
       {backButton}
-      <div className="flex items-center text-xs font-bold text-copy-primary inline-block space-x-2">
+      <div className="flex items-center text-xs font-bold text-copy-secondary inline-block space-x-2">
         <FontAwesomeIcon icon={icon} />
         <p>{title}</p>
       </div>
