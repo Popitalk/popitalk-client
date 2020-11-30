@@ -86,7 +86,7 @@ export default function App() {
           <Header />
         </div>
         <Switch>
-          <PublicRoute exact path="/">
+          <PublicRoute exact path="/welcome">
             <div className="h-full overflow-y-auto">
               <CreateNewAccountContainer component={WelcomePage} />
             </div>
@@ -130,7 +130,7 @@ export default function App() {
             <RouteWrapper leftPanel={leftPanel} />
           </PrivateRoute>
           <Route path="*">
-            <Redirect to={loggedIn ? "/channels" : "/"} />
+            <Redirect to="/channels" />
           </Route>
         </Switch>
       </div>

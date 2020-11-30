@@ -11,7 +11,7 @@ const SignInButton = () => {
       actionButton
       size="sm"
       type="submit"
-      onClick={() => history.push("/")}
+      onClick={() => history.push("/welcome")}
       analyticsString="Login Button: SiteHeaderWelcome"
     >
       {strings.loginButton}

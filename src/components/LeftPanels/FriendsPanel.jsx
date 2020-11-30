@@ -160,7 +160,7 @@ class FriendsPanel extends Component {
           </div>
         ) : (
           <div className="px-6">
-            <p className="font-bold text-lg text-copy-disabled mb-8">
+            <p className="font-bold text-lg text-copy-disabled mb-8 mt-6">
               Your Channels / Following
             </p>
             <p className="text-copy-primary text-sm mb-6">
