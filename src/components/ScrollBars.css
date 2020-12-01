@@ -1,7 +1,14 @@
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
+  opacity:0;
+  background: transparent;
 }
+
+::-webkit-scrollbar:hover{
+     opacity: 1;
+}
+
 /* Handle */
 ::-webkit-scrollbar-thumb {
   border-radius: 16px;
