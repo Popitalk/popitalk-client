@@ -8,8 +8,13 @@ const SignInButton = () => {
 
   return (
     <Button
-      actionButton
-      size="sm"
+      hoverable
+      styleNone
+      size="md"
+      icon="user-circle"
+      styleNoneContent={strings.createNewAccountButton}
+      styleNoneContentClassName="text-sm"
+      className="space-x-2 text-copy-tertiary bg-gradient-br-button py-2 px-4 rounded-md"
       type="submit"
       onClick={() => history.push("/welcome")}
       analyticsString="Login Button: SiteHeaderWelcome"

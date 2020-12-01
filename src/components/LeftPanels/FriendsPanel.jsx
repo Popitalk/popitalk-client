@@ -2,15 +2,15 @@ import React, { Component } from "react";
 import ReactTooltip from "react-tooltip";
 
 import Button from "../Controls/Button";
-import SignInButton from "../SignInButton";
 import FriendUsersList from "../InfoCardLists/FriendUsersList";
 import StretchList from "../InfoCardLists/StretchList";
 import Input from "../Controls/Input";
 import RoomsList from "../InfoCardLists/RoomsList";
 import PanelHeader from "./PanelHeader";
-import AvatarDeck from "../Controls/AvatarDeck";
 import { utilizeFocus } from "../../helpers/functions";
 import strings from "../../helpers/localization";
+import LeftPanelViewer from "./LeftPanelViewer";
+import LeftPanelFooter from "./LeftPanelFooter";
 
 class FriendsPanel extends Component {
   constructor(props) {
@@ -159,15 +159,9 @@ class FriendsPanel extends Component {
             />
           </div>
         ) : (
-          <div className="px-6">
-            <p className="font-bold text-lg text-copy-disabled mb-8 mt-6">
-              Your Channels / Following
-            </p>
-            <p className="text-copy-primary text-sm mb-6">
-              Sign in to add and chat with friends. You can also create, follow,
-              comment on a channel.
-            </p>
-            <SignInButton />
+          <div className="flex flex-col justify-between h-full px-6 py-4">
+            <LeftPanelViewer friendsPanel />
+            <LeftPanelFooter />
           </div>
         )}
         <ReactTooltip

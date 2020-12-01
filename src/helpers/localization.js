@@ -96,8 +96,8 @@ let strings = new LocalizedStrings({
 
     // == Buttons == //
     loginButton: "Log In",
-    createNewAccountButton: "Sign Up",
-    createChannelButton: "Create",
+    createNewAccountButton: "Sign In",
+    createChannelButton: "Create channel",
     newRoomButton: "New Chat",
     requestVideoButton: "Send a request to the admin",
     createButton: "Create",
@@ -129,23 +129,28 @@ let strings = new LocalizedStrings({
     nov: "November",
     dec: "December",
 
+    // === ChannelsPanel & FriendsPanel === //
     // PanelHeader & MiniFriendsList
     channels: "Channels",
     friends: "Friends",
-
-    // ChannelsPanel & FriendsPanel
     yourChannels: "Your Channels",
     yourChannelsPlaceholder: "Create your own public Channel!",
     followingChannels: "Following",
     followingChannelsPlaceholder: "Discover and Follow Channels!",
     searchFriendsInput: "Search Username",
     searchResult: "Results for",
-
+    // LeftPanelViewer
+    signInText: "Sign in to add friends and watch together.",
+    // LeftPanelFooter
+    loginOrSignup: "Log In/Sign Up",
+    aboutUs: "About us",
+    followUson: "Follow us on",
     // RoomIcon
     myRoom: "You",
     // ChannelsList
     online: "online",
-    // RecommendedView
+
+    // === RecommendedView === //
     channelSearchInput: "Search for a channel",
     videoSearchInput: "Search for a video",
     following: "Following",
@@ -339,7 +344,7 @@ let strings = new LocalizedStrings({
     // == Buttons == //
     loginButton: "로그인",
     createNewAccountButton: "가입하기",
-    createChannelButton: "만들기",
+    createChannelButton: "채널 생성",
     newRoomButton: "방 만들기",
     requestVideoButton: "채널 관리자한테 요청하세요",
     createButton: "만들기",
@@ -354,7 +359,7 @@ let strings = new LocalizedStrings({
     deleteButton: "삭제",
     loadMoreButton: "더 보기",
     backToTrendingButton: "처음으로",
-    sendFeedbackButton: "뽀삐톡 팀",
+    sendFeedbackButton: "Popitalk 팀",
     copyButton: "복사하기",
 
     // Months
@@ -370,16 +375,23 @@ let strings = new LocalizedStrings({
     oct: "10월",
     nov: "11월",
     dec: "12월",
+
+    // === ChannelsPanel & FriendsPanel === //
     // PanelHeader & MiniFriendsList
     channels: "티비채널",
     friends: "친구",
-    // ChannelsPanel & FriendsPanel
     yourChannels: "내 채널",
     yourChannelsPlaceholder: "나만의 채널을 만들어 보세요!",
     followingChannels: "팔로잉 채널",
     followingChannelsPlaceholder: "채널을 팔로우 할 수 있습니다",
     searchFriendsInput: "아이디로 친구 찾기",
     searchResult: "검색 결과",
+    // LeftPanelViewer
+    signInText: "친구를 추가하고 같이보려면 가입해보세요.",
+    // LeftPanelFooter
+    loginOrSignup: "로그인/가입",
+    aboutUs: "소개",
+    followUson: "팔로우 소식",
     // RoomIcon
     myRoom: "내 톡방",
     // ChannelsList

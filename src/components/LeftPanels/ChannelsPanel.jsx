@@ -3,10 +3,11 @@ import ReactTooltip from "react-tooltip";
 
 import ChannelsList from "../InfoCardLists/ChannelsList";
 import Button from "../Controls/Button";
-import SignInButton from "../SignInButton";
 import MiniFriendsList from "../MiniFriendsList";
 import PanelHeader from "./PanelHeader";
 import strings from "../../helpers/localization";
+import LeftPanelFooter from "./LeftPanelFooter";
+import LeftPanelViewer from "./LeftPanelViewer";
 
 export default function ChannelsPanel({
   yourChannels,
@@ -77,15 +78,15 @@ export default function ChannelsPanel({
               emptyMessage={strings.followingChannelsPlaceholder}
               isLoading={false}
             />
+            <div className="flex flex-col justify-between h-full px-6 py-4 mt-24">
+              <LeftPanelFooter />
+            </div>
           </div>
         </div>
       ) : (
-        <div className="px-6">
-          <p className="text-copy-primary text-sm my-6">
-            Sign in to add and chat with friends. You can also create, follow,
-            comment on a channel.
-          </p>
-          <SignInButton />
+        <div className="flex flex-col justify-between h-full px-6 py-4">
+          <LeftPanelViewer />
+          <LeftPanelFooter />
         </div>
       )}
       <ReactTooltip
