@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import strings from "../../helpers/localization";
+import React from "react";
 import classnames from "classnames";
 
 export default function ScrollableCardList({
@@ -7,7 +6,7 @@ export default function ScrollableCardList({
   displayControls,
   children
 }) {
-  const [checked, setChecked] = useState(false);
+  // const [checked, setChecked] = useState(false);
 
   const scrollableClasses = classnames({
     "flex-row": axis === "x",

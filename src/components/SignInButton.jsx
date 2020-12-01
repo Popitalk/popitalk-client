@@ -12,9 +12,9 @@ const SignInButton = () => {
       styleNone
       size="md"
       icon="user-circle"
-      styleNoneContent="Sign in"
+      styleNoneContent={strings.createNewAccountButton}
       styleNoneContentClassName="text-sm"
-      className="space-x-2 text-copy-primary bg-background-secondary py-2 px-4 rounded-md hover:bg-hover-highlight"
+      className="space-x-2 text-copy-tertiary bg-gradient-br-button py-2 px-4 rounded-md"
       type="submit"
       onClick={() => history.push("/welcome")}
       analyticsString="Login Button: SiteHeaderWelcome"

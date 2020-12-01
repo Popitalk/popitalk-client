@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Logo from "../../assets/logo.png";
 import Button from "../Controls/Button";
 import strings from "../../helpers/localization";
+import { Link } from "react-router-dom";
 
 const SiteHeaderWelcome = ({ apiLoading, apiError, dispatchLogin }) => {
   const [username, setUsername] = useState("");
@@ -46,9 +47,10 @@ const SiteHeaderWelcome = ({ apiLoading, apiError, dispatchLogin }) => {
         } sm:flex sm:flex-row sm:h-full sm:w-screen sm:px-16 sm:py-3 sm:justify-between sm:items-start sm:bg-background-primary
         // flex flex-col h-screen justify-start px-12 border-b border-outline-primary bg-background-primary`}
       >
-        <div
+        <Link
+          to="/"
           className="sm:justify-start sm:py-3 sm:mt-0
-          // flex justify-center w-full py-8 mt-4"
+          // flex justify-center w-full py-8 mt-4 no-underline"
         >
           <Button
             imageButton
@@ -58,7 +60,7 @@ const SiteHeaderWelcome = ({ apiLoading, apiError, dispatchLogin }) => {
             imageButtonSpanClassName="md:ml-2 md:text-2xl // sm:text-xl sm:ml-1 // flex ml-1 text-2xl text-copy-primary"
             analyticsString="Logo Button: SiteHeaderWelcome"
           />
-        </div>
+        </Link>
         <nav className="flex flex-col">
           <form>
             <ul className="flex flex-col">
