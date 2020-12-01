@@ -1,4 +1,6 @@
 import React from "react";
+import { useSelector } from "react-redux";
+
 import Button from "../Controls/Button";
 import AvatarIcon from "../Controls/AvatarIcon";
 import AdminAvatarContainer from "../../containers/AdminAvatarContainer";
@@ -18,11 +20,13 @@ export default function ChannelDescription({
   isMember,
   isOwner
 }) {
+  const { loggedIn } = useSelector(state => state.general);
+
   return (
     <div className="flex flex-col mb-12">
       {!isOwner && (
         <div className="flex justify-end my-4">
-          {
+          {loggedIn && (
             <Button
               actionButton
               size="sm"
@@ -42,7 +46,7 @@ export default function ChannelDescription({
             >
               {isMember ? strings.followingButton : strings.followButton}
             </Button>
-          }
+          )}
         </div>
       )}
       <div className="flex flex-row justify-center items-center bg-background-secondary">
@@ -62,7 +66,11 @@ export default function ChannelDescription({
             {adminIds.slice(0, threshold).map(adminId => (
               <div
                 key={adminId}
-                onClick={() => openProfileModal(adminId)}
+                onClick={() => {
+                  if (loggedIn) {
+                    openProfileModal(adminId);
+                  }
+                }}
                 role="button"
                 className="flex flex-shrink-0"
               >

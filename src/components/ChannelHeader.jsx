@@ -1,4 +1,6 @@
 import React from "react";
+import { useSelector } from "react-redux";
+
 import RoomIcon from "./Controls/RoomIcon";
 import { Link, useLocation } from "react-router-dom";
 import strings from ".././helpers/localization";
@@ -16,6 +18,7 @@ export default function ChannelHeader({
   isMember
 }) {
   const location = useLocation();
+  const { loggedIn } = useSelector(state => state.general);
 
   let navButtons = [
     { name: strings.video, endpoint: "video" },
@@ -68,7 +71,7 @@ export default function ChannelHeader({
               </Link>
             );
           })}
-          {!isMember && (
+          {!isMember && loggedIn && (
             <Button
               actionButton
               size="sm"

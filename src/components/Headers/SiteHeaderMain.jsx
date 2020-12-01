@@ -1,20 +1,21 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import Logo from "../assets/logo.png";
-import DropDownMenu from "./DropDowns/DropDownMenu";
-import DeleteAccountDropDown from "./DropDowns/DeleteAccountDropDown";
-import FriendRequests from "./DropDowns/FriendRequests";
+
+import Logo from "../../assets/logo.png";
+import DropDownMenu from "../DropDowns/DropDownMenu";
+import DeleteAccountDropDown from "../DropDowns/DeleteAccountDropDown";
+import FriendRequests from "../DropDowns/FriendRequests";
 // import Notifications from "./DropDowns/Notifications";
-import DropDownControls from "./DropDowns/DropDownControls";
-import Button from "./Controls/Button";
-import strings from "../helpers/localization";
+import DropDownControls from "../DropDowns/DropDownControls";
+import Button from "../Controls/Button";
+import strings from "../../helpers/localization";
 
 const SETTINGS = 1;
 const ACCOUNT_SETTINGS = 2;
 const DELETE_ACCOUNT = 3;
 const INFORMATION = 4;
 
-export default function SiteHeaderMain({
+const SiteHeaderMain = ({
   userID,
   username,
   avatar,
@@ -27,7 +28,7 @@ export default function SiteHeaderMain({
   clearNotificationsHandler,
   deleteAccountHandler,
   logoutHandler
-}) {
+}) => {
   const [dropdownList, setDropdownList] = useState([]);
 
   const toggleSettings = () => {
@@ -140,10 +141,7 @@ export default function SiteHeaderMain({
 
   return (
     <header className="sm:px-6 // relative flex items-center justify-between h-12 bg-background-primary px-2 z-30 select-none">
-      <Link
-        to="/channels"
-        className="flex flex-shrink-0 items-center justify-center"
-      >
+      <Link to="/" className="flex flex-shrink-0 items-center justify-center">
         <Button
           imageButton
           imageButtonSrc={Logo}
@@ -229,4 +227,6 @@ export default function SiteHeaderMain({
       </div>
     </header>
   );
-}
+};
+
+export default SiteHeaderMain;

@@ -1,4 +1,6 @@
 import React from "react";
+import { useSelector } from "react-redux";
+
 import AvatarIcon from "../Controls/AvatarIcon";
 import ToggleIcon from "../Controls/ToggleIcon";
 import { formatDistanceToNow } from "../../helpers/datefns";
@@ -15,13 +17,18 @@ export default function Comment({
   toggleLike,
   openProfileModal
 }) {
+  const { loggedIn } = useSelector(state => state.general);
   const timeAgo = formatDistanceToNow(new Date(createdAt));
 
   return (
     <div className="flex flex-row bg-background-secondary p-2">
       <aside
         className="flex-shrink-0 pr-2"
-        onClick={() => openProfileModal(authorId)}
+        onClick={() => {
+          if (loggedIn) {
+            openProfileModal(authorId);
+          }
+        }}
         role="button"
       >
         <AvatarIcon
@@ -34,7 +41,11 @@ export default function Comment({
         <main>
           <span
             className="font-bold text-sm pr-1 text-copy-primary"
-            onClick={() => openProfileModal(authorId)}
+            onClick={() => {
+              if (loggedIn) {
+                openProfileModal(authorId);
+              }
+            }}
             role="button"
           >
             {username}{" "}

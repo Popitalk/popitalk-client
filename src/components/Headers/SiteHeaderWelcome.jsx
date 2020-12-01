@@ -1,13 +1,9 @@
 import React, { useState } from "react";
-import Logo from "../assets/logo.png";
-import Button from "./Controls/Button";
-import strings from "../helpers/localization";
+import Logo from "../../assets/logo.png";
+import Button from "../Controls/Button";
+import strings from "../../helpers/localization";
 
-export default function SiteHeaderWelcome({
-  apiLoading,
-  apiError,
-  dispatchLogin
-}) {
+const SiteHeaderWelcome = ({ apiLoading, apiError, dispatchLogin }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
@@ -151,4 +147,6 @@ export default function SiteHeaderWelcome({
       </div>
     </header>
   );
-}
+};
+
+export default SiteHeaderWelcome;

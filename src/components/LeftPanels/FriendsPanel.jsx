@@ -1,13 +1,16 @@
 import React, { Component } from "react";
+import ReactTooltip from "react-tooltip";
+
 import Button from "../Controls/Button";
+import SignInButton from "../SignInButton";
 import FriendUsersList from "../InfoCardLists/FriendUsersList";
 import StretchList from "../InfoCardLists/StretchList";
 import Input from "../Controls/Input";
 import RoomsList from "../InfoCardLists/RoomsList";
 import PanelHeader from "./PanelHeader";
+import AvatarDeck from "../Controls/AvatarDeck";
 import { utilizeFocus } from "../../helpers/functions";
 import strings from "../../helpers/localization";
-import ReactTooltip from "react-tooltip";
 
 class FriendsPanel extends Component {
   constructor(props) {
@@ -101,59 +104,72 @@ class FriendsPanel extends Component {
           selectedPage={this.props.selectedPage}
           numberOfNotifications={this.props.numberOfNotifications}
         />
-        <div className="flex-col h-full overflow-y-scroll">
-          <Input
-            variant="user"
-            size="sm"
-            value={this.state.search}
-            placeholder={strings.searchFriendsInput}
-            onChange={e => this.syncSearch(e.target.value)}
-            onClick={() => this.syncSearch(this.state.search)}
-            forwardedRef={this.searchFieldRef.ref}
-            className="my-1 mx-3"
-          />
-          {this.state.open && (
-            <div className="rounded-md bg-background-secondary shadow-inner border border-outline-primary mx-3 m-2">
-              <div className="flex flex-row items-center justify-between px-4 py-1">
-                <p className="text-xs text-copy-primary">
-                  {strings.searchResult} &quot;{this.state.search}&quot;
-                </p>
-                <Button
-                  styleNone
-                  styleNoneContent={strings.searchFriendsClose}
-                  className="flex text-xs font-bold text-copy-highlight px-2 py-1 rounded-xl transition-all hover:bg-background-highlight duration-100"
-                  onClick={() => this.syncSearch("")}
-                  analyticsString="Close Friend Search Button: FriendsPanel"
-                />
+        {this.props.loggedIn ? (
+          <div className="flex-col h-full overflow-y-scroll">
+            <Input
+              variant="user"
+              size="sm"
+              value={this.state.search}
+              placeholder={strings.searchFriendsInput}
+              onChange={e => this.syncSearch(e.target.value)}
+              onClick={() => this.syncSearch(this.state.search)}
+              forwardedRef={this.searchFieldRef.ref}
+              className="my-1 mx-3"
+            />
+            {this.state.open && (
+              <div className="rounded-md bg-background-secondary shadow-inner border border-outline-primary mx-3 m-2">
+                <div className="flex flex-row items-center justify-between px-4 py-1">
+                  <p className="text-xs text-copy-primary">
+                    {strings.searchResult} &quot;{this.state.search}&quot;
+                  </p>
+                  <Button
+                    styleNone
+                    styleNoneContent={strings.searchFriendsClose}
+                    className="flex text-xs font-bold text-copy-highlight px-2 py-1 rounded-xl transition-all hover:bg-background-highlight duration-100"
+                    onClick={() => this.syncSearch("")}
+                    analyticsString="Close Friend Search Button: FriendsPanel"
+                  />
+                </div>
+                <div className="flex w-full h-64 rounded-lg">
+                  <StretchList
+                    list={FriendUsersList}
+                    users={this.props.userSearchResults}
+                    handleProfile={this.props.handleProfile}
+                  />
+                </div>
               </div>
-              <div className="flex w-full h-64 rounded-lg">
-                <StretchList
-                  list={FriendUsersList}
-                  users={this.props.userSearchResults}
-                  handleProfile={this.props.handleProfile}
-                />
-              </div>
+            )}
+            <div className="bg-background-primary pb-8">
+              <RoomsList
+                rooms={this.state.rooms}
+                selected={this.props.selectedRoom}
+                handleSelect={this.props.handleSelectRoom}
+                fullHeight={true}
+                isLoading={false}
+              />
             </div>
-          )}
-          <div className="bg-background-primary pb-8">
-            <RoomsList
-              rooms={this.state.rooms}
-              selected={this.props.selectedRoom}
-              handleSelect={this.props.handleSelectRoom}
-              fullHeight={true}
-              isLoading={false}
+            <Button
+              actionButton
+              size="lg"
+              icon="plus"
+              className="fixed bottom-0 left-0 ml-68 mb-4 hover:opacity-100 hover:scale-105 shadow-channel"
+              onClick={() => this.props.handleCreateRoom()}
+              analyticsString="Create Room Button: FriendsPanel"
+              tooltip={strings.newRoomButton}
             />
           </div>
-          <Button
-            actionButton
-            size="lg"
-            icon="plus"
-            className="fixed bottom-0 left-0 ml-68 mb-4 hover:opacity-100 hover:scale-105 shadow-channel"
-            onClick={() => this.props.handleCreateRoom()}
-            analyticsString="Create Room Button: FriendsPanel"
-            tooltip={strings.newRoomButton}
-          />
-        </div>
+        ) : (
+          <div className="px-6">
+            <p className="font-bold text-lg text-copy-disabled mb-8 mt-6">
+              Your Channels / Following
+            </p>
+            <p className="text-copy-primary text-sm mb-6">
+              Sign in to add and chat with friends. You can also create, follow,
+              comment on a channel.
+            </p>
+            <SignInButton />
+          </div>
+        )}
         <ReactTooltip
           effect="solid"
           backgroundColor="#F2F2F2"

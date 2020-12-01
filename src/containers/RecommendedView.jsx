@@ -1,13 +1,15 @@
 import React, { useState, useEffect, useCallback } from "react";
 import PropTypes from "prop-types";
 import { useSelector, useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
+import Helmet from "react-helmet";
+
 import ChannelCardList from "../components/ThumbnailCardLists/ChannelCardList.jsx";
 import ChannelSearchList from "../components/ThumbnailCardLists/ChannelSearchList.jsx";
 import VideoCardList from "../components/ThumbnailCardLists/VideoCardList.jsx";
 import Input from "../components/Controls/Input.jsx";
 import Alert from "../components/Alert";
 import Button from "../components/Controls/Button.jsx";
-import Helmet from "react-helmet";
 import strings from "../helpers/localization";
 // import useGetChannels from "../containers/hooks/useGetChannels";
 import {
@@ -20,12 +22,20 @@ import {
 const moreThanTwoMinutesAgo = date => new Date(date) < new Date() - 120000;
 
 function RecommendedChannels({ selectedPage }) {
-  const tabs = [
-    { tab: strings.following, icon: "home" },
-    { tab: strings.discover, icon: "globe" },
-    { tab: strings.trending, icon: "fire" }
-  ];
-  const [tabSelected, setTab] = useState(tabs[2].tab);
+  const loggedIn = useSelector(state => state.general.loggedIn);
+
+  const followingTab = {
+    tab: strings.following,
+    icon: "home"
+  };
+  const discoverTab = { tab: strings.discover, icon: "globe" };
+  const trendingTab = { tab: strings.trending, icon: "fire" };
+
+  const tabs = loggedIn
+    ? [followingTab, discoverTab, trendingTab]
+    : [discoverTab, trendingTab];
+
+  const [tabSelected, setTab] = useState(trendingTab.tab);
   const isCollapsed = useSelector(state => state.ui.isCollapsed);
   const alert = useSelector(state => state.ui.alert);
   const followingChannels = useSelector(state => state.followingChannels);
@@ -33,17 +43,19 @@ function RecommendedChannels({ selectedPage }) {
   const trendingChannels = useSelector(state => state.trendingChannels);
   const { defaultAvatar, defaultIcon } = useSelector(state => state.general);
 
-  const getChannels = useCallback(channels =>
-    Object.entries(channels.channels).map(([chanId, chan]) => ({
-      id: chanId,
-      name: chan.name,
-      icon: chan.icon || defaultIcon,
-      status: chan.playbackStatus,
-      videoInfo: chan.videoInfo,
-      viewers: chan.viewers.map(
-        viewerId => channels.users[viewerId].avatar || defaultAvatar
-      )
-    }))
+  const getChannels = useCallback(
+    channels =>
+      Object.entries(channels.channels).map(([chanId, chan]) => ({
+        id: chanId,
+        name: chan.name,
+        icon: chan.icon || defaultIcon,
+        status: chan.playbackStatus,
+        videoInfo: chan.videoInfo,
+        viewers: chan.viewers.map(
+          viewerId => channels.users[viewerId].avatar || defaultAvatar
+        )
+      })),
+    [defaultIcon, defaultAvatar]
   );
 
   const dispatch = useDispatch();
@@ -65,15 +77,16 @@ function RecommendedChannels({ selectedPage }) {
 
   const tabHandler = tab => {
     setIsSearchForChannels(false);
-    if (tab === tabs[0].tab) {
-      if (
+
+    if (loggedIn && tab === followingTab.tab) {
+      const isOutDated =
         !followingChannels.lastRequestAt ||
-        moreThanTwoMinutesAgo(followingChannels.lastRequestAt)
-      ) {
+        moreThanTwoMinutesAgo(followingChannels.lastRequestAt);
+      if (isOutDated) {
         dispatch(getFollowingChannels());
       }
       setChannelList(getChannels(followingChannels));
-    } else if (tab === tabs[1].tab) {
+    } else if (tab === discoverTab.tab) {
       if (
         !discoverChannels.lastRequestAt ||
         moreThanTwoMinutesAgo(discoverChannels.lastRequestAt)
@@ -81,7 +94,7 @@ function RecommendedChannels({ selectedPage }) {
         dispatch(getDiscoverChannels());
       }
       setChannelList(getChannels(discoverChannels));
-    } else if (tab === tabs[2].tab) {
+    } else if (tab === trendingTab.tab) {
       if (
         !trendingChannels.lastRequestAt ||
         moreThanTwoMinutesAgo(trendingChannels.lastRequestAt)

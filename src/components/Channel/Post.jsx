@@ -1,8 +1,9 @@
 import React, { useState, useRef } from "react";
+import useOnClickOutside from "use-onclickoutside";
+
 import AvatarIcon from "../Controls/AvatarIcon";
 import CommentSectionContainer from "../../containers/CommentSectionContainer";
 import ToggleIcon from "../Controls/ToggleIcon";
-import useOnClickOutside from "use-onclickoutside";
 import PopupMenu from "../Controls/PopupMenu";
 import Button from "../Controls/Button";
 import strings from "../../helpers/localization";
@@ -72,7 +73,11 @@ export default function Post({
         <div className="flex justify-between items-start w-full">
           <header
             className="flex items-center w-full space-x-2"
-            onClick={() => openProfileModal(authorId)}
+            onClick={() => {
+              if (ownId) {
+                openProfileModal(authorId);
+              }
+            }}
             role="button"
           >
             <AvatarIcon

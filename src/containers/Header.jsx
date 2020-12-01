@@ -1,7 +1,7 @@
-/* eslint-disable jsx-a11y/no-noninteractive-tabindex */
-import React, { useCallback, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
+
 import {
   login,
   logout,
@@ -12,47 +12,37 @@ import {
   openBlockedUsersModal
 } from "../redux/actions";
 import { mapIdsToUsers, setRelationshipHandlers } from "../helpers/functions";
-import SiteHeaderMain from "../components/SiteHeaderMain";
-import SiteHeaderWelcome from "../components/SiteHeaderWelcome";
+import {
+  SiteHeaderMain,
+  SiteHeaderViewers,
+  SiteHeaderWelcome
+} from "../components/Headers";
 
-export default function HeaderContainer() {
-  const { loggedIn } = useSelector(state => state.general);
+const HeaderContainer = () => {
+  const history = useHistory();
+  const { pathname } = useLocation();
+  const dispatch = useDispatch();
+
+  const { loggedIn, defaultAvatar } = useSelector(state => state.general);
   const { id, username, avatar } = useSelector(state => state.self);
-  const { defaultAvatar } = useSelector(state => state.general);
   const relationships = useSelector(state => state.relationships);
   const users = useSelector(state => state.users);
-  const loginApi = useSelector(state => state.api.loginApi);
-  const history = useHistory();
+  const { status, loading, error } = useSelector(state => state.api.loginApi);
 
-  const dispatch = useDispatch();
-  const deleteAccountDispatcher = useCallback(() => dispatch(deleteAccount()), [
-    dispatch
-  ]);
+  const { receivedFriendRequests, sentFriendRequests } = relationships;
 
   useEffect(() => {
-    if (loginApi.status === "success") {
-      history.push("/channels");
-    }
-  }, [history, loginApi]);
+    if (status === "success") history.push("/");
+  }, [history, status]);
 
-  const friendRequests = mapIdsToUsers(
-    [
-      ...relationships.receivedFriendRequests,
-      ...relationships.sentFriendRequests
-    ],
-    users,
-    defaultAvatar
-  ).map(u => {
-    return setRelationshipHandlers(
-      u,
-      relationships,
-      dispatch,
-      defaultAvatar,
-      id
-    );
-  });
+  const setUserRelationships = user =>
+    setRelationshipHandlers(user, relationships, dispatch, defaultAvatar, id);
 
-  if (loggedIn) {
+  const requests = [...receivedFriendRequests, ...sentFriendRequests];
+  const mappedUsers = mapIdsToUsers(requests, users, defaultAvatar);
+  const friendRequests = mappedUsers.map(setUserRelationships);
+
+  if (loggedIn)
     return (
       <SiteHeaderMain
         userID={id}
@@ -65,29 +55,37 @@ export default function HeaderContainer() {
         openEditInformationHandler={() => dispatch(openEditUserSettingsModal())}
         openChangePasswordHandler={() => dispatch(openChangePasswordModal())}
         clearNotificationsHandler={() => console.log("clear notifications")}
-        deleteAccountHandler={deleteAccountDispatcher}
+        deleteAccountHandler={() => dispatch(deleteAccount())}
         logoutHandler={() => {
           dispatch(logout());
           history.push("/");
         }}
       />
     );
-  } else {
-    const handleLogin = (username, password) => {
-      dispatch(
-        login({
-          usernameOrEmail: username,
-          password: password
-        })
-      );
-    };
 
-    return (
-      <SiteHeaderWelcome
-        apiLoading={loginApi.loading}
-        apiError={loginApi.status === "error" ? loginApi.error : false}
-        dispatchLogin={handleLogin}
-      />
+  const viewer =
+    pathname.includes("channels") ||
+    pathname.includes("friends") ||
+    pathname === "/";
+
+  if (viewer) return <SiteHeaderViewers />;
+
+  const handleLogin = (username, password) => {
+    dispatch(
+      login({
+        usernameOrEmail: username,
+        password: password
+      })
     );
-  }
-}
+  };
+
+  return (
+    <SiteHeaderWelcome
+      apiLoading={loading}
+      apiError={status === "error" ? error : false}
+      dispatchLogin={handleLogin}
+    />
+  );
+};
+
+export default HeaderContainer;

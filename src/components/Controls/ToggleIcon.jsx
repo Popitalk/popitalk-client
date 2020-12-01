@@ -1,5 +1,7 @@
 import React from "react";
 import classnames from "classnames";
+import { useSelector } from "react-redux";
+
 import Button from "./Button";
 
 export default function ToggleIcon({
@@ -9,6 +11,8 @@ export default function ToggleIcon({
   status,
   toggleStatus
 }) {
+  const { loggedIn } = useSelector(state => state.general);
+
   const handleToggle = () => {
     toggleStatus(status);
     console.log("toggled");
@@ -30,7 +34,11 @@ export default function ToggleIcon({
       className={`flex items-center p-2 rounded-xl hover:text-notificationsColor duration-100 focus:outline-none ${colorChange} ${
         className && className.icon ? className.icon : ""
       }`}
-      onClick={handleToggle}
+      onClick={() => {
+        if (loggedIn) {
+          handleToggle();
+        }
+      }}
       analyticsString="Like Button: ToggleIcon"
     />
   );
