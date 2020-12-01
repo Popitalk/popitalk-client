@@ -117,7 +117,7 @@ const SiteHeaderWelcome = ({ apiLoading, apiError, dispatchLogin }) => {
                   <Button
                     actionButton
                     size="sm"
-                    className="sm:h-auto sm:w-auto // w-24 h-10"
+                    className="sm:h-auto sm:w-auto // w-24 h-10 shadow-none"
                     shape="regular"
                     onClick={handleLogin}
                     analyticsString="Login Button: SiteHeaderWelcome"
