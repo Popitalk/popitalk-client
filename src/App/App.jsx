@@ -139,7 +139,7 @@ export default function App() {
       </div>
       <Helmet>
         <meta charSet="UFT-8" />
-        <title>{strings.mainTitle}</title>
+        <title itemProp="name">{strings.mainTitle}</title>
         <meta name="description" content={strings.mainDescription} />
         <link rel="canonical" href={logo} />
         <meta name="viewport" content="width=device-width, initial-scale=1" />

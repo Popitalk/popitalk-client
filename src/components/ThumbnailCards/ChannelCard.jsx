@@ -73,13 +73,13 @@ export default function ChannelCard({
             {videoThumbnail !== "" ? (
               <img
                 src={videoThumbnail}
-                alt={"channel"}
+                alt={`${name} - Popitalk`}
                 className="absolute img top-0 h-full rounded-md bg-background-secondary object-cover pt-px"
               />
             ) : (
               <img
                 src={channelPlaceholder}
-                alt={"channel"}
+                alt="Popitalk Default"
                 className="absolute img top-0 h-full rounded-md bg-background-primary"
               />
             )}
@@ -93,6 +93,7 @@ export default function ChannelCard({
             <div className="flex w-full text-sm">
               <AvatarDeck
                 avatars={viewers}
+                alt={`${viewers} - Popitalk`}
                 size="md"
                 className="img flex-shrink-0"
                 threshold={10}

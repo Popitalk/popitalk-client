@@ -10,7 +10,7 @@ export default function MessageAuthorAvatar({ message, defaultAvatar }) {
     <img
       className="w-8 h-8 rounded-full object-cover"
       src={message.avatar || defaultAvatar}
-      alt={message.username}
+      alt={`${message.username} - Popitalk`}
       onClick={() => {
         if (loggedIn) {
           dispatch(openProfileModal(message.userId));

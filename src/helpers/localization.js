@@ -4,21 +4,23 @@ import LocalizedStrings from "react-localization";
 let strings = new LocalizedStrings({
   // === Default - English === //
   en: {
-    // Moment.JS
+    // === Moment.JS === //
     location: "en",
 
-    // SEO (MataData & WelcomePage & SiteHeaderWelcome)
+    // === SEO (MataData & Site Title === //
     mainTitle: "Popitalk - Watch together",
     mainDescription:
-      "Watch youtube, twitch, anime, and cruncyroll together with friends on Popitalk. Watch at the same time in sync while chatting. Popitalk is exactly what you need with your friends to watch together. Create a free account, add friends and start watching together today!",
+      "Watch videos together or listen to songs together with friends and family. Watch youtube in perfect sync together while chatting with your beloved ones.",
     mainKeywords:
-      "watch, together, with, friends, youtube, anime, videos, in, sync, at, the, same, time, chat, rabbit, w2g, watch2gether, watchtogether",
-    loginPageTitle: "Popitalk - Watch together - Log In or Sign Up",
+      "watch together, watch with friends, watch youtube together, watch anime together, watch in sync, watch at same time, chat while watching, rabbit watch, watch2gether, watchtogether",
+    loginPageTitle: "Popitalk - Log In or Sign Up",
     loginPageDescription:
-      "Watch youtube, twitch, anime, and cruncyroll together with friends on Popitalk. Watch at the same time in sync while chatting. Popitalk is exactly what you need with your friends to watch together. Create a free account, add friends and start watching together today!",
-    createChannelTitle: "Create Channel - Popitalk - Watch together",
+      "Log in or create an account on Popitalk. Watch videos together or listen to songs together with friends and family. Watch youtube in perfect sync together while chatting with your beloved ones.",
+    createChannelTitle: "Popitalk - Create Channel",
     createChannelDescription:
-      "Create a channel on Popitalk. Watch youtube, twitch, anime, and cruncyroll together with friends on Popitalk. Watch at the same time in sync while chatting. Popitalk is exactly what you need with your friends to watch together. Create a free account, add friends and start watching together today!",
+      "Create a channel on Popitalk. Watch videos together or listen to songs together with friends and family. Watch youtube in perfect sync together while chatting with your beloved ones.",
+
+    // WelcomePage & SiteHeaderWelcome
     loginUsername: "Username or email",
     loginPassword: "Password",
 

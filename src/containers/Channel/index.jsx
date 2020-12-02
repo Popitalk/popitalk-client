@@ -530,7 +530,7 @@ class Channel extends Component {
         <Helmet>
           <meta charSet="UFT-8" />
           <title>
-            {this.pickRoomName()} · {strings.mainTitle}
+            {channel.name} · {strings.mainTitle}
           </title>
           <meta
             name="description"

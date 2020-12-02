@@ -65,13 +65,13 @@ export default function ChannelCard({
                 {videoThumbnail ? (
                   <img
                     src={videoThumbnail}
-                    alt={"channel"}
+                    alt={`${name} - Popitalk`}
                     className="absolute img top-0 h-full rounded-lg bg-background-primary pt-px"
                   />
                 ) : (
                   <img
                     src={channelPlaceholder}
-                    alt={"channel"}
+                    alt="Popitalk Default"
                     className="absolute img top-0 h-full rounded-lg bg-background-primary"
                   />
                 )}

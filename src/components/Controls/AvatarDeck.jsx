@@ -5,6 +5,7 @@ import Button from "./Button";
 export default function AvatarDeck({
   ids,
   avatars,
+  alt,
   size = "md",
   className,
   threshold = 6
@@ -32,7 +33,7 @@ export default function AvatarDeck({
               <img
                 key={ids?.[index] || index}
                 src={avatar}
-                alt="avatar"
+                alt={`${alt} - Popitalk`}
                 className={avatarClasses}
               />
             );

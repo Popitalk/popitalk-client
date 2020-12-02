@@ -60,7 +60,7 @@ export default function ProfileModal({
           <img
             className="img w-32 h-32 rounded-circle"
             src={user.avatar}
-            alt={`${user.username}'s avatar`}
+            alt={user.username}
           />
         )}
         {updateUserApi.error && (

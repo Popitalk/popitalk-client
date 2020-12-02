@@ -30,7 +30,7 @@ export default function AvatarIcon({
           className={className ? className : defaultClassName}
           role="button"
           src={avatar}
-          alt={`${username}'s avatar`}
+          alt={`${username} - Popitalk`}
           onClick={imageClick ? e => handleClick(e) : null}
           data-tip={tooltip}
           data-place={tooltipPlace}

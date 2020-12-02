@@ -148,7 +148,7 @@ export default function VideoPanelCard({
                 </div>
                 <img
                   src={thumbnail}
-                  alt="video-thumbnail"
+                  alt={`${title} - Popitalk`}
                   className="absolute top-0 w-full h-full img rounded-sm object-cover"
                   onClick={handleSkip && (() => handleSkip(id))}
                 />

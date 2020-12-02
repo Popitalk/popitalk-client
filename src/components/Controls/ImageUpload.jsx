@@ -84,14 +84,14 @@ export default function ImageUpload({
           <img
             id="img"
             src={imageURL}
-            alt="icon"
+            alt={`${name} - Popitalk`}
             className="relative img h-full w-full rounded-circle p-px z-10"
           />
         ) : (
           <p className="relative flex flex-row justify-center items-center bg-background-primary rounded-circle w-full h-full relative">
             <img
               src={channelPlaceholder ? defaultChannelImage : defaultImage}
-              alt="icon"
+              alt="Popitalk Default"
               className="img h-full w-full rounded-circle"
             />
           </p>

@@ -95,7 +95,7 @@ export default function RoomIcon({
       {isLoading ? (
         <div className="animate-pulse bg-background-quaternary grid w-full h-full rounded-full overflow-hidden" />
       ) : (
-        <div className="flex flex-col items-center justify-center w-full h-full space-y-1">
+        <div className="flex flex-col items-center justify-center w-full h-full space-y-1 cursor-pointer">
           <div className="w-full h-full">
             <div className={container2Classes}>
               {images.slice(0, 4).map((image, index) => (
@@ -109,7 +109,7 @@ export default function RoomIcon({
                   <img
                     className="img h-full"
                     src={image}
-                    alt="img"
+                    alt={`${image} - Popitalk`}
                     data-tip={tooltip}
                     data-place={tooltipPlace}
                   />

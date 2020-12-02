@@ -96,7 +96,7 @@ export default function Button({
           <div className="flex items-center justify-center">
             <img
               src={imageButtonSrc}
-              alt="Somthing"
+              alt={imageButtonSrc}
               className={imageButtonClassName}
             />
             {imageButtonSpan && (

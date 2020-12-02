@@ -29,7 +29,7 @@ export default function VideoCard({
           <div className="relative flex justify-center flex-grow pb-16/9 w-full rounded-md group-hover:shadow-xl transition-all ease-in-out duration-100">
             <img
               src={thumbnail}
-              alt="video-thumbnail"
+              alt={`${title} - Popitalk`}
               className="absolute top-0 h-full pb-px img rounded-md object-cover"
             />
             <div
