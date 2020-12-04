@@ -59,13 +59,7 @@ function ChatOptionsButton2({
     if (conditions.messageAccepted || conditions.messageRejected) {
       options.push({
         name: "Delete",
-        handler: () =>
-          dispatch(
-            openDeleteMessageModal({
-              channelId,
-              messageId: message.id
-            })
-          ),
+        handler: () => dispatch(openDeleteMessageModal(channelId, message.id)),
         danger: false
       });
     }

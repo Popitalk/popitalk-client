@@ -13,7 +13,7 @@ import usersReducer from "./reducers/users";
 import messagesReducer from "./reducers/messages";
 import chatDraftsReducer from "./reducers/chatDrafts";
 import postDraftsReducer from "./reducers/postDrafts";
-import modalReducer from "./reducers/modal";
+import modalReducer from "./features/modals/modalsSlice";
 import userSearchReducer from "./reducers/userSearch";
 import inviteReducer from "./reducers/invite";
 import relationshipsReducer from "./reducers/relationships";
