@@ -7,6 +7,9 @@ let strings = new LocalizedStrings({
     // === Moment.JS === //
     location: "en",
 
+    // === Error Message === //
+    errorMessage: "Something went wrong :(",
+
     // === SEO (MataData & Site Title === //
     mainTitle: "Popitalk - Watch together",
     mainDescription:
@@ -254,6 +257,9 @@ let strings = new LocalizedStrings({
   ko: {
     // Moment.JS
     location: "ko",
+
+    // === Error Message === //
+    errorMessage: " 불러오지 못했습니다 :(",
 
     // SEO (MataData & WelcomePage & SiteHeaderWelcome)
     mainTitle: "Popitalk - 같이보는 TV",

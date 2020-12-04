@@ -5,7 +5,6 @@ import PopupMenu from "../Controls/PopupMenu";
 import FriendRequestButtons from "../Controls/FriendRequestButtons";
 import ImageUpload from "../Controls/ImageUpload";
 import Button from "../Controls/Button";
-import Spinner from "../Spinner";
 import strings from "../../helpers/localization";
 
 const ProfileModal = ({
@@ -35,13 +34,29 @@ const ProfileModal = ({
   }
 
   let ModalContent;
+  const loadingComponent = (
+    <div className="relative flex flex-col justify-center items-center space-y-4 py-4 px-6 w-full h-full">
+      <div className="w-32 h-32 rounded-circle bg-background-secondary animate-pulse" />
+      <div className="flex w-2/3 flex-col justify-center space-y-1">
+        <div className="flex h-6 bg-background-secondary animate-pulse" />
+        <div className="flex h-6 bg-background-secondary animate-pulse" />
+        <div className="flex space-x-2 py-8">
+          <div className="h-6 w-full bg-background-secondary animate-pulse" />
+          <div className="h-6 w-full bg-background-secondary animate-pulse" />
+        </div>
+      </div>
+    </div>
+  );
 
   if (status === "loading") {
-    ModalContent = <Spinner />;
+    ModalContent = <>{loadingComponent}</>;
   } else if (status === "error") {
     ModalContent = (
-      <div className="flex justify-center items-center h-full">
-        <p className="text-copy-error text-lg">Something went wrong</p>
+      <div className="relative flex justify-center items-center h-full w-full">
+        {loadingComponent}
+        <p className="absolute text-copy-secondary text-sm">
+          {strings.errorMessage}
+        </p>
       </div>
     );
   } else {
@@ -104,7 +119,7 @@ const ProfileModal = ({
   }
 
   return (
-    <div className="relative flex justify-center h-chatBox p-4 py-8 overflow-auto">
+    <div className="relative flex justify-center w-full h-chatBox p-4 py-8 overflow-auto">
       {ModalContent}
       <ReactTooltip
         effect="solid"
