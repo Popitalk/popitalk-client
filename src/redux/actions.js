@@ -738,26 +738,9 @@ export const swapVideosWs = createAction("videoSearch/swapVideos/ws");
 /*                                 USERPROFILE                                */
 /* -------------------------------------------------------------------------- */
 
-export const getUserInfo = createAsyncThunk(
-  "userProfile/getUserInfo",
-  async (userId, { getState }) => {
-    const { blockers } = getState().relationships;
-    if (blockers.includes(userId)) throw new Error();
+export { getUserInfo } from "./features/userProfile/userProfileSlice";
+export { clearProfileInfo } from "./features/userProfile/userProfileSlice";
 
-    const response = await api.getUser(userId);
-    return response.data;
-  }
-);
-export const getUserInfoModal = createAsyncThunk(
-  "userProfile/getUserInfoModal",
-  async (userId, { getState }) => {
-    const { blockers } = getState().relationships;
-    if (blockers.includes(userId)) throw new Error();
-
-    const response = await api.getUser(userId);
-    return response.data;
-  }
-);
 /* -------------------------------------------------------------------------- */
 /*                                    MODAL                                   */
 /* -------------------------------------------------------------------------- */

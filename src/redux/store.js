@@ -17,7 +17,7 @@ import modalReducer from "./features/modals/modalsSlice";
 import userSearchReducer from "./reducers/userSearch";
 import inviteReducer from "./reducers/invite";
 import relationshipsReducer from "./reducers/relationships";
-import userProfileReducer from "./reducers/userProfile";
+import userProfileReducer from "./features/userProfile/userProfileSlice";
 import trendingChannelsReducer from "./reducers/trendingChannels";
 import discoverChannelsReducer from "./reducers/discoverChannels";
 import followingChannelsReducer from "./reducers/followingChannels";

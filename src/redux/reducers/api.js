@@ -33,7 +33,6 @@ import {
   followChannel,
   unfollowChannel,
   getUserInfo,
-  getUserInfoModal,
   getFollowingChannels,
   getDiscoverChannels,
   getTrendingChannels,
@@ -79,8 +78,7 @@ const idsOfActions = {
   [formatType(deleteComment.fulfilled.type)]: "deleteComment",
   [formatType(likeComment.fulfilled.type)]: "comment",
   [formatType(unlikeComment.fulfilled.type)]: "comment",
-  [formatType(getUserInfo.fulfilled.type)]: "userPage",
-  [formatType(getUserInfoModal.fulfilled.type)]: "userPageModal",
+  [formatType(getUserInfo.fulfilled.type)]: "userProfile",
   // MAINPAGE
   [formatType(getFollowingChannels.fulfilled.type)]: "followingChannels",
   [formatType(getDiscoverChannels.fulfilled.type)]: "discoverChannels",
