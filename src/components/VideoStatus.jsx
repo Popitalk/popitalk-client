@@ -4,10 +4,7 @@ import strings from "../helpers/localization";
 export default function VideoStatus({
   status = "none",
   statusMessage = "",
-  additionalComponent,
-  size = "sm",
-  shape = "pill",
-  type = "button"
+  additionalComponent
 }) {
   return (
     <div className="rounded-md border-2 border-outline-image2 py-2 px-3 bg-background-secondary flex flex-shrink-0 text-copy-primary text-xs font-bold space-x-2 items-center cursor-pointer">
