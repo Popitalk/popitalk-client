@@ -11,7 +11,7 @@ export default function AvatarDeck({
   threshold = 6
 }) {
   const deckClasses = classnames({
-    "flex flex-row-reverse justify-end mr-5": true,
+    "flex flex-row-reverse justify-end items-center mr-5": true,
     "children:-mr-2": size === "sm",
     "children:-mr-3": size === "md",
     "children:-mr-4": size === "lg",
@@ -38,12 +38,11 @@ export default function AvatarDeck({
               />
             );
           } else if (index === avatars.length - 1) {
-            const totalLeft = avatars.length - threshold;
             return (
               <Button
                 styleNone
-                styleNoneContentClassName="text-xs text-copy-primary"
-                styleNoneContent={`+${totalLeft}`}
+                icon="ellipsis-h"
+                styleNoneIconClassName="text-xs text-copy-secondary"
                 key={ids?.[index] || index}
                 className={`${avatarClasses} bg-background-secondary order-first flex-shrink-0 z-10`}
                 analyticsString="View More Users Button: AvatarDeck"
@@ -53,6 +52,13 @@ export default function AvatarDeck({
             return null;
           }
         })}
+      <Button
+        styleNone
+        icon="user"
+        styleNoneContent={avatars.length}
+        className="rounded-md border-2 border-outline-image2 py-1 px-2 bg-background-secondary flex-shrink-0 space-x-1 text-copy-primary text-xs font-bold mr-2"
+        analyticsString="View More Users Button: AvatarDeck"
+      />
     </div>
   );
 }

@@ -2,7 +2,6 @@ import React from "react";
 import RoomIcon from "../Controls/RoomIcon";
 import AvatarDeck from "../Controls/AvatarDeck";
 import VideoStatus from "../VideoStatus";
-import { mapIdsToUsers } from "../../helpers/functions";
 import { useSelector } from "react-redux";
 import strings from "../../helpers/localization";
 import history from "../../history";
@@ -18,7 +17,6 @@ export default function ChannelCard({
   handleFollow,
   isLoading
 }) {
-  const { defaultIcon } = useSelector(state => state.general);
   const handleSelect = () => {
     history.push(`/channels/${id}/video`);
   };
@@ -53,15 +51,9 @@ export default function ChannelCard({
           onClick={handleSelect}
         >
           {/* Channel Description */}
-          <div className="flex flex-row items-center justify-between w-full py-3">
+          <div className="flex flex-row items-center justify-between w-full py-2">
             <div className="flex flex-row items-center">
-              <RoomIcon
-                ids={[id]}
-                images={[icon]}
-                // watching={status}
-                size="sm"
-                className="mr-2"
-              />
+              <RoomIcon ids={[id]} images={[icon]} size="sm" className="mr-2" />
               <p className="pr-2 flex-shrink-1 text-sm font-semibold truncate-2-lines text-copy-primary">
                 {name}
               </p>
@@ -96,7 +88,7 @@ export default function ChannelCard({
                 alt={`${viewers} - Popitalk`}
                 size="md"
                 className="img flex-shrink-0"
-                threshold={10}
+                threshold={8}
               />
             </div>
           </div>

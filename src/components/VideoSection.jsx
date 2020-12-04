@@ -26,6 +26,19 @@ export default function VideoSection({
   dispatchPlayNextVideo,
   handleNothingPlaying
 }) {
+  const additionalComponent = (
+    <Button
+      styleNone
+      icon="user"
+      styleNoneContent={activeFriendViewers.length}
+      className={`${
+        playerStatus.status.toLowerCase() === "playing"
+          ? "text-copy-secondary"
+          : "text-copy-secondary"
+      } space-x-1 text-xs font-bold`}
+      analyticsString="View More Users Button: AvatarDeck"
+    />
+  );
   return (
     <div className="flex flex-col">
       <VideoPlayer
@@ -40,27 +53,30 @@ export default function VideoSection({
         dispatchPlayNextVideo={dispatchPlayNextVideo}
         handleNothingPlaying={handleNothingPlaying}
       />
-      <div className="flex flex-col pt-4 px-4">
+      <div className="flex flex-col justify-center p-4">
         <div className="flex items-center justify-between h-8 space-x-2">
-          <div className="flex items-center flex-row left-0 space-x-1">
+          <div className="flex items-center flex-row left-0 space-x-2">
             <VideoStatus
               status={playerStatus.status.toLowerCase()}
               type="text"
               string
+              additionalComponent={additionalComponent}
             />
-            {activeFriendViewers.map((friend, idx) => {
-              return (
-                <AvatarIcon
-                  key={idx}
-                  username={friend.username}
-                  avatar={friend.avatar}
-                  imageClick={() => openProfile(friend.id)}
-                  className="img h-8 w-8 rounded-circle transition transform ease-in-out hover:scale-110 duration-100 cursor-pointer"
-                  tooltip={friend.username}
-                  tooltipPlace="bottom"
-                />
-              );
-            })}
+            <div className="flex items-center space-x-1 overflow-scroll-auto">
+              {activeFriendViewers.map((friend, idx) => {
+                return (
+                  <AvatarIcon
+                    key={idx}
+                    username={friend.username}
+                    avatar={friend.avatar}
+                    imageClick={() => openProfile(friend.id)}
+                    className="img h-8 w-8 rounded-circle transition transform ease-in-out hover:scale-110 duration-100 cursor-pointer"
+                    tooltip={friend.username}
+                    tooltipPlace="bottom"
+                  />
+                );
+              })}
+            </div>
           </div>
           {isInvitingAllowed ? (
             <Button

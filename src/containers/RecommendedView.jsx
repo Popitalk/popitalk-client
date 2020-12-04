@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useCallback } from "react";
 import PropTypes from "prop-types";
 import { useSelector, useDispatch } from "react-redux";
-import { useHistory } from "react-router-dom";
 import Helmet from "react-helmet";
 
 import ChannelCardList from "../components/ThumbnailCardLists/ChannelCardList.jsx";
