@@ -126,7 +126,9 @@ export default function VideoCardHorizontalPlaylist({
               <div className="relative flex justify-center flex-grow pb-16/9 w-full rounded-md shadow-xs hover:shadow-md transition-all ease-in-out duration-100">
                 <div className="absolute top-0 left-0 w-full h-full rounded-b-xl">
                   <div className="relative flex justify-between p-1">
-                    <VideoStatus status={status} />
+                    <div className="m-1 z-20">
+                      <VideoStatus status={status} />
+                    </div>
                     {type === "cancel" && hoverCard === true && (
                       <Button
                         actionButton
