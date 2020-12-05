@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import VideoPanelCard from "../ThumbnailCards/VideoPanelCard";
+import VideoCardHorizontalPlaylist from "../ThumbnailCards/VideoCardHorizontalPlaylist";
 import Button from "../Controls/Button";
 import strings from "../../helpers/localization";
 import { VIDEO_RESULTS_PER_PAGE } from "../../helpers/constants";
@@ -40,7 +40,7 @@ export default function VideoResults({
         {results.map((result, idx) => {
           if (idx <= currThreshold - 1) {
             return (
-              <VideoPanelCard
+              <VideoCardHorizontalPlaylist
                 key={idx}
                 {...result}
                 type="add"

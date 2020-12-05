@@ -1,6 +1,6 @@
 import React from "react";
 import SortableList from "./SortableList";
-import VideoMinimalQueueCard from "../ThumbnailCards/VideoMinimalQueueCard";
+import VideoCardVerticalPlaylist from "../ThumbnailCards/VideoCardVerticalPlaylist";
 
 export default function ChannelListQueue({
   playlist,
@@ -9,7 +9,7 @@ export default function ChannelListQueue({
   handleFindMore
 }) {
   const itemRenderer = value => (
-    <VideoMinimalQueueCard
+    <VideoCardVerticalPlaylist
       {...value}
       handleRemove={() => handleDeleteVideo(value.id)}
     />
@@ -22,7 +22,7 @@ export default function ChannelListQueue({
       handlerChange={handleChange}
       distance={1}
     >
-      <VideoMinimalQueueCard handleFindMore={handleFindMore} />
+      <VideoCardVerticalPlaylist handleFindMore={handleFindMore} />
     </SortableList>
   );
 }

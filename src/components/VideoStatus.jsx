@@ -7,7 +7,12 @@ export default function VideoStatus({
   additionalComponent
 }) {
   return (
-    <div className="rounded-md border-2 border-outline-image2 py-2 px-3 bg-background-secondary flex flex-shrink-0 text-copy-primary text-xs font-bold space-x-2 items-center cursor-pointer">
+    <div
+      className={`${
+        (status === "playing" || status === "paused") &&
+        "bg-background-secondary border-2 border-outline-image2"
+      } rounded-md py-2 px-3  flex flex-shrink-0 text-copy-primary text-xs font-bold space-x-2 items-center cursor-pointer`}
+    >
       {status === "playing" ? (
         <>
           <span className="rainbow-text text-xs font-bold select-none z-10 flex-shrink-0">

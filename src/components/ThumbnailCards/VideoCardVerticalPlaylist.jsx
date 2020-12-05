@@ -4,7 +4,7 @@ import VideoStatus from "../VideoStatus";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import strings from "../../helpers/localization";
 
-export default function VideoMinimalQueueCard({
+export default function VideoCardVerticalPlaylist({
   title,
   duration,
   status,
@@ -20,7 +20,7 @@ export default function VideoMinimalQueueCard({
           styleNoneContent={strings.searchAddVideos}
           styleNoneContentClassName="text-center text-copy-secondary text-sm"
           className="h-12 w-full bg-background-primary my-1 hover:shadow-sm hover:bg-hover-highlight transition duration-100 rounded-lg"
-          analyticsString="Direct to search Button: VideoMinimalQueueCard"
+          analyticsString="Direct to search Button: VideoCardVerticalPlaylist"
           onClick={handleFindMore}
         />
       )}
@@ -49,7 +49,7 @@ export default function VideoMinimalQueueCard({
               background="cancel"
               size="sm"
               onClick={handleRemove}
-              analyticsString="Delete Video Button: VideoMinimalQueueCard"
+              analyticsString="Delete Video Button: VideoCardVerticalPlaylist"
               tooltip="Remove Video"
               tooltipPlace="left"
             />

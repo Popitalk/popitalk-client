@@ -93,7 +93,7 @@ export default function VideoCardHorizontalPlaylist({
                     icon="search"
                     styleNoneContentClassName="mx-2 text-sm"
                     className="text-copy-secondary"
-                    analyticsString="Direct to Search Button: VideoCardHorizontalPlaylist"
+                    analyticsString="Direct to Search Button: VideoCardVerticalPlaylist"
                   />
                 </div>
               </div>
@@ -126,16 +126,13 @@ export default function VideoCardHorizontalPlaylist({
               <div className="relative flex justify-center flex-grow pb-16/9 w-full rounded-md shadow-xs hover:shadow-md transition-all ease-in-out duration-100">
                 <div className="absolute top-0 left-0 w-full h-full rounded-b-xl">
                   <div className="relative flex justify-between p-1">
-                    <VideoStatus
-                      status={status}
-                      statusMessage={statusMessage}
-                    />
+                    <VideoStatus status={status} />
                     {type === "cancel" && hoverCard === true && (
                       <Button
                         actionButton
                         className="absolute right-0 mr-1 flex z-10 bg-background-highlight"
                         onClick={removeButtonPressed}
-                        analyticsString="Remove Video: VideoCardHorizontalPlaylist"
+                        analyticsString="Remove Video: VideoCardVerticalPlaylist"
                         onMouseLeave={() => setRemoveButtonIcon("minus")}
                         icon={removeButtonIcon}
                         size="sm"
@@ -146,12 +143,25 @@ export default function VideoCardHorizontalPlaylist({
                     )}
                   </div>
                 </div>
-                <img
-                  src={thumbnail}
-                  alt={`${title} - Popitalk`}
-                  className="absolute top-0 w-full h-full img rounded-sm object-cover"
-                  onClick={handleSkip && (() => handleSkip(id))}
-                />
+                {status === "playing" ? (
+                  <div className="absolute p-2px bg-gradient-br-primary top-0 w-full h-full img rounded-sm object-cover">
+                    <div className=" p-2px bg-background-secondary top-0 w-full h-full img rounded-sm object-cover">
+                      <img
+                        src={thumbnail}
+                        alt={`${title} - Popitalk`}
+                        className="top-0 w-full h-full img rounded-sm object-cover"
+                        onClick={handleSkip && (() => handleSkip(id))}
+                      />
+                    </div>
+                  </div>
+                ) : (
+                  <img
+                    src={thumbnail}
+                    alt={`${title} - Popitalk`}
+                    className="absolute top-0 w-full h-full img rounded-sm object-cover"
+                    onClick={handleSkip && (() => handleSkip(id))}
+                  />
+                )}
               </div>
               <div
                 className="w-full pt-2"
