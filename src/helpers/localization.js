@@ -179,7 +179,7 @@ let strings = new LocalizedStrings({
     fullScreen: "Full screen",
     playing: "Playing",
     saveAndReturn: "Save and Return",
-    // SortableList & ChannelQueue & VideoMinimalQueueCard
+    // SortableList & ChannelQueue & VideoCardVerticalPlaylist
     findMoreVideos: "Search and Add Videos",
     manageUpNext: "Add Videos & Manage Playlist",
     upNextSubtitle: "Videos that ended will be removed from your playlist.",

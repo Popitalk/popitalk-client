@@ -1,5 +1,5 @@
 import React from "react";
-import VideoPanelCard from "../ThumbnailCards/VideoPanelCard";
+import VideoCardHorizontalPlaylist from "../ThumbnailCards/VideoCardHorizontalPlaylist";
 import SortableList from "./SortableList";
 
 export default function QueueSection({
@@ -10,7 +10,7 @@ export default function QueueSection({
   handleFindMore
 }) {
   const itemRenderer = value => (
-    <VideoPanelCard
+    <VideoCardHorizontalPlaylist
       {...value}
       handleSkip={handleSkip}
       handleDeleteVideo={() => handleDeleteVideo(value.id)}
@@ -28,7 +28,7 @@ export default function QueueSection({
       height={"100%"}
       distance={1}
     >
-      <VideoPanelCard handleFindMore={handleFindMore} />
+      <VideoCardHorizontalPlaylist handleFindMore={handleFindMore} />
     </SortableList>
   );
 }

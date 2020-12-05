@@ -11,7 +11,7 @@ import {
 import { mapIdsToUsers } from "../../helpers/functions";
 import VideoSection from "../../components/VideoSection";
 import QueueSection from "../../components/ThumbnailCardLists/QueueSection";
-import VideoPanelCard from "../../components/ThumbnailCards/VideoPanelCard";
+import VideoCardHorizontalPlaylist from "../../components/ThumbnailCards/VideoCardHorizontalPlaylist";
 import ScrollableCardList from "../../components/ThumbnailCardLists/ScrollableCardList";
 import ChannelQueue from "../../components/Channel/ChannelQueue";
 import strings from "../../helpers/localization";
@@ -149,7 +149,7 @@ export default function VideoPanel({
       ) : (
         <ScrollableCardList axis="x">
           {playlist.map(value => (
-            <VideoPanelCard
+            <VideoCardHorizontalPlaylist
               {...value}
               key={value.id}
               size="sm"

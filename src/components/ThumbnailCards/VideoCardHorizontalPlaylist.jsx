@@ -93,7 +93,7 @@ export default function VideoCardHorizontalPlaylist({
                     icon="search"
                     styleNoneContentClassName="mx-2 text-sm"
                     className="text-copy-secondary"
-                    analyticsString="Direct to Search Button: VideoCardHorizontalPlaylist"
+                    analyticsString="Direct to Search Button: VideoCardVerticalPlaylist"
                   />
                 </div>
               </div>
@@ -135,7 +135,7 @@ export default function VideoCardHorizontalPlaylist({
                         actionButton
                         className="absolute right-0 mr-1 flex z-10 bg-background-highlight"
                         onClick={removeButtonPressed}
-                        analyticsString="Remove Video: VideoCardHorizontalPlaylist"
+                        analyticsString="Remove Video: VideoCardVerticalPlaylist"
                         onMouseLeave={() => setRemoveButtonIcon("minus")}
                         icon={removeButtonIcon}
                         size="sm"
