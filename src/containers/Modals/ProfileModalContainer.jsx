@@ -1,61 +1,52 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
+
+import ModalContainer from "../../components/Modals/ModalContainer";
+import ProfileModal from "../../components/Modals/ProfileModal";
+import { setRelationshipHandlers } from "../../helpers/functions";
 import {
-  getUserInfoModal,
+  getUserInfo,
   deleteFriend,
   blockUser,
   unblockUser,
   updateUser,
   clearError
 } from "../../redux/actions";
-import ModalContainer from "../../components/Modals/ModalContainer";
-import ProfileModal from "../../components/Modals/ProfileModal";
-import { setRelationshipHandlers } from "../../helpers/functions";
 
-export default function ProfileModalContainer({ handleModalClose }) {
+const ProfileModalContainer = ({ handleModalClose }) => {
+  const dispatch = useDispatch();
+
   const { userId } = useSelector(state => state.modal);
   const { id: myId, channelIds } = useSelector(state => state.self);
-
-  const {
-    idModal: id,
-    firstNameModal: firstName,
-    lastNameModal: lastName,
-    usernameModal: username,
-    avatarModal: avatar
-  } = useSelector(state => state.userProfile);
   const { defaultAvatar } = useSelector(state => state.general);
   const relationships = useSelector(state => state.relationships);
-  const updateUserApi = useSelector(state => state.api.userUpdateApi);
   const channels = useSelector(state => state.channels);
+  const { id, firstName, lastName, username, avatar } = useSelector(
+    state => state.userProfile
+  );
+  const { status } = useSelector(state => state.api.userProfile);
 
-  let followingChannelsCount = 0;
-  channelIds
-    .map(channelId => ({
-      id: channelId,
-      ownerId: channels[channelId].ownerId || channels[channelId].owner_id,
-      members: channels[channelId].members
-    }))
-    .forEach(channel => {
-      if (channel.ownerId !== myId && channel.members) {
-        if (channel.members.includes(myId)) {
-          followingChannelsCount += 1;
-        }
-      }
-    });
-
-  const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getUserInfoModal(userId));
+    dispatch(getUserInfo(userId));
   }, [dispatch, userId]);
-  const updateAvatar = avatar => dispatch(updateUser({ avatar }));
 
-  let plainUser = {
-    id: id,
-    firstName: firstName,
-    lastName: lastName,
-    username: username,
-    avatar: avatar
+  const followingChannelsCount = channelIds.reduce((acc, channelId) => {
+    const ownerId = channels[channelId].ownerId || channels[channelId].owner_id;
+    const members = channels[channelId].members;
+    const isOwner = ownerId === myId;
+    const isMember = members && members.includes(myId);
+
+    return !isOwner && isMember ? acc + 1 : acc;
+  }, 0);
+
+  const plainUser = {
+    id,
+    firstName,
+    lastName,
+    username,
+    avatar
   };
+
   const user = setRelationshipHandlers(
     plainUser,
     relationships,
@@ -64,7 +55,9 @@ export default function ProfileModalContainer({ handleModalClose }) {
     myId
   );
 
-  let blockHandler =
+  const updateAvatar = avatar => dispatch(updateUser({ avatar }));
+
+  const blockHandler =
     user.variant === "blocked"
       ? () => dispatch(unblockUser(userId))
       : () => dispatch(blockUser(plainUser));
@@ -90,8 +83,10 @@ export default function ProfileModalContainer({ handleModalClose }) {
         unfriendHandler={() => dispatch(deleteFriend(userId))}
         blockHandler={blockHandler}
         updateAvatar={updateAvatar}
-        updateUserApi={updateUserApi}
+        status={status}
       />
     </ModalContainer>
   );
-}
+};
+
+export default ProfileModalContainer;

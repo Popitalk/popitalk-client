@@ -1,11 +1,13 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { closeModalFinal } from "../../redux/actions";
+
+import { closeModalFinal, clearProfileInfo } from "../../redux/actions";
 import ProfileModal from "./ProfileModalContainer";
 import EditUserSettingsContainer from "./EditUserSettingsContainer";
 import ChangePasswordContainer from "./ChangePasswordContainer";
 import BlockedUsersContainer from "./BlockedUsersContainer";
 import InviteFriendsContainer from "./InviteFriendsContainer";
+import SocialShareContainer from "./SocialShareContainer";
 import RoomExistsContainer from "./RoomExistsContainer";
 import DeleteMessageContainer from "./DeleteMessageContainer";
 import ListUsersContainer from "./ListUsersContainer";
@@ -24,7 +26,6 @@ import {
   MODAL_DELETE_CHANNEL,
   MODAL_DELETE_POST
 } from "../../helpers/constants";
-import SocialShareContainer from "./SocialShareContainer";
 
 const ModalComponents = {
   [MODAL_PROFILE]: ProfileModal,
@@ -40,26 +41,23 @@ const ModalComponents = {
   [MODAL_DELETE_POST]: DeletePostContainer
 };
 
-export default function ModalManager() {
-  const components = useSelector(state => state.modal.components);
+const ModalManager = () => {
   const dispatch = useDispatch();
 
-  const handleAfterClose = () => {
+  const { components } = useSelector(state => state.modal);
+
+  const handleModalClose = () => {
     dispatch(closeModalFinal());
+    dispatch(clearProfileInfo());
   };
 
-  const ModalType =
-    components.length > 0
-      ? ModalComponents[components[components.length - 1]]
-      : 0;
+  const isModalOpen = components.length > 0;
+  const currentModal = components[components.length - 1];
+  const ModalType = ModalComponents[currentModal];
 
   return (
-    <>
-      {ModalType === 0 ? (
-        <></>
-      ) : (
-        <ModalType handleModalClose={handleAfterClose} />
-      )}
-    </>
+    <>{isModalOpen && <ModalType handleModalClose={handleModalClose} />}</>
   );
-}
+};
+
+export default ModalManager;

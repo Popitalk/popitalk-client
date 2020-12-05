@@ -7,27 +7,11 @@ import {
   // PUSH_MODAL_DELETE_CHANNEL,
   // POP_MODAL,
   // POP_ALL_MODAL,
-  MODAL_CREATE_NEW_ACCOUNT,
-  MODAL_CREATE_ROOM,
-  MODAL_INVITE,
-  MODAL_PROFILE,
-  MODAL_WATCHING,
+
   // MODAL_MEMBERS,
-  MODAL_FOLLOWERS,
-  MODAL_LIST,
-  MODAL_USER_SETTINGS,
-  MODAL_EDIT_USER_SETTINGS,
-  MODAL_CHANGE_PASSWORD,
-  MODAL_BLOCKED_USERS,
-  MODAL_IMAGE,
+
   // CLOSE_ALL_MODAL,
-  MODAL_DELETE_MESSAGE,
-  MODAL_ACCOUNT_SETTINGS,
-  MODAL_DELETE_ACCOUNT,
-  MODAL_DELETE_CHANNEL,
-  MODAL_DELETE_POST,
-  MODAL_ROOM_EXISTS,
-  MODAL_SOCIAL_SHARE,
+
   VIDEO_RESULTS_PER_PAGE
 } from "../helpers/constants";
 import moment from "moment";
@@ -754,103 +738,28 @@ export const swapVideosWs = createAction("videoSearch/swapVideos/ws");
 /*                                 USERPROFILE                                */
 /* -------------------------------------------------------------------------- */
 
-export const getUserInfo = createAsyncThunk(
-  "userProfile/getUserInfo",
-  async (userId, { getState }) => {
-    const { blockers } = getState().relationships;
-    if (blockers.includes(userId)) throw new Error();
+export { getUserInfo } from "./features/userProfile/userProfileSlice";
+export { clearProfileInfo } from "./features/userProfile/userProfileSlice";
 
-    const response = await api.getUser(userId);
-    return response.data;
-  }
-);
-export const getUserInfoModal = createAsyncThunk(
-  "userProfile/getUserInfoModal",
-  async (userId, { getState }) => {
-    const { blockers } = getState().relationships;
-    if (blockers.includes(userId)) throw new Error();
-
-    const response = await api.getUser(userId);
-    return response.data;
-  }
-);
 /* -------------------------------------------------------------------------- */
 /*                                    MODAL                                   */
 /* -------------------------------------------------------------------------- */
 
-export const closeModal = createAction("modal/close");
-export const closeAllModals = createAction("modal/closeAll");
-export const closeModalFinal = createAction("modal/closeModalFinal");
-
-export const openCreateNewAccountModal = createAction("modal/open", () => ({
-  payload: { component: MODAL_CREATE_NEW_ACCOUNT }
-}));
-export const openInviteModal = createAction(
-  "modal/open",
-  (channelId, isCreatingNewRoom) => ({
-    payload: { component: MODAL_INVITE, channelId, isCreatingNewRoom }
-  })
-);
-export const openSocialShareModal = createAction("modal/open", () => ({
-  payload: { component: MODAL_SOCIAL_SHARE }
-}));
-export const openCreateRoomModal = createAction("modal/open", () => ({
-  payload: { component: MODAL_CREATE_ROOM }
-}));
-export const openProfileModal = createAction("modal/open", userId => ({
-  payload: { component: MODAL_PROFILE, userId }
-}));
-export const openDeleteMessageModal = createAction(
-  "modal/open",
-  ({ channelId, messageId }) => ({
-    payload: { component: MODAL_DELETE_MESSAGE, channelId, messageId }
-  })
-);
-export const openDeleteChannelModal = createAction("modal/open", channelId => ({
-  payload: { component: MODAL_DELETE_CHANNEL, channelId }
-}));
-export const openDeletePostModal = createAction("modal/open", postId => {
-  return { payload: { component: MODAL_DELETE_POST, postId } };
-});
-export const openWatchingModal = createAction("modal/open", () => ({
-  payload: { component: MODAL_WATCHING }
-}));
-export const openFollowersModal = createAction("modal/open", channelId => ({
-  payload: { component: MODAL_FOLLOWERS, channelId }
-}));
-export const openListModal = createAction(
-  "modal/open",
-  (channelId, content) => ({
-    payload: { component: MODAL_LIST, channelId, content }
-  })
-);
-export const openImageModal = createAction("modal/open", () => ({
-  payload: { component: MODAL_IMAGE }
-}));
-export const openUserSettingsModal = createAction("modal/open", () => ({
-  payload: { component: MODAL_USER_SETTINGS }
-}));
-export const openEditUserSettingsModal = createAction("modal/open", () => ({
-  payload: { component: MODAL_EDIT_USER_SETTINGS }
-}));
-export const openChangePasswordModal = createAction("modal/open", () => ({
-  payload: { component: MODAL_CHANGE_PASSWORD }
-}));
-export const openBlockedUsersModal = createAction("modal/open", () => ({
-  payload: { component: MODAL_BLOCKED_USERS }
-}));
-export const openAccountSettingsModal = createAction("modal/open", () => ({
-  payload: { component: MODAL_ACCOUNT_SETTINGS }
-}));
-export const openDeleteAccountModal = createAction("modal/open", () => ({
-  payload: { component: MODAL_DELETE_ACCOUNT }
-}));
-export const openRoomExistsModal = createAction(
-  "modal/open",
-  (room, selectedIds) => ({
-    payload: { component: MODAL_ROOM_EXISTS, room, selectedIds }
-  })
-);
+export { openInviteModal } from "./features/modals/modalsSlice";
+export { openSocialShareModal } from "./features/modals/modalsSlice";
+export { openProfileModal } from "./features/modals/modalsSlice";
+export { openDeleteMessageModal } from "./features/modals/modalsSlice";
+export { openDeleteChannelModal } from "./features/modals/modalsSlice";
+export { openDeletePostModal } from "./features/modals/modalsSlice";
+export { openListModal } from "./features/modals/modalsSlice";
+export { openImageModal } from "./features/modals/modalsSlice";
+export { openEditUserSettingsModal } from "./features/modals/modalsSlice";
+export { openChangePasswordModal } from "./features/modals/modalsSlice";
+export { openBlockedUsersModal } from "./features/modals/modalsSlice";
+export { openRoomExistsModal } from "./features/modals/modalsSlice";
+export { closeModal } from "./features/modals/modalsSlice";
+export { closeAllModals } from "./features/modals/modalsSlice";
+export { closeModalFinal } from "./features/modals/modalsSlice";
 
 /* -------------------------------------------------------------------------- */
 /*                                    UI                                      */
