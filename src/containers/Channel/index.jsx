@@ -529,9 +529,7 @@ class Channel extends Component {
         {/* Google Search Index & SEO */}
         <Helmet>
           <meta charSet="UFT-8" />
-          <title>
-            {channel.name} · {strings.mainTitle}
-          </title>
+          <title>{`${channel.name} " · " ${strings.mainTitle}`}</title>
           <meta
             name="description"
             content={channel.description + " " + strings.mainDescription}
