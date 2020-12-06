@@ -7,6 +7,7 @@ import { Grid } from "@giphy/react-components";
 import giphyFetch from "../../helpers/gifConfig";
 import { useSelector, useDispatch } from "react-redux";
 import { addMessage } from "../../redux/actions";
+import giphyAttribute from "../../assets/attributes/powered_by_giphy.png";
 
 export default function GifTable({ updateGifsOpen }) {
   const params = useParams();
@@ -40,27 +41,35 @@ export default function GifTable({ updateGifsOpen }) {
     : offset => giphyFetch.trending({ offset, limit: 10 });
 
   return (
-    <div className="flex flex-col giftable relative bg-background-secondary rounded-md w-84 h-64">
+    <div className="flex flex-col bg-background-primary rounded-md w-84 h-84">
       <Input
-        variant="user"
         size="sm"
         value={search}
         placeholder={strings.searchGifInput}
         onChange={e => setSearch(e.target.value)}
         className="p-1"
       />
-      <div className="overflow-y-auto" style={{ minHeight: "214px" }}>
-        <ul className="items-center grid grid-cols-2 overflow-y-auto py-4">
-          <Grid
-            key={search}
-            columns={2}
-            width={330}
-            fetchGifs={gifsPromise}
-            noLink
-            className="cursor-pointer"
-            onGifClick={handleSendGif}
-          />
-        </ul>
+      <div
+        className="overflow-y-auto w-full flex justify-center"
+        style={{ minHeight: "214px" }}
+      >
+        <Grid
+          key={search}
+          columns={2}
+          width={320}
+          fetchGifs={gifsPromise}
+          noLink
+          hideAttribution={true}
+          className="cursor-pointer px-2px"
+          onGifClick={handleSendGif}
+        />
+      </div>
+      <div className="p-2">
+        <img
+          src={giphyAttribute}
+          alt="Giphy on Popitalk"
+          className=" h-4 object-contain z-20"
+        />
       </div>
     </div>
   );
