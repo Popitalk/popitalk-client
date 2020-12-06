@@ -36,6 +36,5 @@ const R_resetState = () => initialState;
 
 export default createReducer(initialState, {
   [searchChannels.fulfilled]: R_addSearchedChannels,
-  [logout.fulfilled]: R_resetState,
   [deleteAccount.fulfilled]: R_resetState
 });

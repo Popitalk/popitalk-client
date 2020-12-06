@@ -17,6 +17,5 @@ const R_resetState = () => initialState;
 
 export default createReducer(initialState, {
   [getTrendingChannels.fulfilled]: R_addTrendingChannels,
-  [logout.fulfilled]: R_resetState,
   [deleteAccount.fulfilled]: R_resetState
 });
