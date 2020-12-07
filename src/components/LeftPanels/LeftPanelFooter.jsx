@@ -1,5 +1,8 @@
 import React from "react";
 import strings from "../../helpers/localization";
+import Button from "../Controls/Button";
+import kofiLogo from "../../assets/attributes/kofi-logo.png";
+import patreonLogo from "../../assets/attributes/patreon-logo.png";
 
 export default function LeftPanelFooter({ example }) {
   return (
@@ -105,6 +108,28 @@ export default function LeftPanelFooter({ example }) {
           </li>
         </ul>
       </nav>
+      <div className="flex my-2 space-x-2">
+        <a href="https://ko-fi.com/popitalk">
+          <Button
+            imageButton
+            imageButtonSrc={kofiLogo}
+            imageButtonClassName="w-6"
+            imageButtonSpan={strings.buyUsCoffee}
+            imageButtonSpanClassName="text-xs text-copy-primary ml-1"
+            className="bg-background-secondary hover:bg-hover-highlight p-2 rounded-md"
+          />
+        </a>
+        <a href="https://www.patreon.com/Popitalk">
+          <Button
+            imageButton
+            imageButtonSrc={patreonLogo}
+            imageButtonClassName="w-6"
+            imageButtonSpan={strings.becomeAPatron}
+            imageButtonSpanClassName="text-xs text-copy-primary ml-1"
+            className="bg-background-secondary hover:bg-hover-highlight p-2 rounded-md"
+          />
+        </a>
+      </div>
       <div className="text-xs text-copy-secondary pt-4">
         <p>© 2021 Popitalk, Inc.</p>
         <p>CEO: Andrew Jang</p>

@@ -150,6 +150,8 @@ let strings = new LocalizedStrings({
     loginOrSignup: "Log In/Sign Up",
     aboutUs: "About us",
     followUson: "Follow us on",
+    buyUsCoffee: "Buy us a coffee",
+    becomeAPatron: "Become a Patron",
     // RoomIcon
     myRoom: "You",
     // ChannelsList
@@ -400,6 +402,8 @@ let strings = new LocalizedStrings({
     loginOrSignup: "로그인/가입",
     aboutUs: "소개",
     followUson: "팔로우 소식",
+    buyUsCoffee: "커피 사주세요",
+    becomeAPatron: "후원자가 되주세요",
     // RoomIcon
     myRoom: "내 톡방",
     // ChannelsList
