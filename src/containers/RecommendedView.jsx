@@ -34,7 +34,9 @@ function RecommendedChannels({ selectedPage }) {
     ? [followingTab, discoverTab, trendingTab]
     : [discoverTab, trendingTab];
 
-  const [tabSelected, setTab] = useState(trendingTab.tab);
+  const [tabSelected, setTab] = useState(
+    loggedIn ? followingTab.tab : trendingTab.tab
+  );
   const isCollapsed = useSelector(state => state.ui.isCollapsed);
   const alert = useSelector(state => state.ui.alert);
   const followingChannels = useSelector(state => state.followingChannels);
