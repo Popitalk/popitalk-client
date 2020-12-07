@@ -7,7 +7,9 @@ const initialState = {
   firstName: "",
   lastName: "",
   username: "",
-  avatar: null
+  avatar: null,
+  followingCount: 0,
+  friendsCount: 0
 };
 
 export const getUserInfo = createAsyncThunk(
@@ -24,13 +26,23 @@ export const getUserInfo = createAsyncThunk(
 );
 
 const setUserInfo = (state, action) => {
-  const { id, firstName, lastName, username, avatar } = action.payload;
+  const {
+    id,
+    firstName,
+    lastName,
+    username,
+    avatar,
+    followingCount,
+    friendsCount
+  } = action.payload;
 
   state.id = id;
   state.firstName = firstName;
   state.lastName = lastName;
   state.username = username;
   state.avatar = avatar;
+  state.followingCount = followingCount;
+  state.friendsCount = friendsCount;
 };
 
 const userProfileSlice = createSlice({

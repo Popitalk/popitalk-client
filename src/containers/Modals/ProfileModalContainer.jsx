@@ -17,27 +17,23 @@ const ProfileModalContainer = ({ handleModalClose }) => {
   const dispatch = useDispatch();
 
   const { userId } = useSelector(state => state.modal);
-  const { id: myId, channelIds } = useSelector(state => state.self);
+  const { id: myId } = useSelector(state => state.self);
   const { defaultAvatar } = useSelector(state => state.general);
   const relationships = useSelector(state => state.relationships);
-  const channels = useSelector(state => state.channels);
-  const { id, firstName, lastName, username, avatar } = useSelector(
-    state => state.userProfile
-  );
   const { status } = useSelector(state => state.api.userProfile);
+  const {
+    id,
+    firstName,
+    lastName,
+    username,
+    avatar,
+    followingCount,
+    friendsCount
+  } = useSelector(state => state.userProfile);
 
   useEffect(() => {
     dispatch(getUserInfo(userId));
   }, [dispatch, userId]);
-
-  const followingChannelsCount = channelIds.reduce((acc, channelId) => {
-    const ownerId = channels[channelId].ownerId || channels[channelId].owner_id;
-    const members = channels[channelId].members;
-    const isOwner = ownerId === myId;
-    const isMember = members && members.includes(myId);
-
-    return !isOwner && isMember ? acc + 1 : acc;
-  }, 0);
 
   const plainUser = {
     id,
@@ -75,9 +71,9 @@ const ProfileModalContainer = ({ handleModalClose }) => {
     >
       <ProfileModal
         user={user}
-        following={followingChannelsCount}
+        following={followingCount}
         followers={22}
-        friends={relationships.friends.length}
+        friends={friendsCount}
         recentVideos={[]}
         followedChannels={[]}
         unfriendHandler={() => dispatch(deleteFriend(userId))}
