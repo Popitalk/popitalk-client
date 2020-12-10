@@ -4,8 +4,7 @@ import {
   addChannel,
   deleteChannel,
   deleteChannelWs,
-  leaveRoom,
-  acceptFriendRequest
+  leaveRoom
 } from "../actions";
 
 const routingMiddleware = () => store => next => action => {
@@ -15,9 +14,7 @@ const routingMiddleware = () => store => next => action => {
 
   next(action);
 
-  if (acceptFriendRequest.fulfilled.match(action)) {
-    history.push(`/rooms/${action.payload.channelId}/video`);
-  } else if (createRoom.fulfilled.match(action)) {
+  if (createRoom.fulfilled.match(action)) {
     history.push(`/rooms/${action.payload.channelId}/video`);
   } else if (addChannel.fulfilled.match(action)) {
     if (action.payload.channel?.type === "channel") {
