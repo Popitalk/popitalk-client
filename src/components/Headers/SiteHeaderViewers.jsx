@@ -66,7 +66,7 @@ const SiteHeaderViewers = () => {
     },
     {
       text: strings.sendFeedbackButton,
-      href: "https://about.popitalk.com/",
+      href: "https://blog.popitalk.com/",
       redirect: true,
       rightIcon: "external-link-alt"
     }

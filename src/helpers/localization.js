@@ -11,6 +11,7 @@ let strings = new LocalizedStrings({
     errorMessage: "Something went wrong :(",
 
     // === SEO (MataData & Site Title === //
+    popitalk: "Popitalk",
     mainTitle: "Popitalk - Watch together",
     mainDescription:
       "Watch videos together or listen to songs together with friends and family. Watch youtube in perfect sync together while chatting with your beloved ones.",
@@ -148,7 +149,7 @@ let strings = new LocalizedStrings({
     signInText: "Sign in to add friends and watch together.",
     // LeftPanelFooter
     loginOrSignup: "Log In/Sign Up",
-    aboutUs: "About us",
+    aboutUs: "About Us",
     followUson: "Follow us on",
     buyUsCoffee: "Buy us a coffee",
     becomeAPatron: "Become a Patron",
@@ -264,15 +265,16 @@ let strings = new LocalizedStrings({
     errorMessage: " 불러오지 못했습니다 :(",
 
     // SEO (MataData & WelcomePage & SiteHeaderWelcome)
-    mainTitle: "Popitalk - 같이보는 TV",
+    popitalk: "뽀삐톡",
+    mainTitle: "뽀삐톡 - 같이보는 TV",
     mainDescription:
-      "Popitalk으로 친구와 가족들과 유튜브 같이 시청하고 채팅해요. 새로운 채널을 구독하고 재미있는 영상을 시청하세요",
+      "뽀삐톡으로 친구와 가족들과 유튜브 같이 시청하고 채팅해요. 새로운 채널을 구독하고 재미있는 영상을 시청하세요",
     mainKeywords:
       "watch, together, with, friends, youtube, anime, videos, in, sync, at, the, same, time, chat, rabbit, w2g, watch2gether, watchtogether",
-    loginPageTitle: "Popitalk - 같이보는 TV - 로그인 또는 회원가입",
+    loginPageTitle: "뽀삐톡 - 같이보는 TV - 로그인 또는 회원가입",
     loginPageDescription:
-      "Popitalk 계정을 만들거나 로그인하세요. 친구, 가족, 아는 사람들과 유튜브 같이 시청하고 채팅해요.",
-    createChannelTitle: "채널 만들기 - Popitalk",
+      "뽀삐톡 계정을 만들거나 로그인하세요. 친구, 가족, 아는 사람들과 유튜브 같이 시청하고 채팅해요.",
+    createChannelTitle: "채널 만들기 - 뽀삐톡",
     createChannelDescription:
       "뽀삐톡에서 채널을 개설하세요. 재미있는 영상들을 재생하고 팔로워들과 소통하세요.",
     loginUsername: "이메일 또는 아이디",
@@ -280,7 +282,7 @@ let strings = new LocalizedStrings({
 
     // DescriptionSection.jsx
     descriptionHeader1: "꿀잼인 동영상과 음악을 같이 시청해요.",
-    descriptionHeader2: "Popitalk 을 사용하는 이유.",
+    descriptionHeader2: "뽀삐톡을 사용하는 이유.",
     descriptionCardTitle1: "같이 시청해요",
     descriptionCardBody1:
       "인터넷상에서 같은 시간 다른 장소에서 같이 시청할 수 있어요. 뽀삐톡으로 꿀잼인 동영상, 드라마, 영화나 음악도 같이 듣고 감상이 가능해요. ",
@@ -320,7 +322,7 @@ let strings = new LocalizedStrings({
     createNewAccountPassword: "비밀번호",
     createNewAccountBirthday: "생년월일",
     createNewAccountTerms:
-      "가입하기 버튼을 클릭하면 Popitalk의 약관정책에 동의하게 됩니다.",
+      "가입하기 버튼을 클릭하면 뽀삐톡의 약관정책에 동의하게 됩니다.",
     createNewAccountTerms1: "이용약관 확인.",
     // functions.js input errors
     inputTextTooShort: "너무 짧습니다 *",
@@ -337,7 +339,7 @@ let strings = new LocalizedStrings({
 
     // Footer
     company: "회사소개",
-    aboutPopitalk: "Popitalk에 대해서",
+    aboutPopitalk: "뽀삐톡에 대해서",
     blog: "블로그",
     contact: "연락하기",
     legal: "정책",
@@ -369,7 +371,7 @@ let strings = new LocalizedStrings({
     deleteButton: "삭제",
     loadMoreButton: "더 보기",
     backToTrendingButton: "처음으로",
-    sendFeedbackButton: "Popitalk 팀",
+    sendFeedbackButton: "뽀삐톡 팀",
     copyButton: "복사하기",
 
     // Months
@@ -401,7 +403,7 @@ let strings = new LocalizedStrings({
     // LeftPanelFooter
     loginOrSignup: "로그인/가입",
     aboutUs: "소개",
-    followUson: "팔로우 소식",
+    followUson: "소셜미디어",
     buyUsCoffee: "커피 사주세요",
     becomeAPatron: "후원자가 되주세요",
     // RoomIcon
