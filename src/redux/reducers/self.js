@@ -17,7 +17,6 @@ import {
   deleteFriendWs,
   blockUser,
   addBlockerWs,
-  acceptFriendRequest,
   addFriendWs,
   leaveRoom,
   getChannel
@@ -103,7 +102,6 @@ export default createReducer(initialState, {
   [addChannelWs]: R_addChannel,
   [createRoom.fulfilled]: R_addChannel,
   [followChannel.fulfilled]: R_addChannel,
-  [acceptFriendRequest.fulfilled]: R_addChannel,
   [addFriendWs]: R_addChannel,
   [deleteChannel.fulfilled]: R_deleteChannel,
   [deleteChannelWs]: R_deleteChannel,
