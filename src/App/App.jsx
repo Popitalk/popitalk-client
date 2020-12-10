@@ -141,7 +141,7 @@ export default function App() {
         <meta charSet="UFT-8" />
         <title itemProp="name">{strings.mainTitle}</title>
         <meta name="description" content={strings.mainDescription} />
-        <link rel="canonical" href={logo} />
+        <link rel="shortcut icon" href={logo} />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="keywords" content={strings.mainKeywords} />
       </Helmet>

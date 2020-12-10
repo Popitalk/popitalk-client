@@ -61,10 +61,26 @@ export default function LeftPanelFooter({ example }) {
         </ul>
         {/* === Popitalk Team === */}
         <ul className="flex flex-wrap content-start text-xs">
-          <p className="pr-2 text-copy-secondary">{strings.aboutUs}</p>
+          <p className="pr-2 text-copy-secondary">{strings.popitalk}</p>
           <li className="pr-2">
             <a
-              href="https://about.popitalk.com/"
+              href="https://blog.popitalk.com/"
+              className="text-copy-highlight no-underline"
+            >
+              {strings.aboutUs}
+            </a>
+          </li>
+          <li className="pr-2">
+            <a
+              href="https://blog.popitalk.com/blog"
+              className="text-copy-highlight no-underline"
+            >
+              {strings.blog}
+            </a>
+          </li>
+          <li className="pr-2">
+            <a
+              href="https://blog.popitalk.com/about-us/"
               className="text-copy-highlight no-underline"
             >
               {strings.sendFeedbackButton}
