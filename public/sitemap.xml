@@ -2,7 +2,6 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:mobile="http://www.google.com/schemas/sitemap-mobile/1.0" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
 <url> <loc>https://popitalk.com/</loc> </url>
 <url> <loc>https://popitalk.com/welcome</loc> </url>
-<url> <loc>https://popitalk.com/</loc> </url>
 <url> <loc>https://popitalk.com/channels/f96fd486-e7e2-413f-9d67-7a1b0607e0cb/video</loc> </url>
 <url> <loc>https://popitalk.com/channels/37b1d69a-d0f9-4698-9af5-97af092c4b3f/video</loc> </url>
 <url> <loc>https://popitalk.com/channels/44912fe5-7f3e-472d-bc1d-b33812342b2b/video</loc> </url>
@@ -35,8 +34,7 @@
 <url> <loc>https://popitalk.com/channels/7537798b-9434-4c78-9386-9be579c20400/video</loc> </url>
 <url> <loc>https://popitalk.com/friends</loc> </url>
 <url> <loc>https://popitalk.com/create</loc> </url>
-<url> <loc>https://popitalk.com/rooms/:roomId/video</loc> </url>
+<!-- <url> <loc>https://popitalk.com/rooms/:roomId/video</loc> </url> -->
 <url> <loc>https://popitalk.com/users/:userId</loc> </url>
-<url> <loc>https://popitalk.com/*</loc> </url>
 <url> <loc>https://popitalk.com/*</loc> </url>
 </urlset>
