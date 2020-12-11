@@ -7,7 +7,7 @@ export default (
   <Route>
     <PublicRoute exact path="/welcome" />
     <GeneralRoute exact path="/" />
-    <GeneralRoute exact path="/channels/:channelId/:tab" />
+    <GeneralRoute exact path="/channels/:channelId/video" />
     <GeneralRoute exact path="/friends" />
     <PrivateRoute exact path="/create" />
     <PrivateRoute exact path="/rooms/:roomId/video" />
