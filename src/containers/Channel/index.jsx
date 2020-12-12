@@ -532,7 +532,7 @@ class Channel extends Component {
           <title>{`${channel.name} · ${strings.mainTitle}`}</title>
           <meta
             name="description"
-            content={`Popitalk channel: ${channel.description}`}
+            content={`Popitalk channel - ${channel.description}`}
           />
           <meta name="viewport" content="width=device-width, initial-scale=1" />
           <meta name="keywords" content={strings.mainKeywords} />
