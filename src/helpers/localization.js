@@ -268,9 +268,9 @@ let strings = new LocalizedStrings({
     popitalk: "뽀삐톡",
     mainTitle: "뽀삐톡 - 같이보는 TV",
     mainDescription:
-      "뽀삐톡으로 친구와 가족들과 유튜브 같이 시청하고 채팅해요. 새로운 채널을 구독하고 재미있는 영상을 시청하세요",
+      "뽀삐톡으로 친구와 가족들과 유튜브를 같이 시청하고 채팅해요. 새로운 채널을 구독하고 재미있는 영상을 시청하세요",
     mainKeywords:
-      "watch, together, with, friends, youtube, anime, videos, in, sync, at, the, same, time, chat, rabbit, w2g, watch2gether, watchtogether",
+      "시청, 동시간 시청, 스트리밍, 트위치, 실시간 시청, 라이브, 라이브방송, 인터넷방송, 같이보기, 다시보기",
     loginPageTitle: "뽀삐톡 - 같이보는 TV - 로그인 또는 회원가입",
     loginPageDescription:
       "뽀삐톡 계정을 만들거나 로그인하세요. 친구, 가족, 아는 사람들과 유튜브 같이 시청하고 채팅해요.",
