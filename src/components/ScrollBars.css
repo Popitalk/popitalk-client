@@ -5,22 +5,18 @@
 /* Handle */
 ::-webkit-scrollbar-thumb {
   border-radius: 16px;
-  opacity: 0;
-  background: transparent;
+  opacity: 0.1;
+  background:rgba(0,0,0,0.1)
 }
 ::-webkit-scrollbar-thumb:hover {
-  opacity: 1;
-  background: #5c5c5c;
+  background:rgba(0,0,0,0.5)
+
 }
 
-/* Handle on hover */
-.light::-webkit-scrollbar-thumb:hover {
-  background: #5e5e5e;
-}
 
 /* Firefox */
 html {
-  scrollbar-color: #f1f1f1 #a5a5a5;
+  scrollbar-color: rgba(0,0,0,0.5)
 }
 
 .mozilla-thin-scrollbar {
