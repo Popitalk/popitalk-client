@@ -1,3 +1,4 @@
 # https://www.robotstxt.org/robotstxt.html
+Sitemap: https://popitalk.com/sitemap.xml
 User-agent: *
 DaumWebMasterTool:ce41bae9cddc6a090290cd2aaa83b0ada277640ae24e575db0e80366215d293c:UVSPIX5UsC+6jgcjrWHCzA==
