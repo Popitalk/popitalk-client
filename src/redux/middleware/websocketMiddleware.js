@@ -36,7 +36,9 @@ import {
   friendOfflineWs,
   addVideoWs,
   deleteVideoWs,
-  swapVideosWs
+  swapVideosWs,
+  addViewerWs,
+  removeViewerWs
 } from "../actions";
 
 import { WS_EVENTS } from "../../helpers/constants";
@@ -134,7 +136,7 @@ const websocketMiddleware = () => store => next => action => {
       const messageType = parsedMessage.type;
       const messagePayload = parsedMessage.payload;
 
-      console.log("MESSAGE TYPE", messageType);
+      console.log("MESSAGE TYPE", messageType, messagePayload);
       // These functions are executed by messages received from the server.
       const commandHandler = {
         [WS_EVENTS.HELLO]() {
@@ -244,10 +246,10 @@ const websocketMiddleware = () => store => next => action => {
           store.dispatch(swapVideosWs(messagePayload));
         },
         [WS_EVENTS.CHANNEL.ADD_VIEWER]() {
-          console.log("ADD VIEWER", messagePayload);
+          store.dispatch(addViewerWs(messagePayload));
         },
         [WS_EVENTS.CHANNEL.DELETE_VIEWER]() {
-          console.log("DELETE VIEWER");
+          store.dispatch(removeViewerWs(messagePayload));
         }
       };
       // If commandHandler.[computedPropertyMessageType] is defined, then this function is executed.

@@ -14,7 +14,8 @@ import {
   blockUser,
   addAdminWs,
   addChannelWs,
-  updateUser
+  updateUser,
+  addViewerWs
 } from "../actions";
 
 const initialState = {};
@@ -64,5 +65,6 @@ export default createReducer(initialState, {
   [blockUser.fulfilled]: R_addUser,
   [logout.fulfilled]: R_resetState,
   [deleteAccount.fulfilled]: R_resetState,
-  [updateUser.fulfilled]: R_updateUser
+  [updateUser.fulfilled]: R_updateUser,
+  [addViewerWs]: R_addUser
 });
