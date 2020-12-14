@@ -544,7 +544,7 @@ class Channel extends Component {
           <meta
             data-react-helmet="true"
             property="og:description"
-            content={strings.mainDescription}
+            content={`${strings.popitalkChannel} - ${channel.description} - ${strings.mainDescription}`}
           />
           <meta
             data-react-helmet="true"
