@@ -14,15 +14,16 @@ let strings = new LocalizedStrings({
     popitalk: "Popitalk",
     mainTitle: "Popitalk - Watch together",
     mainDescription:
-      "Watch videos together or listen to songs together with friends and family. Watch youtube in perfect sync together while chatting with your beloved ones.",
+      "Watch videos together or listen to songs together with friends and family. Watch youtube together while chatting. synchronized at the same time.",
     mainKeywords:
-      "watch together, watch with friends, watch youtube together, watch anime together, watch in sync, watch at same time, chat while watching, rabbit watch, watch2gether, watchtogether",
+      "synchronized, youtube, videos, watch, friends, social, anime, watch2gether, funny, music, vidme, dailymotion, soundcloud, watchtogether",
     loginPageTitle: "Popitalk - Log In or Sign Up",
     loginPageDescription:
       "Log in or create an account on Popitalk. Watch videos together or listen to songs together with friends and family. Watch youtube in perfect sync together while chatting with your beloved ones.",
     createChannelTitle: "Popitalk - Create Channel",
     createChannelDescription:
       "Create a channel on Popitalk. Watch videos together or listen to songs together with friends and family. Watch youtube in perfect sync together while chatting with your beloved ones.",
+    popitalkChannel: "Popitalk channel",
 
     // WelcomePage & SiteHeaderWelcome
     loginUsername: "Username or email",
@@ -268,17 +269,18 @@ let strings = new LocalizedStrings({
     popitalk: "뽀삐톡",
     mainTitle: "뽀삐톡 - 같이보는 TV",
     mainDescription:
-      "뽀삐톡으로 친구와 가족들과 유튜브를 같이 시청하고 채팅해요. 새로운 채널을 구독하고 재미있는 영상을 시청하세요",
+      "뽀삐톡으로 친구들과 유튜브를 동시간에 같이 시청하고 채팅해요. 함께 실시간으로 동영상을 공유하며 동시에 챗을해보세요. 정확한 싱크로로 동시에 영화, 음악, 모든 것을 사랑하는 사람들과 함게 나눌 수 있습니다.",
     mainKeywords:
       "시청, 동시간 시청, 스트리밍, 트위치, 실시간 시청, 라이브, 라이브방송, 인터넷방송, 같이보기, 다시보기",
     loginPageTitle: "뽀삐톡 - 같이보는 TV - 로그인 또는 회원가입",
     loginPageDescription:
-      "뽀삐톡 계정을 만들거나 로그인하세요. 친구, 가족, 아는 사람들과 유튜브 같이 시청하고 채팅해요.",
+      "뽀삐톡 계정을 만들거나 로그인하세요. 친구, 가족, 아는 사람들과 유튜브 같이 시청하고 채팅해요. 뽀삐톡으로 친구들과 유튜브를 동시간에 같이 시청하고 채팅해요. 함께 실시간으로 동영상을 공유하며 동시에 챗을해보세요.",
     createChannelTitle: "채널 만들기 - 뽀삐톡",
     createChannelDescription:
-      "뽀삐톡에서 채널을 개설하세요. 재미있는 영상들을 재생하고 팔로워들과 소통하세요.",
+      "뽀삐톡에서 채널을 개설하세요. 재미있는 영상들을 재생하고 팔로워들과 소통하세요. 뽀삐톡으로 친구들과 유튜브를 동시간에 같이 시청하고 채팅해요. 함께 실시간으로 동영상을 공유하며 동시에 챗을해보세요.",
     loginUsername: "이메일 또는 아이디",
     loginPassword: "비밀번호",
+    popitalkChannel: "뽀삐톡 채널",
 
     // DescriptionSection.jsx
     descriptionHeader1: "꿀잼인 동영상과 음악을 같이 시청해요.",

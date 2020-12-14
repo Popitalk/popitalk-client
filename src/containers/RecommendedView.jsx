@@ -228,11 +228,30 @@ function RecommendedChannels({ selectedPage }) {
       )}
       <Helmet>
         <meta charSet="UFT-8" />
-        <title>{strings.mainTitle}</title>
         <link rel="canonical" />
+        <title>{strings.mainTitle}</title>
         <meta name="description" content={strings.mainDescription} />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="keywords" content={strings.mainKeywords} />
+        <meta
+          data-react-helmet="true"
+          property="og:title"
+          content={strings.mainTitle}
+        />
+        <meta
+          data-react-helmet="true"
+          property="og:description"
+          content={strings.mainDescription}
+        />
+        <meta
+          data-react-helmet="true"
+          property="og:image"
+          content={
+            strings.location === "kr"
+              ? "https://i.ibb.co/NFyVwQL/og-Image-KR.png"
+              : "https://i.ibb.co/h1tcFRP/ogImage.png"
+          }
+        />
       </Helmet>
     </div>
   );

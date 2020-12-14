@@ -532,10 +532,25 @@ class Channel extends Component {
           <title>{`${channel.name} · ${strings.mainTitle}`}</title>
           <meta
             name="description"
-            content={`Popitalk channel - ${channel.description} - An app to watch together with friends and family`}
+            content={`${strings.popitalkChannel} - ${channel.description} - ${strings.mainDescription}`}
           />
           <meta name="viewport" content="width=device-width, initial-scale=1" />
           <meta name="keywords" content={strings.mainKeywords} />
+          <meta
+            data-react-helmet="true"
+            property="og:title"
+            content={`${channel.name} · ${strings.mainTitle}`}
+          />
+          <meta
+            data-react-helmet="true"
+            property="og:description"
+            content={strings.mainDescription}
+          />
+          <meta
+            data-react-helmet="true"
+            property="og:image"
+            content={channel.icon}
+          />
         </Helmet>
       </>
     );

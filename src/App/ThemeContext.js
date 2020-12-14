@@ -8,14 +8,14 @@ const getInitialTheme = _ => {
       return storedPrefs;
     }
 
-    const userMedia = window.matchMedia("(prefers-color-scheme: dark)");
+    const userMedia = window.matchMedia("(prefers-color-scheme: light)");
     if (userMedia.matches) {
-      return "dark";
+      return "light";
     }
   }
 
   // If you want to use light theme as the default, return "light" instead
-  return "dark";
+  return "light";
 };
 
 export const ThemeContext = React.createContext();
