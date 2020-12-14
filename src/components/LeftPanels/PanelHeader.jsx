@@ -29,7 +29,7 @@ export default function PanelHeader({
           onClick={() => updateSelectedPage("channels")}
         >
           <FontAwesomeIcon icon="globe-americas" />
-          <div>{strings.channels}</div>
+          <h1>{strings.channels}</h1>
         </nav>
         <nav
           className={`flex items-center space-x-2  px-3 p-2 focus:outline-none hover:bg-hover-highlight rounded-xl transition transform ease-in-out hover:scale-105 duration-100 cursor-pointer ${
@@ -40,7 +40,7 @@ export default function PanelHeader({
           onClick={() => updateSelectedPage("friends")}
         >
           <FontAwesomeIcon icon="paper-plane" />
-          <div>{strings.friends}</div>
+          <h1>{strings.friends}</h1>
           {numberOfNotifications !== 0 && (
             <span className="flex items-center justify-center bg-gradient-r-cancel rounded-full w-2 h-2 animate-bounce text-xs text-copy-tertiary font-bold ml-2 mt-1" />
           )}
