@@ -92,7 +92,7 @@ export default function LeftPanelContainer() {
         members
       };
     }),
-    room => new Date(room.lastMessageAt),
+    room => new Date(room.lastMessageAt || room.createdAt),
     ["desc"]
   );
 
