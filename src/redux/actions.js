@@ -223,6 +223,8 @@ export const visitAndLeaveChannel = createAsyncThunk(
     return response.data;
   }
 );
+export const addViewerWs = createAction("channels/addViewer/ws");
+export const removeViewerWs = createAction("channels/removeViewer/ws");
 
 export const addChannel = createAsyncThunk(
   "channels/addChannel",

@@ -57,7 +57,9 @@ import {
   setLastMessageSeen,
   addVideoWs,
   deleteVideoWs,
-  swapVideosWs
+  swapVideosWs,
+  addViewerWs,
+  removeViewerWs
 } from "../actions";
 
 // import { extendedCapacity } from "./messages";
@@ -432,6 +434,20 @@ const R_swapVideos = (state, { payload }) => {
   R_updateChannel(state, { payload });
 };
 
+const R_addViewer = (state, { payload }) => {
+  const channelId = payload.id || payload.channelId;
+
+  state[channelId].viewers.push(payload.userId);
+};
+
+const R_removeViewer = (state, { payload }) => {
+  const channelId = payload.id || payload.channelId;
+
+  state[channelId].viewers = state[channelId].viewers.filter(
+    viewerId => viewerId !== payload.userId
+  );
+};
+
 // See what the server returns when inviting friends
 // Only add users? Or update channel?
 // Only add users, so that data is in sync?
@@ -495,5 +511,7 @@ export default createReducer(initialState, {
   [deleteVideo.fulfilled]: R_deleteVideo,
   [deleteVideoWs]: R_deleteVideo,
   [swapVideos.fulfilled]: R_swapVideos,
-  [swapVideosWs]: R_swapVideos
+  [swapVideosWs]: R_swapVideos,
+  [addViewerWs]: R_addViewer,
+  [removeViewerWs]: R_removeViewer
 });
