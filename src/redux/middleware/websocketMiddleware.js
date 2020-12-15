@@ -136,7 +136,7 @@ const websocketMiddleware = () => store => next => action => {
       const messageType = parsedMessage.type;
       const messagePayload = parsedMessage.payload;
 
-      console.log("MESSAGE TYPE", messageType, messagePayload);
+      console.log("MESSAGE TYPE", messageType);
       // These functions are executed by messages received from the server.
       const commandHandler = {
         [WS_EVENTS.HELLO]() {
