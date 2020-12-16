@@ -3,6 +3,7 @@ import FollowersList from "../InfoCardLists/FollowersList";
 import CircleCheckBox from "../Controls/CircleCheckbox";
 import Button from "../Controls/Button";
 import StretchList from "../InfoCardLists/StretchList";
+import strings from "../../helpers/localization";
 
 export default function NewRoomModal({
   users,
@@ -38,7 +39,7 @@ export default function NewRoomModal({
           isCreatingNewRoom ? selected.length < 2 : selected.length === 0
         }
       >
-        Send
+        {strings.sendText}
       </Button>
     </div>
   );
