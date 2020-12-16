@@ -1,6 +1,7 @@
 import React from "react";
 import RoomInfoCard from "../InfoCards/RoomInfoCard";
 import Button from "../Controls/Button";
+import strings from "../../helpers/localization";
 
 export default function RoomExistsModal({
   room,
@@ -9,9 +10,9 @@ export default function RoomExistsModal({
 }) {
   return (
     <div className="flex flex-col items-center p-4">
-      <p className="font-bold text-copy-primary">This room already exists</p>
+      <p className="font-bold text-copy-primary">{strings.thisRoomExists}</p>
       <p className="text-xs py-1 text-copy-secondary">
-        Click below to enter the existing room
+        {strings.enterExistingRoom}
       </p>
       <div className="w-full py-4">
         <RoomInfoCard
@@ -25,7 +26,7 @@ export default function RoomExistsModal({
         onClick={createNewHandler}
         analyticsString="Create New Room Button: RoomExistsModal"
       >
-        Create New
+        {strings.createNew}
       </Button>
     </div>
   );

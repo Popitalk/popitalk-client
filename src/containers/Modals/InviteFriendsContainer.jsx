@@ -18,6 +18,7 @@ import {
 } from "../../helpers/functions";
 import sortBy from "lodash/sortBy";
 import _ from "lodash";
+import strings from "../../helpers/localization";
 
 export default function InviteFriendsContainer({ handleModalClose }) {
   const { isCreatingNewRoom } = useSelector(state => state.modal);
@@ -96,8 +97,8 @@ export default function InviteFriendsContainer({ handleModalClose }) {
       dispatch(openRoomExistsModal(room, userIds));
     } else {
       dispatch(createRoom(userIds));
+      handleModalClose();
     }
-    handleModalClose();
   };
 
   return (
@@ -108,7 +109,7 @@ export default function InviteFriendsContainer({ handleModalClose }) {
       handleModalClose={handleModalClose}
       header={
         <SearchHeader
-          title="Select Friends"
+          title={strings.selectFriends}
           filterSearch={(searchTerm, items) =>
             filterSearch(items, nameField, setVisible, searchTerm)
           }

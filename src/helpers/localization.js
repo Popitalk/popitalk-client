@@ -254,7 +254,13 @@ let strings = new LocalizedStrings({
     deleteMessageTitle: "Delete Message",
     deleteMessageSubtitle: "Are you sure you want to delete this message?",
     // ProfileModal
-    friendsText: "Friends"
+    friendsText: "Friends",
+    // InviteFriendsContainer
+    selectFriends: "Select Friends",
+    // RoomExistsModal
+    thisRoomExists: "This room already exists",
+    enterExistingRoom: "Click below to enter the existing room",
+    createNew: "Create New"
   },
 
   // === KOREAN === //
@@ -505,7 +511,13 @@ let strings = new LocalizedStrings({
     deleteMessageTitle: "메세지 삭제",
     deleteMessageSubtitle: "삭제된 메세지는 복구가 불가합니다.",
     // ProfileModal
-    friendsText: "친구"
+    friendsText: "친구",
+    // InviteFriendsContainer
+    selectFriends: "대화상대 선택",
+    // RoomExistsModal
+    thisRoomExists: "선택하신 방이 이미 존재합니다",
+    enterExistingRoom: "이미 존재하는 방으로 가시려면 클릭하세요.",
+    createNew: "새로 만들기"
   },
 
   //  Russian  //
