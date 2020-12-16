@@ -8,7 +8,7 @@ import strings from "../../helpers/localization";
 export default function FriendRequests({ friendRequests, ...rest }) {
   return (
     <DropDownContainer>
-      <ContainerHeader title={strings.friendRequestHeader} icon="user-plus" />
+      <ContainerHeader title={strings.notificationHeader} icon="bell" />
       <FriendUsersList users={friendRequests} {...rest} />
       <ReactTooltip
         effect="solid"

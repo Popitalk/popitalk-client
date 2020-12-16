@@ -154,7 +154,7 @@ const SiteHeaderMain = ({
         <ul className="sm:space-x-6 // flex items-center space-x-2">
           <li>
             <DropDownControls
-              icon="user-plus"
+              icon="bell"
               hasNotification={friendRequests.length > 0}
             >
               <FriendRequests
