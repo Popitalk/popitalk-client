@@ -80,6 +80,7 @@ export default function InviteFriendsContainer({ handleModalClose }) {
     } else {
       dispatch(addRoomMembers({ channelId, userIds }));
     }
+    handleModalClose();
   };
 
   const handleCreateRoom = () => {
@@ -96,6 +97,7 @@ export default function InviteFriendsContainer({ handleModalClose }) {
     } else {
       dispatch(createRoom(userIds));
     }
+    handleModalClose();
   };
 
   return (
