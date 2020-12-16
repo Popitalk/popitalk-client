@@ -103,17 +103,15 @@ export default function Input({
           </>
         )}
         {(variant === "user" || variant === "channel") && (
-          <>
-            <Button
-              actionButton
-              icon="search"
-              size="sm"
-              background="secondary"
-              className="absolute right-0 mr-2 shadow-none"
-              onClick={onClick}
-              analyticsString="Search Button: Input"
-            />
-          </>
+          <Button
+            actionButton
+            icon={variant === "user" ? "user-plus" : "search"}
+            size="sm"
+            background="secondary"
+            className="absolute right-0 mr-2 shadow-none"
+            onClick={onClick}
+            analyticsString="Search Button: Input"
+          />
         )}
         {(variant === "counter" || variant === "textarea") && (
           <>
