@@ -53,7 +53,7 @@ export default function Button({
     "btn-lg": size === "lg",
     "btn-xl": size === "xl",
     "bg-gradient-br-button": background === "primary",
-    "bg-gradient-br-search": background === "secondary",
+    "bg-background-search": background === "secondary",
     "bg-gradient-br-cancel": background === "cancel",
     "bg-gradient-br-bgColor": background === "bgColor",
     "bg-gradient-r-primary": background === "gradient",

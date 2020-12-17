@@ -73,7 +73,8 @@ module.exports = {
         tertiary: "var(--color-bg-tertiary)",
         quaternary: "var(--color-bg-quaternary)",
         disabled: "var(--color-bg-disabled)",
-        highlight: "var(--color-bg-highlight)"
+        highlight: "var(--color-bg-highlight)",
+        search: "#00C3FF"
       },
 
       /* == TEXT COLOR. EX) className="text-copy-primary" == */
