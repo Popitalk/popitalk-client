@@ -141,15 +141,14 @@ const SiteHeaderMain = ({
 
   return (
     <header className="sm:px-6 // relative flex items-center justify-between h-12 bg-background-primary px-2 z-30 select-none">
-      <Link to="/" className="flex flex-shrink-0 items-center justify-center">
-        <Button
-          imageButton
-          imageButtonSrc={Logo}
-          imageButtonClassName="w-8 h-8"
-          analyticsString="Main Logo Button: SiteHeaderMain"
-          hoverable
-        />
-      </Link>
+      <Button
+        imageButton
+        imageButtonSrc={Logo}
+        imageButtonClassName="w-8 h-8"
+        analyticsString="Main Logo Button: SiteHeaderMain"
+        hoverable
+        onClick={() => (window.location.href = "/")}
+      />
       <div className="sm:space-x-6 // flex items-center space-x-2">
         <ul className="sm:space-x-6 // flex items-center space-x-2">
           <li>
