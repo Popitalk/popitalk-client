@@ -126,8 +126,12 @@ function RecommendedChannels({ selectedPage }) {
   }, [handleSearch, search]);
 
   useEffect(() => {
-    dispatch(getTrendingChannels());
-  }, [dispatch]);
+    if (loggedIn) {
+      dispatch(getFollowingChannels());
+    } else {
+      dispatch(getTrendingChannels());
+    }
+  }, [dispatch, loggedIn]);
 
   useEffect(() => {
     setChannelList(getChannels(followingChannels));
@@ -195,7 +199,7 @@ function RecommendedChannels({ selectedPage }) {
           <ChannelSearchList channelList={searchResultChannels} />
         </div>
       ) : (
-        <div>
+        <div className="px-2">
           {/* CARDS */}
           {selectedPage === "channels" ? (
             <>
