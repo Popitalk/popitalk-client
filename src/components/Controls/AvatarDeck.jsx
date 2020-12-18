@@ -18,7 +18,7 @@ export default function AvatarDeck({
     [className]: className
   });
   const avatarClasses = classnames({
-    "img inline-block rounded-circle text-white border-2 border-outline-image2": true,
+    "img inline-block rounded-circle text-white border-2 border-background-secondary": true,
     "h-6 w-6": size === "sm",
     "h-8 w-8": size === "md",
     "h-10 w-10": size === "lg"
@@ -56,7 +56,7 @@ export default function AvatarDeck({
         styleNone
         icon="user"
         styleNoneContent={avatars.length}
-        className="rounded-md border-2 border-outline-image2 py-1 px-2 bg-background-secondary flex-shrink-0 space-x-1 text-copy-primary text-xs font-bold mr-2"
+        className="rounded-md py-1 px-2 bg-background-secondary flex-shrink-0 space-x-2 text-copy-secondary text-xs font-bold mr-2"
         analyticsString="View More Users Button: AvatarDeck"
       />
     </div>

@@ -77,7 +77,7 @@ export default function ChannelCard({
             )}
           </div>
           {/* Video Description & Avatar Deck */}
-          <div className="w-full my-4 flex flex-col justify-between items-between items-center space-y-2">
+          <div className="w-full my-3 flex flex-col justify-between items-between items-center space-y-2">
             <p
               className="text-sm flex-shrink-1 font-bold w-full truncate-2-lines ml-2 text-copy-primary"
               dangerouslySetInnerHTML={{ __html: videoTitle }}
@@ -86,7 +86,7 @@ export default function ChannelCard({
               <AvatarDeck
                 avatars={viewers}
                 alt={`${viewers} - Popitalk`}
-                size="md"
+                size="sm"
                 className="img flex-shrink-0"
                 threshold={8}
               />
