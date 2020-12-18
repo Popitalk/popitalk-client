@@ -19,7 +19,7 @@ function ChannelSearchList({ channelList }) {
         {Object.keys(channelList).length > 0 ? (
           <div>{mapChannels(channelList)}</div>
         ) : (
-          <div className="flex items-center justify-center text-copy-secondary w-full h-32">
+          <div className="flex items-center justify-center text-copy-secondary text-sm w-full h-32">
             {strings.nothingToShow}
           </div>
         )}

@@ -54,17 +54,21 @@ export default function VideoResults({
       </div>
 
       {currThreshold < highestResults && (
-        <div className="flex justify-center pt-12 pb-8">
+        <div className="flex justify-center items-center pt-12 pb-8">
+          <div className="h-px bg-background-quaternary w-full mx-2" />
           <Button
-            styleNone
-            styleNoneContent={strings.loadMoreButton}
-            styleNoneContentClassName="text-copy-highlight text-sm font-bold"
+            actionButton
+            leftIcon="arrow-down"
+            size="sm"
             hoverable
-            className="w-24 hover:bg-hover-highlight h-10 mx-2 rounded-xl"
+            className="bg-background-primary text-copy-highlight text-sm font-bold flex-shrink-0"
             onClick={handleLoad}
             analyticsString="Show More Video: Video Results"
             // onClick={currThreshold >= results.length ? handleClick : handleLoad}
-          />
+          >
+            {strings.loadMoreButton}
+          </Button>
+          <div className="h-px bg-background-quaternary w-full mx-2" />
         </div>
       )}
       {results.length === 0 && (
