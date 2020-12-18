@@ -168,7 +168,7 @@ function RecommendedChannels({ selectedPage }) {
           onClick={handleSearch}
         />
         {/* OPTION TABS */}
-        <div className="flex justify-center h-auto">
+        <h2 className="flex justify-center h-auto">
           {tabs.map((img, idx) => {
             return (
               <Button
@@ -188,7 +188,7 @@ function RecommendedChannels({ selectedPage }) {
               />
             );
           })}
-        </div>
+        </h2>
       </div>
       {isSearchForChannels ? (
         <div>
