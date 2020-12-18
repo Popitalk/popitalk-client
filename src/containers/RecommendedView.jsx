@@ -21,7 +21,15 @@ import {
 const moreThanTwoMinutesAgo = date => new Date(date) < new Date() - 120000;
 
 function RecommendedChannels({ selectedPage }) {
+  const dispatch = useDispatch();
+
   const loggedIn = useSelector(state => state.general.loggedIn);
+  const isCollapsed = useSelector(state => state.ui.isCollapsed);
+  const alert = useSelector(state => state.ui.alert);
+  const followingChannels = useSelector(state => state.followingChannels);
+  const discoverChannels = useSelector(state => state.discoverChannels);
+  const trendingChannels = useSelector(state => state.trendingChannels);
+  const { defaultAvatar, defaultIcon } = useSelector(state => state.general);
 
   const followingTab = {
     tab: strings.following,
@@ -37,12 +45,6 @@ function RecommendedChannels({ selectedPage }) {
   const [tabSelected, setTab] = useState(
     loggedIn ? followingTab.tab : trendingTab.tab
   );
-  const isCollapsed = useSelector(state => state.ui.isCollapsed);
-  const alert = useSelector(state => state.ui.alert);
-  const followingChannels = useSelector(state => state.followingChannels);
-  const discoverChannels = useSelector(state => state.discoverChannels);
-  const trendingChannels = useSelector(state => state.trendingChannels);
-  const { defaultAvatar, defaultIcon } = useSelector(state => state.general);
 
   const getChannels = useCallback(
     channels =>
@@ -59,8 +61,6 @@ function RecommendedChannels({ selectedPage }) {
     [defaultIcon, defaultAvatar]
   );
 
-  const dispatch = useDispatch();
-
   const [isLoading] = useState(false);
   const [channelList, setChannelList] = useState([]);
   // Infinite scroll
@@ -71,6 +71,14 @@ function RecommendedChannels({ selectedPage }) {
   const searchResultChannels = useSelector(state => {
     return state.channelSearch.channels;
   });
+
+  useEffect(() => {
+    if (loggedIn) {
+      setTab(followingTab.tab);
+    } else {
+      setTab(trendingTab.tab);
+    }
+  }, [loggedIn, followingTab.tab, trendingTab.tab]);
 
   useEffect(() => {
     if (search === "") setIsSearchForChannels(false);
@@ -126,13 +134,12 @@ function RecommendedChannels({ selectedPage }) {
   }, [handleSearch, search]);
 
   useEffect(() => {
-    dispatch(getTrendingChannels());
-  }, [dispatch]);
-
-  useEffect(() => {
-    setChannelList(getChannels(followingChannels));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [followingChannels]);
+    if (loggedIn) {
+      dispatch(getFollowingChannels());
+    } else {
+      dispatch(getTrendingChannels());
+    }
+  }, [dispatch, loggedIn]);
 
   useEffect(() => {
     setChannelList(getChannels(discoverChannels));
@@ -143,6 +150,11 @@ function RecommendedChannels({ selectedPage }) {
     setChannelList(getChannels(trendingChannels));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [trendingChannels]);
+
+  useEffect(() => {
+    setChannelList(getChannels(followingChannels));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [followingChannels]);
 
   // useEffect(() => {
   //   console.log("CHANLIST CHANGING");
@@ -195,7 +207,7 @@ function RecommendedChannels({ selectedPage }) {
           <ChannelSearchList channelList={searchResultChannels} />
         </div>
       ) : (
-        <div>
+        <div className="px-2">
           {/* CARDS */}
           {selectedPage === "channels" ? (
             <>
