@@ -6,6 +6,7 @@ import ChatMessages from "./ChatMessages";
 import ChatActions from "./ChatActions";
 import GifTable from "./GifTable";
 import strings from "../../helpers/localization";
+import Button from "../Controls/Button";
 
 export default function ChatPanel({
   channelId,
@@ -42,8 +43,15 @@ export default function ChatPanel({
       {isMember ? (
         <ChatActions updateGifsOpen={updateGifsOpen} isGifsOpen={isGifsOpen} />
       ) : (
-        <div className="h-18 w-full flex bg-background-secondary text-sm text-copy-secondary items-center justify-center cursor-not-allowed select-none">
-          <h1>{loggedIn ? strings.chatDisabledText : "Sign in to chat!"}</h1>
+        <div className="h-14 p-2 w-full bg-background-primary select-none">
+          <Button
+            styleNone
+            icon="paper-plane"
+            styleNoneContent={
+              loggedIn ? strings.chatDisabledText : strings.signInToChat
+            }
+            className="flex-shrink-0 w-full h-full space-x-2 rounded-lg bg-background-secondary text-sm text-copy-secondary"
+          />
         </div>
       )}
     </div>

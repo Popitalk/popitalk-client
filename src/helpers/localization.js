@@ -215,6 +215,7 @@ let strings = new LocalizedStrings({
     followers: "followers",
     chatInput: "Type a message...",
     chatDisabledText: "Follow the channel to send a message.",
+    signInToChat: "Log in to chat",
 
     //CreateChannel > ChannelForm, ChannelFormSubmit
     selectChannelIcon: "Select Channel Icon",
@@ -473,6 +474,7 @@ let strings = new LocalizedStrings({
     followers: "팔로워",
     chatInput: "메시지를 작성하세요...",
     chatDisabledText: "팔로우를 해야 메시지를 보낼 수 있습니다.",
+    signInToChat: "로그인 후 채팅",
 
     //CreateChannel > ChannelForm, ChannelFormSubmit
     selectChannelIcon: "채널 프사 업로드",

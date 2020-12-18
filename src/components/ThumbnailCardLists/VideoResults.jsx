@@ -61,7 +61,7 @@ export default function VideoResults({
             leftIcon="arrow-down"
             size="sm"
             hoverable
-            className="bg-background-primary text-copy-highlight text-sm font-bold flex-shrink-0"
+            className="bg-background-primary text-copy-highlight text-sm font-bold flex-shrink-0 space-x-2"
             onClick={handleLoad}
             analyticsString="Show More Video: Video Results"
             // onClick={currThreshold >= results.length ? handleClick : handleLoad}
