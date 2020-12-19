@@ -1,7 +1,6 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 
-import { clearProfileInfo } from "../../redux/actions";
 import { closeModalFinal } from "../../redux";
 import ProfileModal from "./ProfileModalContainer";
 import EditUserSettingsContainer from "./EditUserSettingsContainer";
@@ -47,10 +46,7 @@ const ModalManager = () => {
 
   const { components } = useSelector(state => state.modal);
 
-  const handleModalClose = () => {
-    dispatch(closeModalFinal());
-    dispatch(clearProfileInfo());
-  };
+  const handleModalClose = () => dispatch(closeModalFinal());
 
   const isModalOpen = components.length > 0;
   const currentModal = components[components.length - 1];

@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 import { getUser } from "../../../helpers/api";
+import { closeModalFinal } from "../modals/modalsSlice";
 
 const initialState = {
   id: "",
@@ -48,14 +49,10 @@ const setUserInfo = (state, action) => {
 const userProfileSlice = createSlice({
   name: "userProfile",
   initialState,
-  reducers: {
-    clearProfileInfo: () => initialState
-  },
   extraReducers: {
-    [getUserInfo.fulfilled]: setUserInfo
+    [getUserInfo.fulfilled]: setUserInfo,
+    [closeModalFinal]: () => initialState
   }
 });
-
-export const { clearProfileInfo } = userProfileSlice.actions;
 
 export default userProfileSlice.reducer;

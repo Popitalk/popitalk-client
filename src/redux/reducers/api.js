@@ -32,12 +32,12 @@ import {
   unlikeComment,
   followChannel,
   unfollowChannel,
-  getUserInfo,
   getFollowingChannels,
   getDiscoverChannels,
   getTrendingChannels,
   searchChannels
 } from "../actions";
+import { getUserInfo } from "../";
 
 const formatType = type => type.split("/").slice(0, 2).join("/");
 

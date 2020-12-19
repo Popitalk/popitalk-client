@@ -17,3 +17,9 @@ export { openRoomExistsModal } from "./features/modals/modalsSlice";
 export { closeModal } from "./features/modals/modalsSlice";
 export { closeAllModals } from "./features/modals/modalsSlice";
 export { closeModalFinal } from "./features/modals/modalsSlice";
+
+/* -------------------------------------------------------------------------- */
+/*                                 USERPROFILE                                */
+/* -------------------------------------------------------------------------- */
+
+export { getUserInfo } from "./features/userProfile/userProfileSlice";
