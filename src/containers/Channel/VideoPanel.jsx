@@ -1,13 +1,12 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
+import { setPaused, setVolume } from "../../redux/actions";
 import {
   openInviteModal,
   openProfileModal,
-  openSocialShareModal,
-  setPaused,
-  setVolume
-} from "../../redux/actions";
+  openSocialShareModal
+} from "../../redux";
 import { mapIdsToUsers } from "../../helpers/functions";
 import VideoSection from "../../components/VideoSection";
 import QueueSection from "../../components/ThumbnailCardLists/QueueSection";

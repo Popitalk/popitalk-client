@@ -5,13 +5,13 @@ import ModalContainer from "../../components/Modals/ModalContainer";
 import ProfileModal from "../../components/Modals/ProfileModal";
 import { setRelationshipHandlers } from "../../helpers/functions";
 import {
-  getUserInfo,
   deleteFriend,
   blockUser,
   unblockUser,
   updateUser,
   clearError
 } from "../../redux/actions";
+import { getUserInfo } from "../../redux";
 
 const ProfileModalContainer = ({ handleModalClose }) => {
   const dispatch = useDispatch();

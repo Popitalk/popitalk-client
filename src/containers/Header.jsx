@@ -2,15 +2,13 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory, useLocation } from "react-router-dom";
 
+import { login, logout, deleteAccount } from "../redux/actions";
 import {
-  login,
-  logout,
-  deleteAccount,
   openProfileModal,
   openEditUserSettingsModal,
   openChangePasswordModal,
   openBlockedUsersModal
-} from "../redux/actions";
+} from "../redux";
 import { mapIdsToUsers, setRelationshipHandlers } from "../helpers/functions";
 import {
   SiteHeaderMain,

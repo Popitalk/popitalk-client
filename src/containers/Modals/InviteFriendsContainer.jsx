@@ -4,11 +4,8 @@ import ModalContainer from "../../components/Modals/ModalContainer";
 import NewRoomModal from "../../components/Modals/NewRoomModal";
 import SearchHeader from "../../components/SearchHeader";
 import { buildTagInput } from "../../components/Controls/TagInput";
-import {
-  createRoom,
-  addRoomMembers,
-  openRoomExistsModal
-} from "../../redux/actions";
+import { createRoom, addRoomMembers } from "../../redux/actions";
+import { openRoomExistsModal } from "../../redux";
 import {
   filterSearch,
   handleCancel,

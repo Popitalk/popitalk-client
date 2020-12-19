@@ -1,6 +1,15 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 import {
+  logout,
+  deleteAccount,
+  deleteChannel,
+  createRoom,
+  addRoomMembers,
+  deleteMessage
+} from "../../actions";
+
+import {
   openInvite,
   openSocialShare,
   openProfile,
@@ -28,6 +37,17 @@ const initialState = {
   content: null
 };
 
+const R_closeModal = state => {
+  state.components.pop();
+};
+const R_closeAllModals = state => {
+  state.closing = true;
+};
+const R_closeModalFinal = state => {
+  state.components = [];
+  state.closing = false;
+};
+
 const modalsSlice = createSlice({
   name: "modal",
   initialState,
@@ -44,12 +64,17 @@ const modalsSlice = createSlice({
     openChangePasswordModal: openChangePassword,
     openBlockedUsersModal: openBlockedUsers,
     openRoomExistsModal: openRoomExists,
-    closeModal: state => state.components.pop(),
-    closeAllModals: state => (state.closing = true),
-    closeModalFinal: state => {
-      state.components = [];
-      state.closing = false;
-    }
+    closeModal: R_closeModal,
+    closeAllModals: R_closeAllModals,
+    closeModalFinal: R_closeModalFinal
+  },
+  extraReducers: {
+    [logout.fulfilled]: R_closeAllModals,
+    [deleteAccount.fulfilled]: R_closeAllModals,
+    [deleteChannel.fulfilled]: R_closeAllModals,
+    [createRoom.fulfilled]: R_closeModal,
+    [addRoomMembers.fulfilled]: R_closeModal,
+    [deleteMessage.fulfilled]: R_closeModal
   }
 });
 

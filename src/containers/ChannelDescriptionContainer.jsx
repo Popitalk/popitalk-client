@@ -1,12 +1,8 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import ChannelDescription from "../components/Channel/ChannelDescription";
-import {
-  followChannel,
-  unfollowChannel,
-  openListModal,
-  openProfileModal
-} from "../redux/actions";
+import { followChannel, unfollowChannel } from "../redux/actions";
+import { openListModal, openProfileModal } from "../redux";
 
 export default function NewChannelPostContainer({
   channelId,
