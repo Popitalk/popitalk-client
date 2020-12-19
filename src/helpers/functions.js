@@ -1,13 +1,15 @@
-import classnames from "classnames";
+import React, { useEffect, useState } from "react";
 import * as Yup from "yup";
+import classnames from "classnames";
+import moreThanTwoMinutesAgo from "../util/moreThanTwoMinutesAgo";
+import strings from "./localization";
 import {
   sendFriendRequest,
   acceptFriendRequest,
   rejectFriendRequest,
-  cancelFriendRequest
+  cancelFriendRequest,
+  setChannelsList
 } from "../redux/actions";
-import React, { useEffect, useState } from "react";
-import strings from "./localization";
 
 export function getTextClass(size) {
   return classnames({
@@ -270,4 +272,35 @@ export function imageLoader(src, cb) {
 
   image.src = src;
   image.onload = cb;
+}
+
+export function getChannels(channels, defaultIcon, defaultAvatar) {
+  return Object.entries(channels.channels).map(([chanId, chan]) => ({
+    id: chanId,
+    name: chan.name,
+    icon: chan.icon || defaultIcon,
+    status: chan.playbackStatus,
+    videoInfo: chan.videoInfo,
+    viewers: chan.viewers.map(
+      viewerId => channels.users[viewerId].avatar || defaultAvatar
+    )
+  }));
+}
+
+export function updateChannelsList(
+  dispatch,
+  lastRequestAt,
+  action,
+  channelType,
+  defaultIcon,
+  defaultAvatar
+) {
+  const isOutDated = !lastRequestAt || moreThanTwoMinutesAgo(lastRequestAt);
+
+  if (isOutDated) {
+    dispatch(action());
+  } else {
+    const channels = getChannels(channelType, defaultIcon, defaultAvatar);
+    dispatch(setChannelsList(channels));
+  }
 }

@@ -10,15 +10,23 @@ import Input from "../components/Controls/Input.jsx";
 import Alert from "../components/Alert";
 import Button from "../components/Controls/Button.jsx";
 import strings from "../helpers/localization";
-// import useGetChannels from "../containers/hooks/useGetChannels";
+import { getChannels, updateChannelsList } from "../helpers/functions";
 import {
   getDiscoverChannels,
   getTrendingChannels,
   getFollowingChannels,
-  searchChannels
+  searchChannels,
+  setSelectedTab,
+  setIsSearchForChannels,
+  setChannelsList
 } from "../redux/actions";
 
-const moreThanTwoMinutesAgo = date => new Date(date) < new Date() - 120000;
+const followingTab = {
+  tab: strings.following,
+  icon: "home"
+};
+const discoverTab = { tab: strings.discover, icon: "globe" };
+const trendingTab = { tab: strings.trending, icon: "fire" };
 
 function RecommendedChannels({ selectedPage }) {
   const dispatch = useDispatch();
@@ -30,96 +38,72 @@ function RecommendedChannels({ selectedPage }) {
   const discoverChannels = useSelector(state => state.discoverChannels);
   const trendingChannels = useSelector(state => state.trendingChannels);
   const { defaultAvatar, defaultIcon } = useSelector(state => state.general);
+  const { tabSelected, isSearchForChannels } = useSelector(state => state.ui);
+  const channelsList = useSelector(state => state.channelSearch.channelsList);
+  const searchResultChannels = useSelector(
+    state => state.channelSearch.channels
+  );
 
-  const followingTab = {
-    tab: strings.following,
-    icon: "home"
-  };
-  const discoverTab = { tab: strings.discover, icon: "globe" };
-  const trendingTab = { tab: strings.trending, icon: "fire" };
+  const [isLoading] = useState(false);
+  const [search, setSearch] = useState("");
 
   const tabs = loggedIn
     ? [followingTab, discoverTab, trendingTab]
     : [discoverTab, trendingTab];
 
-  const [tabSelected, setTab] = useState(
-    loggedIn ? followingTab.tab : trendingTab.tab
-  );
-
-  const getChannels = useCallback(
-    channels =>
-      Object.entries(channels.channels).map(([chanId, chan]) => ({
-        id: chanId,
-        name: chan.name,
-        icon: chan.icon || defaultIcon,
-        status: chan.playbackStatus,
-        videoInfo: chan.videoInfo,
-        viewers: chan.viewers.map(
-          viewerId => channels.users[viewerId].avatar || defaultAvatar
-        )
-      })),
-    [defaultIcon, defaultAvatar]
-  );
-
-  const [isLoading] = useState(false);
-  const [channelList, setChannelList] = useState([]);
-  // Infinite scroll
-  // search is the Input Value. query is the search term triggered in handleSearch
-  const [search, setSearch] = useState("");
-  const [isSearchForChannels, setIsSearchForChannels] = useState(false);
-  // TODO replace with useSelector
-  const searchResultChannels = useSelector(state => {
-    return state.channelSearch.channels;
-  });
-
-  useEffect(() => {
-    if (loggedIn) {
-      setTab(followingTab.tab);
-    } else {
-      setTab(trendingTab.tab);
-    }
-  }, [loggedIn, followingTab.tab, trendingTab.tab]);
-
-  useEffect(() => {
-    if (search === "") setIsSearchForChannels(false);
-  }, [search]);
-
   const tabHandler = tab => {
-    setIsSearchForChannels(false);
+    dispatch(setSelectedTab(tab));
 
-    if (loggedIn && tab === followingTab.tab) {
-      const isOutDated =
-        !followingChannels.lastRequestAt ||
-        moreThanTwoMinutesAgo(followingChannels.lastRequestAt);
-      if (isOutDated) {
-        dispatch(getFollowingChannels());
-      }
-      setChannelList(getChannels(followingChannels));
+    if (tab === followingTab.tab) {
+      updateChannelsList(
+        dispatch,
+        followingChannels.lastRequestAt,
+        getFollowingChannels,
+        followingChannels,
+        defaultAvatar,
+        defaultIcon
+      );
     } else if (tab === discoverTab.tab) {
-      if (
-        !discoverChannels.lastRequestAt ||
-        moreThanTwoMinutesAgo(discoverChannels.lastRequestAt)
-      ) {
-        dispatch(getDiscoverChannels());
-      }
-      setChannelList(getChannels(discoverChannels));
+      updateChannelsList(
+        dispatch,
+        discoverChannels.lastRequestAt,
+        getDiscoverChannels,
+        discoverChannels,
+        defaultAvatar,
+        defaultIcon
+      );
     } else if (tab === trendingTab.tab) {
-      if (
-        !trendingChannels.lastRequestAt ||
-        moreThanTwoMinutesAgo(trendingChannels.lastRequestAt)
-      ) {
-        dispatch(getTrendingChannels());
-      }
-      setChannelList(getChannels(trendingChannels));
+      updateChannelsList(
+        dispatch,
+        trendingChannels.lastRequestAt,
+        getTrendingChannels,
+        trendingChannels,
+        defaultAvatar,
+        defaultIcon
+      );
     }
-
-    setTab(tab);
   };
 
   const handleSearch = useCallback(() => {
-    setIsSearchForChannels(true);
+    dispatch(setIsSearchForChannels(true));
+
     dispatch(searchChannels({ channelName: search }));
   }, [search, dispatch]);
+
+  useEffect(() => {
+    tabHandler(loggedIn ? followingTab.tab : trendingTab.tab);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [loggedIn]);
+
+  useEffect(() => {
+    if (search === "") dispatch(setIsSearchForChannels(false));
+  }, [dispatch, search]);
+
+  useEffect(() => {
+    if (!isSearchForChannels) {
+      setSearch("");
+    }
+  }, [isSearchForChannels]);
 
   useEffect(() => {
     const listener = event => {
@@ -134,25 +118,26 @@ function RecommendedChannels({ selectedPage }) {
   }, [handleSearch, search]);
 
   useEffect(() => {
-    if (loggedIn) {
-      dispatch(getFollowingChannels());
-    } else {
-      dispatch(getTrendingChannels());
-    }
-  }, [dispatch, loggedIn]);
-
-  useEffect(() => {
-    setChannelList(getChannels(discoverChannels));
+    const channels = getChannels(discoverChannels, defaultAvatar, defaultIcon);
+    dispatch(setChannelsList(channels));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [discoverChannels]);
 
   useEffect(() => {
-    setChannelList(getChannels(trendingChannels));
+    const channels = getChannels(trendingChannels, defaultAvatar, defaultIcon);
+    dispatch(setChannelsList(channels));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [trendingChannels]);
 
   useEffect(() => {
-    setChannelList(getChannels(followingChannels));
+    if (loggedIn) {
+      const channels = getChannels(
+        followingChannels,
+        defaultAvatar,
+        defaultIcon
+      );
+      dispatch(setChannelsList(channels));
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [followingChannels]);
 
@@ -195,7 +180,10 @@ function RecommendedChannels({ selectedPage }) {
                     ? "text-copy-highlight"
                     : "text-copy-secondary"
                 }`}
-                onClick={() => tabHandler(img.tab)}
+                onClick={() => {
+                  dispatch(setIsSearchForChannels(false));
+                  tabHandler(img.tab);
+                }}
                 analyticsString={`${img.tab} Button: RecommendedView`}
               />
             );
@@ -215,7 +203,7 @@ function RecommendedChannels({ selectedPage }) {
                 <ChannelCardList isLoading />
               ) : (
                 <ChannelCardList
-                  channelList={channelList}
+                  channelList={channelsList}
                   isCollapsed={isCollapsed}
                   tabSelected={tabSelected}
                 />
@@ -228,7 +216,7 @@ function RecommendedChannels({ selectedPage }) {
                   <VideoCardList isLoading />
                 ) : (
                   <VideoCardList
-                    videoList={channelList}
+                    videoList={channelsList}
                     isCollapsed={isCollapsed}
                     tabSelected={tabSelected}
                   />

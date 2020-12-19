@@ -1,10 +1,16 @@
 import { createReducer } from "@reduxjs/toolkit";
-import { logout, deleteAccount, searchChannels } from "../actions";
+import {
+  login,
+  deleteAccount,
+  searchChannels,
+  setChannelsList
+} from "../actions";
 
 const initialState = {
   channelName: null,
   page: null,
   channels: {},
+  channelsList: [],
   users: {},
   lastRequestAt: null
 };
@@ -34,7 +40,17 @@ const R_addSearchedChannels = (state, { payload }) => {
 
 const R_resetState = () => initialState;
 
+const R_setChannelsList = (state, { payload }) => {
+  state.channelsList = payload;
+};
+
+const R_ChannelsListInit = state => {
+  state.channelsList = [];
+};
+
 export default createReducer(initialState, {
   [searchChannels.fulfilled]: R_addSearchedChannels,
-  [deleteAccount.fulfilled]: R_resetState
+  [deleteAccount.fulfilled]: R_resetState,
+  [setChannelsList]: R_setChannelsList,
+  [login.fulfilled]: R_ChannelsListInit
 });
