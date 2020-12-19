@@ -2,12 +2,8 @@ import React from "react";
 // import { createSelector } from "reselect";
 import { useSelector, useDispatch } from "react-redux";
 import Post from "../components/Channel/Post";
-import {
-  likePost,
-  unlikePost,
-  openDeletePostModal,
-  openProfileModal
-} from "../redux/actions";
+import { likePost, unlikePost } from "../redux/actions";
+import { openDeletePostModal, openProfileModal } from "../redux";
 
 export default function PostContainer({ postId, isMember, isAdmin }) {
   const post = useSelector(state => state.posts[postId]);

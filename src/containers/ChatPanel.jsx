@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { withRouter } from "react-router-dom";
 import ChatPanel from "../components/Chat/ChatPanel";
-import { openListModal } from "../redux/actions";
+import { openListModal } from "../redux";
 import { createSelector } from "reselect";
 import useIsMember from "../containers/hooks/useIsMember";
 

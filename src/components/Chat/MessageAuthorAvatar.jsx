@@ -1,5 +1,5 @@
 import React from "react";
-import { openProfileModal } from "../../redux/actions";
+import { openProfileModal } from "../../redux";
 import { useDispatch, useSelector } from "react-redux";
 
 export default function MessageAuthorAvatar({ message, defaultAvatar }) {

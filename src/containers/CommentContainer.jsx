@@ -1,6 +1,7 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { likeComment, unlikeComment, openProfileModal } from "../redux/actions";
+import { likeComment, unlikeComment } from "../redux/actions";
+import { openProfileModal } from "../redux";
 import Comment from "../components/Channel/Comment";
 
 export default function CommentContainer({ commentId }) {

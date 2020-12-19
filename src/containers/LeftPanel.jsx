@@ -6,10 +6,9 @@ import LeftPanel from "../components/LeftPanels/LeftPanel";
 import {
   toggleLeftPanel,
   searchUsers,
-  openProfileModal,
-  openInviteModal,
   setLastMessageSeen
 } from "../redux/actions";
+import { openInviteModal, openProfileModal } from "../redux";
 import history from "../history";
 import { mapIdsToUsers, setRelationshipHandlers } from "../helpers/functions";
 import { orderBy } from "lodash";

@@ -5,7 +5,7 @@ import StretchList from "../../components/InfoCardLists/StretchList";
 import FollowersList from "../../components/InfoCardLists/FollowersList";
 import { filterSearch, mapIdsToUsers } from "../../helpers/functions";
 import { useSelector, useDispatch } from "react-redux";
-import { openProfileModal } from "../../redux/actions";
+import { openProfileModal } from "../../redux";
 
 export default function ListUsersContainer({ handleModalClose }) {
   // TODO: Watching Now

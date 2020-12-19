@@ -2,14 +2,13 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import {
-  openDeleteChannelModal,
-  openProfileModal,
   updateChannel,
   makeAdmin,
   deleteAdmin,
   addBan,
   deleteBan
 } from "../../redux/actions";
+import { openDeleteChannelModal, openProfileModal } from "../../redux";
 import { mapIdsToUsers } from "../../helpers/functions";
 import ChannelSettingsPanel from "../../components/Channel/ChannelSettingsPanel";
 

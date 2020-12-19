@@ -2,7 +2,9 @@ import React from "react";
 import PopupMenu from "../Controls/PopupMenu";
 import { withRouter } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { addMessage, openDeleteMessageModal } from "../../redux/actions";
+import { addMessage } from "../../redux/actions";
+import { openDeleteMessageModal } from "../../redux";
+
 import { v4 as uuidv4 } from "uuid";
 
 function ChatOptionsButton2({
