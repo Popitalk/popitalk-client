@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 
 import Logo from "../../assets/logo.png";
 import DropDownMenu from "../DropDowns/DropDownMenu";
@@ -7,12 +8,24 @@ import DropDownControls from "../DropDowns/DropDownControls";
 import Button from "../Controls/Button";
 import SignInButton from "../SignInButton";
 import strings from "../../helpers/localization";
+import { updateChannelsList } from "../../helpers/functions";
+import {
+  setSelectedTab,
+  setIsSearchForChannels,
+  getTrendingChannels
+} from "../../redux/actions";
 
 const SETTINGS = 1;
 const INFORMATION = 4;
 
 const SiteHeaderViewers = () => {
   const [dropdownList, setDropdownList] = useState([]);
+
+  const trendingChannels = useSelector(state => state.trendingChannels);
+  const { defaultAvatar, defaultIcon } = useSelector(state => state.general);
+
+  const dispatch = useDispatch();
+  const history = useHistory();
 
   const toggleSettings = () => {
     if (dropdownList.length > 0) {
@@ -74,15 +87,26 @@ const SiteHeaderViewers = () => {
 
   return (
     <header className="sm:px-6 // relative flex items-center justify-between h-12 bg-background-primary px-2 z-30 select-none">
-      <Link to="/" className="flex flex-shrink-0 items-center justify-center">
-        <Button
-          imageButton
-          imageButtonSrc={Logo}
-          imageButtonClassName="w-8 h-8"
-          analyticsString="Main Logo Button: SiteHeaderMain"
-          hoverable
-        />
-      </Link>
+      <Button
+        imageButton
+        imageButtonSrc={Logo}
+        imageButtonClassName="w-8 h-8"
+        analyticsString="Main Logo Button: SiteHeaderMain"
+        hoverable
+        onClick={() => {
+          updateChannelsList(
+            dispatch,
+            trendingChannels.lastRequestAt,
+            getTrendingChannels,
+            trendingChannels,
+            defaultAvatar,
+            defaultIcon
+          );
+          dispatch(setIsSearchForChannels(false));
+          dispatch(setSelectedTab(strings.trending));
+          history.push("/");
+        }}
+      />
       <div className="sm:space-x-6 // flex items-center space-x-2">
         <ul className="sm:space-x-6 // flex items-center space-x-2">
           <li>

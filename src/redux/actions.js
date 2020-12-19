@@ -365,7 +365,6 @@ export const leaveRoom = createAsyncThunk(
   "channels/leaveRoom",
   async roomId => {
     const response = await api.leaveRoom(roomId);
-    console.log("RES", response.data);
     return response.data;
   }
 );
@@ -776,6 +775,8 @@ export const setLeftPanelActiveTabFriends = createAction(
 );
 export const clearError = createAction("api/clearError");
 export const setAlert = createAction("ui/setAlert");
+export const setSelectedTab = createAction("ui/setSelectedTab");
+export const setIsSearchForChannels = createAction("ui/setIsSearchForChannels");
 
 /* -------------------------------------------------------------------------- */
 /*                              VIDEO                                         */
@@ -846,3 +847,5 @@ export const searchChannels = createAsyncThunk(
     return response.data;
   }
 );
+
+export const setChannelsList = createAction("searchChannels/setChannelsList");
