@@ -21,7 +21,7 @@ const INFORMATION = 4;
 const SiteHeaderViewers = () => {
   const [dropdownList, setDropdownList] = useState([]);
 
-  const { trendingChannels } = useSelector(state => state);
+  const trendingChannels = useSelector(state => state.trendingChannels);
   const { defaultAvatar, defaultIcon } = useSelector(state => state.general);
 
   const dispatch = useDispatch();

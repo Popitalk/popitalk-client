@@ -38,7 +38,7 @@ const SiteHeaderMain = ({
 }) => {
   const [dropdownList, setDropdownList] = useState([]);
 
-  const { followingChannels } = useSelector(state => state);
+  const followingChannels = useSelector(state => state.followingChannels);
   const { defaultAvatar, defaultIcon } = useSelector(state => state.general);
 
   const dispatch = useDispatch();
