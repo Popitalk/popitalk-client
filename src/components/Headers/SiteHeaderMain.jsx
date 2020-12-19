@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 
 import Logo from "../../assets/logo.png";
 import DropDownMenu from "../DropDowns/DropDownMenu";
@@ -9,6 +10,12 @@ import FriendRequests from "../DropDowns/FriendRequests";
 import DropDownControls from "../DropDowns/DropDownControls";
 import Button from "../Controls/Button";
 import strings from "../../helpers/localization";
+import { updateChannelsList } from "../../helpers/functions";
+import {
+  setSelectedTab,
+  setIsSearchForChannels,
+  getFollowingChannels
+} from "../../redux/actions";
 
 const SETTINGS = 1;
 const ACCOUNT_SETTINGS = 2;
@@ -30,6 +37,12 @@ const SiteHeaderMain = ({
   logoutHandler
 }) => {
   const [dropdownList, setDropdownList] = useState([]);
+
+  const { followingChannels } = useSelector(state => state);
+  const { defaultAvatar, defaultIcon } = useSelector(state => state.general);
+
+  const dispatch = useDispatch();
+  const history = useHistory();
 
   const toggleSettings = () => {
     if (dropdownList.length > 0) {
@@ -147,7 +160,19 @@ const SiteHeaderMain = ({
         imageButtonClassName="w-8 h-8"
         analyticsString="Main Logo Button: SiteHeaderMain"
         hoverable
-        onClick={() => (window.location.href = "/")}
+        onClick={() => {
+          updateChannelsList(
+            dispatch,
+            followingChannels.lastRequestAt,
+            getFollowingChannels,
+            followingChannels,
+            defaultAvatar,
+            defaultIcon
+          );
+          dispatch(setSelectedTab(strings.following));
+          dispatch(setIsSearchForChannels(false));
+          history.push("/");
+        }}
       />
       <div className="sm:space-x-6 // flex items-center space-x-2">
         <ul className="sm:space-x-6 // flex items-center space-x-2">
