@@ -4,7 +4,7 @@ import Helmet from "react-helmet";
 import strings from "../helpers/localization";
 import DescriptionSection from "../components/Welcome/DescriptionSection";
 import WelcomeVideo from "../components/Welcome/WelcomeVideo";
-import Footer from "../components/Welcome/Footer";
+import Footer from "../components/Welcome/WelcomeFooter";
 
 function WelcomePage(props) {
   return (
