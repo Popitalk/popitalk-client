@@ -12,6 +12,7 @@ import LeftPanelViewer from "./LeftPanelViewer";
 export default function ChannelsPanel({
   yourChannels,
   followingChannels,
+  recommendedChannels,
   selectedChannel,
   friends,
   handleSelectChannel,
@@ -24,6 +25,23 @@ export default function ChannelsPanel({
   numberOfNotifications,
   loggedIn
 }) {
+  const subHeaderClassName =
+    "mx-4 my-2 text-sm font-semibold text-copy-secondary";
+
+  const leftPanelChannelList = (listType, headerString) => (
+    <div className="py-1 w-full">
+      <h4 className={subHeaderClassName}>{headerString}</h4>
+      <ChannelsList
+        channels={listType}
+        selected={selectedChannel}
+        handleSelect={handleSelectChannel}
+        fullHeight={true}
+        emptyMessage={strings.yourChannelsPlaceholder}
+        isLoading={false}
+      />
+    </div>
+  );
+
   return (
     <div className="flex flex-col w-84 h-full bg-background-primary select-none">
       <PanelHeader
@@ -43,49 +61,35 @@ export default function ChannelsPanel({
             }}
             isLoading={false}
           />
-          <div className="flex flex-col items-start bg-background-primary">
-            <div className="flex items-center mx-4 my-2 space-x-2">
-              <h4 className="text-sm font-semibold text-copy-secondary">
-                {strings.yourChannels}
-              </h4>
-              <Button
-                actionButton
-                size="sm"
-                icon="plus"
-                background="primaryButton"
-                onClick={handleCreateChannel}
-                analyticsString="Create Channel Button: ChannelsPanel"
-                className="hover:scale-110"
-                tooltip={strings.createChannelButton}
-              />
-            </div>
-            <ChannelsList
-              channels={yourChannels}
-              selected={selectedChannel}
-              handleSelect={handleSelectChannel}
-              fullHeight={true}
-              emptyMessage={strings.yourChannelsPlaceholder}
-              isLoading={false}
+          <div className="relative flex flex-col items-start bg-background-primary">
+            <Button
+              actionButton
+              size="sm"
+              icon="plus"
+              background="primaryButton"
+              onClick={handleCreateChannel}
+              analyticsString="Create Channel Button: ChannelsPanel"
+              className="absolute right-0 top-0 m-2"
+              tooltip={strings.createChannelButton}
             />
-            <h4 className="mx-4 my-2 text-sm font-semibold text-copy-secondary">
-              {strings.followingChannels}
-            </h4>
-            <ChannelsList
-              channels={followingChannels}
-              selected={selectedChannel}
-              handleSelect={handleSelectChannel}
-              fullHeight={true}
-              emptyMessage={strings.followingChannelsPlaceholder}
-              isLoading={false}
-            />
-            <div className="flex flex-col justify-between h-full px-6 py-4 mt-24">
+            {leftPanelChannelList(yourChannels, strings.yourChannels)}
+            {leftPanelChannelList(followingChannels, strings.followingChannels)}
+            {leftPanelChannelList(
+              recommendedChannels,
+              strings.recommendedChannels
+            )}
+            <div className="flex flex-col justify-between h-full py-4 mt-16">
               <LeftPanelFooter />
             </div>
           </div>
         </div>
       ) : (
-        <div className="flex flex-col justify-between h-full px-6 py-4">
+        <div className="flex flex-col justify-between h-full py-4 overflow-y-auto">
           <LeftPanelViewer />
+          {leftPanelChannelList(
+            recommendedChannels,
+            strings.recommendedChannels
+          )}
           <LeftPanelFooter />
         </div>
       )}

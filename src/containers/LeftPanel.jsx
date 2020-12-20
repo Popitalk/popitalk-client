@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useRouteMatch } from "react-router-dom";
 import { Switch, Route } from "react-router";
@@ -6,11 +6,16 @@ import LeftPanel from "../components/LeftPanels/LeftPanel";
 import {
   toggleLeftPanel,
   searchUsers,
-  setLastMessageSeen
+  setLastMessageSeen,
+  getDiscoverChannels
 } from "../redux/actions";
 import { openInviteModal, openProfileModal } from "../redux";
 import history from "../history";
-import { mapIdsToUsers, setRelationshipHandlers } from "../helpers/functions";
+import {
+  mapIdsToUsers,
+  setRelationshipHandlers,
+  getChannels
+} from "../helpers/functions";
 import { orderBy } from "lodash";
 import { channelHasNewMessage } from "../util/channelHasNewMessage";
 
@@ -29,6 +34,7 @@ export default function LeftPanelContainer() {
   const [friendsSearchFocus, setFriendsSearchFocus] = useState(false);
 
   const channels = useSelector(state => state.channels);
+  const discoverChannels = useSelector(state => state.discoverChannels);
   const numberOfNotifications = useSelector(state => {
     let counter = 0;
     const channels = Object.keys(state.channels).map(key => {
@@ -53,6 +59,7 @@ export default function LeftPanelContainer() {
 
   let yourChannels = [];
   let followingChannels = [];
+  const [recommendedChannels, setRecommendedChannels] = useState([]);
   channelIds
     .map(channelId => ({
       id: channelId,
@@ -74,6 +81,20 @@ export default function LeftPanelContainer() {
         }
       }
     });
+
+  useEffect(() => {
+    const channels = getChannels(
+      discoverChannels,
+      defaultAvatar,
+      defaultIcon
+    ).slice(0, 8);
+    setRecommendedChannels(channels);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [discoverChannels]);
+
+  useEffect(() => {
+    dispatch(getDiscoverChannels());
+  }, [dispatch]);
 
   const rooms = orderBy(
     roomIds.map(roomId => {
@@ -150,6 +171,7 @@ export default function LeftPanelContainer() {
         <LeftPanel
           yourChannels={yourChannels}
           followingChannels={followingChannels}
+          recommendedChannels={recommendedChannels}
           userSearchResults={foundUsersMap}
           userSearchStatus={userSearchStatus}
           blocks={blocks}

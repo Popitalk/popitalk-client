@@ -6,7 +6,7 @@ export default function LeftPanelViewer({ friendsPanel }) {
   const [hover, setHover] = useState("");
 
   return (
-    <div>
+    <div className="px-6">
       <div className="flex justify-evenly space-x-2">
         <img
           className="h-16 w-16 transition transform ease-in-out hover:scale-105 duration-100 cursor-pointer"
