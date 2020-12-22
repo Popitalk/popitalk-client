@@ -140,9 +140,9 @@ let strings = new LocalizedStrings({
     // PanelHeader & MiniFriendsList
     channels: "Channels",
     friends: "Friends",
-    yourChannels: "Your Channels",
+    yourChannels: "YOUR CHANNEL",
     yourChannelsPlaceholder: "Create your own public Channel!",
-    followingChannels: "Following",
+    followingChannels: "CHANNELS YOU FOLLOW",
     followingChannelsPlaceholder: "Discover and Follow Channels!",
     searchFriendsInput: "Search Username",
     searchResult: "Results for",
@@ -162,9 +162,9 @@ let strings = new LocalizedStrings({
     // === RecommendedView === //
     channelSearchInput: "Search for a channel",
     videoSearchInput: "Search for a video",
-    following: "Following",
-    discover: "Discover",
-    trending: "Trending",
+    following: "FOLLOWING",
+    discover: "DISCOVER",
+    trending: "TRENDING",
     // ChannelCard
     nothingPlaying: "Nothing is playing at this moment",
     // VideoCard

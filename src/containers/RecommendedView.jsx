@@ -5,9 +5,7 @@ import Helmet from "react-helmet";
 
 import ChannelCardList from "../components/ThumbnailCardLists/ChannelCardList.jsx";
 import ChannelSearchList from "../components/ThumbnailCardLists/ChannelSearchList.jsx";
-import VideoCardList from "../components/ThumbnailCardLists/VideoCardList.jsx";
 import Input from "../components/Controls/Input.jsx";
-import Alert from "../components/Alert";
 import Button from "../components/Controls/Button.jsx";
 import strings from "../helpers/localization";
 import { getChannels, updateChannelsList } from "../helpers/functions";
@@ -21,19 +19,14 @@ import {
   setChannelsList
 } from "../redux/actions";
 
-const followingTab = {
-  tab: strings.following,
-  icon: "home"
-};
+const followingTab = { tab: strings.following, icon: "home" };
 const discoverTab = { tab: strings.discover, icon: "globe" };
 const trendingTab = { tab: strings.trending, icon: "fire" };
-
-function RecommendedChannels({ selectedPage }) {
+function RecommendedChannels() {
   const dispatch = useDispatch();
 
   const loggedIn = useSelector(state => state.general.loggedIn);
   const isCollapsed = useSelector(state => state.ui.isCollapsed);
-  const alert = useSelector(state => state.ui.alert);
   const followingChannels = useSelector(state => state.followingChannels);
   const discoverChannels = useSelector(state => state.discoverChannels);
   const trendingChannels = useSelector(state => state.trendingChannels);
@@ -44,7 +37,6 @@ function RecommendedChannels({ selectedPage }) {
     state => state.channelSearch.channels
   );
 
-  const [isLoading] = useState(false);
   const [search, setSearch] = useState("");
 
   const tabs = loggedIn
@@ -86,7 +78,6 @@ function RecommendedChannels({ selectedPage }) {
 
   const handleSearch = useCallback(() => {
     dispatch(setIsSearchForChannels(true));
-
     dispatch(searchChannels({ channelName: search }));
   }, [search, dispatch]);
 
@@ -141,26 +132,14 @@ function RecommendedChannels({ selectedPage }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [followingChannels]);
 
-  // useEffect(() => {
-  //   console.log("CHANLIST CHANGING");
-  // }, [channelList]);
-
   return (
-    <div className="relative py-4 mx-auto w-full max-w-screen-xl rounded-md bg-background-secondary">
-      {/* Alert to indicate invalid channel URL */}
-      <div className="fixed mx-2 -my-4 z-50">
-        {!!alert && <Alert duration={3000}>{alert}</Alert>}
-      </div>
+    <div className="relative p-4 w-full rounded-md bg-background-secondary">
       <div className="py-4 mx-auto w-3/4 sm:w-1/2">
         <Input
           variant="channel"
           size="sm"
           value={search}
-          placeholder={
-            selectedPage === "channels"
-              ? strings.channelSearchInput
-              : strings.videoSearchInput
-          }
+          placeholder={strings.channelSearchInput}
           onChange={e => setSearch(e.target.value)}
           onClick={handleSearch}
         />
@@ -191,40 +170,13 @@ function RecommendedChannels({ selectedPage }) {
         </h2>
       </div>
       {isSearchForChannels ? (
-        <div>
-          <ChannelSearchList channelList={searchResultChannels} />
-        </div>
+        <ChannelSearchList channelList={searchResultChannels} />
       ) : (
-        <div className="px-2">
-          {/* CARDS */}
-          {selectedPage === "channels" ? (
-            <>
-              {isLoading === true ? (
-                <ChannelCardList isLoading />
-              ) : (
-                <ChannelCardList
-                  channelList={channelsList}
-                  isCollapsed={isCollapsed}
-                  tabSelected={tabSelected}
-                />
-              )}
-            </>
-          ) : (
-            selectedPage === "friends" && (
-              <>
-                {isLoading === true ? (
-                  <VideoCardList isLoading />
-                ) : (
-                  <VideoCardList
-                    videoList={channelsList}
-                    isCollapsed={isCollapsed}
-                    tabSelected={tabSelected}
-                  />
-                )}
-              </>
-            )
-          )}
-        </div>
+        <ChannelCardList
+          channelList={channelsList}
+          isCollapsed={isCollapsed}
+          tabSelected={tabSelected}
+        />
       )}
       <Helmet>
         <meta charSet="UFT-8" />
