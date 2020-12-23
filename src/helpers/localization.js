@@ -28,6 +28,12 @@ let strings = new LocalizedStrings({
     // WelcomePage & SiteHeaderWelcome
     loginUsername: "Username or email",
     loginPassword: "Password",
+    welcomeHeader1: "Watch videos together.",
+    welcomeHeader2: "At the same time.",
+    WelcomeSubheader:
+      "Popitalk is an excellent way to stay connected to the people you care about during physical distancing, and brings back a small amount of normal into our otherwise chaotic world.",
+    welcomeButton1: "Sign up free",
+    welcomeButton2: "Browse around",
 
     // DescriptionSection.jsx
     descriptionHeader1: "Watch Videos and listen to Music, together.",
@@ -288,6 +294,13 @@ let strings = new LocalizedStrings({
     loginUsername: "이메일 또는 아이디",
     loginPassword: "비밀번호",
     popitalkChannel: "뽀삐톡 채널",
+
+    welcomeHeader1: "같이 영상을 시청해요.",
+    welcomeHeader2: "동시간에요.",
+    WelcomeSubheader:
+      "뽀삐톡으로 친구들과 유튜브를 동시간에 같이 시청하고 채팅해요. 함께 실시간으로 동영상을 공유하며 영화, 음악, 모든 것을 같이 시청 해보세요.",
+    welcomeButton1: "무료 가입",
+    welcomeButton2: "둘러보기",
 
     // DescriptionSection.jsx
     descriptionHeader1: "꿀잼인 동영상과 음악을 같이 시청해요.",

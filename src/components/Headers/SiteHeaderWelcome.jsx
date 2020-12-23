@@ -45,7 +45,7 @@ const SiteHeaderWelcome = ({ apiLoading, apiError, dispatchLogin }) => {
         className={`${
           signup ? "hidden" : ""
         } sm:flex sm:flex-row sm:h-full sm:w-screen sm:px-16 sm:py-3 sm:justify-between sm:items-start sm:bg-background-primary
-        // flex flex-col h-screen justify-start px-12 border-b border-outline-primary bg-background-primary`}
+        // flex flex-col h-screen justify-start px-12 bg-background-primary`}
       >
         <Link
           to="/"
