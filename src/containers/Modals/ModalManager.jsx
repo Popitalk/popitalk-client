@@ -13,6 +13,7 @@ import DeleteMessageContainer from "./DeleteMessageContainer";
 import ListUsersContainer from "./ListUsersContainer";
 import DeleteChannelContainer from "./DeleteChannelContainer";
 import DeletePostContainer from "./DeletePostContainer.jsx";
+import CreateNewAccountContainer from "./CreateNewAccountContainer";
 import {
   MODAL_PROFILE,
   MODAL_EDIT_USER_SETTINGS,
@@ -24,7 +25,8 @@ import {
   MODAL_DELETE_MESSAGE,
   MODAL_LIST,
   MODAL_DELETE_CHANNEL,
-  MODAL_DELETE_POST
+  MODAL_DELETE_POST,
+  MODAL_CREATE_NEW_ACCOUNT
 } from "../../helpers/constants";
 
 const ModalComponents = {
@@ -38,7 +40,8 @@ const ModalComponents = {
   [MODAL_DELETE_MESSAGE]: DeleteMessageContainer,
   [MODAL_LIST]: ListUsersContainer,
   [MODAL_DELETE_CHANNEL]: DeleteChannelContainer,
-  [MODAL_DELETE_POST]: DeletePostContainer
+  [MODAL_DELETE_POST]: DeletePostContainer,
+  [MODAL_CREATE_NEW_ACCOUNT]: CreateNewAccountContainer
 };
 
 const ModalManager = () => {
