@@ -9,6 +9,29 @@ export default function PanelHeader({
   selectedPage,
   numberOfNotifications
 }) {
+  const navClassName =
+    "flex items-center space-x-2 p-2 focus:outline-none hover:bg-hover-highlight rounded-lg transition transform ease-in-out hover:scale-105 duration-100 cursor-pointer";
+
+  const navButtonArray = [
+    { title: "channels", icon: "globe-americas", string: strings.channels },
+    { title: "friends", icon: "paper-plane", string: strings.friends }
+  ];
+  function NavButton({ items }) {
+    return items.map(item => (
+      <nav
+        key={item.id}
+        className={`${navClassName} ${
+          selectedPage === item.title
+            ? "text-copy-highlight font-semibold"
+            : "text-copy-secondary font-regular"
+        }`}
+        onClick={() => updateSelectedPage(item.title)}
+      >
+        <FontAwesomeIcon icon={item.icon} />
+        <h1>{item.string}</h1>
+      </nav>
+    ));
+  }
   return (
     <div className="flex bg-background-primary items-center w-full select-none space-x-4 px-2">
       <Button
@@ -20,31 +43,7 @@ export default function PanelHeader({
         analyticsString="Collapse Button: PanelHeader"
       />
       <div className="flex space-x-2">
-        <nav
-          className={`flex items-center space-x-2 px-3 p-2 focus:outline-none hover:bg-hover-highlight rounded-xl transition transform ease-in-out hover:scale-105 duration-100 cursor-pointer ${
-            selectedPage === "channels"
-              ? "text-copy-highlight font-semibold"
-              : "text-copy-secondary font-regular"
-          }`}
-          onClick={() => updateSelectedPage("channels")}
-        >
-          <FontAwesomeIcon icon="globe-americas" />
-          <h1>{strings.channels}</h1>
-        </nav>
-        <nav
-          className={`flex items-center space-x-2  px-3 p-2 focus:outline-none hover:bg-hover-highlight rounded-xl transition transform ease-in-out hover:scale-105 duration-100 cursor-pointer ${
-            selectedPage === "friends"
-              ? "text-copy-highlight font-semibold"
-              : "text-copy-secondary font-regular"
-          } `}
-          onClick={() => updateSelectedPage("friends")}
-        >
-          <FontAwesomeIcon icon="paper-plane" />
-          <h1>{strings.friends}</h1>
-          {numberOfNotifications !== 0 && (
-            <span className="flex items-center justify-center bg-gradient-r-cancel rounded-full w-2 h-2 animate-bounce text-xs text-copy-tertiary font-bold ml-2 mt-1" />
-          )}
-        </nav>
+        <NavButton items={navButtonArray} />
       </div>
     </div>
   );
