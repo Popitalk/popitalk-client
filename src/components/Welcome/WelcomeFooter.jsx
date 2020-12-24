@@ -81,7 +81,7 @@ function Footer() {
         </div>
       </div>
       <div className="flex justify-center sm:justify-end text-xs mt-12 text-copy-tertiary">
-        <p>© 2020 Popitalk, Inc. All rights reserved.</p>
+        <p>© 2021 Popitalk, Inc. All rights reserved.</p>
       </div>
     </footer>
   );

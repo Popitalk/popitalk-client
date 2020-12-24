@@ -42,7 +42,7 @@ const SiteHeaderWelcome = ({ apiLoading, apiError, dispatchLogin }) => {
   }, [mobileLogin, size.width]);
 
   return (
-    <header className="relative flex h-full w-full md:px-16 px-4 py-3 justify-between">
+    <header className="relative flex h-full w-full md:px-16 px-4 py-2 justify-between">
       <Link to="/" className="flex no-underline">
         <Button
           imageButton

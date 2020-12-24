@@ -58,14 +58,14 @@ export default function CreateNewAccountForm({ handleSubmit, error, loading }) {
           isValid,
           dirty
         }) => (
-          <form onSubmit={handleSubmit}>
-            <div className="flex flex-col items-center w-full">
-              <p className="text-center text-3xl font-bold text-copy-primary">
-                {strings.createNewAccountTitle}
-              </p>
-              <p className="pb-8 text-center account-form-par text-copy-primary">
-                {strings.createNewAccountSubtitle}
-              </p>
+          <form
+            onSubmit={handleSubmit}
+            className="flex flex-col items-center w-full space-y-8"
+          >
+            <p className="text-center text-3xl font-bold text-copy-primary">
+              {strings.createNewAccountTitle}
+            </p>
+            <div className="flex flex-col items-center">
               <EditInformationForm loading={loading} />
               <Input
                 header={strings.createNewAccountUsername}
@@ -109,11 +109,7 @@ export default function CreateNewAccountForm({ handleSubmit, error, loading }) {
                   {strings.createNewAccountButton}
                 </Button>
               </div>
-              {error ? (
-                <p className="text-copy-error text-sm pt-4">{error}</p>
-              ) : (
-                <></>
-              )}
+              {error && <p className="text-copy-error text-sm pt-4">{error}</p>}
             </div>
           </form>
         )}

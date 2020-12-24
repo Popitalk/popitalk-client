@@ -153,7 +153,7 @@ let strings = new LocalizedStrings({
     searchFriendsInput: "Search Username",
     searchResult: "Results for",
     // LeftPanelViewer
-    signInText: "Sign in to add friends and watch together.",
+    signInText: "Sign in to add friends and create channels.",
     // LeftPanelFooter
     loginOrSignup: "Log In/Sign Up",
     aboutUs: "About Us",
@@ -261,7 +261,7 @@ let strings = new LocalizedStrings({
     deleteMessageTitle: "Delete Message",
     deleteMessageSubtitle: "Are you sure you want to delete this message?",
     // ProfileModal
-    friendsText: "Friends",
+    friendsText: "FRIENDS",
     // InviteFriendsContainer
     selectFriends: "Select Friends",
     // RoomExistsModal
