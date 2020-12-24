@@ -32,7 +32,6 @@ export default function WelcomeIntro() {
             hoverable
             styleNone
             styleNoneContent={strings.welcomeButton1}
-            styleNoneContentClassName
             className="bg-copy-link text-copy-tertiary py-3 px-4 rounded-xl"
             onClick={() => dispatch(openCreateNewAccountModal())}
           />

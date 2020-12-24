@@ -10,17 +10,11 @@ const SignInButton = () => {
     <Button
       hoverable
       styleNone
-      size="md"
-      icon="user-circle"
       styleNoneContent={strings.createNewAccountButton}
-      styleNoneContentClassName="text-sm"
-      className="space-x-2 text-copy-tertiary bg-gradient-br-button py-2 px-4 rounded-md"
-      type="submit"
+      icon="user-circle"
+      className="bg-copy-link text-copy-tertiary py-2 px-4 rounded-lg text-sm space-x-2"
       onClick={() => history.push("/welcome")}
-      analyticsString="Login Button: SiteHeaderWelcome"
-    >
-      {strings.loginButton}
-    </Button>
+    />
   );
 };
 
