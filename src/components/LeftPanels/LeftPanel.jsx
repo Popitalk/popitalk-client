@@ -10,6 +10,7 @@ import ChannelsPanel from "./ChannelsPanel";
 import notificationSound from "../../assets/sounds/pop-sound.mp3";
 import { useWindowSize } from "../../helpers/functions";
 import strings from "../../helpers/localization";
+import LeftPanelViewer from "./LeftPanelViewer";
 
 export default function LeftPanel({
   yourChannels,
@@ -74,6 +75,10 @@ export default function LeftPanel({
 
   if ((isCollapsed === false) & (isCollapsedResponsive === true)) {
     isCollapsed = true;
+  }
+
+  if (!loggedIn) {
+    return <LeftPanelViewer />;
   }
 
   return (

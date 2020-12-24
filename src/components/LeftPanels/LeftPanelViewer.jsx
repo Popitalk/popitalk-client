@@ -1,64 +1,19 @@
-import React, { useState } from "react";
-import strings from "../../helpers/localization";
-import SignInButton from "../SignInButton";
+import React from "react";
+import InviteForm from "../Forms/InviteForm";
+import LeftPanelDescription from "./LeftPanelDescription";
+import LeftPanelFooter from "./LeftPanelFooter";
 
-export default function LeftPanelViewer({ friendsPanel }) {
-  const boxClassName =
-    "bg-background-secondary p-6 space-y-4 rounded-md shadow-md";
-  const [hover, setHover] = useState("");
-  const iconsListArray = [
-    {
-      path: "https://i.ibb.co/y5bfPpL/watch-Together.png",
-      hover: "first",
-      alt: strings.descriptionCardTitle1
-    },
-    {
-      path: "https://i.ibb.co/X5BHwwZ/chat.png",
-      hover: "second",
-      alt: strings.descriptionCardTitle2
-    },
-    {
-      path: "https://i.ibb.co/PYv5D1N/public-Channels.png",
-      hover: "third",
-      alt: strings.descriptionCardTitle3
-    }
-  ];
-  // === Function to repeat items. `items={array}` === //
-  function IconsList({ items }) {
-    return items.map(item => (
-      <img
-        key={item.id}
-        className="h-16 w-16 transition transform ease-in-out hover:scale-105 duration-100 cursor-pointer"
-        src={item.path}
-        alt={item.alt}
-        onMouseEnter={() => setHover(item.hover)}
-      />
-    ));
-  }
-
+export default function LeftPanelViewer({ link }) {
   return (
-    <div className="space-y-4">
-      <div className={boxClassName}>
-        <div className="flex justify-evenly space-x-2">
-          <IconsList items={iconsListArray} />
+    <div className="hidden sm:flex flex-col sm:w-84 h-full bg-background-primary select-none">
+      <div className="flex flex-col justify-between h-full px-2 space-y-2">
+        <div className="bg-background-secondary px-2 py-4 shadow-md rounded-md ">
+          <InviteForm link={link} />
         </div>
-        {/* === Image hover description === */}
-        <h2 className="text-sm text-copy-primary h-20">
-          {hover === "first"
-            ? strings.descriptionCardBody1
-            : hover === "second"
-            ? strings.descriptionCardBody2
-            : hover === "third"
-            ? strings.descriptionCardBody3
-            : strings.descriptionCardBody1}
-        </h2>
-      </div>
-      {/* === Sign Up === */}
-      <div className={boxClassName}>
-        <p className="text-copy-primary font-bold text-sm">
-          {strings.signInText}
-        </p>
-        <SignInButton />
+        <LeftPanelDescription />
+        <div className="flex pt-24 pb-4 px-2">
+          <LeftPanelFooter />
+        </div>
       </div>
     </div>
   );
