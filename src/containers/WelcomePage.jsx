@@ -7,7 +7,7 @@ import WelcomeFooter from "../components/Welcome/WelcomeFooter";
 
 function WelcomePage() {
   return (
-    <div className="w-full h-full">
+    <div className="w-full h-full overflow-y-auto">
       <WelcomeIntro />
       <DescriptionSection />
       <WelcomeFooter />

@@ -9,6 +9,12 @@ let strings = new LocalizedStrings({
 
     // === Error Message === //
     errorMessage: "Something went wrong :(",
+    minCharacter1: "Minimum 3 characters",
+    minCharacter2: "Minimum 1 character.",
+    maxCharacter1: "Maximum 20 characters",
+    maxCharacter2: "Maximum 150 characters.",
+    nameRequired: "Channel name is required.",
+    descRequired: "Channel description is required.",
 
     // === SEO (MataData & Site Title === //
     popitalk: "Popitalk",
@@ -233,6 +239,13 @@ let strings = new LocalizedStrings({
     channelCatagory: "Channel Catagory (optional)",
     readyToCreate: "Ready to create your own channel?",
     saveChannelEdit: "Remember to save your changes.",
+    tipHeader: "Want to get featured?",
+    tipParagraph1:
+      "- Channels with an icon has a better chance of getting featured.",
+    tipParagraph2:
+      "- Make sure to have a catchy channel name and clear description.",
+    tipParagraph3: "- Have videos in your playlist once you create a channel.",
+    tipParagraph4: "- And lastly, be active and invite your friends!",
     // ChannelSettingsPanel
     channelSettings: "Channel Settings",
     manageFollowers: "Manage Followers",
@@ -277,6 +290,12 @@ let strings = new LocalizedStrings({
 
     // === Error Message === //
     errorMessage: " 불러오지 못했습니다 :(",
+    minCharacter1: "최소 3자를 입력하세요.",
+    minCharacter2: "최소 1자를 입력하세요.",
+    maxCharacter1: "최대 20자까지 가능합니다.",
+    maxCharacter2: "최대 150자까지 가능합니다.",
+    nameRequired: "채널 이름을 입력해 주세요.",
+    descRequired: "채널 설명을 입력해 주세요.",
 
     // SEO (MataData & WelcomePage & SiteHeaderWelcome)
     popitalk: "뽀삐톡",
@@ -499,6 +518,11 @@ let strings = new LocalizedStrings({
     channelCatagory: "카테고리 (선택)",
     readyToCreate: "채널 개설 준비되셨습니까?",
     saveChannelEdit: "변경된 내용을 저장하시겠습니가?",
+    tipHeader: "내 채널이 추천에 뜨려면",
+    tipParagraph1: "- 아이콘이 있는 채널이 추천에 뜰 확률이 높습니다.",
+    tipParagraph2: "- 검색하기 쉬운 채널 이름과 설명을 설정해 보세요.",
+    tipParagraph3: "- 채널 개설 후 재생목록에 영상을 추가하세요.",
+    tipParagraph4: "- 활동이 많고 친구들을 초대 해보세요!",
     // ChannelSettingsPanel
     channelSettings: "채널 설정",
     manageFollowers: "팔로워 관리",
