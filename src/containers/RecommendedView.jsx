@@ -50,7 +50,7 @@ function RecommendedChannels() {
       updateChannelsList(
         dispatch,
         followingChannels.lastRequestAt,
-        getFollowingChannels,
+        () => getFollowingChannels({ page: followingChannels.page }),
         followingChannels,
         defaultAvatar,
         defaultIcon
@@ -59,7 +59,7 @@ function RecommendedChannels() {
       updateChannelsList(
         dispatch,
         discoverChannels.lastRequestAt,
-        getDiscoverChannels,
+        () => getDiscoverChannels({ page: discoverChannels.page }),
         discoverChannels,
         defaultAvatar,
         defaultIcon
@@ -68,7 +68,7 @@ function RecommendedChannels() {
       updateChannelsList(
         dispatch,
         trendingChannels.lastRequestAt,
-        getTrendingChannels,
+        () => getTrendingChannels({ page: trendingChannels.page }),
         trendingChannels,
         defaultAvatar,
         defaultIcon
@@ -80,6 +80,16 @@ function RecommendedChannels() {
     dispatch(setIsSearchForChannels(true));
     dispatch(searchChannels({ channelName: search }));
   }, [search, dispatch]);
+
+  const handleLoadMore = () => {
+    if (tabSelected === followingTab.tab) {
+      dispatch(getFollowingChannels({ page: followingChannels.page }));
+    } else if (tabSelected === discoverTab.tab) {
+      dispatch(getDiscoverChannels({ page: discoverChannels.page }));
+    } else if (tabSelected === trendingTab.tab) {
+      dispatch(getTrendingChannels({ page: trendingChannels.page }));
+    }
+  };
 
   useEffect(() => {
     tabHandler(loggedIn ? followingTab.tab : trendingTab.tab);
@@ -132,6 +142,11 @@ function RecommendedChannels() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [followingChannels]);
 
+  const isLoadMore =
+    (tabSelected === followingTab.tab && followingChannels.isNextPage) ||
+    (tabSelected === discoverTab.tab && discoverChannels.isNextPage) ||
+    (tabSelected === trendingTab.tab && trendingChannels.isNextPage);
+
   return (
     <div className="relative p-4 w-full rounded-md bg-background-secondary">
       <div className="py-4 mx-auto w-3/4 sm:w-1/2">
@@ -172,11 +187,29 @@ function RecommendedChannels() {
       {isSearchForChannels ? (
         <ChannelSearchList channelList={searchResultChannels} />
       ) : (
-        <ChannelCardList
-          channelList={channelsList}
-          isCollapsed={isCollapsed}
-          tabSelected={tabSelected}
-        />
+        <>
+          <ChannelCardList
+            channelList={channelsList}
+            isCollapsed={isCollapsed}
+            tabSelected={tabSelected}
+          />
+          {isLoadMore && (
+            <div className="flex justify-center items-center pt-12 pb-8">
+              <div className="h-px bg-background-quaternary w-full mx-2" />
+              <Button
+                actionButton
+                leftIcon="arrow-down"
+                size="sm"
+                hoverable
+                className="bg-background-primary text-copy-highlight text-sm font-bold flex-shrink-0 space-x-2"
+                onClick={handleLoadMore}
+              >
+                {strings.loadMoreButton}
+              </Button>
+              <div className="h-px bg-background-quaternary w-full mx-2" />
+            </div>
+          )}
+        </>
       )}
       <Helmet>
         <meta charSet="UFT-8" />
