@@ -152,7 +152,7 @@ let strings = new LocalizedStrings({
     followingChannelsPlaceholder: "Discover and Follow Channels!",
     searchFriendsInput: "Search Username",
     searchResult: "Results for",
-    // LeftPanelViewer
+    // LeftPanelDescription
     signInText: "Sign in to add friends and create channels.",
     // LeftPanelFooter
     loginOrSignup: "Log In/Sign Up",
@@ -213,8 +213,8 @@ let strings = new LocalizedStrings({
     // Invite Modal
     inviteModalHeader: "Invite Friends to this channel",
     // InviteForm
-    copyUrl: "Copy and share this link",
-    shareToSocialMedia: "Or Share it on Social Media",
+    copyUrl: "Share this link to watch with friends",
+    shareToSocialMedia: "Or share it on social media",
 
     // Chat Header & ChatAction
     roomMembers: "room members",
@@ -420,7 +420,7 @@ let strings = new LocalizedStrings({
     followingChannelsPlaceholder: "채널을 팔로우 할 수 있습니다",
     searchFriendsInput: "아이디로 친구 찾기",
     searchResult: "검색 결과",
-    // LeftPanelViewer
+    // LeftPanelDescription
     signInText: "친구를 추가하고 같이보려면 가입해보세요.",
     // LeftPanelFooter
     loginOrSignup: "로그인/가입",
@@ -479,7 +479,7 @@ let strings = new LocalizedStrings({
     // Invite Modal
     inviteModalHeader: "친구들을 이 채널로 초대해요",
     // InviteForm
-    copyUrl: "아래의 링크를 복사하세요",
+    copyUrl: "아래의 링크로 친구를 초대하세요",
     shareToSocialMedia: "또는 SNS에 공유하세요",
 
     // ChatHeader & ChatActions

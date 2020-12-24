@@ -9,9 +9,6 @@ import RoomsList from "../InfoCardLists/RoomsList";
 import PanelHeader from "./PanelHeader";
 import { utilizeFocus } from "../../helpers/functions";
 import strings from "../../helpers/localization";
-import LeftPanelViewer from "./LeftPanelViewer";
-import LeftPanelFooter from "./LeftPanelFooter";
-
 class FriendsPanel extends Component {
   constructor(props) {
     super(props);
@@ -104,66 +101,59 @@ class FriendsPanel extends Component {
           selectedPage={this.props.selectedPage}
           numberOfNotifications={this.props.numberOfNotifications}
         />
-        {this.props.loggedIn ? (
-          <div className="flex-col h-full overflow-y-scroll">
-            <Input
-              variant="user"
-              size="sm"
-              value={this.state.search}
-              placeholder={strings.searchFriendsInput}
-              onChange={e => this.syncSearch(e.target.value)}
-              onClick={() => this.syncSearch(this.state.search)}
-              forwardedRef={this.searchFieldRef.ref}
-              className="my-1 mx-3"
-            />
-            {this.state.open && (
-              <div className="rounded-md bg-background-secondary shadow-inner border border-outline-primary mx-3 m-2">
-                <div className="flex flex-row items-center justify-between px-4 py-1">
-                  <p className="text-xs text-copy-primary">
-                    {strings.searchResult} &quot;{this.state.search}&quot;
-                  </p>
-                  <Button
-                    styleNone
-                    styleNoneContent={strings.searchFriendsClose}
-                    className="flex text-xs font-bold text-copy-highlight px-2 py-1 rounded-xl transition-all hover:bg-background-highlight duration-100"
-                    onClick={() => this.syncSearch("")}
-                    analyticsString="Close Friend Search Button: FriendsPanel"
-                  />
-                </div>
-                <div className="flex w-full h-64 rounded-lg">
-                  <StretchList
-                    list={FriendUsersList}
-                    users={this.props.userSearchResults}
-                    handleProfile={this.props.handleProfile}
-                  />
-                </div>
+        <div className="flex-col h-full overflow-y-scroll">
+          <Input
+            variant="user"
+            size="sm"
+            value={this.state.search}
+            placeholder={strings.searchFriendsInput}
+            onChange={e => this.syncSearch(e.target.value)}
+            onClick={() => this.syncSearch(this.state.search)}
+            forwardedRef={this.searchFieldRef.ref}
+            className="my-1 mx-3"
+          />
+          {this.state.open && (
+            <div className="rounded-md bg-background-secondary shadow-inner border border-outline-primary mx-3 m-2">
+              <div className="flex flex-row items-center justify-between px-4 py-1">
+                <p className="text-xs text-copy-primary">
+                  {strings.searchResult} &quot;{this.state.search}&quot;
+                </p>
+                <Button
+                  styleNone
+                  styleNoneContent={strings.searchFriendsClose}
+                  className="flex text-xs font-bold text-copy-highlight px-2 py-1 rounded-xl transition-all hover:bg-background-highlight duration-100"
+                  onClick={() => this.syncSearch("")}
+                  analyticsString="Close Friend Search Button: FriendsPanel"
+                />
               </div>
-            )}
-            <div className="bg-background-primary pb-8">
-              <RoomsList
-                rooms={this.state.rooms}
-                selected={this.props.selectedRoom}
-                handleSelect={this.props.handleSelectRoom}
-                fullHeight={true}
-                isLoading={false}
-              />
+              <div className="flex w-full h-64 rounded-lg">
+                <StretchList
+                  list={FriendUsersList}
+                  users={this.props.userSearchResults}
+                  handleProfile={this.props.handleProfile}
+                />
+              </div>
             </div>
-            <Button
-              actionButton
-              size="lg"
-              icon="edit"
-              className="fixed bottom-0 left-0 ml-68 mb-4 hover:opacity-100 hover:scale-105 shadow-channel"
-              onClick={() => this.props.handleCreateRoom()}
-              analyticsString="Create Room Button: FriendsPanel"
-              tooltip={strings.newRoomButton}
+          )}
+          <div className="bg-background-primary pb-8">
+            <RoomsList
+              rooms={this.state.rooms}
+              selected={this.props.selectedRoom}
+              handleSelect={this.props.handleSelectRoom}
+              fullHeight={true}
+              isLoading={false}
             />
           </div>
-        ) : (
-          <div className="flex flex-col justify-between h-full px-6 py-4">
-            <LeftPanelViewer friendsPanel />
-            <LeftPanelFooter />
-          </div>
-        )}
+          <Button
+            actionButton
+            size="lg"
+            icon="edit"
+            className="fixed bottom-0 left-0 ml-68 mb-4 hover:opacity-100 hover:scale-105 shadow-channel"
+            onClick={() => this.props.handleCreateRoom()}
+            analyticsString="Create Room Button: FriendsPanel"
+            tooltip={strings.newRoomButton}
+          />
+        </div>
         <ReactTooltip
           effect="solid"
           backgroundColor="#F2F2F2"

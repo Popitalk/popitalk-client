@@ -13,7 +13,6 @@ import ModalManager from "../containers/Modals/ModalManager";
 import ChatPanel from "../containers/ChatPanel";
 import Channel from "../containers/Channel";
 import CreateChannelContainer from "../containers/CreateChannelContainer";
-import AnonymousSidebar from "../components/LeftPanels/AnonymousSidebar";
 import CreateNewAccountContainer from "../containers/CreateNewAccountContainer";
 import ReactGa from "react-ga";
 import logo from "../assets/logo.png";
@@ -71,12 +70,7 @@ export default function App() {
     pathname.includes("friends") ||
     pathname === "/";
 
-  const leftPanel =
-    loggedIn || viewer ? (
-      <LeftPanel />
-    ) : (
-      <CreateNewAccountContainer component={AnonymousSidebar} />
-    );
+  const leftPanel = (loggedIn || viewer) && <LeftPanel />;
 
   const searchClasses =
     "flex-grow block overflow-auto w-full mozilla-thin-scrollbar";
