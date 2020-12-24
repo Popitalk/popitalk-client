@@ -92,6 +92,7 @@ export default function ChannelForm({
   //   formik.setFieldValue("category", newCategory);
   //   formik.values.category = newCategory;
   // };
+  const paragraphClassName = "text-copy-secondary text-xs text-center";
   const [tipPressed, setTipPressed] = useState(true);
 
   const tipsComponent = (
@@ -112,21 +113,11 @@ export default function ChannelForm({
           tipPressed === false && "hidden"
         } shadow-md bg-background-primary space-y-4 rounded-md p-4`}
       >
-        <h2 className="text-copy-secondary text-center">
-          Want to get featured?
-        </h2>
-        <p className="text-copy-secondary text-xs text-center">
-          - Channels with an icon has a better chance of getting featured.
-        </p>
-        <p className="text-copy-secondary text-xs text-center">
-          - Make sure to have a catchy channel name and clear description.
-        </p>
-        <p className="text-copy-secondary text-xs text-center">
-          - Have videos in your playlist once you create a channel.
-        </p>
-        <p className="text-copy-secondary text-xs text-center">
-          - And lastly, be active and invite your friends!
-        </p>
+        <h2 className="text-copy-secondary text-center">{strings.tipHeader}</h2>
+        <p className={paragraphClassName}>{strings.tipParagraph1}</p>
+        <p className={paragraphClassName}>{strings.tipParagraph2}</p>
+        <p className={paragraphClassName}>{strings.tipParagraph3}</p>
+        <p className={paragraphClassName}>{strings.tipParagraph4}</p>
       </div>
     </div>
   );
@@ -138,13 +129,13 @@ export default function ChannelForm({
         enableReinitialize={true}
         validationSchema={Yup.object({
           name: Yup.string()
-            .min(3, "Minimum 3 characters")
-            .max(20, "Maximum 20 characters")
-            .required("Channel name is required."),
+            .min(3, strings.minCharacter1)
+            .max(20, strings.maxCharacter1)
+            .required(strings.nameRequired),
           description: Yup.string()
-            .min(1, "Minimum 1 character.")
-            .max(150, "Maximum 150 characters.")
-            .required("Channel description is required."),
+            .min(1, strings.minCharacter2)
+            .max(150, strings.maxCharacter2)
+            .required(strings.descRequired),
           private: Yup.boolean().required(),
           icon: Yup.mixed().notRequired(),
           category: Yup.string().notRequired()
