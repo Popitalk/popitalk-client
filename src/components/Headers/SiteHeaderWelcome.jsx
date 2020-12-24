@@ -1,14 +1,19 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Logo from "../../assets/logo.png";
 import Button from "../Controls/Button";
 import strings from "../../helpers/localization";
 import { Link } from "react-router-dom";
+import { useWindowSize } from "../../helpers/functions";
 
 const SiteHeaderWelcome = ({ apiLoading, apiError, dispatchLogin }) => {
+  const sectionClassName = "flex flex-col w-full space-y-1";
+  const inputClassName =
+    "text-sm py-2 px-4 border rounded-lg bg-background-secondary border-outline-primary hover:shadow-inner duration-75 transition focus:outline-none text-copy-primary";
+  const labelClassName = "w-full text-sm font-bold text-copy-primary";
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-
-  const [signup, signupStatus] = useState(false);
+  const [mobileLogin, setMobileLogin] = useState(true);
+  const size = useWindowSize();
 
   const handleLogin = e => {
     if (e) e.preventDefault();
@@ -17,135 +22,101 @@ const SiteHeaderWelcome = ({ apiLoading, apiError, dispatchLogin }) => {
     setPassword("");
   };
 
+  const mobileLoginButton = (
+    <Button
+      actionButton
+      size={mobileLogin === false && "sm"}
+      className="block sm:hidden flex-shrink-0 rounded-lg"
+      icon={mobileLogin === false && "times"}
+      onClick={() => setMobileLogin(!mobileLogin)}
+    >
+      {strings.loginButton}
+    </Button>
+  );
+
+  useEffect(() => {
+    // Triggers collapse when screen size reduces.
+    if (size.width >= 1024 && mobileLogin === false) {
+      setMobileLogin(true);
+    }
+  }, [mobileLogin, size.width]);
+
   return (
-    <header>
-      {/* Mobile header shown in Signup */}
-      <div
-        className={`${signup ? "" : "hidden"} sm:hidden
-        // flex flex-row items-center justify-between w-full h-16 px-6 border-b border-outline-primary bg-background-primary`}
-      >
+    <header className="relative flex h-full w-full md:px-16 px-4 py-3 justify-between">
+      <Link to="/" className="flex no-underline">
         <Button
           imageButton
           imageButtonSrc={Logo}
-          imageButtonClassName="w-8 h-8 mr-2"
+          imageButtonClassName="w-12 h-12"
           imageButtonSpan="Popitalk"
-          analyticsString="Popitalk Logo Button: SiteHeaderWelcome"
+          imageButtonSpanClassName="md:ml-2 md:text-2xl // sm:text-xl sm:ml-1 // flex ml-1 text-2xl text-copy-primary"
+          analyticsString="Logo Button: SiteHeaderWelcome"
         />
-        <Button
-          styleNone
-          hoverable
-          styleNoneContent="Back to Login"
-          onClick={() => signupStatus(!signup)}
-          analyticsString="Back to Login Button: SiteHeaderWelcome"
-          className="text-sm text-copy-highlight underline hover:filter-brightness-9"
-        />
-      </div>
-      {/* Main header */}
+      </Link>
+      {mobileLoginButton}
       <div
         className={`${
-          signup ? "hidden" : ""
-        } sm:flex sm:flex-row sm:h-full sm:w-screen sm:px-16 sm:py-3 sm:justify-between sm:items-start sm:bg-background-primary
-        // flex flex-col h-screen justify-start px-12 bg-background-primary`}
+          mobileLogin === true
+            ? "hidden"
+            : "absolute w-full z-30 -ml-4 px-8 mt-14"
+        } sm:flex flex-col bg-background-primary rounded-lg`}
       >
-        <Link
-          to="/"
-          className="sm:justify-start sm:py-3 sm:mt-0
-          // flex justify-center w-full py-8 mt-4 no-underline"
-        >
+        <div className="flex flex-col p-8 sm:p-0 sm:flex-row space-x-2 space-y-4 items-end">
+          <div className={sectionClassName}>
+            <label className={labelClassName} htmlFor="user">
+              {strings.loginUsername}
+            </label>
+            <input
+              className={inputClassName}
+              type="text"
+              value={username}
+              id="user"
+              spellCheck={false}
+              onChange={e => setUsername(e.target.value)}
+              disabled={apiLoading}
+              onKeyDown={e => {
+                if (e.key === "Enter") {
+                  handleLogin();
+                }
+              }}
+            />
+          </div>
+          <div className={sectionClassName}>
+            <label className={labelClassName} htmlFor="password">
+              {strings.loginPassword}
+            </label>
+            <input
+              className={inputClassName}
+              type="password"
+              id="password"
+              value={password}
+              spellCheck={false}
+              onChange={e => setPassword(e.target.value)}
+              disabled={apiLoading}
+              onKeyDown={e => {
+                if (e.key === "Enter") {
+                  handleLogin();
+                }
+              }}
+            />
+          </div>
           <Button
-            imageButton
-            imageButtonSrc={Logo}
-            imageButtonClassName="w-12 h-12 hover:scale-105"
-            imageButtonSpan="Popitalk"
-            imageButtonSpanClassName="md:ml-2 md:text-2xl // sm:text-xl sm:ml-1 // flex ml-1 text-2xl text-copy-primary"
-            analyticsString="Logo Button: SiteHeaderWelcome"
-          />
-        </Link>
-        <nav className="flex flex-col">
-          <form>
-            <ul className="flex flex-col">
-              <div className="sm:flex-row sm:space-x-2 sm:space-y-0 // flex flex-col space-y-4 w-full items-center">
-                <li className="flex flex-col w-full">
-                  <label
-                    className="sm:text-xs // w-full ml-1 mb-1 text-sm font-bold text-copy-primary"
-                    htmlFor="user"
-                  >
-                    {strings.loginUsername}
-                  </label>
-                  <input
-                    className="sm:h-8 sm:text-sm
-                    // h-10 py-2 px-4 text-md border rounded-lg bg-background-secondary border-outline-primary focus:outline-none text-copy-primary"
-                    type="text"
-                    value={username}
-                    size="sm"
-                    id="user"
-                    spellCheck={false}
-                    onChange={e => setUsername(e.target.value)}
-                    disabled={apiLoading}
-                    onKeyDown={e => {
-                      if (e.key === "Enter") {
-                        handleLogin();
-                      }
-                    }}
-                  />
-                </li>
-                <li className="sm:pb-0 // flex flex-col w-full pb-4">
-                  <label
-                    className="sm:text-xs // ml-1 mb-1 text-sm font-bold text-copy-primary"
-                    htmlFor="password"
-                  >
-                    {strings.loginPassword}
-                  </label>
-                  <input
-                    className="sm:h-8 sm:text-sm
-                    // h-10 py-2 px-4 text-md border rounded-lg bg-background-secondary border-outline-primary focus:outline-none text-copy-primary"
-                    type="password"
-                    id="password"
-                    value={password}
-                    spellCheck={false}
-                    onChange={e => setPassword(e.target.value)}
-                    disabled={apiLoading}
-                    onKeyDown={e => {
-                      if (e.key === "Enter") {
-                        handleLogin();
-                      }
-                    }}
-                  />
-                  {/* <small className="text-copy-secondary text-xs py-1 ml-1">
-                    Forgot password?
-                  </small> */}
-                </li>
-                <li className="sm:self-end // flex pb-2px flex-shrink-0">
-                  <Button
-                    actionButton
-                    size="sm"
-                    className="sm:h-auto sm:w-auto // w-24 h-10 shadow-none"
-                    shape="regular"
-                    onClick={handleLogin}
-                    analyticsString="Login Button: SiteHeaderWelcome"
-                    disabled={
-                      apiLoading ||
-                      password.trim().length === 0 ||
-                      username.trim().length === 0
-                    }
-                  >
-                    {strings.loginButton}
-                  </Button>
-                </li>
-              </div>
-              {apiError && (
-                <small className="sm:self-start sm:my-1 // self-center text-copy-error text-xs mx-1 my-4">{`${apiError}. Please try again.`}</small>
-              )}
-            </ul>
-          </form>
-          <Button
-            styleNone
-            styleNoneContent="Don't have an account?"
-            onClick={() => signupStatus(!signup)}
-            analyticsString="Don't have an account Button: SiteHeaderWelcome"
-            className="sm:hidden //  text-copy-highlight underline text-sm mx-1 my-8 focus:outline-none"
-          />
-        </nav>
+            actionButton
+            className="flex-shrink-0 rounded-lg mt-8 mt:pt-0"
+            onClick={handleLogin}
+            analyticsString="Login Button: SiteHeaderWelcome"
+            disabled={
+              apiLoading ||
+              password.trim().length === 0 ||
+              username.trim().length === 0
+            }
+          >
+            {strings.loginButton}
+          </Button>
+        </div>
+        <small className="self-start m-1 text-copy-error text-xs h-4">
+          {apiError && `${apiError}. Please try again.`}
+        </small>
       </div>
     </header>
   );
