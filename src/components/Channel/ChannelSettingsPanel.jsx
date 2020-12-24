@@ -45,13 +45,14 @@ export default function ChannelSettingsPanel({
   let paneContent = <></>;
   if (selected === 0) {
     paneContent = (
-      <div className="w-full overflow-auto flex justify-center px-8 pt-12">
+      <div className="w-full overflow-auto flex justify-center">
         <ChannelForm
           initial={initialChannelForm}
           handleSubmit={handleChannelFormSubmit}
           type="update"
           loading={channelFormLoading}
           error={channelFormError}
+          channelSettings
         />
       </div>
     );

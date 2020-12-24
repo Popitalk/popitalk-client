@@ -133,7 +133,7 @@ function RecommendedChannels() {
   }, [followingChannels]);
 
   return (
-    <div className="relative p-4 w-full rounded-md bg-background-secondary">
+    <div className="relative p-4 w-full h-full rounded-md bg-background-secondary overflow-auto">
       <div className="py-4 mx-auto w-3/4 sm:w-1/2">
         <Input
           variant="channel"
