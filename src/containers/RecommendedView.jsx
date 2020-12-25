@@ -7,6 +7,7 @@ import ChannelCardList from "../components/ThumbnailCardLists/ChannelCardList.js
 import ChannelSearchList from "../components/ThumbnailCardLists/ChannelSearchList.jsx";
 import Input from "../components/Controls/Input.jsx";
 import Button from "../components/Controls/Button.jsx";
+import Spinner from "../components/Spinner";
 import strings from "../helpers/localization";
 import { getChannels, updateChannelsList } from "../helpers/functions";
 import {
@@ -22,6 +23,26 @@ import {
 const followingTab = { tab: strings.following, icon: "home" };
 const discoverTab = { tab: strings.discover, icon: "globe" };
 const trendingTab = { tab: strings.trending, icon: "fire" };
+
+const LoadMoreButton = ({ channelStatus, isLoadMore, handleLoadMore }) =>
+  channelStatus === "loading" ? (
+    <Spinner />
+  ) : isLoadMore ? (
+    <div className="flex justify-center items-center pt-12 pb-8">
+      <div className="h-px bg-background-quaternary w-full mx-2" />
+      <Button
+        actionButton
+        leftIcon="arrow-down"
+        size="sm"
+        hoverable
+        className="bg-background-primary text-copy-highlight text-sm font-bold flex-shrink-0 space-x-2"
+        onClick={handleLoadMore}
+      >
+        {strings.loadMoreButton}
+      </Button>
+      <div className="h-px bg-background-quaternary w-full mx-2" />
+    </div>
+  ) : null;
 function RecommendedChannels() {
   const dispatch = useDispatch();
 
@@ -35,6 +56,15 @@ function RecommendedChannels() {
   const channelsList = useSelector(state => state.channelSearch.channelsList);
   const searchResultChannels = useSelector(
     state => state.channelSearch.channels
+  );
+  const { status: followingStatus } = useSelector(
+    state => state.api.followingChannels
+  );
+  const { status: discoverStatus } = useSelector(
+    state => state.api.discoverChannels
+  );
+  const { status: trendingStatus } = useSelector(
+    state => state.api.trendingChannels
   );
 
   const [search, setSearch] = useState("");
@@ -50,7 +80,7 @@ function RecommendedChannels() {
       updateChannelsList(
         dispatch,
         followingChannels.lastRequestAt,
-        getFollowingChannels,
+        () => getFollowingChannels({ page: followingChannels.page }),
         followingChannels,
         defaultAvatar,
         defaultIcon
@@ -59,7 +89,7 @@ function RecommendedChannels() {
       updateChannelsList(
         dispatch,
         discoverChannels.lastRequestAt,
-        getDiscoverChannels,
+        () => getDiscoverChannels({ page: discoverChannels.page }),
         discoverChannels,
         defaultAvatar,
         defaultIcon
@@ -68,7 +98,7 @@ function RecommendedChannels() {
       updateChannelsList(
         dispatch,
         trendingChannels.lastRequestAt,
-        getTrendingChannels,
+        () => getTrendingChannels({ page: trendingChannels.page }),
         trendingChannels,
         defaultAvatar,
         defaultIcon
@@ -172,11 +202,38 @@ function RecommendedChannels() {
       {isSearchForChannels ? (
         <ChannelSearchList channelList={searchResultChannels} />
       ) : (
-        <ChannelCardList
-          channelList={channelsList}
-          isCollapsed={isCollapsed}
-          tabSelected={tabSelected}
-        />
+        <>
+          <ChannelCardList
+            channelList={channelsList}
+            isCollapsed={isCollapsed}
+            tabSelected={tabSelected}
+          />
+          {tabSelected === followingTab.tab ? (
+            <LoadMoreButton
+              channelStatus={followingStatus}
+              isLoadMore={followingChannels.isNextPage}
+              handleLoadMore={() =>
+                dispatch(getFollowingChannels({ page: followingChannels.page }))
+              }
+            />
+          ) : tabSelected === discoverTab.tab ? (
+            <LoadMoreButton
+              channelStatus={discoverStatus}
+              isLoadMore={discoverChannels.isNextPage}
+              handleLoadMore={() =>
+                dispatch(getDiscoverChannels({ page: discoverChannels.page }))
+              }
+            />
+          ) : (
+            <LoadMoreButton
+              channelStatus={trendingStatus}
+              isLoadMore={trendingChannels.isNextPage}
+              handleLoadMore={() =>
+                dispatch(getTrendingChannels({ page: trendingChannels.page }))
+              }
+            />
+          )}
+        </>
       )}
       <Helmet>
         <meta charSet="UFT-8" />
