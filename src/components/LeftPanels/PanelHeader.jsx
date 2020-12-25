@@ -19,7 +19,7 @@ export default function PanelHeader({
   function NavButton({ items }) {
     return items.map(item => (
       <nav
-        key={item.id}
+        key={item.title}
         className={`${navClassName} ${
           selectedPage === item.title
             ? "text-copy-highlight font-semibold"

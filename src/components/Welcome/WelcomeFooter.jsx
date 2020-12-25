@@ -54,7 +54,7 @@ function Footer() {
   // === Function to repeat items in a column. `items={array}` === //
   function DirectoryList({ items }) {
     return items.map(item => (
-      <ul className={listClassName} key={item.id}>
+      <ul className={listClassName} key={item.path}>
         <li>
           <a className="text-copy-tertiary no-underline p-1" href={item.path}>
             {item.string}

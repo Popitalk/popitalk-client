@@ -27,7 +27,7 @@ export default function LeftPanelDescription() {
   function IconsList({ items }) {
     return items.map(item => (
       <img
-        key={item.id}
+        key={item.path}
         className={`${
           hover === item.hover && "bg-gradient-r-primary rounded-full"
         } h-16 w-16 transition transform ease-in-out hover:scale-105 duration-100 cursor-pointer`}

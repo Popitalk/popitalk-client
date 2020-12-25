@@ -52,7 +52,7 @@ export default function LeftPanelFooter() {
   // === Function to repeat items in a column. `items={array}` === //
   function DirectoryList({ items }) {
     return items.map(item => (
-      <li className="pr-2 py-1" key={item.id}>
+      <li className="pr-2 py-1" key={item.path}>
         <a href={item.path} className={directoryClassName}>
           {item.string}
         </a>
@@ -61,7 +61,7 @@ export default function LeftPanelFooter() {
   }
   function MoreInfoList({ items }) {
     return items.map(item => (
-      <li className="pr-2" key={item.id}>
+      <li className="pr-2" key={item.path}>
         <a href={item.path} className={moreInfoClassName}>
           {item.string}
         </a>

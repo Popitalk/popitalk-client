@@ -66,7 +66,7 @@ export default function SignupSection({ id }) {
         src={item.src}
         alt={item.title}
         description={item.description}
-        key={item.id}
+        key={item.src}
       />
     ));
   }
