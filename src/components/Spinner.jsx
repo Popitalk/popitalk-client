@@ -1,9 +1,6 @@
 import React from "react";
+import { ReactComponent as SpinnerIcon } from "../assets/spinner.svg";
 
 export default function Spinner() {
-  return (
-    <div className="flex items-end justify-center w-full h-4">
-      <div className="flex animate-ping h-2 w-2 bg-copy-highlight rounded-full" />
-    </div>
-  );
+  return <SpinnerIcon className="w-8 h-8 m-auto  animate-spin" />;
 }
