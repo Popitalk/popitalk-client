@@ -4,89 +4,109 @@ import Button from "../Controls/Button";
 import kofiLogo from "../../assets/attributes/kofi-logo.png";
 import patreonLogo from "../../assets/attributes/patreon-logo.png";
 
-export default function LeftPanelFooter({ example }) {
-  const directoryListClassName =
+export default function LeftPanelFooter() {
+  const directoryClassName =
     "font-bold text-copy-primary hover:bg-hover-highlight no-underline p-1 rounded-md";
-  const directoryList = (listPath, listString) => (
-    <li className="pr-2 py-1">
-      <a href={listPath} className={directoryListClassName}>
-        {listString}
-      </a>
-    </li>
-  );
-  const redirectList = (listPath, listString) => (
-    <li className="pr-2">
-      <a href={listPath} className="text-copy-highlight no-underline">
-        {listString}
-      </a>
-    </li>
-  );
-  const supportButton = (path, src, string) => (
-    <a href={path}>
-      <Button
-        imageButton
-        imageButtonSrc={src}
-        imageButtonClassName="w-6"
-        imageButtonSpan={string}
-        imageButtonSpanClassName="text-xs text-copy-primary ml-1"
-        className="bg-background-secondary hover:bg-hover-highlight p-2 rounded-md"
-      />
-    </a>
-  );
+  const moreInfoClassName = "text-copy-highlight no-underline";
+  const buttonClassName =
+    "bg-background-secondary hover:bg-hover-highlight p-2 rounded-md";
+  const directoryListArray = [
+    { path: "/welcome", string: strings.loginOrSignup },
+    { path: "/friends", string: strings.friends },
+    { path: "/create", string: strings.createChannelButton },
+    {
+      path:
+        "https://medium.com/popitalk/end-user-license-agreement-and-terms-of-service-dc8a25c0f5d2",
+      string: strings.termsOfUse
+    },
+    {
+      path: "https://medium.com/popitalk/privacy-policy-ab89684edca6",
+      string: strings.privacyPolicy
+    },
+    {
+      path: "https://medium.com/popitalk/copyright-policy-872f41dd7856s",
+      string: strings.copyright
+    }
+  ];
+  const moreInfoListArray = [
+    { path: "https://blog.popitalk.com/", string: strings.aboutUs },
+    { path: "https://blog.popitalk.com/blog", string: strings.blog },
+    {
+      path: "https://blog.popitalk.com/about-us/",
+      string: strings.sendFeedbackButton
+    }
+  ];
+  const socialMediaListArray = [
+    { path: "https://twitter.com/PopitalkT", string: strings.twitter },
+    {
+      path: "https://www.youtube.com/channel/UCJSjPolz6SiYKvVxFmK-Z1A",
+      string: strings.youtube
+    },
+    {
+      path: "https://discord.gg/hdFfgg7",
+      string: strings.discord
+    },
+    { path: "https://www.facebook.com/popitalk", string: strings.facebook }
+  ];
+
+  // === Function to repeat items in a column. `items={array}` === //
+  function DirectoryList({ items }) {
+    return items.map(item => (
+      <li className="pr-2 py-1" key={item.path}>
+        <a href={item.path} className={directoryClassName}>
+          {item.string}
+        </a>
+      </li>
+    ));
+  }
+  function MoreInfoList({ items }) {
+    return items.map(item => (
+      <li className="pr-2" key={item.path}>
+        <a href={item.path} className={moreInfoClassName}>
+          {item.string}
+        </a>
+      </li>
+    ));
+  }
   return (
     <div className="px-6">
       <nav>
         {/* === Directory === */}
         <ul className="flex flex-wrap text-xs my-4 -ml-1">
-          {directoryList("/welcome", strings.loginOrSignup)}
-          {directoryList("/friends", strings.friends)}
-          {directoryList("/create", strings.createChannelButton)}
-          {directoryList(
-            "https://medium.com/popitalk/end-user-license-agreement-and-terms-of-service-dc8a25c0f5d2",
-            strings.termsOfUse
-          )}
-          {directoryList(
-            "https://medium.com/popitalk/privacy-policy-ab89684edca6",
-            strings.privacyPolicy
-          )}
-          {directoryList(
-            "https://medium.com/popitalk/copyright-policy-872f41dd7856s",
-            strings.copyright
-          )}
+          <DirectoryList items={directoryListArray} />
         </ul>
         {/* === Popitalk Team === */}
         <ul className="flex flex-wrap content-start text-xs">
           <p className="pr-2 text-copy-secondary">{strings.popitalk}</p>
-          {redirectList("https://blog.popitalk.com/", strings.aboutUs)}
-          {redirectList("https://blog.popitalk.com/blog", strings.blog)}
-          {redirectList(
-            "https://blog.popitalk.com/about-us/",
-            strings.sendFeedbackButton
-          )}
+          <MoreInfoList items={moreInfoListArray} />
         </ul>
         {/* === Social Media links === */}
         <ul className="flex flex-wrap content-start text-xs">
           <p className="pr-2 text-copy-secondary">{strings.followUson}</p>
-          {redirectList("https://twitter.com/PopitalkT", strings.twitter)}
-          {redirectList(
-            "https://www.youtube.com/channel/UCJSjPolz6SiYKvVxFmK-Z1A",
-            strings.youtube
-          )}
-          {redirectList("https://discord.gg/hdFfgg7", strings.discord)}
-          {redirectList("https://www.facebook.com/popitalk", strings.facebook)}
+          <MoreInfoList items={socialMediaListArray} />
         </ul>
       </nav>
       <div className="flex my-2 space-x-2">
-        {supportButton(
-          "https://ko-fi.com/popitalk",
-          kofiLogo,
-          strings.buyUsCoffee
-        )}
-        {supportButton(
-          "https://www.patreon.com/Popitalk",
-          patreonLogo,
-          strings.becomeAPatron
-        )}
+        <a href="https://ko-fi.com/popitalk">
+          <Button
+            imageButton
+            imageButtonSrc={kofiLogo}
+            imageButtonClassName="w-6"
+            imageButtonSpan={strings.buyUsCoffee}
+            imageButtonSpanClassName="text-xs text-copy-primary ml-1"
+            className={buttonClassName}
+          />
+        </a>
+        <a href="https://www.patreon.com/Popitalk">
+          <Button
+            imageButton
+            imageButtonSrc={patreonLogo}
+            imageButtonClassName="w-6"
+            imageButtonSpan={strings.becomeAPatron}
+            imageButtonSpanClassName="text-xs text-copy-primary ml-1"
+            className={buttonClassName}
+          />
+        </a>
       </div>
       <div className="text-xs text-copy-secondary pt-4">
         <p>© 2021 Popitalk, Inc.</p>

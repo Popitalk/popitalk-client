@@ -5,10 +5,9 @@ import Helmet from "react-helmet";
 
 import ChannelCardList from "../components/ThumbnailCardLists/ChannelCardList.jsx";
 import ChannelSearchList from "../components/ThumbnailCardLists/ChannelSearchList.jsx";
-import VideoCardList from "../components/ThumbnailCardLists/VideoCardList.jsx";
 import Input from "../components/Controls/Input.jsx";
-import Alert from "../components/Alert";
 import Button from "../components/Controls/Button.jsx";
+import Spinner from "../components/Spinner";
 import strings from "../helpers/localization";
 import { getChannels, updateChannelsList } from "../helpers/functions";
 import {
@@ -21,19 +20,34 @@ import {
   setChannelsList
 } from "../redux/actions";
 
-const followingTab = {
-  tab: strings.following,
-  icon: "home"
-};
+const followingTab = { tab: strings.following, icon: "home" };
 const discoverTab = { tab: strings.discover, icon: "globe" };
 const trendingTab = { tab: strings.trending, icon: "fire" };
 
-function RecommendedChannels({ selectedPage }) {
+const LoadMoreButton = ({ channelStatus, isLoadMore, handleLoadMore }) =>
+  channelStatus === "loading" ? (
+    <Spinner />
+  ) : isLoadMore ? (
+    <div className="flex justify-center items-center p-12">
+      <div className="h-px bg-background-quaternary w-full mx-2" />
+      <Button
+        actionButton
+        leftIcon="arrow-down"
+        size="sm"
+        hoverable
+        className="bg-background-primary text-copy-highlight text-sm font-bold flex-shrink-0 space-x-2"
+        onClick={handleLoadMore}
+      >
+        {strings.loadMoreButton}
+      </Button>
+      <div className="h-px bg-background-quaternary w-full mx-2" />
+    </div>
+  ) : null;
+function RecommendedChannels() {
   const dispatch = useDispatch();
 
   const loggedIn = useSelector(state => state.general.loggedIn);
   const isCollapsed = useSelector(state => state.ui.isCollapsed);
-  const alert = useSelector(state => state.ui.alert);
   const followingChannels = useSelector(state => state.followingChannels);
   const discoverChannels = useSelector(state => state.discoverChannels);
   const trendingChannels = useSelector(state => state.trendingChannels);
@@ -43,8 +57,16 @@ function RecommendedChannels({ selectedPage }) {
   const searchResultChannels = useSelector(
     state => state.channelSearch.channels
   );
+  const { status: followingStatus } = useSelector(
+    state => state.api.followingChannels
+  );
+  const { status: discoverStatus } = useSelector(
+    state => state.api.discoverChannels
+  );
+  const { status: trendingStatus } = useSelector(
+    state => state.api.trendingChannels
+  );
 
-  const [isLoading] = useState(false);
   const [search, setSearch] = useState("");
 
   const tabs = loggedIn
@@ -58,7 +80,7 @@ function RecommendedChannels({ selectedPage }) {
       updateChannelsList(
         dispatch,
         followingChannels.lastRequestAt,
-        getFollowingChannels,
+        () => getFollowingChannels({ page: followingChannels.page }),
         followingChannels,
         defaultAvatar,
         defaultIcon
@@ -67,7 +89,7 @@ function RecommendedChannels({ selectedPage }) {
       updateChannelsList(
         dispatch,
         discoverChannels.lastRequestAt,
-        getDiscoverChannels,
+        () => getDiscoverChannels({ page: discoverChannels.page }),
         discoverChannels,
         defaultAvatar,
         defaultIcon
@@ -76,7 +98,7 @@ function RecommendedChannels({ selectedPage }) {
       updateChannelsList(
         dispatch,
         trendingChannels.lastRequestAt,
-        getTrendingChannels,
+        () => getTrendingChannels({ page: trendingChannels.page }),
         trendingChannels,
         defaultAvatar,
         defaultIcon
@@ -86,7 +108,6 @@ function RecommendedChannels({ selectedPage }) {
 
   const handleSearch = useCallback(() => {
     dispatch(setIsSearchForChannels(true));
-
     dispatch(searchChannels({ channelName: search }));
   }, [search, dispatch]);
 
@@ -141,26 +162,14 @@ function RecommendedChannels({ selectedPage }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [followingChannels]);
 
-  // useEffect(() => {
-  //   console.log("CHANLIST CHANGING");
-  // }, [channelList]);
-
   return (
-    <div className="relative py-4 mx-auto w-full max-w-screen-xl rounded-md bg-background-secondary">
-      {/* Alert to indicate invalid channel URL */}
-      <div className="fixed mx-2 -my-4 z-50">
-        {!!alert && <Alert duration={3000}>{alert}</Alert>}
-      </div>
+    <div className="relative p-4 w-full h-full rounded-md bg-background-secondary overflow-auto">
       <div className="py-4 mx-auto w-3/4 sm:w-1/2">
         <Input
           variant="channel"
           size="sm"
           value={search}
-          placeholder={
-            selectedPage === "channels"
-              ? strings.channelSearchInput
-              : strings.videoSearchInput
-          }
+          placeholder={strings.channelSearchInput}
           onChange={e => setSearch(e.target.value)}
           onClick={handleSearch}
         />
@@ -191,40 +200,40 @@ function RecommendedChannels({ selectedPage }) {
         </h2>
       </div>
       {isSearchForChannels ? (
-        <div>
-          <ChannelSearchList channelList={searchResultChannels} />
-        </div>
+        <ChannelSearchList channelList={searchResultChannels} />
       ) : (
-        <div className="px-2">
-          {/* CARDS */}
-          {selectedPage === "channels" ? (
-            <>
-              {isLoading === true ? (
-                <ChannelCardList isLoading />
-              ) : (
-                <ChannelCardList
-                  channelList={channelsList}
-                  isCollapsed={isCollapsed}
-                  tabSelected={tabSelected}
-                />
-              )}
-            </>
+        <>
+          <ChannelCardList
+            channelList={channelsList}
+            isCollapsed={isCollapsed}
+            tabSelected={tabSelected}
+          />
+          {tabSelected === followingTab.tab ? (
+            <LoadMoreButton
+              channelStatus={followingStatus}
+              isLoadMore={followingChannels.isNextPage}
+              handleLoadMore={() =>
+                dispatch(getFollowingChannels({ page: followingChannels.page }))
+              }
+            />
+          ) : tabSelected === discoverTab.tab ? (
+            <LoadMoreButton
+              channelStatus={discoverStatus}
+              isLoadMore={discoverChannels.isNextPage}
+              handleLoadMore={() =>
+                dispatch(getDiscoverChannels({ page: discoverChannels.page }))
+              }
+            />
           ) : (
-            selectedPage === "friends" && (
-              <>
-                {isLoading === true ? (
-                  <VideoCardList isLoading />
-                ) : (
-                  <VideoCardList
-                    videoList={channelsList}
-                    isCollapsed={isCollapsed}
-                    tabSelected={tabSelected}
-                  />
-                )}
-              </>
-            )
+            <LoadMoreButton
+              channelStatus={trendingStatus}
+              isLoadMore={trendingChannels.isNextPage}
+              handleLoadMore={() =>
+                dispatch(getTrendingChannels({ page: trendingChannels.page }))
+              }
+            />
           )}
-        </div>
+        </>
       )}
       <Helmet>
         <meta charSet="UFT-8" />

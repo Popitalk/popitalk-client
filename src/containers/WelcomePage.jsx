@@ -1,34 +1,41 @@
 import React from "react";
-import CreateNewAccountForm from "../components/Forms/CreateNewAccountForm";
 import Helmet from "react-helmet";
 import strings from "../helpers/localization";
+import WelcomeIntro from "../components/Welcome/WelcomeIntro";
 import DescriptionSection from "../components/Welcome/DescriptionSection";
-import WelcomeVideo from "../components/Welcome/WelcomeVideo";
-import Footer from "../components/Welcome/Footer";
+import WelcomeFooter from "../components/Welcome/WelcomeFooter";
 
-function WelcomePage(props) {
+function WelcomePage() {
   return (
-    <div className="w-full h-full">
-      <section
-        className="sm:flex-row sm:py-0 sm:px-16
-        // flex flex-col bg-background-primary justify-around items-center px-8 py-8 shadow-xl"
-      >
-        <WelcomeVideo />
-        <div
-          className="sm:w-102 sm:rounded-lg sm:shadow-xs sm:hover:shadow-channel sm:mx-4 sm:my-8 
-          // w-full bg-background-secondary px-4 py-8 my-16 duration-100"
-        >
-          <CreateNewAccountForm {...props} />
-        </div>
-      </section>
+    <div className="w-full h-full overflow-y-auto">
+      <WelcomeIntro />
       <DescriptionSection />
-      <Footer />
+      <WelcomeFooter />
       <Helmet>
         <meta charSet="UFT-8" />
         <title>{strings.loginPageTitle}</title>
         <meta name="description" content={strings.loginPageDescription} />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="keywords" content={strings.mainKeywords} />
+        <meta
+          data-react-helmet="true"
+          property="og:title"
+          content={strings.loginPageTitle}
+        />
+        <meta
+          data-react-helmet="true"
+          property="og:description"
+          content={strings.loginPageDescription}
+        />
+        <meta
+          data-react-helmet="true"
+          property="og:image"
+          content={
+            strings.location === "kr"
+              ? "https://i.ibb.co/NFyVwQL/og-Image-KR.png"
+              : "https://i.ibb.co/h1tcFRP/ogImage.png"
+          }
+        />
       </Helmet>
     </div>
   );

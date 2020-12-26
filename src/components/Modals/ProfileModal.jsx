@@ -101,7 +101,7 @@ const ProfileModal = ({
             <div className="flex space-x-8 py-8 text-copy-primary">
               <Button
                 styleNone
-                styleNoneContent={`${following} ${strings.followingChannels}`}
+                styleNoneContent={`${following} ${strings.following}`}
                 className="text-sm text-bold font-semibold"
                 analyticsString="Show following list Button: ProfileModal"
               />

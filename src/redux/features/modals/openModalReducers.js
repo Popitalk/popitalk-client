@@ -5,6 +5,7 @@ import {
   MODAL_DELETE_MESSAGE,
   MODAL_DELETE_POST,
   MODAL_EDIT_USER_SETTINGS,
+  MODAL_CREATE_NEW_ACCOUNT,
   MODAL_IMAGE,
   MODAL_INVITE,
   MODAL_LIST,
@@ -132,6 +133,13 @@ export const openProfile = {
   reducer: openModal,
   prepare: userId => ({
     payload: { component: MODAL_PROFILE, userId }
+  })
+};
+
+export const openCreateNewAccount = {
+  reducer: openModal,
+  prepare: userId => ({
+    payload: { component: MODAL_CREATE_NEW_ACCOUNT }
   })
 };
 

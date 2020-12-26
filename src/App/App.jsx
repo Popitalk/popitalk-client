@@ -13,8 +13,6 @@ import ModalManager from "../containers/Modals/ModalManager";
 import ChatPanel from "../containers/ChatPanel";
 import Channel from "../containers/Channel";
 import CreateChannelContainer from "../containers/CreateChannelContainer";
-import AnonymousSidebar from "../components/LeftPanels/AnonymousSidebar";
-import CreateNewAccountContainer from "../containers/CreateNewAccountContainer";
 import ReactGa from "react-ga";
 import logo from "../assets/logo.png";
 import strings from "../helpers/localization";
@@ -28,7 +26,7 @@ import "../components/ScrollBars.css";
 
 const RouteWrapper = ({ leftPanel, children }) => {
   return (
-    <div className="flex flex-row h-full overflow-auto">
+    <div className="flex flex-row h-full overflow-auto bg-background-primary">
       <div className="flex-grow md:overflow-auto md:flex-shrink-0 w-auto mozilla-thin-scrollbar">
         {leftPanel}
       </div>
@@ -51,7 +49,6 @@ export default function App() {
   useEffect(() => {
     if (process.env.NODE_ENV === "production") {
       ReactGa.initialize("UA-175311766-1");
-
       //to report pageview
       ReactGa.pageview(window.location.pathname + window.location.search);
     }
@@ -71,36 +68,20 @@ export default function App() {
     pathname.includes("friends") ||
     pathname === "/";
 
-  const leftPanel =
-    loggedIn || viewer ? (
-      <LeftPanel />
-    ) : (
-      <CreateNewAccountContainer component={AnonymousSidebar} />
-    );
-
-  const searchClasses =
-    "flex-grow block overflow-auto w-full mozilla-thin-scrollbar";
+  const leftPanel = (loggedIn || viewer) && <LeftPanel />;
 
   return (
     <ThemeProvider>
       <ModalManager />
-      <div className="h-screen flex flex-col bg-background-primary">
-        <div className="h-auto">
-          <Header />
-        </div>
+      <div className="h-screen flex flex-col">
+        <Header />
         <Switch>
           <PublicRoute exact path="/welcome">
-            <div className="h-full overflow-y-auto">
-              <CreateNewAccountContainer component={WelcomePage} />
-            </div>
+            <WelcomePage />
           </PublicRoute>
           <GeneralRoute exact path="/">
             <RouteWrapper leftPanel={leftPanel}>
-              <div
-                className={`rounded-md bg-background-secondary ${searchClasses}`}
-              >
-                <RecommendedView selectedPage="channels" />
-              </div>
+              <RecommendedView selectedPage="channels" />
             </RouteWrapper>
           </GeneralRoute>
           <GeneralRoute exact path="/channels/:channelId/:tab">
@@ -110,18 +91,12 @@ export default function App() {
           </GeneralRoute>
           <GeneralRoute exact path="/friends">
             <RouteWrapper leftPanel={leftPanel}>
-              <div
-                className={`rounded-md bg-background-secondary ${searchClasses}`}
-              >
-                <RecommendedView selectedPage="channels" />
-              </div>
+              <RecommendedView selectedPage="channels" />
             </RouteWrapper>
           </GeneralRoute>
           <PrivateRoute exact path="/create">
             <RouteWrapper leftPanel={leftPanel}>
-              <div className="flex justify-center py-12 px-10 md:px-36 lg:px-48 bg-background-secondary w-full overflow-auto select-none">
-                <CreateChannelContainer />
-              </div>
+              <CreateChannelContainer />
             </RouteWrapper>
           </PrivateRoute>
           <PrivateRoute exact path="/rooms/:roomId/video">
