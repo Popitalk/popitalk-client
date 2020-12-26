@@ -15,6 +15,7 @@ import LeftPanelViewer from "./LeftPanelViewer";
 export default function LeftPanel({
   yourChannels,
   followingChannels,
+  recommendedChannels,
   userSearchResults,
   userSearchStatus,
   blocks,
@@ -92,6 +93,7 @@ export default function LeftPanel({
           <ChannelsPanel
             yourChannels={yourChannels}
             followingChannels={followingChannels}
+            recommendedChannels={recommendedChannels}
             friends={roomsResults}
             selectedChannel={selected}
             handleSelectChannel={handleSelectChannel}

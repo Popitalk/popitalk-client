@@ -11,6 +11,7 @@ import LeftPanelFooter from "./LeftPanelFooter";
 export default function ChannelsPanel({
   yourChannels,
   followingChannels,
+  recommendedChannels,
   selectedChannel,
   friends,
   handleSelectChannel,
@@ -22,6 +23,23 @@ export default function ChannelsPanel({
   setFriendsSearchFocus,
   numberOfNotifications
 }) {
+  const subHeaderClassName =
+    "mx-4 my-2 text-sm font-semibold text-copy-secondary";
+
+  const leftPanelChannelList = (listType, headerString) => (
+    <div className="py-1 w-full">
+      <h4 className={subHeaderClassName}>{headerString}</h4>
+      <ChannelsList
+        channels={listType}
+        selected={selectedChannel}
+        handleSelect={handleSelectChannel}
+        fullHeight={true}
+        emptyMessage={strings.yourChannelsPlaceholder}
+        isLoading={false}
+      />
+    </div>
+  );
+
   return (
     <div className="flex flex-col w-84 h-full bg-background-primary select-none">
       <PanelHeader
@@ -54,26 +72,13 @@ export default function ChannelsPanel({
               tooltip={strings.createChannelButton}
             />
           </div>
-          <ChannelsList
-            channels={yourChannels}
-            selected={selectedChannel}
-            handleSelect={handleSelectChannel}
-            fullHeight={true}
-            emptyMessage={strings.yourChannelsPlaceholder}
-            isLoading={false}
-          />
-          <h4 className="mx-4 my-2 text-sm font-semibold text-copy-secondary">
-            {strings.followingChannels}
-          </h4>
-          <ChannelsList
-            channels={followingChannels}
-            selected={selectedChannel}
-            handleSelect={handleSelectChannel}
-            fullHeight={true}
-            emptyMessage={strings.followingChannelsPlaceholder}
-            isLoading={false}
-          />
-          <div className="flex flex-col justify-between h-full px-6 py-4 mt-24">
+          {leftPanelChannelList(yourChannels, strings.yourChannels)}
+          {leftPanelChannelList(followingChannels, strings.followingChannels)}
+          {leftPanelChannelList(
+            recommendedChannels,
+            strings.recommendedChannels
+          )}
+          <div className="flex flex-col justify-between h-full px-4 py-4 mt-24">
             <LeftPanelFooter />
           </div>
         </div>

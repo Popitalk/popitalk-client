@@ -156,6 +156,7 @@ let strings = new LocalizedStrings({
     yourChannelsPlaceholder: "Create your own public Channel!",
     followingChannels: "CHANNELS YOU FOLLOW",
     followingChannelsPlaceholder: "Discover and Follow Channels!",
+    recommendedChannels: "Recommended",
     searchFriendsInput: "Search Username",
     searchResult: "Results for",
     // LeftPanelDescription
@@ -437,6 +438,7 @@ let strings = new LocalizedStrings({
     yourChannelsPlaceholder: "나만의 채널을 만들어 보세요!",
     followingChannels: "팔로잉 채널",
     followingChannelsPlaceholder: "채널을 팔로우 할 수 있습니다",
+    recommendedChannels: "추천 채널",
     searchFriendsInput: "아이디로 친구 찾기",
     searchResult: "검색 결과",
     // LeftPanelDescription

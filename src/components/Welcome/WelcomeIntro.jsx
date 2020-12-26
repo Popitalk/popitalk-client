@@ -9,7 +9,7 @@ import strings from "../../helpers/localization";
 export default function WelcomeIntro() {
   const dispatch = useDispatch();
   return (
-    <div className="relative flex flex-col md:flex-row w-full h-full items-center p-8">
+    <div className="relative flex flex-col md:flex-row w-full h-full items-center p-8 bg-background-primary">
       {/* LEFT SECTION */}
       <div className="absolute md:static opacity-0 sm:opacity-25 md:opacity-100 md:flex items-center justify-center md:w-1/2 w-full h-full lg:p-24 md:p-12 sm:p-4">
         <img

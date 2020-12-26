@@ -813,6 +813,14 @@ export const getFollowingChannels = createAsyncThunk(
   }
 );
 
+export const getRecommendedChannels = createAsyncThunk(
+  "recommendedChannels/getRecommendedChannels",
+  async recommendedInfo => {
+    const response = await api.getDiscoverChannels(recommendedInfo);
+    return response.data;
+  }
+);
+
 export const searchChannels = createAsyncThunk(
   "searchChannels/getSearchChannels",
   async searchInfo => {

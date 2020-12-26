@@ -21,6 +21,7 @@ import userProfileReducer from "./features/userProfile/userProfileSlice";
 import trendingChannelsReducer from "./reducers/trendingChannels";
 import discoverChannelsReducer from "./reducers/discoverChannels";
 import followingChannelsReducer from "./reducers/followingChannels";
+import recommendedChannelsReducer from "./reducers/recommendedChannels";
 import channelSearchReducer from "./reducers/channelSearch";
 import uiReducer from "./reducers/ui";
 import localstorageMiddleware from "./middleware/localstorageMiddleware";
@@ -49,6 +50,7 @@ const reducer = combineReducers({
   trendingChannels: trendingChannelsReducer,
   discoverChannels: discoverChannelsReducer,
   followingChannels: followingChannelsReducer,
+  recommendedChannels: recommendedChannelsReducer,
   channelSearch: channelSearchReducer
 });
 
