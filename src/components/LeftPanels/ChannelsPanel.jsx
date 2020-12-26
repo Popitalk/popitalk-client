@@ -7,7 +7,6 @@ import MiniFriendsList from "../MiniFriendsList";
 import PanelHeader from "./PanelHeader";
 import strings from "../../helpers/localization";
 import LeftPanelFooter from "./LeftPanelFooter";
-import LeftPanelViewer from "./LeftPanelViewer";
 
 export default function ChannelsPanel({
   yourChannels,
@@ -22,8 +21,7 @@ export default function ChannelsPanel({
   updateSelectedPage,
   selectedPage,
   setFriendsSearchFocus,
-  numberOfNotifications,
-  loggedIn
+  numberOfNotifications
 }) {
   const subHeaderClassName =
     "mx-4 my-2 text-sm font-semibold text-copy-secondary";
@@ -50,18 +48,21 @@ export default function ChannelsPanel({
         selectedPage={selectedPage}
         numberOfNotifications={numberOfNotifications}
       />
-      {loggedIn ? (
-        <div className="flex-col h-full overflow-y-scroll">
-          <MiniFriendsList
-            friends={friends}
-            handleSelectRoom={handleSelectRoom}
-            handleFindFriends={() => {
-              setFriendsSearchFocus(true);
-              updateSelectedPage("friends");
-            }}
-            isLoading={false}
-          />
-          <div className="relative flex flex-col items-start bg-background-primary">
+      <div className="flex-col h-full overflow-y-scroll">
+        <MiniFriendsList
+          friends={friends}
+          handleSelectRoom={handleSelectRoom}
+          handleFindFriends={() => {
+            setFriendsSearchFocus(true);
+            updateSelectedPage("friends");
+          }}
+          isLoading={false}
+        />
+        <div className="flex flex-col items-start bg-background-primary">
+          <div className="flex items-center mx-4 my-2 space-x-2">
+            <h4 className="text-sm font-semibold text-copy-secondary">
+              {strings.yourChannels}
+            </h4>
             <Button
               actionButton
               size="sm"

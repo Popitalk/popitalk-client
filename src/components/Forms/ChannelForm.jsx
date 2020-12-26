@@ -1,4 +1,4 @@
-import React /*, { useState }*/ from "react";
+import React, { useState } from "react";
 import { Formik /*, connect*/ } from "formik";
 import * as Yup from "yup";
 import Input from "../Controls/Input";
@@ -7,6 +7,7 @@ import ChannelFormSubmit from "./ChannelFormSubmit";
 // import TagInput from "../Controls/TagInput";
 // import ControlHeader from "../Controls/ControlHeader";
 import strings from "../../helpers/localization";
+import Button from "../Controls/Button";
 
 // const CategoryInput = connect(
 //   ({ formik, loading, tags, handleCancel, handleEnter }) => {
@@ -56,7 +57,8 @@ export default function ChannelForm({
   handleSubmit,
   type,
   loading,
-  error
+  error,
+  channelSettings
 }) {
   // const [tags, setTags] = useState(categoryToTags(initial.category));
 
@@ -90,68 +92,98 @@ export default function ChannelForm({
   //   formik.setFieldValue("category", newCategory);
   //   formik.values.category = newCategory;
   // };
+  const paragraphClassName = "text-copy-secondary text-xs text-center";
+  const [tipPressed, setTipPressed] = useState(true);
+
+  const tipsComponent = (
+    <div className="absolute right-0 top-0 items-end flex flex-col w-64 h-full rounded-lg p-4 space-y-2 z-50">
+      <Button
+        hoverable
+        styleNone
+        icon="lightbulb"
+        className={`${
+          tipPressed === true
+            ? "bg-copy-link text-copy-tertiary"
+            : "bg-background-primary text-copy-secondary"
+        } text-xl w-10 h-10 rounded-full`}
+        onClick={() => setTipPressed(!tipPressed)}
+      />
+      <div
+        className={`${
+          tipPressed === false && "hidden"
+        } shadow-md bg-background-primary space-y-4 rounded-md p-4`}
+      >
+        <h2 className="text-copy-secondary text-center">{strings.tipHeader}</h2>
+        <p className={paragraphClassName}>{strings.tipParagraph1}</p>
+        <p className={paragraphClassName}>{strings.tipParagraph2}</p>
+        <p className={paragraphClassName}>{strings.tipParagraph3}</p>
+        <p className={paragraphClassName}>{strings.tipParagraph4}</p>
+      </div>
+    </div>
+  );
 
   return (
-    <Formik
-      initialValues={{ ...initial, tags: "" }}
-      enableReinitialize={true}
-      validationSchema={Yup.object({
-        name: Yup.string()
-          .min(3, "Minimum 3 characters")
-          .max(20, "Maximum 20 characters")
-          .required("Channel name is required."),
-        description: Yup.string()
-          .min(1, "Minimum 1 character.")
-          .max(150, "Maximum 150 characters.")
-          .required("Channel description is required."),
-        private: Yup.boolean().required(),
-        icon: Yup.mixed().notRequired(),
-        category: Yup.string().notRequired()
-      })}
-      onSubmit={values => {
-        console.log(values.icon);
-        handleSubmit({
-          name: values.name,
-          description: values.description,
-          public: !values.private,
-          icon: values.icon,
-          category: values.category
-        });
-      }}
-    >
-      {({
-        handleSubmit,
-        handleChange,
-        handleBlur,
-        values,
-        touched,
-        errors,
-        isValid,
-        dirty,
-        setFieldValue,
-        resetForm
-      }) => (
-        <form
-          className="flex flex-col md:w-3/4 lg:w-3/4"
-          onSubmit={handleSubmit}
-        >
-          <div className="flex flex-col justify-center mb-12 w-full">
-            <ImageUpload
-              name="icon"
-              icon={values.icon}
-              onUpload={url => {
-                setFieldValue("icon", url);
-              }}
-              onRemove={() => {
-                setFieldValue("icon", null);
-              }}
-              disabled={loading}
-              className="mb-8"
-              selectMessage={strings.selectChannelIcon}
-              changeMessage={strings.changeChannelIcon}
-              channelPlaceholder
-            />
-            <div className="">
+    <div className="relative flex w-full bg-background-secondary rounded-md justify-evenly py-12">
+      <Formik
+        initialValues={{ ...initial, tags: "" }}
+        enableReinitialize={true}
+        validationSchema={Yup.object({
+          name: Yup.string()
+            .min(3, strings.minCharacter1)
+            .max(20, strings.maxCharacter1)
+            .required(strings.nameRequired),
+          description: Yup.string()
+            .min(1, strings.minCharacter2)
+            .max(150, strings.maxCharacter2)
+            .required(strings.descRequired),
+          private: Yup.boolean().required(),
+          icon: Yup.mixed().notRequired(),
+          category: Yup.string().notRequired()
+        })}
+        onSubmit={values => {
+          console.log(values.icon);
+          handleSubmit({
+            name: values.name,
+            description: values.description,
+            public: !values.private,
+            icon: values.icon,
+            category: values.category
+          });
+        }}
+      >
+        {({
+          handleSubmit,
+          handleChange,
+          handleBlur,
+          values,
+          touched,
+          errors,
+          isValid,
+          dirty,
+          setFieldValue,
+          resetForm
+        }) => (
+          <form
+            className={`${
+              channelSettings ? "md:w-3/4" : "md:w-1/2"
+            } flex flex-col`}
+            onSubmit={handleSubmit}
+          >
+            <div className="flex flex-col justify-center w-full text-copy-primary space-y-8">
+              <ImageUpload
+                name="icon"
+                icon={values.icon}
+                onUpload={url => {
+                  setFieldValue("icon", url);
+                }}
+                onRemove={() => {
+                  setFieldValue("icon", null);
+                }}
+                disabled={loading}
+                selectMessage={strings.selectChannelIcon}
+                changeMessage={strings.changeChannelIcon}
+                channelPlaceholder
+              />
               <Input
                 variant="counter"
                 name="name"
@@ -165,7 +197,6 @@ export default function ChannelForm({
                 onBlur={handleBlur}
                 value={values.name}
                 error={touched.name && errors.name}
-                className="mb-8 text-copy-primary"
               />
               <Input
                 variant="textarea"
@@ -179,7 +210,6 @@ export default function ChannelForm({
                 value={values.description}
                 error={touched.description && errors.description}
                 maxLength={150}
-                className="mb-8 text-copy-primary"
               />
               {/* --UNCOMMENT FOR CHANNEL CATEGORY */}
               {/* <ControlHeader
@@ -220,21 +250,17 @@ export default function ChannelForm({
                 />
               </div> */}
             </div>
-          </div>
-          {error ? (
-            <p className="text-copy-error text-sm pt-4">{error}</p>
-          ) : (
-            <></>
-          )}
-          <ChannelFormSubmit
-            type={type}
-            disabled={loading || !isValid || !dirty}
-            loading={loading}
-            handleReset={() => resetForm()}
-            className="mt-auto w-full mb-12"
-          />
-        </form>
-      )}
-    </Formik>
+            {error && <p className="text-copy-error text-sm pt-4">{error}</p>}
+            <ChannelFormSubmit
+              type={type}
+              disabled={loading || !isValid || !dirty}
+              loading={loading}
+              handleReset={() => resetForm()}
+            />
+          </form>
+        )}
+      </Formik>
+      {tipsComponent}
+    </div>
   );
 }

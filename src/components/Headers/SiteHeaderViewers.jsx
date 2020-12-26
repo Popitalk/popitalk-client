@@ -90,7 +90,7 @@ const SiteHeaderViewers = () => {
       <Button
         imageButton
         imageButtonSrc={Logo}
-        imageButtonClassName="w-8 h-8"
+        imageButtonClassName="w-10 h-10"
         analyticsString="Main Logo Button: SiteHeaderMain"
         hoverable
         onClick={() => {

@@ -5,6 +5,7 @@
 export { openInviteModal } from "./features/modals/modalsSlice";
 export { openSocialShareModal } from "./features/modals/modalsSlice";
 export { openProfileModal } from "./features/modals/modalsSlice";
+export { openCreateNewAccountModal } from "./features/modals/modalsSlice";
 export { openDeleteMessageModal } from "./features/modals/modalsSlice";
 export { openDeleteChannelModal } from "./features/modals/modalsSlice";
 export { openDeletePostModal } from "./features/modals/modalsSlice";

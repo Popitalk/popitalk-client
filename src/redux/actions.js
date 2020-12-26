@@ -791,24 +791,24 @@ export const setVolume = createAction("video/setVolume");
 
 export const getTrendingChannels = createAsyncThunk(
   "trendingChannels/getTrendingChannels",
-  async () => {
-    const response = await api.getTrendingChannels();
+  async trendingInfo => {
+    const response = await api.getTrendingChannels(trendingInfo);
     return response.data;
   }
 );
 
 export const getDiscoverChannels = createAsyncThunk(
   "discoverChannels/getDiscoverChannels",
-  async () => {
-    const response = await api.getDiscoverChannels();
+  async discoverInfo => {
+    const response = await api.getDiscoverChannels(discoverInfo);
     return response.data;
   }
 );
 
 export const getFollowingChannels = createAsyncThunk(
   "followingChannels/getFollowingChannels",
-  async () => {
-    const response = await api.getFollowingChannels();
+  async followingInfo => {
+    const response = await api.getFollowingChannels(followingInfo);
     return response.data;
   }
 );

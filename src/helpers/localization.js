@@ -9,6 +9,12 @@ let strings = new LocalizedStrings({
 
     // === Error Message === //
     errorMessage: "Something went wrong :(",
+    minCharacter1: "Minimum 3 characters",
+    minCharacter2: "Minimum 1 character.",
+    maxCharacter1: "Maximum 20 characters",
+    maxCharacter2: "Maximum 150 characters.",
+    nameRequired: "Channel name is required.",
+    descRequired: "Channel description is required.",
 
     // === SEO (MataData & Site Title === //
     popitalk: "Popitalk",
@@ -28,6 +34,12 @@ let strings = new LocalizedStrings({
     // WelcomePage & SiteHeaderWelcome
     loginUsername: "Username or email",
     loginPassword: "Password",
+    welcomeHeader1: "Watch videos together.",
+    welcomeHeader2: "At the same time.",
+    WelcomeSubheader:
+      "Popitalk is an excellent way to stay connected to the people you care about during physical distancing, and brings back a small amount of normal into our otherwise chaotic world.",
+    welcomeButton1: "Sign up free",
+    welcomeButton2: "Browse around",
 
     // DescriptionSection.jsx
     descriptionHeader1: "Watch Videos and listen to Music, together.",
@@ -140,15 +152,15 @@ let strings = new LocalizedStrings({
     // PanelHeader & MiniFriendsList
     channels: "Channels",
     friends: "Friends",
-    yourChannels: "Your Channels",
+    yourChannels: "YOUR CHANNEL",
     yourChannelsPlaceholder: "Create your own public Channel!",
-    followingChannels: "Following",
+    followingChannels: "CHANNELS YOU FOLLOW",
     followingChannelsPlaceholder: "Discover and Follow Channels!",
     recommendedChannels: "Recommended",
     searchFriendsInput: "Search Username",
     searchResult: "Results for",
-    // LeftPanelViewer
-    signInText: "Sign in to add friends and watch together.",
+    // LeftPanelDescription
+    signInText: "Sign in to add friends and create channels.",
     // LeftPanelFooter
     loginOrSignup: "Log In/Sign Up",
     aboutUs: "About Us",
@@ -163,9 +175,9 @@ let strings = new LocalizedStrings({
     // === RecommendedView === //
     channelSearchInput: "Search for a channel",
     videoSearchInput: "Search for a video",
-    following: "Following",
-    discover: "Discover",
-    trending: "Trending",
+    following: "FOLLOWING",
+    discover: "DISCOVER",
+    trending: "TRENDING",
     // ChannelCard
     nothingPlaying: "Nothing is playing at this moment",
     // VideoCard
@@ -208,8 +220,8 @@ let strings = new LocalizedStrings({
     // Invite Modal
     inviteModalHeader: "Invite Friends to this channel",
     // InviteForm
-    copyUrl: "Copy and share this link",
-    shareToSocialMedia: "Or Share it on Social Media",
+    copyUrl: "Share this link to watch with friends",
+    shareToSocialMedia: "Or share it on social media",
 
     // Chat Header & ChatAction
     roomMembers: "room members",
@@ -228,6 +240,13 @@ let strings = new LocalizedStrings({
     channelCatagory: "Channel Catagory (optional)",
     readyToCreate: "Ready to create your own channel?",
     saveChannelEdit: "Remember to save your changes.",
+    tipHeader: "Want to get featured?",
+    tipParagraph1:
+      "- Channels with an icon has a better chance of getting featured.",
+    tipParagraph2:
+      "- Make sure to have a catchy channel name and clear description.",
+    tipParagraph3: "- Have videos in your playlist once you create a channel.",
+    tipParagraph4: "- And lastly, be active and invite your friends!",
     // ChannelSettingsPanel
     channelSettings: "Channel Settings",
     manageFollowers: "Manage Followers",
@@ -256,7 +275,7 @@ let strings = new LocalizedStrings({
     deleteMessageTitle: "Delete Message",
     deleteMessageSubtitle: "Are you sure you want to delete this message?",
     // ProfileModal
-    friendsText: "Friends",
+    friendsText: "FRIENDS",
     // InviteFriendsContainer
     selectFriends: "Select Friends",
     // RoomExistsModal
@@ -272,6 +291,12 @@ let strings = new LocalizedStrings({
 
     // === Error Message === //
     errorMessage: " 불러오지 못했습니다 :(",
+    minCharacter1: "최소 3자를 입력하세요.",
+    minCharacter2: "최소 1자를 입력하세요.",
+    maxCharacter1: "최대 20자까지 가능합니다.",
+    maxCharacter2: "최대 150자까지 가능합니다.",
+    nameRequired: "채널 이름을 입력해 주세요.",
+    descRequired: "채널 설명을 입력해 주세요.",
 
     // SEO (MataData & WelcomePage & SiteHeaderWelcome)
     popitalk: "뽀삐톡",
@@ -289,6 +314,13 @@ let strings = new LocalizedStrings({
     loginUsername: "이메일 또는 아이디",
     loginPassword: "비밀번호",
     popitalkChannel: "뽀삐톡 채널",
+
+    welcomeHeader1: "같이 영상을 시청해요.",
+    welcomeHeader2: "동시간에요.",
+    WelcomeSubheader:
+      "뽀삐톡으로 친구들과 유튜브를 동시간에 같이 시청하고 채팅해요. 함께 실시간으로 동영상을 공유하며 영화, 음악, 모든 것을 같이 시청 해보세요.",
+    welcomeButton1: "무료 가입",
+    welcomeButton2: "둘러보기",
 
     // DescriptionSection.jsx
     descriptionHeader1: "꿀잼인 동영상과 음악을 같이 시청해요.",
@@ -409,7 +441,7 @@ let strings = new LocalizedStrings({
     recommendedChannels: "추천 채널",
     searchFriendsInput: "아이디로 친구 찾기",
     searchResult: "검색 결과",
-    // LeftPanelViewer
+    // LeftPanelDescription
     signInText: "친구를 추가하고 같이보려면 가입해보세요.",
     // LeftPanelFooter
     loginOrSignup: "로그인/가입",
@@ -468,7 +500,7 @@ let strings = new LocalizedStrings({
     // Invite Modal
     inviteModalHeader: "친구들을 이 채널로 초대해요",
     // InviteForm
-    copyUrl: "아래의 링크를 복사하세요",
+    copyUrl: "아래의 링크로 친구를 초대하세요",
     shareToSocialMedia: "또는 SNS에 공유하세요",
 
     // ChatHeader & ChatActions
@@ -488,6 +520,11 @@ let strings = new LocalizedStrings({
     channelCatagory: "카테고리 (선택)",
     readyToCreate: "채널 개설 준비되셨습니까?",
     saveChannelEdit: "변경된 내용을 저장하시겠습니가?",
+    tipHeader: "내 채널이 추천에 뜨려면",
+    tipParagraph1: "- 아이콘이 있는 채널이 추천에 뜰 확률이 높습니다.",
+    tipParagraph2: "- 검색하기 쉬운 채널 이름과 설명을 설정해 보세요.",
+    tipParagraph3: "- 채널 개설 후 재생목록에 영상을 추가하세요.",
+    tipParagraph4: "- 활동이 많고 친구들을 초대 해보세요!",
     // ChannelSettingsPanel
     channelSettings: "채널 설정",
     manageFollowers: "팔로워 관리",

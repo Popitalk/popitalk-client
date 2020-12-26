@@ -43,7 +43,7 @@ export default function ImageUpload({
         196,
         196,
         "JPEG",
-        100,
+        70,
         0,
         uri => {
           onUpload(URL.createObjectURL(uri));

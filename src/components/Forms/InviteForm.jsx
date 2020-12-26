@@ -4,7 +4,6 @@ import Button from "../Controls/Button";
 import {
   EmailShareButton,
   FacebookShareButton,
-  LineShareButton,
   RedditShareButton,
   TelegramShareButton,
   TwitterShareButton,
@@ -12,7 +11,6 @@ import {
   WhatsappShareButton,
   EmailIcon,
   FacebookIcon,
-  LineIcon,
   RedditIcon,
   TelegramIcon,
   TwitterIcon,
@@ -60,7 +58,7 @@ export default function InviteForm({ link }) {
   InputRef.displayName = "InputRef";
 
   return (
-    <div className="flex flex-col items-center justify-center h-full w-full px-8 pt-14 pb-20">
+    <div className="flex flex-col items-center justify-center h-full w-full">
       <p className="text-sm text-copy-secondary pb-4">{strings.copyUrl}</p>
       <InputRef ref={ref} />
       <p className="text-sm text-copy-secondary pt-4">
@@ -105,13 +103,6 @@ export default function InviteForm({ link }) {
         >
           <TwitterIcon size={32} borderRadius={12} />
         </TwitterShareButton>
-        <LineShareButton
-          url={currentUrl}
-          title={title}
-          className={iconClassname}
-        >
-          <LineIcon size={32} borderRadius={12} />
-        </LineShareButton>
         <RedditShareButton
           url={currentUrl}
           title={title}

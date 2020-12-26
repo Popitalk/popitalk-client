@@ -15,7 +15,7 @@ export default function ChannelFormSubmit({
   );
   return (
     <div className={classes}>
-      <p className="mr-8">
+      <p className="mr-8 text-primary-text font-bold">
         {type === "create" ? strings.readyToCreate : strings.saveChannelEdit}
       </p>
       <div>
@@ -25,7 +25,6 @@ export default function ChannelFormSubmit({
             variant="text"
             size="md"
             type="button"
-            shape="pill"
             disabled={disabled}
             onClick={handleReset}
             analyticsString="Channel Reset Button: ChannelFormSubmit"
@@ -38,7 +37,6 @@ export default function ChannelFormSubmit({
           actionButton
           size="md"
           type="submit"
-          shape="pill"
           disabled={disabled}
           analyticsString="Channel Create Button: ChannelFormSubmit"
         >
