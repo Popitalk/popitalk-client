@@ -28,7 +28,7 @@ const LoadMoreButton = ({ channelStatus, isLoadMore, handleLoadMore }) =>
   channelStatus === "loading" ? (
     <Spinner />
   ) : isLoadMore ? (
-    <div className="flex justify-center items-center pt-12 pb-8">
+    <div className="flex justify-center items-center p-12">
       <div className="h-px bg-background-quaternary w-full mx-2" />
       <Button
         actionButton

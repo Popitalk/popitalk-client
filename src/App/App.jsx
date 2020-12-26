@@ -26,7 +26,7 @@ import "../components/ScrollBars.css";
 
 const RouteWrapper = ({ leftPanel, children }) => {
   return (
-    <div className="flex flex-row h-full overflow-auto">
+    <div className="flex flex-row h-full overflow-auto bg-background-primary">
       <div className="flex-grow md:overflow-auto md:flex-shrink-0 w-auto mozilla-thin-scrollbar">
         {leftPanel}
       </div>
