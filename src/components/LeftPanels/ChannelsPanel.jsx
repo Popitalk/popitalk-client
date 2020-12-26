@@ -67,33 +67,22 @@ export default function ChannelsPanel({
               actionButton
               size="sm"
               icon="plus"
-              background="primaryButton"
               onClick={handleCreateChannel}
               analyticsString="Create Channel Button: ChannelsPanel"
-              className="absolute right-0 top-0 m-2"
               tooltip={strings.createChannelButton}
             />
-            {leftPanelChannelList(yourChannels, strings.yourChannels)}
-            {leftPanelChannelList(followingChannels, strings.followingChannels)}
-            {leftPanelChannelList(
-              recommendedChannels,
-              strings.recommendedChannels
-            )}
-            <div className="flex flex-col justify-between h-full py-4 mt-16">
-              <LeftPanelFooter />
-            </div>
           </div>
-        </div>
-      ) : (
-        <div className="flex flex-col justify-between h-full py-4 overflow-y-auto">
-          <LeftPanelViewer />
+          {leftPanelChannelList(yourChannels, strings.yourChannels)}
+          {leftPanelChannelList(followingChannels, strings.followingChannels)}
           {leftPanelChannelList(
             recommendedChannels,
             strings.recommendedChannels
           )}
-          <LeftPanelFooter />
+          <div className="flex flex-col justify-between h-full px-6 py-4 mt-24">
+            <LeftPanelFooter />
+          </div>
         </div>
-      )}
+      </div>
       <ReactTooltip
         effect="solid"
         backgroundColor="#F2F2F2"
