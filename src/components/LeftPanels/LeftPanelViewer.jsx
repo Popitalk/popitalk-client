@@ -1,9 +1,16 @@
 import React from "react";
+import strings from "../../helpers/localization";
 import InviteForm from "../Forms/InviteForm";
+import ChannelsList from "../InfoCardLists/ChannelsList";
 import LeftPanelDescription from "./LeftPanelDescription";
 import LeftPanelFooter from "./LeftPanelFooter";
 
-export default function LeftPanelViewer({ link }) {
+export default function LeftPanelViewer({
+  link,
+  recommendedChannels,
+  selectedChannel,
+  handleSelectChannel
+}) {
   return (
     <div className="hidden sm:flex flex-col sm:w-84 h-full bg-background-primary select-none">
       <div className="flex flex-col justify-between h-full px-2 space-y-2">
@@ -11,6 +18,19 @@ export default function LeftPanelViewer({ link }) {
           <InviteForm link={link} />
         </div>
         <LeftPanelDescription />
+        <div className="py-1 w-full">
+          <h4 className="mx-4 my-2 text-sm font-semibold text-copy-secondary">
+            {strings.recommendedChannels}
+          </h4>
+          <ChannelsList
+            channels={recommendedChannels}
+            selected={selectedChannel}
+            handleSelect={handleSelectChannel}
+            fullHeight={true}
+            emptyMessage={strings.yourChannelsPlaceholder}
+            isLoading={false}
+          />
+        </div>
         <div className="flex pt-24 pb-4 px-2">
           <LeftPanelFooter />
         </div>

@@ -79,7 +79,15 @@ export default function LeftPanel({
   }
 
   if (!loggedIn) {
-    return <LeftPanelViewer />;
+    return (
+      <LeftPanelViewer
+        recommendedChannels={recommendedChannels}
+        selectedChannel={selected}
+        handleSelectChannel={handleSelectChannel}
+        selectedPage={selectedPage}
+        updateSelectedPage={updateSelectedPage}
+      />
+    );
   }
 
   return (

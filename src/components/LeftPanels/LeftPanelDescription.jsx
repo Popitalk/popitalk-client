@@ -39,7 +39,7 @@ export default function LeftPanelDescription() {
   }
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-2">
       <div className={boxClassName}>
         <div className="flex justify-evenly space-x-2">
           <IconsList items={iconsListArray} />
