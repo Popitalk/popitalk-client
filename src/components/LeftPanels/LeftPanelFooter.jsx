@@ -69,7 +69,7 @@ export default function LeftPanelFooter() {
     ));
   }
   return (
-    <div className="px-6">
+    <div>
       <nav>
         {/* === Directory === */}
         <ul className="flex flex-wrap text-xs my-4 -ml-1">

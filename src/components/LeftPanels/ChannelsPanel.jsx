@@ -78,7 +78,7 @@ export default function ChannelsPanel({
             recommendedChannels,
             strings.recommendedChannels
           )}
-          <div className="flex flex-col justify-between h-full px-6 py-4 mt-24">
+          <div className="flex flex-col justify-between h-full px-4 py-4 mt-24">
             <LeftPanelFooter />
           </div>
         </div>
