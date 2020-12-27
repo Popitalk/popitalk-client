@@ -21,24 +21,17 @@ export default function ChannelsList({
         size="md"
       />
     );
+    if (isLoading) return <InfoCard isLoading={isLoading} />;
 
     return (
-      <>
-        {isLoading ? (
-          <InfoCard isLoading={isLoading} />
-        ) : (
-          <InfoCard
-            avatar={roomIcon}
-            title={channel.name}
-            subtitle={`${channel?.viewers?.length || 0} ${strings.online}`}
-            subtitleSize="xs"
-            backgroundColor={
-              selected === channel.id ? "highlight" : "transparent"
-            }
-            cardClick={() => handleSelect(channel.id)}
-          />
-        )}
-      </>
+      <InfoCard
+        avatar={roomIcon}
+        title={channel.name}
+        subtitle={`${channel?.viewers?.length || 0} ${strings.online}`}
+        subtitleSize="xs"
+        backgroundColor={selected === channel.id ? "highlight" : "transparent"}
+        cardClick={() => handleSelect(channel.id)}
+      />
     );
   };
 

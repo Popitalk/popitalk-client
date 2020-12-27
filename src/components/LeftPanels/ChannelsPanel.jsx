@@ -26,7 +26,7 @@ export default function ChannelsPanel({
   const subHeaderClassName =
     "mx-4 my-2 text-sm font-semibold text-copy-secondary";
 
-  const leftPanelChannelList = (listType, headerString) => (
+  const leftPanelChannelList = (listType, headerString, emptyMessage) => (
     <div className="py-1 w-full">
       <h4 className={subHeaderClassName}>{headerString}</h4>
       <ChannelsList
@@ -34,7 +34,7 @@ export default function ChannelsPanel({
         selected={selectedChannel}
         handleSelect={handleSelectChannel}
         fullHeight={true}
-        emptyMessage={strings.yourChannelsPlaceholder}
+        emptyMessage={emptyMessage}
         isLoading={false}
       />
     </div>
@@ -58,22 +58,27 @@ export default function ChannelsPanel({
           }}
           isLoading={false}
         />
-        <div className="flex flex-col items-start bg-background-primary">
-          <div className="flex items-center mx-4 my-2 space-x-2">
-            <h4 className="text-sm font-semibold text-copy-secondary">
-              {strings.yourChannels}
-            </h4>
-            <Button
-              actionButton
-              size="sm"
-              icon="plus"
-              onClick={handleCreateChannel}
-              analyticsString="Create Channel Button: ChannelsPanel"
-              tooltip={strings.createChannelButton}
-            />
-          </div>
-          {leftPanelChannelList(yourChannels, strings.yourChannels)}
-          {leftPanelChannelList(followingChannels, strings.followingChannels)}
+        <div className="relative flex flex-col items-start bg-background-primary">
+          <Button
+            actionButton
+            size="sm"
+            icon="plus"
+            onClick={handleCreateChannel}
+            analyticsString="Create Channel Button: ChannelsPanel"
+            tooltip={strings.createChannelButton}
+            className="absolute top-0 right-0 my-1 mx-2 "
+          />
+          {leftPanelChannelList(
+            yourChannels,
+            strings.yourChannels,
+            strings.yourChannelsPlaceholder
+          )}
+          {followingChannels.length !== 0 &&
+            leftPanelChannelList(
+              followingChannels,
+              strings.followingChannels,
+              strings.followingChannelsPlaceholder
+            )}
           {leftPanelChannelList(
             recommendedChannels,
             strings.recommendedChannels

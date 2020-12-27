@@ -156,7 +156,7 @@ let strings = new LocalizedStrings({
     yourChannelsPlaceholder: "Create your own public Channel!",
     followingChannels: "CHANNELS YOU FOLLOW",
     followingChannelsPlaceholder: "Discover and Follow Channels!",
-    recommendedChannels: "Recommended",
+    recommendedChannels: "RECOMMENDED",
     searchFriendsInput: "Search Username",
     searchResult: "Results for",
     // LeftPanelDescription

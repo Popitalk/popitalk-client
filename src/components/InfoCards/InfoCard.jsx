@@ -42,46 +42,44 @@ export default function InfoCard({
       "hover:bg-hover-highlight duration-75": hoverable
     }
   );
+  if (isLoading === true)
+    return (
+      <div className="flex items-center rounded-lg px-2">
+        <div className="flex animate-pulse space-x-4 w-full items-center">
+          <div className="flex-shrink-0 rounded-full bg-background-quaternary h-12 w-12" />
+          <div className="flex flex-col w-full space-y-2">
+            <div className="h-4 bg-background-quaternary rounded w-11/12"></div>
+            <div className="h-4 bg-background-quaternary rounded w-2/4"></div>
+          </div>
+        </div>
+      </div>
+    );
 
   return (
-    <>
-      {isLoading === true ? (
-        <div className="flex items-center rounded-lg px-2">
-          <div className="flex animate-pulse space-x-4 w-full items-center">
-            <div className="flex-shrink-0 rounded-full bg-background-quaternary h-12 w-12" />
-            <div className="flex flex-col w-full space-y-2">
-              <div className="h-4 bg-background-quaternary rounded w-11/12"></div>
-              <div className="h-4 bg-background-quaternary rounded w-2/4"></div>
-            </div>
-          </div>
-        </div>
-      ) : (
-        <div className={containerClasses}>
-          <div
-            className="relative flex items-center w-full"
-            role={cardClick ? "button" : null}
-            onClick={cardClick ? e => cardClick(e) : null}
-          >
-            {avatar}
-            <div className="flex flex-col w-full mx-3 my-2 space-y-1 truncate">
-              {title && subtitle ? (
-                <>
-                  <p className={titleClasses}>{title}</p>
-                  <p className={subtitleClasses}>{subtitle}</p>
-                  {badge === true && (
-                    <div className="absolute flex items-center right-0 top-0 h-full w-3 m-3">
-                      <div className="bg-gradient-r-button w-3 h-3 rounded-full mb-2" />
-                    </div>
-                  )}
-                </>
-              ) : (
-                <p className={titleClasses}>{title}</p>
+    <div className={containerClasses}>
+      <div
+        className="relative flex items-center w-full"
+        role={cardClick ? "button" : null}
+        onClick={cardClick ? e => cardClick(e) : null}
+      >
+        {avatar}
+        <div className="flex flex-col w-full mx-3 my-2 space-y-1 truncate">
+          {title && subtitle ? (
+            <>
+              <p className={titleClasses}>{title}</p>
+              <p className={subtitleClasses}>{subtitle}</p>
+              {badge === true && (
+                <div className="absolute flex items-center right-0 top-0 h-full w-3 m-3">
+                  <div className="bg-gradient-r-button w-3 h-3 rounded-full mb-2" />
+                </div>
               )}
-            </div>
-          </div>
-          <div className="flex-shrink-0">{controls && controls}</div>
+            </>
+          ) : (
+            <p className={titleClasses}>{title}</p>
+          )}
         </div>
-      )}
-    </>
+      </div>
+      <div className="flex-shrink-0">{controls && controls}</div>
+    </div>
   );
 }
