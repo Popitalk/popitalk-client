@@ -41,14 +41,14 @@ export default function ChannelsPanel({
   );
 
   return (
-    <div className="flex flex-col w-84 h-full bg-background-primary select-none">
+    <div className="flex flex-col w-full sm:w-84 h-full bg-background-primary select-none">
       <PanelHeader
         handleCollapse={handleCollapse}
         updateSelectedPage={updateSelectedPage}
         selectedPage={selectedPage}
         numberOfNotifications={numberOfNotifications}
       />
-      <div className="flex-col h-full overflow-y-scroll">
+      <div className="flex-col h-full overflow-y-scroll my-2">
         <MiniFriendsList
           friends={friends}
           handleSelectRoom={handleSelectRoom}

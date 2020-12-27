@@ -1,8 +1,18 @@
 import React from "react";
 import PropTypes from "prop-types";
 import ChannelCard from "../ThumbnailCards/ChannelCard";
+import strings from "../../helpers/localization";
 
 function ChannelCardList({ channelList, isCollapsed, tabSelected, isLoading }) {
+  if (!channelList || channelList.length === 0) {
+    return (
+      <div className="flex h-84 w-full items-center justify-center">
+        <p className="text-xs text-copy-secondary">
+          {strings.followingChannelsPlaceholder}
+        </p>
+      </div>
+    );
+  }
   return (
     <div
       className={`grid grid-cols-1 w-full gap-3 gap-y-6 ${

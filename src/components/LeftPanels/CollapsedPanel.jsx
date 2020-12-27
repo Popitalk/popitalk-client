@@ -19,7 +19,6 @@ function CollapsedPanel({
   handleFindFriends,
   setFriendsSearchFocus,
   numberOfNotifications,
-  isCollapsedResponsive,
   loggedIn
 }) {
   // States to control whether the channels and friends lists are expanded in the collapsed panel.
@@ -48,18 +47,14 @@ function CollapsedPanel({
   }, [isCollapsed, setFollowingExpanded, setDiscoverExpanded, selectedPage]);
   return (
     <div className="flex flex-col bg-background-primary px-2 items-center w-20 h-full select-none overflow-x-hidden">
-      {isCollapsedResponsive ? (
-        <div className="h-2" />
-      ) : (
-        <Button
-          styleNone
-          hoverable
-          icon="bars"
-          className="flex items-center justify-center py-5 w-full rounded-full text-copy-secondary hover:text-copy-highlight"
-          onClick={handleCollapse}
-          analyticsString="LeftPanel Expand Button: CollapsedPanel"
-        />
-      )}
+      <Button
+        styleNone
+        hoverable
+        icon="bars"
+        className="flex items-center justify-center py-5 w-full rounded-full text-copy-secondary hover:text-copy-highlight"
+        onClick={handleCollapse}
+        analyticsString="LeftPanel Expand Button: CollapsedPanel"
+      />
       <div className="flex-col h-full overflow-y-scroll">
         {/* == CHANNELS == */}
         <div className="bg-background-primary rounded-xl">

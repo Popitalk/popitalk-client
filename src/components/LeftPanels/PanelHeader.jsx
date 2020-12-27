@@ -1,7 +1,6 @@
 import React from "react";
 import Button from "../Controls/Button";
 import strings from "../../helpers/localization";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default function PanelHeader({
   handleCollapse,
@@ -10,7 +9,7 @@ export default function PanelHeader({
   numberOfNotifications
 }) {
   const navClassName =
-    "flex items-center space-x-2 p-2 focus:outline-none hover:bg-hover-highlight rounded-lg transition transform ease-in-out hover:scale-105 duration-100 cursor-pointer";
+    "flex items-center space-x-2 p-2 focus:outline-none hover:bg-hover-highlight rounded-lg";
 
   const navButtonArray = [
     { title: "channels", icon: "globe-americas", string: strings.channels },
@@ -18,7 +17,11 @@ export default function PanelHeader({
   ];
   function NavButton({ items }) {
     return items.map(item => (
-      <nav
+      <Button
+        hoverable
+        styleNone
+        styleNoneContent={item.string}
+        icon={item.icon}
         key={item.title}
         className={`${navClassName} ${
           selectedPage === item.title
@@ -26,14 +29,11 @@ export default function PanelHeader({
             : "text-copy-secondary font-regular"
         }`}
         onClick={() => updateSelectedPage(item.title)}
-      >
-        <FontAwesomeIcon icon={item.icon} />
-        <h1>{item.string}</h1>
-      </nav>
+      />
     ));
   }
   return (
-    <div className="flex bg-background-primary items-center w-full select-none space-x-4 px-2">
+    <div className="flex bg-background-secondary sm:bg-background-primary items-center w-full select-none space-x-4 px-2">
       <Button
         hoverable
         styleNone
@@ -42,7 +42,7 @@ export default function PanelHeader({
         onClick={handleCollapse}
         analyticsString="Collapse Button: PanelHeader"
       />
-      <div className="flex space-x-2">
+      <div className="py-2 sm:py-0 flex w-full space-x-2">
         <NavButton items={navButtonArray} />
       </div>
     </div>
