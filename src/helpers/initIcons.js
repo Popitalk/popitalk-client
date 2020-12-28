@@ -58,7 +58,8 @@ import {
   faUnlockAlt,
   faExternalLinkAlt,
   faEdit,
-  faLightbulb
+  faLightbulb,
+  faComment
 } from "@fortawesome/free-solid-svg-icons";
 import {
   faSmile as farSmile,
@@ -120,6 +121,7 @@ library.add(
   faExternalLinkAlt,
   faEdit,
   faLightbulb,
+  faComment,
   // == Logos == //
   fabTwitter,
   fabYoutube,

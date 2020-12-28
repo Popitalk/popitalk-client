@@ -28,27 +28,29 @@ export default function ChannelHeader({
     navButtons.push({ name: strings.settings, endpoint: "settings" });
   }
 
+  if (isLoading) {
+    return (
+      <div className="flex flex-row items-center w-full h-full space-x-2">
+        <RoomIcon ids={[id]} images={""} size="sm" loading />
+        <div className="animate-pulse w-1/2 h-4 bg-background-quaternary rounded" />
+      </div>
+    );
+  }
+
   return (
-    <div className="flex w-full h-12 bg-background-secondary justify-between items-center px-4 py-1 z-20 rounded-t-md">
-      {isLoading ? (
-        <div className="flex flex-row items-center w-full h-full space-x-2">
-          <RoomIcon ids={[id]} images={""} size="sm" loading />
-          <div className="animate-pulse w-1/2 h-4 bg-background-quaternary rounded" />
-        </div>
-      ) : (
-        <div className="flex items-center">
-          <RoomIcon
-            ids={[id]}
-            images={[icon]}
-            watching={videoStatus === "playing" ? true : false}
-            size="sm"
-            className="transition transform ease-in-out hover:scale-110 duration-100 cursor-pointer"
-          />
-          <p className="flex flex-shrink-0 text-md font-medium text-copy-primary p-2 w-full truncate overflow-hidden">
-            {name}
-          </p>
-        </div>
-      )}
+    <div className="flex w-full h-12 bg-background-secondary justify-between items-center px-2 py-1 rounded-tl-md">
+      <div className="flex items-center">
+        <RoomIcon
+          ids={[id]}
+          images={[icon]}
+          watching={videoStatus === "playing" ? true : false}
+          size="sm"
+          className="transition transform ease-in-out hover:scale-110 duration-100 cursor-pointer"
+        />
+        <p className="flex flex-shrink-0 text-md font-medium text-copy-primary p-2 w-full truncate overflow-hidden">
+          {name}
+        </p>
+      </div>
       {type === "channel" && (
         <nav className="flex flex-shrink-0 truncate items-center">
           {navButtons.map((button, idx) => {

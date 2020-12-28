@@ -4,6 +4,7 @@ import InviteForm from "../Forms/InviteForm";
 import ChannelsList from "../InfoCardLists/ChannelsList";
 import LeftPanelDescription from "./LeftPanelDescription";
 import LeftPanelFooter from "./LeftPanelFooter";
+import LeftPanelSubHeader from "./LeftPanelSubHeader";
 
 export default function LeftPanelViewer({
   link,
@@ -12,16 +13,14 @@ export default function LeftPanelViewer({
   handleSelectChannel
 }) {
   return (
-    <div className="hidden sm:flex flex-col sm:w-84 h-full bg-background-primary select-none">
+    <div className="flex flex-col sm:w-84 h-full bg-background-primary select-none">
       <div className="flex flex-col justify-between h-full px-2 space-y-2">
         <div className="bg-background-secondary px-2 py-4 shadow-md rounded-md ">
           <InviteForm link={link} />
         </div>
         <LeftPanelDescription />
-        <div className="py-1 w-full">
-          <h4 className="mx-4 my-2 text-sm font-semibold text-copy-secondary">
-            {strings.recommendedChannels}
-          </h4>
+        <div className="py-1">
+          <LeftPanelSubHeader headerString={strings.recommendedChannels} />
           <ChannelsList
             channels={recommendedChannels}
             selected={selectedChannel}

@@ -24,15 +24,15 @@ export default function ChatMessage({
       onClick={() => updateClickedMessage(message.id)}
       onPointerOver={() => setHover(true)}
       onPointerOut={() => setHover(false)}
-      className="flex bg-background-primary hover:bg-hover-highlight rounded-md cursor-text flex-wrap"
+      className="flex flex-row justify-between bg-background-primary hover:bg-hover-highlight rounded-md cursor-text flex-wrap"
       key={message.id}
     >
-      <MessageHighlightSpan
-        status={message.status}
-        ownId={ownId}
-        userId={message.userId}
-      />
-      <div className="w-68 pl-2">
+      <div className="flex flex-row space-x-2">
+        <MessageHighlightSpan
+          status={message.status}
+          ownId={ownId}
+          userId={message.userId}
+        />
         <MessageContent message={message} />
       </div>
       <ChatOptionsButton

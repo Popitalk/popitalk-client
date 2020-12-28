@@ -153,11 +153,12 @@ const SiteHeaderMain = ({
     dropdownList.length > 0 ? dropdownList[dropdownList.length - 1] : 0;
 
   return (
-    <header className="sm:px-6 // relative flex items-center justify-between h-12 bg-background-primary px-2 z-30 select-none">
+    <header className="sm:px-6 // relative flex items-center justify-between h-12 bg-background-primary px-2 z-30 select-none md:ml-0 ml-16">
       <Button
         imageButton
         imageButtonSrc={Logo}
-        imageButtonClassName="w-8 h-8"
+        imageButtonClassName="w-10 h-10"
+        // className="md:ml-0 sm:ml-12 ml-16"
         analyticsString="Main Logo Button: SiteHeaderMain"
         hoverable
         onClick={() => {

@@ -9,6 +9,7 @@ export default function ChannelsList({
   selected,
   handleSelect,
   emptyMessage,
+  closeLeftPanel,
   isLoading,
   ...rest
 }) {
