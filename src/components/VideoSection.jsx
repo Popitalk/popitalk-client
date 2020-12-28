@@ -80,6 +80,7 @@ export default function VideoSection({
               icon="user-plus"
               size="sm"
               onClick={inviteUsers}
+              className="flex-shrink-0"
               analyticsString="Invite User Button: VideoSection"
             />
           ) : isChannel ? (
@@ -87,6 +88,7 @@ export default function VideoSection({
               actionButton
               size="sm"
               onClick={socialShare}
+              className="flex-shrink-0"
               analyticsString="Invite User Button: VideoSection"
             >
               {strings.invite}
