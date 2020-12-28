@@ -458,19 +458,17 @@ class Channel extends Component {
 
     return (
       <>
-        <div className="flex flex-col bg-background-secondary w-full overflow-x-hidden">
+        <div className="flex flex-col w-full overflow-x-hidden">
           {/* Channel & Room structure */}
-          <div className="w-full h-12 bg-background-primary z-50">
-            <ChannelHeaderContainer
-              channelId={channelId}
-              isMember={isMember}
-              isAdmin={isAdmin}
-              status={this.state.playerStatus.status.toLowerCase()}
-            />
-          </div>
+          <ChannelHeaderContainer
+            channelId={channelId}
+            isMember={isMember}
+            isAdmin={isAdmin}
+            status={this.state.playerStatus.status.toLowerCase()}
+          />
           <div
             ref={this.scrollRef}
-            className={`flex flex-col overflow-x-hidden h-full ${this.props.searchClasses}`}
+            className={`flex flex-col bg-background-secondary overflow-x-hidden h-full ${this.props.searchClasses}`}
           >
             {(tab === VIDEO_TAB || tab === POSTS_TAB) && (
               <>
@@ -485,7 +483,6 @@ class Channel extends Component {
                   playlist={this.state.queueList}
                   playerStatus={this.state.playerStatus}
                   isChannel={type === CHANNEL_TYPE && true}
-                  classNames="pt-0"
                   // Below is for ChannelQueue
                   searchRef={this.searchRef}
                   name={channel.name}

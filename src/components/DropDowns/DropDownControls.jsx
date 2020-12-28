@@ -54,7 +54,7 @@ export default function DropDownControls({
       {open && (
         <div
           className="absolute text-copy-primary sm:right-0 sm:top-0 sm:mt-10
-          // fixed top-0 right-0 mt-12 justify-center z-30"
+          // fixed top-0 right-0 mt-12 justify-center z-50"
           ref={ref}
         >
           {children}

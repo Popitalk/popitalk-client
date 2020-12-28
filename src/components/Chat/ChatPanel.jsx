@@ -26,9 +26,13 @@ export default function ChatPanel({
       <Button
         hoverable
         styleNone
-        icon={chatPanelExpanded === true ? "times" : "comment"}
+        icon={chatPanelExpanded === true ? "arrow-left" : "comment"}
         styleNoneIconClassName="text-xl"
-        className="absolute bottom-0 right-0 mr-4 mb-24 z-20 rounded-full bg-copy-link shadow-lg md:hidden flex items-center justify-center text-copy-tertiary w-14 h-14"
+        className={
+          chatPanelExpanded === true
+            ? "absolute top-0 left-0 ml-4 mt-14 text-copy-secondary"
+            : "absolute bottom-0 right-0 m-4 rounded-full bg-copy-link shadow-lg md:hidden flex items-center justify-center text-copy-tertiary w-14 h-14"
+        }
         analyticsString="Collapse Button: PanelHeader"
         onClick={() => setChatPanelExpanded(!chatPanelExpanded)}
       />
@@ -46,18 +50,12 @@ export default function ChatPanel({
             followersCount={followersCount}
             isRoom={isRoom}
           />
-          {channelMessages ? (
-            <ChatMessages
-              channelId={channelId}
-              channelMessages={channelMessages}
-              isGifsOpen={isGifsOpen}
-            />
-          ) : (
-            <div className="flex w-full h-full text-copy-secondary text-xs items-center justify-center">
-              This is the start of the chat!
-            </div>
-          )}
-          {isGifsOpen ? <GifTable updateGifsOpen={updateGifsOpen} /> : null}
+          <ChatMessages
+            channelId={channelId}
+            channelMessages={channelMessages}
+            isGifsOpen={isGifsOpen}
+          />
+          {isGifsOpen && <GifTable updateGifsOpen={updateGifsOpen} />}
           {isMember ? (
             <ChatActions
               updateGifsOpen={updateGifsOpen}

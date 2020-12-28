@@ -27,7 +27,7 @@ import "../components/ScrollBars.css";
 const RouteWrapper = ({ leftPanel, children }) => {
   return (
     <div className="flex flex-row h-full overflow-auto bg-background-primary">
-      <div className="flex-grow md:overflow-auto md:flex-shrink-0 w-auto mozilla-thin-scrollbar">
+      <div className="flex-grow md:overflow-auto md:flex-shrink-0 w-auto mozilla-thin-scrollbar z-20">
         {leftPanel}
       </div>
       {children}
@@ -69,7 +69,7 @@ export default function App() {
   return (
     <ThemeProvider>
       <ModalManager />
-      <div className="h-screen flex flex-col">
+      <div className="h-screen flex flex-col bg-background-primary">
         <Header />
         <Switch>
           <PublicRoute exact path="/welcome">

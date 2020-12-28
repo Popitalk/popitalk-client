@@ -4,6 +4,7 @@ import InviteForm from "../Forms/InviteForm";
 import ChannelsList from "../InfoCardLists/ChannelsList";
 import LeftPanelDescription from "./LeftPanelDescription";
 import LeftPanelFooter from "./LeftPanelFooter";
+import LeftPanelSubHeader from "./LeftPanelSubHeader";
 
 export default function LeftPanelViewer({
   link,
@@ -18,10 +19,8 @@ export default function LeftPanelViewer({
           <InviteForm link={link} />
         </div>
         <LeftPanelDescription />
-        <div className="py-1 w-full">
-          <h4 className="mx-4 my-2 text-sm font-semibold text-copy-secondary">
-            {strings.recommendedChannels}
-          </h4>
+        <div className="py-1">
+          <LeftPanelSubHeader headerString={strings.recommendedChannels} />
           <ChannelsList
             channels={recommendedChannels}
             selected={selectedChannel}

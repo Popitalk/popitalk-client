@@ -8,9 +8,9 @@ import {
 } from "../../redux/actions";
 import { withRouter } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
-import GifSelection from "./GifSelection";
 import Button from "../Controls/Button";
 import strings from "../../helpers/localization";
+import ChatActionButtons from "./ChatActionButtons";
 
 function ChatActions(props) {
   const channelId = props.match.params.roomId || props.match.params.channelId;
@@ -89,24 +89,14 @@ function ChatActions(props) {
   }, [channelId]);
 
   return (
-    <div className="flex items-center p-2 h-12 mb-1 bg-background-primary space-x-1 md:space-x-2">
+    <div className="flex items-start py-2 px-1 bg-background-secondary rounded-t-lg space-x-1 md:space-x-2 shadow-xl">
       {/* EMOJI BUTTON */}
-      <Button
-        hoverable
-        styleNone
+      <ChatActionButtons
         icon={["far", "smile"]}
-        styleNoneIconClassName={`text-xl ${
-          emojiIsOpen ? "text-hover-highlight" : "text-copy-highlight"
-        }`}
+        isOpen={emojiIsOpen}
         onClick={() => setEmojiIsOpen(!emojiIsOpen)}
-        className={`${
-          emojiIsOpen
-            ? "bg-copy-highlight"
-            : "bg-background-secondary hover:bg-hover-highlight"
-        } w-10 h-10 p-2 text-center rounded-lg`}
-        analyticsString="Emoji Button: ChatActions"
       />
-      {emojiIsOpen ? (
+      {emojiIsOpen && (
         <div className="absolute bottom-0 mb-16">
           <Picker
             perLine={8}
@@ -127,9 +117,9 @@ function ChatActions(props) {
             exclude={["flags"]}
           />
         </div>
-      ) : null}
+      )}
       <textarea
-        className="w-full h-10 py-2 px-3 text-start overflow-hidden rounded-lg resize-none bg-background-secondary focus:outline-none text-copy-primary text-sm transition transform ease-in-out hover:scale-105 duration-100"
+        className="w-full h-full py-2 px-3 text-start overflow-hidden rounded-lg resize-none bg-background-secondary focus:outline-none text-copy-primary text-sm transition transform ease-in-out hover:scale-105 duration-100"
         placeholder={strings.chatInput}
         maxLength="240"
         ref={textareaRef}
@@ -138,9 +128,10 @@ function ChatActions(props) {
         onFocus={() => dispatch(setLastMessageSeen({ channelId }))}
       />
       {/* GIF BUTTON */}
-      <GifSelection
-        updateGifsOpen={props.updateGifsOpen}
-        isGifsOpen={props.isGifsOpen}
+      <ChatActionButtons
+        gif
+        isOpen={props.isGifsOpen}
+        onClick={props.updateGifsOpen}
       />
       {/* SEND BUTTON */}
       <Button
@@ -149,7 +140,7 @@ function ChatActions(props) {
         icon="paper-plane"
         styleNoneIconClassName="text-lg text-copy-highlight"
         onClick={handleSend}
-        className="flex items-center flex-shrink-0 justify-center w-8 h-10"
+        className="flex items-center flex-shrink-0 justify-center w-10 h-10"
         analyticsString="Send Button: Chat Actions"
       />
     </div>

@@ -96,7 +96,7 @@ export default function ChannelForm({
   const [tipPressed, setTipPressed] = useState(true);
 
   const tipsComponent = (
-    <div className="absolute right-0 top-0 items-end flex flex-col w-64 h-full rounded-lg p-4 space-y-2 z-50">
+    <div className="absolute right-0 top-0 items-end flex flex-col w-64 rounded-lg p-4 space-y-2 z-50">
       <Button
         hoverable
         styleNone
