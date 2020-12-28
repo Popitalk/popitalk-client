@@ -46,15 +46,7 @@ function CollapsedPanel({
     }
   }, [isCollapsed, setFollowingExpanded, setDiscoverExpanded, selectedPage]);
   return (
-    <div className="flex flex-col bg-background-primary px-2 items-center w-20 h-full select-none overflow-x-hidden">
-      <Button
-        styleNone
-        hoverable
-        icon="bars"
-        className="flex items-center justify-center py-5 w-full rounded-full text-copy-secondary hover:text-copy-highlight"
-        onClick={handleCollapse}
-        analyticsString="LeftPanel Expand Button: CollapsedPanel"
-      />
+    <div className="hidden sm:flex flex-col bg-background-primary px-2 items-center w-20 h-full select-none overflow-x-hidden">
       <div className="flex-col h-full overflow-y-scroll">
         {/* == CHANNELS == */}
         <div className="bg-background-primary rounded-xl">

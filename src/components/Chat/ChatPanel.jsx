@@ -16,13 +16,14 @@ export default function ChatPanel({
   isRoom,
   isGifsOpen,
   updateGifsOpen,
-  isMember
+  isMember,
+  hideLeftPanel
 }) {
   const { loggedIn } = useSelector(state => state.general);
   const [chatPanelExpanded, setChatPanelExpanded] = useState(false);
 
   return (
-    <div className="h-full">
+    <div className={`${hideLeftPanel === true && "hidden"} h-full`}>
       <Button
         hoverable
         styleNone

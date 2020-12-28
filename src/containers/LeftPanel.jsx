@@ -19,7 +19,7 @@ import {
 import { orderBy } from "lodash";
 import { channelHasNewMessage } from "../util/channelHasNewMessage";
 
-export default function LeftPanelContainer() {
+export default function LeftPanelContainer({ hideLeftPanel }) {
   let match = useRouteMatch("/channels/:channelId");
   let selectedChannel = match?.params.channelId ? match.params.channelId : 0;
 
@@ -184,6 +184,7 @@ export default function LeftPanelContainer() {
           handleProfile={handleOpenProfile}
           updateSelectedPage={updateSelectedPageAndMain}
           isCollapsed={isCollapsed}
+          hideLeftPanel={hideLeftPanel}
           selectedPage="channels"
           handleCollapse={() => dispatch(toggleLeftPanel())}
           handleCreateRoom={() => handleCreateRoom(selectedChannel)}
@@ -207,6 +208,7 @@ export default function LeftPanelContainer() {
           handleProfile={handleOpenProfile}
           updateSelectedPage={updateSelectedPageAndMain}
           isCollapsed={isCollapsed}
+          hideLeftPanel={hideLeftPanel}
           selectedPage="friends"
           handleCollapse={() => dispatch(toggleLeftPanel())}
           handleCreateRoom={() => handleCreateRoom(selectedChannel)}
@@ -232,6 +234,7 @@ export default function LeftPanelContainer() {
           handleProfile={handleOpenProfile}
           updateSelectedPage={updateSelectedPanelPage}
           isCollapsed={isCollapsed}
+          hideLeftPanel={hideLeftPanel}
           selectedPage={selectedPage}
           handleCollapse={() => dispatch(toggleLeftPanel())}
           handleCreateRoom={() => handleCreateRoom(selectedChannel)}

@@ -458,7 +458,11 @@ class Channel extends Component {
 
     return (
       <>
-        <div className="flex flex-col w-full overflow-x-hidden">
+        <div
+          className={`${
+            this.props.hideLeftPanel === true && "hidden"
+          } flex flex-col w-full h-full overflow-x-hidden`}
+        >
           {/* Channel & Room structure */}
           <ChannelHeaderContainer
             channelId={channelId}

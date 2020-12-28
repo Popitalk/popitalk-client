@@ -46,6 +46,7 @@ function ChatPanelContainer(props) {
       updateGifsOpen={updateGifsOpen}
       isGifsOpen={isGifsOpen}
       isMember={isMember}
+      hideLeftPanel={props.hideLeftPanel}
     />
   );
 }
