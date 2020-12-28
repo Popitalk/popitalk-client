@@ -86,7 +86,7 @@ const SiteHeaderViewers = ({ hideLeftPanelButton }) => {
   ];
 
   return (
-    <header className="sm:px-6 // relative flex items-center justify-between h-12 bg-background-primary px-2 z-30 select-none">
+    <header className="sm:px-6 // relative flex items-center justify-between h-12 bg-background-primary z-30 select-none">
       <div className="flex flex-row items-center">
         {hideLeftPanelButton}
         <Button

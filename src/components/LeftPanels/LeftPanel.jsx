@@ -66,10 +66,6 @@ export default function LeftPanel({
     }
   }, [isCollapsed, numberOfNotifications, selectedPage]);
 
-  // useEffect(() => {
-  //   setViewersPanelExpanded(false);
-  // }, [handleSelectChannel, selected]);
-
   if (!loggedIn) {
     return (
       <div className="relative z-30">

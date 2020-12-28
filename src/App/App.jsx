@@ -71,6 +71,9 @@ export default function App() {
       onClick={() => setViewersPanelExpanded(!viewersPanelExpanded)}
     />
   );
+  const hideLeftPanelButtonClicked = () => {
+    setViewersPanelExpanded(false);
+  };
 
   const viewer =
     pathname.includes("channels") ||
@@ -78,7 +81,10 @@ export default function App() {
     pathname === "/";
 
   const leftPanel = (loggedIn || viewer) && (
-    <LeftPanel hideLeftPanel={viewersPanelExpanded} />
+    <LeftPanel
+      hideLeftPanel={viewersPanelExpanded}
+      hideLeftPanelButtonClicked={() => hideLeftPanelButtonClicked()}
+    />
   );
 
   return (
