@@ -4,7 +4,7 @@ import Embeddify from "./Embeddify";
 export default function MessageContent({ message }) {
   return (
     <div
-      className={`sm:w-64 break-words text-sm py-1 ${
+      className={`w-64 sm:w-64 break-words text-sm py-1 ${
         message?.type?.toLowerCase() === "pending" ||
         message?.type?.toLowerCase() === "rejected"
           ? "text-copy-secondary"

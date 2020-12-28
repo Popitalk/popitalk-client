@@ -19,7 +19,10 @@ import {
 import { orderBy } from "lodash";
 import { channelHasNewMessage } from "../util/channelHasNewMessage";
 
-export default function LeftPanelContainer({ hideLeftPanel }) {
+export default function LeftPanelContainer({
+  hideLeftPanel,
+  hideLeftPanelButtonClicked
+}) {
   let match = useRouteMatch("/channels/:channelId");
   let selectedChannel = match?.params.channelId ? match.params.channelId : 0;
 
@@ -156,11 +159,13 @@ export default function LeftPanelContainer({ hideLeftPanel }) {
   const handleSelectChannel = id => {
     if (selectedPage !== "channels") setSelectedPage("channels");
     history.push(`/channels/${id}/video`);
+    hideLeftPanelButtonClicked();
   };
   const handleSelectRoom = id => {
     dispatch(setLastMessageSeen({ channelId: id }));
     if (selectedPage !== "friends") setSelectedPage("friends");
     history.push(`/rooms/${id}/video`);
+    hideLeftPanelButtonClicked();
   };
   const handleOpenProfile = id => dispatch(openProfileModal(id));
   const handleCreateRoom = id => dispatch(openInviteModal(id, true));

@@ -37,7 +37,7 @@ import Spinner from "../Spinner";
 //     messages[channelId] ? messagesFormatter2(messages[channelId]) : []
 // );
 
-export default function ChatMessages({
+export default function ChatMessageList({
   channelId,
   channelMessages,
   isGifsOpen
@@ -164,42 +164,34 @@ export default function ChatMessages({
   return (
     // <div className="ChatMessages--container" ref={scrollRef}>
     // InfiniteScroller has to have h-screen, because h-full recalculates/repaints all messages on every key stroke in ChatActions
-    <>
-      <InfiniteScroller
-        className="overflow-auto h-screen pb-4 mozilla-thin-scrollbar"
-        ref={containerRef}
-        onTopView={onTopView}
-        hasMoreTop={hasMoreTop}
-        onBottomView={onBottomView}
-        hasMoreBottom={hasMoreBottom}
-        initialScroll={initialScroll}
-        reScroll={channelId}
-        loading={apiLoading}
-        loader={Spinner}
-        isGifsOpen={isGifsOpen}
-        channelId={channelId}
-      >
-        {messages.map(message => {
-          return (
-            <ChatMessage
-              key={message.id}
-              message={message}
-              defaultAvatar={defaultAvatar}
-              ownId={ownId}
-              clickedMessage={clickedMessage}
-              updateClickedMessage={updateClickedMessage}
-              channelId={channelId}
-              channel={channel}
-            />
-          );
-        })}
-        {/* {!hasMoreBottom && (
-          <div className="ChatMessages--seen">
-            <AvatarDeck size="small" avatars={seenUsers} />
-          </div>
-        )} */}
-      </InfiniteScroller>
-      {/* {hasMoreBottom && <OldMessagesAlert onClick={handleJumpToPresent} />} */}
-    </>
+    <InfiniteScroller
+      className="overflow-auto h-screen pb-4 mozilla-thin-scrollbar"
+      ref={containerRef}
+      onTopView={onTopView}
+      hasMoreTop={hasMoreTop}
+      onBottomView={onBottomView}
+      hasMoreBottom={hasMoreBottom}
+      initialScroll={initialScroll}
+      reScroll={channelId}
+      loading={apiLoading}
+      loader={Spinner}
+      isGifsOpen={isGifsOpen}
+      channelId={channelId}
+    >
+      {messages.map(message => {
+        return (
+          <ChatMessage
+            key={message.id}
+            message={message}
+            defaultAvatar={defaultAvatar}
+            ownId={ownId}
+            clickedMessage={clickedMessage}
+            updateClickedMessage={updateClickedMessage}
+            channelId={channelId}
+            channel={channel}
+          />
+        );
+      })}
+    </InfiniteScroller>
   );
 }

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 
 import ChatHeader from "./ChatHeader";
-import ChatMessages from "./ChatMessages";
+import ChatMessageList from "./ChatMessageList";
 import ChatActions from "./ChatActions";
 import GifTable from "./GifTable";
 import strings from "../../helpers/localization";
@@ -44,14 +44,14 @@ export default function ChatPanel({
             : "hidden md:flex h-full"
         }
       >
-        <div className="w-full sm:w-84 h-full bg-background-primary flex flex-col">
+        <div className="w-screen sm:w-84 h-full bg-background-primary flex flex-col">
           <ChatHeader
             channelId={channelId}
             openFollowersList={openFollowersList}
             followersCount={followersCount}
             isRoom={isRoom}
           />
-          <ChatMessages
+          <ChatMessageList
             channelId={channelId}
             channelMessages={channelMessages}
             isGifsOpen={isGifsOpen}
