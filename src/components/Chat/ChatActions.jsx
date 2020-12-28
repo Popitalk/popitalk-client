@@ -89,72 +89,70 @@ function ChatActions(props) {
   }, [channelId]);
 
   return (
-    <>
-      <div className="flex items-center p-2 bg-background-primary space-x-1 md:space-x-2">
-        {/* EMOJI BUTTON */}
-        <Button
-          hoverable
-          styleNone
-          icon={["far", "smile"]}
-          styleNoneIconClassName={`text-xl ${
-            emojiIsOpen ? "text-hover-highlight" : "text-copy-highlight"
-          }`}
-          onClick={() => setEmojiIsOpen(!emojiIsOpen)}
-          className={`${
-            emojiIsOpen
-              ? "bg-copy-highlight"
-              : "bg-background-secondary hover:bg-hover-highlight"
-          } w-10 h-10 p-2 text-center rounded-lg`}
-          analyticsString="Emoji Button: ChatActions"
-        />
-        {emojiIsOpen ? (
-          <div className="absolute bottom-0 mb-16">
-            <Picker
-              perLine={8}
-              style={{ position: "absolute", bottom: "0", right: "-19rem" }}
-              emojiTooltip={true}
-              // If both disabled, then no footer is shown
-              showSkinTones={false}
-              showPreview={false}
-              // Bellow options can be used to adjust what is shown in the footer by default.
-              // emoji="eyes"
-              // title="Popitalk"
-              // Uses the native set of emojis, so nothing needs to be downloaded. To make all our
-              // wanted emojis available on any device we should provide our own sheet, or use the one
-              // provided by emoji mart.
-              // But then they have to be downloaded.
-              native={true}
-              onClick={onEmojiClick}
-              exclude={["flags"]}
-            />
-          </div>
-        ) : null}
-        <textarea
-          className="w-full h-10 py-2 px-3 text-start overflow-hidden rounded-lg resize-none bg-background-secondary focus:outline-none text-copy-primary text-sm transition transform ease-in-out hover:scale-105 duration-100"
-          placeholder={strings.chatInput}
-          maxLength="240"
-          ref={textareaRef}
-          onKeyDown={handleChange}
-          // On text area focus, sets message as seen
-          onFocus={() => dispatch(setLastMessageSeen({ channelId }))}
-        />
-        {/* GIF BUTTON */}
-        <GifSelection
-          updateGifsOpen={props.updateGifsOpen}
-          isGifsOpen={props.isGifsOpen}
-        />
-        {/* SEND BUTTON */}
-        <Button
-          hoverable
-          styleNone
-          icon="paper-plane"
-          styleNoneIconClassName="text-lg text-copy-highlight"
-          onClick={handleSend}
-          className="flex items-center flex-shrink-0 justify-center w-8 h-10"
-          analyticsString="Send Button: Chat Actions"
-        />
-      </div>
-    </>
+    <div className="flex items-center p-2 h-12 mb-1 bg-background-primary space-x-1 md:space-x-2">
+      {/* EMOJI BUTTON */}
+      <Button
+        hoverable
+        styleNone
+        icon={["far", "smile"]}
+        styleNoneIconClassName={`text-xl ${
+          emojiIsOpen ? "text-hover-highlight" : "text-copy-highlight"
+        }`}
+        onClick={() => setEmojiIsOpen(!emojiIsOpen)}
+        className={`${
+          emojiIsOpen
+            ? "bg-copy-highlight"
+            : "bg-background-secondary hover:bg-hover-highlight"
+        } w-10 h-10 p-2 text-center rounded-lg`}
+        analyticsString="Emoji Button: ChatActions"
+      />
+      {emojiIsOpen ? (
+        <div className="absolute bottom-0 mb-16">
+          <Picker
+            perLine={8}
+            style={{ position: "absolute", bottom: "0", right: "-19rem" }}
+            emojiTooltip={true}
+            // If both disabled, then no footer is shown
+            showSkinTones={false}
+            showPreview={false}
+            // Bellow options can be used to adjust what is shown in the footer by default.
+            // emoji="eyes"
+            // title="Popitalk"
+            // Uses the native set of emojis, so nothing needs to be downloaded. To make all our
+            // wanted emojis available on any device we should provide our own sheet, or use the one
+            // provided by emoji mart.
+            // But then they have to be downloaded.
+            native={true}
+            onClick={onEmojiClick}
+            exclude={["flags"]}
+          />
+        </div>
+      ) : null}
+      <textarea
+        className="w-full h-10 py-2 px-3 text-start overflow-hidden rounded-lg resize-none bg-background-secondary focus:outline-none text-copy-primary text-sm transition transform ease-in-out hover:scale-105 duration-100"
+        placeholder={strings.chatInput}
+        maxLength="240"
+        ref={textareaRef}
+        onKeyDown={handleChange}
+        // On text area focus, sets message as seen
+        onFocus={() => dispatch(setLastMessageSeen({ channelId }))}
+      />
+      {/* GIF BUTTON */}
+      <GifSelection
+        updateGifsOpen={props.updateGifsOpen}
+        isGifsOpen={props.isGifsOpen}
+      />
+      {/* SEND BUTTON */}
+      <Button
+        hoverable
+        styleNone
+        icon="paper-plane"
+        styleNoneIconClassName="text-lg text-copy-highlight"
+        onClick={handleSend}
+        className="flex items-center flex-shrink-0 justify-center w-8 h-10"
+        analyticsString="Send Button: Chat Actions"
+      />
+    </div>
   );
 }
 

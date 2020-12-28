@@ -57,11 +57,7 @@ export default function App() {
   if (!validatedSession || (loggedIn && !wsConnected))
     return <section className="App--container" />;
 
-  const chatPanel = (
-    <div className="md:flex sm:w-dropdown // hidden">
-      <ChatPanel />
-    </div>
-  );
+  const chatPanel = <ChatPanel />;
 
   const viewer =
     pathname.includes("channels") ||

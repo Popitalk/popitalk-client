@@ -9,6 +9,7 @@ import RoomsList from "../InfoCardLists/RoomsList";
 import PanelHeader from "./PanelHeader";
 import { utilizeFocus } from "../../helpers/functions";
 import strings from "../../helpers/localization";
+import LeftPanelSubHeader from "./LeftPanelSubHeader";
 class FriendsPanel extends Component {
   constructor(props) {
     super(props);
@@ -94,7 +95,7 @@ class FriendsPanel extends Component {
 
   render() {
     return (
-      <div className="flex flex-col w-full sm:w-84 h-full bg-background-primary select-none">
+      <div className="relative flex flex-col w-full sm:w-84 h-full bg-background-primary select-none">
         <PanelHeader
           handleCollapse={this.props.handleCollapse}
           updateSelectedPage={this.props.updateSelectedPage}
@@ -135,6 +136,13 @@ class FriendsPanel extends Component {
               </div>
             </div>
           )}
+          <LeftPanelSubHeader
+            headerString={strings.directRoom}
+            button={true}
+            onClick={() => this.props.handleCreateRoom()}
+            tooltip={strings.newRoomButton}
+            analyticsString="Create Room Button: FriendsPanel"
+          />
           <div className="bg-background-primary pb-8">
             <RoomsList
               rooms={this.state.rooms}
@@ -144,15 +152,6 @@ class FriendsPanel extends Component {
               isLoading={false}
             />
           </div>
-          <Button
-            actionButton
-            size="lg"
-            icon="edit"
-            className="fixed bottom-0 left-0 ml-68 mb-4 hover:opacity-100 hover:scale-105 shadow-channel"
-            onClick={() => this.props.handleCreateRoom()}
-            analyticsString="Create Room Button: FriendsPanel"
-            tooltip={strings.newRoomButton}
-          />
         </div>
         <ReactTooltip
           effect="solid"

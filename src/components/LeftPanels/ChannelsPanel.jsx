@@ -2,11 +2,11 @@ import React from "react";
 import ReactTooltip from "react-tooltip";
 
 import ChannelsList from "../InfoCardLists/ChannelsList";
-import Button from "../Controls/Button";
 import MiniFriendsList from "../MiniFriendsList";
 import PanelHeader from "./PanelHeader";
 import strings from "../../helpers/localization";
 import LeftPanelFooter from "./LeftPanelFooter";
+import LeftPanelSubHeader from "./LeftPanelSubHeader";
 
 export default function ChannelsPanel({
   yourChannels,
@@ -23,12 +23,20 @@ export default function ChannelsPanel({
   setFriendsSearchFocus,
   numberOfNotifications
 }) {
-  const subHeaderClassName =
-    "mx-4 my-2 text-sm font-semibold text-copy-secondary";
-
-  const leftPanelChannelList = (listType, headerString, emptyMessage) => (
+  const leftPanelChannelList = (
+    listType,
+    headerString,
+    emptyMessage,
+    button
+  ) => (
     <div className="py-1 w-full">
-      <h4 className={subHeaderClassName}>{headerString}</h4>
+      <LeftPanelSubHeader
+        headerString={headerString}
+        button={button}
+        onClick={handleCreateChannel}
+        tooltip={strings.createChannelButton}
+        analyticsString="Create Channel Button: ChannelsPanel"
+      />
       <ChannelsList
         channels={listType}
         selected={selectedChannel}
@@ -59,19 +67,11 @@ export default function ChannelsPanel({
           isLoading={false}
         />
         <div className="relative flex flex-col items-start bg-background-primary">
-          <Button
-            actionButton
-            size="sm"
-            icon="plus"
-            onClick={handleCreateChannel}
-            analyticsString="Create Channel Button: ChannelsPanel"
-            tooltip={strings.createChannelButton}
-            className="absolute top-0 right-0 my-1 mx-2 "
-          />
           {leftPanelChannelList(
             yourChannels,
             strings.yourChannels,
-            strings.yourChannelsPlaceholder
+            strings.yourChannelsPlaceholder,
+            true
           )}
           {followingChannels.length !== 0 &&
             leftPanelChannelList(
