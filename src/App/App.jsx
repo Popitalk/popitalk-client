@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Switch, Route, useLocation } from "react-router";
 import { Redirect } from "react-router-dom";
@@ -23,6 +23,7 @@ import "../styles/app.css";
 import "./App.css";
 import "../helpers/initIcons";
 import "../components/ScrollBars.css";
+import Button from "../components/Controls/Button";
 
 const RouteWrapper = ({ leftPanel, children }) => {
   return (
@@ -41,6 +42,7 @@ export default function App() {
 
   const dispatch = useDispatch();
   const { pathname } = useLocation();
+  const [viewersPanelExpanded, setViewersPanelExpanded] = useState(false);
 
   useEffect(() => {
     dispatch(validateSession());
@@ -57,47 +59,72 @@ export default function App() {
   if (!validatedSession || (loggedIn && !wsConnected))
     return <section className="App--container" />;
 
-  const chatPanel = <ChatPanel />;
+  const chatPanel = <ChatPanel hideLeftPanel={viewersPanelExpanded} />;
+  const hideLeftPanelButton = (
+    <Button
+      hoverable
+      styleNone
+      icon={viewersPanelExpanded === true ? "times" : "bars"}
+      styleNoneIconClassName="text-lg"
+      className="ml-4 z-30 sm:hidden flex items-center justify-center text-copy-secondary w-12 h-12 hover:text-copy-highlight mr-4"
+      analyticsString="Collapse Button: PanelHeader"
+      onClick={() => setViewersPanelExpanded(!viewersPanelExpanded)}
+    />
+  );
 
   const viewer =
     pathname.includes("channels") ||
     pathname.includes("friends") ||
     pathname === "/";
 
-  const leftPanel = (loggedIn || viewer) && <LeftPanel />;
+  const leftPanel = (loggedIn || viewer) && (
+    <LeftPanel hideLeftPanel={viewersPanelExpanded} />
+  );
 
   return (
     <ThemeProvider>
       <ModalManager />
       <div className="h-screen flex flex-col bg-background-primary">
-        <Header />
+        <Header hideLeftPanelButton={hideLeftPanelButton} />
         <Switch>
           <PublicRoute exact path="/welcome">
             <WelcomePage />
           </PublicRoute>
           <GeneralRoute exact path="/">
             <RouteWrapper leftPanel={leftPanel}>
-              <RecommendedView selectedPage="channels" />
+              <RecommendedView
+                selectedPage="channels"
+                hideLeftPanel={viewersPanelExpanded}
+              />
             </RouteWrapper>
           </GeneralRoute>
           <GeneralRoute exact path="/channels/:channelId/:tab">
             <RouteWrapper leftPanel={leftPanel}>
-              <Channel chatPanel={chatPanel} />
+              <Channel
+                chatPanel={chatPanel}
+                hideLeftPanel={viewersPanelExpanded}
+              />
             </RouteWrapper>
           </GeneralRoute>
           <GeneralRoute exact path="/friends">
             <RouteWrapper leftPanel={leftPanel}>
-              <RecommendedView selectedPage="channels" />
+              <RecommendedView
+                selectedPage="channels"
+                hideLeftPanel={viewersPanelExpanded}
+              />
             </RouteWrapper>
           </GeneralRoute>
           <PrivateRoute exact path="/create">
             <RouteWrapper leftPanel={leftPanel}>
-              <CreateChannelContainer />
+              <CreateChannelContainer hideLeftPanel={viewersPanelExpanded} />
             </RouteWrapper>
           </PrivateRoute>
           <PrivateRoute exact path="/rooms/:roomId/video">
             <RouteWrapper leftPanel={leftPanel}>
-              <Channel chatPanel={chatPanel} />
+              <Channel
+                chatPanel={chatPanel}
+                hideLeftPanel={viewersPanelExpanded}
+              />
             </RouteWrapper>
           </PrivateRoute>
           <PrivateRoute exact path="/users/:userId">

@@ -19,7 +19,7 @@ export default function LeftPanelViewer({
           <InviteForm link={link} />
         </div>
         <LeftPanelDescription />
-        <div className="py-1">
+        <div className="py-1 w-full">
           <LeftPanelSubHeader headerString={strings.recommendedChannels} />
           <ChannelsList
             channels={recommendedChannels}

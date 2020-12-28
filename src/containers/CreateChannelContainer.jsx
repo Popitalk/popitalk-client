@@ -5,12 +5,12 @@ import ChannelForm from "../components/Forms/ChannelForm";
 import Helmet from "react-helmet";
 import strings from "../helpers/localization";
 
-export default function CreateChannelContainer() {
+export default function CreateChannelContainer({ hideLeftPanel }) {
   const dispatch = useDispatch();
   const addChannelApi = useSelector(state => state.api.channel);
 
   return (
-    <>
+    <div className={hideLeftPanel === true ? "hidden" : "flex w-full h-full"}>
       <ChannelForm
         initial={{
           name: "",
@@ -31,6 +31,6 @@ export default function CreateChannelContainer() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="keywords" content={strings.mainKeywords} />
       </Helmet>
-    </>
+    </div>
   );
 }

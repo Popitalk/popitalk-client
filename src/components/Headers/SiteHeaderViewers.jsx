@@ -18,7 +18,7 @@ import {
 const SETTINGS = 1;
 const INFORMATION = 4;
 
-const SiteHeaderViewers = () => {
+const SiteHeaderViewers = ({ hideLeftPanelButton }) => {
   const [dropdownList, setDropdownList] = useState([]);
 
   const trendingChannels = useSelector(state => state.trendingChannels);
@@ -87,27 +87,36 @@ const SiteHeaderViewers = () => {
 
   return (
     <header className="sm:px-6 // relative flex items-center justify-between h-12 bg-background-primary px-2 z-30 select-none">
-      <Button
-        imageButton
-        imageButtonSrc={Logo}
-        imageButtonClassName="w-10 h-10"
-        className="md:ml-0 sm:ml-12 ml-16"
-        analyticsString="Main Logo Button: SiteHeaderMain"
-        hoverable
-        onClick={() => {
-          updateChannelsList(
-            dispatch,
-            trendingChannels.lastRequestAt,
-            getTrendingChannels,
-            trendingChannels,
-            defaultAvatar,
-            defaultIcon
-          );
-          dispatch(setIsSearchForChannels(false));
-          dispatch(setSelectedTab(strings.trending));
-          history.push("/");
-        }}
-      />
+      <div className="flex flex-row items-center">
+        {hideLeftPanelButton}
+        <Button
+          hoverable
+          styleNone
+          icon="bars"
+          className="hidden sm:block rounded-full text-copy-secondary w-10 h-10 hover:text-copy-highlight mr-4"
+          analyticsString="Collapse Button: PanelHeader"
+        />
+        <Button
+          imageButton
+          imageButtonSrc={Logo}
+          imageButtonClassName="w-10 h-10"
+          analyticsString="Main Logo Button: SiteHeaderMain"
+          hoverable
+          onClick={() => {
+            updateChannelsList(
+              dispatch,
+              trendingChannels.lastRequestAt,
+              getTrendingChannels,
+              trendingChannels,
+              defaultAvatar,
+              defaultIcon
+            );
+            dispatch(setIsSearchForChannels(false));
+            dispatch(setSelectedTab(strings.trending));
+            history.push("/");
+          }}
+        />
+      </div>
       <div className="sm:space-x-6 // flex items-center space-x-2">
         <ul className="sm:space-x-6 // flex items-center space-x-2">
           <li>

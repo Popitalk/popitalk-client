@@ -14,7 +14,8 @@ import { updateChannelsList } from "../../helpers/functions";
 import {
   setSelectedTab,
   setIsSearchForChannels,
-  getFollowingChannels
+  getFollowingChannels,
+  toggleLeftPanel
 } from "../../redux/actions";
 
 const SETTINGS = 1;
@@ -34,7 +35,8 @@ const SiteHeaderMain = ({
   openChangePasswordHandler,
   clearNotificationsHandler,
   deleteAccountHandler,
-  logoutHandler
+  logoutHandler,
+  hideLeftPanelButton
 }) => {
   const [dropdownList, setDropdownList] = useState([]);
 
@@ -153,28 +155,39 @@ const SiteHeaderMain = ({
     dropdownList.length > 0 ? dropdownList[dropdownList.length - 1] : 0;
 
   return (
-    <header className="sm:px-6 // relative flex items-center justify-between h-12 bg-background-primary px-2 z-30 select-none md:ml-0 ml-16">
-      <Button
-        imageButton
-        imageButtonSrc={Logo}
-        imageButtonClassName="w-10 h-10"
-        // className="md:ml-0 sm:ml-12 ml-16"
-        analyticsString="Main Logo Button: SiteHeaderMain"
-        hoverable
-        onClick={() => {
-          updateChannelsList(
-            dispatch,
-            followingChannels.lastRequestAt,
-            getFollowingChannels,
-            followingChannels,
-            defaultAvatar,
-            defaultIcon
-          );
-          dispatch(setSelectedTab(strings.following));
-          dispatch(setIsSearchForChannels(false));
-          history.push("/");
-        }}
-      />
+    <header className="sm:px-6 // relative flex items-center justify-between h-12 bg-background-primary select-none">
+      <div className="flex flex-row items-center">
+        {hideLeftPanelButton}
+        <Button
+          hoverable
+          styleNone
+          icon="bars"
+          styleNoneIconClassName="text-lg"
+          className="hidden sm:block rounded-full text-copy-secondary w-10 h-10 hover:text-copy-highlight mr-4"
+          onClick={() => dispatch(toggleLeftPanel())}
+          analyticsString="Collapse Button: PanelHeader"
+        />
+        <Button
+          imageButton
+          imageButtonSrc={Logo}
+          imageButtonClassName="w-10 h-10"
+          analyticsString="Main Logo Button: SiteHeaderMain"
+          hoverable
+          onClick={() => {
+            updateChannelsList(
+              dispatch,
+              followingChannels.lastRequestAt,
+              getFollowingChannels,
+              followingChannels,
+              defaultAvatar,
+              defaultIcon
+            );
+            dispatch(setSelectedTab(strings.following));
+            dispatch(setIsSearchForChannels(false));
+            history.push("/");
+          }}
+        />
+      </div>
       <div className="sm:space-x-6 // flex items-center space-x-2">
         <ul className="sm:space-x-6 // flex items-center space-x-2">
           <li>

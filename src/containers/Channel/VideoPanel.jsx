@@ -39,7 +39,7 @@ export default function VideoPanel({
   queue,
   isMember
 }) {
-  const [check, setCheck] = useState(false);
+  const [expandQueue, setExpandQueue] = useState(false);
 
   const dispatch = useDispatch();
 
@@ -69,7 +69,7 @@ export default function VideoPanel({
 
   const nothingPlayingHandler = videoData => {
     if (displayControls) {
-      setCheck(true);
+      setExpandQueue(true);
     } else {
       handleNothingPlaying();
     }
@@ -105,22 +105,22 @@ export default function VideoPanel({
           {strings.upNext}
         </p>
         {displayControls && (
-          <>
-            <Button
-              styleNone
-              styleNoneContent={
-                check === true ? strings.saveAndReturn : strings.manageUpNext
-              }
-              styleNoneContentClassName="text-copy-highlight font-bold text-sm"
-              onClick={e => setCheck(checked => !checked)}
-              className="py-2 px-3 bg-background-primary hover:bg-hover-highlight rounded-md shadow-sm"
-            />
-          </>
+          <Button
+            styleNone
+            styleNoneContent={
+              expandQueue === true
+                ? strings.saveAndReturn
+                : strings.manageUpNext
+            }
+            styleNoneContentClassName="text-copy-highlight font-bold text-sm"
+            onClick={e => setExpandQueue(checked => !checked)}
+            className="py-2 px-3 bg-background-primary hover:bg-hover-highlight rounded-md shadow-sm"
+          />
         )}
       </div>
       {displayControls ? (
         <>
-          {check === true ? (
+          {expandQueue === true ? (
             <ChannelQueue
               ref={searchRef}
               name={name}
@@ -141,7 +141,7 @@ export default function VideoPanel({
               handlerChange={handleSwapVideos}
               handleSkip={handleSkip}
               handleDeleteVideo={handleDeleteVideo}
-              handleFindMore={e => setCheck(checked => !checked)}
+              handleFindMore={e => setExpandQueue(checked => !checked)}
             />
           )}
         </>

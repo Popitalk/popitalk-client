@@ -10,7 +10,6 @@ import ChannelsPanel from "./ChannelsPanel";
 import notificationSound from "../../assets/sounds/pop-sound.mp3";
 import strings from "../../helpers/localization";
 import LeftPanelViewer from "./LeftPanelViewer";
-import Button from "../Controls/Button";
 
 export default function LeftPanel({
   yourChannels,
@@ -29,6 +28,7 @@ export default function LeftPanel({
   handleCreateChannel,
   handleProfile,
   isCollapsed,
+  hideLeftPanel,
   updateSelectedPage,
   handleCreateRoom,
   friendsSearchFocus,
@@ -42,7 +42,6 @@ export default function LeftPanel({
   const [play] = useSound(notificationSound);
   const [isRunning, setIsRunning] = useState(true);
   const [checked, setChecked] = useState(false);
-  const [viewersPanelExpanded, setViewersPanelExpanded] = useState(false);
 
   useInterval(
     // Sound notifications are triggered.
@@ -67,27 +66,16 @@ export default function LeftPanel({
     }
   }, [isCollapsed, numberOfNotifications, selectedPage]);
 
-  useEffect(() => {
-    setViewersPanelExpanded(false);
-  }, [handleSelectChannel, selected]);
+  // useEffect(() => {
+  //   setViewersPanelExpanded(false);
+  // }, [handleSelectChannel, selected]);
 
   if (!loggedIn) {
     return (
-      <div className="z-30">
-        <Button
-          hoverable
-          styleNone
-          icon={viewersPanelExpanded === true ? "times" : "bars"}
-          styleNoneIconClassName="text-xl"
-          className="absolute top-0 left-0 ml-4 z-30 md:hidden flex items-center justify-center text-copy-secondary w-12 h-12 hover:text-copy-highlight"
-          analyticsString="Collapse Button: PanelHeader"
-          onClick={() => setViewersPanelExpanded(!viewersPanelExpanded)}
-        />
+      <div className="relative z-30">
         <div
           className={
-            viewersPanelExpanded === true
-              ? "w-screen sm:w-full"
-              : "hidden md:flex"
+            hideLeftPanel === true ? "w-full sm:w-full" : "hidden sm:flex"
           }
         >
           <LeftPanelViewer
@@ -120,20 +108,9 @@ export default function LeftPanel({
   } else {
     return (
       <Fragment>
-        <Button
-          hoverable
-          styleNone
-          icon={viewersPanelExpanded === true ? "times" : "bars"}
-          styleNoneIconClassName="text-xl"
-          className="absolute top-0 left-0 ml-4 z-30 md:hidden flex items-center justify-center text-copy-secondary w-12 h-12 hover:text-copy-highlight"
-          analyticsString="Collapse Button: PanelHeader"
-          onClick={() => setViewersPanelExpanded(!viewersPanelExpanded)}
-        />
         <div
           className={
-            viewersPanelExpanded === true
-              ? "w-screen sm:w-full"
-              : "hidden md:flex"
+            hideLeftPanel === true ? "w-full sm:w-full" : "hidden sm:flex"
           }
         >
           {selectedPage === "channels" ? (

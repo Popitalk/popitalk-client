@@ -251,12 +251,14 @@ export default function ChannelForm({
               </div> */}
             </div>
             {error && <p className="text-copy-error text-sm pt-4">{error}</p>}
-            <ChannelFormSubmit
-              type={type}
-              disabled={loading || !isValid || !dirty}
-              loading={loading}
-              handleReset={() => resetForm()}
-            />
+            <div className="mt-24">
+              <ChannelFormSubmit
+                type={type}
+                disabled={loading || !isValid || !dirty}
+                loading={loading}
+                handleReset={() => resetForm()}
+              />
+            </div>
           </form>
         )}
       </Formik>

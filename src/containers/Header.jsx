@@ -16,7 +16,7 @@ import {
   SiteHeaderWelcome
 } from "../components/Headers";
 
-const HeaderContainer = () => {
+const HeaderContainer = ({ hideLeftPanelButton }) => {
   const history = useHistory();
   const { pathname } = useLocation();
   const dispatch = useDispatch();
@@ -58,6 +58,7 @@ const HeaderContainer = () => {
           dispatch(logout());
           history.push("/");
         }}
+        hideLeftPanelButton={hideLeftPanelButton}
       />
     );
 
@@ -66,7 +67,8 @@ const HeaderContainer = () => {
     pathname.includes("friends") ||
     pathname === "/";
 
-  if (viewer) return <SiteHeaderViewers />;
+  if (viewer)
+    return <SiteHeaderViewers hideLeftPanelButton={hideLeftPanelButton} />;
 
   const handleLogin = (username, password) => {
     dispatch(

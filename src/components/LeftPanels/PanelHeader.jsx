@@ -33,18 +33,8 @@ export default function PanelHeader({
     ));
   }
   return (
-    <div className="flex bg-background-secondary sm:bg-background-primary items-center w-full select-none space-x-4 px-2">
-      <Button
-        hoverable
-        styleNone
-        icon="bars"
-        className="hidden sm:block p-4 ml-2 rounded-full text-copy-secondary hover:text-copy-highlight"
-        onClick={handleCollapse}
-        analyticsString="Collapse Button: PanelHeader"
-      />
-      <div className="py-2 sm:py-0 flex w-full space-x-2">
-        <NavButton items={navButtonArray} />
-      </div>
+    <div className="flex bg-background-secondary sm:bg-background-primary items-center w-full select-none space-x-4 py-2 px-4">
+      <NavButton items={navButtonArray} />
     </div>
   );
 }
