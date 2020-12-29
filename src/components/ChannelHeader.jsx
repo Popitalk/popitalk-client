@@ -21,11 +21,11 @@ export default function ChannelHeader({
   const { loggedIn } = useSelector(state => state.general);
 
   let navButtons = [
-    { name: strings.video, endpoint: "video" },
-    { name: strings.posts, endpoint: "channel" }
+    { name: strings.video, endpoint: "" },
+    { name: strings.posts, endpoint: "/channel" }
   ];
   if (isAdmin) {
-    navButtons.push({ name: strings.settings, endpoint: "settings" });
+    navButtons.push({ name: strings.settings, endpoint: "/settings" });
   }
 
   if (isLoading) {
@@ -56,16 +56,14 @@ export default function ChannelHeader({
           {navButtons.map((button, idx) => {
             let className =
               "mx-1 font-semibold no-underline focus:outline-none p-2 hover:text-copy-highlight";
-            if (
-              location.pathname.startsWith(`/channels/${id}/${button.endpoint}`)
-            ) {
+            if (location.pathname === `/channels/${id}${button.endpoint}`) {
               className = `${className} rainbow-text`;
             } else {
               className = `${className} text-copy-secondary`;
             }
             return (
               <Link
-                to={`/channels/${id}/${button.endpoint}`}
+                to={`/channels/${id}${button.endpoint}`}
                 className={className}
                 key={idx}
               >

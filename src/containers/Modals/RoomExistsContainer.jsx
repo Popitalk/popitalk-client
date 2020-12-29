@@ -10,7 +10,7 @@ export default function RoomExistsContainer({ handleModalClose }) {
 
   const dispatch = useDispatch();
   const openRoomHandler = id => {
-    history.push(`/rooms/${id}/video`);
+    history.push(`/rooms/${id}`);
     handleModalClose();
   };
   const createNewHandler = () => {

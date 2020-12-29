@@ -89,13 +89,13 @@ const SiteHeaderViewers = ({ hideLeftPanelButton }) => {
     <header className="sm:px-6 // relative flex items-center justify-between h-12 bg-background-primary z-30 select-none">
       <div className="flex flex-row items-center">
         {hideLeftPanelButton}
-        <Button
+        {/* <Button
           hoverable
           styleNone
           icon="bars"
           className="hidden sm:block rounded-full text-copy-secondary w-10 h-10 hover:text-copy-highlight mr-4"
           analyticsString="Collapse Button: PanelHeader"
-        />
+        /> */}
         <Button
           imageButton
           imageButtonSrc={Logo}
