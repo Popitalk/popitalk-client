@@ -158,13 +158,13 @@ export default function LeftPanelContainer({
 
   const handleSelectChannel = id => {
     if (selectedPage !== "channels") setSelectedPage("channels");
-    history.push(`/channels/${id}/video`);
+    history.push(`/channels/${id}`);
     hideLeftPanelButtonClicked();
   };
   const handleSelectRoom = id => {
     dispatch(setLastMessageSeen({ channelId: id }));
     if (selectedPage !== "friends") setSelectedPage("friends");
-    history.push(`/rooms/${id}/video`);
+    history.push(`/rooms/${id}`);
     hideLeftPanelButtonClicked();
   };
   const handleOpenProfile = id => dispatch(openProfileModal(id));

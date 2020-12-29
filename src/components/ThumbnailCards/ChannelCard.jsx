@@ -17,7 +17,7 @@ export default function ChannelCard({
   isLoading
 }) {
   const handleSelect = () => {
-    history.push(`/channels/${id}/video`);
+    history.push(`/channels/${id}`);
   };
   let videoThumbnail = "";
   let videoTitle = strings.nothingPlaying;

@@ -27,7 +27,7 @@ export default function ChannelCard({
     : [];
   const avatars = viewerInfoObject.map(viewer => viewer.avatar);
   const handleSelect = () => {
-    history.push(`/channels/${id}/video`);
+    history.push(`/channels/${id}`);
   };
   let videoThumbnail = "";
   let videoTitle = strings.nothingPlaying;

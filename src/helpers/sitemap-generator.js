@@ -27,7 +27,7 @@ async function generateSitemap() {
     const channelId = Object.keys(channels);
 
     const paramsConfig = {
-      "/channels/:channelId/video": [{ channelId }]
+      "/channels/:channelId": [{ channelId }]
     };
 
     return new Sitemap(router)

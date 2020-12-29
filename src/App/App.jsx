@@ -104,7 +104,15 @@ export default function App() {
               />
             </RouteWrapper>
           </GeneralRoute>
-          <GeneralRoute exact path="/channels/:channelId/:tab">
+          <GeneralRoute exact path={`/channels/:channelId`}>
+            <RouteWrapper leftPanel={leftPanel}>
+              <Channel
+                chatPanel={chatPanel}
+                hideLeftPanel={viewersPanelExpanded}
+              />
+            </RouteWrapper>
+          </GeneralRoute>
+          <GeneralRoute exact path={`/channels/:channelId/:tab`}>
             <RouteWrapper leftPanel={leftPanel}>
               <Channel
                 chatPanel={chatPanel}
@@ -125,7 +133,7 @@ export default function App() {
               <CreateChannelContainer hideLeftPanel={viewersPanelExpanded} />
             </RouteWrapper>
           </PrivateRoute>
-          <PrivateRoute exact path="/rooms/:roomId/video">
+          <PrivateRoute exact path="/rooms/:roomId">
             <RouteWrapper leftPanel={leftPanel}>
               <Channel
                 chatPanel={chatPanel}
