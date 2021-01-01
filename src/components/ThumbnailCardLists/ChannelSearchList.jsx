@@ -14,16 +14,16 @@ function ChannelSearchList({ channelList }) {
     return channelSearchCards;
   }
   return (
-    <div className="my-8">
-      <div>
-        {Object.keys(channelList).length > 0 ? (
-          <div>{mapChannels(channelList)}</div>
-        ) : (
-          <div className="flex items-center justify-center text-copy-secondary text-sm w-full h-32">
-            {strings.nothingToShow}
-          </div>
-        )}
-      </div>
+    <div>
+      {Object.keys(channelList).length > 0 ? (
+        <div className="grid grid-cols-1 w-full md:gap-y-4 gap-y-12 py-4 mb-12">
+          {mapChannels(channelList)}
+        </div>
+      ) : (
+        <div className="flex items-center justify-center text-copy-secondary text-sm w-full h-32">
+          {strings.nothingToShow}
+        </div>
+      )}
     </div>
   );
 }

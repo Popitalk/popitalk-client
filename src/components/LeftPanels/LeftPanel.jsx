@@ -106,7 +106,7 @@ export default function LeftPanel({
       <Fragment>
         <div
           className={
-            hideLeftPanel === true ? "w-full sm:w-full" : "hidden sm:flex"
+            hideLeftPanel === true ? "w-screen sm:w-full" : "hidden sm:flex"
           }
         >
           {selectedPage === "channels" ? (
