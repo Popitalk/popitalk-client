@@ -56,7 +56,7 @@ export default function ChannelsPanel({
         selectedPage={selectedPage}
         numberOfNotifications={numberOfNotifications}
       />
-      <div className="flex-col h-full overflow-y-scroll my-2">
+      <div className="flex-col h-full overflow-y-scroll">
         <MiniFriendsList
           friends={friends}
           handleSelectRoom={handleSelectRoom}

@@ -102,7 +102,7 @@ class FriendsPanel extends Component {
           selectedPage={this.props.selectedPage}
           numberOfNotifications={this.props.numberOfNotifications}
         />
-        <div className="flex-col h-full overflow-y-scroll my-2">
+        <div className="flex-col h-full overflow-y-scroll">
           <Input
             variant="user"
             size="sm"
