@@ -80,6 +80,7 @@ export default function LeftPanel({
             handleSelectChannel={handleSelectChannel}
             selectedPage={selectedPage}
             updateSelectedPage={updateSelectedPage}
+            hideLeftPanel={hideLeftPanel}
           />
         </div>
       </div>

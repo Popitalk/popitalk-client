@@ -4,7 +4,8 @@ import { Switch, Route, useLocation } from "react-router";
 import { Redirect } from "react-router-dom";
 import Helmet from "react-helmet";
 
-import { ThemeProvider } from "./ThemeContext";
+import { ThemeProvider } from "../helpers/themeContext";
+import { RouteWrapper } from "../helpers/routeWrapper";
 import WelcomePage from "../containers/WelcomePage";
 import Header from "../containers/Header";
 import LeftPanel from "../containers/LeftPanel";
@@ -24,17 +25,6 @@ import "./App.css";
 import "../helpers/initIcons";
 import "../components/ScrollBars.css";
 import Button from "../components/Controls/Button";
-
-const RouteWrapper = ({ leftPanel, children }) => {
-  return (
-    <div className="flex w-screen flex-row h-full overflow-y-auto bg-background-primary">
-      <div className="flex sm:w-auto overflow-y-auto flex-shrink-0 mozilla-thin-scrollbar z-20">
-        {leftPanel}
-      </div>
-      {children}
-    </div>
-  );
-};
 
 export default function App() {
   const validatedSession = useSelector(state => state.general.validatedSession);
@@ -59,6 +49,11 @@ export default function App() {
   if (!validatedSession || (loggedIn && !wsConnected))
     return <section className="App--container" />;
 
+  const viewer =
+    pathname.includes("channels") ||
+    pathname.includes("friends") ||
+    pathname === "/";
+
   const chatPanel = <ChatPanel hideLeftPanel={viewersPanelExpanded} />;
   const hideLeftPanelButton = (
     <Button
@@ -74,12 +69,6 @@ export default function App() {
   const hideLeftPanelButtonClicked = () => {
     setViewersPanelExpanded(false);
   };
-
-  const viewer =
-    pathname.includes("channels") ||
-    pathname.includes("friends") ||
-    pathname === "/";
-
   const leftPanel = (loggedIn || viewer) && (
     <LeftPanel
       hideLeftPanel={viewersPanelExpanded}

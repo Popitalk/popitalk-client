@@ -1,6 +1,6 @@
 import React from "react";
 import classnames from "classnames";
-import { Toggle } from "../../App/ThemeContext";
+import { Toggle } from "../../helpers/themeContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default function MenuButton({
