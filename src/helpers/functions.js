@@ -110,7 +110,9 @@ export function getInitialDatePickerValues(date) {
   const datePickerValues = getDatePickerValues();
 
   const day = datePickerValues.days.find(d => d.value === date.getDate());
-  const month = datePickerValues.months.find(m => m.value === date.getMonth());
+  const month = datePickerValues.months.find(
+    m => m.value === date.getMonth() + 1
+  );
   const year = datePickerValues.years.find(y => y.label === date.getFullYear());
 
   return {

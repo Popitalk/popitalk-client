@@ -12,7 +12,7 @@ function EditBirthdayForm({ loading, formik }) {
     formik.handleBlur(e);
 
     formik.values.dateOfBirth.setDate(formik.values.day);
-    formik.values.dateOfBirth.setMonth(formik.values.month);
+    formik.values.dateOfBirth.setMonth(formik.values.month - 1);
     formik.values.dateOfBirth.setFullYear(
       datePicker.years[formik.values.year - 1].label
     );
