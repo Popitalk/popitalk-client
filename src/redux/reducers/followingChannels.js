@@ -13,7 +13,7 @@ const R_addFollowingChannels = (state, { payload }) => {
   const channelsCount = Object.keys(payload.channels).length;
 
   state.page += 1;
-  state.isNextPage = channelsCount === 30;
+  state.isNextPage = channelsCount === 24;
   state.lastRequestAt = new Date().toString();
 
   if (payload.page === 1) {
