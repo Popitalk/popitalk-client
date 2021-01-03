@@ -164,7 +164,7 @@ function RecommendedChannels({ hideLeftPanel }) {
   useEffect(() => {
     try {
       window._mNHandle.queue.push(function () {
-        window._mNDetails.loadTag("9608818237", "970x90", "9608818237");
+        window._mNDetails.loadTag("960881857", "970x90", "960881857");
       });
     } catch (error) {}
   }, []);
@@ -184,7 +184,7 @@ function RecommendedChannels({ hideLeftPanel }) {
           onChange={e => setSearch(e.target.value)}
           onClick={handleSearch}
         />
-        <div id="9608818237" />
+        <div id="960881857" />
         {/* OPTION TABS */}
         <h2 className="flex justify-center h-auto">
           {tabs.map((img, idx) => {
