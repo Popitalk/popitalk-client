@@ -104,9 +104,17 @@ export default function VideoSection({
                 className="text-lg text-copy-primary font-semibold truncate-2-lines overflow-hidden"
                 dangerouslySetInnerHTML={{ __html: title }}
               />
-              <p className="text-sm text-copy-secondary py-2">
-                {sourceChannelName} {url}
-              </p>
+              <div className="flex flex-row items-center space-x-2 text-xs text-copy-secondary py-2">
+                <a
+                  href="https://policies.google.com/privacy"
+                  className="no-underline text-copy-link"
+                >
+                  <p className="text-xs">Google Privacy Policy</p>
+                </a>
+                <p>
+                  {sourceChannelName} {url}
+                </p>
+              </div>
             </div>
           </div>
         ) : (

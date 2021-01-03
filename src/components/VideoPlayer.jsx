@@ -304,7 +304,7 @@ class VideoPlayer extends Component {
             caption="false"
           />
         </div>
-        <div className="flex flex-col bg-background-primary justify-end w-full h-12 transition-colors rounded-b-lg">
+        <div className="flex flex-col bg-background-primary justify-end w-full h-12 transition-colors rounded-b-md">
           <div // Set the mouse hovering state
             onMouseEnter={() => this.setState({ isHovering: true })}
             onMouseLeave={() => this.setState({ isHovering: false })}
