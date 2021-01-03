@@ -161,6 +161,13 @@ function RecommendedChannels({ hideLeftPanel }) {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [followingChannels]);
+  useEffect(() => {
+    try {
+      window._mNHandle.queue.push(function () {
+        window._mNDetails.loadTag("9608818237", "970x90", "9608818237");
+      });
+    } catch (error) {}
+  }, []);
 
   return (
     <div
@@ -177,6 +184,7 @@ function RecommendedChannels({ hideLeftPanel }) {
           onChange={e => setSearch(e.target.value)}
           onClick={handleSearch}
         />
+        <div id="9608818237" />
         {/* OPTION TABS */}
         <h2 className="flex justify-center h-auto">
           {tabs.map((img, idx) => {
