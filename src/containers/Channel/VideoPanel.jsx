@@ -108,7 +108,7 @@ export default function VideoPanel({
           <Button
             styleNone
             styleNoneContent={
-              expandQueue === true
+              expandQueue === false
                 ? strings.saveAndReturn
                 : strings.manageUpNext
             }
@@ -120,7 +120,7 @@ export default function VideoPanel({
       </div>
       {displayControls ? (
         <>
-          {expandQueue === true ? (
+          {expandQueue === false ? (
             <ChannelQueue
               ref={searchRef}
               name={name}

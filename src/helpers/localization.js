@@ -202,7 +202,7 @@ let strings = new LocalizedStrings({
     unmute: "Unmute",
     fullScreen: "Full screen",
     playing: "Playing",
-    saveAndReturn: "Save and Return",
+    saveAndReturn: "Save",
     // SortableList & ChannelQueue & VideoCardVerticalPlaylist
     findMoreVideos: "Search and Add Videos",
     manageUpNext: "Add Videos & Manage Playlist",
@@ -489,7 +489,7 @@ let strings = new LocalizedStrings({
     // SortableList
     findMoreVideos: "더 많은 영상을 검색하세요",
     manageUpNext: "재생 목록을 관리하세요",
-    saveAndReturn: "저장 후 돌아가기",
+    saveAndReturn: "저장",
     upNextSubtitle:
       "동영상을 재생 목록에 추가, 삭제 혹은 이동할 수 있습니다. 최대 30개까지 추가가능 합니다.",
     searchAddVideos: "밑에서 동영상을 검색하고 추가하세요!",
