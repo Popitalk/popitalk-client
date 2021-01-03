@@ -219,7 +219,238 @@ class VideoPlayer extends Component {
       !this.state.playing && this.state.videoStatus.currSeconds === 0;
 
     const videoStatusCard = (
+      <div className="absolute flex items-start justify-start m-2 w-full h-full">
+        {!this.state.playing && this.state.videoStatus.currSeconds === 0 && (
+          <VideoPlayerStatusCard
+            systemMessage={strings.pausedPopup}
+            icon="pause"
+          />
+        )}
+        {this.state.videoStatus.currSeconds > 0 && (
+          <VideoPlayerStatusCard
+            systemMessage={`${strings.startingIn} ${this.state.videoStatus.currSeconds}`}
+          />
+        )}
+      </div>
+    );
+
+    if (!this.props.url) {
+      return (
+        <div ref={this.videoPlayer} className="relative pb-16/9 h-full w-full">
+          <div className="absolute flex space-x-4 items-center justify-center bg-black h-full w-full">
+            <FontAwesomeIcon
+              icon="info-circle"
+              className="text-copy-secondary text-4xl sm:text-6xl"
+            />
+            <div className="flex flex-col space-y-2">
+              <p className="text-copy-tertiary text-xl lg:text-2xl font-bold">
+                {strings.nothingPlaying}
+              </p>
+              <p className="text-copy-secondary text-sm sm:text-md">
+                {strings.nothingPlayingSubtitle}
+              </p>
+            </div>
+          </div>
+        </div>
+      );
+    }
+    const controlsClassName =
+      "flex items-center justify-center w-8 h-8 rounded-full";
+
+    return (
       <>
+        <div
+          ref={this.videoPlayer}
+          className="relative pb-16/9 h-full w-full bg-background-primary"
+        >
+          <div className="absolute h-full w-full z-20">
+            {videoStatusCard}
+            {/* Click background to play or pause the video - with ripple animation */}
+            {this.props.displayControls && (
+              <Ripples
+                className="w-full h-full focus:outline-none cursor-pointer"
+                onClick={() => this.setBothPlaying()}
+                role="button"
+                during={2200}
+              />
+            )}
+          </div>
+          <ReactPlayer
+            ref={this.reactPlayer}
+            url={this.props.url}
+            width="100%"
+            height="100%"
+            className="absolute"
+            playing={this.state.playing}
+            volume={this.props.volume.volume}
+            muted={this.props.volume.muted}
+            onReady={() => {
+              this.reactPlayer.current.seekTo(
+                this.props.playerStatus.videoStartTime,
+                "seconds"
+              );
+              this.setState({ ready: true });
+            }}
+            onProgress={({ playedSeconds }) => {
+              this.setState({ progress: playedSeconds });
+            }}
+            progressInterval={100}
+            onEnded={() => {
+              this.props.dispatchPlayNextVideo();
+            }}
+            onDuration={s => {
+              this.setState({ duration: s });
+            }}
+            caption="false"
+          />
+        </div>
+        <div className="flex flex-col bg-background-primary justify-end w-full h-12 transition-colors rounded-b-lg">
+          <div // Set the mouse hovering state
+            onMouseEnter={() => this.setState({ isHovering: true })}
+            onMouseLeave={() => this.setState({ isHovering: false })}
+          >
+            <Slider
+              max={this.state.duration * 10}
+              value={this.state.progress * 10}
+              onChange={
+                this.props.displayControls &&
+                (s => {
+                  this.handleProgressSliderChange(s / 10);
+                })
+              }
+              handleStyle={
+                this.props.displayControls && this.state.isHovering
+                  ? {
+                      backgroundColor: "#1DA4FE",
+                      borderColor: "#1DA4FE",
+                      cursor: "pointer",
+                      width: 15,
+                      height: 15
+                    }
+                  : {
+                      width: 0,
+                      height: 0,
+                      border: 0
+                    }
+              }
+              trackStyle={
+                this.props.displayControls && this.state.isHovering
+                  ? {
+                      backgroundColor: "#1DA4FE",
+                      height: 6
+                    }
+                  : {
+                      backgroundColor: "#1DA4FE",
+                      height: 4
+                    }
+              }
+              railStyle={
+                this.props.displayControls && this.state.isHovering
+                  ? {
+                      backgroundColor: "#1DA4FE",
+                      opacity: 0.25,
+                      height: 6
+                    }
+                  : {
+                      backgroundColor: "#1DA4FE",
+                      opacity: 0.25,
+                      height: 4
+                    }
+              }
+              className={
+                this.props.displayControls &&
+                "-mb-px cursor-pointer transition-all opacity-100 hover:opacity-100 duration-150"
+              }
+            />
+          </div>
+          <div className="flex items-center justify-between w-full px-2">
+            <div className="flex space-x-2 items-center">
+              {/* Play & Pause button */}
+              {this.props.displayControls && (
+                <Ripples className="transition transform hover:scale-110 duration-100 p-px rounded-full">
+                  <Button
+                    styleNone
+                    styleNoneIconClassName="text-copy-primary"
+                    hoverable
+                    icon={showPlay ? "play" : "pause"}
+                    className={controlsClassName}
+                    onClick={() => this.setBothPlaying()}
+                    data-tip={showPlay ? strings.play : strings.pause}
+                    data-place="top"
+                    analyticsString="Play/Pause Button: VideoPlayer"
+                  />
+                </Ripples>
+              )}
+              {/* Volume button & slider hover effect */}
+              <div
+                className="flex flex-row px-2 pr-4 h-10 items-center space-x-2 rounded-lg"
+                onMouseEnter={() => this.setState({ isHoveringVolume: true })}
+                onMouseLeave={() => this.setState({ isHoveringVolume: false })}
+              >
+                {/* Volume button */}
+                <Button
+                  styleNone
+                  icon={
+                    this.props.volume.volume === 0 || this.props.volume.muted
+                      ? "volume-mute"
+                      : "volume-up"
+                  }
+                  styleNoneIconClassName="text-copy-primary text-xl"
+                  className={controlsClassName}
+                  hoverable
+                  onClick={() => this.toggleMute()}
+                  data-tip={
+                    this.props.volume.muted ? strings.unmute : strings.mute
+                  }
+                  data-place="top"
+                  analyticsString="Volume Button: VideoPlayer"
+                />
+                {/* Volume slider */}
+                <div
+                  className={`flex justify-center items-center transition-all duration-100 ${
+                    this.state.isHoveringVolume ? "w-16" : "w-0 opacity-0 "
+                  }`}
+                >
+                  <Slider
+                    max={100}
+                    value={
+                      this.props.volume.muted
+                        ? 0
+                        : this.props.volume.volume * 100
+                    }
+                    onChange={v => this.handleVolumeSliderChange(v / 100)}
+                    handleStyle={{
+                      borderColor: "#1DA4FE",
+                      backgroundColor: "#1DA4FE",
+                      cursor: "pointer"
+                    }}
+                    trackStyle={{ backgroundColor: "#1DA4FE" }}
+                    railStyle={{
+                      backgroundColor: "#1DA4FE",
+                      opacity: 0.1
+                    }}
+                    className="cursor-pointer"
+                  />
+                </div>
+              </div>
+              <span className="text-copy-primary text-xs font-bold">
+                {/* Video timestamp */}
+                {this.generateTimestamp()}
+              </span>
+            </div>
+            <Button
+              styleNone
+              icon="expand"
+              styleNoneIconClassName="text-copy-primary"
+              hoverable
+              className={controlsClassName}
+              onClick={() => this.handleFullScreen()}
+              data-tip={strings.fullScreen}
+              data-place="top"
+              analyticsString="Full Screen Button: VideoPlayer"
+            />
+          </div>
+        </div>
         <ReactTooltip
           effect="solid"
           backgroundColor="#F2F2F2"
@@ -227,281 +458,6 @@ class VideoPlayer extends Component {
           className="shadow-lg rounded-md py-1 px-3"
           arrowColor="transparent"
         />
-        {/* VideoPlayerStatusCard */}
-        <div className="absolute flex items-center justify-center w-full h-full">
-          {!this.state.playing && this.state.videoStatus.currSeconds === 0 && (
-            <VideoPlayerStatusCard
-              systemMessage={strings.paused}
-              icon="pause"
-            />
-          )}
-          {this.state.videoStatus.currSeconds > 0 && (
-            <VideoPlayerStatusCard
-              systemMessage={`${strings.startingIn} ${this.state.videoStatus.currSeconds}`}
-            />
-          )}
-        </div>
-      </>
-    );
-
-    return (
-      <>
-        {/* When nothing is in the queue, it should hide the VideoPlayer for both admin & followers (and show the default placeholder). 
-        I added displayControls below to hide the play button and take away scroll control for followers. 
-        Sound & Full screen control is still accessible to followers*/}
-        {this.props.url ? (
-          <div
-            ref={this.videoPlayer}
-            className="relative pb-16/9 h-full w-full"
-          >
-            <div className="absolute bg-black h-full w-full"></div>
-            <div className="hover:select-none">
-              <ReactPlayer
-                ref={this.reactPlayer}
-                url={this.props.url}
-                width="100%"
-                height="100%"
-                className="absolute t-0 l-0"
-                playing={this.state.playing}
-                volume={this.props.volume.volume}
-                muted={this.props.volume.muted}
-                onReady={() => {
-                  this.reactPlayer.current.seekTo(
-                    this.props.playerStatus.videoStartTime,
-                    "seconds"
-                  );
-                  this.setState({ ready: true });
-                }}
-                onProgress={({ playedSeconds }) => {
-                  this.setState({ progress: playedSeconds });
-                }}
-                progressInterval={100}
-                onEnded={() => {
-                  this.props.dispatchPlayNextVideo();
-                }}
-                onDuration={s => {
-                  this.setState({ duration: s });
-                }}
-                caption="false"
-              />
-            </div>
-            <div className="absolute flex flex-col justify-end w-full h-full transition-colors">
-              <div
-                // Always show the video controls while the video is at pause.
-                className={
-                  !this.state.playing
-                    ? "flex flex-col justify-end w-full h-full transition-colors bg-gradient-t-player"
-                    : "flex flex-col justify-end w-full h-full transition-colors bg-gradient-t-player transition-opacity opacity-0 hover:opacity-100 duration-200"
-                }
-              >
-                {/* Click background to play or pause the video - with ripple animation */}
-                {this.props.displayControls ? (
-                  <Ripples
-                    className="w-full h-full focus:outline-none cursor-pointer"
-                    onClick={() => this.setBothPlaying()}
-                    role="button"
-                    during={2200}
-                  >
-                    {videoStatusCard}
-                  </Ripples>
-                ) : (
-                  <div className="w-full h-full focus:outline-none cursor-default">
-                    {videoStatusCard}
-                  </div>
-                )}
-                <div className="flex flex-col px-2 w-full">
-                  <div // Set the mouse hovering state
-                    onMouseEnter={() => this.setState({ isHovering: true })}
-                    onMouseLeave={() => this.setState({ isHovering: false })}
-                  >
-                    <Slider
-                      max={this.state.duration * 10}
-                      value={this.state.progress * 10}
-                      onChange={
-                        this.props.displayControls &&
-                        (s => {
-                          this.handleProgressSliderChange(s / 10);
-                        })
-                      }
-                      handleStyle={
-                        this.props.displayControls && this.state.isHovering
-                          ? {
-                              backgroundColor: "#1DA4FE",
-                              borderColor: "#1DA4FE",
-                              cursor: "pointer",
-                              width: 15,
-                              height: 15
-                            }
-                          : {
-                              width: 0,
-                              height: 0,
-                              border: 0
-                            }
-                      }
-                      trackStyle={
-                        this.props.displayControls && this.state.isHovering
-                          ? {
-                              backgroundColor: "#1DA4FE",
-                              height: 6
-                            }
-                          : {
-                              backgroundColor: "#1DA4FE",
-                              height: 3
-                            }
-                      }
-                      railStyle={
-                        this.props.displayControls && this.state.isHovering
-                          ? {
-                              backgroundColor: "#fff",
-                              opacity: 0.25,
-                              height: 6
-                            }
-                          : {
-                              backgroundColor: "#fff",
-                              opacity: 0.25,
-                              height: 3
-                            }
-                      }
-                      className={`-mb-1 ${
-                        this.props.displayControls &&
-                        "cursor-pointer transition-all opacity-75 hover:opacity-100 duration-150"
-                      }`}
-                    />
-                  </div>
-                  <div className="flex items-center justify-between w-full my-1">
-                    <div className="flex space-x-4 items-center">
-                      {/* Play & Pause button */}
-                      {this.props.displayControls && (
-                        <Ripples className="transition transform hover:scale-110 duration-100 p-px rounded-full">
-                          <Button
-                            styleNone
-                            styleNoneIconClassName="text-copy-tertiary"
-                            hoverable
-                            icon={showPlay ? "play" : "pause"}
-                            className={`w-8 p-1 rounded-full ${
-                              this.props.displayControls &&
-                              "hover:bg-playerControlsHover"
-                            }`}
-                            onClick={() => this.setBothPlaying()}
-                            data-tip={showPlay ? strings.play : strings.pause}
-                            data-place="top"
-                            analyticsString="Play/Pause Button: VideoPlayer"
-                          />
-                        </Ripples>
-                      )}
-                      {/* Volume button & slider hover effect */}
-                      <div
-                        className="flex flex-row hover:bg-playerControlsHover py-1 pl-2 pr-4 rounded-xl"
-                        onMouseEnter={() =>
-                          this.setState({ isHoveringVolume: true })
-                        }
-                        onMouseLeave={() =>
-                          this.setState({ isHoveringVolume: false })
-                        }
-                      >
-                        {/* Volume button */}
-                        <Button
-                          styleNone
-                          icon={
-                            this.props.volume.volume === 0 ||
-                            this.props.volume.muted
-                              ? "volume-mute"
-                              : "volume-up"
-                          }
-                          styleNoneIconClassName="flex text-copy-tertiary text-lg items-center"
-                          className="w-8 p-1 rounded-full"
-                          hoverable
-                          onClick={() => this.toggleMute()}
-                          data-tip={
-                            this.props.volume.muted
-                              ? strings.unmute
-                              : strings.mute
-                          }
-                          data-place="top"
-                          analyticsString="Volume Button: VideoPlayer"
-                        />
-                        {/* Volume slider */}
-                        <div
-                          className={
-                            this.state.isHoveringVolume
-                              ? "flex w-16 justify-center items-center ml-1 transition-all duration-100"
-                              : "flex w-0 opacity-0 items-center transition-all duration-100"
-                          }
-                        >
-                          <Slider
-                            max={100}
-                            value={
-                              this.props.volume.muted
-                                ? 0
-                                : this.props.volume.volume * 100
-                            }
-                            onChange={v =>
-                              this.handleVolumeSliderChange(v / 100)
-                            }
-                            handleStyle={{
-                              borderColor: "#fff",
-                              cursor: "pointer"
-                            }}
-                            trackStyle={{ backgroundColor: "#fff" }}
-                            railStyle={{
-                              backgroundColor: "#fff",
-                              opacity: 0.25
-                            }}
-                            className="cursor-pointer"
-                          />
-                        </div>
-                      </div>
-
-                      <span className="text-copy-tertiary text-xs">
-                        {/* Video timestamp */}
-                        {this.generateTimestamp()}
-                      </span>
-                    </div>
-                    {/* Full screen button */}
-                    <Button
-                      styleNone
-                      icon="compress"
-                      styleNoneIconClassName="text-copy-tertiary"
-                      hoverable
-                      className="w-8 p-1 rounded-full hover:bg-playerControlsHover"
-                      onClick={() => this.handleFullScreen()}
-                      data-tip={strings.fullScreen}
-                      data-place="top"
-                      analyticsString="Full Screen Button: VideoPlayer"
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        ) : (
-          <div
-            ref={this.videoPlayer}
-            className="relative pb-16/9 h-full w-full"
-          >
-            <div className="absolute flex space-x-4 items-center justify-center bg-black h-full w-full">
-              <FontAwesomeIcon
-                icon="info-circle"
-                className="text-copy-secondary text-4xl sm:text-6xl"
-              />
-              <div className="flex flex-col space-y-2">
-                <p className="text-copy-tertiary text-xl sm:text-2xl font-bold">
-                  {strings.nothingPlaying}
-                </p>
-                <Button
-                  actionButton
-                  className="text-sm sm:text-md hover:scale-102"
-                  analyticsString="Request Admin Button: VideoPlayer"
-                  onClick={this.props.handleNothingPlaying}
-                >
-                  {this.props.displayControls
-                    ? strings.manageUpNext
-                    : strings.requestVideoButton}
-                </Button>
-              </div>
-            </div>
-          </div>
-        )}
       </>
     );
   }

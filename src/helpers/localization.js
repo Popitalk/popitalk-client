@@ -182,6 +182,7 @@ let strings = new LocalizedStrings({
     trending: "TRENDING",
     // ChannelCard
     nothingPlaying: "Nothing is playing at this moment",
+    nothingPlayingSubtitle: "Channel admin has to add a video below.",
     // VideoCard
     watch: "Watch it in a room",
     // ChannelHeader
@@ -193,7 +194,8 @@ let strings = new LocalizedStrings({
     // == VideoPanel == //
     // VideoPlayer & VideoStatus
     paused: "Paused",
-    startingIn: "Starting in",
+    pausedPopup: "Channel admin paused the video.",
+    startingIn: "Channel admin stated the video. Starting in",
     play: "Play",
     pause: "Pause",
     mute: "Mute",
@@ -464,6 +466,7 @@ let strings = new LocalizedStrings({
     trending: "인기",
     // ChannelCard
     nothingPlaying: "재생되고 있는 영상이 없습니다",
+    nothingPlayingSubtitle: "채널 관리자가 아래에서 영상을 추가해야 합니다.",
     // VideoCard
     watch: "톡방에서 시청하기",
     // ChannelHeader
@@ -475,7 +478,8 @@ let strings = new LocalizedStrings({
     // == VideoPanel == //
     // VideoPlayer & VideoStatus
     paused: "일시정지",
-    startingIn: "곧 재생됩니다",
+    pausedPopup: "채널 관리자가 일지성지 했습니다.",
+    startingIn: "채널 관리자가 재생했습니다. 곧 재생됩니다",
     play: "재생",
     pause: "일시정지",
     mute: "음소거",

@@ -4,8 +4,6 @@ import classnames from "classnames";
 import defaultImage from "../../assets/default/user-default.png";
 import defaultChannelImage from "../../assets/default/channel-default.png";
 
-// import Button from "./Button";
-
 export default function ImageUpload({
   name,
   icon,
