@@ -175,7 +175,6 @@ module.exports = {
         modalFull: "70vh"
       },
       scale: {
-        102: "1.02",
         200: "2"
       },
       maxHeight: {
