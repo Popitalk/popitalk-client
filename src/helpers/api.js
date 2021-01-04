@@ -337,3 +337,11 @@ export const searchChannels = ({ channelName, page }) => {
     return ax.get(`/channels/search?channelName=${channelName}&page=${page}`);
   }
 };
+
+export const getCategories = () => {
+  return ax.get(`/categories`);
+};
+
+export const createCategory = ({ category }) => {
+  return ax.post(`/categories`, { category });
+};
