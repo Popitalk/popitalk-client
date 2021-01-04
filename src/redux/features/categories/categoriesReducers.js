@@ -8,32 +8,27 @@ export const R_addNewCategory = (state, action) => {
   const { category } = action.payload;
 
   state.categories.push({ name: category, count: 0 });
-  state.selected.push(category);
+  state.selected.push({ name: category, count: 0 });
 };
 
 export const R_setSelected = {
   reducer: (state, action) => {
-    const { category } = action.payload;
+    const { name, count } = action.payload;
 
-    state.selected.push(category);
-  },
-  prepare: category => ({
-    payload: {
-      category
-    }
-  })
+    state.selected.push({ name, count });
+    state.categories = state.categories.filter(
+      category => name !== category.name
+    );
+  }
 };
 
 export const R_removeSelected = {
   reducer: (state, action) => {
-    const { category } = action.payload;
-    state.selected = state.selected.filter(cat => cat !== category);
-  },
-  prepare: category => ({
-    payload: {
-      category
-    }
-  })
+    const { name, count } = action.payload;
+
+    state.categories.push({ name, count });
+    state.selected = state.selected.filter(category => name !== category.name);
+  }
 };
 
 export const R_initCategories = () => ({

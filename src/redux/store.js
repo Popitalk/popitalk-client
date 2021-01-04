@@ -24,6 +24,7 @@ import followingChannelsReducer from "./reducers/followingChannels";
 import recommendedChannelsReducer from "./reducers/recommendedChannels";
 import channelSearchReducer from "./reducers/channelSearch";
 import uiReducer from "./reducers/ui";
+import categoriesReducer from "./features/categories/categoriesSlice";
 import localstorageMiddleware from "./middleware/localstorageMiddleware";
 import routingMiddleware from "./middleware/routingMiddleware";
 import modalMiddleware from "./middleware/modalMiddleware";
@@ -51,7 +52,8 @@ const reducer = combineReducers({
   discoverChannels: discoverChannelsReducer,
   followingChannels: followingChannelsReducer,
   recommendedChannels: recommendedChannelsReducer,
-  channelSearch: channelSearchReducer
+  channelSearch: channelSearchReducer,
+  categories: categoriesReducer
 });
 
 const middleware = [
