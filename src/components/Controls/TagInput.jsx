@@ -38,7 +38,7 @@ export default function TagInput({
       handleEnter();
       e.preventDefault();
     } else if (e.key === 8 && input.length === 0 && tags.length > 0) {
-      handleCancel(tags[tags.length - 1].id);
+      handleCancel(tags[tags.length - 1]);
     }
   };
 
@@ -51,12 +51,13 @@ export default function TagInput({
         />
       </div>
       <div className="flex flex-wrap items-center content-start w-full">
-        {tags.map(t => (
-          <div key={t.id} className="p-1">
-            <Tag handleCancel={handleCancel} {...t} />
+        {tags.map(tag => (
+          <div key={tag.name} className="p-1">
+            <Tag handleCancel={handleCancel} tag={tag} />
           </div>
         ))}
         <input
+          autoComplete="off"
           onKeyDown={detectKeyPress}
           className="flex flex-grow outline-none border-none py-2 px-2 text-sm bg-background-primary"
           {...rest}
