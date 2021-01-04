@@ -1,56 +1,81 @@
-import React, { useState } from "react";
-import { Formik /*, connect*/ } from "formik";
+import React, { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { Formik, connect } from "formik";
 import * as Yup from "yup";
+
 import Input from "../Controls/Input";
 import ImageUpload from "../Controls/ImageUpload";
 import ChannelFormSubmit from "./ChannelFormSubmit";
-// import TagInput from "../Controls/TagInput";
-// import ControlHeader from "../Controls/ControlHeader";
+import TagInput from "../Controls/TagInput";
+import ControlHeader from "../Controls/ControlHeader";
 import strings from "../../helpers/localization";
 import Button from "../Controls/Button";
+import { getCategories, removeSelected, setSelected } from "../../redux";
 
-// const CategoryInput = connect(
-//   ({ formik, loading, tags, handleCancel, handleEnter }) => {
-//     return (
-//       <TagInput
-//         input={formik.values.tags}
-//         tags={tags}
-//         handleCancel={id => handleCancel(formik, id)}
-//         handleEnter={() => handleEnter(formik)}
-//         name="tags"
-//         type="text"
-//         disabled={loading}
-//         onChange={formik.handleChange}
-//         onBlur={e => {
-//           handleEnter(formik);
-//           formik.handleBlur(e);
-//         }}
-//         value={formik.values.tags}
-//         error={formik.touched.tags && formik.errors.category}
-//       />
-//     );
-//   }
-// );
+const CategoryInput = connect(
+  ({
+    formik,
+    loading,
+    disabled,
+    tags,
+    suggestions,
+    handleSelect,
+    handleCancel
+    // handleEnter
+  }) => {
+    const [showSuggestions, setShowSuggestions] = useState(false);
+    const [query, setQuery] = useState("");
 
-// let tagID = 1;
+    useEffect(() => {
+      if (disabled) {
+        setShowSuggestions(false);
+      }
+    }, [disabled]);
 
-// const categoryToTags = category => {
-//   return category
-//     .split(",")
-//     .filter(c => c.trim().length > 0)
-//     .map(n => {
-//       return { id: tagID++, name: n.trim() };
-//     })
-//     .reduce((unique, t) => {
-//       return unique.find(u => u.name === t.name) ? unique : [...unique, t];
-//     }, []);
-// };
-
-// const tagsToCategory = tags => {
-//   return tags.reduce((c, t) => {
-//     return c.length > 0 ? `${c},${t.name}` : t.name;
-//   }, "");
-// };
+    return (
+      <div>
+        <TagInput
+          input={formik.values.tags}
+          tags={tags}
+          handleCancel={handleCancel}
+          // handleEnter={() => handleEnter(formik)}
+          name="tags"
+          type="text"
+          disabled={disabled || loading}
+          onChange={e => {
+            setQuery(e.target.value);
+            formik.handleChange(e);
+          }}
+          onFocus={() => setShowSuggestions(true)}
+          onBlur={e => {
+            setShowSuggestions(false);
+            formik.handleBlur(e);
+          }}
+          value={formik.values.tags}
+          error={formik.touched.tags && formik.errors.category}
+        />
+        {showSuggestions && (
+          <div>
+            {suggestions
+              .filter(({ name }) =>
+                name.toLowerCase().startsWith(query.toLowerCase())
+              )
+              .map(({ name, count }) => (
+                <div
+                  key={name}
+                  role="button"
+                  onMouseDown={() => handleSelect(formik, { name, count })}
+                >
+                  <span>{name}</span>
+                  <span>{count}</span>
+                </div>
+              ))}
+          </div>
+        )}
+      </div>
+    );
+  }
+);
 
 export default function ChannelForm({
   initial,
@@ -60,38 +85,23 @@ export default function ChannelForm({
   error,
   channelSettings
 }) {
-  // const [tags, setTags] = useState(categoryToTags(initial.category));
+  const { categories, selected } = useSelector(state => state.categories);
 
-  // const handleEnter = formik => {
-  //   const newTags = categoryToTags(formik.values.tags.trim()).filter(
-  //     n => !tags.find(t => t.name === n.name)
-  //   );
+  const dispatch = useDispatch();
 
-  //   if (newTags.length > 0) {
-  //     setTags([...tags, ...newTags]);
+  useEffect(() => {
+    dispatch(getCategories());
+  }, [dispatch]);
 
-  //     const tempCategory = tagsToCategory(newTags);
-  //     const newCategory =
-  //       formik.values.category.length > 0
-  //         ? `${formik.values.category},${tempCategory}`
-  //         : tempCategory;
+  // create new category
+  // const selectCategory = formik => {
+  //   const selectedCategory = formik.values.tags.trim();
 
-  //     formik.setFieldValue("category", newCategory);
-  //     formik.values.category = newCategory;
-  //   }
-
+  //   dispatch(setSelected(selectedCategory));
   //   formik.setFieldValue("tags", "");
   //   formik.values.tags = "";
   // };
 
-  // const handleCancel = (formik, id) => {
-  //   const newTags = tags.filter(t => t.id !== id);
-  //   setTags(newTags);
-
-  //   const newCategory = tagsToCategory(newTags);
-  //   formik.setFieldValue("category", newCategory);
-  //   formik.values.category = newCategory;
-  // };
   const paragraphClassName = "text-copy-secondary text-xs text-center";
   const [tipPressed, setTipPressed] = useState(true);
 
@@ -141,13 +151,13 @@ export default function ChannelForm({
           category: Yup.string().notRequired()
         })}
         onSubmit={values => {
-          console.log(values.icon);
+          console.log(selected);
           handleSubmit({
             name: values.name,
             description: values.description,
             public: !values.private,
             icon: values.icon,
-            category: values.category
+            categories: selected.map(({ name }) => name)
           });
         }}
       >
@@ -212,17 +222,25 @@ export default function ChannelForm({
                 maxLength={150}
               />
               {/* --UNCOMMENT FOR CHANNEL CATEGORY */}
-              {/* <ControlHeader
+              <ControlHeader
                 header={strings.channelCatagory}
                 error={touched.tags && errors.category}
                 size="sm"
               />
               <CategoryInput
                 loading={loading}
-                tags={tags}
-                handleCancel={handleCancel}
-                handleEnter={handleEnter}
-              /> */}
+                tags={selected}
+                suggestions={categories}
+                handleCancel={category => dispatch(removeSelected(category))}
+                disabled={selected.length >= 3}
+                handleEnter={() => console.log("Dsad")}
+                // selectCategory={selectCategory}
+                handleSelect={(formik, category) => {
+                  dispatch(setSelected(category));
+                  formik.setFieldValue("tags", "");
+                  formik.values.tags = "";
+                }}
+              />
               {/* --UNCOMMENT FOR PRIVATE CHANNELS */}
               {/* <div className="flex items-center mt-8">
                 <div className="mr-8">
