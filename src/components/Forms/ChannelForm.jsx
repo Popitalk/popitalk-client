@@ -113,6 +113,7 @@ export default function ChannelForm({
   channelSettings
 }) {
   const { categories, selected } = useSelector(state => state.categories);
+  const [tipPressed, setTipPressed] = useState(false);
 
   const dispatch = useDispatch();
 
@@ -124,38 +125,50 @@ export default function ChannelForm({
     return () => dispatch(initCategories());
   }, [dispatch]);
 
-  const paragraphClassName = "text-copy-secondary text-xs text-center";
-  const [tipPressed, setTipPressed] = useState(true);
-
+  const paragraphClassName = "text-copy-secondary text-xs";
   const tipsComponent = (
-    <div className="absolute right-0 top-0 items-end flex flex-col w-64 rounded-lg p-4 space-y-2 z-50">
-      <Button
-        hoverable
-        styleNone
-        icon="lightbulb"
-        className={`${
-          tipPressed === true
-            ? "bg-copy-link text-copy-tertiary"
-            : "bg-background-primary text-copy-secondary"
-        } text-xl w-10 h-10 rounded-full`}
-        onClick={() => setTipPressed(!tipPressed)}
-      />
-      <div
-        className={`${
-          tipPressed === false && "hidden"
-        } shadow-md bg-background-primary space-y-4 rounded-md p-4`}
-      >
-        <h2 className="text-copy-secondary text-center">{strings.tipHeader}</h2>
-        <p className={paragraphClassName}>{strings.tipParagraph1}</p>
-        <p className={paragraphClassName}>{strings.tipParagraph2}</p>
-        <p className={paragraphClassName}>{strings.tipParagraph3}</p>
-        <p className={paragraphClassName}>{strings.tipParagraph4}</p>
+    <div className="flex flex-col w-full h-full rounded-lg p-4 space-y-2 z-50">
+      <div className="relative flex space-x-4">
+        <h1 className="text-copy-primary text-2xl font-bold">
+          {strings.createNewChannel}
+        </h1>
+        <div className="w-10 h-10">
+          <div className="flex flex-col">
+            <Button
+              hoverable
+              styleNone
+              icon="lightbulb"
+              className={`${
+                tipPressed === true
+                  ? "bg-copy-link text-copy-tertiary"
+                  : "bg-background-primary text-copy-secondary"
+              } text-xl w-10 h-10 rounded-full`}
+              onMouseEnter={() => setTipPressed(true)}
+              onMouseLeave={() => setTipPressed(false)}
+            />
+            <div
+              className={`${
+                tipPressed === false && "hidden"
+              } absolute left-0 mt-12 -ml-12 md:ml-8 w-screen md:w-102 shadow-md bg-background-primary space-y-4 rounded-md p-4 flex flex-col`}
+            >
+              <h2 className="text-copy-secondary">{strings.tipHeader}</h2>
+              <p className={paragraphClassName}>{strings.tipParagraph1}</p>
+              <p className={paragraphClassName}>{strings.tipParagraph2}</p>
+              <p className={paragraphClassName}>{strings.tipParagraph3}</p>
+              <p className={paragraphClassName}>{strings.tipParagraph4}</p>
+            </div>
+          </div>
+        </div>
       </div>
+      <p className="text-copy-secondary text-sm">
+        {strings.createNewChannelSubtitle}
+      </p>
     </div>
   );
 
   return (
-    <div className="relative flex w-full bg-background-secondary rounded-md justify-evenly py-12 overflow-y-auto">
+    <div className="flex flex-col items-center w-full bg-background-secondary rounded-md p-8 overflow-y-auto space-y-12">
+      {tipsComponent}
       <Formik
         initialValues={{ ...initial, tags: "" }}
         enableReinitialize={true}
@@ -298,7 +311,7 @@ export default function ChannelForm({
               </div> */}
             </div>
             {error && <p className="text-copy-error text-sm pt-4">{error}</p>}
-            <div className="py-24">
+            <div className="pt-20 pb-12">
               <ChannelFormSubmit
                 type={type}
                 disabled={loading || !isValid || !dirty}
@@ -309,7 +322,6 @@ export default function ChannelForm({
           </form>
         )}
       </Formik>
-      {tipsComponent}
     </div>
   );
 }
