@@ -41,60 +41,62 @@ const CategoryInput = connect(
       setOptions(suggestions);
     }, [suggestions]);
 
-    return (
-      <div>
-        <TagInput
-          input={formik.values.tags}
-          tags={tags}
-          handleCancel={handleCancel}
-          // handleEnter={() => handleEnter(formik)}
-          name="tags"
-          type="text"
-          disabled={disabled || loading}
-          onChange={e => {
-            const query = e.target.value.trim();
-
-            setOptions(() =>
-              suggestions.filter(({ name }) =>
-                name.toLowerCase().startsWith(query.toLowerCase())
-              )
-            );
-
-            formik.handleChange(e);
-          }}
-          onFocus={() => setShowSuggestions(true)}
-          onBlur={e => {
-            setShowSuggestions(false);
-            formik.handleBlur(e);
-          }}
-          value={formik.values.tags}
-          error={formik.touched.tags && formik.errors.category}
-        />
-        {showSuggestions && (
-          <div>
-            {options.map(({ name, count }) => (
-              <div
-                key={name}
-                role="button"
-                onMouseDown={() => handleSelect(formik, { name, count })}
-              >
-                <span>{name}</span>
-                <span>{count}</span>
-              </div>
-            ))}
-            {options.length === 0 && (
-              <button
-                onMouseDown={() => {
-                  handleNewCategory(formik, formik.values.tags.trim());
-                  setOptions(suggestions);
-                }}
-              >
-                Create Category
-              </button>
-            )}
+    const SuggestionsList = showSuggestions
+      ? options.map(({ name, count }) => (
+          <div
+            key={name}
+            role="button"
+            onMouseDown={() => handleSelect(formik, { name, count })}
+            className="flex justify-between px-2 hover:bg-background-highlight"
+          >
+            <span>{name}</span>
+            <span>{count}</span>
           </div>
-        )}
-      </div>
+        ))
+      : null;
+
+    const CreateCategoryBtn =
+      showSuggestions && options.length === 0 ? (
+        <button
+          onMouseDown={() => {
+            handleNewCategory(formik, formik.values.tags.trim());
+            setOptions(suggestions);
+          }}
+          className="w-full p-2 hover:bg-background-highlight"
+        >
+          Create Category
+        </button>
+      ) : null;
+
+    return (
+      <TagInput
+        input={formik.values.tags}
+        tags={tags}
+        handleCancel={handleCancel}
+        name="tags"
+        type="text"
+        disabled={disabled || loading}
+        onChange={e => {
+          const query = e.target.value.trim();
+
+          setOptions(() =>
+            suggestions.filter(({ name }) =>
+              name.toLowerCase().startsWith(query.toLowerCase())
+            )
+          );
+
+          formik.handleChange(e);
+        }}
+        onFocus={() => setShowSuggestions(true)}
+        onBlur={e => {
+          setShowSuggestions(false);
+          formik.handleBlur(e);
+        }}
+        value={formik.values.tags}
+        error={formik.touched.tags && formik.errors.category}
+        SuggestionsList={SuggestionsList}
+        CreateCategoryBtn={CreateCategoryBtn}
+      />
     );
   }
 );
