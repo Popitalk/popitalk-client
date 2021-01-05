@@ -25,7 +25,7 @@ export default function TagInput({
   input,
   tags,
   handleCancel,
-  handleEnter,
+  // handleEnter,
   ...rest
 }) {
   const fakeInputClasses = classnames(
@@ -33,14 +33,14 @@ export default function TagInput({
     getInputClasses("regular")
   );
 
-  const detectKeyPress = e => {
-    if (e.key === "Enter") {
-      handleEnter();
-      e.preventDefault();
-    } else if (e.key === 8 && input.length === 0 && tags.length > 0) {
-      handleCancel(tags[tags.length - 1]);
-    }
-  };
+  // const detectKeyPress = e => {
+  //   if (e.key === "Enter") {
+  //     handleEnter();
+  //     e.preventDefault();
+  //   } else if (e.key === 8 && input.length === 0 && tags.length > 0) {
+  //     handleCancel(tags[tags.length - 1]);
+  //   }
+  // };
 
   return (
     <div className={fakeInputClasses}>
@@ -58,7 +58,7 @@ export default function TagInput({
         ))}
         <input
           autoComplete="off"
-          onKeyDown={detectKeyPress}
+          // onKeyDown={detectKeyPress}
           className="flex flex-grow outline-none border-none py-2 px-2 text-sm bg-background-primary"
           {...rest}
         />
