@@ -10,7 +10,12 @@ import TagInput from "../Controls/TagInput";
 import ControlHeader from "../Controls/ControlHeader";
 import strings from "../../helpers/localization";
 import Button from "../Controls/Button";
-import { getCategories, removeSelected, setSelected } from "../../redux";
+import {
+  getCategories,
+  removeSelected,
+  setSelected,
+  createCategory
+} from "../../redux";
 
 const CategoryInput = connect(
   ({
@@ -20,17 +25,21 @@ const CategoryInput = connect(
     tags,
     suggestions,
     handleSelect,
-    handleCancel
-    // handleEnter
+    handleCancel,
+    handleNewCategory
   }) => {
     const [showSuggestions, setShowSuggestions] = useState(false);
-    const [query, setQuery] = useState("");
+    const [options, setOptions] = useState([]);
 
     useEffect(() => {
       if (disabled) {
         setShowSuggestions(false);
       }
     }, [disabled]);
+
+    useEffect(() => {
+      setOptions(suggestions);
+    }, [suggestions]);
 
     return (
       <div>
@@ -43,7 +52,14 @@ const CategoryInput = connect(
           type="text"
           disabled={disabled || loading}
           onChange={e => {
-            setQuery(e.target.value);
+            const query = e.target.value.trim();
+
+            setOptions(() =>
+              suggestions.filter(({ name }) =>
+                name.toLowerCase().startsWith(query.toLowerCase())
+              )
+            );
+
             formik.handleChange(e);
           }}
           onFocus={() => setShowSuggestions(true)}
@@ -56,20 +72,26 @@ const CategoryInput = connect(
         />
         {showSuggestions && (
           <div>
-            {suggestions
-              .filter(({ name }) =>
-                name.toLowerCase().startsWith(query.toLowerCase())
-              )
-              .map(({ name, count }) => (
-                <div
-                  key={name}
-                  role="button"
-                  onMouseDown={() => handleSelect(formik, { name, count })}
-                >
-                  <span>{name}</span>
-                  <span>{count}</span>
-                </div>
-              ))}
+            {options.map(({ name, count }) => (
+              <div
+                key={name}
+                role="button"
+                onMouseDown={() => handleSelect(formik, { name, count })}
+              >
+                <span>{name}</span>
+                <span>{count}</span>
+              </div>
+            ))}
+            {options.length === 0 && (
+              <button
+                onMouseDown={() => {
+                  handleNewCategory(formik, formik.values.tags.trim());
+                  setOptions(suggestions);
+                }}
+              >
+                Create Category
+              </button>
+            )}
           </div>
         )}
       </div>
@@ -92,15 +114,6 @@ export default function ChannelForm({
   useEffect(() => {
     dispatch(getCategories());
   }, [dispatch]);
-
-  // create new category
-  // const selectCategory = formik => {
-  //   const selectedCategory = formik.values.tags.trim();
-
-  //   dispatch(setSelected(selectedCategory));
-  //   formik.setFieldValue("tags", "");
-  //   formik.values.tags = "";
-  // };
 
   const paragraphClassName = "text-copy-secondary text-xs text-center";
   const [tipPressed, setTipPressed] = useState(true);
@@ -233,10 +246,13 @@ export default function ChannelForm({
                 suggestions={categories}
                 handleCancel={category => dispatch(removeSelected(category))}
                 disabled={selected.length >= 3}
-                handleEnter={() => console.log("Dsad")}
-                // selectCategory={selectCategory}
                 handleSelect={(formik, category) => {
                   dispatch(setSelected(category));
+                  formik.setFieldValue("tags", "");
+                  formik.values.tags = "";
+                }}
+                handleNewCategory={(formik, category) => {
+                  dispatch(createCategory({ category }));
                   formik.setFieldValue("tags", "");
                   formik.values.tags = "";
                 }}

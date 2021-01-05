@@ -7,7 +7,6 @@ export const R_setCategories = (state, action) => {
 export const R_addNewCategory = (state, action) => {
   const { category } = action.payload;
 
-  state.categories.push({ name: category, count: 0 });
   state.selected.push({ name: category, count: 0 });
 };
 
