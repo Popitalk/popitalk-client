@@ -17,6 +17,7 @@ import {
   createCategory,
   initCategories
 } from "../../redux";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const CategoryInput = connect(
   ({
@@ -48,7 +49,7 @@ const CategoryInput = connect(
             key={name}
             role="button"
             onMouseDown={() => handleSelect(formik, { name, count })}
-            className="flex justify-between px-2 hover:bg-background-highlight"
+            className="flex items-center justify-between p-2 hover:bg-background-secondary text-sm rounded-md"
           >
             <span>{name}</span>
             <span>{count}</span>
@@ -63,9 +64,10 @@ const CategoryInput = connect(
             handleNewCategory(formik, formik.values.tags.trim());
             setOptions(suggestions);
           }}
-          className="w-full p-2 hover:bg-background-highlight"
+          className="flex items-center p-2 w-full hover:bg-background-secondary text-sm rounded-md space-x-2"
         >
-          Create Category
+          <span>Create Category</span>
+          <FontAwesomeIcon icon="plus" className="text-xs" />
         </button>
       ) : null;
 
@@ -153,7 +155,7 @@ export default function ChannelForm({
   );
 
   return (
-    <div className="relative flex w-full bg-background-secondary rounded-md justify-evenly py-12">
+    <div className="relative flex w-full bg-background-secondary rounded-md justify-evenly py-12 overflow-y-auto">
       <Formik
         initialValues={{ ...initial, tags: "" }}
         enableReinitialize={true}
@@ -227,6 +229,7 @@ export default function ChannelForm({
                 onBlur={handleBlur}
                 value={values.name}
                 error={touched.name && errors.name}
+                className="space-y-2"
               />
               <Input
                 variant="textarea"
@@ -240,30 +243,33 @@ export default function ChannelForm({
                 value={values.description}
                 error={touched.description && errors.description}
                 maxLength={150}
+                className="space-y-2"
               />
               {/* --UNCOMMENT FOR CHANNEL CATEGORY */}
-              <ControlHeader
-                header={strings.channelCatagory}
-                error={touched.tags && errors.category}
-                size="sm"
-              />
-              <CategoryInput
-                loading={loading}
-                tags={selected}
-                suggestions={categories}
-                handleCancel={category => dispatch(removeSelected(category))}
-                disabled={selected.length >= 3}
-                handleSelect={(formik, category) => {
-                  dispatch(setSelected(category));
-                  formik.setFieldValue("tags", "");
-                  formik.values.tags = "";
-                }}
-                handleNewCategory={(formik, category) => {
-                  dispatch(createCategory({ category }));
-                  formik.setFieldValue("tags", "");
-                  formik.values.tags = "";
-                }}
-              />
+              <div className="space-y-2">
+                <ControlHeader
+                  header={strings.channelCatagory}
+                  error={touched.tags && errors.category}
+                  size="sm"
+                />
+                <CategoryInput
+                  loading={loading}
+                  tags={selected}
+                  suggestions={categories}
+                  handleCancel={category => dispatch(removeSelected(category))}
+                  disabled={selected.length >= 3}
+                  handleSelect={(formik, category) => {
+                    dispatch(setSelected(category));
+                    formik.setFieldValue("tags", "");
+                    formik.values.tags = "";
+                  }}
+                  handleNewCategory={(formik, category) => {
+                    dispatch(createCategory({ category }));
+                    formik.setFieldValue("tags", "");
+                    formik.values.tags = "";
+                  }}
+                />
+              </div>
               {/* --UNCOMMENT FOR PRIVATE CHANNELS */}
               {/* <div className="flex items-center mt-8">
                 <div className="mr-8">
@@ -292,7 +298,7 @@ export default function ChannelForm({
               </div> */}
             </div>
             {error && <p className="text-copy-error text-sm pt-4">{error}</p>}
-            <div className="mt-24">
+            <div className="py-24">
               <ChannelFormSubmit
                 type={type}
                 disabled={loading || !isValid || !dirty}

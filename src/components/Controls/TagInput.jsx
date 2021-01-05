@@ -31,7 +31,7 @@ export default function TagInput({
   ...rest
 }) {
   const fakeInputClasses = classnames(
-    "bg-background-primary overflow-y-auto max-h-32",
+    "flex flex-col rounded-lg bg-background-primary",
     getInputClasses("regular")
   );
 
@@ -46,31 +46,30 @@ export default function TagInput({
 
   return (
     <div className={fakeInputClasses}>
-      <div className="flex">
-        <div className="w-8 h-8 mt-2 ml-2 self-start">
-          <FontAwesomeIcon
-            icon="search"
-            className="text-sm text-copy-secondary"
-          />
+      <div className="w-full bg-background-primary rounded-lg flex items-center">
+        <div className="flex w-10 h-10 items-center rounded-full justify-center text-sm text-copy-secondary">
+          <FontAwesomeIcon icon="search" />
         </div>
-        <div className="flex flex-wrap items-center content-start w-full">
+        <div className="flex flex-wrap items-center content-start w-full rounded-lg">
           {tags.map(tag => (
-            <div key={tag.name} className="p-1">
+            <div key={tag.name} className="p-1 rounded-lg">
               <Tag handleCancel={handleCancel} tag={tag} />
             </div>
           ))}
           <input
             autoComplete="off"
             // onKeyDown={detectKeyPress}
-            className="flex flex-grow outline-none border-none py-2 px-2 text-sm bg-background-primary"
+            className="flex flex-grow outline-none border-none py-2 px-2 text-sm bg-background-primary rounded-xl"
             {...rest}
           />
         </div>
       </div>
-      <div>
-        {SuggestionsList}
-        {CreateCategoryBtn}
-      </div>
+      {SuggestionsList !== null && (
+        <div className="overflow-y-auto max-h-32 shadow-xs rounded-b-lg p-2">
+          {SuggestionsList}
+          {CreateCategoryBtn}
+        </div>
+      )}
     </div>
   );
 }
