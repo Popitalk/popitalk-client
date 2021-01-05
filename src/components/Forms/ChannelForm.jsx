@@ -14,7 +14,8 @@ import {
   getCategories,
   removeSelected,
   setSelected,
-  createCategory
+  createCategory,
+  initCategories
 } from "../../redux";
 
 const CategoryInput = connect(
@@ -115,6 +116,10 @@ export default function ChannelForm({
 
   useEffect(() => {
     dispatch(getCategories());
+  }, [dispatch]);
+
+  useEffect(() => {
+    return () => dispatch(initCategories());
   }, [dispatch]);
 
   const paragraphClassName = "text-copy-secondary text-xs text-center";
