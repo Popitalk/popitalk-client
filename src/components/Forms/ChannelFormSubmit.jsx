@@ -10,12 +10,12 @@ export default function ChannelFormSubmit({
   className
 }) {
   const classes = classnames(
-    "flex flex-row items-center justify-center py-2 px-6 bg-background-secondary rounded-xl text-sm text-copy-primary",
+    "flex items-center justify-between bg-background-secondary rounded-xl text-sm text-copy-primary",
     { [className]: className }
   );
   return (
     <div className={classes}>
-      <p className="mr-8 text-primary-text font-bold">
+      <p className="text-copy-secondary">
         {type === "create" ? strings.readyToCreate : strings.saveChannelEdit}
       </p>
       <div>

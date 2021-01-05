@@ -1,56 +1,108 @@
-import React, { useState } from "react";
-import { Formik /*, connect*/ } from "formik";
+import React, { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { Formik, connect } from "formik";
 import * as Yup from "yup";
+
 import Input from "../Controls/Input";
 import ImageUpload from "../Controls/ImageUpload";
 import ChannelFormSubmit from "./ChannelFormSubmit";
-// import TagInput from "../Controls/TagInput";
-// import ControlHeader from "../Controls/ControlHeader";
+import TagInput from "../Controls/TagInput";
+import ControlHeader from "../Controls/ControlHeader";
 import strings from "../../helpers/localization";
 import Button from "../Controls/Button";
+import {
+  getCategories,
+  removeSelected,
+  setSelected,
+  createCategory,
+  initCategories
+} from "../../redux";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-// const CategoryInput = connect(
-//   ({ formik, loading, tags, handleCancel, handleEnter }) => {
-//     return (
-//       <TagInput
-//         input={formik.values.tags}
-//         tags={tags}
-//         handleCancel={id => handleCancel(formik, id)}
-//         handleEnter={() => handleEnter(formik)}
-//         name="tags"
-//         type="text"
-//         disabled={loading}
-//         onChange={formik.handleChange}
-//         onBlur={e => {
-//           handleEnter(formik);
-//           formik.handleBlur(e);
-//         }}
-//         value={formik.values.tags}
-//         error={formik.touched.tags && formik.errors.category}
-//       />
-//     );
-//   }
-// );
+const CategoryInput = connect(
+  ({
+    formik,
+    loading,
+    disabled,
+    tags,
+    suggestions,
+    handleSelect,
+    handleCancel,
+    handleNewCategory
+  }) => {
+    const [showSuggestions, setShowSuggestions] = useState(false);
+    const [options, setOptions] = useState([]);
 
-// let tagID = 1;
+    useEffect(() => {
+      if (disabled) {
+        setShowSuggestions(false);
+      }
+    }, [disabled]);
 
-// const categoryToTags = category => {
-//   return category
-//     .split(",")
-//     .filter(c => c.trim().length > 0)
-//     .map(n => {
-//       return { id: tagID++, name: n.trim() };
-//     })
-//     .reduce((unique, t) => {
-//       return unique.find(u => u.name === t.name) ? unique : [...unique, t];
-//     }, []);
-// };
+    useEffect(() => {
+      setOptions(suggestions);
+    }, [suggestions]);
 
-// const tagsToCategory = tags => {
-//   return tags.reduce((c, t) => {
-//     return c.length > 0 ? `${c},${t.name}` : t.name;
-//   }, "");
-// };
+    const SuggestionsList = showSuggestions
+      ? options.map(({ name, count }) => (
+          <div
+            key={name}
+            role="button"
+            onMouseDown={() => handleSelect(formik, { name, count })}
+            className="flex items-center justify-between p-2 hover:bg-background-secondary text-sm rounded-md"
+          >
+            <span>{name}</span>
+            <span>{count}</span>
+          </div>
+        ))
+      : null;
+
+    const CreateCategoryBtn =
+      showSuggestions && options.length === 0 ? (
+        <button
+          onMouseDown={() => {
+            handleNewCategory(formik, formik.values.tags.trim());
+            setOptions(suggestions);
+          }}
+          className="flex items-center p-2 w-full hover:bg-background-secondary text-sm rounded-md space-x-2"
+        >
+          <span>Create Category</span>
+          <FontAwesomeIcon icon="plus" className="text-xs" />
+        </button>
+      ) : null;
+
+    return (
+      <TagInput
+        input={formik.values.tags}
+        tags={tags}
+        handleCancel={handleCancel}
+        name="tags"
+        type="text"
+        disabled={disabled || loading}
+        onChange={e => {
+          const query = e.target.value.trim();
+
+          setOptions(() =>
+            suggestions.filter(({ name }) =>
+              name.toLowerCase().startsWith(query.toLowerCase())
+            )
+          );
+
+          formik.handleChange(e);
+        }}
+        onFocus={() => setShowSuggestions(true)}
+        onBlur={e => {
+          setShowSuggestions(false);
+          formik.handleBlur(e);
+        }}
+        value={formik.values.tags}
+        error={formik.touched.tags && formik.errors.category}
+        SuggestionsList={SuggestionsList}
+        CreateCategoryBtn={CreateCategoryBtn}
+      />
+    );
+  }
+);
 
 export default function ChannelForm({
   initial,
@@ -60,70 +112,63 @@ export default function ChannelForm({
   error,
   channelSettings
 }) {
-  // const [tags, setTags] = useState(categoryToTags(initial.category));
+  const { categories, selected } = useSelector(state => state.categories);
+  const [tipPressed, setTipPressed] = useState(false);
 
-  // const handleEnter = formik => {
-  //   const newTags = categoryToTags(formik.values.tags.trim()).filter(
-  //     n => !tags.find(t => t.name === n.name)
-  //   );
+  const dispatch = useDispatch();
 
-  //   if (newTags.length > 0) {
-  //     setTags([...tags, ...newTags]);
+  useEffect(() => {
+    dispatch(getCategories());
+  }, [dispatch]);
 
-  //     const tempCategory = tagsToCategory(newTags);
-  //     const newCategory =
-  //       formik.values.category.length > 0
-  //         ? `${formik.values.category},${tempCategory}`
-  //         : tempCategory;
+  useEffect(() => {
+    return () => dispatch(initCategories());
+  }, [dispatch]);
 
-  //     formik.setFieldValue("category", newCategory);
-  //     formik.values.category = newCategory;
-  //   }
-
-  //   formik.setFieldValue("tags", "");
-  //   formik.values.tags = "";
-  // };
-
-  // const handleCancel = (formik, id) => {
-  //   const newTags = tags.filter(t => t.id !== id);
-  //   setTags(newTags);
-
-  //   const newCategory = tagsToCategory(newTags);
-  //   formik.setFieldValue("category", newCategory);
-  //   formik.values.category = newCategory;
-  // };
-  const paragraphClassName = "text-copy-secondary text-xs text-center";
-  const [tipPressed, setTipPressed] = useState(true);
-
+  const paragraphClassName = "text-copy-secondary text-xs";
   const tipsComponent = (
-    <div className="absolute right-0 top-0 items-end flex flex-col w-64 rounded-lg p-4 space-y-2 z-50">
-      <Button
-        hoverable
-        styleNone
-        icon="lightbulb"
-        className={`${
-          tipPressed === true
-            ? "bg-copy-link text-copy-tertiary"
-            : "bg-background-primary text-copy-secondary"
-        } text-xl w-10 h-10 rounded-full`}
-        onClick={() => setTipPressed(!tipPressed)}
-      />
-      <div
-        className={`${
-          tipPressed === false && "hidden"
-        } shadow-md bg-background-primary space-y-4 rounded-md p-4`}
-      >
-        <h2 className="text-copy-secondary text-center">{strings.tipHeader}</h2>
-        <p className={paragraphClassName}>{strings.tipParagraph1}</p>
-        <p className={paragraphClassName}>{strings.tipParagraph2}</p>
-        <p className={paragraphClassName}>{strings.tipParagraph3}</p>
-        <p className={paragraphClassName}>{strings.tipParagraph4}</p>
+    <div className="flex flex-col w-full h-full rounded-lg p-4 space-y-2 z-50">
+      <div className="relative flex space-x-4">
+        <h1 className="text-copy-primary text-2xl font-bold">
+          {strings.createNewChannel}
+        </h1>
+        <div className="w-10 h-10">
+          <div className="flex flex-col">
+            <Button
+              hoverable
+              styleNone
+              icon="lightbulb"
+              className={`${
+                tipPressed === true
+                  ? "bg-copy-link text-copy-tertiary"
+                  : "bg-background-primary text-copy-secondary"
+              } text-xl w-10 h-10 rounded-full`}
+              onMouseEnter={() => setTipPressed(true)}
+              onMouseLeave={() => setTipPressed(false)}
+            />
+            <div
+              className={`${
+                tipPressed === false && "hidden"
+              } absolute left-0 mt-12 -ml-12 md:ml-8 w-screen md:w-102 shadow-md bg-background-primary space-y-4 rounded-md p-4 flex flex-col`}
+            >
+              <h2 className="text-copy-secondary">{strings.tipHeader}</h2>
+              <p className={paragraphClassName}>{strings.tipParagraph1}</p>
+              <p className={paragraphClassName}>{strings.tipParagraph2}</p>
+              <p className={paragraphClassName}>{strings.tipParagraph3}</p>
+              <p className={paragraphClassName}>{strings.tipParagraph4}</p>
+            </div>
+          </div>
+        </div>
       </div>
+      <p className="text-copy-secondary text-sm">
+        {strings.createNewChannelSubtitle}
+      </p>
     </div>
   );
 
   return (
-    <div className="relative flex w-full bg-background-secondary rounded-md justify-evenly py-12">
+    <div className="flex flex-col items-center w-full bg-background-secondary rounded-md p-8 overflow-y-auto space-y-12">
+      {tipsComponent}
       <Formik
         initialValues={{ ...initial, tags: "" }}
         enableReinitialize={true}
@@ -141,13 +186,13 @@ export default function ChannelForm({
           category: Yup.string().notRequired()
         })}
         onSubmit={values => {
-          console.log(values.icon);
+          console.log(selected);
           handleSubmit({
             name: values.name,
             description: values.description,
             public: !values.private,
             icon: values.icon,
-            category: values.category
+            categories: selected.map(({ name }) => name)
           });
         }}
       >
@@ -197,6 +242,7 @@ export default function ChannelForm({
                 onBlur={handleBlur}
                 value={values.name}
                 error={touched.name && errors.name}
+                className="space-y-2"
               />
               <Input
                 variant="textarea"
@@ -210,19 +256,33 @@ export default function ChannelForm({
                 value={values.description}
                 error={touched.description && errors.description}
                 maxLength={150}
+                className="space-y-2"
               />
               {/* --UNCOMMENT FOR CHANNEL CATEGORY */}
-              {/* <ControlHeader
-                header={strings.channelCatagory}
-                error={touched.tags && errors.category}
-                size="sm"
-              />
-              <CategoryInput
-                loading={loading}
-                tags={tags}
-                handleCancel={handleCancel}
-                handleEnter={handleEnter}
-              /> */}
+              <div className="space-y-2">
+                <ControlHeader
+                  header={strings.channelCatagory}
+                  error={touched.tags && errors.category}
+                  size="sm"
+                />
+                <CategoryInput
+                  loading={loading}
+                  tags={selected}
+                  suggestions={categories}
+                  handleCancel={category => dispatch(removeSelected(category))}
+                  disabled={selected.length >= 3}
+                  handleSelect={(formik, category) => {
+                    dispatch(setSelected(category));
+                    formik.setFieldValue("tags", "");
+                    formik.values.tags = "";
+                  }}
+                  handleNewCategory={(formik, category) => {
+                    dispatch(createCategory({ category }));
+                    formik.setFieldValue("tags", "");
+                    formik.values.tags = "";
+                  }}
+                />
+              </div>
               {/* --UNCOMMENT FOR PRIVATE CHANNELS */}
               {/* <div className="flex items-center mt-8">
                 <div className="mr-8">
@@ -251,7 +311,7 @@ export default function ChannelForm({
               </div> */}
             </div>
             {error && <p className="text-copy-error text-sm pt-4">{error}</p>}
-            <div className="mt-24">
+            <div className="pt-20 pb-12">
               <ChannelFormSubmit
                 type={type}
                 disabled={loading || !isValid || !dirty}
@@ -262,7 +322,6 @@ export default function ChannelForm({
           </form>
         )}
       </Formik>
-      {tipsComponent}
     </div>
   );
 }

@@ -24,3 +24,13 @@ export { closeModalFinal } from "./features/modals/modalsSlice";
 /* -------------------------------------------------------------------------- */
 
 export { getUserInfo } from "./features/userProfile/userProfileSlice";
+
+/* -------------------------------------------------------------------------- */
+/*                                 CATEGORIES                                 */
+/* -------------------------------------------------------------------------- */
+
+export { getCategories } from "./features/categories/categoriesSlice";
+export { createCategory } from "./features/categories/categoriesSlice";
+export { setSelected } from "./features/categories/categoriesSlice";
+export { removeSelected } from "./features/categories/categoriesSlice";
+export { initCategories } from "./features/categories/categoriesSlice";

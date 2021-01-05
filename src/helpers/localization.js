@@ -235,13 +235,16 @@ let strings = new LocalizedStrings({
     signInToChat: "Log in to chat",
 
     //CreateChannel > ChannelForm, ChannelFormSubmit
+    createNewChannel: "Create a new channel",
+    createNewChannelSubtitle:
+      "Creating a channel allows you to share your own playlist to your followers in real-time.",
     selectChannelIcon: "Select Channel Icon",
     changeChannelIcon: "Change Channel Icon",
     createChannelName: "Channel Name *",
     channelNameInput: "Name your channel",
     createChannelDesc: "Channel Description *",
     channelDescInput: "Describe your channel",
-    channelCatagory: "Channel Catagory (optional)",
+    channelCatagory: "Channel Catagory (optional. Max 3)",
     readyToCreate: "Ready to create your own channel?",
     saveChannelEdit: "Remember to save your changes.",
     tipHeader: "Want to get featured?",
@@ -518,13 +521,16 @@ let strings = new LocalizedStrings({
     signInToChat: "로그인 후 채팅",
 
     //CreateChannel > ChannelForm, ChannelFormSubmit
+    createNewChannel: "새로운 채널 개설",
+    createNewChannelSubtitle:
+      "채널을 개설하면 나만의 재생목록을 설정하고 팔로워들과 동시간 시청이 가능합니다.",
     selectChannelIcon: "채널 프사 업로드",
     changeChannelIcon: "채널 프사 변경",
     createChannelName: "채널 이름 *",
     channelNameInput: "이름을 지어주세요",
     createChannelDesc: "채널 설명 *",
     channelDescInput: "어떤 채널인가요?",
-    channelCatagory: "카테고리 (선택)",
+    channelCatagory: "카테고리 (선택. 최대 3개)",
     readyToCreate: "채널 개설 준비되셨습니까?",
     saveChannelEdit: "변경된 내용을 저장하시겠습니가?",
     tipHeader: "내 채널이 추천에 뜨려면",
