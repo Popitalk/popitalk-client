@@ -236,8 +236,11 @@ let strings = new LocalizedStrings({
 
     //CreateChannel > ChannelForm, ChannelFormSubmit
     createNewChannel: "Create a new channel",
+    editChannel: "Edit your channel",
     createNewChannelSubtitle:
       "Creating a channel allows you to share your own playlist to your followers in real-time.",
+    editChannelSubtitle:
+      "Personalize your channel to reach more followers and watch in real-time.",
     selectChannelIcon: "Select Channel Icon",
     changeChannelIcon: "Change Channel Icon",
     createChannelName: "Channel Name *",
@@ -522,8 +525,11 @@ let strings = new LocalizedStrings({
 
     //CreateChannel > ChannelForm, ChannelFormSubmit
     createNewChannel: "새로운 채널 개설",
+    editChannel: "채널 설정",
     createNewChannelSubtitle:
       "채널을 개설하면 나만의 재생목록을 설정하고 팔로워들과 동시간 시청이 가능합니다.",
+    editChannelSubtitle:
+      "채널 이름, 설명과 카테고리를 설정해서 나만의 채널을 관리하세요.",
     selectChannelIcon: "채널 프사 업로드",
     changeChannelIcon: "채널 프사 변경",
     createChannelName: "채널 이름 *",

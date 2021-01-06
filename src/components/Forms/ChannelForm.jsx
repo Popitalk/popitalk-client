@@ -131,7 +131,7 @@ export default function ChannelForm({
     <div className="flex flex-col w-full h-full rounded-lg p-4 space-y-2 z-50">
       <div className="relative flex space-x-4">
         <h1 className="text-copy-primary text-2xl font-bold">
-          {strings.createNewChannel}
+          {type === "create" ? strings.createNewChannel : strings.editChannel}
         </h1>
         <div className="w-10 h-10">
           <div className="flex flex-col">
@@ -162,7 +162,9 @@ export default function ChannelForm({
         </div>
       </div>
       <p className="text-copy-secondary text-sm">
-        {strings.createNewChannelSubtitle}
+        {type === "create"
+          ? strings.createChannelSubtitle
+          : strings.editChannelSubtitle}
       </p>
     </div>
   );
