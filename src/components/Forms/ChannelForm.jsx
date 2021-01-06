@@ -110,7 +110,8 @@ export default function ChannelForm({
   type,
   loading,
   error,
-  channelSettings
+  channelSettings,
+  alreadySelected
 }) {
   const { categories, selected } = useSelector(state => state.categories);
   const [tipPressed, setTipPressed] = useState(false);
@@ -118,8 +119,8 @@ export default function ChannelForm({
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getCategories());
-  }, [dispatch]);
+    dispatch(getCategories({ alreadySelected }));
+  }, [alreadySelected, dispatch]);
 
   useEffect(() => {
     return () => dispatch(initCategories());

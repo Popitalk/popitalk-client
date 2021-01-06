@@ -1,7 +1,14 @@
 export const R_setCategories = (state, action) => {
-  const { categories } = action.payload;
+  const { categories, alreadySelected } = action.payload;
 
-  state.categories = categories;
+  const selectedCategories = alreadySelected.map(category =>
+    categories.find(({ name }) => name === category)
+  );
+
+  state.categories = categories.filter(
+    category => !selectedCategories.some(({ name }) => name === category.name)
+  );
+  state.selected = selectedCategories;
 };
 
 export const R_addNewCategory = (state, action) => {
@@ -10,24 +17,27 @@ export const R_addNewCategory = (state, action) => {
   state.selected.push({ name: category, count: 0 });
 };
 
-export const R_setSelected = {
-  reducer: (state, action) => {
-    const { name, count } = action.payload;
+export const R_setSelected = (state, action) => {
+  const { name, count } = action.payload;
 
-    state.selected.push({ name, count });
-    state.categories = state.categories.filter(
-      category => name !== category.name
-    );
-  }
+  state.selected.push({ name, count });
+  state.categories = state.categories.filter(
+    category => name !== category.name
+  );
 };
 
-export const R_removeSelected = {
-  reducer: (state, action) => {
-    const { name, count } = action.payload;
+export const R_removeSelected = (state, action) => {
+  const { name, count } = action.payload;
 
-    state.categories.push({ name, count });
-    state.selected = state.selected.filter(category => name !== category.name);
-  }
+  state.categories.push({ name, count });
+  state.selected = state.selected.filter(category => name !== category.name);
+};
+
+export const selectChannelCategories = (state, action) => {
+  const categories = action.payload;
+
+  state.categories = [...new Set(categories, state.categories)];
+  state.selected = categories;
 };
 
 export const R_initCategories = () => ({

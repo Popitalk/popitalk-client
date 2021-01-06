@@ -23,6 +23,7 @@ export default function CreateChannelContainer({ hideLeftPanel }) {
         handleSubmit={values => dispatch(addChannel(values))}
         loading={addChannelApi.loading}
         error={addChannelApi.status === "error" ? addChannelApi.error : false}
+        alreadySelected={[]}
       />
       <Helmet>
         <meta charSet="UFT-8" />

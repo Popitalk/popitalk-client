@@ -37,6 +37,7 @@ export default function ChannelSettingsContainer({ channelId }) {
       followers={followers}
       admins={admins}
       bannedUsers={bannedUsers}
+      alreadySelected={channel.categories}
       openDeleteChannelModal={() => dispatch(openDeleteChannelModal(channelId))}
       handleProfile={id => dispatch(openProfileModal(id))}
       initialChannelForm={initialChannelForm}

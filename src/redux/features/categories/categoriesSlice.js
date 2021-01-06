@@ -17,9 +17,9 @@ const initialState = {
 
 export const getCategories = createAsyncThunk(
   "categories/getCategories",
-  async () => {
+  async ({ alreadySelected }) => {
     const response = await API.getCategories();
-    return response.data;
+    return { ...response.data, alreadySelected };
   }
 );
 

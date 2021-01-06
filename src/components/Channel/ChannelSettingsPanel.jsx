@@ -19,7 +19,8 @@ export default function ChannelSettingsPanel({
   removeAdminHandler,
   kickUserHandler,
   addBanHandler,
-  removeBanHandler
+  removeBanHandler,
+  alreadySelected
 }) {
   const [selected, setSelected] = useState(0);
 
@@ -53,6 +54,7 @@ export default function ChannelSettingsPanel({
           loading={channelFormLoading}
           error={channelFormError}
           channelSettings
+          alreadySelected={alreadySelected}
         />
       </div>
     );
