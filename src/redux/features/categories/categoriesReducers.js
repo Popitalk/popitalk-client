@@ -33,13 +33,6 @@ export const R_removeSelected = (state, action) => {
   state.selected = state.selected.filter(category => name !== category.name);
 };
 
-export const selectChannelCategories = (state, action) => {
-  const categories = action.payload;
-
-  state.categories = [...new Set(categories, state.categories)];
-  state.selected = categories;
-};
-
 export const R_initCategories = () => ({
   categories: [],
   selected: []
