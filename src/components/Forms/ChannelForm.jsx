@@ -49,7 +49,7 @@ const CategoryInput = connect(
             key={name}
             role="button"
             onMouseDown={() => handleSelect(formik, { name, count })}
-            className="flex items-center justify-between p-2 hover:bg-background-secondary text-sm rounded-md"
+            className="flex items-center justify-between p-2 hover:bg-background-secondary text-copy-primary text-sm rounded-md"
           >
             <span>{name}</span>
             <span>{count}</span>
@@ -64,7 +64,7 @@ const CategoryInput = connect(
             handleNewCategory(formik, formik.values.tags.trim());
             setOptions(suggestions);
           }}
-          className="flex items-center p-2 w-full hover:bg-background-secondary text-sm rounded-md space-x-2"
+          className="flex items-center p-2 w-full hover:bg-background-secondary text-sm rounded-md space-x-2 text-copy-primary"
         >
           <span>Create Category</span>
           <FontAwesomeIcon icon="plus" className="text-xs" />

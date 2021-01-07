@@ -59,7 +59,7 @@ export default function TagInput({
           <input
             autoComplete="off"
             // onKeyDown={detectKeyPress}
-            className="flex flex-grow outline-none border-none py-2 px-2 text-sm bg-background-primary rounded-xl"
+            className="flex flex-grow outline-none border-none py-2 px-2 text-sm bg-background-primary text-copy-primary rounded-xl"
             {...rest}
           />
         </div>
