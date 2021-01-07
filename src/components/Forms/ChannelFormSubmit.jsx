@@ -10,7 +10,7 @@ export default function ChannelFormSubmit({
   className
 }) {
   const classes = classnames(
-    "flex items-center justify-between bg-background-secondary rounded-xl text-sm text-copy-primary",
+    "flex items-center justify-between rounded-xl text-sm text-copy-primary",
     { [className]: className }
   );
   return (

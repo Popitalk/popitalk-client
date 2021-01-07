@@ -18,18 +18,16 @@ export default function ManageUsers({
 
   return (
     <div className="flex flex-col w-full">
-      <div className="h-auto mb-2">
-        <h3 className="font-bold mb-2">
-          {category} - {filteredUsers.length} users
-        </h3>
-        <Input
-          variant="filter"
-          size="md"
-          value={input}
-          placeholder="Search"
-          onChange={e => setInput(e.target.value)}
-        />
-      </div>
+      <h3 className="font-bold text-xl mb-4 text-copy-primary">
+        {category} · {filteredUsers.length}
+      </h3>
+      <Input
+        variant="filter"
+        size="sm"
+        value={input}
+        placeholder="Search"
+        onChange={e => setInput(e.target.value)}
+      />
       {filteredUsers.length !== 0 ? (
         <div className="flex flex-col items-stretch w-full h-full overflow-auto">
           <StretchList
@@ -42,7 +40,7 @@ export default function ManageUsers({
           />
         </div>
       ) : (
-        <h2 className="text-copy-secondary font-semibold text-sm flex-grow flex justify-center items-center">
+        <h2 className="text-copy-secondary text-sm flex-grow flex justify-center items-center py-32">
           No Users Found
         </h2>
       )}

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import ChannelSettingsSidebar from "./ChannelSettingsSidebar";
+import ButtonsList from "../Controls/ButtonsList";
 import ChannelForm from "../Forms/ChannelForm";
 import ManageUsers from "../ManageUsers";
 import strings from "../../helpers/localization";
@@ -22,6 +22,7 @@ export default function ChannelSettingsPanel({
   removeBanHandler,
   alreadySelected
 }) {
+  const pageClasses = "w-full md:w-2/3 pt-12 px-12";
   const [selected, setSelected] = useState(0);
 
   const handleLink = index => {
@@ -46,17 +47,16 @@ export default function ChannelSettingsPanel({
   let paneContent = <></>;
   if (selected === 0) {
     paneContent = (
-      <div className="w-full overflow-auto flex justify-center">
-        <ChannelForm
-          initial={initialChannelForm}
-          handleSubmit={handleChannelFormSubmit}
-          type="update"
-          loading={channelFormLoading}
-          error={channelFormError}
-          channelSettings
-          alreadySelected={alreadySelected}
-        />
-      </div>
+      <ChannelForm
+        initial={initialChannelForm}
+        handleSubmit={handleChannelFormSubmit}
+        type="update"
+        loading={channelFormLoading}
+        error={channelFormError}
+        channelSettings
+        alreadySelected={alreadySelected}
+        openDeleteChannelModal={openDeleteChannelModal}
+      />
     );
   } else if (selected === 1) {
     const options = [
@@ -66,7 +66,7 @@ export default function ChannelSettingsPanel({
     ];
 
     paneContent = (
-      <div className="w-2/3 overflow-auto flex justify-center pt-8">
+      <div className={pageClasses}>
         <ManageUsers
           category="Followers"
           ownerId={ownerId}
@@ -81,7 +81,7 @@ export default function ChannelSettingsPanel({
     const options = [{ name: "Remove Admin", handler: removeAdminHandler }];
 
     paneContent = (
-      <div className="w-2/3 overflow-auto flex justify-center pt-8">
+      <div className={pageClasses}>
         <ManageUsers
           category="Admins"
           ownerId={ownerId}
@@ -95,7 +95,7 @@ export default function ChannelSettingsPanel({
     const options = [{ name: "Remove Ban", handler: removeBanHandler }];
 
     paneContent = (
-      <div className="w-2/3 overflow-auto flex justify-center pt-8">
+      <div className={pageClasses}>
         <ManageUsers
           category="Banned"
           ownerId={ownerId}
@@ -108,16 +108,15 @@ export default function ChannelSettingsPanel({
   }
 
   return (
-    <div className="h-full w-full bg-background-secondary flex items-center md:flex-row md:items-stretch overflow-auto">
-      <div className="flex-none h-full p-4">
-        <ChannelSettingsSidebar
+    <div className="h-full w-full bg-background-secondary flex flex-col items-center overflow-auto">
+      <div className="px-8 w-full">
+        <ButtonsList
           buttons={buttons}
-          openDeleteChannelModal={openDeleteChannelModal}
+          row
+          freeform={"flex items-center text-sm bg-background-primary py-2 px-3"}
         />
       </div>
-      <div className="flex w-full justify-center text-copy-primary">
-        {paneContent}
-      </div>
+      <div className="flex w-full overflow-y-auto">{paneContent}</div>
     </div>
   );
 }

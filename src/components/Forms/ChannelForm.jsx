@@ -111,7 +111,8 @@ export default function ChannelForm({
   loading,
   error,
   channelSettings,
-  alreadySelected
+  alreadySelected,
+  openDeleteChannelModal
 }) {
   const { categories, selected } = useSelector(state => state.categories);
   const [tipPressed, setTipPressed] = useState(false);
@@ -127,8 +128,8 @@ export default function ChannelForm({
   }, [dispatch]);
 
   const paragraphClassName = "text-copy-secondary text-xs";
-  const tipsComponent = (
-    <div className="flex flex-col w-full h-full rounded-lg p-4 space-y-2 z-50">
+  const headerComponent = (
+    <div className="flex-col w-full rounded-lg p-4 space-y-2 mb-12 z-20">
       <div className="relative flex space-x-4">
         <h1 className="text-copy-primary text-2xl font-bold">
           {type === "create" ? strings.createNewChannel : strings.editChannel}
@@ -163,15 +164,15 @@ export default function ChannelForm({
       </div>
       <p className="text-copy-secondary text-sm">
         {type === "create"
-          ? strings.createChannelSubtitle
+          ? strings.createNewChannelSubtitle
           : strings.editChannelSubtitle}
       </p>
     </div>
   );
 
   return (
-    <div className="flex flex-col items-center w-full bg-background-secondary rounded-md p-8 overflow-y-auto space-y-12">
-      {tipsComponent}
+    <div className="flex flex-col items-center w-full bg-background-secondary rounded-md p-8 overflow-y-auto">
+      {headerComponent}
       <Formik
         initialValues={{ ...initial, tags: "" }}
         enableReinitialize={true}
@@ -212,12 +213,10 @@ export default function ChannelForm({
           resetForm
         }) => (
           <form
-            className={`${
-              channelSettings ? "md:w-3/4" : "md:w-1/2"
-            } flex flex-col`}
+            className="flex flex-col w-full md:w-3/5 space-y-8"
             onSubmit={handleSubmit}
           >
-            <div className="flex flex-col justify-center w-full text-copy-primary space-y-8">
+            <div>
               <ImageUpload
                 name="icon"
                 icon={values.icon}
@@ -232,62 +231,63 @@ export default function ChannelForm({
                 changeMessage={strings.changeChannelIcon}
                 channelPlaceholder
               />
-              <Input
-                variant="counter"
-                name="name"
-                header={strings.createChannelName}
-                type="text"
-                placeholder={strings.channelNameInput}
-                maxLength={20}
-                spellCheck={false}
-                disabled={loading}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                value={values.name}
-                error={touched.name && errors.name}
-                className="space-y-2"
+            </div>
+            <Input
+              variant="counter"
+              name="name"
+              header={strings.createChannelName}
+              type="text"
+              placeholder={strings.channelNameInput}
+              maxLength={20}
+              spellCheck={false}
+              disabled={loading}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              value={values.name}
+              error={touched.name && errors.name}
+              className="space-y-2"
+            />
+            <Input
+              variant="textarea"
+              name="description"
+              header={strings.createChannelDesc}
+              type="text"
+              placeholder={strings.channelDescInput}
+              disabled={loading}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              value={values.description}
+              error={touched.description && errors.description}
+              maxLength={150}
+              className="space-y-2"
+            />
+            {/* --UNCOMMENT FOR CHANNEL CATEGORY */}
+            <div className="space-y-2">
+              <ControlHeader
+                header={strings.channelCatagory}
+                error={touched.tags && errors.category}
+                size="sm"
               />
-              <Input
-                variant="textarea"
-                name="description"
-                header={strings.createChannelDesc}
-                type="text"
-                placeholder={strings.channelDescInput}
-                disabled={loading}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                value={values.description}
-                error={touched.description && errors.description}
-                maxLength={150}
-                className="space-y-2"
+              <CategoryInput
+                loading={loading}
+                tags={selected}
+                suggestions={categories}
+                handleCancel={category => dispatch(removeSelected(category))}
+                disabled={selected.length >= 3}
+                handleSelect={(formik, category) => {
+                  dispatch(setSelected(category));
+                  formik.setFieldValue("tags", "");
+                  formik.values.tags = "";
+                }}
+                handleNewCategory={(formik, category) => {
+                  dispatch(createCategory({ category }));
+                  formik.setFieldValue("tags", "");
+                  formik.values.tags = "";
+                }}
               />
-              {/* --UNCOMMENT FOR CHANNEL CATEGORY */}
-              <div className="space-y-2">
-                <ControlHeader
-                  header={strings.channelCatagory}
-                  error={touched.tags && errors.category}
-                  size="sm"
-                />
-                <CategoryInput
-                  loading={loading}
-                  tags={selected}
-                  suggestions={categories}
-                  handleCancel={category => dispatch(removeSelected(category))}
-                  disabled={selected.length >= 3}
-                  handleSelect={(formik, category) => {
-                    dispatch(setSelected(category));
-                    formik.setFieldValue("tags", "");
-                    formik.values.tags = "";
-                  }}
-                  handleNewCategory={(formik, category) => {
-                    dispatch(createCategory({ category }));
-                    formik.setFieldValue("tags", "");
-                    formik.values.tags = "";
-                  }}
-                />
-              </div>
-              {/* --UNCOMMENT FOR PRIVATE CHANNELS */}
-              {/* <div className="flex items-center mt-8">
+            </div>
+            {/* --UNCOMMENT FOR PRIVATE CHANNELS */}
+            {/* <div className="flex items-center mt-8">
                 <div className="mr-8">
                   <div className="flex items-center mb-1">
                     <FontAwesomeIcon
@@ -312,15 +312,25 @@ export default function ChannelForm({
                   className="ml-auto"
                 />
               </div> */}
-            </div>
             {error && <p className="text-copy-error text-sm pt-4">{error}</p>}
-            <div className="pt-20 pb-12">
-              <ChannelFormSubmit
-                type={type}
-                disabled={loading || !isValid || !dirty}
-                loading={loading}
-                handleReset={() => resetForm()}
-              />
+            <div className="py-20 space-y-12 flex flex-col items-end">
+              <div className="justify-between w-full">
+                <ChannelFormSubmit
+                  type={type}
+                  disabled={loading || !isValid || !dirty}
+                  loading={loading}
+                  handleReset={() => resetForm()}
+                />
+              </div>
+              {type !== "create" && (
+                <Button
+                  hoverable
+                  styleNone
+                  styleNoneContent={strings.deleteChannel}
+                  onClick={openDeleteChannelModal}
+                  styleNoneContentClassName="text-sm text-copy-error"
+                />
+              )}
             </div>
           </form>
         )}

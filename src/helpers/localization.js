@@ -258,11 +258,11 @@ let strings = new LocalizedStrings({
     tipParagraph3: "- Have videos in your playlist once you create a channel.",
     tipParagraph4: "- And lastly, be active and invite your friends!",
     // ChannelSettingsPanel
-    channelSettings: "Channel Settings",
-    manageFollowers: "Manage Followers",
-    manageAdmins: "Manage Admins",
-    manageBannedUsers: "Manage Banned Users",
-    deleteChannel: "Delete Channel",
+    channelSettings: "Edit Channel",
+    manageFollowers: "Followers",
+    manageAdmins: "Admins",
+    manageBannedUsers: "Banned users",
+    deleteChannel: "Delete channel",
     deleteChannelSubtitle:
       "Are you sure you want to delete your channel? You cannot undo this action.",
     // ContainerHeader
@@ -546,8 +546,8 @@ let strings = new LocalizedStrings({
     tipParagraph4: "- 활동이 많고 친구들을 초대 해보세요!",
     // ChannelSettingsPanel
     channelSettings: "채널 설정",
-    manageFollowers: "팔로워 관리",
-    manageAdmins: "관리자 설정",
+    manageFollowers: "팔로워",
+    manageAdmins: "관리자",
     manageBannedUsers: "차단 목록",
     deleteChannel: "채널 삭제",
     deleteChannelSubtitle: "채널을 삭제하면 복구할 수 없습니다.",
