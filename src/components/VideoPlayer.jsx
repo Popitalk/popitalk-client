@@ -357,7 +357,7 @@ class VideoPlayer extends Component {
                       height: 4
                     }
               }
-              className={`-mb-px ${
+              className={`-mb-px z-20 ${
                 this.props.displayControls &&
                 "cursor-pointer transition-all opacity-100 hover:opacity-100 duration-150"
               }`}
