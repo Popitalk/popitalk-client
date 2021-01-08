@@ -112,7 +112,8 @@ export default function ChannelForm({
   error,
   channelSettings,
   alreadySelected,
-  openDeleteChannelModal
+  openDeleteChannelModal,
+  channelUpdate
 }) {
   const { categories, selected } = useSelector(state => state.categories);
   const [tipPressed, setTipPressed] = useState(false);
@@ -170,6 +171,10 @@ export default function ChannelForm({
     </div>
   );
 
+  const isTagsUpdated =
+    channelUpdate &&
+    selected.map(({ name }) => name).join() !== alreadySelected.join();
+
   return (
     <div className="flex flex-col items-center w-full bg-background-secondary rounded-md p-8 overflow-y-auto">
       {headerComponent}
@@ -190,7 +195,6 @@ export default function ChannelForm({
           category: Yup.string().notRequired()
         })}
         onSubmit={values => {
-          console.log(selected);
           handleSubmit({
             name: values.name,
             description: values.description,
@@ -317,7 +321,7 @@ export default function ChannelForm({
               <div className="justify-between w-full">
                 <ChannelFormSubmit
                   type={type}
-                  disabled={loading || !isValid || !dirty}
+                  disabled={loading || !isValid || !(dirty || isTagsUpdated)}
                   loading={loading}
                   handleReset={() => resetForm()}
                 />

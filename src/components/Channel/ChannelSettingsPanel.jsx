@@ -56,6 +56,7 @@ export default function ChannelSettingsPanel({
         channelSettings
         alreadySelected={alreadySelected}
         openDeleteChannelModal={openDeleteChannelModal}
+        channelUpdate
       />
     );
   } else if (selected === 1) {

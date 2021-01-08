@@ -271,6 +271,9 @@ export const updateChannel = createAsyncThunk(
       if (updateInfo.public !== channel.public) {
         formData.append("public", updateInfo.public);
       }
+      if (channel.categories.join() !== updateInfo.categories.join()) {
+        formData.append("categories", updateInfo.categories);
+      }
       if (updateInfo.icon === null) {
         formData.append("removeIcon", true);
       } else if (updateInfo.icon && updateInfo.icon !== channel.icon) {
