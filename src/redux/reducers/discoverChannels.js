@@ -1,5 +1,5 @@
 import { createReducer } from "@reduxjs/toolkit";
-import { logout, deleteAccount, getDiscoverChannels } from "../actions";
+import { deleteAccount, getDiscoverChannels } from "../actions";
 
 const initialState = {
   channels: {},

@@ -41,9 +41,9 @@ const R_deleteComment = (state, { payload }) => {
   delete state[payload.commentId];
 };
 
-const R_replaceComments = (state, { payload }) => {
-  state[payload.postId] = payload.comments;
-};
+// const R_replaceComments = (state, { payload }) => {
+//   state[payload.postId] = payload.comments;
+// };
 
 const R_likeComment = (state, { payload }) => {
   const { commentId, userId, ownId } = payload;
