@@ -116,7 +116,7 @@ export default function ChannelSettingsPanel({
           freeform={"flex items-center text-sm bg-background-primary py-2 px-3"}
         />
       </div>
-      <div className="flex w-full overflow-y-auto">{paneContent}</div>
+      <div className="flex w-full h-full overflow-y-auto">{paneContent}</div>
     </div>
   );
 }

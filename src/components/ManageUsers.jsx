@@ -17,7 +17,7 @@ export default function ManageUsers({
   );
 
   return (
-    <div className="flex flex-col w-full">
+    <div className="flex flex-col w-full h-full">
       <h3 className="font-bold text-xl mb-4 text-copy-primary">
         {category} · {filteredUsers.length}
       </h3>
@@ -40,7 +40,7 @@ export default function ManageUsers({
           />
         </div>
       ) : (
-        <h2 className="text-copy-secondary text-sm flex-grow flex justify-center items-center py-32">
+        <h2 className="text-copy-secondary text-sm flex-grow flex justify-center items-center">
           No Users Found
         </h2>
       )}

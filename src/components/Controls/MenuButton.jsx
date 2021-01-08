@@ -36,7 +36,7 @@ export default function MenuButton({
   );
 
   const customClasses = classnames(
-    `${freeform} space-x-2 text-copy-secondary rounded-t-md select-none`,
+    `${freeform} space-x-2 text-copy-secondary rounded-t-md select-none cursor-pointer`,
     {
       "bg-background-secondary text-copy-highlight": selected,
       "text-copy-secondary": !selected
@@ -66,14 +66,7 @@ export default function MenuButton({
         </div>
       ) : freeform ? (
         <div role="button" onClick={onClick} className={customClasses}>
-          <div className="flex justify-start items-center space-x-2">
-            <FontAwesomeIcon
-              className="text-lg cursor-pointer"
-              icon={leftIcon}
-            />
-            <p>{text}</p>
-          </div>
-          {rightIcon && <FontAwesomeIcon icon={rightIcon} />}
+          <p className="flex justify-start items-center space-x-2">{text}</p>
         </div>
       ) : (
         <div role="button" onClick={onClick} className={buttonClasses}>
