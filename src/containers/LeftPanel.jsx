@@ -17,7 +17,7 @@ import {
   getChannels
 } from "../helpers/functions";
 import { orderBy } from "lodash";
-import { channelHasNewMessage } from "../util/channelHasNewMessage";
+// import { channelHasNewMessage } from "../util/channelHasNewMessage";
 
 export default function LeftPanelContainer({
   hideLeftPanel,
@@ -38,16 +38,18 @@ export default function LeftPanelContainer({
 
   const channels = useSelector(state => state.channels);
   const recommendedChannels = useSelector(state => state.recommendedChannels);
-  const numberOfNotifications = useSelector(state => {
-    let counter = 0;
-    const channels = Object.keys(state.channels).map(key => {
-      return state.channels[key];
-    });
-    channels.forEach(channel => {
-      if (channelHasNewMessage(channel)) counter++;
-    });
-    return counter;
-  });
+
+  // == NOTIFICATION ATTEMPT ON THE CLIENT == NEEDS REMAKE
+  // const numberOfNotifications = useSelector(state => {
+  //   let counter = 0;
+  //   const channels = Object.keys(state.channels).map(key => {
+  //     return state.channels[key];
+  //   });
+  //   channels.forEach(channel => {
+  //     if (channelHasNewMessage(channel)) counter++;
+  //   });
+  //   return counter;
+  // });
   const users = useSelector(state => state.users);
   const relationships = useSelector(state => state.relationships);
   const foundUsers = useSelector(state => state.userSearch);
@@ -194,7 +196,7 @@ export default function LeftPanelContainer({
           handleCollapse={() => dispatch(toggleLeftPanel())}
           handleCreateRoom={() => handleCreateRoom(selectedChannel)}
           setFriendsSearchFocus={setFriendsSearchFocus}
-          numberOfNotifications={numberOfNotifications}
+          // numberOfNotifications={numberOfNotifications}
         />
       </Route>
       <Route exact path="/friends">
@@ -219,7 +221,7 @@ export default function LeftPanelContainer({
           handleCreateRoom={() => handleCreateRoom(selectedChannel)}
           friendsSearchFocus={friendsSearchFocus}
           setFriendsSearchFocus={setFriendsSearchFocus}
-          numberOfNotifications={numberOfNotifications}
+          // numberOfNotifications={numberOfNotifications}
         />
       </Route>
       <Route>
@@ -244,7 +246,7 @@ export default function LeftPanelContainer({
           handleCollapse={() => dispatch(toggleLeftPanel())}
           handleCreateRoom={() => handleCreateRoom(selectedChannel)}
           setFriendsSearchFocus={setFriendsSearchFocus}
-          numberOfNotifications={numberOfNotifications}
+          // numberOfNotifications={numberOfNotifications}
         />
       </Route>
     </Switch>
