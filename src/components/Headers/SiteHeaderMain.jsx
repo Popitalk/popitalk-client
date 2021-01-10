@@ -138,7 +138,7 @@ const SiteHeaderMain = ({
     },
     {
       text: strings.discord,
-      href: "https://discord.gg/hdFfgg7",
+      href: "https://discord.gg/WFARTv3JC4",
       leftIcon: "discord",
       redirect: true,
       rightIcon: "external-link-alt"

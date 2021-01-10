@@ -43,7 +43,7 @@ export default function LeftPanelFooter() {
       string: strings.youtube
     },
     {
-      path: "https://discord.gg/hdFfgg7",
+      path: "https://discord.gg/WFARTv3JC4",
       string: strings.discord
     },
     { path: "https://www.facebook.com/popitalk", string: strings.facebook }

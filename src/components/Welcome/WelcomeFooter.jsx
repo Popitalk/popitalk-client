@@ -34,7 +34,7 @@ function Footer() {
 
   const thirdColumn = [
     {
-      path: "https://discord.gg/hdFfgg7",
+      path: "https://discord.gg/WFARTv3JC4",
       string: strings.discord
     },
     {
