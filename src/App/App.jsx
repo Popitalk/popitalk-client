@@ -18,6 +18,7 @@ import ReactGa from "react-ga";
 import logo from "../assets/logo.png";
 import strings from "../helpers/localization";
 import { validateSession } from "../redux/actions";
+import { getCategories } from "../redux";
 import { PublicRoute, GeneralRoute, PrivateRoute } from "../components/Routers";
 
 import "../styles/app.css";
@@ -36,6 +37,7 @@ export default function App() {
 
   useEffect(() => {
     dispatch(validateSession());
+    dispatch(getCategories({ alreadySelected: [] }));
   }, [dispatch]);
 
   useEffect(() => {

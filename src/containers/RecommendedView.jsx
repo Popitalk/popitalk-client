@@ -17,7 +17,8 @@ import {
   searchChannels,
   setSelectedTab,
   setIsSearchForChannels,
-  setChannelsList
+  setChannelsList,
+  getRecommendedChannelsTabs
 } from "../redux/actions";
 
 const followingTab = { tab: strings.following, icon: "home" };
@@ -51,9 +52,13 @@ function RecommendedChannels({ hideLeftPanel }) {
   const followingChannels = useSelector(state => state.followingChannels);
   const discoverChannels = useSelector(state => state.discoverChannels);
   const trendingChannels = useSelector(state => state.trendingChannels);
+  const recommendedChannelsTabs = useSelector(
+    state => state.recommendedChannels.tabs
+  );
   const { defaultAvatar, defaultIcon } = useSelector(state => state.general);
   const { tabSelected, isSearchForChannels } = useSelector(state => state.ui);
   const channelsList = useSelector(state => state.channelSearch.channelsList);
+  const { categories } = useSelector(state => state.categories);
   const searchResultChannels = useSelector(
     state => state.channelSearch.channels
   );
@@ -69,13 +74,22 @@ function RecommendedChannels({ hideLeftPanel }) {
 
   const [search, setSearch] = useState("");
 
+  const extraTabs = categories
+    .slice()
+    .sort((cat1, cat2) => cat2.count - cat1.count)
+    .slice(0, 3)
+    .map(({ name }) => ({
+      tab: name,
+      icon: "hashtag"
+    }));
+
   const tabs = loggedIn
-    ? [followingTab, discoverTab, trendingTab]
-    : [discoverTab, trendingTab];
+    ? [followingTab, discoverTab, trendingTab, ...extraTabs]
+    : [discoverTab, trendingTab, ...extraTabs];
 
   const tabHandler = tab => {
     dispatch(setSelectedTab(tab));
-
+    console.log(tab);
     if (tab === followingTab.tab) {
       updateChannelsList(
         dispatch,
@@ -100,6 +114,15 @@ function RecommendedChannels({ hideLeftPanel }) {
         trendingChannels.lastRequestAt,
         () => getTrendingChannels({ page: trendingChannels.page }),
         trendingChannels,
+        defaultAvatar,
+        defaultIcon
+      );
+    } else {
+      updateChannelsList(
+        dispatch,
+        null,
+        () => getRecommendedChannelsTabs({ categories: tab }),
+        recommendedChannelsTabs,
         defaultAvatar,
         defaultIcon
       );
@@ -149,6 +172,16 @@ function RecommendedChannels({ hideLeftPanel }) {
     dispatch(setChannelsList(channels));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [trendingChannels]);
+
+  useEffect(() => {
+    const channels = getChannels(
+      recommendedChannelsTabs,
+      defaultAvatar,
+      defaultIcon
+    );
+    dispatch(setChannelsList(channels));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [recommendedChannelsTabs]);
 
   useEffect(() => {
     if (loggedIn) {
