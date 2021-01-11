@@ -47,7 +47,12 @@ export default function App() {
   const chatPanel = <ChatPanel />;
   const leftPanel = <LeftPanel />;
 
-  if (!validatedSession || (loggedIn && !wsConnected)) return <PageLoader />;
+  if (!validatedSession || (loggedIn && !wsConnected))
+    return (
+      <ThemeProvider>
+        <PageLoader />
+      </ThemeProvider>
+    );
   return (
     <ThemeProvider>
       <ModalManager />
