@@ -13,6 +13,7 @@ import RecommendedView from "../containers/RecommendedView";
 import ModalManager from "../containers/Modals/ModalManager";
 import ChatPanel from "../containers/ChatPanel";
 import Channel from "../containers/Channel";
+import NotFoundPage from "../components/NotFoundPage";
 import CreateChannelContainer from "../containers/CreateChannelContainer";
 import ReactGa from "react-ga";
 import logo from "../assets/logo.png";
@@ -21,7 +22,6 @@ import { validateSession } from "../redux/actions";
 import { PublicRoute, GeneralRoute, PrivateRoute } from "../components/Routers";
 
 import "../styles/app.css";
-import "./App.css";
 import "../helpers/initIcons";
 import "../components/ScrollBars.css";
 import Button from "../components/Controls/Button";
@@ -46,8 +46,7 @@ export default function App() {
     }
   }, []);
 
-  if (!validatedSession || (loggedIn && !wsConnected))
-    return <section className="App--container" />;
+  if (!validatedSession || (loggedIn && !wsConnected)) return <NotFoundPage />;
 
   const viewer =
     pathname.includes("channels") ||
@@ -79,7 +78,7 @@ export default function App() {
   return (
     <ThemeProvider>
       <ModalManager />
-      <div className="h-screen flex flex-col bg-background-primary">
+      <div className="h-screen flex flex-col">
         <Header hideLeftPanelButton={hideLeftPanelButton} />
         <Switch>
           <PublicRoute exact path="/welcome">
@@ -134,7 +133,8 @@ export default function App() {
             <RouteWrapper leftPanel={leftPanel} />
           </PrivateRoute>
           <Route path="*">
-            <Redirect to="/" />
+            <NotFoundPage />
+            {/* <Redirect to="/" /> */}
           </Route>
         </Switch>
       </div>
