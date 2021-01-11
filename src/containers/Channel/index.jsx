@@ -463,6 +463,7 @@ class Channel extends Component {
           <ChannelHeaderContainer
             channelId={channelId}
             isMember={isMember}
+            type={type}
             isAdmin={isAdmin}
             status={this.state.playerStatus.status.toLowerCase()}
           />

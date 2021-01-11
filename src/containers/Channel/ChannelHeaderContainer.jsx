@@ -35,10 +35,11 @@ export default function ChannelHeaderContainer({
   channelId,
   isAdmin,
   isMember,
+  type,
   status
 }) {
   const channel = useSelector(state => state.channels[channelId]);
-  const { defaultIcon } = useSelector(state => state.general);
+  const { defaultIcon, defaultAvatar } = useSelector(state => state.general);
   let channelName = useSelector(state => selectChannelName(state, channelId));
 
   const dispatch = useDispatch();
@@ -51,7 +52,7 @@ export default function ChannelHeaderContainer({
     <ChannelHeader
       id={channelId}
       name={channelName}
-      icon={channel.icon || defaultIcon}
+      icon={channel.icon || type === "room" ? defaultAvatar : defaultIcon}
       handleFollow={handleFollow}
       isMember={isMember}
       isAdmin={isAdmin}
