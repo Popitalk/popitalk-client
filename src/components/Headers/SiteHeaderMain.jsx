@@ -15,7 +15,8 @@ import {
   setSelectedTab,
   setIsSearchForChannels,
   getFollowingChannels,
-  toggleLeftPanel
+  toggleLeftPanel,
+  removeLeftPanel
 } from "../../redux/actions";
 
 const SETTINGS = 1;
@@ -29,14 +30,13 @@ const SiteHeaderMain = ({
   avatar,
   friendRequests,
   notifications,
+  clearNotificationsHandler,
   openProfileHandler,
   openBlockedUsersHandler,
   openEditInformationHandler,
   openChangePasswordHandler,
-  clearNotificationsHandler,
   deleteAccountHandler,
-  logoutHandler,
-  hideLeftPanelButton
+  logoutHandler
 }) => {
   const [dropdownList, setDropdownList] = useState([]);
 
@@ -157,7 +157,15 @@ const SiteHeaderMain = ({
   return (
     <header className="sm:px-6 // relative flex items-center justify-between h-12 bg-background-primary select-none">
       <div className="flex flex-row items-center">
-        {hideLeftPanelButton}
+        <Button
+          hoverable
+          styleNone
+          icon="bars"
+          styleNoneIconClassName="text-lg"
+          className="sm:hidden block rounded-full text-copy-secondary w-10 h-10 hover:text-copy-highlight mr-4"
+          onClick={() => dispatch(removeLeftPanel())}
+          analyticsString="Collapse Button: PanelHeader"
+        />
         <Button
           hoverable
           styleNone

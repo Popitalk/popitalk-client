@@ -16,14 +16,14 @@ export default function ChatPanel({
   isRoom,
   isGifsOpen,
   updateGifsOpen,
-  isMember,
-  hideLeftPanel
+  isMember
 }) {
   const { loggedIn } = useSelector(state => state.general);
   const [chatPanelExpanded, setChatPanelExpanded] = useState(false);
+  const isRemoved = useSelector(state => state.ui.isRemoved);
 
   return (
-    <div className={`${hideLeftPanel === true && "hidden"} h-full`}>
+    <div className={`${isRemoved === true && "hidden"} h-full`}>
       <Button
         hoverable
         styleNone

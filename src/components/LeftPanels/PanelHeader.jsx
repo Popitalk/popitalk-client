@@ -3,7 +3,6 @@ import Button from "../Controls/Button";
 import strings from "../../helpers/localization";
 
 export default function PanelHeader({
-  handleCollapse,
   updateSelectedPage,
   selectedPage,
   numberOfNotifications

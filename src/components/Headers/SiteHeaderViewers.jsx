@@ -12,13 +12,14 @@ import { updateChannelsList } from "../../helpers/functions";
 import {
   setSelectedTab,
   setIsSearchForChannels,
-  getTrendingChannels
+  getTrendingChannels,
+  removeLeftPanel
 } from "../../redux/actions";
 
 const SETTINGS = 1;
 const INFORMATION = 4;
 
-const SiteHeaderViewers = ({ hideLeftPanelButton }) => {
+const SiteHeaderViewers = () => {
   const [dropdownList, setDropdownList] = useState([]);
 
   const trendingChannels = useSelector(state => state.trendingChannels);
@@ -88,7 +89,15 @@ const SiteHeaderViewers = ({ hideLeftPanelButton }) => {
   return (
     <header className="sm:px-6 // relative flex items-center justify-between h-12 bg-background-primary z-30 select-none">
       <div className="flex flex-row items-center">
-        {hideLeftPanelButton}
+        <Button
+          hoverable
+          styleNone
+          icon="bars"
+          styleNoneIconClassName="text-lg"
+          className="sm:hidden block rounded-full text-copy-secondary w-10 h-10 hover:text-copy-highlight mr-4"
+          onClick={() => dispatch(removeLeftPanel())}
+          analyticsString="Collapse Button: PanelHeader"
+        />
         <Button
           imageButton
           imageButtonSrc={Logo}
