@@ -37,7 +37,7 @@ import {
   getTrendingChannels,
   searchChannels
 } from "../actions";
-import { getUserInfo } from "../";
+import { getUserInfo, getCategories } from "../";
 
 const formatType = type => type.split("/").slice(0, 2).join("/");
 
@@ -61,6 +61,7 @@ const idsOfActions = {
   [formatType(updateRoom.fulfilled.type)]: "room",
   [formatType(followChannel.fulfilled.type)]: "followChannel",
   [formatType(unfollowChannel.fulfilled.type)]: "followChannel",
+  [formatType(getCategories.fulfilled.type)]: "categories",
   // MESSAGES
   [formatType(addMessage.fulfilled.type)]: "addMessage",
   [formatType(getMessages.fulfilled.type)]: "messages",

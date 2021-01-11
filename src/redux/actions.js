@@ -816,12 +816,19 @@ export const getFollowingChannels = createAsyncThunk(
   }
 );
 
-export const getRecommendedChannels = createAsyncThunk(
-  "recommendedChannels/getRecommendedChannels",
-  async recommendedInfo => {
-    const response = await api.getDiscoverChannels(recommendedInfo);
-    return response.data;
-  }
+const getRecommendedChannels = async recommendedInfo => {
+  const response = await api.getRecommendedChannels(recommendedInfo);
+  return response.data;
+};
+
+export const getRecommendedChannelsPanel = createAsyncThunk(
+  "recommendedChannels/getRecommendedChannelsPanel",
+  getRecommendedChannels
+);
+
+export const getRecommendedChannelsTabs = createAsyncThunk(
+  "recommendedChannels/getRecommendedChannelsTabs",
+  getRecommendedChannels
 );
 
 export const searchChannels = createAsyncThunk(
