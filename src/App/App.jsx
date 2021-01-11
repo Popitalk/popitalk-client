@@ -1,10 +1,9 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Switch, Route, useLocation } from "react-router";
+import { Switch, Route } from "react-router";
 import Helmet from "react-helmet";
-
-import { ThemeProvider } from "../helpers/themeContext";
-import { RouteWrapper } from "../helpers/routeWrapper";
+import ReactGa from "react-ga";
+// Containers
 import WelcomePage from "../containers/WelcomePage";
 import Header from "../containers/Header";
 import LeftPanel from "../containers/LeftPanel";
@@ -12,29 +11,31 @@ import RecommendedView from "../containers/RecommendedView";
 import ModalManager from "../containers/Modals/ModalManager";
 import ChatPanel from "../containers/ChatPanel";
 import Channel from "../containers/Channel";
+import CreateChannelContainer from "../containers/CreateChannelContainer";
+// Components
+import { PublicRoute, GeneralRoute, PrivateRoute } from "../components/Routers";
 import NotFoundPage from "../components/NotFoundPage";
 import PageLoader from "../components/PageLoader";
-import CreateChannelContainer from "../containers/CreateChannelContainer";
-import ReactGa from "react-ga";
+// Helpers
 import strings from "../helpers/localization";
+import { ThemeProvider } from "../helpers/themeContext";
+import { RouteWrapper } from "../helpers/routeWrapper";
+// Redux
 import { validateSession } from "../redux/actions";
-import { PublicRoute, GeneralRoute, PrivateRoute } from "../components/Routers";
-
+// Styles
 import "../styles/app.css";
+import "../styles/scrollbars.css";
 import "../helpers/initIcons";
-import "../components/ScrollBars.css";
 
 export default function App() {
+  const dispatch = useDispatch();
+
   const validatedSession = useSelector(state => state.general.validatedSession);
   const { loggedIn, wsConnected } = useSelector(state => state.general);
-
-  const dispatch = useDispatch();
-  const { pathname } = useLocation();
 
   useEffect(() => {
     dispatch(validateSession());
   }, [dispatch]);
-
   useEffect(() => {
     if (process.env.NODE_ENV === "production") {
       ReactGa.initialize("UA-175311766-1");
@@ -43,16 +44,10 @@ export default function App() {
     }
   }, []);
 
-  if (!validatedSession || (loggedIn && !wsConnected)) return <PageLoader />;
-
-  const viewer =
-    pathname.includes("channels") ||
-    pathname.includes("friends") ||
-    pathname === "/";
-
   const chatPanel = <ChatPanel />;
-  const leftPanel = (loggedIn || viewer) && <LeftPanel />;
+  const leftPanel = <LeftPanel />;
 
+  if (!validatedSession || (loggedIn && !wsConnected)) return <PageLoader />;
   return (
     <ThemeProvider>
       <ModalManager />
