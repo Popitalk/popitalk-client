@@ -97,7 +97,6 @@ class FriendsPanel extends Component {
     return (
       <div className="relative flex flex-col w-full sm:w-84 h-full bg-background-primary select-none">
         <PanelHeader
-          handleCollapse={this.props.handleCollapse}
           updateSelectedPage={this.props.updateSelectedPage}
           selectedPage={this.props.selectedPage}
           numberOfNotifications={this.props.numberOfNotifications}

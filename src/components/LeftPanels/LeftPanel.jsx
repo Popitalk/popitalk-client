@@ -25,7 +25,7 @@ export default function LeftPanel({
   handleCreateChannel,
   handleProfile,
   isCollapsed,
-  hideLeftPanel,
+  isRemoved,
   updateSelectedPage,
   handleCreateRoom,
   friendsSearchFocus,
@@ -39,9 +39,7 @@ export default function LeftPanel({
     return (
       <div className="relative z-30">
         <div
-          className={
-            hideLeftPanel === true ? "w-full sm:w-full" : "hidden sm:flex"
-          }
+          className={isRemoved === true ? "w-full sm:w-full" : "hidden sm:flex"}
         >
           <LeftPanelViewer
             recommendedChannels={recommendedChannels}
@@ -49,7 +47,6 @@ export default function LeftPanel({
             handleSelectChannel={handleSelectChannel}
             selectedPage={selectedPage}
             updateSelectedPage={updateSelectedPage}
-            hideLeftPanel={hideLeftPanel}
           />
         </div>
       </div>
@@ -76,7 +73,7 @@ export default function LeftPanel({
       <Fragment>
         <div
           className={
-            hideLeftPanel === true ? "w-screen sm:w-full" : "hidden sm:flex"
+            isRemoved === true ? "w-screen sm:w-full" : "hidden sm:flex"
           }
         >
           {selectedPage === "channels" ? (

@@ -11,7 +11,7 @@ export default function VideoCardHorizontalPlaylist({
   title,
   views,
   publishedAt,
-  thumbnail = "somedefaultimagehere",
+  thumbnail,
   status,
   statusMessage,
   type = "cancel",
@@ -67,111 +67,100 @@ export default function VideoCardHorizontalPlaylist({
   useEffect(() => {
     ReactTooltip.rebuild();
   }, []);
-  return (
-    <>
-      {loading ? (
-        <div className="animate-pulse flex-shrink-0">
-          <div className="flex shadow-xs rounded-md pb-16/9 my-4 items-between bg-background-quaternary" />
-          <div className="flex-1 space-y-2 w-full">
-            <div className="h-4 bg-background-quaternary rounded" />
-            <div className="h-4 bg-background-quaternary rounded w-5/6" />
+
+  if (loading)
+    return (
+      <div className="animate-pulse flex-shrink-0">
+        <div className="flex shadow-xs rounded-md pb-16/9 my-4 items-between bg-background-quaternary" />
+        <div className="flex-1 space-y-2 w-full">
+          <div className="h-4 bg-background-quaternary rounded" />
+          <div className="h-4 bg-background-quaternary rounded w-5/6" />
+        </div>
+      </div>
+    );
+  if (!title)
+    return (
+      <div
+        className="flex w-full flex-shrink-0 max-w-2xs items-center pr-2"
+        role="button"
+        onClick={handleFindMore}
+      >
+        <div className="relative cursor-pointer pb-16/9 w-full rounded-sm shadow-xs hover:shadow-md transition-all ease-in-out duration-100 bg-background-disabled hover:bg-hover-highlight focus:outline-none">
+          <div className="absolute flex items-center justify-center w-full h-full">
+            <Button
+              styleNone
+              styleNoneContent={strings.findMoreVideos}
+              icon="search"
+              styleNoneContentClassName="mx-2 text-sm"
+              className="text-copy-secondary"
+              analyticsString="Direct to Search Button: VideoCardHorizontalPlaylist"
+            />
           </div>
         </div>
-      ) : (
-        <>
-          {!title && (
-            <div
-              className="flex w-full flex-shrink-0 max-w-2xs items-center pr-2"
-              role="button"
-              onClick={handleFindMore}
-            >
-              <div className="relative cursor-pointer pb-16/9 w-full rounded-sm shadow-xs hover:shadow-md transition-all ease-in-out duration-100 bg-background-disabled hover:bg-hover-highlight focus:outline-none">
-                <div className="absolute flex items-center justify-center w-full h-full">
-                  <Button
-                    styleNone
-                    styleNoneContent={strings.findMoreVideos}
-                    icon="search"
-                    styleNoneContentClassName="mx-2 text-sm"
-                    className="text-copy-secondary"
-                    analyticsString="Direct to Search Button: VideoCardHorizontalPlaylist"
-                  />
-                </div>
-              </div>
-            </div>
-          )}
-          {title && (
-            <div
-              className={`relative opacity-100 hover:opacity-75 cursor-pointer ${cardClasses}`}
-              onClick={() => {
-                if (type === "add") {
-                  addButtonPressed();
-                }
-              }}
-              role="button"
-              onMouseEnter={() => setHoverCard(true)}
-              onMouseLeave={() => setHoverCard(false)}
-            >
-              {type === "add" && (
-                <div className="absolute flex justify-end p-1 items-start w-full h-full z-50">
-                  <Button
-                    actionButton
-                    icon={addButtonIcon}
-                    disabled={disableButton}
-                    styleNoneContentClassName="text-copy-primary"
-                    styleNoneIconClassName="text-copy-primary"
-                    size="sm"
-                  />
-                </div>
-              )}
-              <div className="relative flex justify-center flex-grow pb-16/9 w-full rounded-md shadow-xs hover:shadow-md transition-all ease-in-out duration-100">
-                <div className="absolute top-0 left-0 w-full h-full rounded-b-xl">
-                  <div className="relative flex justify-between p-1">
-                    <VideoStatus
-                      status={status}
-                      statusMessage={statusMessage}
-                    />
-                    {type === "cancel" && hoverCard === true && (
-                      <Button
-                        actionButton
-                        className="absolute right-0 mr-1 flex z-10 bg-background-highlight"
-                        onClick={removeButtonPressed}
-                        analyticsString="Remove Video: VideoCardHorizontalPlaylist"
-                        onMouseLeave={() => setRemoveButtonIcon("minus")}
-                        icon={removeButtonIcon}
-                        size="sm"
-                        background="cancel"
-                        tooltip="Remove Video"
-                        tooltipPlace="left"
-                      />
-                    )}
-                  </div>
-                </div>
-                <img
-                  src={thumbnail}
-                  alt={`${title} - Popitalk`}
-                  className="absolute top-0 w-full h-full img rounded-sm object-cover"
-                  onClick={handleSkip && (() => handleSkip(id))}
-                />
-              </div>
-              <div
-                className="w-full pt-2"
-                role="button"
-                onClick={addButtonPressed}
-              >
-                <p
-                  className="text-sm font-semibold truncate-2-lines overflow-hidden text-copy-primary break-words"
-                  dangerouslySetInnerHTML={{ __html: title }}
-                />
-                <div className="flex items-end">
-                  <p className="text-xs pt-2 text-copy-secondary items-end ">
-                    {"YouTube"} &middot; {rightInfo}
-                  </p>
-                </div>
-              </div>
-            </div>
-          )}
-        </>
+      </div>
+    );
+  return (
+    <div
+      className={`relative opacity-100 hover:opacity-75 cursor-pointer ${cardClasses}`}
+      onClick={() => {
+        if (type === "add") {
+          addButtonPressed();
+        }
+      }}
+      role="button"
+      onMouseEnter={() => setHoverCard(true)}
+      onMouseLeave={() => setHoverCard(false)}
+    >
+      {type === "add" && (
+        <div className="absolute flex justify-end p-1 items-start w-full h-full z-50">
+          <Button
+            actionButton
+            icon={addButtonIcon}
+            disabled={disableButton}
+            styleNoneContentClassName="text-copy-primary"
+            styleNoneIconClassName="text-copy-primary"
+            size="sm"
+          />
+        </div>
       )}
-    </>
+      <div className="relative flex justify-center flex-grow pb-16/9 w-full rounded-md shadow-xs hover:shadow-md transition-all ease-in-out duration-100">
+        <div className="absolute top-0 left-0 w-full h-full rounded-b-xl">
+          <div className="relative flex justify-between p-1">
+            <VideoStatus status={status} statusMessage={statusMessage} />
+            {type === "cancel" && hoverCard === true && (
+              <Button
+                actionButton
+                className="absolute right-0 mr-1 flex z-10 bg-background-highlight"
+                onClick={removeButtonPressed}
+                analyticsString="Remove Video: VideoCardHorizontalPlaylist"
+                onMouseLeave={() => setRemoveButtonIcon("minus")}
+                icon={removeButtonIcon}
+                size="sm"
+                background="cancel"
+                tooltip="Remove Video"
+                tooltipPlace="left"
+              />
+            )}
+          </div>
+        </div>
+        <img
+          src={thumbnail}
+          alt={`${title} - Popitalk`}
+          className="absolute top-0 w-full h-full img rounded-sm object-cover"
+          onClick={handleSkip && (() => handleSkip(id))}
+        />
+      </div>
+      <div className="w-full pt-2" role="button" onClick={addButtonPressed}>
+        <p
+          className="text-sm font-semibold truncate-2-lines overflow-hidden text-copy-primary break-words"
+          dangerouslySetInnerHTML={{ __html: title }}
+        />
+        <div className="flex items-end">
+          <p className="text-xs pt-2 text-copy-secondary items-end ">
+            {"YouTube"} &middot; {rightInfo}
+          </p>
+        </div>
+      </div>
+    </div>
   );
 }

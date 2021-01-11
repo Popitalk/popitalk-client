@@ -743,6 +743,7 @@ export const swapVideosWs = createAction("videoSearch/swapVideos/ws");
 /* -------------------------------------------------------------------------- */
 
 export const toggleLeftPanel = createAction("ui/toggleLeftPanel");
+export const removeLeftPanel = createAction("ui/removeLeftPanel");
 export const setLeftPanelActiveTabChannels = createAction(
   "ui/setLeftPanelActiveTabChannels"
 );

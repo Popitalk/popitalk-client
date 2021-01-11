@@ -43,11 +43,12 @@ const LoadMoreButton = ({ channelStatus, isLoadMore, handleLoadMore }) =>
       <div className="h-px bg-background-quaternary w-full mx-2" />
     </div>
   ) : null;
-function RecommendedChannels({ hideLeftPanel }) {
+function RecommendedChannels() {
   const dispatch = useDispatch();
 
   const loggedIn = useSelector(state => state.general.loggedIn);
   const isCollapsed = useSelector(state => state.ui.isCollapsed);
+  const isRemoved = useSelector(state => state.ui.isRemoved);
   const followingChannels = useSelector(state => state.followingChannels);
   const discoverChannels = useSelector(state => state.discoverChannels);
   const trendingChannels = useSelector(state => state.trendingChannels);
@@ -165,7 +166,7 @@ function RecommendedChannels({ hideLeftPanel }) {
   return (
     <div
       className={`${
-        hideLeftPanel === true && "hidden"
+        isRemoved === true && "hidden"
       } relative p-4 w-full h-full rounded-md bg-background-secondary overflow-auto`}
     >
       <div className="py-4 mx-auto w-3/4 sm:w-1/2">

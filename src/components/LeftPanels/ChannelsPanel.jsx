@@ -16,7 +16,6 @@ export default function ChannelsPanel({
   friends,
   handleSelectChannel,
   handleSelectRoom,
-  handleCollapse,
   handleCreateChannel,
   updateSelectedPage,
   selectedPage,
@@ -51,7 +50,6 @@ export default function ChannelsPanel({
   return (
     <div className="flex flex-col w-full sm:w-84 h-full bg-background-primary select-none">
       <PanelHeader
-        handleCollapse={handleCollapse}
         updateSelectedPage={updateSelectedPage}
         selectedPage={selectedPage}
         numberOfNotifications={numberOfNotifications}
