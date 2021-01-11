@@ -7,7 +7,7 @@ import {
   toggleLeftPanel,
   searchUsers,
   setLastMessageSeen,
-  getRecommendedChannels
+  getRecommendedChannelsPanel
 } from "../redux/actions";
 import { openInviteModal, openProfileModal } from "../redux";
 import history from "../history";
@@ -37,7 +37,9 @@ export default function LeftPanelContainer({
   const [friendsSearchFocus, setFriendsSearchFocus] = useState(false);
 
   const channels = useSelector(state => state.channels);
-  const recommendedChannels = useSelector(state => state.recommendedChannels);
+  const recommendedChannelsPanel = useSelector(
+    state => state.recommendedChannels.panel
+  );
   const numberOfNotifications = useSelector(state => {
     let counter = 0;
     const channels = Object.keys(state.channels).map(key => {
@@ -87,16 +89,16 @@ export default function LeftPanelContainer({
 
   useEffect(() => {
     const channels = getChannels(
-      recommendedChannels,
+      recommendedChannelsPanel,
       defaultAvatar,
       defaultIcon
     ).slice(0, 8);
     setRecommendedList(channels);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [recommendedChannels]);
+  }, [recommendedChannelsPanel]);
 
   useEffect(() => {
-    dispatch(getRecommendedChannels({ page: 1 }));
+    dispatch(getRecommendedChannelsPanel({}));
   }, [dispatch]);
 
   const rooms = orderBy(
