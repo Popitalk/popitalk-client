@@ -1,5 +1,4 @@
 import React from "react";
-// import { createSelector } from "reselect";
 import { useSelector, useDispatch } from "react-redux";
 import Post from "../components/Channel/Post";
 import { likePost, unlikePost } from "../redux/actions";

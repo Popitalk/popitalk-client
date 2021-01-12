@@ -4,7 +4,7 @@ import { Switch, Route } from "react-router";
 import Helmet from "react-helmet";
 import ReactGa from "react-ga";
 // Containers
-import WelcomePage from "../containers/WelcomePage";
+import WelcomePage from "../containers/WelcomeView";
 import Header from "../containers/Header";
 import LeftPanel from "../containers/LeftPanel";
 import RecommendedView from "../containers/RecommendedView";

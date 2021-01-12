@@ -2,14 +2,16 @@ import React, { useState, useEffect, useCallback } from "react";
 import PropTypes from "prop-types";
 import { useSelector, useDispatch } from "react-redux";
 import Helmet from "react-helmet";
-
+// Components
+import Button from "../components/Controls/Button.jsx";
+import LoadMoreButton from "../components/Controls/LoadMoreButton";
 import ChannelCardList from "../components/ThumbnailCardLists/ChannelCardList.jsx";
 import ChannelSearchList from "../components/ThumbnailCardLists/ChannelSearchList.jsx";
 import Input from "../components/Controls/Input.jsx";
-import Button from "../components/Controls/Button.jsx";
-import Spinner from "../components/Spinner";
+// Helpers
 import strings from "../helpers/localization";
 import { getChannels, updateChannelsList } from "../helpers/functions";
+// Redux
 import {
   getDiscoverChannels,
   getTrendingChannels,
@@ -23,26 +25,6 @@ import {
 const followingTab = { tab: strings.following, icon: "home" };
 const discoverTab = { tab: strings.discover, icon: "globe" };
 const trendingTab = { tab: strings.trending, icon: "fire" };
-
-const LoadMoreButton = ({ channelStatus, isLoadMore, handleLoadMore }) =>
-  channelStatus === "loading" ? (
-    <Spinner />
-  ) : isLoadMore ? (
-    <div className="flex justify-center items-center p-12">
-      <div className="h-px bg-background-quaternary w-full mx-2" />
-      <Button
-        actionButton
-        leftIcon="arrow-down"
-        size="sm"
-        hoverable
-        className="bg-background-primary text-copy-highlight text-sm font-bold flex-shrink-0 space-x-2"
-        onClick={handleLoadMore}
-      >
-        {strings.loadMoreButton}
-      </Button>
-      <div className="h-px bg-background-quaternary w-full mx-2" />
-    </div>
-  ) : null;
 function RecommendedChannels() {
   const dispatch = useDispatch();
 
