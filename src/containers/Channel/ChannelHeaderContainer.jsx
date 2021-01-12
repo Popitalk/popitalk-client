@@ -52,7 +52,11 @@ export default function ChannelHeaderContainer({
     <ChannelHeader
       id={channelId}
       name={channelName}
-      icon={channel.icon || type === "room" ? defaultAvatar : defaultIcon}
+      icon={
+        type === "room"
+          ? channel.icon || defaultAvatar
+          : channel.icon || defaultIcon
+      }
       handleFollow={handleFollow}
       isMember={isMember}
       isAdmin={isAdmin}

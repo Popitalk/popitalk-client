@@ -15,7 +15,11 @@ function ChatHeader({ openFollowersList, followersCount, isRoom, channelId }) {
       <div className="flex items-center ml-12 sm:ml-0">
         <RoomIcon
           ids={channelId}
-          images={[channel.icon || isRoom ? defaultAvatar : defaultIcon]}
+          images={
+            isRoom
+              ? [channel.icon || defaultAvatar]
+              : [channel.icon || defaultIcon]
+          }
           size="sm"
           className="transition transform ease-in-out hover:scale-110 duration-100 cursor-pointer"
         />

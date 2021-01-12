@@ -5,8 +5,6 @@ import VideoStatus from "../VideoStatus";
 import strings from "../../helpers/localization";
 import history from "../../history";
 import channelPlaceholder from "../../assets/default/channelPlaceholder1.png";
-import { useSelector } from "react-redux";
-import { mapIdsToUsers } from "../../helpers/functions";
 
 export default function ChannelCard({
   id,
@@ -20,12 +18,6 @@ export default function ChannelCard({
   const handleSelect = () => {
     history.push(`/channels/${id}`);
   };
-  const { defaultAvatar } = useSelector(state => state.general);
-  const users = useSelector(state => state.users);
-  const viewerInfoObject = viewers
-    ? mapIdsToUsers(viewers, users, defaultAvatar)
-    : [];
-  const avatars = viewerInfoObject.map(viewer => viewer.avatar);
 
   let videoThumbnail = "";
   let videoTitle = strings.nothingPlaying;
@@ -84,8 +76,8 @@ export default function ChannelCard({
           dangerouslySetInnerHTML={{ __html: videoTitle }}
         />
         <AvatarDeck
-          avatars={avatars}
-          alt={`${avatars} - Popitalk`}
+          avatars={viewers}
+          alt={`${viewers} - Popitalk`}
           size="sm"
           className="img flex-shrink-0"
           threshold={8}
