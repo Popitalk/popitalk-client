@@ -2,7 +2,7 @@ import React from "react";
 import strings from "../../helpers/localization";
 import DescriptionCard from "./DescriptionCard";
 
-export default function SignupSection({ id }) {
+export default function SignupSection() {
   const formatClassName =
     "flex flex-col w-full justify-center items-center my-8";
   const headerClassName = "text-3xl font-bold text-copy-primary sm:p-12 p-4";

@@ -1,13 +1,9 @@
 import React from "react";
-import { openCreateNewAccountModal } from "../../redux";
-import { useDispatch } from "react-redux";
 import Button from "../Controls/Button";
-import { Link } from "react-router-dom";
 import welcomepic from "../../assets/welcomepic.png";
 import strings from "../../helpers/localization";
 
-export default function WelcomeIntro() {
-  const dispatch = useDispatch();
+export default function WelcomeIntro({ openModal }) {
   return (
     <div className="relative flex flex-col md:flex-row w-full h-full items-center p-8 bg-background-primary">
       {/* LEFT SECTION */}
@@ -33,16 +29,16 @@ export default function WelcomeIntro() {
             styleNone
             styleNoneContent={strings.welcomeButton1}
             className="bg-copy-link text-copy-tertiary py-3 px-4 rounded-xl"
-            onClick={() => dispatch(openCreateNewAccountModal())}
+            onClick={openModal}
           />
-          <Link to="/">
+          <a href="/">
             <Button
               hoverable
               styleNone
               styleNoneContent={strings.welcomeButton2}
               className="py-3 px-4"
             />
-          </Link>
+          </a>
         </div>
       </div>
     </div>

@@ -1,14 +1,23 @@
 import React from "react";
+import { useDispatch } from "react-redux";
 import Helmet from "react-helmet";
-import strings from "../helpers/localization";
+// Components
 import WelcomeIntro from "../components/Welcome/WelcomeIntro";
 import DescriptionSection from "../components/Welcome/DescriptionSection";
 import WelcomeFooter from "../components/Welcome/WelcomeFooter";
+// Redux
+import { openCreateNewAccountModal } from "../redux";
+// Helpers
+import strings from "../helpers/localization";
 
 function WelcomePage() {
+  const dispatch = useDispatch();
+
+  const openModal = () => dispatch(openCreateNewAccountModal());
+
   return (
     <div className="w-full h-full overflow-y-auto">
-      <WelcomeIntro />
+      <WelcomeIntro openModal={openModal} />
       <DescriptionSection />
       <WelcomeFooter />
       <Helmet>
