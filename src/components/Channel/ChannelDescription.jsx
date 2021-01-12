@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import Button from "../Controls/Button";
 import AvatarIcon from "../Controls/AvatarIcon";
 import AdminAvatarContainer from "../../containers/AdminAvatarContainer";
-import strings from "../../helpers/localization";
+import strings from "../../localization/strings";
 
 export default function ChannelDescription({
   name,

@@ -1,5 +1,5 @@
 import React from "react";
-import strings from "../../helpers/localization";
+import strings from "../../localization/strings";
 import DescriptionCard from "./DescriptionCard";
 
 export default function SignupSection() {

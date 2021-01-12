@@ -7,8 +7,8 @@ import DescriptionSection from "../components/Welcome/DescriptionSection";
 import WelcomeFooter from "../components/Welcome/WelcomeFooter";
 // Redux
 import { openCreateNewAccountModal } from "../redux";
-// Helpers
-import strings from "../helpers/localization";
+// Localization
+import strings from "../localization/strings";
 
 function WelcomePage() {
   const dispatch = useDispatch();

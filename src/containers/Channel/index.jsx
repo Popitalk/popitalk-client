@@ -27,7 +27,7 @@ import {
   defaultPlayerStatus,
   LOOP
 } from "../../helpers/videoSyncing";
-import strings from "../../helpers/localization";
+import strings from "../../localization/strings";
 import { DEFAULT_SOURCE } from "../../helpers/videoSourceImages";
 
 const CHANNEL_TYPE = "channel";

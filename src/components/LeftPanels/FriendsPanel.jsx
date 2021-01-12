@@ -8,7 +8,7 @@ import Input from "../Controls/Input";
 import RoomsList from "../InfoCardLists/RoomsList";
 import PanelHeader from "./PanelHeader";
 import { utilizeFocus } from "../../helpers/functions";
-import strings from "../../helpers/localization";
+import strings from "../../localization/strings";
 import LeftPanelSubHeader from "./LeftPanelSubHeader";
 class FriendsPanel extends Component {
   constructor(props) {

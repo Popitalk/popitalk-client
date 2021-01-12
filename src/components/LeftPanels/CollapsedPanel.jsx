@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import RoomIcon from "../Controls/RoomIcon";
 import Button from "../Controls/Button";
 import useCollapse from "react-collapsed";
-import strings from "../../helpers/localization";
+import strings from "../../localization/strings";
 import ReactTooltip from "react-tooltip";
 import { channelHasNewMessage } from "../../util/channelHasNewMessage";
 function CollapsedPanel({

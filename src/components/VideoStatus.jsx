@@ -1,5 +1,5 @@
 import React from "react";
-import strings from "../helpers/localization";
+import strings from "../localization/strings";
 
 export default function VideoStatus({
   status = "none",

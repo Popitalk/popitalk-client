@@ -8,7 +8,7 @@ import ImageUpload from "../Controls/ImageUpload";
 import ChannelFormSubmit from "./ChannelFormSubmit";
 import TagInput from "../Controls/TagInput";
 import ControlHeader from "../Controls/ControlHeader";
-import strings from "../../helpers/localization";
+import strings from "../../localization/strings";
 import Button from "../Controls/Button";
 import {
   getCategories,

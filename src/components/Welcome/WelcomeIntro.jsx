@@ -1,7 +1,7 @@
 import React from "react";
 import Button from "../Controls/Button";
 import welcomepic from "../../assets/welcomepic.png";
-import strings from "../../helpers/localization";
+import strings from "../../localization/strings";
 
 export default function WelcomeIntro({ openModal }) {
   return (

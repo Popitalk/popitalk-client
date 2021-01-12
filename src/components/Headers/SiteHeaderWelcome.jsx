@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Logo from "../../assets/logo.png";
 import Button from "../Controls/Button";
-import strings from "../../helpers/localization";
+import strings from "../../localization/strings";
 import { Link } from "react-router-dom";
 import { useWindowSize } from "../../helpers/functions";
 

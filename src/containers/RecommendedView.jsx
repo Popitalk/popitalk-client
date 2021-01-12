@@ -8,8 +8,9 @@ import LoadMoreButton from "../components/Controls/LoadMoreButton";
 import ChannelCardList from "../components/ThumbnailCardLists/ChannelCardList.jsx";
 import ChannelSearchList from "../components/ThumbnailCardLists/ChannelSearchList.jsx";
 import Input from "../components/Controls/Input.jsx";
+// Localization
+import strings from "../localization/strings";
 // Helpers
-import strings from "../helpers/localization";
 import { getChannels, updateChannelsList } from "../helpers/functions";
 // Redux
 import {

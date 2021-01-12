@@ -1,5 +1,5 @@
 import React from "react";
-import strings from "../../helpers/localization";
+import strings from "../../localization/strings";
 import Spinner from "../Spinner";
 import Button from "./Button";
 

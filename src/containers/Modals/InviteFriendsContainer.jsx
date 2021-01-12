@@ -15,7 +15,7 @@ import {
 } from "../../helpers/functions";
 import sortBy from "lodash/sortBy";
 import _ from "lodash";
-import strings from "../../helpers/localization";
+import strings from "../../localization/strings";
 
 export default function InviteFriendsContainer({ handleModalClose }) {
   const { isCreatingNewRoom } = useSelector(state => state.modal);

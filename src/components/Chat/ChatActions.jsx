@@ -9,7 +9,7 @@ import {
 import { withRouter } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 import Button from "../Controls/Button";
-import strings from "../../helpers/localization";
+import strings from "../../localization/strings";
 import ChatActionButtons from "./ChatActionButtons";
 
 function ChatActions(props) {

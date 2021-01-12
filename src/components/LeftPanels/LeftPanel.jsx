@@ -5,7 +5,7 @@ import { Helmet } from "react-helmet";
 import FriendsPanel from "./FriendsPanel";
 import CollapsedPanel from "./CollapsedPanel";
 import ChannelsPanel from "./ChannelsPanel";
-import strings from "../../helpers/localization";
+import strings from "../../localization/strings";
 import LeftPanelViewer from "./LeftPanelViewer";
 
 export default function LeftPanel({

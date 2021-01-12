@@ -11,7 +11,7 @@ import {
   logout
 } from "../actions";
 
-import strings from "../../helpers/localization";
+import strings from "../../localization/strings";
 
 const initialState = {
   isCollapsed: false,

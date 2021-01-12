@@ -2,7 +2,7 @@ import React from "react";
 import RoomIcon from "../Controls/RoomIcon";
 import InfoCard from "../InfoCards/InfoCard";
 import InfoCardList from "./InfoCardList";
-import strings from "../../helpers/localization";
+import strings from "../../localization/strings";
 
 export default function ChannelsList({
   channels,

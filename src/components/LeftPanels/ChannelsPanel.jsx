@@ -4,7 +4,7 @@ import ReactTooltip from "react-tooltip";
 import ChannelsList from "../InfoCardLists/ChannelsList";
 import MiniFriendsList from "../MiniFriendsList";
 import PanelHeader from "./PanelHeader";
-import strings from "../../helpers/localization";
+import strings from "../../localization/strings";
 import LeftPanelFooter from "./LeftPanelFooter";
 import LeftPanelSubHeader from "./LeftPanelSubHeader";
 

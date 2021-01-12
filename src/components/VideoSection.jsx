@@ -4,7 +4,7 @@ import AvatarIcon from "./Controls/AvatarIcon";
 import VideoStatus from "./VideoStatus";
 import VideoPlayer from "./VideoPlayer";
 import ReactTooltip from "react-tooltip";
-import strings from "../helpers/localization";
+import strings from "../localization/strings";
 
 export default function VideoSection({
   title,

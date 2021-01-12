@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 
 import RoomIcon from "./Controls/RoomIcon";
 import { Link, useLocation } from "react-router-dom";
-import strings from ".././helpers/localization";
+import strings from "../localization/strings";
 import Button from "./Controls/Button";
 
 export default function ChannelHeader({

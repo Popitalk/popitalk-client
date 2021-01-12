@@ -10,7 +10,7 @@ import VideoPlayerStatusCard from "./VideoPlayerStatusCard";
 import Ripples from "react-ripples";
 import Button from "./Controls/Button";
 import { BUFFER_TIME } from "../helpers/videoSyncing";
-import strings from "../helpers/localization";
+import strings from "../localization/strings";
 
 class VideoPlayer extends Component {
   constructor(props) {

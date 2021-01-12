@@ -9,7 +9,7 @@ import FriendRequests from "../DropDowns/FriendRequests";
 // import Notifications from "./DropDowns/Notifications";
 import DropDownControls from "../DropDowns/DropDownControls";
 import Button from "../Controls/Button";
-import strings from "../../helpers/localization";
+import strings from "../../localization/strings";
 import { updateChannelsList } from "../../helpers/functions";
 import {
   setSelectedTab,

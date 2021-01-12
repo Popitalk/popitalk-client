@@ -1,5 +1,5 @@
 import React from "react";
-import strings from "../../helpers/localization";
+import strings from "../../localization/strings";
 import Button from "../Controls/Button";
 import kofiLogo from "../../assets/attributes/kofi-logo.png";
 import patreonLogo from "../../assets/attributes/patreon-logo.png";

@@ -2,7 +2,7 @@ import React from "react";
 import RoomIcon from "../Controls/RoomIcon";
 import AvatarDeck from "../Controls/AvatarDeck";
 import VideoStatus from "../VideoStatus";
-import strings from "../../helpers/localization";
+import strings from "../../localization/strings";
 import history from "../../history";
 import channelPlaceholder from "../../assets/default/channelPlaceholder1.png";
 

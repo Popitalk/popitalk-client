@@ -2,7 +2,7 @@ import formatDistanceToNowX from "date-fns/formatDistanceToNow";
 import en from "date-fns/esm/locale/en-US";
 import ko from "date-fns/esm/locale/ko";
 import ru from "date-fns/esm/locale/ru";
-import strings from "./localization";
+import strings from "../localization/strings";
 
 const locales = {
   en: en,

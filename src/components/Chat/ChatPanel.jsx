@@ -5,7 +5,7 @@ import ChatHeader from "./ChatHeader";
 import ChatMessageList from "./ChatMessageList";
 import ChatActions from "./ChatActions";
 import GifTable from "./GifTable";
-import strings from "../../helpers/localization";
+import strings from "../../localization/strings";
 import Button from "../Controls/Button";
 
 export default function ChatPanel({

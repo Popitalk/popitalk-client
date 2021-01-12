@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import ChannelSearchCard from "../ThumbnailCards/ChannelSearchCard.jsx";
-import strings from "../../helpers/localization.js";
+import strings from "../../localization/strings.js";
 
 function ChannelSearchList({ channelList }) {
   function mapChannels(channels) {

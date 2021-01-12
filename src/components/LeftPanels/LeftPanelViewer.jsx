@@ -1,5 +1,5 @@
 import React from "react";
-import strings from "../../helpers/localization";
+import strings from "../../localization/strings";
 import InviteForm from "../Forms/InviteForm";
 import ChannelsList from "../InfoCardLists/ChannelsList";
 import LeftPanelDescription from "./LeftPanelDescription";

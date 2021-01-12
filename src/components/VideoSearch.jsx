@@ -1,7 +1,7 @@
 import React from "react";
 import VideoSearchBar from "./VideoSearchBar";
 import VideoResults from "./ThumbnailCardLists/VideoResults";
-import strings from "../helpers/localization";
+import strings from "../localization/strings";
 
 function VideoSearch(
   { searchTerm, searchResults, totalResults, handleSearch, handleAddVideo },

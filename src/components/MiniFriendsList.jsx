@@ -1,7 +1,7 @@
 import React from "react";
 import Button from "./Controls/Button";
 import RoomIcon from "./Controls/RoomIcon";
-import strings from "../helpers/localization";
+import strings from "../localization/strings";
 import { channelHasNewMessage } from "../util/channelHasNewMessage";
 
 export default function MiniFriendsList({

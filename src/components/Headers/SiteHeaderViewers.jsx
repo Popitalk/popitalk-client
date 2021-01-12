@@ -7,7 +7,7 @@ import DropDownMenu from "../DropDowns/DropDownMenu";
 import DropDownControls from "../DropDowns/DropDownControls";
 import Button from "../Controls/Button";
 import SignInButton from "../SignInButton";
-import strings from "../../helpers/localization";
+import strings from "../../localization/strings";
 import { updateChannelsList } from "../../helpers/functions";
 import {
   setSelectedTab,

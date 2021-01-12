@@ -13,7 +13,7 @@ import QueueSection from "../../components/ThumbnailCardLists/QueueSection";
 import VideoCardHorizontalPlaylist from "../../components/ThumbnailCards/VideoCardHorizontalPlaylist";
 import ScrollableCardList from "../../components/ThumbnailCardLists/ScrollableCardList";
 import ChannelQueue from "../../components/Channel/ChannelQueue";
-import strings from "../../helpers/localization";
+import strings from "../../localization/strings";
 import Button from "../../components/Controls/Button";
 
 export default function VideoPanel({

@@ -1,6 +1,6 @@
 import React from "react";
 import Button from "../Controls/Button";
-import strings from "../../helpers/localization";
+import strings from "../../localization/strings";
 
 export default function PanelHeader({
   updateSelectedPage,

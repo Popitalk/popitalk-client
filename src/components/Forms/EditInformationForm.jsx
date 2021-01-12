@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "formik";
 import Input from "../Controls/Input";
-import strings from "../../helpers/localization";
+import strings from "../../localization/strings";
 
 function EditInformationForm({ loading, formik }) {
   return (

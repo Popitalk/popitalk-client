@@ -17,7 +17,7 @@ import { PublicRoute, GeneralRoute, PrivateRoute } from "../components/Routers";
 import NotFoundPage from "../components/NotFoundPage";
 import PageLoader from "../components/PageLoader";
 // Helpers
-import strings from "../helpers/localization";
+import strings from "../localization/strings";
 import { ThemeProvider } from "../helpers/themeContext";
 import { RouteWrapper } from "../helpers/routeWrapper";
 // Redux

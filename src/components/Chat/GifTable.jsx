@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Input from "../Controls/Input";
 import { useParams } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
-import strings from "../../helpers/localization";
+import strings from "../../localization/strings";
 import { Grid } from "@giphy/react-components";
 import giphyFetch from "../../helpers/gifConfig";
 import { useSelector, useDispatch } from "react-redux";
