@@ -108,6 +108,11 @@ function RecommendedChannels() {
     }
   };
 
+  const tabPressed = img => {
+    dispatch(setIsSearchForChannels(false));
+    tabHandler(img);
+  };
+
   const handleSearch = useCallback(() => {
     dispatch(setIsSearchForChannels(true));
     dispatch(searchChannels({ channelName: search }));
@@ -189,32 +194,29 @@ function RecommendedChannels() {
           onChange={e => setSearch(e.target.value)}
           onClick={handleSearch}
         />
-        {/* OPTION TABS */}
-        <h2 className="flex justify-center h-auto">
-          {tabs.map((img, idx) => {
-            return (
-              <Button
-                styleNone
-                styleNoneContent={img.tab}
-                icon={img.icon}
-                styleNoneContentClassName="font-bold text-sm"
-                hoverable
-                key={idx}
-                className={`h-full p-4 space-x-2 ${
-                  tabSelected === img.tab
-                    ? "text-copy-highlight"
-                    : "text-copy-secondary"
-                }`}
-                onClick={() => {
-                  dispatch(setIsSearchForChannels(false));
-                  tabHandler(img.tab);
-                }}
-                analyticsString={`${img.tab} Button: RecommendedView`}
-              />
-            );
-          })}
-        </h2>
       </div>
+      {/* OPTION TABS */}
+      <h2 className="flex justify-start overflow-x-auto w-full p-1 bg-background-secondary space-x-2 mb-4">
+        {tabs.map((img, idx) => {
+          return (
+            <Button
+              styleNone
+              styleNoneContent={img.tab}
+              icon={img.icon}
+              styleNoneContentClassName="font-bold text-sm"
+              hoverable
+              key={idx}
+              className={`h-full px-4 py-2 space-x-2 flex-shrink-0 bg-background-primary rounded-md ${
+                tabSelected === img.tab
+                  ? "text-copy-highlight"
+                  : "text-copy-secondary"
+              }`}
+              onClick={() => tabPressed(img.tab)}
+              analyticsString={`${img.tab} Button: RecommendedView`}
+            />
+          );
+        })}
+      </h2>
       {isSearchForChannels ? (
         <ChannelSearchList channelList={searchResultChannels} />
       ) : (
@@ -223,6 +225,7 @@ function RecommendedChannels() {
             channelList={channelsList}
             isCollapsed={isCollapsed}
             tabSelected={tabSelected}
+            onClick={() => tabPressed(strings.discover)}
           />
           {tabSelected === followingTab.tab ? (
             <LoadMoreButton
