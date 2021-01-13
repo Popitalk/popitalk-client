@@ -1,6 +1,6 @@
 import React from "react";
 import PostContainer from "../../containers/PostContainer";
-import strings from "../../helpers/localization";
+import strings from "../../localization/strings";
 
 export default function PostsList({ postIds, isMember, isAdmin }) {
   return (

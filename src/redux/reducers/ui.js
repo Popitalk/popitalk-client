@@ -1,6 +1,7 @@
 import { createReducer } from "@reduxjs/toolkit";
 import {
   toggleLeftPanel,
+  removeLeftPanel,
   setLeftPanelActiveTabChannels,
   setLeftPanelActiveTabFriends,
   setAlert,
@@ -10,10 +11,11 @@ import {
   logout
 } from "../actions";
 
-import strings from "../../helpers/localization";
+import strings from "../../localization/strings";
 
 const initialState = {
   isCollapsed: false,
+  isRemoved: false,
   leftPanelActiveTab: "channels",
   alert: "",
   tabSelected: null,
@@ -23,6 +25,9 @@ const initialState = {
 export default createReducer(initialState, {
   [toggleLeftPanel]: state => {
     state.isCollapsed = !state.isCollapsed;
+  },
+  [removeLeftPanel]: state => {
+    state.isRemoved = !state.isRemoved;
   },
   [setLeftPanelActiveTabChannels]: state => {
     state.leftPanelActiveTab = "channels";

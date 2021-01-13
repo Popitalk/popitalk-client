@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import sources, { DEFAULT_SOURCE } from "../helpers/videoSourceImages";
 import Input from "./Controls/Input";
 import Button from "./Controls/Button";
-import strings from "../helpers/localization";
+import strings from "../localization/strings";
 
 export default function VideoSearchBar({ className, onClick }) {
   const [source, setSource] = useState(DEFAULT_SOURCE);

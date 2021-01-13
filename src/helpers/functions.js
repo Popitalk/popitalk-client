@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import * as Yup from "yup";
 import classnames from "classnames";
 import moreThanTwoMinutesAgo from "../util/moreThanTwoMinutesAgo";
-import strings from "./localization";
+import strings from "../localization/strings";
 import {
   sendFriendRequest,
   acceptFriendRequest,

@@ -1,6 +1,6 @@
 import React from "react";
 import classnames from "classnames";
-import strings from "../../helpers/localization";
+import strings from "../../localization/strings";
 
 export default function RoomIcon({
   ids,

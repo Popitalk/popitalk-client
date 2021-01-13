@@ -4,7 +4,7 @@ import DropDownContainer from "./DropDownContainer";
 import ContainerHeader from "../ContainerHeader";
 import InfoCardList from "../InfoCardLists/InfoCardList";
 import ImageInfoCard from "../InfoCards/ImageInfoCard";
-import strings from "../../helpers/localization";
+import strings from "../../localization/strings";
 
 export default function Notifications({
   notifications,

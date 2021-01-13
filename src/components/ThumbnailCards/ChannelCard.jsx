@@ -2,7 +2,7 @@ import React from "react";
 import RoomIcon from "../Controls/RoomIcon";
 import AvatarDeck from "../Controls/AvatarDeck";
 import VideoStatus from "../VideoStatus";
-import strings from "../../helpers/localization";
+import strings from "../../localization/strings";
 import history from "../../history";
 import channelPlaceholder from "../../assets/default/channelPlaceholder1.png";
 
@@ -13,12 +13,12 @@ export default function ChannelCard({
   status,
   videoInfo,
   viewers,
-  handleFollow,
   isLoading
 }) {
   const handleSelect = () => {
     history.push(`/channels/${id}`);
   };
+
   let videoThumbnail = "";
   let videoTitle = strings.nothingPlaying;
 
@@ -63,19 +63,11 @@ export default function ChannelCard({
       </div>
       {/* ChannelCard background image */}
       <div className="relative flex flex-grow justify-center pb-16/9">
-        {videoThumbnail !== "" ? (
-          <img
-            src={videoThumbnail}
-            alt={`${name} - Popitalk`}
-            className="absolute img top-0 h-full rounded-md bg-background-secondary object-cover pt-px"
-          />
-        ) : (
-          <img
-            src={channelPlaceholder}
-            alt="Popitalk Default"
-            className="absolute img top-0 h-full rounded-md bg-background-primary"
-          />
-        )}
+        <img
+          src={videoThumbnail ? videoThumbnail : channelPlaceholder}
+          alt={`${videoThumbnail ? name - "Popitalk" : "Popitalk Default"}`}
+          className="absolute img top-0 h-full rounded-md bg-background-secondary object-cover pt-px"
+        />
       </div>
       {/* Video Description & Avatar Deck */}
       <div className="w-full my-3 flex flex-col justify-between items-between items-center space-y-2 space-x-0">

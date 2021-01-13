@@ -4,7 +4,7 @@ import InfoCard from "../InfoCards/InfoCard";
 import moment from "moment";
 import "moment/locale/ko";
 import "moment/locale/ru";
-import strings from "../../helpers/localization";
+import strings from "../../localization/strings";
 import { channelHasNewMessage } from "../../util/channelHasNewMessage";
 
 export default function RoomInfoCard({

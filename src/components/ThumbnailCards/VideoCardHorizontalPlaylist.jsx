@@ -4,7 +4,7 @@ import classnames from "classnames";
 import moment from "moment";
 import Button from "../Controls/Button";
 import VideoStatus from "../VideoStatus";
-import strings from "../../helpers/localization";
+import strings from "../../localization/strings";
 
 export default function VideoCardHorizontalPlaylist({
   id,

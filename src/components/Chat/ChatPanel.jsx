@@ -5,7 +5,7 @@ import ChatHeader from "./ChatHeader";
 import ChatMessageList from "./ChatMessageList";
 import ChatActions from "./ChatActions";
 import GifTable from "./GifTable";
-import strings from "../../helpers/localization";
+import strings from "../../localization/strings";
 import Button from "../Controls/Button";
 
 export default function ChatPanel({
@@ -16,14 +16,14 @@ export default function ChatPanel({
   isRoom,
   isGifsOpen,
   updateGifsOpen,
-  isMember,
-  hideLeftPanel
+  isMember
 }) {
   const { loggedIn } = useSelector(state => state.general);
   const [chatPanelExpanded, setChatPanelExpanded] = useState(false);
+  const isRemoved = useSelector(state => state.ui.isRemoved);
 
   return (
-    <div className={`${hideLeftPanel === true && "hidden"} h-full`}>
+    <div className={`${isRemoved === true && "hidden"} h-full`}>
       <Button
         hoverable
         styleNone

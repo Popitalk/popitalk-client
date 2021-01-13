@@ -3,7 +3,7 @@ import FollowersList from "../InfoCardLists/FollowersList";
 import CircleCheckBox from "../Controls/CircleCheckbox";
 import Button from "../Controls/Button";
 import StretchList from "../InfoCardLists/StretchList";
-import strings from "../../helpers/localization";
+import strings from "../../localization/strings";
 
 export default function NewRoomModal({
   users,

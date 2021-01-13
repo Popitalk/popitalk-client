@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import ButtonsList from "../Controls/ButtonsList";
 import ChannelForm from "../Forms/ChannelForm";
 import ManageUsers from "../ManageUsers";
-import strings from "../../helpers/localization";
+import strings from "../../localization/strings";
 
 export default function ChannelSettingsPanel({
   ownerId,

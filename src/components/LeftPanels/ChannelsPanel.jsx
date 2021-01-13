@@ -4,7 +4,7 @@ import ReactTooltip from "react-tooltip";
 import ChannelsList from "../InfoCardLists/ChannelsList";
 import MiniFriendsList from "../MiniFriendsList";
 import PanelHeader from "./PanelHeader";
-import strings from "../../helpers/localization";
+import strings from "../../localization/strings";
 import LeftPanelFooter from "./LeftPanelFooter";
 import LeftPanelSubHeader from "./LeftPanelSubHeader";
 
@@ -16,7 +16,6 @@ export default function ChannelsPanel({
   friends,
   handleSelectChannel,
   handleSelectRoom,
-  handleCollapse,
   handleCreateChannel,
   updateSelectedPage,
   selectedPage,
@@ -51,7 +50,6 @@ export default function ChannelsPanel({
   return (
     <div className="flex flex-col w-full sm:w-84 h-full bg-background-primary select-none">
       <PanelHeader
-        handleCollapse={handleCollapse}
         updateSelectedPage={updateSelectedPage}
         selectedPage={selectedPage}
         numberOfNotifications={numberOfNotifications}

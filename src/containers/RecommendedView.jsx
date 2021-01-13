@@ -2,14 +2,17 @@ import React, { useState, useEffect, useCallback } from "react";
 import PropTypes from "prop-types";
 import { useSelector, useDispatch } from "react-redux";
 import Helmet from "react-helmet";
-
+// Components
+import Button from "../components/Controls/Button.jsx";
+import LoadMoreButton from "../components/Controls/LoadMoreButton";
 import ChannelCardList from "../components/ThumbnailCardLists/ChannelCardList.jsx";
 import ChannelSearchList from "../components/ThumbnailCardLists/ChannelSearchList.jsx";
 import Input from "../components/Controls/Input.jsx";
-import Button from "../components/Controls/Button.jsx";
-import Spinner from "../components/Spinner";
-import strings from "../helpers/localization";
+// Localization
+import strings from "../localization/strings";
+// Helpers
 import { getChannels, updateChannelsList } from "../helpers/functions";
+// Redux
 import {
   getDiscoverChannels,
   getTrendingChannels,
@@ -24,31 +27,12 @@ import {
 const followingTab = { tab: strings.following, icon: "home" };
 const discoverTab = { tab: strings.discover, icon: "globe" };
 const trendingTab = { tab: strings.trending, icon: "fire" };
-
-const LoadMoreButton = ({ channelStatus, isLoadMore, handleLoadMore }) =>
-  channelStatus === "loading" ? (
-    <Spinner />
-  ) : isLoadMore ? (
-    <div className="flex justify-center items-center p-12">
-      <div className="h-px bg-background-quaternary w-full mx-2" />
-      <Button
-        actionButton
-        leftIcon="arrow-down"
-        size="sm"
-        hoverable
-        className="bg-background-primary text-copy-highlight text-sm font-bold flex-shrink-0 space-x-2"
-        onClick={handleLoadMore}
-      >
-        {strings.loadMoreButton}
-      </Button>
-      <div className="h-px bg-background-quaternary w-full mx-2" />
-    </div>
-  ) : null;
-function RecommendedChannels({ hideLeftPanel }) {
+function RecommendedChannels() {
   const dispatch = useDispatch();
 
   const loggedIn = useSelector(state => state.general.loggedIn);
   const isCollapsed = useSelector(state => state.ui.isCollapsed);
+  const isRemoved = useSelector(state => state.ui.isRemoved);
   const followingChannels = useSelector(state => state.followingChannels);
   const discoverChannels = useSelector(state => state.discoverChannels);
   const trendingChannels = useSelector(state => state.trendingChannels);
@@ -194,7 +178,7 @@ function RecommendedChannels({ hideLeftPanel }) {
   return (
     <div
       className={`${
-        hideLeftPanel === true && "hidden"
+        isRemoved === true && "hidden"
       } relative p-4 w-full h-full rounded-md bg-background-secondary overflow-auto`}
     >
       <div className="py-4 mx-auto w-3/4 sm:w-1/2">

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import strings from "../../helpers/localization";
+import strings from "../../localization/strings";
 import SignInButton from "../SignInButton";
 
 export default function LeftPanelDescription() {

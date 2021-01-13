@@ -6,7 +6,7 @@ import CommentSectionContainer from "../../containers/CommentSectionContainer";
 import ToggleIcon from "../Controls/ToggleIcon";
 import PopupMenu from "../Controls/PopupMenu";
 import Button from "../Controls/Button";
-import strings from "../../helpers/localization";
+import strings from "../../localization/strings";
 import { formatDistanceToNow } from "../../helpers/datefns";
 
 export default function Post({

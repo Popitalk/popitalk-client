@@ -28,7 +28,7 @@ import {
   defaultPlayerStatus,
   LOOP
 } from "../../helpers/videoSyncing";
-import strings from "../../helpers/localization";
+import strings from "../../localization/strings";
 import { DEFAULT_SOURCE } from "../../helpers/videoSourceImages";
 
 const CHANNEL_TYPE = "channel";
@@ -467,15 +467,12 @@ class Channel extends Component {
 
     return (
       <>
-        <div
-          className={`${
-            this.props.hideLeftPanel === true && "hidden"
-          } flex flex-col w-full h-full overflow-x-hidden`}
-        >
+        <div className="flex flex-col w-full h-full overflow-x-hidden">
           {/* Channel & Room structure */}
           <ChannelHeaderContainer
             channelId={channelId}
             isMember={isMember}
+            type={type}
             isAdmin={isAdmin}
             status={this.state.playerStatus.status.toLowerCase()}
           />

@@ -1,5 +1,5 @@
 import React from "react";
-import strings from "../../helpers/localization";
+import strings from "../../localization/strings";
 import Button from "../Controls/Button";
 import kofiLogo from "../../assets/attributes/kofi-logo.png";
 import patreonLogo from "../../assets/attributes/patreon-logo.png";
@@ -43,7 +43,7 @@ export default function LeftPanelFooter() {
       string: strings.youtube
     },
     {
-      path: "https://discord.gg/hdFfgg7",
+      path: "https://discord.gg/WFARTv3JC4",
       string: strings.discord
     },
     { path: "https://www.facebook.com/popitalk", string: strings.facebook }

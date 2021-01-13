@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import Button from "./Button";
-import strings from "../../helpers/localization";
+import strings from "../../localization/strings";
 import ReactTooltip from "react-tooltip";
 
 export default function FriendRequestButtons({

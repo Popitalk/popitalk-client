@@ -1,6 +1,6 @@
 import React from "react";
 import { FixedSizeList } from "react-window";
-import strings from "../../helpers/localization";
+import strings from "../../localization/strings";
 
 export default function InfoCardList({
   items,

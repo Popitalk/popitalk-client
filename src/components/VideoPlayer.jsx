@@ -10,7 +10,7 @@ import VideoPlayerStatusCard from "./VideoPlayerStatusCard";
 import Ripples from "react-ripples";
 import Button from "./Controls/Button";
 import { BUFFER_TIME } from "../helpers/videoSyncing";
-import strings from "../helpers/localization";
+import strings from "../localization/strings";
 
 class VideoPlayer extends Component {
   constructor(props) {
@@ -357,7 +357,7 @@ class VideoPlayer extends Component {
                       height: 4
                     }
               }
-              className={`-mb-px ${
+              className={`-mb-px z-20 ${
                 this.props.displayControls &&
                 "cursor-pointer transition-all opacity-100 hover:opacity-100 duration-150"
               }`}

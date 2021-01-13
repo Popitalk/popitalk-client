@@ -9,13 +9,14 @@ import FriendRequests from "../DropDowns/FriendRequests";
 // import Notifications from "./DropDowns/Notifications";
 import DropDownControls from "../DropDowns/DropDownControls";
 import Button from "../Controls/Button";
-import strings from "../../helpers/localization";
+import strings from "../../localization/strings";
 import { updateChannelsList } from "../../helpers/functions";
 import {
   setSelectedTab,
   setIsSearchForChannels,
   getFollowingChannels,
-  toggleLeftPanel
+  toggleLeftPanel,
+  removeLeftPanel
 } from "../../redux/actions";
 
 const SETTINGS = 1;
@@ -29,14 +30,13 @@ const SiteHeaderMain = ({
   avatar,
   friendRequests,
   notifications,
+  clearNotificationsHandler,
   openProfileHandler,
   openBlockedUsersHandler,
   openEditInformationHandler,
   openChangePasswordHandler,
-  clearNotificationsHandler,
   deleteAccountHandler,
-  logoutHandler,
-  hideLeftPanelButton
+  logoutHandler
 }) => {
   const [dropdownList, setDropdownList] = useState([]);
 
@@ -138,7 +138,7 @@ const SiteHeaderMain = ({
     },
     {
       text: strings.discord,
-      href: "https://discord.gg/hdFfgg7",
+      href: "https://discord.gg/WFARTv3JC4",
       leftIcon: "discord",
       redirect: true,
       rightIcon: "external-link-alt"
@@ -157,7 +157,15 @@ const SiteHeaderMain = ({
   return (
     <header className="sm:px-6 // relative flex items-center justify-between h-12 bg-background-primary select-none">
       <div className="flex flex-row items-center">
-        {hideLeftPanelButton}
+        <Button
+          hoverable
+          styleNone
+          icon="bars"
+          styleNoneIconClassName="text-lg"
+          className="sm:hidden block rounded-full text-copy-secondary w-10 h-10 hover:text-copy-highlight mr-4"
+          onClick={() => dispatch(removeLeftPanel())}
+          analyticsString="Collapse Button: PanelHeader"
+        />
         <Button
           hoverable
           styleNone
@@ -170,7 +178,7 @@ const SiteHeaderMain = ({
         <Button
           imageButton
           imageButtonSrc={Logo}
-          imageButtonClassName="w-10 h-10"
+          imageButtonClassName="w-8 h-8"
           analyticsString="Main Logo Button: SiteHeaderMain"
           hoverable
           onClick={() => {

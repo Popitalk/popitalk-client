@@ -1,5 +1,5 @@
 import React from "react";
-import strings from "../../helpers/localization";
+import strings from "../../localization/strings";
 
 function Footer() {
   // === ClassNames === //
@@ -34,7 +34,7 @@ function Footer() {
 
   const thirdColumn = [
     {
-      path: "https://discord.gg/hdFfgg7",
+      path: "https://discord.gg/WFARTv3JC4",
       string: strings.discord
     },
     {

@@ -1,14 +1,11 @@
-import React, { Fragment, useState, useEffect } from "react";
+import React, { Fragment } from "react";
 import { useSelector } from "react-redux";
 import { Helmet } from "react-helmet";
-import useSound from "use-sound";
-import { useInterval } from "react-use";
 
 import FriendsPanel from "./FriendsPanel";
 import CollapsedPanel from "./CollapsedPanel";
 import ChannelsPanel from "./ChannelsPanel";
-import notificationSound from "../../assets/sounds/pop-sound.mp3";
-import strings from "../../helpers/localization";
+import strings from "../../localization/strings";
 import LeftPanelViewer from "./LeftPanelViewer";
 
 export default function LeftPanel({
@@ -28,7 +25,7 @@ export default function LeftPanel({
   handleCreateChannel,
   handleProfile,
   isCollapsed,
-  hideLeftPanel,
+  isRemoved,
   updateSelectedPage,
   handleCreateRoom,
   friendsSearchFocus,
@@ -36,43 +33,13 @@ export default function LeftPanel({
   numberOfNotifications
 }) {
   const { loggedIn } = useSelector(state => state.general);
-
   const channels = [...yourChannels, ...followingChannels];
-  const [isFavicon, setFavicon] = useState();
-  const [play] = useSound(notificationSound);
-  const [isRunning, setIsRunning] = useState(true);
-  const [checked, setChecked] = useState(false);
-
-  useInterval(
-    // Sound notifications are triggered.
-    () => {
-      if (checked) {
-        play();
-        setIsRunning(false);
-      }
-    },
-    isRunning ? 50 : null
-  );
-
-  useEffect(() => {
-    // Favicon changes state depending on notifications.
-    if (numberOfNotifications !== 0) {
-      setFavicon("https://i.ibb.co/JkKgxv9/favicon-notification.png");
-      setChecked(true);
-    } else {
-      setFavicon("https://i.ibb.co/wL0BpLN/favicon.png");
-      setChecked(false);
-      setIsRunning(true);
-    }
-  }, [isCollapsed, numberOfNotifications, selectedPage]);
 
   if (!loggedIn) {
     return (
       <div className="relative z-30">
         <div
-          className={
-            hideLeftPanel === true ? "w-full sm:w-full" : "hidden sm:flex"
-          }
+          className={isRemoved === true ? "w-full sm:w-full" : "hidden sm:flex"}
         >
           <LeftPanelViewer
             recommendedChannels={recommendedChannels}
@@ -80,7 +47,6 @@ export default function LeftPanel({
             handleSelectChannel={handleSelectChannel}
             selectedPage={selectedPage}
             updateSelectedPage={updateSelectedPage}
-            hideLeftPanel={hideLeftPanel}
           />
         </div>
       </div>
@@ -107,7 +73,7 @@ export default function LeftPanel({
       <Fragment>
         <div
           className={
-            hideLeftPanel === true ? "w-screen sm:w-full" : "hidden sm:flex"
+            isRemoved === true ? "w-screen sm:w-full" : "hidden sm:flex"
           }
         >
           {selectedPage === "channels" ? (
@@ -152,7 +118,6 @@ export default function LeftPanel({
           <meta charSet="UFT-8" />
           <title>{strings.mainTitle}</title>
           <meta name="description" content={strings.mainDescription} />
-          <link rel="icon" type="image/png" href={isFavicon} target="_blank" />
           <meta name="keywords" content={strings.mainKeywords} />
         </Helmet>
       </Fragment>

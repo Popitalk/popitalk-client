@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import ChannelCard from "../ThumbnailCards/ChannelCard";
-import strings from "../../helpers/localization";
+import strings from "../../localization/strings";
 
 function ChannelCardList({ channelList, isCollapsed, tabSelected, isLoading }) {
   if (!channelList || channelList.length === 0) {

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Logo from "../../assets/logo.png";
 import Button from "../Controls/Button";
-import strings from "../../helpers/localization";
+import strings from "../../localization/strings";
 import { Link } from "react-router-dom";
 import { useWindowSize } from "../../helpers/functions";
 
@@ -47,7 +47,7 @@ const SiteHeaderWelcome = ({ apiLoading, apiError, dispatchLogin }) => {
         <Button
           imageButton
           imageButtonSrc={Logo}
-          imageButtonClassName="w-12 h-12"
+          imageButtonClassName="w-10 h-10"
           imageButtonSpan="Popitalk"
           imageButtonSpanClassName="md:ml-2 md:text-2xl // sm:text-xl sm:ml-1 // flex ml-1 text-2xl text-copy-primary"
           analyticsString="Logo Button: SiteHeaderWelcome"

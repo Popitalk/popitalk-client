@@ -10,7 +10,7 @@ import {
   getSetPasswordSchema,
   getInitialDatePickerValues
 } from "../../helpers/functions";
-import strings from "../../helpers/localization";
+import strings from "../../localization/strings";
 
 export default function CreateNewAccountForm({ handleSubmit, error, loading }) {
   const initialDoB = new Date();

@@ -3,7 +3,7 @@ import DropDownContainer from "./DropDownContainer";
 import ContainerHeader from "../ContainerHeader";
 import FriendUsersList from "../InfoCardLists/FriendUsersList";
 import ReactTooltip from "react-tooltip";
-import strings from "../../helpers/localization";
+import strings from "../../localization/strings";
 
 export default function FriendRequests({ friendRequests, ...rest }) {
   return (

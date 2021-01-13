@@ -17,7 +17,7 @@ import {
   VKIcon,
   WhatsappIcon
 } from "react-share"; // More info on Props https://github.com/nygardk/react-share#readme
-import strings from "../../helpers/localization";
+import strings from "../../localization/strings";
 
 export default function InviteForm({ link }) {
   const ref = createRef();

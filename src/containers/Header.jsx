@@ -16,7 +16,7 @@ import {
   SiteHeaderWelcome
 } from "../components/Headers";
 
-const HeaderContainer = ({ hideLeftPanelButton }) => {
+const HeaderContainer = () => {
   const history = useHistory();
   const { pathname } = useLocation();
   const dispatch = useDispatch();
@@ -36,9 +36,19 @@ const HeaderContainer = ({ hideLeftPanelButton }) => {
   const setUserRelationships = user =>
     setRelationshipHandlers(user, relationships, dispatch, defaultAvatar, id);
 
+  const handleLogin = (username, password) => {
+    dispatch(
+      login({
+        usernameOrEmail: username,
+        password: password
+      })
+    );
+  };
+
   const requests = [...receivedFriendRequests, ...sentFriendRequests];
   const mappedUsers = mapIdsToUsers(requests, users, defaultAvatar);
   const friendRequests = mappedUsers.map(setUserRelationships);
+  const signUp = pathname === "/welcome" || pathname === "/welcome/";
 
   if (loggedIn)
     return (
@@ -58,34 +68,17 @@ const HeaderContainer = ({ hideLeftPanelButton }) => {
           dispatch(logout());
           history.push("/");
         }}
-        hideLeftPanelButton={hideLeftPanelButton}
       />
     );
-
-  const viewer =
-    pathname.includes("channels") ||
-    pathname.includes("friends") ||
-    pathname === "/";
-
-  if (viewer)
-    return <SiteHeaderViewers hideLeftPanelButton={hideLeftPanelButton} />;
-
-  const handleLogin = (username, password) => {
-    dispatch(
-      login({
-        usernameOrEmail: username,
-        password: password
-      })
+  if (signUp)
+    return (
+      <SiteHeaderWelcome
+        apiLoading={loading}
+        apiError={status === "error" ? error : false}
+        dispatchLogin={handleLogin}
+      />
     );
-  };
-
-  return (
-    <SiteHeaderWelcome
-      apiLoading={loading}
-      apiError={status === "error" ? error : false}
-      dispatchLogin={handleLogin}
-    />
-  );
+  return <SiteHeaderViewers />;
 };
 
 export default HeaderContainer;

@@ -1,7 +1,7 @@
 import React from "react";
 import RoomInfoCard from "../InfoCards/RoomInfoCard";
 import Button from "../Controls/Button";
-import strings from "../../helpers/localization";
+import strings from "../../localization/strings";
 
 export default function RoomExistsModal({
   room,

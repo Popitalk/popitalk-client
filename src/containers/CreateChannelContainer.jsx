@@ -3,14 +3,15 @@ import { useSelector, useDispatch } from "react-redux";
 import { addChannel } from "../redux/actions";
 import ChannelForm from "../components/Forms/ChannelForm";
 import Helmet from "react-helmet";
-import strings from "../helpers/localization";
+import strings from "../localization/strings";
 
-export default function CreateChannelContainer({ hideLeftPanel }) {
+export default function CreateChannelContainer() {
   const dispatch = useDispatch();
   const addChannelApi = useSelector(state => state.api.channel);
+  const isRemoved = useSelector(state => state.ui.isRemoved);
 
   return (
-    <div className={hideLeftPanel === true ? "hidden" : "flex w-full h-full"}>
+    <div className={isRemoved === true ? "hidden" : "flex w-full h-full"}>
       <ChannelForm
         initial={{
           name: "",

@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import "emoji-mart/css/emoji-mart.css";
 import { Picker } from "emoji-mart";
 import Button from "../Controls/Button";
-import strings from "../../helpers/localization";
+import strings from "../../localization/strings";
 
 export default function NewChannelPost({
   handleUploadImg,
