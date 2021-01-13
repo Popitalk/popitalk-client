@@ -69,7 +69,6 @@ function RecommendedChannels() {
 
   const tabHandler = tab => {
     dispatch(setSelectedTab(tab));
-    console.log(tab);
     if (tab === followingTab.tab) {
       updateChannelsList(
         dispatch,
