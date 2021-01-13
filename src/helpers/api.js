@@ -348,6 +348,10 @@ export const getCategories = () => {
   return ax.get(`/categories`);
 };
 
+export const getTopCategories = () => {
+  return ax.get(`/categories/top`);
+};
+
 export const createCategory = ({ category }) => {
   return ax.post(`/categories`, { category });
 };

@@ -30,6 +30,7 @@ export { getUserInfo } from "./features/userProfile/userProfileSlice";
 /* -------------------------------------------------------------------------- */
 
 export { getCategories } from "./features/categories/categoriesSlice";
+export { getTopCategories } from "./features/categories/categoriesSlice";
 export { createCategory } from "./features/categories/categoriesSlice";
 export { setSelected } from "./features/categories/categoriesSlice";
 export { removeSelected } from "./features/categories/categoriesSlice";

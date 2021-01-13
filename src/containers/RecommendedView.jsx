@@ -58,7 +58,7 @@ function RecommendedChannels({ hideLeftPanel }) {
   const { defaultAvatar, defaultIcon } = useSelector(state => state.general);
   const { tabSelected, isSearchForChannels } = useSelector(state => state.ui);
   const channelsList = useSelector(state => state.channelSearch.channelsList);
-  const { categories } = useSelector(state => state.categories);
+  const { top: categories } = useSelector(state => state.categories);
   const searchResultChannels = useSelector(
     state => state.channelSearch.channels
   );
@@ -74,14 +74,10 @@ function RecommendedChannels({ hideLeftPanel }) {
 
   const [search, setSearch] = useState("");
 
-  const extraTabs = categories
-    .slice()
-    .sort((cat1, cat2) => cat2.count - cat1.count)
-    .slice(0, 3)
-    .map(({ name }) => ({
-      tab: name,
-      icon: "hashtag"
-    }));
+  const extraTabs = categories.map(name => ({
+    tab: name,
+    icon: "hashtag"
+  }));
 
   const tabs = loggedIn
     ? [followingTab, discoverTab, trendingTab, ...extraTabs]
