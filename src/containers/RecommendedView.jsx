@@ -55,7 +55,6 @@ function RecommendedChannels() {
   const { status: trendingStatus } = useSelector(
     state => state.api.trendingChannels
   );
-
   const [search, setSearch] = useState("");
 
   const extraTabs = categories.map(name => ({
@@ -243,7 +242,7 @@ function RecommendedChannels() {
                 dispatch(getDiscoverChannels({ page: discoverChannels.page }))
               }
             />
-          ) : (
+          ) : tabSelected === trendingTab.tab ? (
             <LoadMoreButton
               channelStatus={trendingStatus}
               isLoadMore={trendingChannels.isNextPage}
@@ -251,6 +250,8 @@ function RecommendedChannels() {
                 dispatch(getTrendingChannels({ page: trendingChannels.page }))
               }
             />
+          ) : (
+            <> </>
           )}
         </>
       )}
