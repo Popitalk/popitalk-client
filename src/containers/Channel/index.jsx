@@ -14,7 +14,8 @@ import {
   swapVideos,
   setPlaying,
   setAlert,
-  getTrending
+  getTrending,
+  getRecommendedChannelsPanel
 } from "../../redux/actions";
 import ChannelHeaderContainer from "./ChannelHeaderContainer";
 import VideoPanel from "./VideoPanel";
@@ -111,7 +112,9 @@ const mapDispatchToProps = (dispatch, { match }) => {
     handleChannelNotFound: () =>
       dispatch(setAlert("The channel / room you entered does not exist.")),
     dispatchPlay: (queueStartPosition, videoStartTime) =>
-      dispatch(setPlaying({ channelId, queueStartPosition, videoStartTime }))
+      dispatch(setPlaying({ channelId, queueStartPosition, videoStartTime })),
+    getRecommendedChannels: categories =>
+      dispatch(getRecommendedChannelsPanel(categories))
   };
 };
 
@@ -337,6 +340,12 @@ class Channel extends Component {
         this.props.startPlayerStatus.clockStartTime ||
       loadChannel
     ) {
+      if (this.props.channel.loaded) {
+        console.log(this.props.channel);
+        this.props.getRecommendedChannels({
+          categories: this.props.channel.categories.join("")
+        });
+      }
       this.setPlayerStatus();
     } else if (prevProps.playlist !== this.props.playlist) {
       this.setState({

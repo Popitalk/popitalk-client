@@ -60,7 +60,8 @@ import {
   faEdit,
   faLightbulb,
   faComment,
-  faExpand
+  faExpand,
+  faHashtag
 } from "@fortawesome/free-solid-svg-icons";
 import {
   faSmile as farSmile,
@@ -115,6 +116,7 @@ library.add(
   faMoon,
   farMoon,
   faHome,
+  faHashtag,
   faFire,
   faSignOutAlt,
   faAngleRight,

@@ -7,12 +7,14 @@ import {
   R_addNewCategory,
   R_setSelected,
   R_removeSelected,
-  R_initCategories
+  R_initCategories,
+  R_setTopCategories
 } from "./categoriesReducers";
 
 const initialState = {
   categories: [],
-  selected: []
+  selected: [],
+  top: []
 };
 
 export const getCategories = createAsyncThunk(
@@ -20,6 +22,14 @@ export const getCategories = createAsyncThunk(
   async ({ alreadySelected }) => {
     const response = await API.getCategories();
     return { ...response.data, alreadySelected };
+  }
+);
+
+export const getTopCategories = createAsyncThunk(
+  "categories/getTopCategories",
+  async () => {
+    const response = await API.getTopCategories();
+    return response.data;
   }
 );
 
@@ -41,7 +51,8 @@ const categoriesSlice = createSlice({
   },
   extraReducers: {
     [getCategories.fulfilled]: R_setCategories,
-    [createCategory.fulfilled]: R_addNewCategory
+    [createCategory.fulfilled]: R_addNewCategory,
+    [getTopCategories.fulfilled]: R_setTopCategories
   }
 });
 

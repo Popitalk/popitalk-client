@@ -20,7 +20,8 @@ import {
   searchChannels,
   setSelectedTab,
   setIsSearchForChannels,
-  setChannelsList
+  setChannelsList,
+  getRecommendedChannelsTabs
 } from "../redux/actions";
 
 const followingTab = { tab: strings.following, icon: "home" };
@@ -35,9 +36,13 @@ function RecommendedChannels() {
   const followingChannels = useSelector(state => state.followingChannels);
   const discoverChannels = useSelector(state => state.discoverChannels);
   const trendingChannels = useSelector(state => state.trendingChannels);
+  const recommendedChannelsTabs = useSelector(
+    state => state.recommendedChannels.tabs
+  );
   const { defaultAvatar, defaultIcon } = useSelector(state => state.general);
   const { tabSelected, isSearchForChannels } = useSelector(state => state.ui);
   const channelsList = useSelector(state => state.channelSearch.channelsList);
+  const { top: categories } = useSelector(state => state.categories);
   const searchResultChannels = useSelector(
     state => state.channelSearch.channels
   );
@@ -53,13 +58,17 @@ function RecommendedChannels() {
 
   const [search, setSearch] = useState("");
 
+  const extraTabs = categories.map(name => ({
+    tab: name,
+    icon: "hashtag"
+  }));
+
   const tabs = loggedIn
-    ? [followingTab, discoverTab, trendingTab]
-    : [discoverTab, trendingTab];
+    ? [followingTab, discoverTab, trendingTab, ...extraTabs]
+    : [discoverTab, trendingTab, ...extraTabs];
 
   const tabHandler = tab => {
     dispatch(setSelectedTab(tab));
-
     if (tab === followingTab.tab) {
       updateChannelsList(
         dispatch,
@@ -87,7 +96,21 @@ function RecommendedChannels() {
         defaultAvatar,
         defaultIcon
       );
+    } else {
+      updateChannelsList(
+        dispatch,
+        null,
+        () => getRecommendedChannelsTabs({ categories: tab }),
+        recommendedChannelsTabs,
+        defaultAvatar,
+        defaultIcon
+      );
     }
+  };
+
+  const tabPressed = img => {
+    dispatch(setIsSearchForChannels(false));
+    tabHandler(img);
   };
 
   const handleSearch = useCallback(() => {
@@ -135,6 +158,16 @@ function RecommendedChannels() {
   }, [trendingChannels]);
 
   useEffect(() => {
+    const channels = getChannels(
+      recommendedChannelsTabs,
+      defaultAvatar,
+      defaultIcon
+    );
+    dispatch(setChannelsList(channels));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [recommendedChannelsTabs]);
+
+  useEffect(() => {
     if (loggedIn) {
       const channels = getChannels(
         followingChannels,
@@ -161,32 +194,29 @@ function RecommendedChannels() {
           onChange={e => setSearch(e.target.value)}
           onClick={handleSearch}
         />
-        {/* OPTION TABS */}
-        <h2 className="flex justify-center h-auto">
-          {tabs.map((img, idx) => {
-            return (
-              <Button
-                styleNone
-                styleNoneContent={img.tab}
-                icon={img.icon}
-                styleNoneContentClassName="font-bold text-sm"
-                hoverable
-                key={idx}
-                className={`h-full p-4 space-x-2 ${
-                  tabSelected === img.tab
-                    ? "text-copy-highlight"
-                    : "text-copy-secondary"
-                }`}
-                onClick={() => {
-                  dispatch(setIsSearchForChannels(false));
-                  tabHandler(img.tab);
-                }}
-                analyticsString={`${img.tab} Button: RecommendedView`}
-              />
-            );
-          })}
-        </h2>
       </div>
+      {/* OPTION TABS */}
+      <h2 className="flex justify-start overflow-x-auto w-full p-1 bg-background-secondary space-x-2 mb-4">
+        {tabs.map((img, idx) => {
+          return (
+            <Button
+              styleNone
+              styleNoneContent={img.tab}
+              icon={img.icon}
+              styleNoneContentClassName="font-bold text-sm"
+              hoverable
+              key={idx}
+              className={`h-full px-4 py-2 space-x-2 flex-shrink-0 bg-background-primary rounded-md ${
+                tabSelected === img.tab
+                  ? "text-copy-highlight"
+                  : "text-copy-secondary"
+              }`}
+              onClick={() => tabPressed(img.tab)}
+              analyticsString={`${img.tab} Button: RecommendedView`}
+            />
+          );
+        })}
+      </h2>
       {isSearchForChannels ? (
         <ChannelSearchList channelList={searchResultChannels} />
       ) : (
@@ -195,6 +225,7 @@ function RecommendedChannels() {
             channelList={channelsList}
             isCollapsed={isCollapsed}
             tabSelected={tabSelected}
+            onClick={() => tabPressed(strings.discover)}
           />
           {tabSelected === followingTab.tab ? (
             <LoadMoreButton

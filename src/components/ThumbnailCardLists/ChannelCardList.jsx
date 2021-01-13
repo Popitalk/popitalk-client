@@ -2,14 +2,18 @@ import React from "react";
 import PropTypes from "prop-types";
 import ChannelCard from "../ThumbnailCards/ChannelCard";
 import strings from "../../localization/strings";
+import Button from "../Controls/Button";
 
-function ChannelCardList({ channelList, isCollapsed, tabSelected, isLoading }) {
+function ChannelCardList({ channelList, isCollapsed, onClick, isLoading }) {
   if (!channelList || channelList.length === 0) {
     return (
-      <div className="flex h-84 w-full items-center justify-center">
-        <p className="text-xs text-copy-secondary">
+      <div className="flex flex-col h-84 space-y-4 w-full items-center justify-center">
+        <p className="text-sm text-copy-secondary">
           {strings.followingChannelsPlaceholder}
         </p>
+        <Button actionButton size="md" onClick={onClick}>
+          {strings.discoverChannels}
+        </Button>
       </div>
     );
   }

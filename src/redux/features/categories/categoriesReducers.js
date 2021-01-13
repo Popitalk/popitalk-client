@@ -11,6 +11,11 @@ export const R_setCategories = (state, action) => {
   state.selected = selectedCategories;
 };
 
+export const R_setTopCategories = (state, action) => {
+  const { categories } = action.payload;
+  state.top = categories.map(({ name }) => name);
+};
+
 export const R_addNewCategory = (state, action) => {
   const { category } = action.payload;
 

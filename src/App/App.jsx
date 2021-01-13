@@ -12,6 +12,7 @@ import ModalManager from "../containers/Modals/ModalManager";
 import ChatPanel from "../containers/ChatPanel";
 import Channel from "../containers/Channel";
 import CreateChannelContainer from "../containers/CreateChannelContainer";
+import { getTopCategories } from "../redux";
 // Components
 import { PublicRoute, GeneralRoute, PrivateRoute } from "../components/Routers";
 import NotFoundPage from "../components/NotFoundPage";
@@ -35,6 +36,7 @@ export default function App() {
 
   useEffect(() => {
     dispatch(validateSession());
+    dispatch(getTopCategories());
   }, [dispatch]);
   useEffect(() => {
     if (process.env.NODE_ENV === "production") {

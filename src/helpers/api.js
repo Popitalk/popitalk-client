@@ -330,6 +330,12 @@ export const getFollowingChannels = ({ page }) => {
   return ax.get(`/channels/following?page=${page}`);
 };
 
+export const getRecommendedChannels = ({ categories }) => {
+  return ax.get(
+    `/channels/recommended${categories ? `?categories=${categories}` : ""}`
+  );
+};
+
 export const searchChannels = ({ channelName, page }) => {
   if (!page) {
     return ax.get(`/channels/search?channelName=${channelName}`);
@@ -340,6 +346,10 @@ export const searchChannels = ({ channelName, page }) => {
 
 export const getCategories = () => {
   return ax.get(`/categories`);
+};
+
+export const getTopCategories = () => {
+  return ax.get(`/categories/top`);
 };
 
 export const createCategory = ({ category }) => {

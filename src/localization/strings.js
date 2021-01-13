@@ -177,12 +177,14 @@ let strings = new LocalizedStrings({
     // === RecommendedView === //
     channelSearchInput: "Search for a channel",
     videoSearchInput: "Search for a video",
-    following: "FOLLOWING",
+    following: "HOME",
     discover: "DISCOVER",
     trending: "TRENDING",
     // ChannelCard
     nothingPlaying: "Nothing is playing at this moment",
     nothingPlayingSubtitle: "Channel admin has to add a video below.",
+    // ChannelCardList
+    discoverChannels: "Discover channels",
     // VideoCard
     watch: "Watch it in a room",
     // ChannelHeader
@@ -473,6 +475,8 @@ let strings = new LocalizedStrings({
     // ChannelCard
     nothingPlaying: "재생되고 있는 영상이 없습니다",
     nothingPlayingSubtitle: "채널 관리자가 아래에서 영상을 추가해야 합니다.",
+    // ChannelCardList
+    discoverChannels: "채널 둘러보기",
     // VideoCard
     watch: "톡방에서 시청하기",
     // ChannelHeader

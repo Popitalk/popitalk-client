@@ -1,17 +1,33 @@
 import { createReducer } from "@reduxjs/toolkit";
-import { getRecommendedChannels } from "../actions";
+import {
+  getRecommendedChannelsPanel,
+  getRecommendedChannelsTabs
+} from "../actions";
 
 const initialState = {
-  channels: {},
-  users: {},
-  lastRequestAt: null
+  panel: {
+    channels: {},
+    users: {},
+    lastRequestAt: null
+  },
+  tabs: {
+    channels: {},
+    users: {},
+    lastRequestAt: null
+  }
 };
 
-const R_addRecommendedChannels = (state, { payload }) => {
-  state.users = payload.users;
-  state.channels = payload.channels;
+const R_addRecommendedChannelsPanel = (state, { payload }) => {
+  state.panel.users = payload.users;
+  state.panel.channels = payload.channels;
+};
+
+const R_addRecommendedChannelsTabs = (state, { payload }) => {
+  state.tabs.users = payload.users;
+  state.tabs.channels = payload.channels;
 };
 
 export default createReducer(initialState, {
-  [getRecommendedChannels.fulfilled]: R_addRecommendedChannels
+  [getRecommendedChannelsPanel.fulfilled]: R_addRecommendedChannelsPanel,
+  [getRecommendedChannelsTabs.fulfilled]: R_addRecommendedChannelsTabs
 });
