@@ -38,7 +38,7 @@ export const R_removeSelected = (state, action) => {
   state.selected = state.selected.filter(category => name !== category.name);
 };
 
-export const R_initCategories = () => ({
-  categories: [],
-  selected: []
-});
+export const R_initCategories = state => {
+  state.categories = [];
+  state.selected = [];
+};
