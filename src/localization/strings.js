@@ -153,11 +153,11 @@ let strings = new LocalizedStrings({
     // PanelHeader & MiniFriendsList
     channels: "Channels",
     friends: "Friends",
+    recentFriends: "RECENT FRIENDS",
     yourChannels: "YOUR CHANNEL",
     yourChannelsPlaceholder: "Create your own public Channel!",
     followingChannels: "CHANNELS YOU FOLLOW",
-    followingChannelsPlaceholder:
-      "It's emtpty - Try to discover and follow channels!",
+    followingChannelsPlaceholder: "Try to discover and follow channels!",
     recommendedChannels: "RECOMMENDED",
     searchFriendsInput: "Search Username",
     searchResult: "Results for",
@@ -235,6 +235,7 @@ let strings = new LocalizedStrings({
     chatInput: "Type a message...",
     chatDisabledText: "Follow the channel to send a message.",
     signInToChat: "Log in to chat",
+    emptyChatPanel: "Send your first message here!",
 
     //CreateChannel > ChannelForm, ChannelFormSubmit
     createNewChannel: "Create a new channel",
@@ -447,10 +448,11 @@ let strings = new LocalizedStrings({
     // PanelHeader & MiniFriendsList
     channels: "티비채널",
     friends: "친구",
+    recentFriends: "최근 친구",
     yourChannels: "내 채널",
     yourChannelsPlaceholder: "나만의 채널을 개설 하세요!",
     followingChannels: "팔로잉 채널",
-    followingChannelsPlaceholder: "비었습니다 - 여러 채널을 팔로우 해보세요!",
+    followingChannelsPlaceholder: "여러 채널을 팔로우 해보세요!",
     recommendedChannels: "추천 채널",
     searchFriendsInput: "아이디로 친구 찾기",
     searchResult: "검색 결과",
@@ -526,6 +528,7 @@ let strings = new LocalizedStrings({
     chatInput: "메시지를 작성하세요...",
     chatDisabledText: "팔로우를 해야 메시지를 보낼 수 있습니다.",
     signInToChat: "로그인 후 채팅",
+    emptyChatPanel: "첫 메시지를 보내보세요!",
 
     //CreateChannel > ChannelForm, ChannelFormSubmit
     createNewChannel: "새로운 채널 개설",

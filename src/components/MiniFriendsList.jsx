@@ -1,20 +1,17 @@
 import React from "react";
 import Button from "./Controls/Button";
 import RoomIcon from "./Controls/RoomIcon";
-import strings from "../localization/strings";
 import { channelHasNewMessage } from "../util/channelHasNewMessage";
 
 export default function MiniFriendsList({
   friends,
   handleSelectRoom,
-  handleFindFriends,
-  room,
   isLoading
 }) {
-  const finalFriends = friends.slice(0, 5);
+  const finalFriends = friends.slice(0, 4);
 
   return (
-    <div className="hidden sm:flex flex-row items-center w-full select-none overflow-x-scroll py-2 px-4 shadow-xs space-x-3">
+    <div className="flex flex-row items-center justify-evenly w-full select-none py-2 px-4 space-x-3">
       {finalFriends.map(room => {
         const images = room.members.map(m => m.avatar);
         const name = room.members.map(m => " " + m.username).join();
@@ -25,7 +22,7 @@ export default function MiniFriendsList({
             online={room.online}
             watching={room.watching}
             notifications={channelHasNewMessage(room)}
-            size="lg"
+            size="md"
             isLoading={isLoading}
             displayName={name}
           />
@@ -42,18 +39,6 @@ export default function MiniFriendsList({
           />
         );
       })}
-      <div className="px-1 pr-4">
-        <Button
-          actionButton
-          icon="user-plus"
-          size="md"
-          background="primary"
-          onClick={handleFindFriends}
-          className="hover:scale-110"
-          tooltip={strings.addFriendsButton}
-          analyticsString="Add Friend Button: MiniFriendsList"
-        />
-      </div>
     </div>
   );
 }

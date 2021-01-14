@@ -47,6 +47,11 @@ export default function ChannelsPanel({
     </div>
   );
 
+  const toSearchFriend = () => {
+    setFriendsSearchFocus(true);
+    updateSelectedPage("friends");
+  };
+
   return (
     <div className="flex flex-col w-full sm:w-84 h-full bg-background-primary select-none">
       <PanelHeader
@@ -54,14 +59,17 @@ export default function ChannelsPanel({
         selectedPage={selectedPage}
         numberOfNotifications={numberOfNotifications}
       />
-      <div className="flex-col h-full overflow-y-scroll">
+      <div className="flex-col h-full overflow-y-scroll space-y-2">
+        <LeftPanelSubHeader
+          headerString={strings.recentFriends}
+          button="search"
+          onClick={() => toSearchFriend()}
+          tooltip={strings.addFriendsButton}
+          analyticsString="Add Friend Button: MiniFriendsList"
+        />
         <MiniFriendsList
           friends={friends}
           handleSelectRoom={handleSelectRoom}
-          handleFindFriends={() => {
-            setFriendsSearchFocus(true);
-            updateSelectedPage("friends");
-          }}
           isLoading={false}
         />
         <div className="relative flex flex-col items-start bg-background-primary">
@@ -69,7 +77,7 @@ export default function ChannelsPanel({
             yourChannels,
             strings.yourChannels,
             strings.yourChannelsPlaceholder,
-            true
+            "plus"
           )}
           {followingChannels.length !== 0 &&
             leftPanelChannelList(

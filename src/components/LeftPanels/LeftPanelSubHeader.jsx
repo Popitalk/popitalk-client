@@ -13,11 +13,11 @@ export default function LeftPanelSubHeader({
   return (
     <div className="flex flex-row items-center">
       <h4 className={subHeaderClassName}>{headerString}</h4>
-      {button === true && (
+      {button && (
         <Button
           hoverable
           styleNone
-          icon="plus"
+          icon={button}
           styleNoneIconClassName="text-copy-highlight"
           onClick={onClick}
           analyticsString={analyticsString}

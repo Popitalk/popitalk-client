@@ -51,11 +51,20 @@ export default function ChatPanel({
             followersCount={followersCount}
             isRoom={isRoom}
           />
-          <ChatMessageList
-            channelId={channelId}
-            channelMessages={channelMessages}
-            isGifsOpen={isGifsOpen}
-          />
+          {channelMessages.length === 0 || !channelMessages ? (
+            <div className="flex items-center justify-center h-full w-full">
+              <p className="text-copy-secondary text-xs select-none">
+                {strings.emptyChatPanel}
+              </p>
+            </div>
+          ) : (
+            <ChatMessageList
+              channelId={channelId}
+              channelMessages={channelMessages}
+              isGifsOpen={isGifsOpen}
+            />
+          )}
+
           {isGifsOpen && <GifTable updateGifsOpen={updateGifsOpen} />}
           {isMember ? (
             <ChatActions
