@@ -61,7 +61,9 @@ import {
   faLightbulb,
   faComment,
   faExpand,
-  faHashtag
+  faHashtag,
+  faTv,
+  faSms
 } from "@fortawesome/free-solid-svg-icons";
 import {
   faSmile as farSmile,
@@ -125,6 +127,8 @@ library.add(
   faEdit,
   faLightbulb,
   faComment,
+  faTv,
+  faSms,
   // == Logos == //
   fabTwitter,
   fabYoutube,

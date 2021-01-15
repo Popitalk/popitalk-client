@@ -6,7 +6,6 @@ import FriendUsersList from "../InfoCardLists/FriendUsersList";
 import StretchList from "../InfoCardLists/StretchList";
 import Input from "../Controls/Input";
 import RoomsList from "../InfoCardLists/RoomsList";
-import PanelHeader from "./PanelHeader";
 import { utilizeFocus } from "../../helpers/functions";
 import strings from "../../localization/strings";
 import LeftPanelSubHeader from "./LeftPanelSubHeader";
@@ -96,12 +95,14 @@ class FriendsPanel extends Component {
   render() {
     return (
       <div className="relative flex flex-col w-full sm:w-84 h-full bg-background-primary select-none">
-        <PanelHeader
-          updateSelectedPage={this.props.updateSelectedPage}
-          selectedPage={this.props.selectedPage}
-          numberOfNotifications={this.props.numberOfNotifications}
-        />
         <div className="flex-col h-full overflow-y-scroll">
+          <LeftPanelSubHeader
+            headerString={strings.directRoom}
+            button={true}
+            onClick={() => this.props.handleCreateRoom()}
+            tooltip={strings.newRoomButton}
+            analyticsString="Create Room Button: FriendsPanel"
+          />
           <Input
             variant="user"
             size="sm"
@@ -135,13 +136,6 @@ class FriendsPanel extends Component {
               </div>
             </div>
           )}
-          <LeftPanelSubHeader
-            headerString={strings.directRoom}
-            button={true}
-            onClick={() => this.props.handleCreateRoom()}
-            tooltip={strings.newRoomButton}
-            analyticsString="Create Room Button: FriendsPanel"
-          />
           <div className="bg-background-primary pb-8">
             <RoomsList
               rooms={this.state.rooms}

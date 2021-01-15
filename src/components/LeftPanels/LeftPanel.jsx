@@ -26,7 +26,6 @@ export default function LeftPanel({
   handleProfile,
   isCollapsed,
   isRemoved,
-  updateSelectedPage,
   handleCreateRoom,
   friendsSearchFocus,
   setFriendsSearchFocus,
@@ -37,18 +36,16 @@ export default function LeftPanel({
 
   if (!loggedIn) {
     return (
-      <div className="relative z-30">
-        <div
-          className={isRemoved === true ? "w-full sm:w-full" : "hidden sm:flex"}
-        >
-          <LeftPanelViewer
-            recommendedChannels={recommendedChannels}
-            selectedChannel={selected}
-            handleSelectChannel={handleSelectChannel}
-            selectedPage={selectedPage}
-            updateSelectedPage={updateSelectedPage}
-          />
-        </div>
+      <div
+        className={
+          isRemoved === true ? "w-full sm:w-full z-30" : "hidden sm:flex z-30"
+        }
+      >
+        <LeftPanelViewer
+          recommendedChannels={recommendedChannels}
+          selectedChannel={selected}
+          handleSelectChannel={handleSelectChannel}
+        />
       </div>
     );
   } else if (isCollapsed) {
@@ -61,8 +58,6 @@ export default function LeftPanel({
         handleSelect={handleSelectChannel}
         handleCollapse={handleCollapse}
         isCollapsed={isCollapsed}
-        selectedPage={selectedPage}
-        updateSelectedPage={updateSelectedPage}
         setFriendsSearchFocus={setFriendsSearchFocus}
         numberOfNotifications={numberOfNotifications}
         loggedIn={loggedIn}
@@ -86,8 +81,6 @@ export default function LeftPanel({
               handleSelectChannel={handleSelectChannel}
               handleSelectRoom={handleSelectRoom}
               handleCreateChannel={handleCreateChannel}
-              selectedPage={selectedPage}
-              updateSelectedPage={updateSelectedPage}
               handleCollapse={handleCollapse}
               setFriendsSearchFocus={setFriendsSearchFocus}
               numberOfNotifications={numberOfNotifications}
@@ -102,10 +95,8 @@ export default function LeftPanel({
               initialRooms={roomsResults}
               selectedRoom={selected}
               handleSelectRoom={handleSelectRoom}
-              updateSelectedPage={updateSelectedPage}
               handleCollapse={handleCollapse}
               handleProfile={handleProfile}
-              selectedPage={selectedPage}
               handleCreateRoom={handleCreateRoom}
               friendsSearchFocus={friendsSearchFocus}
               setFriendsSearchFocus={setFriendsSearchFocus}

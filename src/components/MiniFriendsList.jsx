@@ -8,10 +8,10 @@ export default function MiniFriendsList({
   handleSelectRoom,
   isLoading
 }) {
-  const finalFriends = friends.slice(0, 4);
+  const finalFriends = friends.slice(0, 3);
 
   return (
-    <div className="flex flex-row items-center justify-evenly w-full select-none py-2 px-4 space-x-3">
+    <div className="flex flex-row items-center justify-evenly w-full select-none py-2 px-6 space-x-4">
       {finalFriends.map(room => {
         const images = room.members.map(m => m.avatar);
         const name = room.members.map(m => " " + m.username).join();
