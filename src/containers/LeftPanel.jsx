@@ -91,7 +91,7 @@ export default function LeftPanelContainer() {
       recommendedChannelsPanel,
       defaultAvatar,
       defaultIcon
-    ).slice(0, 8);
+    );
     setRecommendedList(channels);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [recommendedChannelsPanel]);
