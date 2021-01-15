@@ -233,6 +233,7 @@ function RecommendedChannels() {
               handleLoadMore={() =>
                 dispatch(getFollowingChannels({ page: followingChannels.page }))
               }
+              recommendedView
             />
           ) : tabSelected === discoverTab.tab ? (
             <LoadMoreButton
@@ -241,6 +242,7 @@ function RecommendedChannels() {
               handleLoadMore={() =>
                 dispatch(getDiscoverChannels({ page: discoverChannels.page }))
               }
+              recommendedView
             />
           ) : tabSelected === trendingTab.tab ? (
             <LoadMoreButton
@@ -249,6 +251,7 @@ function RecommendedChannels() {
               handleLoadMore={() =>
                 dispatch(getTrendingChannels({ page: trendingChannels.page }))
               }
+              recommendedView
             />
           ) : (
             <> </>
