@@ -21,34 +21,29 @@ export default function LeftPanel({
   handleSelectChannel,
   handleSelectRoom,
   selectedPage,
-  handleCollapse,
   handleCreateChannel,
   handleProfile,
   isCollapsed,
   isRemoved,
-  updateSelectedPage,
   handleCreateRoom,
   friendsSearchFocus,
-  setFriendsSearchFocus,
-  numberOfNotifications
+  setFriendsSearchFocus
 }) {
   const { loggedIn } = useSelector(state => state.general);
   const channels = [...yourChannels, ...followingChannels];
 
   if (!loggedIn) {
     return (
-      <div className="relative z-30">
-        <div
-          className={isRemoved === true ? "w-full sm:w-full" : "hidden sm:flex"}
-        >
-          <LeftPanelViewer
-            recommendedChannels={recommendedChannels}
-            selectedChannel={selected}
-            handleSelectChannel={handleSelectChannel}
-            selectedPage={selectedPage}
-            updateSelectedPage={updateSelectedPage}
-          />
-        </div>
+      <div
+        className={
+          isRemoved === true ? "w-full sm:w-full z-30" : "hidden sm:flex z-30"
+        }
+      >
+        <LeftPanelViewer
+          recommendedChannels={recommendedChannels}
+          selectedChannel={selected}
+          handleSelectChannel={handleSelectChannel}
+        />
       </div>
     );
   } else if (isCollapsed) {
@@ -59,13 +54,8 @@ export default function LeftPanel({
         selected={selected}
         handleSelectRoom={handleSelectRoom}
         handleSelect={handleSelectChannel}
-        handleCollapse={handleCollapse}
-        isCollapsed={isCollapsed}
-        selectedPage={selectedPage}
-        updateSelectedPage={updateSelectedPage}
         setFriendsSearchFocus={setFriendsSearchFocus}
-        numberOfNotifications={numberOfNotifications}
-        loggedIn={loggedIn}
+        type={selectedPage}
       />
     );
   } else {
@@ -86,11 +76,7 @@ export default function LeftPanel({
               handleSelectChannel={handleSelectChannel}
               handleSelectRoom={handleSelectRoom}
               handleCreateChannel={handleCreateChannel}
-              selectedPage={selectedPage}
-              updateSelectedPage={updateSelectedPage}
-              handleCollapse={handleCollapse}
               setFriendsSearchFocus={setFriendsSearchFocus}
-              numberOfNotifications={numberOfNotifications}
               loggedIn={loggedIn}
             />
           ) : (
@@ -102,14 +88,10 @@ export default function LeftPanel({
               initialRooms={roomsResults}
               selectedRoom={selected}
               handleSelectRoom={handleSelectRoom}
-              updateSelectedPage={updateSelectedPage}
-              handleCollapse={handleCollapse}
               handleProfile={handleProfile}
-              selectedPage={selectedPage}
               handleCreateRoom={handleCreateRoom}
               friendsSearchFocus={friendsSearchFocus}
               setFriendsSearchFocus={setFriendsSearchFocus}
-              numberOfNotifications={numberOfNotifications}
               loggedIn={loggedIn}
             />
           )}

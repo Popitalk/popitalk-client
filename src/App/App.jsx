@@ -27,6 +27,7 @@ import { validateSession } from "../redux/actions";
 import "../styles/app.css";
 import "../styles/scrollbars.css";
 import "../helpers/initIcons";
+import FriendsView from "../containers/FriendsView";
 
 export default function App() {
   const dispatch = useDispatch();
@@ -66,7 +67,7 @@ export default function App() {
           </PublicRoute>
           <GeneralRoute exact path="/">
             <RouteWrapper leftPanel={leftPanel}>
-              <RecommendedView selectedPage="channels" />
+              <RecommendedView />
             </RouteWrapper>
           </GeneralRoute>
           <GeneralRoute exact path={`/channels/:channelId`}>
@@ -81,7 +82,7 @@ export default function App() {
           </GeneralRoute>
           <GeneralRoute exact path="/friends">
             <RouteWrapper leftPanel={leftPanel}>
-              <RecommendedView selectedPage="channels" />
+              <FriendsView />
             </RouteWrapper>
           </GeneralRoute>
           <PrivateRoute exact path="/create">

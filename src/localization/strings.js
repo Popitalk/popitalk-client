@@ -119,6 +119,7 @@ let strings = new LocalizedStrings({
     createChannelButton: "Create channel",
     newRoomButton: "New Direct Room",
     directRoom: "DIRECT ROOMS",
+    searchFriends: "SEARCH FRIENDS",
     requestVideoButton: "Send a request to the admin",
     createButton: "Create",
     resetButton: "Reset",
@@ -180,6 +181,17 @@ let strings = new LocalizedStrings({
     following: "HOME",
     discover: "DISCOVER",
     trending: "TRENDING",
+    // FriendsView
+    welcomeToDR: "Welcome to Direct Rooms!",
+    DRSubtitle:
+      "In a DR, you can watch privately with your friends. To get started follow these steps:",
+    DRStepOne:
+      "In order to create a DR with your friend, they must have a Popitalk account as well.",
+    DRStepTwo:
+      "Search for your friend's username, send a friend request, and wait until they accept it!",
+    DRStepThree:
+      "After they accept your friend request, a DR is automatically created. Enjoy!",
+
     // ChannelCard
     nothingPlaying: "Nothing is playing at this moment",
     nothingPlayingSubtitle: "Channel admin has to add a video below.",
@@ -278,7 +290,7 @@ let strings = new LocalizedStrings({
     editUserInformation: "Edit User Information",
     changePassword: "Change Password",
     // InfoCardList
-    nothingToShow: "Nothing to show.",
+    nothingToShow: "Nothing Found.",
     // SearchResults
     noVideosFound: "No videos found",
     // GifTable
@@ -414,6 +426,7 @@ let strings = new LocalizedStrings({
     createChannelButton: "채널 생성",
     newRoomButton: "방 만들기",
     directRoom: "친구 목록",
+    searchFriends: "친구 검색",
     requestVideoButton: "채널 관리자한테 요청하세요",
     createButton: "만들기",
     resetButton: "초기화",
@@ -474,6 +487,14 @@ let strings = new LocalizedStrings({
     following: "팔로잉",
     discover: "추천",
     trending: "인기",
+    // FriendsView
+    welcomeToDR: "친구 목록에 오신걸 환영합니다!",
+    DRSubtitle:
+      "DR에서는 친구들과 갠톡으로 영상시청이 가능합니다. 아래에 도움말을 드렸습니다:",
+    DRStepOne: "친구와 DR을 만드려면 친구도 Popitalk 계정이 있어야 합니다.",
+    DRStepTwo: "친구의 아이디를 검색한 후, 친추를 보내세요!",
+    DRStepThree:
+      "친구가 친추를 확인하면, 친구와의 DR이 자동으로 생성됩니다. 같이 재미있게 시청하세요!",
     // ChannelCard
     nothingPlaying: "재생되고 있는 영상이 없습니다",
     nothingPlayingSubtitle: "채널 관리자가 아래에서 영상을 추가해야 합니다.",

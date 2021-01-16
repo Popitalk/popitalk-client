@@ -55,7 +55,6 @@
     "rc-slider": "^9.6.2",
     "react": "^16.14.0",
     "react-beautiful-dnd": "^13.0.0",
-    "react-collapsed": "^3.0.1",
     "react-dom": "^16.14.0",
     "react-ga": "^3.2.1",
     "react-helmet": "^6.1.0",

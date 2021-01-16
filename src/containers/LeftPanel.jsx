@@ -6,7 +6,9 @@ import LeftPanel from "../components/LeftPanels/LeftPanel";
 import {
   searchUsers,
   setLastMessageSeen,
-  getRecommendedChannelsPanel
+  getRecommendedChannelsPanel,
+  setLeftPanelActiveTabChannels,
+  setLeftPanelActiveTabFriends
 } from "../redux/actions";
 import { openInviteModal, openProfileModal } from "../redux";
 import history from "../history";
@@ -19,6 +21,7 @@ import { orderBy } from "lodash";
 // import { channelHasNewMessage } from "../util/channelHasNewMessage";
 
 export default function LeftPanelContainer() {
+  const dispatch = useDispatch();
   let match = useRouteMatch("/channels/:channelId");
   let selectedChannel = match?.params.channelId ? match.params.channelId : 0;
 
@@ -26,16 +29,6 @@ export default function LeftPanelContainer() {
   if (selectedChannel === 0) {
     selectedChannel = match?.params.roomId ? match.params.roomId : 0;
   }
-
-  const [selectedPage, setSelectedPage] = useState(
-    match?.params.roomId ? "friends" : "channels"
-  );
-  const [friendsSearchFocus, setFriendsSearchFocus] = useState(false);
-
-  const channels = useSelector(state => state.channels);
-  const recommendedChannelsPanel = useSelector(
-    state => state.recommendedChannels.panel
-  );
 
   // == NOTIFICATION ATTEMPT ON THE CLIENT == NEEDS REMAKE
   // const numberOfNotifications = useSelector(state => {
@@ -48,6 +41,10 @@ export default function LeftPanelContainer() {
   //   });
   //   return counter;
   // });
+  const channels = useSelector(state => state.channels);
+  const recommendedChannelsPanel = useSelector(
+    state => state.recommendedChannels.panel
+  );
   const users = useSelector(state => state.users);
   const relationships = useSelector(state => state.relationships);
   const foundUsers = useSelector(state => state.userSearch);
@@ -56,14 +53,12 @@ export default function LeftPanelContainer() {
   const { id: ownId, channelIds, roomIds } = useSelector(state => state.self);
   const isCollapsed = useSelector(state => state.ui.isCollapsed);
   const isRemoved = useSelector(state => state.ui.isRemoved);
-
-  const dispatch = useDispatch();
+  const leftPanelActiveTab = useSelector(state => state.ui.leftPanelActiveTab);
 
   const blocks = relationships.blockers.length + relationships.blocked.length;
 
   let yourChannels = [];
   let followingChannels = [];
-  const [recommendedList, setRecommendedList] = useState([]);
   channelIds
     .map(channelId => ({
       id: channelId,
@@ -85,6 +80,9 @@ export default function LeftPanelContainer() {
         }
       }
     });
+
+  const [friendsSearchFocus, setFriendsSearchFocus] = useState(false);
+  const [recommendedList, setRecommendedList] = useState([]);
 
   useEffect(() => {
     const channels = getChannels(
@@ -130,44 +128,21 @@ export default function LeftPanelContainer() {
     );
   });
 
-  const updateSelectedPageAndMain = page => {
-    const pages = {
-      channels: "/",
-      friends: "/friends"
-    };
-    if (pages[page]) {
-      if (friendsSearchFocus) {
-        setFriendsSearchFocus(false);
-      }
-      history.push(pages[page]);
-    } else {
-      console.log("no such page exists.");
-    }
-  };
-
-  const updateSelectedPanelPage = page => {
-    const pages = {
-      channels: "channels",
-      friends: "friends"
-    };
-    if (pages[page]) {
-      setSelectedPage(pages[page]);
-    } else {
-      console.log("no such page exists.");
-    }
-  };
-
   const handleSelectChannel = id => {
-    if (selectedPage !== "channels") setSelectedPage("channels");
     history.push(`/channels/${id}`);
+    dispatch(setLeftPanelActiveTabChannels());
   };
   const handleSelectRoom = id => {
     dispatch(setLastMessageSeen({ channelId: id }));
-    if (selectedPage !== "friends") setSelectedPage("friends");
     history.push(`/rooms/${id}`);
+    dispatch(setLeftPanelActiveTabFriends());
   };
   const handleOpenProfile = id => dispatch(openProfileModal(id));
   const handleCreateRoom = id => dispatch(openInviteModal(id, true));
+  const handleCreateChannel = () => {
+    history.push("/create");
+    dispatch(setLeftPanelActiveTabChannels());
+  };
 
   return (
     <Switch>
@@ -184,15 +159,13 @@ export default function LeftPanelContainer() {
           selected={selectedChannel}
           handleSelectChannel={handleSelectChannel}
           handleSelectRoom={handleSelectRoom}
-          handleCreateChannel={() => history.push("/create")}
+          handleCreateChannel={handleCreateChannel}
           handleProfile={handleOpenProfile}
-          updateSelectedPage={updateSelectedPageAndMain}
           isCollapsed={isCollapsed}
           isRemoved={isRemoved}
           selectedPage="channels"
           handleCreateRoom={() => handleCreateRoom(selectedChannel)}
           setFriendsSearchFocus={setFriendsSearchFocus}
-          // numberOfNotifications={numberOfNotifications}
         />
       </Route>
       <Route exact path="/friends">
@@ -207,16 +180,14 @@ export default function LeftPanelContainer() {
           selected={selectedChannel}
           handleSelectChannel={handleSelectChannel}
           handleSelectRoom={handleSelectRoom}
-          handleCreateChannel={() => history.push("/create")}
+          handleCreateChannel={handleCreateChannel}
           handleProfile={handleOpenProfile}
-          updateSelectedPage={updateSelectedPageAndMain}
           isCollapsed={isCollapsed}
           isRemoved={isRemoved}
           selectedPage="friends"
           handleCreateRoom={() => handleCreateRoom(selectedChannel)}
           friendsSearchFocus={friendsSearchFocus}
           setFriendsSearchFocus={setFriendsSearchFocus}
-          // numberOfNotifications={numberOfNotifications}
         />
       </Route>
       <Route>
@@ -232,15 +203,13 @@ export default function LeftPanelContainer() {
           selected={selectedChannel}
           handleSelectChannel={handleSelectChannel}
           handleSelectRoom={handleSelectRoom}
-          handleCreateChannel={() => history.push("/create")}
+          handleCreateChannel={handleCreateChannel}
           handleProfile={handleOpenProfile}
-          updateSelectedPage={updateSelectedPanelPage}
           isCollapsed={isCollapsed}
           isRemoved={isRemoved}
-          selectedPage={selectedPage}
+          selectedPage={leftPanelActiveTab}
           handleCreateRoom={() => handleCreateRoom(selectedChannel)}
           setFriendsSearchFocus={setFriendsSearchFocus}
-          // numberOfNotifications={numberOfNotifications}
         />
       </Route>
     </Switch>

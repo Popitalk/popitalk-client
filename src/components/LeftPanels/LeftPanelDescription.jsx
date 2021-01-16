@@ -4,7 +4,7 @@ import SignInButton from "../SignInButton";
 
 export default function LeftPanelDescription() {
   const boxClassName =
-    "bg-background-secondary p-6 space-y-4 rounded-md shadow-md";
+    "bg-background-secondary p-4 space-y-4 rounded-md shadow-md";
   const [hover, setHover] = useState("");
   const iconsListArray = [
     {

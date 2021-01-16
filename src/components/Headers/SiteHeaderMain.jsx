@@ -16,8 +16,10 @@ import {
   setIsSearchForChannels,
   getFollowingChannels,
   toggleLeftPanel,
-  removeLeftPanel
+  removeLeftPanel,
+  setLeftPanelActiveTabChannels
 } from "../../redux/actions";
+import PanelHeader from "../LeftPanels/PanelHeader";
 
 const SETTINGS = 1;
 const ACCOUNT_SETTINGS = 2;
@@ -36,7 +38,9 @@ const SiteHeaderMain = ({
   openEditInformationHandler,
   openChangePasswordHandler,
   deleteAccountHandler,
-  logoutHandler
+  logoutHandler,
+  updateSelectedPage,
+  selectedPage
 }) => {
   const [dropdownList, setDropdownList] = useState([]);
 
@@ -156,7 +160,7 @@ const SiteHeaderMain = ({
 
   return (
     <header className="sm:px-6 // relative flex items-center justify-between h-12 bg-background-primary select-none">
-      <div className="flex flex-row items-center">
+      <div className="flex flex-row items-center w-1/3 sm:w-1/4 flex-shrink-0">
         <Button
           hoverable
           styleNone
@@ -193,11 +197,16 @@ const SiteHeaderMain = ({
             dispatch(setSelectedTab(strings.following));
             dispatch(setIsSearchForChannels(false));
             history.push("/");
+            setLeftPanelActiveTabChannels();
           }}
         />
       </div>
-      <div className="sm:space-x-6 // flex items-center space-x-2">
-        <ul className="sm:space-x-6 // flex items-center space-x-2">
+      <PanelHeader
+        updateSelectedPage={updateSelectedPage}
+        selectedPage={selectedPage}
+      />
+      <div className="sm:space-x-4 sm:w-1/4 // flex items-center space-x-2 w-1/3 justify-end pr-2 flex-shrink-0">
+        <ul className="sm:space-x-4 // flex items-center space-x-2">
           <li>
             <DropDownControls
               icon="bell"
@@ -267,7 +276,7 @@ const SiteHeaderMain = ({
           imageButtonClassName="w-6 h-6 rounded-full object-cover"
           imageButtonSpanClassName="hidden sm:block text-xs font-bold text-copy-primary ml-2"
           onClick={() => openProfileHandler(userID)}
-          className="p-2 hover:bg-hover-highlight rounded-md"
+          className="p-2 px-3 hover:bg-hover-highlight rounded-lg"
           analyticsString="My Profile Button: SiteHeaderMain"
         />
       </div>

@@ -3,11 +3,12 @@ import ReactTooltip from "react-tooltip";
 
 import ChannelsList from "../InfoCardLists/ChannelsList";
 import MiniFriendsList from "../MiniFriendsList";
-import PanelHeader from "./PanelHeader";
 import strings from "../../localization/strings";
 import LeftPanelFooter from "./LeftPanelFooter";
 import LeftPanelSubHeader from "./LeftPanelSubHeader";
 import LoadMoreButton from "../Controls/LoadMoreButton";
+
+import history from "../../history";
 
 export default function ChannelsPanel({
   yourChannels,
@@ -18,10 +19,7 @@ export default function ChannelsPanel({
   handleSelectChannel,
   handleSelectRoom,
   handleCreateChannel,
-  updateSelectedPage,
-  selectedPage,
-  setFriendsSearchFocus,
-  numberOfNotifications
+  setFriendsSearchFocus
 }) {
   const [yourChannelsCount, setYourChannelsCount] = useState(5);
   const [followingChannelsCount, setFollowingChannelsCount] = useState(5);
@@ -56,16 +54,11 @@ export default function ChannelsPanel({
 
   const toSearchFriend = () => {
     setFriendsSearchFocus(true);
-    updateSelectedPage("friends");
+    history.push(`/friends`);
   };
 
   return (
-    <div className="flex flex-col w-full sm:w-84 h-full bg-background-primary select-none">
-      <PanelHeader
-        updateSelectedPage={updateSelectedPage}
-        selectedPage={selectedPage}
-        numberOfNotifications={numberOfNotifications}
-      />
+    <div className="flex flex-col w-full sm:w-68 h-full bg-background-primary select-none">
       <div className="flex-col h-full overflow-y-scroll space-y-2">
         <LeftPanelSubHeader
           headerString={strings.recentFriends}

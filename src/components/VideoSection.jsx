@@ -31,6 +31,7 @@ export default function VideoSection({
       styleNone
       icon="user"
       styleNoneContent={activeFriendViewers.length}
+      styleNoneIconClassName="mr-1"
       className="text-copy-secondary space-x-1 text-xs font-bold"
       analyticsString="View More Users Button: AvatarDeck"
     />

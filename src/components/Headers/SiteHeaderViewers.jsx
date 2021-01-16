@@ -15,6 +15,7 @@ import {
   getTrendingChannels,
   removeLeftPanel
 } from "../../redux/actions";
+import PanelHeader from "../LeftPanels/PanelHeader";
 
 const SETTINGS = 1;
 const INFORMATION = 4;
@@ -88,7 +89,7 @@ const SiteHeaderViewers = () => {
 
   return (
     <header className="sm:px-6 // relative flex items-center justify-between h-12 bg-background-primary z-30 select-none">
-      <div className="flex flex-row items-center">
+      <div className="flex flex-row items-center w-1/3 sm:w-1/4">
         <Button
           hoverable
           styleNone
@@ -119,8 +120,9 @@ const SiteHeaderViewers = () => {
           }}
         />
       </div>
-      <div className="sm:space-x-6 // flex items-center space-x-2">
-        <ul className="sm:space-x-6 // flex items-center space-x-2">
+      <PanelHeader viewer />
+      <div className="sm:space-x-6 // flex items-center space-x-2 justify-end w-1/3 sm:w-1/4">
+        <ul className="sm:space-x-6 // flex items-center space-x-2 flex-shrink-0">
           <li>
             <SignInButton />
           </li>

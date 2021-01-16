@@ -2,14 +2,12 @@ import React, { createRef, forwardRef } from "react";
 import Input from "../Controls/Input";
 import Button from "../Controls/Button";
 import {
-  EmailShareButton,
   FacebookShareButton,
   RedditShareButton,
   TelegramShareButton,
   TwitterShareButton,
   VKShareButton,
   WhatsappShareButton,
-  EmailIcon,
   FacebookIcon,
   RedditIcon,
   TelegramIcon,
@@ -59,12 +57,12 @@ export default function InviteForm({ link }) {
 
   return (
     <div className="flex flex-col items-center justify-center h-full w-full">
-      <p className="text-sm text-copy-secondary pb-4">{strings.copyUrl}</p>
+      <p className="text-sm text-copy-secondary pb-3">{strings.copyUrl}</p>
       <InputRef ref={ref} />
-      <p className="text-sm text-copy-secondary pt-4">
+      <p className="text-sm text-copy-secondary pt-3">
         {strings.shareToSocialMedia}
       </p>
-      <div className="flex justify-center space-x-2 pt-4">
+      <div className="flex justify-center space-x-2 pt-3">
         <FacebookShareButton
           url={currentUrl}
           quote={title}
@@ -86,13 +84,6 @@ export default function InviteForm({ link }) {
         >
           <TelegramIcon size={32} borderRadius={12} />
         </TelegramShareButton>
-        <EmailShareButton
-          url={currentUrl}
-          subject={title}
-          className={iconClassname}
-        >
-          <EmailIcon size={32} borderRadius={12} />
-        </EmailShareButton>
         <VKShareButton url={currentUrl} title={title} className={iconClassname}>
           <VKIcon size={32} borderRadius={12} />
         </VKShareButton>

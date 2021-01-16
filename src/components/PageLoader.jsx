@@ -7,7 +7,7 @@ const PageLoader = () => (
       <img src={Logo} className="w-8 h-8" alt="Popitalk Logo" />
     </div>
     <div className="h-full w-full bg-background-secondary">
-      <div className="w-84 h-full bg-background-primary"></div>
+      <div className="w-68 h-full bg-background-primary"></div>
     </div>
   </div>
 );

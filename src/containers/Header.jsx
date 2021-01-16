@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useHistory, useLocation } from "react-router-dom";
+import { Route, Switch, useHistory, useLocation } from "react-router-dom";
 
 import { login, logout, deleteAccount } from "../redux/actions";
 import {
@@ -26,6 +26,7 @@ const HeaderContainer = () => {
   const relationships = useSelector(state => state.relationships);
   const users = useSelector(state => state.users);
   const { status, loading, error } = useSelector(state => state.api.loginApi);
+  const leftPanelActiveTab = useSelector(state => state.ui.leftPanelActiveTab);
 
   const { receivedFriendRequests, sentFriendRequests } = relationships;
 
@@ -44,6 +45,18 @@ const HeaderContainer = () => {
       })
     );
   };
+  //PANEL HEADER
+  const updateSelectedPageAndMain = page => {
+    const pages = {
+      channels: "/",
+      friends: "/friends"
+    };
+    if (pages[page]) {
+      history.push(pages[page]);
+    } else {
+      console.log("no such page exists.");
+    }
+  };
 
   const requests = [...receivedFriendRequests, ...sentFriendRequests];
   const mappedUsers = mapIdsToUsers(requests, users, defaultAvatar);
@@ -52,23 +65,83 @@ const HeaderContainer = () => {
 
   if (loggedIn)
     return (
-      <SiteHeaderMain
-        userID={id}
-        username={username}
-        avatar={avatar || defaultAvatar}
-        friendRequests={friendRequests}
-        notifications={[]}
-        openProfileHandler={id => dispatch(openProfileModal(id))}
-        openBlockedUsersHandler={() => dispatch(openBlockedUsersModal())}
-        openEditInformationHandler={() => dispatch(openEditUserSettingsModal())}
-        openChangePasswordHandler={() => dispatch(openChangePasswordModal())}
-        clearNotificationsHandler={() => console.log("clear notifications")}
-        deleteAccountHandler={() => dispatch(deleteAccount())}
-        logoutHandler={() => {
-          dispatch(logout());
-          history.push("/");
-        }}
-      />
+      <Switch>
+        <Route exact path="/">
+          <SiteHeaderMain
+            userID={id}
+            username={username}
+            avatar={avatar || defaultAvatar}
+            friendRequests={friendRequests}
+            notifications={[]}
+            openProfileHandler={id => dispatch(openProfileModal(id))}
+            openBlockedUsersHandler={() => dispatch(openBlockedUsersModal())}
+            openEditInformationHandler={() =>
+              dispatch(openEditUserSettingsModal())
+            }
+            openChangePasswordHandler={() =>
+              dispatch(openChangePasswordModal())
+            }
+            clearNotificationsHandler={() => console.log("clear notifications")}
+            deleteAccountHandler={() => dispatch(deleteAccount())}
+            updateSelectedPage={updateSelectedPageAndMain}
+            selectedPage={"channels"}
+            logoutHandler={() => {
+              dispatch(logout());
+              history.push("/");
+            }}
+          />
+        </Route>
+        <Route exact path="/friends">
+          <SiteHeaderMain
+            userID={id}
+            username={username}
+            avatar={avatar || defaultAvatar}
+            friendRequests={friendRequests}
+            notifications={[]}
+            openProfileHandler={id => dispatch(openProfileModal(id))}
+            openBlockedUsersHandler={() => dispatch(openBlockedUsersModal())}
+            openEditInformationHandler={() =>
+              dispatch(openEditUserSettingsModal())
+            }
+            openChangePasswordHandler={() =>
+              dispatch(openChangePasswordModal())
+            }
+            clearNotificationsHandler={() => console.log("clear notifications")}
+            deleteAccountHandler={() => dispatch(deleteAccount())}
+            updateSelectedPage={updateSelectedPageAndMain}
+            selectedPage="friends"
+            logoutHandler={() => {
+              dispatch(logout());
+              history.push("/");
+            }}
+          />
+        </Route>
+        <Route>
+          <SiteHeaderMain
+            userID={id}
+            username={username}
+            avatar={avatar || defaultAvatar}
+            friendRequests={friendRequests}
+            notifications={[]}
+            openProfileHandler={id => dispatch(openProfileModal(id))}
+            openBlockedUsersHandler={() => dispatch(openBlockedUsersModal())}
+            openEditInformationHandler={() =>
+              dispatch(openEditUserSettingsModal())
+            }
+            openChangePasswordHandler={() =>
+              dispatch(openChangePasswordModal())
+            }
+            clearNotificationsHandler={() => console.log("clear notifications")}
+            deleteAccountHandler={() => dispatch(deleteAccount())}
+            updateSelectedPage={updateSelectedPageAndMain}
+            selectedPage={leftPanelActiveTab}
+            logoutHandler={() => {
+              dispatch(logout());
+              history.push("/");
+            }}
+          />
+        </Route>
+      </Switch>
     );
   if (signUp)
     return (

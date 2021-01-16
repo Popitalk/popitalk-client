@@ -2,7 +2,7 @@ import React from "react";
 import welcomepic from "../assets/welcomepic.png";
 
 const NotFoundPage = () => (
-  <div className="flex p-12 items-center justify-center w-full h-full bg-background-secondary">
+  <div className="flex px-12 items-center justify-center w-full h-full bg-background-secondary">
     <div className="absolute md:static opacity-0 sm:opacity-25 md:opacity-100 md:flex items-center justify-center md:w-1/2 w-full h-full lg:p-24 md:p-12 sm:p-4">
       <img
         src={welcomepic}

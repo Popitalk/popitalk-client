@@ -11,7 +11,7 @@ export default function VideoStatus({
       className={`${
         (status === "playing" || status === "paused") &&
         "bg-background-secondary border-2 border-outline-image2"
-      } rounded-md py-1 px-3  flex flex-shrink-0 text-copy-primary text-xs font-bold space-x-2 items-center cursor-pointer`}
+      } rounded-md py-1 px-3 flex flex-shrink-0 text-copy-primary text-xs font-bold space-x-2 items-center cursor-pointer`}
     >
       {status === "playing" ? (
         <>

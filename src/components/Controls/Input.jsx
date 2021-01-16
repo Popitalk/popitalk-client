@@ -105,10 +105,10 @@ export default function Input({
         {(variant === "user" || variant === "channel") && (
           <Button
             actionButton
-            icon={variant === "user" ? "user-plus" : "search"}
+            icon="search"
             size="sm"
             background="secondary"
-            className="absolute right-0 mr-2 shadow-none"
+            className="absolute right-0 mr-1 shadow-none"
             onClick={onClick}
             analyticsString="Search Button: Input"
           />

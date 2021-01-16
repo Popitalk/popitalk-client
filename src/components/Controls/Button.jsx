@@ -121,7 +121,11 @@ export default function Button({
           {icon && (
             <FontAwesomeIcon className={styleNoneIconClassName} icon={icon} />
           )}
-          <span className={styleNoneContentClassName}>{styleNoneContent}</span>
+          {styleNoneContent && (
+            <span className={styleNoneContentClassName}>
+              {styleNoneContent}
+            </span>
+          )}
         </button>
       )}
 
