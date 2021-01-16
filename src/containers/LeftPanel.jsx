@@ -21,6 +21,7 @@ import { orderBy } from "lodash";
 // import { channelHasNewMessage } from "../util/channelHasNewMessage";
 
 export default function LeftPanelContainer() {
+  const dispatch = useDispatch();
   let match = useRouteMatch("/channels/:channelId");
   let selectedChannel = match?.params.channelId ? match.params.channelId : 0;
 
@@ -28,13 +29,6 @@ export default function LeftPanelContainer() {
   if (selectedChannel === 0) {
     selectedChannel = match?.params.roomId ? match.params.roomId : 0;
   }
-
-  const [friendsSearchFocus, setFriendsSearchFocus] = useState(false);
-
-  const channels = useSelector(state => state.channels);
-  const recommendedChannelsPanel = useSelector(
-    state => state.recommendedChannels.panel
-  );
 
   // == NOTIFICATION ATTEMPT ON THE CLIENT == NEEDS REMAKE
   // const numberOfNotifications = useSelector(state => {
@@ -47,6 +41,10 @@ export default function LeftPanelContainer() {
   //   });
   //   return counter;
   // });
+  const channels = useSelector(state => state.channels);
+  const recommendedChannelsPanel = useSelector(
+    state => state.recommendedChannels.panel
+  );
   const users = useSelector(state => state.users);
   const relationships = useSelector(state => state.relationships);
   const foundUsers = useSelector(state => state.userSearch);
@@ -57,13 +55,10 @@ export default function LeftPanelContainer() {
   const isRemoved = useSelector(state => state.ui.isRemoved);
   const leftPanelActiveTab = useSelector(state => state.ui.leftPanelActiveTab);
 
-  const dispatch = useDispatch();
-
   const blocks = relationships.blockers.length + relationships.blocked.length;
 
   let yourChannels = [];
   let followingChannels = [];
-  const [recommendedList, setRecommendedList] = useState([]);
   channelIds
     .map(channelId => ({
       id: channelId,
@@ -85,6 +80,9 @@ export default function LeftPanelContainer() {
         }
       }
     });
+
+  const [friendsSearchFocus, setFriendsSearchFocus] = useState(false);
+  const [recommendedList, setRecommendedList] = useState([]);
 
   useEffect(() => {
     const channels = getChannels(
@@ -168,7 +166,6 @@ export default function LeftPanelContainer() {
           selectedPage="channels"
           handleCreateRoom={() => handleCreateRoom(selectedChannel)}
           setFriendsSearchFocus={setFriendsSearchFocus}
-          // numberOfNotifications={numberOfNotifications}
         />
       </Route>
       <Route exact path="/friends">
@@ -191,7 +188,6 @@ export default function LeftPanelContainer() {
           handleCreateRoom={() => handleCreateRoom(selectedChannel)}
           friendsSearchFocus={friendsSearchFocus}
           setFriendsSearchFocus={setFriendsSearchFocus}
-          // numberOfNotifications={numberOfNotifications}
         />
       </Route>
       <Route>
@@ -214,7 +210,6 @@ export default function LeftPanelContainer() {
           selectedPage={leftPanelActiveTab}
           handleCreateRoom={() => handleCreateRoom(selectedChannel)}
           setFriendsSearchFocus={setFriendsSearchFocus}
-          // numberOfNotifications={numberOfNotifications}
         />
       </Route>
     </Switch>

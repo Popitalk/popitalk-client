@@ -15,7 +15,7 @@ class FriendsPanel extends Component {
 
     this.state = {
       search: "",
-      open: false,
+      open: this.props.friendsSearchFocus,
       rooms: props.initialRooms,
       refresh: 0,
       pendingDBCall: false
@@ -64,10 +64,6 @@ class FriendsPanel extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (this.props.friendsSearchFocus) {
-      this.props.setFriendsSearchFocus(false);
-    }
-
     if (this.props.initialRooms !== prevProps.initialRooms) {
       this.setState({
         rooms: this.props.initialRooms
@@ -87,55 +83,70 @@ class FriendsPanel extends Component {
   }
 
   componentDidMount() {
-    if (this.props.friendsSearchFocus) {
+    if (this.props.friendsSearchFocus === true) {
       this.searchFieldRef.setFocus();
     }
+  }
+  componentWillUnmount() {
+    this.props.setFriendsSearchFocus(false);
   }
 
   render() {
     return (
-      <div className="relative flex flex-col w-full sm:w-84 h-full bg-background-primary select-none">
-        <div className="flex-col h-full overflow-y-scroll">
+      <div className="relative flex flex-col w-full sm:w-84 h-full bg-background-primary select-none overflow-y-auto">
+        <div>
           <LeftPanelSubHeader
-            headerString={strings.directRoom}
+            headerString={
+              !this.state.open ? strings.directRoom : strings.searchFriends
+            }
             button={true}
             onClick={() => this.props.handleCreateRoom()}
             tooltip={strings.newRoomButton}
             analyticsString="Create Room Button: FriendsPanel"
           />
-          <Input
-            variant="user"
-            size="sm"
-            value={this.state.search}
-            placeholder={strings.searchFriendsInput}
-            onChange={e => this.syncSearch(e.target.value)}
-            onClick={() => this.syncSearch(this.state.search)}
-            forwardedRef={this.searchFieldRef.ref}
-            className="my-1 mx-3"
-          />
-          {this.state.open && (
-            <div className="rounded-md bg-background-secondary shadow-inner border border-outline-primary mx-3 m-2">
-              <div className="flex flex-row items-center justify-between px-4 py-1">
-                <p className="text-xs text-copy-primary">
-                  {strings.searchResult} &quot;{this.state.search}&quot;
-                </p>
-                <Button
-                  styleNone
-                  styleNoneContent={strings.searchFriendsClose}
-                  className="flex text-xs font-bold text-copy-highlight px-2 py-1 rounded-xl transition-all hover:bg-background-highlight duration-100"
-                  onClick={() => this.syncSearch("")}
-                  analyticsString="Close Friend Search Button: FriendsPanel"
-                />
-              </div>
-              <div className="flex w-full h-64 rounded-lg">
-                <StretchList
-                  list={FriendUsersList}
-                  users={this.props.userSearchResults}
-                  handleProfile={this.props.handleProfile}
-                />
-              </div>
+        </div>
+        {!this.state.open && (
+          <div className="px-3">
+            <Button
+              styleNone
+              icon="search"
+              styleNoneIconClassName="text-copy-secondary mr-3"
+              styleNoneContent={strings.searchFriendsInput}
+              styleNoneContentClassName="text-sm text-copy-secondary"
+              className="flex items-center px-3 w-full h-10 bg-background-secondary rounded-lg cursor-text"
+              onClick={() => this.setState({ open: true })}
+            />
+          </div>
+        )}
+        {this.state.open ? (
+          <>
+            <div className="flex items-center space-x-2 w-full px-2">
+              <Button
+                styleNone
+                icon="arrow-left"
+                className="text-copy-secondary w-10 h-10 hover:bg-background-secondary rounded-circle flex-shrink-0"
+                onClick={() => this.syncSearch("")}
+              />
+              <Input
+                variant="user"
+                size="sm"
+                value={this.state.search}
+                placeholder={strings.searchFriendsInput}
+                onChange={e => this.syncSearch(e.target.value)}
+                onClick={() => this.syncSearch(this.state.search)}
+                forwardedRef={this.searchFieldRef.ref}
+                className="w-full"
+              />
             </div>
-          )}
+            <div className="flex w-full h-full">
+              <StretchList
+                list={FriendUsersList}
+                users={this.props.userSearchResults}
+                handleProfile={this.props.handleProfile}
+              />
+            </div>
+          </>
+        ) : (
           <div className="bg-background-primary pb-8">
             <RoomsList
               rooms={this.state.rooms}
@@ -145,7 +156,7 @@ class FriendsPanel extends Component {
               isLoading={false}
             />
           </div>
-        </div>
+        )}
         <ReactTooltip
           effect="solid"
           backgroundColor="#F2F2F2"

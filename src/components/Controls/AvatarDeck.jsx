@@ -56,6 +56,7 @@ export default function AvatarDeck({
         styleNone
         icon="user"
         styleNoneContent={avatars.length}
+        styleNoneIconClassName="mr-1"
         className="flex-shrink-0 space-x-2 text-copy-secondary text-xs font-bold mr-2"
         analyticsString="View More Users Button: AvatarDeck"
       />

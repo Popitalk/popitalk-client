@@ -21,15 +21,13 @@ export default function LeftPanel({
   handleSelectChannel,
   handleSelectRoom,
   selectedPage,
-  handleCollapse,
   handleCreateChannel,
   handleProfile,
   isCollapsed,
   isRemoved,
   handleCreateRoom,
   friendsSearchFocus,
-  setFriendsSearchFocus,
-  numberOfNotifications
+  setFriendsSearchFocus
 }) {
   const { loggedIn } = useSelector(state => state.general);
   const channels = [...yourChannels, ...followingChannels];
@@ -56,11 +54,8 @@ export default function LeftPanel({
         selected={selected}
         handleSelectRoom={handleSelectRoom}
         handleSelect={handleSelectChannel}
-        handleCollapse={handleCollapse}
-        isCollapsed={isCollapsed}
         setFriendsSearchFocus={setFriendsSearchFocus}
-        numberOfNotifications={numberOfNotifications}
-        loggedIn={loggedIn}
+        type={selectedPage}
       />
     );
   } else {
@@ -81,9 +76,7 @@ export default function LeftPanel({
               handleSelectChannel={handleSelectChannel}
               handleSelectRoom={handleSelectRoom}
               handleCreateChannel={handleCreateChannel}
-              handleCollapse={handleCollapse}
               setFriendsSearchFocus={setFriendsSearchFocus}
-              numberOfNotifications={numberOfNotifications}
               loggedIn={loggedIn}
             />
           ) : (
@@ -95,12 +88,10 @@ export default function LeftPanel({
               initialRooms={roomsResults}
               selectedRoom={selected}
               handleSelectRoom={handleSelectRoom}
-              handleCollapse={handleCollapse}
               handleProfile={handleProfile}
               handleCreateRoom={handleCreateRoom}
               friendsSearchFocus={friendsSearchFocus}
               setFriendsSearchFocus={setFriendsSearchFocus}
-              numberOfNotifications={numberOfNotifications}
               loggedIn={loggedIn}
             />
           )}

@@ -1,45 +1,45 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import { useSelector } from "react-redux";
-import Helmet from "react-helmet";
 
 // Localization
 import strings from "../localization/strings";
 
 function FriendsView() {
   const isRemoved = useSelector(state => state.ui.isRemoved);
-
+  const stepLayoutStyle = "flex flex-col items-start py-4 space-y-2";
+  const stepHeaderStyle = "text-copy-primary text-lg font-bold";
+  const stepParaStyle = "text-copy-primary";
   return (
     <div
       className={`${
         isRemoved === true && "hidden"
-      } relative p-4 w-full h-full rounded-md bg-background-secondary overflow-auto`}
+      } flex flex-col justify-center items-center sm:items-start relative p-4 sm:px-12 md:px-16 lg:px-20 w-full h-full rounded-md bg-background-secondary overflow-auto`}
     >
-      <Helmet>
-        <meta charSet="UFT-8" />
-        <title>{strings.loginPageTitle}</title>
-        <meta name="description" content={strings.loginPageDescription} />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="keywords" content={strings.mainKeywords} />
-        <meta
-          data-react-helmet="true"
-          property="og:title"
-          content={strings.loginPageTitle}
+      <div className="flex flex-col sm:flex-row items-center space-x-4 mb-2">
+        <FontAwesomeIcon
+          icon="user-friends"
+          className="text-4xl text-copy-primary"
         />
-        <meta
-          data-react-helmet="true"
-          property="og:description"
-          content={strings.loginPageDescription}
-        />
-        <meta
-          data-react-helmet="true"
-          property="og:image"
-          content={
-            strings.location === "kr"
-              ? "https://i.ibb.co/NFyVwQL/og-Image-KR.png"
-              : "https://i.ibb.co/h1tcFRP/ogImage.png"
-          }
-        />
-      </Helmet>
+        <h1 className="flex text-4xl text-copy-primary space-x-2">
+          {strings.welcomeToDR}
+        </h1>
+      </div>
+      <h2 className="flex text-xl text-copy-secondary space-x-2 mb-12">
+        {strings.DRSubtitle}
+      </h2>
+      <div className={stepLayoutStyle}>
+        <h3 className={stepHeaderStyle}>Step 1.</h3>
+        <p className={stepParaStyle}>{strings.DRStepOne}</p>
+      </div>
+      <div className={stepLayoutStyle}>
+        <h3 className={stepHeaderStyle}>Step 2.</h3>
+        <p className={stepParaStyle}>{strings.DRStepTwo}</p>
+      </div>
+      <div className={stepLayoutStyle}>
+        <h3 className={stepHeaderStyle}>Step 3.</h3>
+        <p className={stepParaStyle}>{strings.DRStepThree}</p>
+      </div>
     </div>
   );
 }

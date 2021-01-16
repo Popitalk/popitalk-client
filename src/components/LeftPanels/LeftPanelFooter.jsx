@@ -2,7 +2,6 @@ import React from "react";
 import strings from "../../localization/strings";
 import Button from "../Controls/Button";
 import kofiLogo from "../../assets/attributes/kofi-logo.png";
-import patreonLogo from "../../assets/attributes/patreon-logo.png";
 
 export default function LeftPanelFooter() {
   const directoryClassName =
@@ -93,16 +92,6 @@ export default function LeftPanelFooter() {
             imageButtonSrc={kofiLogo}
             imageButtonClassName="w-6"
             imageButtonSpan={strings.buyUsCoffee}
-            imageButtonSpanClassName="text-xs text-copy-primary ml-1"
-            className={buttonClassName}
-          />
-        </a>
-        <a href="https://www.patreon.com/Popitalk">
-          <Button
-            imageButton
-            imageButtonSrc={patreonLogo}
-            imageButtonClassName="w-6"
-            imageButtonSpan={strings.becomeAPatron}
             imageButtonSpanClassName="text-xs text-copy-primary ml-1"
             className={buttonClassName}
           />

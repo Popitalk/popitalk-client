@@ -12,10 +12,8 @@ export default function InfoCardList({
 }) {
   if (!items || items.length === 0) {
     return (
-      <div className="flex h-24 w-full items-center justify-center">
-        <p className="text-xs text-copy-secondary font-medium">
-          {emptyMessage}
-        </p>
+      <div className="flex h-48 w-full items-center justify-center">
+        <p className="text-sm text-copy-secondary">{emptyMessage}</p>
       </div>
     );
   }

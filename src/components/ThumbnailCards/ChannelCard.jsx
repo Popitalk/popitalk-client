@@ -70,7 +70,7 @@ export default function ChannelCard({
         />
       </div>
       {/* Video Description & Avatar Deck */}
-      <div className="w-full my-3 flex flex-col justify-between items-between items-center space-y-2 space-x-0">
+      <div className="w-full my-3 flex flex-col justify-between items-between items-center space-y-4 space-x-0">
         <p
           className="text-sm flex-shrink-1 font-bold w-full truncate-2-lines text-copy-primary"
           dangerouslySetInnerHTML={{ __html: videoTitle }}
