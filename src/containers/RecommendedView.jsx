@@ -21,7 +21,8 @@ import {
   setSelectedTab,
   setIsSearchForChannels,
   setChannelsList,
-  getRecommendedChannelsTabs
+  getRecommendedChannelsTabs,
+  setLeftPanelActiveTabChannels
 } from "../redux/actions";
 
 const followingTab = { tab: strings.following, icon: "home" };
@@ -111,11 +112,13 @@ function RecommendedChannels() {
     dispatch(setIsSearchForChannels(false));
     tabHandler(img);
   };
-
   const handleSearch = useCallback(() => {
     dispatch(setIsSearchForChannels(true));
     dispatch(searchChannels({ channelName: search }));
   }, [search, dispatch]);
+  const channelCardClicked = () => {
+    dispatch(setLeftPanelActiveTabChannels());
+  };
 
   useEffect(() => {
     tabHandler(loggedIn ? followingTab.tab : trendingTab.tab);
@@ -225,6 +228,7 @@ function RecommendedChannels() {
             isCollapsed={isCollapsed}
             tabSelected={tabSelected}
             onClick={() => tabPressed(strings.discover)}
+            channelCardClicked={() => channelCardClicked()}
           />
           {tabSelected === followingTab.tab ? (
             <LoadMoreButton

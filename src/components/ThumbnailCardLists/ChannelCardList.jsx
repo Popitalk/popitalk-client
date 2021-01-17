@@ -4,7 +4,12 @@ import ChannelCard from "../ThumbnailCards/ChannelCard";
 import strings from "../../localization/strings";
 import Button from "../Controls/Button";
 
-function ChannelCardList({ channelList, isCollapsed, onClick, isLoading }) {
+function ChannelCardList({
+  channelList,
+  isCollapsed,
+  onClick,
+  channelCardClicked
+}) {
   if (!channelList || channelList.length === 0) {
     return (
       <div className="flex flex-col h-84 space-y-4 w-full items-center justify-center">
@@ -26,7 +31,13 @@ function ChannelCardList({ channelList, isCollapsed, onClick, isLoading }) {
       }`}
     >
       {channelList.map(channel => {
-        return <ChannelCard key={channel.id} {...channel} />;
+        return (
+          <ChannelCard
+            key={channel.id}
+            {...channel}
+            channelCardClicked={channelCardClicked}
+          />
+        );
       })}
     </div>
   );

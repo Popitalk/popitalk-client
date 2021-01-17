@@ -13,10 +13,11 @@ export default function ChannelCard({
   status,
   videoInfo,
   viewers,
-  isLoading
+  channelCardClicked
 }) {
   const handleSelect = () => {
     history.push(`/channels/${id}`);
+    channelCardClicked();
   };
 
   let videoThumbnail = "";
@@ -26,30 +27,12 @@ export default function ChannelCard({
     videoThumbnail = videoInfo.thumbnail;
     videoTitle = videoInfo.title;
   }
-  if (isLoading) {
-    return (
-      <div className="flex shadow-xs rounded-lg px-3 py-4 max-w-lg items-between animate-pulse mx-2">
-        <div className="relative w-full pb-5/4">
-          <div className="absolute w-full h-full flex flex-col justify-between">
-            <div className="h-4 bg-background-quaternary rounded w-full" />
-            <div className="flex w-full space-x-2">
-              <div className="rounded-full bg-background-quaternary h-12 w-12" />
-              <div className="flex-1 space-y-2 py-1">
-                <div className="h-4 bg-background-quaternary rounded" />
-                <div className="h-4 bg-background-quaternary rounded w-5/6" />
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    );
-  }
 
   return (
     <div
-      className="rounded-md cursor-pointer"
-      role={handleSelect ? "button" : null}
-      onClick={handleSelect}
+      className="cursor-pointer"
+      role="button"
+      onClick={() => handleSelect()}
     >
       {/* Channel Description */}
       <div className="flex items-center justify-between w-full py-2 space-x-2">
