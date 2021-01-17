@@ -154,6 +154,8 @@ let strings = new LocalizedStrings({
     // PanelHeader & MiniFriendsList
     channels: "Channels",
     friends: "Friends",
+    friendsButtonHover:
+      "To search friends, add friends and watch privately in a Direct Room, please sign in first.",
     recentFriends: "RECENT FRIENDS",
     yourChannels: "YOUR CHANNEL",
     yourChannelsPlaceholder: "Create your own public Channel!",
@@ -461,6 +463,8 @@ let strings = new LocalizedStrings({
     // PanelHeader & MiniFriendsList
     channels: "티비채널",
     friends: "친구",
+    friendsButtonHover:
+      "친구 추가, 친구 목록, 및 친구와 갠톡으로 영상을 시청하려면 로그인 후 이용해 주세요.",
     recentFriends: "최근 친구",
     yourChannels: "내 채널",
     yourChannelsPlaceholder: "나만의 채널을 개설 하세요!",

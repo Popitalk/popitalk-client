@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Button from "../Controls/Button";
 import Logo from "../../assets/greyicon.png";
 import Logo1 from "../../assets/blueicon.png";
+import strings from "../../localization/strings";
 
 export default function PanelHeader({
   updateSelectedPage,
@@ -34,14 +35,13 @@ export default function PanelHeader({
             styleNone
             icon="user-friends"
             styleNoneIconClassName="text-2xl"
-            className={`${navClassName} text-copy-secondary hover:bg-hover-highlight`}
+            className={`${navClassName} text-copy-secondary hover:bg-hover-highlight cursor-not-allowed`}
           />
         </div>
         {hover === true && (
           <div className="absolute flex top-0 mt-14 w-64 px-6 py-4 bg-background-primary shadow-md rounded-md">
-            <p className="text-sm text-copy-primary">
-              To watch privately with friends in a Direct Room, you must sign
-              in.
+            <p className="text-sm text-copy-primary font-bold">
+              {strings.friendsButtonHover}
             </p>
           </div>
         )}
