@@ -47,7 +47,7 @@ export default function RoomIcon({
     [className]: className
   });
   const container2Classes = classnames({
-    "grid w-full overflow-hidden relative": true,
+    "grid w-full relative": true,
     "h-8 w-8": size === "sm",
     "h-12 w-12": size === "md",
     "h-14 w-14": size === "lg",
@@ -90,57 +90,54 @@ export default function RoomIcon({
     // "px-4": notifications >= 100
   });
 
+  if (isLoading) {
+    return (
+      <div className={container1Classes}>
+        <div className="animate-pulse bg-background-quaternary grid w-full h-full rounded-full overflow-hidden" />
+      </div>
+    );
+  }
+
   return (
     <div className={container1Classes}>
-      {isLoading ? (
-        <div className="animate-pulse bg-background-quaternary grid w-full h-full rounded-full overflow-hidden" />
-      ) : (
-        <div className="flex flex-col items-center justify-center w-full h-full space-y-1 cursor-pointer">
-          <div className="w-full h-full">
-            <div className={container2Classes}>
-              {images.slice(0, 4).map((image, index) => (
-                <div
-                  key={ids?.[index] || index}
-                  className={classnames(
-                    avatarClasses,
-                    cornerRadius(index, images.length <= 4 ? images.length : 4)
-                  )}
-                >
-                  <img
-                    className="img h-full"
-                    src={image}
-                    alt={`${image} - Popitalk`}
-                    data-tip={tooltip}
-                    data-place={tooltipPlace}
-                  />
-                </div>
-              ))}
-              {self && (
-                <p
-                  className="font-bold text-xs absolute bottom-0 left-0 truncate
-            text-copy-highlight bg-background-primary rounded-xl p-1 flex items-center justify-center select-none"
-                >
-                  {strings.myRoom}
-                </p>
+      <div className="flex flex-col items-center w-full h-full space-y-1 cursor-pointer">
+        <div className={container2Classes}>
+          {images.slice(0, 4).map((image, index) => (
+            <div
+              key={ids?.[index] || index}
+              className={classnames(
+                avatarClasses,
+                cornerRadius(index, images.length <= 4 ? images.length : 4)
               )}
-              {online && (
-                <div
-                  className={onlineFriendClasses}
-                  style={OnlineFriendStyle}
-                />
-              )}
+            >
+              <img
+                className="img h-full"
+                src={image}
+                alt={`${image} - Popitalk`}
+                data-tip={tooltip}
+                data-place={tooltipPlace}
+              />
             </div>
-            {notifications && (
-              <p className={notificationsClasses}>
-                {notifications >= 100 ? "99+" : notifications}
-              </p>
-            )}
-          </div>
-          {displayName && (
-            <div className="text-xs w-16 truncate">{displayName}</div>
+          ))}
+          {self && (
+            <p
+              className="font-bold text-xs absolute bottom-0 left-0 truncate
+            text-copy-highlight bg-background-primary rounded-xl p-1 flex items-center justify-center select-none"
+            >
+              {strings.myRoom}
+            </p>
+          )}
+          {online && (
+            <div className={onlineFriendClasses} style={OnlineFriendStyle} />
+          )}
+          {notifications && (
+            <p className={notificationsClasses}>
+              {notifications >= 100 ? "99+" : notifications}
+            </p>
           )}
         </div>
-      )}
+        {displayName && <p className="text-xs w-16 truncate">{displayName}</p>}
+      </div>
     </div>
   );
 }
