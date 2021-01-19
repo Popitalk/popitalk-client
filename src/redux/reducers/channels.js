@@ -59,7 +59,8 @@ import {
   deleteVideoWs,
   swapVideosWs,
   addViewerWs,
-  removeViewerWs
+  removeViewerWs,
+  wsConnect
 } from "../actions";
 
 // import { extendedCapacity } from "./messages";
@@ -397,6 +398,12 @@ const R_updateSearchedVideos = (state, { payload }) => {
   };
 };
 
+const R_updateFriendsToOnline = (state, { payload }) => {
+  payload.onlineFriends.forEach(channelId => {
+    state[channelId].online = true;
+  });
+};
+
 const R_updateFriendRoomToOnline = (state, { payload }) => {
   state[payload.channelId].online = true;
 };
@@ -513,5 +520,6 @@ export default createReducer(initialState, {
   [swapVideos.fulfilled]: R_swapVideos,
   [swapVideosWs]: R_swapVideos,
   [addViewerWs]: R_addViewer,
-  [removeViewerWs]: R_removeViewer
+  [removeViewerWs]: R_removeViewer,
+  [wsConnect]: R_updateFriendsToOnline
 });

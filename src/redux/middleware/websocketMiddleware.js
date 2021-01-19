@@ -140,7 +140,12 @@ const websocketMiddleware = () => store => next => action => {
       // These functions are executed by messages received from the server.
       const commandHandler = {
         [WS_EVENTS.HELLO]() {
-          store.dispatch(wsConnect(Number(messagePayload.heartbeatInterval)));
+          store.dispatch(
+            wsConnect({
+              heartbeatInterval: Number(messagePayload.heartbeatInterval),
+              onlineFriends: messagePayload.onLineFriends
+            })
+          );
           heartbeat();
         },
         [WS_EVENTS.PING]() {

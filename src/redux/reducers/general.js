@@ -77,7 +77,7 @@ export default createReducer(initialState, {
   [login.fulfilled]: R_login,
   [wsConnect]: (state, { payload }) => {
     state.wsConnected = true;
-    state.heartbeatInterval = payload;
+    state.heartbeatInterval = payload.heartbeatInterval;
   },
   [wsDisconnect]: state => {
     state.wsConnected = false;
