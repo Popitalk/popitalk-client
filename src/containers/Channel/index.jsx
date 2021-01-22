@@ -296,10 +296,11 @@ class Channel extends Component {
       handleGetChannel();
     } else if (!playerStatus.channelId) {
       this.setPlayerStatus();
-      handleVisitAndLeave({
-        visit: channelId
-      });
     }
+
+    handleVisitAndLeave({
+      visit: channelId
+    });
 
     this.setState({
       forceScroll: true

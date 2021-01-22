@@ -60,7 +60,8 @@ import {
   swapVideosWs,
   addViewerWs,
   removeViewerWs,
-  wsConnect
+  wsConnect,
+  visitAndLeaveChannel
 } from "../actions";
 
 // import { extendedCapacity } from "./messages";
@@ -521,5 +522,15 @@ export default createReducer(initialState, {
   [swapVideosWs]: R_swapVideos,
   [addViewerWs]: R_addViewer,
   [removeViewerWs]: R_removeViewer,
-  [wsConnect]: R_updateFriendsToOnline
+  [wsConnect]: R_updateFriendsToOnline,
+  [visitAndLeaveChannel.fulfilled]: (state, { payload }) => {
+    const { self, visit, leave } = payload;
+    if (visit) {
+      state[visit].viewers.push(self);
+    } else {
+      state[leave].viewers = state[leave].viewers.filter(
+        viewerId => viewerId !== self
+      );
+    }
+  }
 });
