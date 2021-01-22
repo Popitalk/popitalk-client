@@ -208,10 +208,10 @@ function RecommendedChannels() {
               styleNoneContentClassName="font-bold text-sm"
               hoverable
               key={idx}
-              className={`h-full px-4 py-2 space-x-2 flex-shrink-0 bg-background-primary rounded-md ${
+              className={`h-full px-3 py-2 space-x-2 flex-shrink-0 rounded-lg ${
                 tabSelected === img.tab
-                  ? "text-copy-highlight"
-                  : "text-copy-secondary"
+                  ? "text-copy-tertiary bg-copy-link"
+                  : "text-copy-secondary bg-background-primary"
               }`}
               onClick={() => tabPressed(img.tab)}
               analyticsString={`${img.tab} Button: RecommendedView`}
