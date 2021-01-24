@@ -49,7 +49,7 @@ export default function ChannelDescription({
           )}
         </div>
       )}
-      <div className="flex flex-row justify-center items-center bg-background-secondary">
+      <div className="flex flex-row justify-start items-center bg-background-secondary">
         <AvatarIcon
           username={name}
           avatar={icon}
