@@ -183,6 +183,7 @@ const SiteHeaderMain = ({
           imageButton
           imageButtonSrc={Logo}
           imageButtonClassName="w-8 h-8"
+          className="flex-shrink-0"
           analyticsString="Main Logo Button: SiteHeaderMain"
           hoverable
           onClick={() => {
