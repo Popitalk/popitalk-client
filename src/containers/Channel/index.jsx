@@ -30,6 +30,7 @@ import {
 } from "../../helpers/videoSyncing";
 import strings from "../../localization/strings";
 import { DEFAULT_SOURCE } from "../../helpers/videoSourceImages";
+import ChatPanel from "../../containers/ChatPanel";
 
 const CHANNEL_TYPE = "channel";
 const ROOM_TYPE = "room";
@@ -533,7 +534,7 @@ class Channel extends Component {
             )}
           </div>
         </div>
-        {tab !== SETTINGS_TAB && <>{this.props.chatPanel}</>}
+        {tab !== SETTINGS_TAB && <ChatPanel />}
         {/* Google Search Index & SEO */}
         <Helmet>
           <meta charSet="UFT-8" />
