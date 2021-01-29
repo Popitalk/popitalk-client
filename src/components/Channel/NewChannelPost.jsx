@@ -53,7 +53,7 @@ export default function NewChannelPost({
 
   return (
     <div className="relative flex w-full justify-center items-center">
-      <div className="flex space-x-2 justify-center bg-background-secondary content-center py-2 sm:w-102 md:w-102 lg:w-104 max-w-xl">
+      <div className="flex space-x-2 justify-center bg-background-secondary content-center py-2 w-full">
         {/* == EMOJI BUTTON == */}
         <Button
           hoverable

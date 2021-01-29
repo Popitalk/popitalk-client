@@ -69,7 +69,7 @@ export default function Post({
 
   return (
     <div className="flex flex-col justify-center items-center">
-      <div className="flex flex-col rounded-lg px-8 pt-4 mt-8 bg-background-primary shadow-sm hover:shadow-md cursor-pointer w-84 sm:w-102 lg:w-104">
+      <div className="flex flex-col rounded-lg px-8 pt-4 mt-8 bg-background-primary shadow-sm hover:shadow-md cursor-pointer w-full">
         <div className="flex justify-between items-start w-full">
           <header
             className="flex items-center w-full space-x-2"

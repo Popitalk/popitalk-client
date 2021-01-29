@@ -89,7 +89,7 @@ const SiteHeaderViewers = () => {
 
   return (
     <header className="sm:px-6 // relative flex items-center justify-between h-12 bg-background-primary z-30 select-none">
-      <div className="flex flex-row items-center w-1/3 sm:w-1/4">
+      <div className="flex flex-row items-center w-1/3 sm:w-1/4 flex-shrink-0">
         <Button
           hoverable
           styleNone
@@ -104,6 +104,7 @@ const SiteHeaderViewers = () => {
           imageButtonSrc={Logo}
           imageButtonClassName="w-8 h-8"
           analyticsString="Main Logo Button: SiteHeaderMain"
+          className="flex-shrink-0"
           hoverable
           onClick={() => {
             updateChannelsList(
