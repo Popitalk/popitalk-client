@@ -58,22 +58,12 @@ let reconnectionCount = 0;
 const websocketMiddleware = () => store => next => action => {
   next(action);
   const actionType = action.type;
-  // If there's a validateSession action which is fullfilled,
-  // then a new webscoket is created, that connect to URL defined above
-  // and if websocket is not already connected, so that 2 websockets wouldnt be opened.
-  if (
-    (actionType === validateSession.fulfilled.toString() ||
-      actionType === validateSession.rejected.toString() ||
-      actionType === login.fulfilled.toString() ||
-      actionType === refreshSession.fulfilled.toString()) &&
-    !store.getState().general.wsConnected
-  ) {
+  const socketConnection = () => {
     clearTimeout(timeout);
     clearTimeout(timeout2);
     reconnectionCount = 0;
     const wsTicket = action.payload?.wsTicket || store.getState().self.id;
     socket = new WebSocket(wsUrl, wsTicket);
-    console.log(action);
     // An event listener to be called when the connection is opened.
     socket.onopen = () => {
       console.log("OPENED");
@@ -264,17 +254,28 @@ const websocketMiddleware = () => store => next => action => {
         commandHandler[messageType]();
       }
     };
+  };
+  // If there's a validateSession action which is fullfilled,
+  // then a new webscoket is created, that connect to URL defined above
+  // and if websocket is not already connected, so that 2 websockets wouldnt be opened.
+  if (
+    (actionType === validateSession.fulfilled.toString() ||
+      actionType === validateSession.rejected.toString()) &&
+    !store.getState().general.wsConnected
+  ) {
+    socketConnection();
   } else if (
-    actionType === logout.fulfilled.toString() &&
+    (actionType === logout.fulfilled.toString() ||
+      actionType === login.fulfilled.toString()) &&
     store.getState().general.wsConnected &&
     socket
   ) {
     // If user logs out, a dontRecconect prop is set to true so
     // that the interval which tries to validate the session
     // does not try to reconnect.
-    console.log("LOGOUT SOCKET");
     socket.dontReconnect = true;
     socket.close();
+    socketConnection();
   }
 };
 

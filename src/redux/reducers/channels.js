@@ -525,9 +525,9 @@ export default createReducer(initialState, {
   [wsConnect]: R_updateFriendsToOnline,
   [visitAndLeaveChannel.fulfilled]: (state, { payload }) => {
     const { self, visit, leave } = payload;
-    if (visit) {
+    if (visit && state[visit]) {
       state[visit].viewers.push(self);
-    } else {
+    } else if (leave && state[leave]) {
       state[leave].viewers = state[leave].viewers.filter(
         viewerId => viewerId !== self
       );

@@ -97,7 +97,19 @@ const R_setLoadedChannels = (state, { payload }) => {
   state.loadedChannels.push(payload.channelId);
 };
 
-const R_resetState = () => initialState;
+const R_resetState = state => {
+  state.id = uuidv4();
+  state.firstName = "";
+  state.lastName = "";
+  state.username = "";
+  state.dateOfBirth = null;
+  state.avatar = null;
+  state.email = "";
+  state.emailVerified = null;
+  state.roomIds = [];
+  state.channelIds = [];
+  state.loadedChannels = [];
+};
 
 export default createReducer(initialState, {
   [validateSession.fulfilled]: R_selfInit,
@@ -120,5 +132,5 @@ export default createReducer(initialState, {
   [addBlockerWs]: R_deleteChannel,
   [getChannel.fulfilled]: R_setLoadedChannels,
   [logout.fulfilled]: R_resetState,
-  [deleteAccount.fulfilled]: R_resetState
+  [deleteAccount.fulfilled]: () => initialState
 });

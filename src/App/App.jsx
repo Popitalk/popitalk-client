@@ -51,12 +51,13 @@ export default function App() {
 
   const leftPanel = <LeftPanel />;
 
-  if (!validatedSession || (loggedIn && !wsConnected))
+  if (!validatedSession || !wsConnected)
     return (
       <ThemeProvider>
         <PageLoader />
       </ThemeProvider>
     );
+
   return (
     <Suspense fallback={<PageLoader />}>
       <ThemeProvider>
