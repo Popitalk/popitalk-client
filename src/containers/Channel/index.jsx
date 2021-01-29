@@ -282,6 +282,13 @@ class Channel extends Component {
     }
   }
 
+  leaveChannel = () => {
+    this.props.handleVisitAndLeave({
+      leave: this.props.channelId,
+      anonymousId: this.props.ownId
+    });
+  };
+
   componentDidMount() {
     const {
       channel,
@@ -299,18 +306,20 @@ class Channel extends Component {
     }
 
     handleVisitAndLeave({
-      visit: channelId
+      visit: channelId,
+      anonymousId: this.props.ownId
     });
 
     this.setState({
       forceScroll: true
     });
+
+    window.addEventListener("beforeunload", this.leaveChannel);
   }
 
   componentWillUnmount() {
-    this.props.handleVisitAndLeave({
-      leave: this.props.channelId
-    });
+    this.leaveChannel();
+    window.removeEventListener("beforeunload", this.leaveChannel);
   }
 
   componentDidUpdate(prevProps) {

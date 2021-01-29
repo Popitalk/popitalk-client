@@ -284,7 +284,7 @@ export function getChannels(channels, defaultIcon, defaultAvatar) {
     status: chan.playbackStatus,
     videoInfo: chan.videoInfo,
     viewers: chan.viewers.map(
-      viewerId => channels.users[viewerId].avatar || defaultAvatar
+      viewerId => channels.users[viewerId]?.avatar || defaultAvatar
     )
   }));
 }

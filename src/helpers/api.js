@@ -98,14 +98,16 @@ export const getChannel = ({ channelId, leave }) => {
   }
 };
 
-export const visitAndLeaveChannel = ({ visit, leave }) => {
+export const visitAndLeaveChannel = ({ visit, leave, anonymousId }) => {
   if (visit && !leave) {
     return ax.post("/channels/visitAndLeave", {
-      visit
+      visit,
+      anonymousId
     });
   } else if (!visit && leave) {
     return ax.post("/channels/visitAndLeave", {
-      leave
+      leave,
+      anonymousId
     });
   } else if (visit && leave) {
     return ax.post("/channels/visitAndLeave", {

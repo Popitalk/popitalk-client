@@ -1,4 +1,5 @@
 import { createReducer } from "@reduxjs/toolkit";
+import { v4 as uuidv4 } from "uuid";
 import {
   validateSession,
   login,
@@ -53,6 +54,10 @@ const R_selfInit = (state, { payload }) => {
     .map(([channelId, channel]) => channelId);
 };
 
+const R_anonymousInit = state => {
+  state.id = uuidv4();
+};
+
 const R_updateUser = (state, { payload }) => {
   return {
     ...state,
@@ -96,6 +101,7 @@ const R_resetState = () => initialState;
 
 export default createReducer(initialState, {
   [validateSession.fulfilled]: R_selfInit,
+  [validateSession.rejected]: R_anonymousInit,
   [login.fulfilled]: R_selfInit,
   [updateUser.fulfilled]: R_updateUser,
   [addChannel.fulfilled]: R_addChannel,

@@ -63,6 +63,7 @@ const websocketMiddleware = () => store => next => action => {
   // and if websocket is not already connected, so that 2 websockets wouldnt be opened.
   if (
     (actionType === validateSession.fulfilled.toString() ||
+      actionType === validateSession.rejected.toString() ||
       actionType === login.fulfilled.toString() ||
       actionType === refreshSession.fulfilled.toString()) &&
     !store.getState().general.wsConnected
@@ -70,7 +71,7 @@ const websocketMiddleware = () => store => next => action => {
     clearTimeout(timeout);
     clearTimeout(timeout2);
     reconnectionCount = 0;
-    const wsTicket = action.payload.wsTicket;
+    const wsTicket = action.payload?.wsTicket || store.getState().self.id;
     socket = new WebSocket(wsUrl, wsTicket);
     console.log(action);
     // An event listener to be called when the connection is opened.
