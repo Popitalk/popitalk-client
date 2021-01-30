@@ -324,6 +324,17 @@ class Channel extends Component {
   }
 
   componentDidUpdate(prevProps) {
+    if (prevProps.channelId !== this.props.channelId) {
+      this.props.handleVisitAndLeave({
+        leave: prevProps.channelId,
+        anonymousId: this.props.ownId
+      });
+      this.props.handleVisitAndLeave({
+        visit: this.props.channelId,
+        anonymousId: this.props.ownId
+      });
+    }
+
     const loadChannel =
       prevProps.channelId !== this.props.channelId ||
       (prevProps.tab === SETTINGS_TAB && this.props.tab !== SETTINGS_TAB);
@@ -390,17 +401,6 @@ class Channel extends Component {
 
       this.setState({
         forceScroll: false
-      });
-    }
-
-    if (
-      this.props.channelId !== prevProps.channelId &&
-      this.props.channel?.loaded &&
-      prevProps.channel?.loaded
-    ) {
-      this.props.handleVisitAndLeave({
-        leave: prevProps.channelId,
-        visit: this.props.channelId
       });
     }
   }
