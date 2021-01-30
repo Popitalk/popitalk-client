@@ -35,7 +35,7 @@ export default function App() {
   const dispatch = useDispatch();
 
   const validatedSession = useSelector(state => state.general.validatedSession);
-  const { loggedIn, wsConnected } = useSelector(state => state.general);
+  const { wsConnected } = useSelector(state => state.general);
 
   useEffect(() => {
     dispatch(validateSession());
