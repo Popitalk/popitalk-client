@@ -122,7 +122,7 @@ const SiteHeaderViewers = () => {
         />
       </div>
       <PanelHeader viewer />
-      <div className="sm:space-x-6 // flex items-center justify-end space-x-2 w-1/3 sm:w-1/4 flex-shrink-0 bg-background-highlight">
+      <div className="sm:space-x-6 // flex items-center justify-end space-x-2 w-1/3 sm:w-1/4 flex-shrink-0">
         <ul className="sm:space-x-6 // flex items-center space-x-2 flex-shrink-0">
           <li>
             <SignInButton />
