@@ -60,6 +60,7 @@ export default function App() {
 
   return (
     <Suspense fallback={<PageLoader />}>
+      {/* <PageLoader /> */}
       <ThemeProvider>
         <ModalManager />
         <div className="h-screen flex flex-col">
@@ -73,16 +74,6 @@ export default function App() {
                 <RecommendedView />
               </RouteWrapper>
             </GeneralRoute>
-            <GeneralRoute exact path={`/channels/:channelId`}>
-              <RouteWrapper leftPanel={leftPanel}>
-                <Channel />
-              </RouteWrapper>
-            </GeneralRoute>
-            <GeneralRoute exact path={`/channels/:channelId/:tab`}>
-              <RouteWrapper leftPanel={leftPanel}>
-                <Channel />
-              </RouteWrapper>
-            </GeneralRoute>
             <GeneralRoute exact path="/friends">
               <RouteWrapper leftPanel={leftPanel}>
                 <FriendsView />
@@ -93,6 +84,16 @@ export default function App() {
                 <CreateChannelContainer />
               </RouteWrapper>
             </PrivateRoute>
+            <GeneralRoute exact path={`/channels/:channelId`}>
+              <RouteWrapper leftPanel={leftPanel}>
+                <Channel />
+              </RouteWrapper>
+            </GeneralRoute>
+            <GeneralRoute exact path={`/channels/:channelId/:tab`}>
+              <RouteWrapper leftPanel={leftPanel}>
+                <Channel />
+              </RouteWrapper>
+            </GeneralRoute>
             <PrivateRoute exact path="/rooms/:roomId">
               <RouteWrapper leftPanel={leftPanel}>
                 <Channel />
