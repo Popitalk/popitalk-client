@@ -74,7 +74,8 @@ module.exports = {
         quaternary: "var(--color-bg-quaternary)",
         disabled: "var(--color-bg-disabled)",
         highlight: "var(--color-bg-highlight)",
-        search: "#00C3FF"
+        search: "#00C3FF",
+        ad: "#3808BB"
       },
 
       /* == TEXT COLOR. EX) className="text-copy-primary" == */

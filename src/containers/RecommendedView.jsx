@@ -24,6 +24,8 @@ import {
   getRecommendedChannelsTabs,
   setLeftPanelActiveTabChannels
 } from "../redux/actions";
+// Assets
+import adVideo from "../assets/AD.mp4";
 
 const followingTab = { tab: strings.following, icon: "home" };
 const discoverTab = { tab: strings.discover, icon: "globe" };
@@ -222,9 +224,18 @@ function RecommendedChannels() {
         })}
       </div>
       <div className="h-full overflow-y-scroll">
-        {/* {!isSearchForChannels && (
-          <div className="h-56 w-full bg-background-highlight"></div>
-        )} */}
+        {!isSearchForChannels && (
+          <div className="w-full h-84 bg-background-ad">
+            <video
+              className="flex h-80 sm:h-84 object-cover w-full lg:w-3/5 mx-auto items-end object-bottom"
+              autoPlay
+              loop
+              muted
+            >
+              <source src={adVideo} type="video/mp4" />
+            </video>
+          </div>
+        )}
         <div className="p-4">
           {isSearchForChannels ? (
             <ChannelSearchList channelList={searchResultChannels} />
