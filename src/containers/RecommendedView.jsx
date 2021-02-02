@@ -189,7 +189,7 @@ function RecommendedChannels() {
       } relative w-full h-full rounded-md bg-background-secondary overflow-auto`}
     >
       {/* OPTION TABS */}
-      <div className="flex justify-start overflow-x-auto w-full px-4 py-3 bg-background-tertiary space-x-2 mb-4 rounded-md">
+      <div className="flex justify-start overflow-x-auto w-full px-4 py-3 bg-background-tertiary space-x-2 rounded-md z-20">
         <div className="flex-shrink-0">
           <Input
             variant="channel"
