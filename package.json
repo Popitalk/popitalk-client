@@ -76,6 +76,7 @@
     "react-tooltip": "^4.2.10",
     "react-use": "^13.27.1",
     "react-window": "^1.8.6",
+    "reactour": "^1.18.0",
     "redux": "^4.0.5",
     "redux-thunk": "^2.3.0",
     "reselect": "^4.0.0",

@@ -59,8 +59,8 @@ function RecommendedChannels() {
   const [search, setSearch] = useState("");
 
   const extraTabs = categories.map(name => ({
-    tab: name,
-    icon: "hashtag"
+    tab: name
+    // icon: "hashtag"
   }));
 
   const tabs = loggedIn
@@ -115,6 +115,7 @@ function RecommendedChannels() {
   const handleSearch = useCallback(() => {
     dispatch(setIsSearchForChannels(true));
     dispatch(searchChannels({ channelName: search }));
+    dispatch(setSelectedTab(false));
   }, [search, dispatch]);
   const channelCardClicked = () => {
     dispatch(setLeftPanelActiveTabChannels());
@@ -185,30 +186,31 @@ function RecommendedChannels() {
     <div
       className={`${
         isRemoved === true && "hidden"
-      } relative p-4 w-full h-full rounded-md bg-background-secondary overflow-auto`}
+      } relative w-full h-full rounded-md bg-background-secondary overflow-auto`}
     >
-      <div className="py-4 mx-auto w-3/4 sm:w-1/2">
-        <Input
-          variant="channel"
-          size="sm"
-          value={search}
-          placeholder={strings.channelSearchInput}
-          onChange={e => setSearch(e.target.value)}
-          onClick={handleSearch}
-        />
-      </div>
       {/* OPTION TABS */}
-      <h2 className="flex justify-start overflow-x-auto w-full p-1 bg-background-secondary space-x-2 mb-4">
+      <div className="flex justify-start overflow-x-auto w-full px-4 py-3 bg-background-tertiary space-x-2 mb-4 rounded-md">
+        <div className="flex-shrink-0">
+          <Input
+            variant="channel"
+            size="sm"
+            value={search}
+            placeholder={strings.channelSearchInput}
+            onChange={e => setSearch(e.target.value)}
+            onClick={handleSearch}
+          />
+        </div>
         {tabs.map((img, idx) => {
           return (
             <Button
               styleNone
               styleNoneContent={img.tab}
               icon={img.icon}
+              styleNoneIconClassName="text-sm"
               styleNoneContentClassName="font-bold text-sm"
               hoverable
               key={idx}
-              className={`h-full px-3 py-2 space-x-2 flex-shrink-0 rounded-lg ${
+              className={`h-full px-4 py-2 space-x-2 flex-shrink-0 rounded-lg shadow-xs ${
                 tabSelected === img.tab
                   ? "text-copy-tertiary bg-copy-link"
                   : "text-copy-secondary bg-background-primary"
@@ -218,50 +220,54 @@ function RecommendedChannels() {
             />
           );
         })}
-      </h2>
-      {isSearchForChannels ? (
-        <ChannelSearchList channelList={searchResultChannels} />
-      ) : (
-        <>
-          <ChannelCardList
-            channelList={channelsList}
-            isCollapsed={isCollapsed}
-            tabSelected={tabSelected}
-            onClick={() => tabPressed(strings.discover)}
-            channelCardClicked={() => channelCardClicked()}
-          />
-          {tabSelected === followingTab.tab ? (
-            <LoadMoreButton
-              channelStatus={followingStatus}
-              isLoadMore={followingChannels.isNextPage}
-              handleLoadMore={() =>
-                dispatch(getFollowingChannels({ page: followingChannels.page }))
-              }
-              recommendedView
+      </div>
+      <div className="p-4">
+        {isSearchForChannels ? (
+          <ChannelSearchList channelList={searchResultChannels} />
+        ) : (
+          <>
+            <ChannelCardList
+              channelList={channelsList}
+              isCollapsed={isCollapsed}
+              tabSelected={tabSelected}
+              onClick={() => tabPressed(strings.discover)}
+              channelCardClicked={() => channelCardClicked()}
             />
-          ) : tabSelected === discoverTab.tab ? (
-            <LoadMoreButton
-              channelStatus={discoverStatus}
-              isLoadMore={discoverChannels.isNextPage}
-              handleLoadMore={() =>
-                dispatch(getDiscoverChannels({ page: discoverChannels.page }))
-              }
-              recommendedView
-            />
-          ) : tabSelected === trendingTab.tab ? (
-            <LoadMoreButton
-              channelStatus={trendingStatus}
-              isLoadMore={trendingChannels.isNextPage}
-              handleLoadMore={() =>
-                dispatch(getTrendingChannels({ page: trendingChannels.page }))
-              }
-              recommendedView
-            />
-          ) : (
-            <> </>
-          )}
-        </>
-      )}
+            {tabSelected === followingTab.tab ? (
+              <LoadMoreButton
+                channelStatus={followingStatus}
+                isLoadMore={followingChannels.isNextPage}
+                handleLoadMore={() =>
+                  dispatch(
+                    getFollowingChannels({ page: followingChannels.page })
+                  )
+                }
+                recommendedView
+              />
+            ) : tabSelected === discoverTab.tab ? (
+              <LoadMoreButton
+                channelStatus={discoverStatus}
+                isLoadMore={discoverChannels.isNextPage}
+                handleLoadMore={() =>
+                  dispatch(getDiscoverChannels({ page: discoverChannels.page }))
+                }
+                recommendedView
+              />
+            ) : tabSelected === trendingTab.tab ? (
+              <LoadMoreButton
+                channelStatus={trendingStatus}
+                isLoadMore={trendingChannels.isNextPage}
+                handleLoadMore={() =>
+                  dispatch(getTrendingChannels({ page: trendingChannels.page }))
+                }
+                recommendedView
+              />
+            ) : (
+              <> </>
+            )}
+          </>
+        )}
+      </div>
       <Helmet>
         <meta charSet="UFT-8" />
         <link rel="canonical" />

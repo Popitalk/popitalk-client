@@ -178,9 +178,9 @@ let strings = new LocalizedStrings({
     online: "online",
 
     // === RecommendedView === //
-    channelSearchInput: "Search for a channel",
+    channelSearchInput: "Search channels",
     videoSearchInput: "Search for a video",
-    following: "HOME",
+    following: "FOLLOWING",
     discover: "DISCOVER",
     trending: "TRENDING",
     // FriendsView
