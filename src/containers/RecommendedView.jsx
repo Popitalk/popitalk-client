@@ -225,7 +225,15 @@ function RecommendedChannels() {
       </div>
       <div className="h-full overflow-y-scroll">
         {!isSearchForChannels && (
-          <div className="w-full h-84 bg-background-ad">
+          <div className="relative w-full h-84 bg-background-ad">
+            <Button
+              styleNone
+              styleNoneContent="How to use Popitalk"
+              styleNoneContentClassName="text-copy-primary text-sm"
+              styleNoneIconClassName="text-copy-primary text-sm"
+              icon="info-circle"
+              className="bg-background-secondary absolute top-0 right-0 m-2 space-x-2 py-1 px-2 rounded-lg"
+            />
             <video
               className="flex h-80 sm:h-84 object-cover w-full lg:w-3/5 mx-auto items-end object-bottom"
               autoPlay
