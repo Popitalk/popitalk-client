@@ -18,7 +18,7 @@ export default function LeftPanelSubHeader({
           hoverable
           styleNone
           icon={button}
-          styleNoneIconClassName="text-copy-highlight"
+          styleNoneIconClassName="text-copy-link"
           onClick={onClick}
           analyticsString={analyticsString}
           tooltip={tooltip}

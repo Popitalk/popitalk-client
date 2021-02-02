@@ -64,7 +64,7 @@ export default function ChannelsPanel({
           headerString={strings.recentFriends}
           button="search"
           onClick={() => toSearchFriend()}
-          tooltip={strings.addFriendsButton}
+          tooltip={strings.searchFriendsInput}
           analyticsString="Add Friend Button: MiniFriendsList"
         />
         <MiniFriendsList

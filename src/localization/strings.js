@@ -162,7 +162,7 @@ let strings = new LocalizedStrings({
     followingChannels: "CHANNELS YOU FOLLOW",
     followingChannelsPlaceholder: "Try to discover and follow channels!",
     recommendedChannels: "RECOMMENDED",
-    searchFriendsInput: "Search Username",
+    searchFriendsInput: "Search friends",
     searchResult: "Results for",
     // LeftPanelDescription
     signInText: "Sign in to add friends and create channels.",

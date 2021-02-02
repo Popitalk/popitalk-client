@@ -214,7 +214,7 @@ function RecommendedChannels() {
               key={idx}
               className={`h-10 px-4 space-x-2 flex-shrink-0 rounded-lg shadow-xs ${
                 tabSelected === img.tab
-                  ? "text-copy-tertiary bg-copy-link"
+                  ? "text-copy-tertiary bg-copy-secondary"
                   : "text-copy-secondary bg-background-primary"
               }`}
               onClick={() => tabPressed(img.tab)}
@@ -229,10 +229,8 @@ function RecommendedChannels() {
             <Button
               styleNone
               styleNoneContent="How to use Popitalk"
-              styleNoneContentClassName="text-copy-primary text-sm"
-              styleNoneIconClassName="text-copy-primary text-sm"
               icon="info-circle"
-              className="bg-background-secondary absolute top-0 right-0 m-2 space-x-2 py-1 px-2 rounded-lg"
+              className="bg-background-secondary absolute top-0 right-0 m-2 space-x-2 py-1 px-2 rounded-lg text-copy-primary text-sm"
             />
             <video
               className="flex h-auto sm:h-84 object-cover w-full lg:w-3/5 mx-auto items-end object-bottom"
@@ -244,7 +242,7 @@ function RecommendedChannels() {
             </video>
           </div>
         )}
-        <div className="p-4">
+        <div className="px-4 py-6 mb-32">
           {isSearchForChannels ? (
             <ChannelSearchList channelList={searchResultChannels} />
           ) : (

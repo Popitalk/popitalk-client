@@ -80,6 +80,9 @@ class FriendsPanel extends Component {
       // Call it again with the updated search
       this.searchUsers(this.state.search);
     }
+    if (this.state.open === true) {
+      this.searchFieldRef.setFocus();
+    }
   }
 
   componentDidMount() {
@@ -113,7 +116,7 @@ class FriendsPanel extends Component {
               styleNoneIconClassName="text-copy-secondary mr-3"
               styleNoneContent={strings.searchFriendsInput}
               styleNoneContentClassName="text-sm text-copy-secondary"
-              className="flex items-center px-3 w-full h-10 bg-background-secondary rounded-lg cursor-text"
+              className="flex items-center px-3 w-full h-10 bg-background-tertiary rounded-lg cursor-text"
               onClick={() => this.setState({ open: true })}
             />
           </div>
