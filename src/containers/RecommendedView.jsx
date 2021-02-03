@@ -24,8 +24,6 @@ import {
   getRecommendedChannelsTabs,
   setLeftPanelActiveTabChannels
 } from "../redux/actions";
-// Assets
-import adVideo from "../assets/AD.mp4";
 
 const followingTab = { tab: strings.following, icon: "home" };
 const discoverTab = { tab: strings.discover, icon: "globe" };
@@ -228,7 +226,7 @@ function RecommendedChannels() {
           <div className="relative w-full h-auto sm:h-84 bg-background-ad">
             <Button
               styleNone
-              styleNoneContent="How to use Popitalk"
+              styleNoneContent={strings.howToUsePopitalk}
               icon="info-circle"
               className="bg-background-secondary absolute top-0 right-0 m-2 space-x-2 py-1 px-2 rounded-lg text-copy-primary text-sm"
             />
@@ -238,11 +236,11 @@ function RecommendedChannels() {
               loop
               muted
             >
-              <source src={adVideo} type="video/mp4" />
+              <source src={strings.adVideo} type="video/mp4" />
             </video>
           </div>
         )}
-        <div className="px-4 py-6 mb-32">
+        <div className="px-4 py-6 mb-24">
           {isSearchForChannels ? (
             <ChannelSearchList channelList={searchResultChannels} />
           ) : (

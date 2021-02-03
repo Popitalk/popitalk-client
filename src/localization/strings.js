@@ -7,6 +7,11 @@ let strings = new LocalizedStrings({
     // === Moment.JS === //
     location: "en",
 
+    // === AD VIDEO === //
+    adVideo:
+      "https://s3.us-east-2.amazonaws.com/popitalk.com/static/media/Eng-compressed.mp4",
+    howToUsePopitalk: "How to use Popitalk",
+
     // === Error Message === //
     errorMessage: "Something went wrong :(",
     minCharacter1: "Minimum 3 characters",
@@ -316,6 +321,11 @@ let strings = new LocalizedStrings({
   ko: {
     // Moment.JS
     location: "ko",
+
+    // === AD VIDEO === //
+    adVideo:
+      "https://s3.us-east-2.amazonaws.com/popitalk.com/static/media/Kor-compressed.mp4",
+    howToUsePopitalk: "뽀삐톡 사용방법",
 
     // === Error Message === //
     errorMessage: " 불러오지 못했습니다 :(",
