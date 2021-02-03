@@ -58,7 +58,7 @@ export default function LeftPanelDescription() {
       {/* === Sign Up === */}
       <div className={boxClassName}>
         <p className="text-copy-primary font-bold text-sm">
-          {strings.signInText}
+          {strings.friendsButtonHover}
         </p>
         <SignInButton />
       </div>

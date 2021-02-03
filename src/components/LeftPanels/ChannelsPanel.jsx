@@ -62,7 +62,7 @@ export default function ChannelsPanel({
       <div className="flex-col h-full overflow-y-scroll space-y-2">
         <LeftPanelSubHeader
           headerString={strings.recentFriends}
-          button="search"
+          searchUser
           onClick={() => toSearchFriend()}
           tooltip={strings.searchFriendsInput}
           analyticsString="Add Friend Button: MiniFriendsList"

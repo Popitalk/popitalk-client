@@ -160,7 +160,7 @@ let strings = new LocalizedStrings({
     channels: "Channels",
     friends: "Friends",
     friendsButtonHover:
-      "To search friends, add friends and watch privately in a Direct Room, please sign in first.",
+      "To watch with friends in a Private Room, please sign in.",
     recentFriends: "RECENT FRIENDS",
     yourChannels: "YOUR CHANNEL",
     yourChannelsPlaceholder: "Create your own public Channel!",
@@ -169,8 +169,6 @@ let strings = new LocalizedStrings({
     recommendedChannels: "RECOMMENDED",
     searchFriendsInput: "Search friends",
     searchResult: "Results for",
-    // LeftPanelDescription
-    signInText: "Sign in to add friends and create channels.",
     // LeftPanelFooter
     loginOrSignup: "Log In/Sign Up",
     aboutUs: "About Us",
@@ -475,7 +473,7 @@ let strings = new LocalizedStrings({
     channels: "티비채널",
     friends: "친구",
     friendsButtonHover:
-      "친구 추가, 친구 목록, 및 친구와 갠톡으로 영상을 시청하려면 로그인 후 이용해 주세요.",
+      "친구와 비공계로 단둘이 영상을 시청하려면 로그인 후 이용해 주세요.",
     recentFriends: "최근 친구",
     yourChannels: "내 채널",
     yourChannelsPlaceholder: "나만의 채널을 개설 하세요!",
@@ -484,8 +482,6 @@ let strings = new LocalizedStrings({
     recommendedChannels: "추천 채널",
     searchFriendsInput: "아이디로 친구 찾기",
     searchResult: "검색 결과",
-    // LeftPanelDescription
-    signInText: "친구를 추가하고 같이보려면 가입해보세요.",
     // LeftPanelFooter
     loginOrSignup: "로그인/가입",
     aboutUs: "소개",

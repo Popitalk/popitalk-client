@@ -102,7 +102,7 @@ class FriendsPanel extends Component {
             headerString={
               !this.state.open ? strings.directRoom : strings.searchFriends
             }
-            button="plus"
+            button="pen"
             onClick={() => this.props.handleCreateRoom()}
             tooltip={strings.newRoomButton}
             analyticsString="Create Room Button: FriendsPanel"

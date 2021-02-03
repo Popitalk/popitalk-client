@@ -1,8 +1,7 @@
 import React, { useState } from "react";
-import Button from "../Controls/Button";
-import Logo from "../../assets/greyicon.png";
-import Logo1 from "../../assets/blueicon.png";
 import strings from "../../localization/strings";
+import TvIcon from "../../assets/icons/tv";
+import FriendsIcon from "../../assets/icons/friends";
 
 export default function PanelHeader({
   updateSelectedPage,
@@ -10,33 +9,35 @@ export default function PanelHeader({
   viewer,
   numberOfNotifications
 }) {
-  const navClassName =
-    "flex items-center focus:outline-none rounded-lg p-2 px-4";
-
   const [hover, setHover] = useState(false);
+
+  const buttonClassName =
+    "relative flex h-12 items-center justify-center w-24 rounded-md duration-100";
+  const buttonInner = "flex items-center justify-center rounded-lg h-10 w-full";
+  const bottomIndicator = (
+    <div className="absolute bottom-0 w-full h-1 bg-copy-link rounded-t-sm" />
+  );
 
   if (viewer) {
     return (
       <div className="flex items-center justify-center w-full select-none space-x-4 px-4 h-12">
-        <div className="flex flex-col items-center -mb-1">
-          <Button
-            imageButton
-            imageButtonSrc={Logo1}
-            className={`${navClassName} fill-current text-copy-primary h-10 w-14`}
-          />
-          <div className="w-14 h-1 rounded-sm bg-copy-link" />
+        <div className={buttonClassName}>
+          <div className={buttonInner}>
+            <TvIcon active={true} />
+          </div>
+          {bottomIndicator}
         </div>
         <div
-          className="flex flex-col items-center -mb-1"
+          className={buttonClassName}
           onMouseEnter={() => setHover(true)}
           onMouseLeave={() => setHover(false)}
+          role="button"
         >
-          <Button
-            styleNone
-            icon="user-friends"
-            styleNoneIconClassName="text-2xl"
-            className={`${navClassName} text-copy-secondary hover:bg-hover-highlight cursor-not-allowed`}
-          />
+          <div
+            className={`${buttonInner} hover:bg-background-secondary cursor-not-allowed`}
+          >
+            <FriendsIcon active={selectedPage === "friends" ? true : false} />
+          </div>
         </div>
         {hover === true && (
           <div className="absolute flex top-0 mt-14 w-64 px-6 py-4 bg-background-primary shadow-md rounded-md">
@@ -50,43 +51,34 @@ export default function PanelHeader({
   }
 
   return (
-    <div className="flex items-center justify-center w-full select-none space-x-4 px-4 h-12">
-      <div className="flex flex-col items-center -mb-1">
-        <Button
-          imageButton
-          imageButtonSrc={selectedPage === "channels" ? Logo1 : Logo}
-          className={`${navClassName}  fill-current text-copy-primary ${
-            selectedPage !== "channels" && "hover:bg-hover-highlight"
-          } h-10 w-14`}
-          onClick={() => updateSelectedPage("channels")}
-        />
+    <div className="flex items-center justify-center w-full select-none px-4 h-12">
+      <div
+        className={buttonClassName}
+        onClick={() => updateSelectedPage("channels")}
+        role="button"
+      >
         <div
-          className={`w-14 h-1 rounded-sm ${
-            selectedPage === "channels"
-              ? "bg-copy-link"
-              : "bg-background-primary"
+          className={`${buttonInner} ${
+            selectedPage !== "channels" && "hover:bg-background-secondary"
           }`}
-        />
+        >
+          <TvIcon active={selectedPage === "channels" ? true : false} />
+        </div>
+        {selectedPage === "channels" && bottomIndicator}
       </div>
-      <div className="flex flex-col items-center -mb-1">
-        <Button
-          styleNone
-          icon="user-friends"
-          styleNoneIconClassName="text-2xl"
-          className={`${navClassName} ${
-            selectedPage === "friends"
-              ? "text-copy-link"
-              : "text-copy-secondary hover:bg-hover-highlight"
-          }`}
-          onClick={() => updateSelectedPage("friends")}
-        />
+      <div
+        className={buttonClassName}
+        onClick={() => updateSelectedPage("friends")}
+        role="button"
+      >
         <div
-          className={`w-14 h-1 rounded-sm ${
-            selectedPage === "friends"
-              ? " bg-copy-link"
-              : "bg-background-primary"
+          className={`${buttonInner} ${
+            selectedPage !== "friends" && "hover:bg-background-secondary"
           }`}
-        />
+        >
+          <FriendsIcon active={selectedPage === "friends" ? true : false} />
+        </div>
+        {selectedPage === "friends" && bottomIndicator}
       </div>
     </div>
   );

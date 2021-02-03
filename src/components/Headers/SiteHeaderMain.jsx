@@ -202,10 +202,12 @@ const SiteHeaderMain = ({
           }}
         />
       </div>
-      <PanelHeader
-        updateSelectedPage={updateSelectedPage}
-        selectedPage={selectedPage}
-      />
+      <div className="w-1/3 sm:w-1/2">
+        <PanelHeader
+          updateSelectedPage={updateSelectedPage}
+          selectedPage={selectedPage}
+        />
+      </div>
       <div className="sm:space-x-4 sm:w-1/4 // flex items-center space-x-2 w-1/3 justify-end pr-2 flex-shrink-0">
         <ul className="sm:space-x-4 // flex items-center space-x-2">
           <li>

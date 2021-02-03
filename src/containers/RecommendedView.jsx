@@ -225,6 +225,7 @@ function RecommendedChannels() {
         {!isSearchForChannels && (
           <div className="relative w-full h-auto sm:h-84 bg-background-ad">
             <Button
+              hoverable
               styleNone
               styleNoneContent={strings.howToUsePopitalk}
               icon="info-circle"

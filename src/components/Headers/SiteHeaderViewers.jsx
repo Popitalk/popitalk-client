@@ -88,7 +88,7 @@ const SiteHeaderViewers = () => {
   ];
 
   return (
-    <header className="sm:px-6 // relative flex items-center justify-between h-12 bg-background-primary z-30 select-none">
+    <header className="sm:px-6 // relative flex items-center justify-around h-12 bg-background-primary z-30 select-none">
       <div className="flex flex-row items-center w-1/3 sm:w-1/4 flex-shrink-0">
         <Button
           hoverable
@@ -121,7 +121,9 @@ const SiteHeaderViewers = () => {
           }}
         />
       </div>
-      <PanelHeader viewer />
+      <div className="w-1/3 sm:w-1/2">
+        <PanelHeader viewer />
+      </div>
       <div className="sm:space-x-6 // flex items-center justify-end space-x-2 w-1/3 sm:w-1/4 flex-shrink-0">
         <ul className="sm:space-x-6 // flex items-center space-x-2 flex-shrink-0">
           <li>
