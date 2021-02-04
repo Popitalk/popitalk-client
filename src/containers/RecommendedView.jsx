@@ -189,7 +189,7 @@ function RecommendedChannels() {
       } relative w-full h-full overflow-hidden rounded-md bg-background-secondary`}
     >
       {/* OPTION TABS */}
-      <div className="flex justify-start overflow-x-auto w-full px-4 h-16 items-center bg-background-tertiary space-x-2 rounded-md">
+      <div className="flex justify-start overflow-x-auto w-full px-4 h-14 items-center bg-background-tertiary space-x-2 rounded-md">
         <div className="flex-shrink-0">
           <Input
             variant="channel"
@@ -212,7 +212,7 @@ function RecommendedChannels() {
               key={idx}
               className={`h-10 px-4 space-x-2 flex-shrink-0 rounded-lg shadow-xs ${
                 tabSelected === img.tab
-                  ? "text-copy-tertiary bg-copy-secondary"
+                  ? "text-copy-tertiary bg-copy-link"
                   : "text-copy-secondary bg-background-primary"
               }`}
               onClick={() => tabPressed(img.tab)}

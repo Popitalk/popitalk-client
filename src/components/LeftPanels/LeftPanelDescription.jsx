@@ -4,7 +4,7 @@ import SignInButton from "../SignInButton";
 
 export default function LeftPanelDescription() {
   const boxClassName =
-    "bg-background-secondary p-4 space-y-4 rounded-md shadow-md";
+    "bg-background-secondary p-4 space-y-4 rounded-md shadow-xs";
   const [hover, setHover] = useState("");
   const iconsListArray = [
     {
@@ -29,8 +29,8 @@ export default function LeftPanelDescription() {
       <img
         key={item.path}
         className={`${
-          hover === item.hover && "bg-gradient-r-primary rounded-full"
-        } h-16 w-16 transition transform ease-in-out hover:scale-105 duration-100 cursor-pointer`}
+          hover === item.hover && "bg-background-quaternary rounded-lg"
+        } h-16 w-16 p-2 hover:bg-background-quaternary transition transform ease-in-out hover:scale-105 duration-100 rounded-md cursor-pointer`}
         src={item.path}
         alt={item.alt}
         onClick={() => setHover(item.hover)}
@@ -39,8 +39,9 @@ export default function LeftPanelDescription() {
   }
 
   return (
-    <div className="space-y-2">
+    <div className="space-y-4">
       <div className={boxClassName}>
+        <h1 className="text-copy-primary">{strings.descriptionHeader2}</h1>
         <div className="flex justify-evenly space-x-2">
           <IconsList items={iconsListArray} />
         </div>

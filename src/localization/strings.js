@@ -48,7 +48,7 @@ let strings = new LocalizedStrings({
 
     // DescriptionSection.jsx
     descriptionHeader1: "Watch Videos and listen to Music, together.",
-    descriptionHeader2: "Why use Popitalk.",
+    descriptionHeader2: "Why use Popitalk?",
     descriptionCardTitle1: "Watch together",
     descriptionCardBody1:
       "Enjoy the internet in sync with your friends. Watch videos and listen to music together on Popitalk.",
@@ -171,7 +171,7 @@ let strings = new LocalizedStrings({
     searchResult: "Results for",
     // LeftPanelFooter
     loginOrSignup: "Log In/Sign Up",
-    aboutUs: "About Us",
+    aboutUs: "About us",
     followUson: "Follow us on",
     buyUsCoffee: "Buy us a coffee",
     becomeAPatron: "Become a Patron",
@@ -360,7 +360,7 @@ let strings = new LocalizedStrings({
 
     // DescriptionSection.jsx
     descriptionHeader1: "꿀잼인 동영상과 음악을 같이 시청해요.",
-    descriptionHeader2: "뽀삐톡을 사용하는 이유.",
+    descriptionHeader2: "뽀삐톡을 사용하는 이유는?",
     descriptionCardTitle1: "같이 시청해요",
     descriptionCardBody1:
       "인터넷상에서 같은 시간 다른 장소에서 같이 시청할 수 있어요. 뽀삐톡으로 꿀잼인 동영상, 드라마, 영화나 음악도 같이 듣고 감상이 가능해요. ",

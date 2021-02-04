@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import strings from "../../localization/strings";
 import LoadMoreButton from "../Controls/LoadMoreButton";
-import InviteForm from "../Forms/InviteForm";
 import ChannelsList from "../InfoCardLists/ChannelsList";
 import LeftPanelDescription from "./LeftPanelDescription";
 import LeftPanelFooter from "./LeftPanelFooter";
@@ -17,9 +16,6 @@ export default function LeftPanelViewer({
 
   return (
     <div className="flex flex-col w-screen sm:w-68 h-full bg-background-primary select-none">
-      <div className="bg-background-secondary mb-2 px-2 py-4 shadow-md rounded-md ">
-        <InviteForm link={link} />
-      </div>
       <LeftPanelDescription />
       <div className="py-2 w-full">
         <LeftPanelSubHeader headerString={strings.recommendedChannels} />
