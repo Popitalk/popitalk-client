@@ -12,7 +12,7 @@ export default function PanelHeader({
   const [hover, setHover] = useState(false);
 
   const buttonClassName =
-    "relative flex h-12 items-center justify-center w-24 rounded-md duration-100";
+    "relative flex h-12 items-center justify-center w-24 rounded-md duration-100 cursor-pointer";
   const buttonInner = "flex items-center justify-center rounded-lg h-10 w-full";
   const bottomIndicator = (
     <div className="absolute bottom-0 w-full h-1 bg-copy-link rounded-t-sm" />
