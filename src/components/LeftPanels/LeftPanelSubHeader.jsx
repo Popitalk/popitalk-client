@@ -17,7 +17,7 @@ export default function LeftPanelSubHeader({
       <h4 className={subHeaderClassName}>{headerString}</h4>
       {searchUser && (
         <div
-          className="p-1"
+          className="p-1 cursor-pointer"
           role="button"
           onClick={onClick}
           data-tip={tooltip}

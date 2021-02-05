@@ -223,7 +223,7 @@ function RecommendedChannels() {
       </div>
       <div className="h-full overflow-y-scroll">
         {!isSearchForChannels && (
-          <div className="relative w-full h-auto sm:h-84 bg-background-ad">
+          <div className="relative flex justify-center w-full h-auto sm:h-84 bg-background-ad">
             <Button
               hoverable
               styleNone
@@ -232,7 +232,7 @@ function RecommendedChannels() {
               className="bg-background-secondary absolute top-0 right-0 m-2 space-x-2 py-1 px-2 rounded-lg text-copy-primary text-sm"
             />
             <video
-              className="flex h-auto sm:h-84 object-cover w-full lg:w-3/5 mx-auto items-end object-bottom"
+              className="flex h-auto sm:h-84 object-cover w-full lg:w-3/5 object-bottom"
               autoPlay
               loop
               muted
