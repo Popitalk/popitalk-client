@@ -22,10 +22,10 @@ export default function ChannelHeader({
 
   let navButtons = [
     { name: strings.video, endpoint: "" },
-    { name: strings.posts, endpoint: "/channel" }
+    { name: strings.announcement, endpoint: "/channel" }
   ];
   if (isAdmin) {
-    navButtons.push({ name: strings.settings, endpoint: "/settings" });
+    navButtons.push({ icon: "cog", endpoint: "/settings" });
   }
 
   if (isLoading) {
@@ -55,7 +55,7 @@ export default function ChannelHeader({
         <nav className="flex flex-shrink-0 truncate items-center">
           {navButtons.map((button, idx) => {
             let className =
-              "mx-1 font-semibold no-underline focus:outline-none p-2 hover:text-copy-highlight";
+              "mx-1 font-semibold no-underline focus:outline-none px-2 py-1 hover:text-copy-highlight";
             if (location.pathname === `/channels/${id}${button.endpoint}`) {
               className = `${className} rainbow-text`;
             } else {
@@ -67,7 +67,15 @@ export default function ChannelHeader({
                 className={className}
                 key={idx}
               >
-                {button.name}
+                {button.icon ? (
+                  <Button
+                    styleNone
+                    icon={button.icon}
+                    styleNoneIconClassName="text-lg"
+                  />
+                ) : (
+                  button.name
+                )}
               </Link>
             );
           })}

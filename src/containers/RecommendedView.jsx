@@ -223,23 +223,25 @@ function RecommendedChannels() {
       </div>
       <div className="h-full overflow-y-scroll">
         {!isSearchForChannels && (
-          <div className="relative flex justify-center w-full h-64 h-auto sm:h-84 bg-background-ad">
-            <Button
-              hoverable
-              styleNone
-              styleNoneContent={strings.howToUsePopitalk}
-              icon="info-circle"
-              className="bg-background-secondary absolute top-0 right-0 m-2 space-x-2 py-1 px-2 rounded-lg text-copy-primary text-sm"
-            />
-            <video
-              className="flex h-64 sm:h-84 object-cover w-full lg:w-3/5 object-bottom"
-              autoPlay
-              loop
-              muted
-            >
-              <source src={strings.adVideo} type="video/mp4" />
-            </video>
-          </div>
+          <a href="https://medium.com/popitalk/how-to-use-popitalk-4b89c3f08089">
+            <div className="relative flex justify-center w-full h-64 h-auto sm:h-84 bg-background-ad">
+              <Button
+                hoverable
+                styleNone
+                styleNoneContent={strings.howToUsePopitalk}
+                icon="info-circle"
+                className="bg-background-secondary absolute top-0 right-0 m-2 space-x-2 py-1 px-2 rounded-lg text-copy-primary text-sm"
+              />
+              <video
+                className="flex h-64 sm:h-84 object-cover w-full lg:w-3/5 object-bottom"
+                autoPlay
+                loop
+                muted
+              >
+                <source src={strings.adVideo} type="video/mp4" />
+              </video>
+            </div>
+          </a>
         )}
         <div className="px-4 py-6 mb-24">
           {isSearchForChannels ? (

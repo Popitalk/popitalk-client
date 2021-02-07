@@ -9,7 +9,7 @@ function VideoSearch(
 ) {
   return (
     <div className="my-4" ref={ref}>
-      <h2 className="text-lg text-copy-primary px-4">
+      <h2 className="text-lg text-copy-primary font-bold px-4">
         {strings.findMoreVideos}
       </h2>
       <div className="flex flex-col bg-background-secondary">

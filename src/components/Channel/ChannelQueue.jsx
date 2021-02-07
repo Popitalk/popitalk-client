@@ -1,5 +1,4 @@
 import React from "react";
-import VideoSearch from "../VideoSearch";
 import ChannelListQueue from "../ThumbnailCardLists/ChannelListQueue";
 
 function ChannelQueue(
@@ -18,23 +17,13 @@ function ChannelQueue(
   ref
 ) {
   return (
-    <div className="flex flex-col bg-background-secondary">
+    <div className="flex flex-col">
       <ChannelListQueue
         playlist={queue}
         handleChange={handleSwapVideos}
         handleDeleteVideo={handleDeleteVideo}
         handleFindMore={handleFindMore}
       />
-      {isChannel === true && (
-        <VideoSearch
-          ref={ref}
-          searchTerm={searchTerm}
-          searchResults={searchResults}
-          totalResults={totalResults}
-          handleSearch={handleSearch}
-          handleAddVideo={handleAddVideo}
-        />
-      )}
     </div>
   );
 }

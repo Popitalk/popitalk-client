@@ -60,7 +60,6 @@ export default function App() {
 
   return (
     <Suspense fallback={<PageLoader />}>
-      {/* <PageLoader /> */}
       <ThemeProvider>
         <ModalManager />
         <div className="h-screen flex flex-col">

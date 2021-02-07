@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import ReactTooltip from "react-tooltip";
-import classnames from "classnames";
 import moment from "moment";
 import Button from "../Controls/Button";
 import VideoStatus from "../VideoStatus";
@@ -14,7 +13,7 @@ export default function VideoCardHorizontalPlaylist({
   thumbnail = "somedefaultimagehere",
   status,
   statusMessage,
-  type = "cancel",
+  type,
   handleSkip,
   handleAddVideo,
   handleDeleteVideo,
@@ -31,13 +30,6 @@ export default function VideoCardHorizontalPlaylist({
   const [addButtonIcon, setAddButtonIcon] = useState("plus");
   const [removeButtonIcon, setRemoveButtonIcon] = useState("minus");
 
-  const cardClasses = classnames({
-    "max-w-2xs": size === "sm",
-    "max-w-md": size === "md",
-    "max-w-lg": size === "lg",
-    "w-full flex-shrink-0 items-center": true,
-    [className]: className
-  });
   const removeButtonPressed = () => {
     setRemoveButtonIcon("check");
     handleDeleteVideo(id);
@@ -81,29 +73,19 @@ export default function VideoCardHorizontalPlaylist({
   }
   if (!title) {
     return (
-      <div
-        className="flex w-full flex-shrink-0 max-w-2xs items-center pr-2"
-        role="button"
+      <Button
+        styleNone
+        styleNoneContent={strings.searchAddVideos}
+        styleNoneContentClassName="text-center text-copy-secondary text-sm"
+        className="h-12 w-full bg-background-primary my-1 hover:shadow-sm hover:bg-hover-highlight transition duration-100 rounded-lg"
+        analyticsString="Direct to search Button: VideoCardVerticalPlaylist"
         onClick={handleFindMore}
-      >
-        <div className="relative cursor-pointer pb-16/9 w-full rounded-sm shadow-xs hover:shadow-md transition-all ease-in-out duration-100 bg-background-disabled hover:bg-hover-highlight focus:outline-none">
-          <div className="absolute flex items-center justify-center w-full h-full">
-            <Button
-              styleNone
-              styleNoneContent={strings.findMoreVideos}
-              icon="search"
-              styleNoneContentClassName="mx-2 text-sm"
-              className="text-copy-secondary"
-              analyticsString="Direct to Search Button: VideoCardVerticalPlaylist"
-            />
-          </div>
-        </div>
-      </div>
+      />
     );
   } else if (title) {
     return (
       <div
-        className={`relative opacity-100 hover:opacity-75 cursor-pointer ${cardClasses}`}
+        className="relative opacity-100 hover:opacity-75 cursor-pointer"
         onClick={() => {
           if (type === "add") {
             addButtonPressed();
@@ -114,7 +96,7 @@ export default function VideoCardHorizontalPlaylist({
         onMouseLeave={() => setHoverCard(false)}
       >
         {type === "add" && (
-          <div className="absolute flex justify-end p-1 items-start w-full h-full z-50">
+          <div className="absolute flex justify-end p-1 items-start w-full h-full z-20">
             <Button
               actionButton
               icon={addButtonIcon}
@@ -134,7 +116,7 @@ export default function VideoCardHorizontalPlaylist({
               {type === "cancel" && hoverCard === true && (
                 <Button
                   actionButton
-                  className="absolute right-0 mr-1 flex z-10 bg-background-highlight"
+                  className="absolute right-0 mr-1 flex z-20 bg-background-highlight"
                   onClick={removeButtonPressed}
                   analyticsString="Remove Video: VideoCardVerticalPlaylist"
                   onMouseLeave={() => setRemoveButtonIcon("minus")}

@@ -516,6 +516,16 @@ class Channel extends Component {
                   queue={this.state.queueList}
                   isMember={isMember}
                 />
+                {displayControls && (
+                  <VideoSearch
+                    ref={this.searchRef}
+                    searchTerm={this.state.searchTerm}
+                    searchResults={searchResults}
+                    totalResults={totalResults}
+                    handleSearch={handleSearch}
+                    handleAddVideo={handleAddVideo}
+                  />
+                )}
                 {type === CHANNEL_TYPE && (
                   <ForumPanel
                     ref={this.channelRef}
@@ -526,16 +536,6 @@ class Channel extends Component {
                     status={this.state.playerStatus.status.toLowerCase()}
                   />
                 )}
-                {type === ROOM_TYPE && (
-                  <VideoSearch
-                    ref={this.searchRef}
-                    searchTerm={this.state.searchTerm}
-                    searchResults={searchResults}
-                    totalResults={totalResults}
-                    handleSearch={handleSearch}
-                    handleAddVideo={handleAddVideo}
-                  />
-                )}
               </>
             )}
             {tab === SETTINGS_TAB && (
@@ -543,7 +543,7 @@ class Channel extends Component {
             )}
           </div>
         </div>
-        {tab !== SETTINGS_TAB && <ChatPanel />}
+        <ChatPanel />
         {/* Google Search Index & SEO */}
         <Helmet>
           <meta charSet="UFT-8" />

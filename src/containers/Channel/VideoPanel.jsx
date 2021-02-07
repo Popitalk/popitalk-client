@@ -9,9 +9,7 @@ import {
 } from "../../redux";
 import { mapIdsToUsers } from "../../helpers/functions";
 import VideoSection from "../../components/VideoSection";
-import QueueSection from "../../components/ThumbnailCardLists/QueueSection";
 import VideoCardHorizontalPlaylist from "../../components/ThumbnailCards/VideoCardHorizontalPlaylist";
-import ScrollableCardList from "../../components/ThumbnailCardLists/ScrollableCardList";
 import ChannelQueue from "../../components/Channel/ChannelQueue";
 import strings from "../../localization/strings";
 import Button from "../../components/Controls/Button";
@@ -100,63 +98,74 @@ export default function VideoPanel({
         handleNothingPlaying={nothingPlayingHandler}
         isChannel={isChannel}
       />
-      <div className="flex items-center px-4 mt-4 space-x-4">
-        <p className="text-lg text-copy-primary select-none font-bold">
-          {strings.upNext}
-        </p>
-        {displayControls && (
-          <Button
-            styleNone
-            styleNoneContent={
-              expandQueue === false
-                ? strings.saveAndReturn
-                : strings.manageUpNext
-            }
-            styleNoneContentClassName="text-copy-highlight font-bold text-sm"
-            onClick={e => setExpandQueue(checked => !checked)}
-            className="py-2 px-3 bg-background-primary hover:bg-hover-highlight rounded-md shadow-sm"
-          />
-        )}
-      </div>
-      {displayControls ? (
-        <>
-          {expandQueue === false ? (
-            <ChannelQueue
-              ref={searchRef}
-              name={name}
-              icon={icon}
-              searchTerm={searchTerm}
-              searchResults={searchResults}
-              totalResults={totalResults}
-              handleSearch={handleSearch}
-              handleAddVideo={handleAddVideo}
-              queue={queue}
-              handleSwapVideos={handleSwapVideos}
-              handleDeleteVideo={handleDeleteVideo}
-              isChannel={isChannel}
-            />
+      {playlist.length !== 0 && (
+        <div className="bg-background-tertiary border border-outline-primary rounded-md py-1 mx-1">
+          <div className="flex items-center px-4 mt-4 space-x-4">
+            <p className="text-lg text-copy-primary select-none font-bold">
+              {strings.upNext}
+            </p>
+            {displayControls && (
+              <Button
+                styleNone
+                styleNoneContent={
+                  expandQueue === false
+                    ? strings.saveAndReturn
+                    : strings.manageUpNext
+                }
+                styleNoneContentClassName="text-copy-highlight font-bold text-sm"
+                onClick={e => setExpandQueue(checked => !checked)}
+                className="py-2 px-3 bg-background-primary hover:bg-hover-highlight rounded-md shadow-sm"
+              />
+            )}
+          </div>
+          {displayControls ? (
+            <>
+              {expandQueue === false ? (
+                <div className="flex flex-col justify-center p-4">
+                  <div className="grid grid-cols-1 xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 gap-y-8">
+                    {playlist.map(value => (
+                      <VideoCardHorizontalPlaylist
+                        {...value}
+                        key={value.id}
+                        size="sm"
+                        handleDeleteVideo={() => handleDeleteVideo(value.id)}
+                        type="cancel"
+                      />
+                    ))}
+                  </div>
+                </div>
+              ) : (
+                <ChannelQueue
+                  ref={searchRef}
+                  name={name}
+                  icon={icon}
+                  searchTerm={searchTerm}
+                  searchResults={searchResults}
+                  totalResults={totalResults}
+                  handleSearch={handleSearch}
+                  handleAddVideo={handleAddVideo}
+                  queue={queue}
+                  handleSwapVideos={handleSwapVideos}
+                  handleDeleteVideo={handleDeleteVideo}
+                  isChannel={isChannel}
+                />
+              )}
+            </>
           ) : (
-            <QueueSection
-              queueList={playlist}
-              handlerChange={handleSwapVideos}
-              handleSkip={handleSkip}
-              handleDeleteVideo={handleDeleteVideo}
-              handleFindMore={e => setExpandQueue(checked => !checked)}
-            />
+            <div className="flex flex-col justify-center p-4">
+              <div className="grid grid-cols-1 xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 gap-y-8">
+                {playlist.map(value => (
+                  <VideoCardHorizontalPlaylist
+                    {...value}
+                    key={value.id}
+                    size="sm"
+                    type="none"
+                  />
+                ))}
+              </div>
+            </div>
           )}
-        </>
-      ) : (
-        <ScrollableCardList axis="x">
-          {playlist.map(value => (
-            <VideoCardHorizontalPlaylist
-              {...value}
-              key={value.id}
-              size="sm"
-              type="none"
-              className="mr-2"
-            />
-          ))}
-        </ScrollableCardList>
+        </div>
       )}
     </div>
   );
