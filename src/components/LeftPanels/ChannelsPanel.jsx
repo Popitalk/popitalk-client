@@ -9,6 +9,7 @@ import LeftPanelSubHeader from "./LeftPanelSubHeader";
 import LoadMoreButton from "../Controls/LoadMoreButton";
 
 import history from "../../history";
+import Button from "../Controls/Button";
 
 export default function ChannelsPanel({
   yourChannels,
@@ -73,13 +74,27 @@ export default function ChannelsPanel({
           isLoading={false}
         />
         <div className="relative flex flex-col items-start bg-background-primary">
-          {leftPanelChannelList(
-            yourChannels.slice(0, yourChannelsCount),
-            strings.yourChannels,
-            strings.yourChannelsPlaceholder,
-            "plus",
-            yourChannelsCount < yourChannels.length,
-            () => setYourChannelsCount(count => count + 5)
+          {yourChannels.length !== 0 ? (
+            leftPanelChannelList(
+              yourChannels.slice(0, yourChannelsCount),
+              strings.yourChannels,
+              strings.yourChannelsPlaceholder,
+              "plus",
+              yourChannelsCount < yourChannels.length,
+              () => setYourChannelsCount(count => count + 5)
+            )
+          ) : (
+            <div className="flex items-center justify-start w-full shadow-xs">
+              <Button
+                styleNone
+                icon="plus"
+                styleNoneIconClassName="text-sm text-copy-primary mr-2"
+                styleNoneContent={strings.yourChannelsPlaceholder}
+                styleNoneContentClassName="text-sm text-copy-primary"
+                onClick={handleCreateChannel}
+                className="hover:bg-hover-highlight duration-100 w-full h-14"
+              />
+            </div>
           )}
           {followingChannels.length !== 0 &&
             leftPanelChannelList(

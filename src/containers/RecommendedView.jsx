@@ -56,6 +56,9 @@ function RecommendedChannels() {
   const { status: trendingStatus } = useSelector(
     state => state.api.trendingChannels
   );
+  const channels = useSelector(state => state.channels);
+  const { id: ownId, channelIds } = useSelector(state => state.self);
+
   const [search, setSearch] = useState("");
 
   const extraTabs = categories.map(name => ({
@@ -63,10 +66,31 @@ function RecommendedChannels() {
     // icon: "hashtag"
   }));
 
-  const tabs = loggedIn
-    ? [followingTab, discoverTab, trendingTab, ...extraTabs]
-    : [discoverTab, trendingTab, ...extraTabs];
+  let followingChannels1 = [];
+  channelIds
+    .map(channelId => ({
+      id: channelId,
+      ...channels[channelId]
+    }))
+    .forEach(channel => {
+      if (
+        channel.ownerId !== ownId &&
+        channel.owner_id !== ownId &&
+        channel.members &&
+        channel.members.includes(ownId)
+      ) {
+        followingChannels1.push(channel);
+      }
+    });
 
+  const tabs =
+    loggedIn && followingChannels1.length !== 0
+      ? [followingTab, discoverTab, trendingTab, ...extraTabs]
+      : loggedIn && followingChannels1.length === 0
+      ? [discoverTab, trendingTab, ...extraTabs]
+      : [discoverTab, trendingTab, ...extraTabs];
+
+  console.log("q123q" + followingChannels1.length);
   const tabHandler = tab => {
     dispatch(setSelectedTab(tab));
     if (tab === followingTab.tab) {
@@ -108,9 +132,9 @@ function RecommendedChannels() {
     }
   };
 
-  const tabPressed = img => {
+  const tabPressed = tab => {
     dispatch(setIsSearchForChannels(false));
-    tabHandler(img);
+    tabHandler(tab);
   };
   const handleSearch = useCallback(() => {
     dispatch(setIsSearchForChannels(true));
@@ -122,7 +146,13 @@ function RecommendedChannels() {
   };
 
   useEffect(() => {
-    tabHandler(loggedIn ? followingTab.tab : trendingTab.tab);
+    tabHandler(
+      loggedIn && followingChannels1.length !== 0
+        ? followingTab.tab
+        : loggedIn && followingChannels1.length === 0
+        ? trendingTab.tab
+        : trendingTab.tab
+    );
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [loggedIn]);
 
