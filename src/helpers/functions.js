@@ -55,7 +55,7 @@ export function getSetPasswordSchema(checkOldPassword) {
   let password = Yup.string()
     .min(6, strings.passwordTooShort)
     .matches(/[a-z]/, strings.lowerCaseRequired)
-    .matches(/[A-Z]/, strings.upperCaseRequired)
+    // .matches(/[A-Z]/, strings.upperCaseRequired)
     .matches(/\d+/, strings.numberRequired)
     .required(strings.inputTextRequired);
 
