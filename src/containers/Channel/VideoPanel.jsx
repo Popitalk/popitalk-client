@@ -130,6 +130,7 @@ export default function VideoPanel({
                         size="sm"
                         handleDeleteVideo={() => handleDeleteVideo(value.id)}
                         type="cancel"
+                        handleSkip={handleSkip}
                       />
                     ))}
                   </div>
