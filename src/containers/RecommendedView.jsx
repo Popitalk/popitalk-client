@@ -254,7 +254,7 @@ function RecommendedChannels() {
       <div className="h-full overflow-y-scroll">
         {!isSearchForChannels && (
           <a href="https://medium.com/popitalk/how-to-use-popitalk-4b89c3f08089">
-            <div className="relative flex justify-center w-full h-64 sm:h-84 xxl:h-90 bg-background-ad">
+            <div className="relative flex justify-center w-full h-64 sm:h-84 xxl:h-100 bg-background-ad">
               <Button
                 hoverable
                 styleNone
@@ -263,7 +263,7 @@ function RecommendedChannels() {
                 className="bg-background-secondary absolute top-0 right-0 m-2 space-x-2 py-1 px-2 rounded-lg text-copy-primary text-sm"
               />
               <video
-                className="flex h-64 sm:h-84 object-cover w-full lg:w-3/5 object-bottom"
+                className="flex object-cover w-full lg:w-3/5 object-bottom"
                 autoPlay
                 loop
                 muted
