@@ -254,7 +254,7 @@ function RecommendedChannels() {
       <div className="h-full overflow-y-scroll">
         {!isSearchForChannels && (
           <a href="https://medium.com/popitalk/how-to-use-popitalk-4b89c3f08089">
-            <div className="relative flex justify-center w-full h-64 h-auto sm:h-84 bg-background-ad">
+            <div className="relative flex justify-center w-full h-64 sm:h-84 xxl:h-90 bg-background-ad">
               <Button
                 hoverable
                 styleNone

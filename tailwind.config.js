@@ -144,6 +144,7 @@ module.exports = {
         44: "11rem",
         68: "17rem",
         84: "21rem",
+        90: "22rem",
         100: "26rem",
         102: "28rem",
         104: "30rem"
