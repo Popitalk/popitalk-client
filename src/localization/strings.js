@@ -522,7 +522,7 @@ let strings = new LocalizedStrings({
     // == VideoPanel == //
     // VideoPlayer & VideoStatus
     paused: "일시정지",
-    pausedPopup: "채널 관리자가 일지성지 했습니다.",
+    pausedPopup: "채널 관리자가 일지정지 했습니다.",
     startingIn: "채널 관리자가 재생했습니다. 곧 재생됩니다",
     play: "재생",
     pause: "일시정지",
