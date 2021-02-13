@@ -66,84 +66,88 @@ export default function App() {
       <ThemeProvider>
         <ModalManager />
         <div className="h-screen flex flex-col overflow-y-hidden">
-          <Header />
-          <Switch>
-            <PublicRoute exact path="/welcome">
-              <WelcomePage />
-            </PublicRoute>
-            <GeneralRoute exact path="/">
-              <RouteWrapper
-                leftPanel={leftPanel}
-                windowSize={windowSize}
-                leftPanelIsRemoved={leftPanelIsRemoved}
-                dispatch={dispatch}
-              >
-                <RecommendedView />
-              </RouteWrapper>
-            </GeneralRoute>
-            <GeneralRoute exact path="/friends">
-              <RouteWrapper
-                leftPanel={leftPanel}
-                windowSize={windowSize}
-                leftPanelIsRemoved={leftPanelIsRemoved}
-                dispatch={dispatch}
-              >
-                <FriendsView />
-              </RouteWrapper>
-            </GeneralRoute>
-            <PrivateRoute exact path="/create">
-              <RouteWrapper
-                leftPanel={leftPanel}
-                windowSize={windowSize}
-                leftPanelIsRemoved={leftPanelIsRemoved}
-                dispatch={dispatch}
-              >
-                <CreateChannelContainer />
-              </RouteWrapper>
-            </PrivateRoute>
-            <GeneralRoute exact path={`/channels/:channelId`}>
-              <ChannelWrapper
-                leftPanel={leftPanel}
-                windowSize={windowSize}
-                leftPanelIsRemoved={leftPanelIsRemoved}
-                dispatch={dispatch}
-              >
-                <Channel />
-              </ChannelWrapper>
-            </GeneralRoute>
-            <GeneralRoute exact path={`/channels/:channelId/:tab`}>
-              <ChannelWrapper
-                leftPanel={leftPanel}
-                windowSize={windowSize}
-                leftPanelIsRemoved={leftPanelIsRemoved}
-                dispatch={dispatch}
-              >
-                <Channel />
-              </ChannelWrapper>
-            </GeneralRoute>
-            <PrivateRoute exact path="/rooms/:roomId">
-              <ChannelWrapper
-                leftPanel={leftPanel}
-                windowSize={windowSize}
-                leftPanelIsRemoved={leftPanelIsRemoved}
-                dispatch={dispatch}
-                channelStructure
-              >
-                <Channel />
-              </ChannelWrapper>
-            </PrivateRoute>
-            <PrivateRoute exact path="/users/:userId">
-              <RouteWrapper
-                leftPanel={leftPanel}
-                windowSize={windowSize}
-                leftPanelIsRemoved={leftPanelIsRemoved}
-                dispatch={dispatch}
-              />
-            </PrivateRoute>
-            <Route path="*">
-              <NotFoundPage />
-            </Route>
-          </Switch>
+          <div className="fixed w-full h-12 z-50">
+            <Header />
+          </div>
+          <div className="mt-12 w-full h-full">
+            <Switch>
+              <PublicRoute exact path="/welcome">
+                <WelcomePage />
+              </PublicRoute>
+              <GeneralRoute exact path="/">
+                <RouteWrapper
+                  leftPanel={leftPanel}
+                  windowSize={windowSize}
+                  leftPanelIsRemoved={leftPanelIsRemoved}
+                  dispatch={dispatch}
+                >
+                  <RecommendedView />
+                </RouteWrapper>
+              </GeneralRoute>
+              <GeneralRoute exact path="/friends">
+                <RouteWrapper
+                  leftPanel={leftPanel}
+                  windowSize={windowSize}
+                  leftPanelIsRemoved={leftPanelIsRemoved}
+                  dispatch={dispatch}
+                >
+                  <FriendsView />
+                </RouteWrapper>
+              </GeneralRoute>
+              <PrivateRoute exact path="/create">
+                <RouteWrapper
+                  leftPanel={leftPanel}
+                  windowSize={windowSize}
+                  leftPanelIsRemoved={leftPanelIsRemoved}
+                  dispatch={dispatch}
+                >
+                  <CreateChannelContainer />
+                </RouteWrapper>
+              </PrivateRoute>
+              <GeneralRoute exact path={`/channels/:channelId`}>
+                <ChannelWrapper
+                  leftPanel={leftPanel}
+                  windowSize={windowSize}
+                  leftPanelIsRemoved={leftPanelIsRemoved}
+                  dispatch={dispatch}
+                >
+                  <Channel />
+                </ChannelWrapper>
+              </GeneralRoute>
+              <GeneralRoute exact path={`/channels/:channelId/:tab`}>
+                <ChannelWrapper
+                  leftPanel={leftPanel}
+                  windowSize={windowSize}
+                  leftPanelIsRemoved={leftPanelIsRemoved}
+                  dispatch={dispatch}
+                >
+                  <Channel />
+                </ChannelWrapper>
+              </GeneralRoute>
+              <PrivateRoute exact path="/rooms/:roomId">
+                <ChannelWrapper
+                  leftPanel={leftPanel}
+                  windowSize={windowSize}
+                  leftPanelIsRemoved={leftPanelIsRemoved}
+                  dispatch={dispatch}
+                  channelStructure
+                >
+                  <Channel />
+                </ChannelWrapper>
+              </PrivateRoute>
+              <PrivateRoute exact path="/users/:userId">
+                <RouteWrapper
+                  leftPanel={leftPanel}
+                  windowSize={windowSize}
+                  leftPanelIsRemoved={leftPanelIsRemoved}
+                  dispatch={dispatch}
+                />
+              </PrivateRoute>
+              <Route path="*">
+                <NotFoundPage />
+              </Route>
+            </Switch>
+          </div>
         </div>
         <Helmet>
           <meta charSet="UFT-8" />
