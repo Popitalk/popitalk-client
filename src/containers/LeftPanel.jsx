@@ -52,7 +52,6 @@ export default function LeftPanelContainer() {
   const { defaultAvatar, defaultIcon } = useSelector(state => state.general);
   const { id: ownId, channelIds, roomIds } = useSelector(state => state.self);
   const isCollapsed = useSelector(state => state.ui.isCollapsed);
-  const isRemoved = useSelector(state => state.ui.isRemoved);
   const leftPanelActiveTab = useSelector(state => state.ui.leftPanelActiveTab);
 
   const blocks = relationships.blockers.length + relationships.blocked.length;
@@ -162,7 +161,6 @@ export default function LeftPanelContainer() {
           handleCreateChannel={handleCreateChannel}
           handleProfile={handleOpenProfile}
           isCollapsed={isCollapsed}
-          isRemoved={isRemoved}
           selectedPage="channels"
           handleCreateRoom={() => handleCreateRoom(selectedChannel)}
           setFriendsSearchFocus={setFriendsSearchFocus}
@@ -183,7 +181,6 @@ export default function LeftPanelContainer() {
           handleCreateChannel={handleCreateChannel}
           handleProfile={handleOpenProfile}
           isCollapsed={isCollapsed}
-          isRemoved={isRemoved}
           selectedPage="friends"
           handleCreateRoom={() => handleCreateRoom(selectedChannel)}
           friendsSearchFocus={friendsSearchFocus}
@@ -206,7 +203,6 @@ export default function LeftPanelContainer() {
           handleCreateChannel={handleCreateChannel}
           handleProfile={handleOpenProfile}
           isCollapsed={isCollapsed}
-          isRemoved={isRemoved}
           selectedPage={leftPanelActiveTab}
           handleCreateRoom={() => handleCreateRoom(selectedChannel)}
           setFriendsSearchFocus={setFriendsSearchFocus}

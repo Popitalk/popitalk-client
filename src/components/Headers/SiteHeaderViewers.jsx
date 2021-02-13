@@ -88,7 +88,7 @@ const SiteHeaderViewers = () => {
   ];
 
   return (
-    <header className="sm:px-6 // relative flex items-center justify-around h-12 bg-background-primary z-30 select-none">
+    <header className="sm:px-6 // relative flex items-center justify-around h-12 bg-background-primary z-30 select-none rounded-t-lg">
       <div className="flex flex-row items-center w-1/3 sm:w-1/4 flex-shrink-0">
         <Button
           hoverable

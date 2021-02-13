@@ -24,7 +24,6 @@ export default function LeftPanel({
   handleCreateChannel,
   handleProfile,
   isCollapsed,
-  isRemoved,
   handleCreateRoom,
   friendsSearchFocus,
   setFriendsSearchFocus
@@ -34,17 +33,11 @@ export default function LeftPanel({
 
   if (!loggedIn) {
     return (
-      <div
-        className={
-          isRemoved === true ? "w-full sm:w-full z-30" : "hidden sm:flex z-30"
-        }
-      >
-        <LeftPanelViewer
-          recommendedChannels={recommendedChannels}
-          selectedChannel={selected}
-          handleSelectChannel={handleSelectChannel}
-        />
-      </div>
+      <LeftPanelViewer
+        recommendedChannels={recommendedChannels}
+        selectedChannel={selected}
+        handleSelectChannel={handleSelectChannel}
+      />
     );
   } else if (isCollapsed) {
     return (
@@ -61,41 +54,35 @@ export default function LeftPanel({
   } else {
     return (
       <Fragment>
-        <div
-          className={
-            isRemoved === true ? "w-screen sm:w-full" : "hidden sm:flex"
-          }
-        >
-          {selectedPage === "channels" ? (
-            <ChannelsPanel
-              yourChannels={yourChannels}
-              followingChannels={followingChannels}
-              recommendedChannels={recommendedChannels}
-              friends={roomsResults}
-              selectedChannel={selected}
-              handleSelectChannel={handleSelectChannel}
-              handleSelectRoom={handleSelectRoom}
-              handleCreateChannel={handleCreateChannel}
-              setFriendsSearchFocus={setFriendsSearchFocus}
-              loggedIn={loggedIn}
-            />
-          ) : (
-            <FriendsPanel
-              userSearchResults={userSearchResults}
-              userSearchStatus={userSearchStatus}
-              blocks={blocks}
-              handleSearch={handleSearch}
-              initialRooms={roomsResults}
-              selectedRoom={selected}
-              handleSelectRoom={handleSelectRoom}
-              handleProfile={handleProfile}
-              handleCreateRoom={handleCreateRoom}
-              friendsSearchFocus={friendsSearchFocus}
-              setFriendsSearchFocus={setFriendsSearchFocus}
-              loggedIn={loggedIn}
-            />
-          )}
-        </div>
+        {selectedPage === "channels" ? (
+          <ChannelsPanel
+            yourChannels={yourChannels}
+            followingChannels={followingChannels}
+            recommendedChannels={recommendedChannels}
+            friends={roomsResults}
+            selectedChannel={selected}
+            handleSelectChannel={handleSelectChannel}
+            handleSelectRoom={handleSelectRoom}
+            handleCreateChannel={handleCreateChannel}
+            setFriendsSearchFocus={setFriendsSearchFocus}
+            loggedIn={loggedIn}
+          />
+        ) : (
+          <FriendsPanel
+            userSearchResults={userSearchResults}
+            userSearchStatus={userSearchStatus}
+            blocks={blocks}
+            handleSearch={handleSearch}
+            initialRooms={roomsResults}
+            selectedRoom={selected}
+            handleSelectRoom={handleSelectRoom}
+            handleProfile={handleProfile}
+            handleCreateRoom={handleCreateRoom}
+            friendsSearchFocus={friendsSearchFocus}
+            setFriendsSearchFocus={setFriendsSearchFocus}
+            loggedIn={loggedIn}
+          />
+        )}
         <Helmet>
           <meta charSet="UFT-8" />
           <title>{strings.mainTitle}</title>

@@ -59,7 +59,7 @@ export default function ChannelsPanel({
   };
 
   return (
-    <div className="flex flex-col w-full sm:w-68 h-full bg-background-primary select-none">
+    <div className="flex flex-col w-3/4 sm:w-68 h-full bg-background-primary select-none">
       <div className="flex-col h-full overflow-y-scroll space-y-2">
         <LeftPanelSubHeader
           headerString={strings.recentFriends}

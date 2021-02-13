@@ -89,7 +89,7 @@ function ChatActions(props) {
   }, [channelId]);
 
   return (
-    <div className="flex items-start py-2 px-1 bg-background-secondary rounded-t-lg space-x-1 md:space-x-2 shadow-xl">
+    <div className="flex items-start py-2 px-1 bg-background-primary shadow-xs border-t border-outline-primary space-x-1 md:space-x-2 shadow-xl">
       {/* EMOJI BUTTON */}
       <ChatActionButtons
         icon={["far", "smile"]}
@@ -119,7 +119,7 @@ function ChatActions(props) {
         </div>
       )}
       <textarea
-        className="w-full h-full py-2 px-3 text-start overflow-hidden rounded-lg resize-none bg-background-secondary focus:outline-none text-copy-primary text-sm transition transform ease-in-out hover:scale-105 duration-100"
+        className="w-full h-full py-2 px-3 text-start overflow-hidden rounded-lg resize-none bg-background-primary focus:outline-none text-copy-primary text-sm"
         placeholder={strings.chatInput}
         maxLength="240"
         ref={textareaRef}

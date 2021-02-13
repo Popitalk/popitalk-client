@@ -19,7 +19,7 @@ function ChatActionButtons({ isOpen = false, onClick, icon, gif }) {
         }`}
         onClick={onClick}
         className={`${
-          isOpen && "bg-copy-highlight"
+          isOpen ? "bg-copy-highlight" : "hover:bg-background-secondary"
         } w-10 h-10 flex items-center justify-center rounded-lg`}
         analyticsString="Emoji Button: ChatActions"
       />

@@ -33,7 +33,6 @@ function RecommendedChannels() {
 
   const loggedIn = useSelector(state => state.general.loggedIn);
   const isCollapsed = useSelector(state => state.ui.isCollapsed);
-  const isRemoved = useSelector(state => state.ui.isRemoved);
   const followingChannels = useSelector(state => state.followingChannels);
   const discoverChannels = useSelector(state => state.discoverChannels);
   const trendingChannels = useSelector(state => state.trendingChannels);
@@ -213,11 +212,7 @@ function RecommendedChannels() {
   }, [followingChannels]);
 
   return (
-    <div
-      className={`${
-        isRemoved === true && "hidden"
-      } relative w-full h-full overflow-hidden rounded-md bg-background-secondary`}
-    >
+    <div className="relative w-full rounded-md bg-background-secondary">
       {/* OPTION TABS */}
       <div className="flex justify-start overflow-x-auto w-full px-4 h-14 items-center bg-background-tertiary space-x-2 rounded-md">
         <div className="flex-shrink-0">

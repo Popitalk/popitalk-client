@@ -36,7 +36,7 @@ const SiteHeaderWelcome = ({ apiLoading, apiError, dispatchLogin }) => {
 
   useEffect(() => {
     // Triggers collapse when screen size reduces.
-    if (size.width >= 1024 && mobileLogin === false) {
+    if (size.width >= 640 && mobileLogin === false) {
       setMobileLogin(true);
     }
   }, [mobileLogin, size.width]);
