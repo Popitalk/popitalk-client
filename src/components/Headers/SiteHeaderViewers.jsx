@@ -121,7 +121,7 @@ const SiteHeaderViewers = ({ setSearch, search, handleSearch }) => {
           }}
         />
       </div>
-      <div className="w-full sm:w-1/4">
+      <div className="w-1/4 sm:w-1/4">
         <Input
           variant="user"
           size="sm"

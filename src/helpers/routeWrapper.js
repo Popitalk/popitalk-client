@@ -1,5 +1,5 @@
 import React from "react";
-// import { removeLeftPanel } from "../redux/actions";
+import { removeLeftPanel } from "../redux/actions";
 
 export const RouteWrapper = ({
   leftPanel,
@@ -12,12 +12,13 @@ export const RouteWrapper = ({
     return (
       <div className="flex w-screen flex-row h-full overflow-y-auto bg-background-primary">
         {leftPanelIsRemoved && (
-          <div
-            className="fixed h-withoutHeader overflow-y-auto flex-shrink-0 mozilla-thin-scrollbar z-30 bg-black bg-opacity-25"
-            // onClick={() => dispatch(removeLeftPanel())}
-            role="button"
-          >
-            {leftPanel}
+          <div className="fixed flex h-withoutHeader overflow-y-auto flex-shrink-0 mozilla-thin-scrollbar z-30 bg-black bg-opacity-25">
+            <div className="w-3/4 h-full">{leftPanel}</div>
+            <div
+              className="w-1/4 h-full"
+              onClick={() => dispatch(removeLeftPanel())}
+              role="button"
+            />
           </div>
         )}
         <div className="h-withoutHeader overflow-y-scroll w-full">
@@ -47,12 +48,13 @@ export const ChannelWrapper = ({
     return (
       <div className="flex w-screen flex-row h-full overflow-y-auto bg-background-primary">
         {leftPanelIsRemoved && (
-          <div
-            className="fixed h-withoutHeader overflow-y-auto flex-shrink-0 mozilla-thin-scrollbar z-30 bg-black bg-opacity-25"
-            // onClick={() => dispatch(removeLeftPanel())}
-            role="button"
-          >
-            {leftPanel}
+          <div className="fixed flex h-withoutHeader overflow-y-auto flex-shrink-0 mozilla-thin-scrollbar z-30 bg-black bg-opacity-25">
+            <div className="w-3/4 h-full">{leftPanel}</div>
+            <div
+              className="w-1/4 h-full"
+              onClick={() => dispatch(removeLeftPanel())}
+              role="button"
+            />
           </div>
         )}
         {children}

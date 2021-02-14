@@ -96,7 +96,7 @@ class FriendsPanel extends Component {
 
   render() {
     return (
-      <div className="relative flex flex-col w-screen sm:w-84 h-full bg-background-primary select-none">
+      <div className="relative flex flex-col w-screen sm:w-84 h-withoutHeader overflow-y-auto bg-background-primary select-none">
         <div className="py-2 px-4">
           <Button
             styleNone

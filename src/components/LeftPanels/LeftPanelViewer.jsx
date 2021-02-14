@@ -19,7 +19,7 @@ export default function LeftPanelViewer({
   const [recommendedChannelsCount, setRecommendedChannelsCount] = useState(5); // Later on will load more recommendedChannels from api
 
   return (
-    <div className="flex flex-col w-3/4 sm:w-68 h-full bg-background-primary select-none">
+    <div className="flex flex-col w-full sm:w-68 h-withoutHeader overflow-y-scroll bg-background-primary select-none">
       <div className="h-40">
         <PanelHeader
           openSignUpRequiredModal={openSignUpRequiredModal}
