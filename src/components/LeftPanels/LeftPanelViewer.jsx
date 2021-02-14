@@ -20,12 +20,14 @@ export default function LeftPanelViewer({
 
   return (
     <div className="flex flex-col w-3/4 sm:w-68 h-full bg-background-primary select-none">
-      <PanelHeader
-        openSignUpRequiredModal={openSignUpRequiredModal}
-        updateSelectedPage={updateSelectedPage}
-        selectedPage={selectedPage}
-        viewer
-      />
+      <div className="h-40">
+        <PanelHeader
+          openSignUpRequiredModal={openSignUpRequiredModal}
+          updateSelectedPage={updateSelectedPage}
+          selectedPage={selectedPage}
+          viewer
+        />
+      </div>
       <LeftPanelDescription />
       <div className="py-2 w-full bg-background-primary">
         <LeftPanelSubHeader headerString={strings.recommendedChannels} />
