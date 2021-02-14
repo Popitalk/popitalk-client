@@ -15,6 +15,7 @@ export { openEditUserSettingsModal } from "./features/modals/modalsSlice";
 export { openChangePasswordModal } from "./features/modals/modalsSlice";
 export { openBlockedUsersModal } from "./features/modals/modalsSlice";
 export { openRoomExistsModal } from "./features/modals/modalsSlice";
+export { openSignUpRequiredModal } from "./features/modals/modalsSlice";
 export { closeModal } from "./features/modals/modalsSlice";
 export { closeAllModals } from "./features/modals/modalsSlice";
 export { closeModalFinal } from "./features/modals/modalsSlice";

@@ -24,7 +24,8 @@ export default function LeftPanel({
   handleCreateRoom,
   friendsSearchFocus,
   setFriendsSearchFocus,
-  updateSelectedPage
+  updateSelectedPage,
+  openSignUpRequiredModal
 }) {
   const { loggedIn } = useSelector(state => state.general);
   const channels = [...yourChannels, ...followingChannels];
@@ -37,6 +38,7 @@ export default function LeftPanel({
         handleSelectChannel={handleSelectChannel}
         updateSelectedPage={updateSelectedPage}
         selectedPage={selectedPage}
+        openSignUpRequiredModal={openSignUpRequiredModal}
       />
     );
   } else if (isCollapsed) {

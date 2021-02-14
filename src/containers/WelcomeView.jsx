@@ -12,7 +12,6 @@ import strings from "../localization/strings";
 
 function WelcomePage() {
   const dispatch = useDispatch();
-
   const openModal = () => dispatch(openCreateNewAccountModal());
 
   return (

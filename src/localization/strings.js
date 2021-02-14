@@ -313,7 +313,9 @@ let strings = new LocalizedStrings({
     // RoomExistsModal
     thisRoomExists: "This room already exists",
     enterExistingRoom: "Click below to enter the existing room",
-    createNew: "Create New"
+    createNew: "Create New",
+    // SignUpRequiredModal
+    loginRequired: "You must log in to use this feature."
   },
 
   // === KOREAN === //
@@ -619,7 +621,9 @@ let strings = new LocalizedStrings({
     // RoomExistsModal
     thisRoomExists: "선택하신 방이 이미 존재합니다",
     enterExistingRoom: "이미 존재하는 방으로 가시려면 클릭하세요.",
-    createNew: "새로 만들기"
+    createNew: "새로 만들기",
+    // SignUpRequiredModal
+    loginRequired: "이 기능을 사용하려면 로그인하세요."
   },
 
   //  Russian  //

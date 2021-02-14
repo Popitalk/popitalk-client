@@ -11,7 +11,8 @@ import {
   MODAL_LIST,
   MODAL_PROFILE,
   MODAL_ROOM_EXISTS,
-  MODAL_SOCIAL_SHARE
+  MODAL_SOCIAL_SHARE,
+  MODAL_SIGNUP_REQUIRED
 } from "../../../helpers/constants";
 
 const openModal = (state, action) => {
@@ -157,4 +158,9 @@ export const openRoomExists = {
 export const openSocialShare = {
   reducer: openModal,
   prepare: () => ({ payload: { component: MODAL_SOCIAL_SHARE } })
+};
+
+export const openSignUpRequired = {
+  reducer: openModal,
+  prepare: () => ({ payload: { component: MODAL_SIGNUP_REQUIRED } })
 };

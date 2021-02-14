@@ -10,7 +10,11 @@ import {
   setLeftPanelActiveTabChannels,
   setLeftPanelActiveTabFriends
 } from "../redux/actions";
-import { openInviteModal, openProfileModal } from "../redux";
+import {
+  openSignUpRequiredModal,
+  openInviteModal,
+  openProfileModal
+} from "../redux";
 import history from "../history";
 import {
   mapIdsToUsers,
@@ -153,6 +157,9 @@ export default function LeftPanelContainer() {
       console.log("no such page exists.");
     }
   };
+  const openRequiredModal = () => {
+    dispatch(openSignUpRequiredModal());
+  };
 
   return (
     <Switch>
@@ -176,6 +183,7 @@ export default function LeftPanelContainer() {
           handleCreateRoom={() => handleCreateRoom(selectedChannel)}
           setFriendsSearchFocus={setFriendsSearchFocus}
           updateSelectedPage={updateSelectedPageAndMain}
+          openSignUpRequiredModal={openRequiredModal}
         />
       </Route>
       <Route exact path="/friends">
@@ -220,6 +228,7 @@ export default function LeftPanelContainer() {
           handleCreateRoom={() => handleCreateRoom(selectedChannel)}
           setFriendsSearchFocus={setFriendsSearchFocus}
           updateSelectedPage={updateSelectedPageAndMain}
+          openSignUpRequiredModal={openRequiredModal}
         />
       </Route>
     </Switch>

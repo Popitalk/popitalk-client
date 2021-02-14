@@ -58,8 +58,8 @@ const SiteHeaderWelcome = ({ apiLoading, apiError, dispatchLogin }) => {
         className={`${
           mobileLogin === true
             ? "hidden"
-            : "absolute w-full z-30 -ml-4 px-8 mt-14"
-        } sm:flex flex-col bg-background-primary rounded-lg`}
+            : "absolute w-full z-30 -ml-4 px-8 mt-12"
+        } sm:flex flex-col bg-background-primary shadow-xl rounded-b-lg`}
       >
         <div className="flex flex-col p-8 sm:p-0 sm:flex-row space-x-2 space-y-4 items-end">
           <div className={sectionClassName}>

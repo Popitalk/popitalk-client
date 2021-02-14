@@ -7,7 +7,8 @@ export default function PanelHeader({
   updateSelectedPage,
   selectedPage,
   viewer,
-  numberOfNotifications
+  numberOfNotifications,
+  openSignUpRequiredModal
 }) {
   const buttonClassName =
     "flex h-16 items-center justify-center w-full rounded-md duration-100 cursor-pointer hover:bg-hover-highlight space-x-2";
@@ -36,7 +37,11 @@ export default function PanelHeader({
       <div
         className={buttonClassName}
         role="button"
-        onClick={!viewer ? () => updateSelectedPage("friends") : ""}
+        onClick={
+          !viewer
+            ? () => updateSelectedPage("friends")
+            : openSignUpRequiredModal
+        }
       >
         <div className={buttonInner}>
           <FriendsIcon active={selectedPage === "friends" ? true : false} />

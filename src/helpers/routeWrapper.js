@@ -1,5 +1,5 @@
 import React from "react";
-import { removeLeftPanel } from "../redux/actions";
+// import { removeLeftPanel } from "../redux/actions";
 
 export const RouteWrapper = ({
   leftPanel,
@@ -14,7 +14,7 @@ export const RouteWrapper = ({
         {leftPanelIsRemoved && (
           <div
             className="fixed h-withoutHeader overflow-y-auto flex-shrink-0 mozilla-thin-scrollbar z-30 bg-black bg-opacity-25"
-            onClick={() => dispatch(removeLeftPanel())}
+            // onClick={() => dispatch(removeLeftPanel())}
             role="button"
           >
             {leftPanel}
@@ -49,7 +49,7 @@ export const ChannelWrapper = ({
         {leftPanelIsRemoved && (
           <div
             className="fixed h-withoutHeader overflow-y-auto flex-shrink-0 mozilla-thin-scrollbar z-30 bg-black bg-opacity-25"
-            onClick={() => dispatch(removeLeftPanel())}
+            // onClick={() => dispatch(removeLeftPanel())}
             role="button"
           >
             {leftPanel}

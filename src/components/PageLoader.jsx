@@ -26,7 +26,7 @@ export default function PageLoader() {
 
   return (
     <div className="flex flex-col h-screen w-screen bg-background-primary">
-      <div className="flex items-center px-6 h-12 w-full bg-background-primary">
+      <div className="flex items-center px-6 h-14 w-full bg-background-primary">
         <img src={Logo} className="w-8 h-8" alt="Popitalk Logo" />
       </div>
       <div className="flex flex-row h-full w-full rounded-lg bg-background-secondary">
