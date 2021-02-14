@@ -16,9 +16,12 @@ function ChannelCardList({
         <p className="text-sm text-copy-secondary">
           {strings.followingChannelsPlaceholder}
         </p>
-        <Button actionButton size="md" onClick={onClick}>
-          {strings.discoverChannels}
-        </Button>
+        <Button
+          styleNone
+          styleNoneContent={strings.discoverChannels}
+          className="text-copy-link hover:underline space-x-2 text-sm"
+          onClick={onClick}
+        />
       </div>
     );
   }

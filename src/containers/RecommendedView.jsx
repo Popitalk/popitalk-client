@@ -213,7 +213,7 @@ function RecommendedChannels() {
   return (
     <div className="relative w-full bg-background-secondary">
       {/* OPTION TABS */}
-      <div className="flex justify-start overflow-x-auto w-full px-4 h-14 items-center bg-background-tertiary space-x-2 rounded-md">
+      <div className="flex fixed justify-start overflow-x-auto w-full px-4 h-12 items-center bg-background-tertiary space-x-2 z-30">
         {tabs.map((img, idx) => {
           return (
             <Button
@@ -224,7 +224,7 @@ function RecommendedChannels() {
               styleNoneContentClassName="font-bold text-sm"
               hoverable
               key={idx}
-              className={`h-10 px-4 space-x-2 flex-shrink-0 rounded-lg shadow-xs ${
+              className={`h-8 px-4 space-x-2 flex-shrink-0 rounded-md shadow-xs ${
                 tabSelected === img.tab
                   ? "text-copy-tertiary bg-copy-link"
                   : "text-copy-secondary bg-background-primary"
@@ -235,7 +235,7 @@ function RecommendedChannels() {
           );
         })}
       </div>
-      <div className="h-full overflow-y-scroll">
+      <div className="h-full overflow-y-scroll pt-12">
         {!isSearchForChannels && (
           <a href="https://medium.com/popitalk/how-to-use-popitalk-4b89c3f08089">
             <div className="relative flex justify-center w-full h-64 sm:h-84 xxl:h-100 bg-background-ad">
