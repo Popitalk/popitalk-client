@@ -23,7 +23,7 @@
   --color-text-disabled: #A5A5A5;
 
   /* === BORDER === */
-  --color-border-primary: #2A2C2D;
+  --color-border-primary: #43474f;
   --color-border-image1: transparent;
   --color-border-image2: #2A2C2D;
 
@@ -52,7 +52,7 @@
   --color-text-disabled: #a5a5a5;
 
   /* === BORDER === */
-  --color-border-primary: #E2E2E2;
+  --color-border-primary: #e2e2e2;
   --color-border-image1: transparent;
   --color-border-image2: #FFFFFF;
 
@@ -215,6 +215,12 @@ a {
 .max-w-3xs {
   max-width: 12em;
 }
-
+.h-screen {
+  @supports (-webkit-appearance:none) {
+    .os-android & {
+      min-height: calc(100vh - 56px);
+    }
+  }
+}
 @tailwind components;
 @tailwind utilities;

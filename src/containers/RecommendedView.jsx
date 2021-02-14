@@ -7,7 +7,6 @@ import Button from "../components/Controls/Button.jsx";
 import LoadMoreButton from "../components/Controls/LoadMoreButton";
 import ChannelCardList from "../components/ThumbnailCardLists/ChannelCardList.jsx";
 import ChannelSearchList from "../components/ThumbnailCardLists/ChannelSearchList.jsx";
-import Input from "../components/Controls/Input.jsx";
 // Localization
 import strings from "../localization/strings";
 // Helpers
@@ -33,7 +32,6 @@ function RecommendedChannels() {
 
   const loggedIn = useSelector(state => state.general.loggedIn);
   const isCollapsed = useSelector(state => state.ui.isCollapsed);
-  const isRemoved = useSelector(state => state.ui.isRemoved);
   const followingChannels = useSelector(state => state.followingChannels);
   const discoverChannels = useSelector(state => state.discoverChannels);
   const trendingChannels = useSelector(state => state.trendingChannels);
@@ -213,23 +211,9 @@ function RecommendedChannels() {
   }, [followingChannels]);
 
   return (
-    <div
-      className={`${
-        isRemoved === true && "hidden"
-      } relative w-full h-full overflow-hidden rounded-md bg-background-secondary`}
-    >
+    <div className="relative w-full bg-background-secondary">
       {/* OPTION TABS */}
-      <div className="flex justify-start overflow-x-auto w-full px-4 h-14 items-center bg-background-tertiary space-x-2 rounded-md">
-        <div className="flex-shrink-0">
-          <Input
-            variant="channel"
-            size="sm"
-            value={search}
-            placeholder={strings.channelSearchInput}
-            onChange={e => setSearch(e.target.value)}
-            onClick={handleSearch}
-          />
-        </div>
+      <div className="flex justify-start overflow-x-auto w-full px-4 h-12 items-center bg-background-tertiary space-x-2">
         {tabs.map((img, idx) => {
           return (
             <Button
@@ -240,7 +224,7 @@ function RecommendedChannels() {
               styleNoneContentClassName="font-bold text-sm"
               hoverable
               key={idx}
-              className={`h-10 px-4 space-x-2 flex-shrink-0 rounded-lg shadow-xs ${
+              className={`h-8 px-4 space-x-2 flex-shrink-0 rounded-md shadow-xs ${
                 tabSelected === img.tab
                   ? "text-copy-tertiary bg-copy-link"
                   : "text-copy-secondary bg-background-primary"
@@ -254,7 +238,7 @@ function RecommendedChannels() {
       <div className="h-full overflow-y-scroll">
         {!isSearchForChannels && (
           <a href="https://medium.com/popitalk/how-to-use-popitalk-4b89c3f08089">
-            <div className="relative flex justify-center w-full h-64 h-auto sm:h-84 bg-background-ad">
+            <div className="relative flex justify-center w-full h-64 sm:h-84 xxl:h-100 bg-background-ad">
               <Button
                 hoverable
                 styleNone
@@ -263,7 +247,7 @@ function RecommendedChannels() {
                 className="bg-background-secondary absolute top-0 right-0 m-2 space-x-2 py-1 px-2 rounded-lg text-copy-primary text-sm"
               />
               <video
-                className="flex h-64 sm:h-84 object-cover w-full lg:w-3/5 object-bottom"
+                className="flex object-cover w-full lg:w-3/5 object-bottom"
                 autoPlay
                 loop
                 muted

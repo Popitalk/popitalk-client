@@ -96,18 +96,25 @@ class FriendsPanel extends Component {
 
   render() {
     return (
-      <div className="relative flex flex-col w-full sm:w-84 h-full bg-background-primary select-none overflow-y-auto">
-        <div>
-          <LeftPanelSubHeader
-            headerString={
-              !this.state.open ? strings.directRoom : strings.searchFriends
-            }
-            button="pen"
-            onClick={() => this.props.handleCreateRoom()}
-            tooltip={strings.newRoomButton}
-            analyticsString="Create Room Button: FriendsPanel"
+      <div className="relative flex flex-col w-screen sm:w-84 h-withoutHeader overflow-y-auto bg-background-primary select-none">
+        <div className="py-2 px-4">
+          <Button
+            styleNone
+            icon="arrow-left"
+            styleNoneContent={strings.backToChannels}
+            className="text-copy-link hover:underline space-x-2 text-sm"
+            onClick={() => this.props.updateSelectedPage("channels")}
           />
         </div>
+        <LeftPanelSubHeader
+          headerString={
+            !this.state.open ? strings.directRoom : strings.searchFriends
+          }
+          button="pen"
+          onClick={() => this.props.handleCreateRoom()}
+          tooltip={strings.newRoomButton}
+          analyticsString="Create Room Button: FriendsPanel"
+        />
         {!this.state.open && (
           <div className="px-3">
             <Button

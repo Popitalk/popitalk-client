@@ -6,21 +6,22 @@ import ReactGa from "react-ga";
 // Containers
 import Header from "../containers/Header";
 import LeftPanel from "../containers/LeftPanel";
+import FriendsView from "../containers/FriendsView";
 // Components
 import { PublicRoute, GeneralRoute, PrivateRoute } from "../components/Routers";
 import PageLoader from "../components/PageLoader";
 // Helpers
 import strings from "../localization/strings";
 import { ThemeProvider } from "../helpers/themeContext";
-import { RouteWrapper } from "../helpers/routeWrapper";
+import { RouteWrapper, ChannelWrapper } from "../helpers/routeWrapper";
+import { useWindowSize } from "../helpers/functions";
+import "../helpers/initIcons";
 // Redux
 import { getTopCategories } from "../redux";
 import { validateSession } from "../redux/actions";
 // Styles
 import "../styles/app.css";
 import "../styles/scrollbars.css";
-import "../helpers/initIcons";
-import FriendsView from "../containers/FriendsView";
 
 const WelcomePage = lazy(() => import("../containers/WelcomeView"));
 const RecommendedView = lazy(() => import("../containers/RecommendedView"));
@@ -33,9 +34,11 @@ const NotFoundPage = lazy(() => import("../components/NotFoundPage"));
 
 export default function App() {
   const dispatch = useDispatch();
+  const windowSize = useWindowSize();
 
   const validatedSession = useSelector(state => state.general.validatedSession);
   const { wsConnected } = useSelector(state => state.general);
+  const leftPanelIsRemoved = useSelector(state => state.ui.isRemoved);
 
   useEffect(() => {
     dispatch(validateSession());
@@ -57,49 +60,84 @@ export default function App() {
         <PageLoader />
       </ThemeProvider>
     );
-
   return (
     <Suspense fallback={<PageLoader />}>
       <ThemeProvider>
         <ModalManager />
-        <div className="h-screen flex flex-col">
-          <Header />
+        <div className="h-screen flex flex-col overflow-hidden">
+          <Header windowSize={windowSize} />
           <Switch>
             <PublicRoute exact path="/welcome">
               <WelcomePage />
             </PublicRoute>
             <GeneralRoute exact path="/">
-              <RouteWrapper leftPanel={leftPanel}>
+              <RouteWrapper
+                leftPanel={leftPanel}
+                windowSize={windowSize}
+                leftPanelIsRemoved={leftPanelIsRemoved}
+                dispatch={dispatch}
+              >
                 <RecommendedView />
               </RouteWrapper>
             </GeneralRoute>
             <GeneralRoute exact path="/friends">
-              <RouteWrapper leftPanel={leftPanel}>
+              <RouteWrapper
+                leftPanel={leftPanel}
+                windowSize={windowSize}
+                leftPanelIsRemoved={leftPanelIsRemoved}
+                dispatch={dispatch}
+              >
                 <FriendsView />
               </RouteWrapper>
             </GeneralRoute>
             <PrivateRoute exact path="/create">
-              <RouteWrapper leftPanel={leftPanel}>
+              <RouteWrapper
+                leftPanel={leftPanel}
+                windowSize={windowSize}
+                leftPanelIsRemoved={leftPanelIsRemoved}
+                dispatch={dispatch}
+              >
                 <CreateChannelContainer />
               </RouteWrapper>
             </PrivateRoute>
             <GeneralRoute exact path={`/channels/:channelId`}>
-              <RouteWrapper leftPanel={leftPanel}>
+              <ChannelWrapper
+                leftPanel={leftPanel}
+                windowSize={windowSize}
+                leftPanelIsRemoved={leftPanelIsRemoved}
+                dispatch={dispatch}
+              >
                 <Channel />
-              </RouteWrapper>
+              </ChannelWrapper>
             </GeneralRoute>
             <GeneralRoute exact path={`/channels/:channelId/:tab`}>
-              <RouteWrapper leftPanel={leftPanel}>
+              <ChannelWrapper
+                leftPanel={leftPanel}
+                windowSize={windowSize}
+                leftPanelIsRemoved={leftPanelIsRemoved}
+                dispatch={dispatch}
+              >
                 <Channel />
-              </RouteWrapper>
+              </ChannelWrapper>
             </GeneralRoute>
             <PrivateRoute exact path="/rooms/:roomId">
-              <RouteWrapper leftPanel={leftPanel}>
+              <ChannelWrapper
+                leftPanel={leftPanel}
+                windowSize={windowSize}
+                leftPanelIsRemoved={leftPanelIsRemoved}
+                dispatch={dispatch}
+                channelStructure
+              >
                 <Channel />
-              </RouteWrapper>
+              </ChannelWrapper>
             </PrivateRoute>
             <PrivateRoute exact path="/users/:userId">
-              <RouteWrapper leftPanel={leftPanel} />
+              <RouteWrapper
+                leftPanel={leftPanel}
+                windowSize={windowSize}
+                leftPanelIsRemoved={leftPanelIsRemoved}
+                dispatch={dispatch}
+              />
             </PrivateRoute>
             <Route path="*">
               <NotFoundPage />

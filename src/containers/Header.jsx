@@ -1,8 +1,14 @@
-import React, { useEffect } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Route, Switch, useHistory, useLocation } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 
-import { login, logout, deleteAccount } from "../redux/actions";
+import {
+  login,
+  logout,
+  deleteAccount,
+  searchChannels,
+  setSelectedTab
+} from "../redux/actions";
 import {
   openProfileModal,
   openEditUserSettingsModal,
@@ -16,7 +22,7 @@ import {
   SiteHeaderWelcome
 } from "../components/Headers";
 
-const HeaderContainer = () => {
+const HeaderContainer = ({ windowSize }) => {
   const history = useHistory();
   const { pathname } = useLocation();
   const dispatch = useDispatch();
@@ -26,13 +32,15 @@ const HeaderContainer = () => {
   const relationships = useSelector(state => state.relationships);
   const users = useSelector(state => state.users);
   const { status, loading, error } = useSelector(state => state.api.loginApi);
-  const leftPanelActiveTab = useSelector(state => state.ui.leftPanelActiveTab);
 
   const { receivedFriendRequests, sentFriendRequests } = relationships;
+  const [search, setSearch] = useState("");
 
-  useEffect(() => {
-    if (status === "success") history.push("/");
-  }, [history, status]);
+  const handleSearch = useCallback(() => {
+    history.push("/");
+    dispatch(searchChannels({ channelName: search }));
+    dispatch(setSelectedTab(false));
+  }, [history, dispatch, search]);
 
   const setUserRelationships = user =>
     setRelationshipHandlers(user, relationships, dispatch, defaultAvatar, id);
@@ -45,18 +53,21 @@ const HeaderContainer = () => {
       })
     );
   };
-  //PANEL HEADER
-  const updateSelectedPageAndMain = page => {
-    const pages = {
-      channels: "/",
-      friends: "/friends"
+
+  useEffect(() => {
+    if (status === "success") history.push("/");
+  }, [history, status]);
+  useEffect(() => {
+    const listener = event => {
+      if (event.code === "Enter" || event.code === "NumpadEnter") {
+        handleSearch();
+      }
     };
-    if (pages[page]) {
-      history.push(pages[page]);
-    } else {
-      console.log("no such page exists.");
-    }
-  };
+    document.addEventListener("keydown", listener);
+    return () => {
+      document.removeEventListener("keydown", listener);
+    };
+  }, [handleSearch, search]);
 
   const requests = [...receivedFriendRequests, ...sentFriendRequests];
   const mappedUsers = mapIdsToUsers(requests, users, defaultAvatar);
@@ -65,83 +76,27 @@ const HeaderContainer = () => {
 
   if (loggedIn)
     return (
-      <Switch>
-        <Route exact path="/">
-          <SiteHeaderMain
-            userID={id}
-            username={username}
-            avatar={avatar || defaultAvatar}
-            friendRequests={friendRequests}
-            notifications={[]}
-            openProfileHandler={id => dispatch(openProfileModal(id))}
-            openBlockedUsersHandler={() => dispatch(openBlockedUsersModal())}
-            openEditInformationHandler={() =>
-              dispatch(openEditUserSettingsModal())
-            }
-            openChangePasswordHandler={() =>
-              dispatch(openChangePasswordModal())
-            }
-            clearNotificationsHandler={() => console.log("clear notifications")}
-            deleteAccountHandler={() => dispatch(deleteAccount())}
-            updateSelectedPage={updateSelectedPageAndMain}
-            selectedPage={"channels"}
-            logoutHandler={() => {
-              dispatch(logout());
-              history.push("/");
-            }}
-          />
-        </Route>
-        <Route exact path="/friends">
-          <SiteHeaderMain
-            userID={id}
-            username={username}
-            avatar={avatar || defaultAvatar}
-            friendRequests={friendRequests}
-            notifications={[]}
-            openProfileHandler={id => dispatch(openProfileModal(id))}
-            openBlockedUsersHandler={() => dispatch(openBlockedUsersModal())}
-            openEditInformationHandler={() =>
-              dispatch(openEditUserSettingsModal())
-            }
-            openChangePasswordHandler={() =>
-              dispatch(openChangePasswordModal())
-            }
-            clearNotificationsHandler={() => console.log("clear notifications")}
-            deleteAccountHandler={() => dispatch(deleteAccount())}
-            updateSelectedPage={updateSelectedPageAndMain}
-            selectedPage="friends"
-            logoutHandler={() => {
-              dispatch(logout());
-              history.push("/");
-            }}
-          />
-        </Route>
-        <Route>
-          <SiteHeaderMain
-            userID={id}
-            username={username}
-            avatar={avatar || defaultAvatar}
-            friendRequests={friendRequests}
-            notifications={[]}
-            openProfileHandler={id => dispatch(openProfileModal(id))}
-            openBlockedUsersHandler={() => dispatch(openBlockedUsersModal())}
-            openEditInformationHandler={() =>
-              dispatch(openEditUserSettingsModal())
-            }
-            openChangePasswordHandler={() =>
-              dispatch(openChangePasswordModal())
-            }
-            clearNotificationsHandler={() => console.log("clear notifications")}
-            deleteAccountHandler={() => dispatch(deleteAccount())}
-            updateSelectedPage={updateSelectedPageAndMain}
-            selectedPage={leftPanelActiveTab}
-            logoutHandler={() => {
-              dispatch(logout());
-              history.push("/");
-            }}
-          />
-        </Route>
-      </Switch>
+      <SiteHeaderMain
+        userID={id}
+        username={username}
+        avatar={avatar || defaultAvatar}
+        friendRequests={friendRequests}
+        notifications={[]}
+        openProfileHandler={id => dispatch(openProfileModal(id))}
+        openBlockedUsersHandler={() => dispatch(openBlockedUsersModal())}
+        openEditInformationHandler={() => dispatch(openEditUserSettingsModal())}
+        openChangePasswordHandler={() => dispatch(openChangePasswordModal())}
+        clearNotificationsHandler={() => console.log("clear notifications")}
+        deleteAccountHandler={() => dispatch(deleteAccount())}
+        logoutHandler={() => {
+          dispatch(logout());
+          history.push("/");
+        }}
+        setSearch={e => setSearch(e.target.value)}
+        search={search}
+        handleSearch={handleSearch}
+        windowSize={windowSize}
+      />
     );
   if (signUp)
     return (
@@ -151,7 +106,13 @@ const HeaderContainer = () => {
         dispatchLogin={handleLogin}
       />
     );
-  return <SiteHeaderViewers />;
+  return (
+    <SiteHeaderViewers
+      setSearch={e => setSearch(e.target.value)}
+      search={search}
+      handleSearch={handleSearch}
+    />
+  );
 };
 
 export default HeaderContainer;

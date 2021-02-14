@@ -1,11 +1,8 @@
 import React, { Fragment } from "react";
 import { useSelector } from "react-redux";
-import { Helmet } from "react-helmet";
-
 import FriendsPanel from "./FriendsPanel";
 import CollapsedPanel from "./CollapsedPanel";
 import ChannelsPanel from "./ChannelsPanel";
-import strings from "../../localization/strings";
 import LeftPanelViewer from "./LeftPanelViewer";
 
 export default function LeftPanel({
@@ -24,27 +21,25 @@ export default function LeftPanel({
   handleCreateChannel,
   handleProfile,
   isCollapsed,
-  isRemoved,
   handleCreateRoom,
   friendsSearchFocus,
-  setFriendsSearchFocus
+  setFriendsSearchFocus,
+  updateSelectedPage,
+  openSignUpRequiredModal
 }) {
   const { loggedIn } = useSelector(state => state.general);
   const channels = [...yourChannels, ...followingChannels];
 
   if (!loggedIn) {
     return (
-      <div
-        className={
-          isRemoved === true ? "w-full sm:w-full z-30" : "hidden sm:flex z-30"
-        }
-      >
-        <LeftPanelViewer
-          recommendedChannels={recommendedChannels}
-          selectedChannel={selected}
-          handleSelectChannel={handleSelectChannel}
-        />
-      </div>
+      <LeftPanelViewer
+        recommendedChannels={recommendedChannels}
+        selectedChannel={selected}
+        handleSelectChannel={handleSelectChannel}
+        updateSelectedPage={updateSelectedPage}
+        selectedPage={selectedPage}
+        openSignUpRequiredModal={openSignUpRequiredModal}
+      />
     );
   } else if (isCollapsed) {
     return (
@@ -60,12 +55,8 @@ export default function LeftPanel({
     );
   } else {
     return (
-      <Fragment>
-        <div
-          className={
-            isRemoved === true ? "w-screen sm:w-full" : "hidden sm:flex"
-          }
-        >
+      <>
+        <Fragment>
           {selectedPage === "channels" ? (
             <ChannelsPanel
               yourChannels={yourChannels}
@@ -78,6 +69,8 @@ export default function LeftPanel({
               handleCreateChannel={handleCreateChannel}
               setFriendsSearchFocus={setFriendsSearchFocus}
               loggedIn={loggedIn}
+              updateSelectedPage={updateSelectedPage}
+              selectedPage={selectedPage}
             />
           ) : (
             <FriendsPanel
@@ -93,16 +86,12 @@ export default function LeftPanel({
               friendsSearchFocus={friendsSearchFocus}
               setFriendsSearchFocus={setFriendsSearchFocus}
               loggedIn={loggedIn}
+              updateSelectedPage={updateSelectedPage}
+              selectedPage={selectedPage}
             />
           )}
-        </div>
-        <Helmet>
-          <meta charSet="UFT-8" />
-          <title>{strings.mainTitle}</title>
-          <meta name="description" content={strings.mainDescription} />
-          <meta name="keywords" content={strings.mainKeywords} />
-        </Helmet>
-      </Fragment>
+        </Fragment>
+      </>
     );
   }
 }

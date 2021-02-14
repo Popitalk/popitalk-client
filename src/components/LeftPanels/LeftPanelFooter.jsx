@@ -68,8 +68,8 @@ export default function LeftPanelFooter() {
     ));
   }
   return (
-    <div>
-      <nav>
+    <div className="bg-background-primary">
+      <nav className="bg-background-primary">
         {/* === Directory === */}
         <ul className="flex flex-wrap text-xs my-4 -ml-1">
           <DirectoryList items={directoryListArray} />
@@ -85,7 +85,7 @@ export default function LeftPanelFooter() {
           <MoreInfoList items={socialMediaListArray} />
         </ul>
       </nav>
-      <div className="flex my-2 space-x-2">
+      <div className="flex my-2 space-x-2 bg-background-primary">
         <a href="https://ko-fi.com/popitalk">
           <Button
             imageButton
@@ -97,7 +97,7 @@ export default function LeftPanelFooter() {
           />
         </a>
       </div>
-      <div className="text-xs text-copy-secondary pt-4">
+      <div className="text-xs text-copy-secondary py-12 bg-background-primary">
         <p>© 2021 Popitalk, Inc.</p>
         <p>CEO: Andrew Jang</p>
         <p>Made with love by Popitalk Team.</p>

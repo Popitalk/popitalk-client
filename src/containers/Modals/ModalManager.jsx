@@ -14,6 +14,7 @@ import ListUsersContainer from "./ListUsersContainer";
 import DeleteChannelContainer from "./DeleteChannelContainer";
 import DeletePostContainer from "./DeletePostContainer.jsx";
 import CreateNewAccountContainer from "./CreateNewAccountContainer";
+import SignUpRequiredContainer from "./SignUpRequiredContainer";
 import {
   MODAL_PROFILE,
   MODAL_EDIT_USER_SETTINGS,
@@ -26,7 +27,8 @@ import {
   MODAL_LIST,
   MODAL_DELETE_CHANNEL,
   MODAL_DELETE_POST,
-  MODAL_CREATE_NEW_ACCOUNT
+  MODAL_CREATE_NEW_ACCOUNT,
+  MODAL_SIGNUP_REQUIRED
 } from "../../helpers/constants";
 
 const ModalComponents = {
@@ -41,7 +43,8 @@ const ModalComponents = {
   [MODAL_LIST]: ListUsersContainer,
   [MODAL_DELETE_CHANNEL]: DeleteChannelContainer,
   [MODAL_DELETE_POST]: DeletePostContainer,
-  [MODAL_CREATE_NEW_ACCOUNT]: CreateNewAccountContainer
+  [MODAL_CREATE_NEW_ACCOUNT]: CreateNewAccountContainer,
+  [MODAL_SIGNUP_REQUIRED]: SignUpRequiredContainer
 };
 
 const ModalManager = () => {

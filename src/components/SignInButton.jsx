@@ -12,7 +12,7 @@ const SignInButton = () => {
       styleNone
       styleNoneContent={strings.createNewAccountButton}
       icon="user-circle"
-      className="text-copy-link py-2 px-4 rounded-md border-copy-link border text-sm space-x-2"
+      className="bg-copy-link py-2 px-4 rounded-md border-copy-link border space-x-2 text-copy-tertiary"
       onClick={() => history.push("/welcome")}
     />
   );

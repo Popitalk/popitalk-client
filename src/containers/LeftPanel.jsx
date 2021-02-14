@@ -10,7 +10,11 @@ import {
   setLeftPanelActiveTabChannels,
   setLeftPanelActiveTabFriends
 } from "../redux/actions";
-import { openInviteModal, openProfileModal } from "../redux";
+import {
+  openSignUpRequiredModal,
+  openInviteModal,
+  openProfileModal
+} from "../redux";
 import history from "../history";
 import {
   mapIdsToUsers,
@@ -52,7 +56,6 @@ export default function LeftPanelContainer() {
   const { defaultAvatar, defaultIcon } = useSelector(state => state.general);
   const { id: ownId, channelIds, roomIds } = useSelector(state => state.self);
   const isCollapsed = useSelector(state => state.ui.isCollapsed);
-  const isRemoved = useSelector(state => state.ui.isRemoved);
   const leftPanelActiveTab = useSelector(state => state.ui.leftPanelActiveTab);
 
   const blocks = relationships.blockers.length + relationships.blocked.length;
@@ -143,6 +146,20 @@ export default function LeftPanelContainer() {
     history.push("/create");
     dispatch(setLeftPanelActiveTabChannels());
   };
+  const updateSelectedPageAndMain = page => {
+    const pages = {
+      channels: "/",
+      friends: "/friends"
+    };
+    if (pages[page]) {
+      history.push(pages[page]);
+    } else {
+      console.log("no such page exists.");
+    }
+  };
+  const openRequiredModal = () => {
+    dispatch(openSignUpRequiredModal());
+  };
 
   return (
     <Switch>
@@ -162,10 +179,11 @@ export default function LeftPanelContainer() {
           handleCreateChannel={handleCreateChannel}
           handleProfile={handleOpenProfile}
           isCollapsed={isCollapsed}
-          isRemoved={isRemoved}
           selectedPage="channels"
           handleCreateRoom={() => handleCreateRoom(selectedChannel)}
           setFriendsSearchFocus={setFriendsSearchFocus}
+          updateSelectedPage={updateSelectedPageAndMain}
+          openSignUpRequiredModal={openRequiredModal}
         />
       </Route>
       <Route exact path="/friends">
@@ -183,11 +201,11 @@ export default function LeftPanelContainer() {
           handleCreateChannel={handleCreateChannel}
           handleProfile={handleOpenProfile}
           isCollapsed={isCollapsed}
-          isRemoved={isRemoved}
           selectedPage="friends"
           handleCreateRoom={() => handleCreateRoom(selectedChannel)}
           friendsSearchFocus={friendsSearchFocus}
           setFriendsSearchFocus={setFriendsSearchFocus}
+          updateSelectedPage={updateSelectedPageAndMain}
         />
       </Route>
       <Route>
@@ -206,10 +224,11 @@ export default function LeftPanelContainer() {
           handleCreateChannel={handleCreateChannel}
           handleProfile={handleOpenProfile}
           isCollapsed={isCollapsed}
-          isRemoved={isRemoved}
           selectedPage={leftPanelActiveTab}
           handleCreateRoom={() => handleCreateRoom(selectedChannel)}
           setFriendsSearchFocus={setFriendsSearchFocus}
+          updateSelectedPage={updateSelectedPageAndMain}
+          openSignUpRequiredModal={openRequiredModal}
         />
       </Route>
     </Switch>

@@ -22,7 +22,8 @@ import {
   openEditUserSettings,
   openChangePassword,
   openBlockedUsers,
-  openRoomExists
+  openRoomExists,
+  openSignUpRequired
 } from "./openModalReducers";
 
 const initialState = {
@@ -66,6 +67,7 @@ const modalsSlice = createSlice({
     openChangePasswordModal: openChangePassword,
     openBlockedUsersModal: openBlockedUsers,
     openRoomExistsModal: openRoomExists,
+    openSignUpRequiredModal: openSignUpRequired,
     closeModal: R_closeModal,
     closeAllModals: R_closeAllModals,
     closeModalFinal: R_closeModalFinal
@@ -94,6 +96,7 @@ export const {
   openChangePasswordModal,
   openBlockedUsersModal,
   openRoomExistsModal,
+  openSignUpRequiredModal,
   closeModal,
   closeAllModals,
   closeModalFinal

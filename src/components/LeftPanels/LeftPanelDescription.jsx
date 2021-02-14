@@ -3,8 +3,7 @@ import strings from "../../localization/strings";
 import SignInButton from "../SignInButton";
 
 export default function LeftPanelDescription() {
-  const boxClassName =
-    "bg-background-secondary p-4 space-y-4 rounded-md shadow-xs";
+  const boxClassName = "bg-background-primary space-y-4 ";
   const [hover, setHover] = useState("");
   const iconsListArray = [
     {
@@ -39,7 +38,7 @@ export default function LeftPanelDescription() {
   }
 
   return (
-    <div className="space-y-4">
+    <div className="p-4 px-6 space-y-4 border-t border-b border-outline-primary">
       <div className={boxClassName}>
         <h1 className="text-copy-primary">{strings.descriptionHeader2}</h1>
         <div className="flex justify-evenly space-x-2">
@@ -58,7 +57,7 @@ export default function LeftPanelDescription() {
       </div>
       {/* === Sign Up === */}
       <div className={boxClassName}>
-        <p className="text-copy-primary font-bold text-sm">
+        <p className="text-copy-secondary text-sm">
           {strings.friendsButtonHover}
         </p>
         <SignInButton />

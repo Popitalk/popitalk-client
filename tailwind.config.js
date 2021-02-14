@@ -33,10 +33,10 @@ module.exports = {
     },
     screens: {
       sm: "640px",
-      md: "900px",
-      lg: "1250px",
+      md: "768px",
+      lg: "1024px",
       xl: "1280px",
-      xxl: "1400px"
+      xxl: "1536px"
     },
     fontFamily: {
       sans: [
@@ -144,6 +144,7 @@ module.exports = {
         44: "11rem",
         68: "17rem",
         84: "21rem",
+        94: "23rem",
         100: "26rem",
         102: "28rem",
         104: "30rem"
@@ -173,7 +174,9 @@ module.exports = {
       height: {
         chatBox: "27rem",
         chatChild: "24rem",
-        modalFull: "70vh"
+        modalFull: "70vh",
+        mobileFull: "90vh",
+        withoutHeader: "calc(100vh - 3.5rem)"
       },
       scale: {
         200: "2"

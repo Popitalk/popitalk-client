@@ -123,7 +123,7 @@ let strings = new LocalizedStrings({
     createNewAccountButton: "Sign In",
     createChannelButton: "Create channel",
     newRoomButton: "New Direct Room",
-    directRoom: "DIRECT ROOMS",
+    directRoom: "FRIENDS",
     searchFriends: "SEARCH FRIENDS",
     requestVideoButton: "Send a request to the admin",
     createButton: "Create",
@@ -140,6 +140,7 @@ let strings = new LocalizedStrings({
     backToTrendingButton: "Back to Trending",
     sendFeedbackButton: "Popitalk Team",
     copyButton: "Copy",
+    backToChannels: "Back to channels",
 
     // Months
     jan: "January",
@@ -312,7 +313,9 @@ let strings = new LocalizedStrings({
     // RoomExistsModal
     thisRoomExists: "This room already exists",
     enterExistingRoom: "Click below to enter the existing room",
-    createNew: "Create New"
+    createNew: "Create New",
+    // SignUpRequiredModal
+    loginRequired: "You must log in to use this feature."
   },
 
   // === KOREAN === //
@@ -453,6 +456,7 @@ let strings = new LocalizedStrings({
     backToTrendingButton: "처음으로",
     sendFeedbackButton: "뽀삐톡 팀",
     copyButton: "복사하기",
+    backToChannels: "채널로 돌아가기",
 
     // Months
     jan: "1월",
@@ -470,8 +474,8 @@ let strings = new LocalizedStrings({
 
     // === ChannelsPanel & FriendsPanel === //
     // PanelHeader & MiniFriendsList
-    channels: "티비채널",
-    friends: "친구",
+    channels: "뽀삐톡 채널",
+    friends: "친구 목록",
     friendsButtonHover:
       "친구와 비공계로 단둘이 영상을 시청하려면 로그인 후 이용해 주세요.",
     recentFriends: "최근 친구",
@@ -522,7 +526,7 @@ let strings = new LocalizedStrings({
     // == VideoPanel == //
     // VideoPlayer & VideoStatus
     paused: "일시정지",
-    pausedPopup: "채널 관리자가 일지성지 했습니다.",
+    pausedPopup: "채널 관리자가 일지정지 했습니다.",
     startingIn: "채널 관리자가 재생했습니다. 곧 재생됩니다",
     play: "재생",
     pause: "일시정지",
@@ -617,7 +621,9 @@ let strings = new LocalizedStrings({
     // RoomExistsModal
     thisRoomExists: "선택하신 방이 이미 존재합니다",
     enterExistingRoom: "이미 존재하는 방으로 가시려면 클릭하세요.",
-    createNew: "새로 만들기"
+    createNew: "새로 만들기",
+    // SignUpRequiredModal
+    loginRequired: "이 기능을 사용하려면 로그인하세요."
   },
 
   //  Russian  //

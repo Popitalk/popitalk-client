@@ -15,12 +15,12 @@ import {
   getTrendingChannels,
   removeLeftPanel
 } from "../../redux/actions";
-import PanelHeader from "../LeftPanels/PanelHeader";
+import Input from "../Controls/Input";
 
 const SETTINGS = 1;
 const INFORMATION = 4;
 
-const SiteHeaderViewers = () => {
+const SiteHeaderViewers = ({ setSearch, search, handleSearch }) => {
   const [dropdownList, setDropdownList] = useState([]);
 
   const trendingChannels = useSelector(state => state.trendingChannels);
@@ -88,8 +88,8 @@ const SiteHeaderViewers = () => {
   ];
 
   return (
-    <header className="sm:px-6 // relative flex items-center justify-around h-12 bg-background-primary z-30 select-none">
-      <div className="flex flex-row items-center w-1/3 sm:w-1/4 flex-shrink-0">
+    <header className="sm:px-6 // flex items-center justify-between h-14 border-b border-outline-primary w-screen bg-background-primary z-30 select-none">
+      <div className="flex flex-row items-center w-1/4 flex-shrink-0">
         <Button
           hoverable
           styleNone
@@ -102,7 +102,7 @@ const SiteHeaderViewers = () => {
         <Button
           imageButton
           imageButtonSrc={Logo}
-          imageButtonClassName="w-8 h-8"
+          imageButtonClassName="w-10 h-10 object-cover"
           analyticsString="Main Logo Button: SiteHeaderMain"
           className="flex-shrink-0"
           hoverable
@@ -121,8 +121,15 @@ const SiteHeaderViewers = () => {
           }}
         />
       </div>
-      <div className="w-1/3 sm:w-1/2">
-        <PanelHeader viewer />
+      <div className="w-1/4 sm:w-1/4">
+        <Input
+          variant="user"
+          size="sm"
+          value={search}
+          placeholder={strings.channelSearchInput}
+          onChange={setSearch}
+          onClick={handleSearch}
+        />
       </div>
       <div className="sm:space-x-6 // flex items-center justify-end space-x-2 w-1/3 sm:w-1/4 flex-shrink-0">
         <ul className="sm:space-x-6 // flex items-center space-x-2 flex-shrink-0">
@@ -131,7 +138,7 @@ const SiteHeaderViewers = () => {
           </li>
           <li>
             <DropDownControls
-              icon="cog"
+              src="cog"
               onClick={toggleSettings}
               onClose={() => setDropdownList([])}
             >
@@ -139,14 +146,14 @@ const SiteHeaderViewers = () => {
                 <DropDownMenu
                   title={strings.settingsHeader}
                   buttons={settingsButtons}
-                  icon="cog"
+                  src="cog"
                 />
               ) : settingsDropdown === INFORMATION ? (
                 <DropDownMenu
                   title={strings.aboutPopitalk}
                   buttons={informationButtons}
                   handleBack={popDropdown}
-                  icon="info-circle"
+                  src="info-circle"
                 />
               ) : (
                 <></>
