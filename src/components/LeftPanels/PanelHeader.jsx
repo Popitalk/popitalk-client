@@ -15,7 +15,7 @@ export default function PanelHeader({
   const buttonInner = "flex items-center justify-center h-14 w-14";
 
   return (
-    <div className="flex flex-col items-center justify-center w-full select-none p-4 h-36 bg-background-highlight">
+    <div className="flex flex-col items-center justify-center w-full select-none p-4 h-36">
       <div
         className={buttonClassName}
         onClick={() => updateSelectedPage("channels")}
