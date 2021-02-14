@@ -463,7 +463,7 @@ export const deleteMessageWs = createAction("messages/deleteMessage/ws");
 /*                                  NOTIFICATIONS                             */
 /* -------------------------------------------------------------------------- */
 
-export const setLastMessageSeen = createAction(
+export const setLastMessageSeen = createAsyncThunk(
   "messages/setLastMessageSeen",
   async messageInfo => {
     const response = await api.deleteNotification(messageInfo.channelId);
