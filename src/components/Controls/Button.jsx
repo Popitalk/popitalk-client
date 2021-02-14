@@ -92,6 +92,7 @@ export default function Button({
           onClick={analyticsHandler}
           className={styleNoneClasses}
           disabled={disabled}
+          {...props}
         >
           <div className="flex items-center justify-center">
             <img

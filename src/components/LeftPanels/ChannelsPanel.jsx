@@ -10,6 +10,7 @@ import LoadMoreButton from "../Controls/LoadMoreButton";
 
 import history from "../../history";
 import Button from "../Controls/Button";
+import PanelHeader from "./PanelHeader";
 
 export default function ChannelsPanel({
   yourChannels,
@@ -20,7 +21,9 @@ export default function ChannelsPanel({
   handleSelectChannel,
   handleSelectRoom,
   handleCreateChannel,
-  setFriendsSearchFocus
+  setFriendsSearchFocus,
+  updateSelectedPage,
+  selectedPage
 }) {
   const [yourChannelsCount, setYourChannelsCount] = useState(5);
   const [followingChannelsCount, setFollowingChannelsCount] = useState(5);
@@ -61,6 +64,10 @@ export default function ChannelsPanel({
   return (
     <div className="flex flex-col w-3/4 sm:w-68 h-full bg-background-primary select-none">
       <div className="flex-col h-full overflow-y-scroll space-y-2">
+        <PanelHeader
+          updateSelectedPage={updateSelectedPage}
+          selectedPage={selectedPage}
+        />
         <LeftPanelSubHeader
           headerString={strings.recentFriends}
           searchUser

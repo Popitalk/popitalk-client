@@ -142,6 +142,17 @@ export default function LeftPanelContainer() {
     history.push("/create");
     dispatch(setLeftPanelActiveTabChannels());
   };
+  const updateSelectedPageAndMain = page => {
+    const pages = {
+      channels: "/",
+      friends: "/friends"
+    };
+    if (pages[page]) {
+      history.push(pages[page]);
+    } else {
+      console.log("no such page exists.");
+    }
+  };
 
   return (
     <Switch>
@@ -164,6 +175,7 @@ export default function LeftPanelContainer() {
           selectedPage="channels"
           handleCreateRoom={() => handleCreateRoom(selectedChannel)}
           setFriendsSearchFocus={setFriendsSearchFocus}
+          updateSelectedPage={updateSelectedPageAndMain}
         />
       </Route>
       <Route exact path="/friends">
@@ -185,6 +197,7 @@ export default function LeftPanelContainer() {
           handleCreateRoom={() => handleCreateRoom(selectedChannel)}
           friendsSearchFocus={friendsSearchFocus}
           setFriendsSearchFocus={setFriendsSearchFocus}
+          updateSelectedPage={updateSelectedPageAndMain}
         />
       </Route>
       <Route>
@@ -206,6 +219,7 @@ export default function LeftPanelContainer() {
           selectedPage={leftPanelActiveTab}
           handleCreateRoom={() => handleCreateRoom(selectedChannel)}
           setFriendsSearchFocus={setFriendsSearchFocus}
+          updateSelectedPage={updateSelectedPageAndMain}
         />
       </Route>
     </Switch>

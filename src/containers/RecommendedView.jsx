@@ -7,7 +7,6 @@ import Button from "../components/Controls/Button.jsx";
 import LoadMoreButton from "../components/Controls/LoadMoreButton";
 import ChannelCardList from "../components/ThumbnailCardLists/ChannelCardList.jsx";
 import ChannelSearchList from "../components/ThumbnailCardLists/ChannelSearchList.jsx";
-import Input from "../components/Controls/Input.jsx";
 // Localization
 import strings from "../localization/strings";
 // Helpers
@@ -212,19 +211,9 @@ function RecommendedChannels() {
   }, [followingChannels]);
 
   return (
-    <div className="relative w-full rounded-md bg-background-secondary">
+    <div className="relative w-full bg-background-secondary">
       {/* OPTION TABS */}
       <div className="flex justify-start overflow-x-auto w-full px-4 h-14 items-center bg-background-tertiary space-x-2 rounded-md">
-        <div className="flex-shrink-0">
-          <Input
-            variant="channel"
-            size="sm"
-            value={search}
-            placeholder={strings.channelSearchInput}
-            onChange={e => setSearch(e.target.value)}
-            onClick={handleSearch}
-          />
-        </div>
         {tabs.map((img, idx) => {
           return (
             <Button

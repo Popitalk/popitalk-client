@@ -13,23 +13,25 @@ export const RouteWrapper = ({
       <div className="flex w-screen flex-row h-full overflow-y-auto bg-background-primary">
         {leftPanelIsRemoved && (
           <div
-            className="fixed h-screen overflow-y-auto flex-shrink-0 mozilla-thin-scrollbar z-30 bg-black bg-opacity-25"
+            className="fixed h-withoutHeader overflow-y-auto flex-shrink-0 mozilla-thin-scrollbar z-30 bg-black bg-opacity-25"
             onClick={() => dispatch(removeLeftPanel())}
             role="button"
           >
             {leftPanel}
           </div>
         )}
-        <div className="w-full overflow-y-scroll">{children}</div>
+        <div className="h-withoutHeader overflow-y-scroll w-full">
+          {children}
+        </div>
       </div>
     );
   }
   return (
     <div className="flex w-screen flex-row bg-background-primary">
-      <div className="flex h-screen overflow-y-auto flex-shrink-0 mozilla-thin-scrollbar z-30">
+      <div className="flex h-withoutHeader overflow-y-auto flex-shrink-0 mozilla-thin-scrollbar z-30">
         {leftPanel}
       </div>
-      <div className={"w-full h-screen overflow-y-scroll"}>{children}</div>
+      <div className="h-withoutHeader overflow-y-scroll w-full">{children}</div>
     </div>
   );
 };
@@ -46,7 +48,7 @@ export const ChannelWrapper = ({
       <div className="flex w-screen flex-row h-full overflow-y-auto bg-background-primary">
         {leftPanelIsRemoved && (
           <div
-            className="fixed h-screen overflow-y-auto flex-shrink-0 mozilla-thin-scrollbar z-30 bg-black bg-opacity-25"
+            className="fixed h-withoutHeader overflow-y-auto flex-shrink-0 mozilla-thin-scrollbar z-30 bg-black bg-opacity-25"
             onClick={() => dispatch(removeLeftPanel())}
             role="button"
           >
@@ -58,7 +60,7 @@ export const ChannelWrapper = ({
     );
   }
   return (
-    <div className="flex w-screen flex-row h-full overflow-y-auto bg-background-primary">
+    <div className="flex w-screen flex-row h-withoutHeader overflow-y-auto bg-background-primary">
       <div className="flex sm:w-auto overflow-y-auto flex-shrink-0 mozilla-thin-scrollbar z-20">
         {leftPanel}
       </div>

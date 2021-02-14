@@ -5,17 +5,25 @@ import ChannelsList from "../InfoCardLists/ChannelsList";
 import LeftPanelDescription from "./LeftPanelDescription";
 import LeftPanelFooter from "./LeftPanelFooter";
 import LeftPanelSubHeader from "./LeftPanelSubHeader";
+import PanelHeader from "./PanelHeader";
 
 export default function LeftPanelViewer({
   link,
   recommendedChannels,
   selectedChannel,
-  handleSelectChannel
+  handleSelectChannel,
+  updateSelectedPage,
+  selectedPage
 }) {
   const [recommendedChannelsCount, setRecommendedChannelsCount] = useState(5); // Later on will load more recommendedChannels from api
 
   return (
     <div className="flex flex-col w-3/4 sm:w-68 h-full bg-background-primary select-none">
+      <PanelHeader
+        updateSelectedPage={updateSelectedPage}
+        selectedPage={selectedPage}
+        viewer
+      />
       <LeftPanelDescription />
       <div className="py-2 w-full bg-background-primary">
         <LeftPanelSubHeader headerString={strings.recommendedChannels} />

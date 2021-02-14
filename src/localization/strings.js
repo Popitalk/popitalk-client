@@ -123,7 +123,7 @@ let strings = new LocalizedStrings({
     createNewAccountButton: "Sign In",
     createChannelButton: "Create channel",
     newRoomButton: "New Direct Room",
-    directRoom: "DIRECT ROOMS",
+    directRoom: "FRIENDS",
     searchFriends: "SEARCH FRIENDS",
     requestVideoButton: "Send a request to the admin",
     createButton: "Create",
@@ -140,6 +140,7 @@ let strings = new LocalizedStrings({
     backToTrendingButton: "Back to Trending",
     sendFeedbackButton: "Popitalk Team",
     copyButton: "Copy",
+    backToChannels: "Back to channels",
 
     // Months
     jan: "January",
@@ -453,6 +454,7 @@ let strings = new LocalizedStrings({
     backToTrendingButton: "처음으로",
     sendFeedbackButton: "뽀삐톡 팀",
     copyButton: "복사하기",
+    backToChannels: "채널로 돌아가기",
 
     // Months
     jan: "1월",
@@ -470,8 +472,8 @@ let strings = new LocalizedStrings({
 
     // === ChannelsPanel & FriendsPanel === //
     // PanelHeader & MiniFriendsList
-    channels: "티비채널",
-    friends: "친구",
+    channels: "뽀삐톡 채널",
+    friends: "친구 목록",
     friendsButtonHover:
       "친구와 비공계로 단둘이 영상을 시청하려면 로그인 후 이용해 주세요.",
     recentFriends: "최근 친구",

@@ -174,7 +174,9 @@ module.exports = {
       height: {
         chatBox: "27rem",
         chatChild: "24rem",
-        modalFull: "70vh"
+        modalFull: "70vh",
+        mobileFull: "90vh",
+        withoutHeader: "calc(100vh - 3.5rem)"
       },
       scale: {
         200: "2"

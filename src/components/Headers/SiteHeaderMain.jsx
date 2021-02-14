@@ -19,12 +19,13 @@ import {
   removeLeftPanel,
   setLeftPanelActiveTabChannels
 } from "../../redux/actions";
-import PanelHeader from "../LeftPanels/PanelHeader";
+import Input from "../Controls/Input";
 
-const SETTINGS = 1;
-const ACCOUNT_SETTINGS = 2;
-const DELETE_ACCOUNT = 3;
-const INFORMATION = 4;
+const MY_PROFILE = 1;
+const SETTINGS = 2;
+const ACCOUNT_SETTINGS = 3;
+const DELETE_ACCOUNT = 4;
+const INFORMATION = 5;
 
 const SiteHeaderMain = ({
   userID,
@@ -39,8 +40,10 @@ const SiteHeaderMain = ({
   openChangePasswordHandler,
   deleteAccountHandler,
   logoutHandler,
-  updateSelectedPage,
-  selectedPage
+  setSearch,
+  search,
+  handleSearch,
+  windowSize
 }) => {
   const [dropdownList, setDropdownList] = useState([]);
 
@@ -77,7 +80,17 @@ const SiteHeaderMain = ({
     openChangePasswordHandler();
   };
 
+  const openProfileModal = () => {
+    setDropdownList([]);
+    openProfileHandler(userID);
+  };
+
   const settingsButtons = [
+    {
+      text: username,
+      imageIcon: avatar,
+      onClick: openProfileModal
+    },
     {
       text: strings.accountSettings,
       leftIcon: "user-circle",
@@ -159,24 +172,19 @@ const SiteHeaderMain = ({
     dropdownList.length > 0 ? dropdownList[dropdownList.length - 1] : 0;
 
   return (
-    <header className="sm:px-6 // relative flex items-center justify-between h-12 bg-background-primary select-none">
-      <div className="flex flex-row items-center w-1/3 sm:w-1/4 flex-shrink-0">
+    <header className="sm:px-6 px-2 // relative flex items-center justify-between h-14 border-b border-outline-primary w-screen bg-background-primary select-none">
+      <div className="flex flex-row items-center w-1/4 flex-shrink-0 space-x-4">
         <Button
           hoverable
           styleNone
           icon="bars"
           styleNoneIconClassName="text-lg"
-          className="sm:hidden block rounded-full text-copy-secondary w-10 h-10 hover:text-copy-highlight mr-4"
-          onClick={() => dispatch(removeLeftPanel())}
-          analyticsString="Collapse Button: PanelHeader"
-        />
-        <Button
-          hoverable
-          styleNone
-          icon="bars"
-          styleNoneIconClassName="text-lg"
-          className="hidden sm:block rounded-full text-copy-secondary w-10 h-10 hover:text-copy-highlight mr-4"
-          onClick={() => dispatch(toggleLeftPanel())}
+          className="rounded-full text-copy-secondary w-10 h-10 hover:text-copy-highlight"
+          onClick={
+            windowSize.width <= 640
+              ? () => dispatch(removeLeftPanel())
+              : () => dispatch(toggleLeftPanel())
+          }
           analyticsString="Collapse Button: PanelHeader"
         />
         <Button
@@ -202,17 +210,22 @@ const SiteHeaderMain = ({
           }}
         />
       </div>
-      <div className="w-1/3 sm:w-1/2">
-        <PanelHeader
-          updateSelectedPage={updateSelectedPage}
-          selectedPage={selectedPage}
+      <div className="w-full sm:w-1/4">
+        <Input
+          variant="user"
+          size="sm"
+          value={search}
+          placeholder={strings.channelSearchInput}
+          onChange={setSearch}
+          onClick={handleSearch}
+          className="w-full"
         />
       </div>
-      <div className="sm:space-x-4 sm:w-1/4 // flex items-center space-x-2 w-1/3 justify-end pr-2 flex-shrink-0">
+      <div className="sm:space-x-4 // flex items-center space-x-2 w-1/4 justify-end pr-2 flex-shrink-0">
         <ul className="sm:space-x-4 // flex items-center space-x-2">
           <li>
             <DropDownControls
-              icon="bell"
+              src="bell"
               hasNotification={friendRequests.length > 0}
             >
               <FriendRequests
@@ -236,22 +249,26 @@ const SiteHeaderMain = ({
           </li> */}
           <li>
             <DropDownControls
-              icon="cog"
+              userProfile
+              src={avatar}
+              username={username}
               onClick={toggleSettings}
               onClose={() => setDropdownList([])}
             >
-              {settingsDropdown === SETTINGS ? (
+              {settingsDropdown === MY_PROFILE ? (
+                <DropDownMenu buttons={settingsButtons} />
+              ) : settingsDropdown === SETTINGS ? (
                 <DropDownMenu
                   title={strings.settingsHeader}
                   buttons={settingsButtons}
-                  icon="cog"
+                  src="cog"
                 />
               ) : settingsDropdown === ACCOUNT_SETTINGS ? (
                 <DropDownMenu
                   title={strings.accountSettings}
                   buttons={accountSettingsButtons}
                   handleBack={popDropdown}
-                  icon="user-circle"
+                  src="user-circle"
                 />
               ) : settingsDropdown === DELETE_ACCOUNT ? (
                 <DeleteAccountDropDown
@@ -263,7 +280,7 @@ const SiteHeaderMain = ({
                   title={strings.aboutPopitalk}
                   buttons={informationButtons}
                   handleBack={popDropdown}
-                  icon="info-circle"
+                  src="info-circle"
                 />
               ) : (
                 <></>
@@ -271,17 +288,6 @@ const SiteHeaderMain = ({
             </DropDownControls>
           </li>
         </ul>
-        <Button
-          hoverable
-          imageButton
-          imageButtonSrc={avatar}
-          imageButtonSpan={username}
-          imageButtonClassName="w-6 h-6 rounded-full object-cover"
-          imageButtonSpanClassName="hidden sm:block text-xs font-bold text-copy-primary ml-2"
-          onClick={() => openProfileHandler(userID)}
-          className="p-2 px-3 hover:bg-hover-highlight rounded-lg"
-          analyticsString="My Profile Button: SiteHeaderMain"
-        />
       </div>
     </header>
   );

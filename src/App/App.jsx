@@ -60,13 +60,12 @@ export default function App() {
         <PageLoader />
       </ThemeProvider>
     );
-
   return (
     <Suspense fallback={<PageLoader />}>
       <ThemeProvider>
         <ModalManager />
-        <div className="h-screen flex flex-col overflow-y-hidden">
-          <Header />
+        <div className="h-screen flex flex-col overflow-hidden">
+          <Header windowSize={windowSize} />
           <Switch>
             <PublicRoute exact path="/welcome">
               <WelcomePage />

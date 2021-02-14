@@ -7,6 +7,7 @@ export default function MenuButton({
   selected,
   danger,
   leftIcon,
+  imageIcon,
   rightIcon,
   text,
   onClick,
@@ -67,6 +68,18 @@ export default function MenuButton({
       ) : freeform ? (
         <div role="button" onClick={onClick} className={customClasses}>
           <p className="flex justify-start items-center space-x-2">{text}</p>
+        </div>
+      ) : imageIcon ? (
+        <div role="button" onClick={onClick} className={buttonClasses}>
+          <div className="flex justify-start items-center space-x-2">
+            <img
+              src={imageIcon}
+              alt="profile"
+              className="w-6 h-6 rounded-circle bg-background-highlight"
+            />
+            <p>{text}</p>
+          </div>
+          {rightIcon && <FontAwesomeIcon icon={rightIcon} />}
         </div>
       ) : (
         <div role="button" onClick={onClick} className={buttonClasses}>

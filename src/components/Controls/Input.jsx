@@ -38,7 +38,7 @@ export default function Input({
       "border-outline-primary": error,
       "rounded-md px-3": shape === "pill",
       "pl-12 pr-12 rounded-md": variant === "video",
-      "pr-8 bg-background-secondary": variant === "user",
+      "pr-8 bg-background-tertiary": variant === "user",
       "pr-8 bg-background-primary": variant === "channel",
       "pr-20": variant === "counter" || variant === "textarea",
       "resize-none overflow-hidden h-32 pt-1": variant === "textarea",
