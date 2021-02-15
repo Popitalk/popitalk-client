@@ -27,8 +27,8 @@ export default function PanelHeader({
         <h2
           className={`text-xl w-32 ${
             selectedPage === "channels"
-              ? "text-copy-link"
-              : "text-copy-secondary"
+              ? "text-copy-link font-bold"
+              : "text-copy-secondary font-light"
           }`}
         >
           {strings.channels}
@@ -49,8 +49,8 @@ export default function PanelHeader({
         <h2
           className={`text-xl w-32 ${
             selectedPage === "friends"
-              ? "text-copy-link"
-              : "text-copy-secondary"
+              ? "text-copy-link font-bold"
+              : "text-copy-secondary font-light"
           }`}
         >
           {strings.friends}

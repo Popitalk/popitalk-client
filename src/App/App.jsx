@@ -22,6 +22,7 @@ import { validateSession } from "../redux/actions";
 // Styles
 import "../styles/app.css";
 import "../styles/scrollbars.css";
+import "../styles/input.css";
 
 const WelcomePage = lazy(() => import("../containers/WelcomeView"));
 const RecommendedView = lazy(() => import("../containers/RecommendedView"));
