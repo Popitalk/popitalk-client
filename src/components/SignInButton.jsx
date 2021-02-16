@@ -11,8 +11,7 @@ const SignInButton = () => {
       hoverable
       styleNone
       styleNoneContent={strings.createNewAccountButton}
-      icon="user-circle"
-      className="bg-copy-link py-2 px-4 rounded-md border-copy-link border space-x-2 text-copy-tertiary"
+      className="bg-copy-link py-2 px-5 rounded-md text-copy-tertiary"
       onClick={() => history.push("/welcome")}
     />
   );
