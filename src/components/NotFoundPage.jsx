@@ -5,7 +5,7 @@ const NotFoundPage = () => (
   <div className="flex flex-col md:flex-row px-12 items-center justify-center w-full h-full bg-background-secondary">
     <div className="flex items-center justify-center md:w-1/2 w-full p-4 lg:px-12 xl:p-24">
       <video
-        className="flex object-cover h-full rounded-circle"
+        className="flex object-cover rounded-circle"
         autoPlay
         loop
         muted

@@ -8,7 +8,7 @@ export default function WelcomeIntro({ openModal }) {
       {/* LEFT SECTION */}
       <div className="flex items-center justify-center md:w-1/2 w-full p-4 xxl:p-12">
         <video
-          className="flex object-cover h-full rounded-circle"
+          className="flex object-cover rounded-circle"
           autoPlay
           loop
           muted
