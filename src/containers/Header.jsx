@@ -37,10 +37,9 @@ const HeaderContainer = ({ windowSize }) => {
   const [search, setSearch] = useState("");
 
   const handleSearch = useCallback(() => {
-    history.push("/");
     dispatch(searchChannels({ channelName: search }));
     dispatch(setSelectedTab(false));
-  }, [history, dispatch, search]);
+  }, [dispatch, search]);
 
   const setUserRelationships = user =>
     setRelationshipHandlers(user, relationships, dispatch, defaultAvatar, id);

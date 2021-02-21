@@ -9,7 +9,7 @@ let strings = new LocalizedStrings({
 
     // === AD VIDEO === //
     adVideo:
-      "https://s3.us-east-2.amazonaws.com/popitalk.com/static/media/Eng-compressed.mp4",
+      "https://s3.us-east-2.amazonaws.com/popitalk.com/static/media/Sequence+07.mp4",
     howToUsePopitalk: "How to use Popitalk",
 
     // === Error Message === //
@@ -324,8 +324,6 @@ let strings = new LocalizedStrings({
     location: "ko",
 
     // === AD VIDEO === //
-    adVideo:
-      "https://s3.us-east-2.amazonaws.com/popitalk.com/static/media/Kor-compressed.mp4",
     howToUsePopitalk: "뽀삐톡 사용방법",
 
     // === Error Message === //
