@@ -64,13 +64,15 @@ const R_deleteReceivedFriendRequest = (state, { payload }) => {
 };
 
 const R_addFriend = (state, { payload }) => {
-  state.sentFriendRequests = state.sentFriendRequests.filter(
-    userId => userId !== payload.userId
-  );
-  state.receivedFriendRequests = state.receivedFriendRequests.filter(
-    userId => userId !== payload.userId
-  );
-  state.friends.push(payload.userId);
+  if (payload.type !== "stranger") {
+    state.sentFriendRequests = state.sentFriendRequests.filter(
+      userId => userId !== payload.userId
+    );
+    state.receivedFriendRequests = state.receivedFriendRequests.filter(
+      userId => userId !== payload.userId
+    );
+    state.friends.push(payload.userId);
+  }
 };
 
 const R_deleteFriend = (state, { payload }) => {

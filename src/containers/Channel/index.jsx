@@ -365,7 +365,7 @@ class Channel extends Component {
       if (this.props.channel.loaded) {
         console.log(this.props.channel);
         this.props.getRecommendedChannels({
-          categories: this.props.channel.categories.join("")
+          categories: this.props.channel.categories?.join("") || ""
         });
       }
       this.setPlayerStatus();
