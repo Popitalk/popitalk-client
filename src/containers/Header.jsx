@@ -37,10 +37,9 @@ const HeaderContainer = ({ windowSize }) => {
   const [search, setSearch] = useState("");
 
   const handleSearch = useCallback(() => {
-    history.push("/");
     dispatch(searchChannels({ channelName: search }));
     dispatch(setSelectedTab(false));
-  }, [history, dispatch, search]);
+  }, [dispatch, search]);
 
   const setUserRelationships = user =>
     setRelationshipHandlers(user, relationships, dispatch, defaultAvatar, id);
@@ -58,16 +57,18 @@ const HeaderContainer = ({ windowSize }) => {
     if (status === "success") history.push("/");
   }, [history, status]);
   useEffect(() => {
-    const listener = event => {
-      if (event.code === "Enter" || event.code === "NumpadEnter") {
-        handleSearch();
-      }
-    };
-    document.addEventListener("keydown", listener);
-    return () => {
-      document.removeEventListener("keydown", listener);
-    };
-  }, [handleSearch, search]);
+    if (pathname !== "/welcome") {
+      const listener = event => {
+        if (event.code === "Enter" || event.code === "NumpadEnter") {
+          handleSearch();
+        }
+      };
+      document.addEventListener("keydown", listener);
+      return () => {
+        document.removeEventListener("keydown", listener);
+      };
+    }
+  }, [handleSearch, pathname, search]);
 
   const requests = [...receivedFriendRequests, ...sentFriendRequests];
   const mappedUsers = mapIdsToUsers(requests, users, defaultAvatar);

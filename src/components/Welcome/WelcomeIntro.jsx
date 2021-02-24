@@ -1,18 +1,21 @@
 import React from "react";
 import Button from "../Controls/Button";
-import welcomepic from "../../assets/welcomepic.png";
 import strings from "../../localization/strings";
 
 export default function WelcomeIntro({ openModal }) {
   return (
     <div className="relative flex flex-col md:flex-row w-full h-full items-center p-8 bg-background-primary">
       {/* LEFT SECTION */}
-      <div className="absolute md:static opacity-0 sm:opacity-25 md:opacity-100 md:flex items-center justify-center md:w-1/2 w-full h-full lg:p-24 md:p-12 sm:p-4">
-        <img
-          src={welcomepic}
-          className="object-cover"
-          alt="Watch movies and shows together"
-        />
+      <div className="flex items-center justify-center md:w-1/2 w-full p-4 xxl:p-12">
+        <video
+          className="flex object-cover rounded-circle"
+          autoPlay
+          loop
+          muted
+          playsInline
+        >
+          <source src={strings.adVideo} type="video/mp4" />
+        </video>
       </div>
       {/* RIGHT SECTION */}
       <div className="flex flex-col md:p-12 p-4 justify-center items-center md:items-start md:w-1/2 w-full h-full space-y-4 z-20">

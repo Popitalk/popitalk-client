@@ -1,14 +1,18 @@
 import React from "react";
-import welcomepic from "../assets/welcomepic.png";
+import strings from "../localization/strings";
 
 const NotFoundPage = () => (
-  <div className="flex px-12 items-center justify-center w-full h-full bg-background-secondary">
-    <div className="absolute md:static opacity-0 sm:opacity-25 md:opacity-100 md:flex items-center justify-center md:w-1/2 w-full h-full lg:p-24 md:p-12 sm:p-4">
-      <img
-        src={welcomepic}
-        className="object-cover"
-        alt="Watch movies and shows together"
-      />
+  <div className="flex flex-col md:flex-row px-12 items-center justify-center w-full h-full bg-background-secondary">
+    <div className="flex items-center justify-center md:w-1/2 w-full p-4 lg:px-12 xl:p-24">
+      <video
+        className="flex object-cover rounded-circle"
+        autoPlay
+        loop
+        muted
+        playsInline
+      >
+        <source src={strings.adVideo} type="video/mp4" />
+      </video>
     </div>
     <div className="flex flex-col items-start">
       <h2 className="text-6xl font-bold text-copy-primary">Oops!</h2>

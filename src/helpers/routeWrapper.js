@@ -32,7 +32,9 @@ export const RouteWrapper = ({
       <div className="flex h-withoutHeader overflow-y-auto flex-shrink-0 mozilla-thin-scrollbar z-30">
         {leftPanel}
       </div>
-      <div className="h-withoutHeader overflow-y-scroll w-full">{children}</div>
+      <div className="h-withoutHeader overflow-y-scroll w-full bg-background-secondary">
+        {children}
+      </div>
     </div>
   );
 };

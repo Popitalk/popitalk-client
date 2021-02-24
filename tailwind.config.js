@@ -75,7 +75,7 @@ module.exports = {
         disabled: "var(--color-bg-disabled)",
         highlight: "var(--color-bg-highlight)",
         search: "#00C3FF",
-        ad: "#3808BB"
+        ad: "#fff"
       },
 
       /* == TEXT COLOR. EX) className="text-copy-primary" == */
