@@ -6,7 +6,8 @@ import {
   deleteChannel,
   createRoom,
   addRoomMembers,
-  deleteMessage
+  deleteMessage,
+  addStranger
 } from "../../actions";
 
 import {
@@ -78,7 +79,9 @@ const modalsSlice = createSlice({
     [deleteChannel.fulfilled]: R_closeAllModals,
     [createRoom.fulfilled]: R_closeModal,
     [addRoomMembers.fulfilled]: R_closeModal,
-    [deleteMessage.fulfilled]: R_closeModal
+    [deleteMessage.fulfilled]: R_closeModal,
+    [addStranger.fulfilled]: R_closeModal,
+    [addStranger.rejected]: R_closeAllModals
   }
 });
 

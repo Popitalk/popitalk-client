@@ -202,6 +202,14 @@ export const deleteFriendWs = createAction("relationships/deleteFriend/ws");
 export const addBlockerWs = createAction("relationships/addBlocker/ws");
 export const deleteBlockerWs = createAction("relationships/deleteBlocker/ws");
 
+export const addStranger = createAsyncThunk(
+  "relationships/addStranger",
+  async userId => {
+    const response = await api.addStranger(userId);
+    return response.data;
+  }
+);
+
 // ACCEPT FR OR ADDFRIENDWS -> ADD CHANNEL (channel, self, chat settings, users, ...etc)
 // DELETE FRIEND OR BLOCKUSER OR ADD BLOCKER -> DELETE CHANNEL
 /* -------------------------------------------------------------------------- */

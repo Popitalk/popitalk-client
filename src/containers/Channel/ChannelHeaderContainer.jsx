@@ -25,6 +25,9 @@ const selectChannelName = createSelector(
       )
         .map(userId => users[userId].username)
         .join(", ");
+    } else if (channel.type === "stranger") {
+      channelName =
+        users[channel.members.filter(userId => userId !== self.id)[0]].username;
     }
 
     return channelName;
@@ -40,7 +43,7 @@ export default function ChannelHeaderContainer({
 }) {
   const channel = useSelector(state => state.channels[channelId]);
   const { defaultIcon, defaultAvatar } = useSelector(state => state.general);
-  let channelName = useSelector(state => selectChannelName(state, channelId));
+  const channelName = useSelector(state => selectChannelName(state, channelId));
 
   const dispatch = useDispatch();
 

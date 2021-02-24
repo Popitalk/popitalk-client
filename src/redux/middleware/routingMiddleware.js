@@ -4,7 +4,8 @@ import {
   addChannel,
   deleteChannel,
   deleteChannelWs,
-  leaveRoom
+  leaveRoom,
+  addStranger
 } from "../actions";
 
 const routingMiddleware = () => store => next => action => {
@@ -32,6 +33,8 @@ const routingMiddleware = () => store => next => action => {
     ) {
       history.push("/channels/following");
     }
+  } else if (addStranger.fulfilled.match(action)) {
+    history.push(`/rooms/${action.payload.channelId}/`);
   }
 };
 

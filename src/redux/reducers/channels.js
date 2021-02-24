@@ -113,11 +113,12 @@ const R_refreshChannels = (state, { payload }) => {
 
 const R_addChannel = (state, { payload }) => {
   const channelId = payload.id || payload.channelId;
-  let { channel } = payload;
+  const { channel } = payload;
 
   state[channelId] = {
     ...state[channelId],
     ...channel,
+    viewers: channel.viewers || [],
     loaded: true,
     chatSettings: {
       capacity: 50,

@@ -74,6 +74,10 @@ export const unfriendUser = friendId => {
   return ax.delete(`/users/friends/${friendId}`);
 };
 
+export const addStranger = strangerId => {
+  return ax.post(`/users/friends/stranger`, { strangerId });
+};
+
 // USERS
 
 export const getUser = userId => {

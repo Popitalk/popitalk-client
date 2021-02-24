@@ -9,7 +9,8 @@ import {
   blockUser,
   unblockUser,
   updateUser,
-  clearError
+  clearError,
+  addStranger
 } from "../../redux/actions";
 import { getUserInfo } from "../../redux";
 
@@ -77,6 +78,7 @@ const ProfileModalContainer = ({ handleModalClose }) => {
         recentVideos={[]}
         followedChannels={[]}
         unfriendHandler={() => dispatch(deleteFriend(userId))}
+        messageHandler={() => dispatch(addStranger(userId))}
         blockHandler={blockHandler}
         updateAvatar={updateAvatar}
         status={status}

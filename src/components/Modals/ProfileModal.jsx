@@ -14,7 +14,8 @@ const ProfileModal = ({
   unfriendHandler,
   blockHandler,
   updateAvatar,
-  status
+  status,
+  messageHandler
 }) => {
   // variants: self, friend, stranger, sentRequest, receivedRequest, blocked
   const variant = user.variant;
@@ -31,6 +32,14 @@ const ProfileModal = ({
 
   if (variant === "friend") {
     options.unshift({ name: "Unfriend", handler: unfriendHandler });
+  }
+
+  if (
+    variant === "stranger" ||
+    variant === "sentRequest" ||
+    variant === "receivedRequest"
+  ) {
+    options.push({ name: "Message", handler: messageHandler });
   }
 
   let ModalContent;
