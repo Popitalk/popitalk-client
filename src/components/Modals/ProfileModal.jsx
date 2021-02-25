@@ -33,15 +33,6 @@ const ProfileModal = ({
   if (variant === "friend") {
     options.unshift({ name: "Unfriend", handler: unfriendHandler });
   }
-
-  if (
-    variant === "stranger" ||
-    variant === "sentRequest" ||
-    variant === "receivedRequest"
-  ) {
-    options.push({ name: "Message", handler: messageHandler });
-  }
-
   let ModalContent;
   const loadingComponent = (
     <div className="relative flex flex-col justify-center items-center space-y-4 py-4 px-6 w-full h-full">
@@ -71,8 +62,20 @@ const ProfileModal = ({
   } else {
     ModalContent = (
       <>
-        <div className="absolute flex items-center space-x-2 top-0 right-0 m-4">
+        <div className="absolute flex items-center space-x-2 top-0 right-0 m-4 z-20">
           <FriendRequestButtons user={user} tooltipPlace="left" size="sm" />
+          {(variant === "stranger" ||
+            variant === "sentRequest" ||
+            variant === "receivedRequest") && (
+            <Button
+              actionButton
+              size="sm"
+              icon="comment"
+              onClick={messageHandler}
+              analyticsString="Friend Rq Button: FriendRequestButtons"
+              tooltip="Send message"
+            />
+          )}
           {options && (
             <div>
               <PopupMenu id={user.id} options={options} />

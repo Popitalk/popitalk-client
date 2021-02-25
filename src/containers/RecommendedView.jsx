@@ -256,7 +256,7 @@ function RecommendedChannels() {
             >
               <source src={strings.adVideo} type="video/mp4" />
             </video>
-            <div className="text-xl xl:text-2xl xxl:text-4xl font-bold px-4">
+            <div className="hidden sm:block text-xl xl:text-2xl xxl:text-4xl font-bold px-4">
               <h2>{strings.welcomeHeader1}</h2>
               <h2>{strings.welcomeHeader2}</h2>
             </div>
