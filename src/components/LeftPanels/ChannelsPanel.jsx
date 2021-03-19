@@ -86,6 +86,7 @@ export default function ChannelsPanel({
               yourChannels.slice(0, yourChannelsCount),
               strings.yourChannels,
               strings.yourChannelsPlaceholder,
+              null,
               yourChannelsCount < yourChannels.length,
               () => setYourChannelsCount(count => count + 5)
             )
