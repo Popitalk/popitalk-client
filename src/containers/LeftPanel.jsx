@@ -8,7 +8,8 @@ import {
   setLastMessageSeen,
   getRecommendedChannelsPanel,
   setLeftPanelActiveTabChannels,
-  setLeftPanelActiveTabFriends
+  setLeftPanelActiveTabFriends,
+  addChannel
 } from "../redux/actions";
 import {
   openSignUpRequiredModal,
@@ -143,8 +144,7 @@ export default function LeftPanelContainer() {
   const handleOpenProfile = id => dispatch(openProfileModal(id));
   const handleCreateRoom = id => dispatch(openInviteModal(id, true));
   const handleCreateChannel = () => {
-    history.push("/create");
-    dispatch(setLeftPanelActiveTabChannels());
+    dispatch(addChannel());
   };
   const updateSelectedPageAndMain = page => {
     const pages = {

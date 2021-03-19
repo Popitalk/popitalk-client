@@ -234,32 +234,19 @@ export const visitAndLeaveChannel = createAsyncThunk(
 export const addViewerWs = createAction("channels/addViewer/ws");
 export const removeViewerWs = createAction("channels/removeViewer/ws");
 
-export const addChannel = createAsyncThunk(
-  "channels/addChannel",
-  async channelInfo => {
-    try {
-      const formData = new FormData();
-      formData.append("name", channelInfo.name);
-      formData.append("description", channelInfo.description);
-      formData.append("public", channelInfo.public);
-      formData.append("categories", channelInfo.categories);
-      if (channelInfo.icon) {
-        const blob = await fetch(channelInfo.icon).then(r => r.blob());
-        formData.append("icon", blob);
-      }
+export const addChannel = createAsyncThunk("channels/addChannel", async () => {
+  try {
+    const response = await api.createChannel();
 
-      const response = await api.createChannel(formData);
-
-      return response.data;
-    } catch (error) {
-      if (error.response) {
-        throw new Error(error.response.data.message);
-      } else {
-        throw new Error();
-      }
+    return response.data;
+  } catch (error) {
+    if (error.response) {
+      throw new Error(error.response.data.message);
+    } else {
+      throw new Error();
     }
   }
-);
+});
 export const addChannelWs = createAction("channels/addChannel/ws");
 
 export const updateChannel = createAsyncThunk(

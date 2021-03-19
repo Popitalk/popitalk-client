@@ -81,12 +81,12 @@ export default function ChannelsPanel({
           isLoading={false}
         />
         <div className="relative flex flex-col items-start bg-background-primary">
-          {yourChannels.length !== 0 ? (
+          {yourChannels.length >= 1 ? (
             leftPanelChannelList(
               yourChannels.slice(0, yourChannelsCount),
               strings.yourChannels,
               strings.yourChannelsPlaceholder,
-              "plus",
+              null,
               yourChannelsCount < yourChannels.length,
               () => setYourChannelsCount(count => count + 5)
             )
