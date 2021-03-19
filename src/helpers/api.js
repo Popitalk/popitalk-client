@@ -122,7 +122,7 @@ export const visitAndLeaveChannel = ({ visit, leave, anonymousId }) => {
 };
 
 export const createChannel = () => {
-  return ax.post("/channels");
+  return ax.post("/channels", {});
 };
 
 export const deleteChannel = channelId => {
